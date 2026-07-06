@@ -1,43 +1,41 @@
 hoa_fix_invalid_startup_capitals = {
-	every_country = {
-		limit = {
-			exists = yes
-			num_of_controlled_states > 0
-			NOT = {
-				capital_scope = {
-					is_owned_by = ROOT
-				}
+	limit = {
+		exists = yes
+		num_of_owned_states > 0
+		NOT = {
+			capital_scope = {
+				is_owned_by = ROOT
 			}
 		}
+	}
 
-		clear_variable = hoa_map_setup_safe_capital
+	clear_variable = hoa_map_setup_safe_capital
 
+	random_owned_controlled_state = {
+		limit = {
+			is_core_of = ROOT
+		}
+		ROOT = {
+			set_variable = { hoa_map_setup_safe_capital = PREV }
+		}
+	}
+
+	if = {
+		limit = {
+			NOT = { has_variable = hoa_map_setup_safe_capital }
+		}
 		random_owned_controlled_state = {
-			limit = {
-				is_core_of = ROOT
-			}
 			ROOT = {
 				set_variable = { hoa_map_setup_safe_capital = PREV }
 			}
 		}
+	}
 
-		if = {
-			limit = {
-				NOT = { has_variable = hoa_map_setup_safe_capital }
-			}
-			random_owned_controlled_state = {
-				ROOT = {
-					set_variable = { hoa_map_setup_safe_capital = PREV }
-				}
-			}
+	if = {
+		limit = {
+			has_variable = hoa_map_setup_safe_capital
 		}
-
-		if = {
-			limit = {
-				has_variable = hoa_map_setup_safe_capital
-			}
-			set_capital = { state = hoa_map_setup_safe_capital }
-			clear_variable = hoa_map_setup_safe_capital
-		}
+		set_capital = { state = hoa_map_setup_safe_capital }
+		clear_variable = hoa_map_setup_safe_capital
 	}
 }
