@@ -1,0 +1,83 @@
+# ============================================================
+# Grand Alliance formation — robust faction joining (Second War)
+#
+# At the 596 (Second War) bookmark the "Alliance of Lordaeron" faction is
+# created in history with only STO/STH/HEA/CAE/DAL. The rest of the historical
+# roster (KUL, QUE, GIL, STR, GNO, IRO, NRT, NET, SPC, AER) is only written
+# into the 600.1.1 history block, which never executes in a 596 campaign.
+#
+# These effects let the remaining historical members ACTUALLY join the
+# Alliance under AI control, instead of only receiving opinion/idea bonuses.
+# ============================================================
+
+# ROOT joins the Alliance of Lordaeron faction.
+# Robust to faction-leadership changes: prefers LOR, then STO, then any
+# surviving core member that currently leads the Alliance faction.
+# STO is used as the "anchor" core member because it is always present and
+# never leaves the Alliance in the Second War.
+join_grand_alliance = {
+	if = {
+		# Guard: skip if ROOT is already allied to the anchor (already a member).
+		limit = { NOT = { is_in_faction_with = STO } }
+		if = {
+			limit = { LOR = { exists = yes is_faction_leader = yes } }
+			LOR = { add_to_faction = ROOT }
+		}
+		else_if = {
+			limit = { STO = { exists = yes is_faction_leader = yes } }
+			STO = { add_to_faction = ROOT }
+		}
+		else = {
+			random_country = {
+				limit = {
+					is_faction_leader = yes
+					OR = {
+						is_in_faction_with = STO
+						tag = STO
+					}
+				}
+				add_to_faction = ROOT
+			}
+		}
+		alliance_unity_raise = yes
+	}
+}
+
+# IRO's "Coalition of Khaz Modan" (IRO + GNO + NRT) folds into the Grand
+# Alliance. Members are pulled in individually so none are orphaned in a
+# leaderless rump faction: partners first, faction leader (IRO) last.
+merge_coalition_of_khaz_modan = {
+	if = {
+		limit = { GNO = { exists = yes } }
+		GNO = { join_grand_alliance = yes }
+	}
+	if = {
+		limit = { NRT = { exists = yes } }
+		NRT = { join_grand_alliance = yes }
+	}
+	if = {
+		limit = { IRO = { exists = yes } }
+		IRO = { join_grand_alliance = yes }
+	}
+}
+
+# Pull the smaller alliance-aligned realms (Nethergarde, Stormpike, Aerie
+# Peak) into the Grand Alliance if they exist, are alliance-aligned and are
+# not committed to a hostile faction. Called from LOR's envoy focus.
+consolidate_grand_alliance_minors = {
+	every_country = {
+		limit = {
+			OR = {
+				tag = NET
+				tag = SPC
+				tag = AER
+			}
+			exists = yes
+			has_government = alliance
+			NOT = { is_in_faction_with = STO }
+			NOT = { has_war_with = STO }
+			NOT = { has_war_with = LOR }
+		}
+		join_grand_alliance = yes
+	}
+}
