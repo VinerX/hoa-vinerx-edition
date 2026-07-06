@@ -1,0 +1,732 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = gilneas_second_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = GIL
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = {
+		x = 1300
+		y = 0
+	}
+
+	shared_focus = develop_the_country
+	shared_focus = arming_the_nation
+
+	# =========================================================================
+	# Political branch (x >= 28)
+	# =========================================================================
+
+	focus = {
+		id = GIL_sw_news_from_the_south
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		x = 34
+		y = 0
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_stability = -0.02
+			add_war_support = 0.03
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = GIL_sw_pride_of_greymane
+		icon = GFX_focus_GIL_generic
+		prerequisite = { focus = GIL_sw_news_from_the_south }
+		relative_position_id = GIL_sw_news_from_the_south
+		x = -3
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_political_power = 40
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_crowleys_counsel
+		icon = GFX_focus_alliance_footman
+		prerequisite = { focus = GIL_sw_news_from_the_south }
+		relative_position_id = GIL_sw_news_from_the_south
+		x = 3
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 5
+		}
+
+		completion_reward = {
+			add_political_power = 25
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_the_debate
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = GIL_sw_news_from_the_south }
+		relative_position_id = GIL_sw_news_from_the_south
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			country_event = { id = gilneas_second_war.1 }
+		}
+	}
+
+	focus = {
+		id = GIL_sw_gilneas_first
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = GIL_sw_pride_of_greymane }
+		relative_position_id = GIL_sw_pride_of_greymane
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			add_ideas = GIL_gilneas_first_idea
+			add_stability = 0.03
+			add_political_power = 35
+		}
+	}
+
+	focus = {
+		id = GIL_sw_heed_the_call
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = GIL_sw_crowleys_counsel }
+		relative_position_id = GIL_sw_crowleys_counsel
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 4
+		}
+
+		completion_reward = {
+			add_ideas = GIL_heed_the_call_idea
+			add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.05
+			}
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = GIL_sw_a_reluctant_king
+		icon = GFX_focus_generic_diplomatic_treaty
+		prerequisite = { focus = GIL_sw_the_debate }
+		relative_position_id = GIL_sw_the_debate
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_political_power = 30
+			add_stability = -0.01
+		}
+	}
+
+	focus = {
+		id = GIL_sw_gilnean_stalwarts
+		icon = GFP_focus_generic_golden_sword
+		prerequisite = { focus = GIL_sw_news_from_the_south }
+		relative_position_id = GIL_sw_news_from_the_south
+		x = 2
+		y = 2
+		cost = 14
+
+		ai_will_do = {
+			base = 9
+		}
+
+		completion_reward = {
+			add_ideas = GIL_gilnean_stalwarts_idea
+			army_experience = 20
+		}
+	}
+
+	focus = {
+		id = GIL_sw_stand_alone
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = GIL_sw_gilneas_first }
+		mutually_exclusive = { focus = GIL_sw_full_commitment focus = GIL_sw_token_support }
+		relative_position_id = GIL_sw_gilneas_first
+		x = -2
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 6
+		}
+
+		completion_reward = {
+			add_ideas = GIL_a_kingdom_stands_alone_idea
+			add_stability = 0.05
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.08
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = GIL_sw_self_reliant_industry
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = GIL_sw_gilneas_first }
+		relative_position_id = GIL_sw_gilneas_first
+		x = 2
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = self_reliant_industry_bonus
+				bonus = 0.5
+				uses = 1
+				category = forge_technology
+			}
+			add_tech_bonus = {
+				name = self_reliant_industry_bonus
+				bonus = 0.5
+				uses = 1
+				category = mine_technology
+			}
+			capital_scope = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_full_commitment
+		icon = GFX_focus_alliance_prove_our_strength
+		prerequisite = { focus = GIL_sw_heed_the_call }
+		mutually_exclusive = { focus = GIL_sw_stand_alone focus = GIL_sw_token_support }
+		relative_position_id = GIL_sw_heed_the_call
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 3
+		}
+
+		completion_reward = {
+			add_ideas = GIL_full_commitment_idea
+			add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+			add_opinion_modifier = {
+				target = DAL
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = DAL
+				modifier = small_increase
+			}
+			add_opinion_modifier = {
+				target = KUL
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = KUL
+				modifier = small_increase
+			}
+			add_manpower = 2000
+			add_war_support = 0.07
+			add_political_power = -50
+		}
+	}
+
+	focus = {
+		id = GIL_sw_token_support
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = GIL_sw_a_reluctant_king }
+		mutually_exclusive = { focus = GIL_sw_stand_alone focus = GIL_sw_full_commitment }
+		relative_position_id = GIL_sw_a_reluctant_king
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 9
+		}
+
+		completion_reward = {
+			country_event = { id = gilneas_second_war.2 }
+			add_ideas = GIL_token_support_idea
+			add_political_power = 15
+		}
+	}
+
+	focus = {
+		id = GIL_sw_tough_as_nails
+		icon = GFP_focus_generic_orc_warrior
+		prerequisite = { focus = GIL_sw_gilnean_stalwarts }
+		relative_position_id = GIL_sw_gilnean_stalwarts
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = tough_as_nails_infantry
+				bonus = 0.5
+				uses = 1
+				category = footman_technology
+			}
+			add_tech_bonus = {
+				name = tough_as_nails_infantry
+				bonus = 0.5
+				uses = 1
+				category = pikeman_equipment_tech
+			}
+			army_experience = 15
+		}
+	}
+
+	focus = {
+		id = GIL_sw_coastal_watch
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = GIL_sw_gilnean_stalwarts }
+		relative_position_id = GIL_sw_gilnean_stalwarts
+		x = 2
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 6
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = coastal_watch_naval_bonus
+				bonus = 0.5
+				uses = 1
+				category = small_frames_technology
+			}
+			add_tech_bonus = {
+				name = coastal_watch_naval_bonus2
+				bonus = 0.5
+				uses = 1
+				category = convoy_technology
+			}
+			navy_experience = 20
+		}
+	}
+
+	focus = {
+		id = GIL_sw_fortify_the_headlands
+		icon = GFX_goal_generic_coastal_fort
+		prerequisite = { focus = GIL_sw_stand_alone }
+		relative_position_id = GIL_sw_stand_alone
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			110 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			163 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = fortify_headlands_tech
+				bonus = 0.5
+				uses = 1
+				category = guard_tower_technology
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_gilnean_brigades
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = GIL_sw_full_commitment }
+		relative_position_id = GIL_sw_full_commitment
+		x = -2
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			army_experience = 20
+			add_doctrine_cost_reduction = {
+				name = gilnean_brigades_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 0.5
+					days = 50
+					track = operations
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = GIL_sw_allied_logistics
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = GIL_sw_full_commitment }
+		relative_position_id = GIL_sw_full_commitment
+		x = 2
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 6
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = allied_logistics_bonus
+				bonus = 0.5
+				uses = 1
+				category = support_technology
+			}
+			add_command_power = 25
+			add_war_support = 0.03
+		}
+	}
+
+	focus = {
+		id = GIL_sw_shipments_of_aid
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = GIL_sw_token_support }
+		relative_position_id = GIL_sw_token_support
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_political_power = 20
+			add_war_support = 0.02
+			LOR = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = small_increase
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_northgate_regiments
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = GIL_sw_tough_as_nails }
+		relative_position_id = GIL_sw_tough_as_nails
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			army_experience = 15
+			add_doctrine_cost_reduction = {
+				name = northgate_regiments_doc
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_tech_bonus = {
+				name = northgate_regiments_tech
+				bonus = 0.5
+				uses = 1
+				category = armor_technology
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_headlands_fleet
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = GIL_sw_coastal_watch }
+		relative_position_id = GIL_sw_coastal_watch
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 5
+		}
+
+		completion_reward = {
+			navy_experience = 20
+			capital_scope = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = headlands_fleet_bonus
+				bonus = 0.5
+				uses = 1
+				category = destroyer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_the_greymane_wall
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = GIL_sw_fortify_the_headlands }
+		relative_position_id = GIL_sw_fortify_the_headlands
+		x = 0
+		y = 1
+		cost = 21
+
+		ai_will_do = {
+			base = 9
+		}
+
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.05
+			add_ideas = GIL_the_greymane_wall_idea
+			country_event = { id = gilneas_second_war.4 }
+		}
+	}
+
+	focus = {
+		id = GIL_sw_a_kingdom_sealed
+		icon = GFX_goal_generic_shut_down_MP
+		prerequisite = { focus = GIL_sw_the_greymane_wall }
+		relative_position_id = GIL_sw_the_greymane_wall
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			add_ideas = GIL_kingdom_sealed_idea
+			if = {
+				limit = { has_idea = isolation }
+				swap_ideas = {
+					remove_idea = isolation
+					add_idea = GIL_absolute_isolation_idea
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_northgate_tensions
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = GIL_sw_shipments_of_aid }
+		relative_position_id = GIL_sw_shipments_of_aid
+		x = 1
+		y = 1
+		cost = 14
+
+		ai_will_do = {
+			base = 6
+		}
+
+		available = {
+			NOT = { has_completed_focus = GIL_sw_stand_alone }
+			NOT = { has_completed_focus = GIL_sw_full_commitment }
+		}
+
+		completion_reward = {
+			add_political_power = 30
+			add_stability = -0.05
+			country_event = { id = gilneas_second_war.3 }
+		}
+	}
+
+	focus = {
+		id = GIL_sw_glory_to_the_alliance
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = GIL_sw_gilnean_brigades }
+		prerequisite = { focus = GIL_sw_allied_logistics }
+		relative_position_id = GIL_sw_full_commitment
+		x = 0
+		y = 2
+		cost = 14
+
+		ai_will_do = {
+			base = 5
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.03
+			add_political_power = 50
+			add_manpower = 3000
+			if = {
+				limit = { has_government = neutral }
+				set_politics = {
+					ruling_party = alliance
+					elections_allowed = no
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_silverpine_passage
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = GIL_sw_shipments_of_aid }
+		relative_position_id = GIL_sw_shipments_of_aid
+		x = 2
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 7
+		}
+
+		available = {
+			NOT = { has_completed_focus = GIL_sw_stand_alone }
+		}
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+			add_opinion_modifier = {
+				target = DAL
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = DAL
+				modifier = small_increase
+			}
+			164 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GIL_sw_remember_the_fallen
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		prerequisite = { focus = GIL_sw_northgate_tensions }
+		prerequisite = { focus = GIL_sw_silverpine_passage }
+		relative_position_id = GIL_sw_shipments_of_aid
+		x = 0
+		y = 2
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.05
+			add_political_power = 35
+		}
+	}
+}

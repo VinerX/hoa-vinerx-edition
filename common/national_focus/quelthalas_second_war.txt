@@ -1,0 +1,770 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = quelthalas_second_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = QUE
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = {
+		x = 1300
+		y = 0
+	}
+
+	shared_focus = develop_the_country
+	shared_focus = arming_the_nation
+
+	# ===========================================================================
+	# ROW 0 -- First War aftermath (pre-completed at 596 start)
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_farstrider_legacy
+		icon = GFX_goal_generic_defence
+		cost = 7
+		x = 32
+		y = 0
+
+		completion_reward = {
+			army_experience = 15
+			add_ideas = { QUE_farstriders }
+		}
+	}
+
+	focus = {
+		id = QUE_sw_queldanas_trade
+		icon = GFX_focus_generic_construction_green
+		cost = 7
+		x = 33
+		y = 0
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				province = 0
+				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_anasterians_reticence
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 7
+		x = 34
+		y = 0
+
+		completion_reward = {
+			add_political_power = 50
+			add_stability = -0.05
+			add_war_support = -0.05
+		}
+	}
+
+	focus = {
+		id = QUE_sw_silvermoons_isolation
+		icon = GFX_focus_generic_self_management
+		cost = 7
+		x = 35
+		y = 0
+
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.05
+			add_war_support = -0.05
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_monitoring_the_border
+		icon = GFX_focus_stormwind_scout_tower
+		cost = 7
+		x = 36
+		y = 0
+
+		completion_reward = {
+			add_intel_advantage = {
+				category = civilian_intel
+				amount = 10
+				target = AMA
+			}
+			AMA = {
+				add_opinion_modifier = {
+					target = QUE
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+
+	# ===========================================================================
+	# ROW 1 -- Second War reaction branches
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_old_oath_to_thoradin
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = QUE_sw_anasterians_reticence }
+		relative_position_id = QUE_sw_anasterians_reticence
+		x = -3
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				has_opinion = {
+					target = LOR
+					value > 50
+				}
+			}
+		}
+
+		completion_reward = {
+			add_political_power = -25
+			LOR = {
+				add_opinion_modifier = {
+					target = QUE
+					modifier = medium_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = LOR
+				modifier = medium_increase
+			}
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.04
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_council_of_silvermoon
+		icon = GFX_focus_rom_handle_king
+		prerequisite = { focus = QUE_sw_anasterians_reticence }
+		relative_position_id = QUE_sw_anasterians_reticence
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_political_power = 40
+			country_event = { id = quelthalas_second_war.4 }
+		}
+	}
+
+	focus = {
+		id = QUE_sw_allerias_defiance
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		prerequisite = { focus = QUE_sw_anasterians_reticence }
+		relative_position_id = QUE_sw_anasterians_reticence
+		x = 2
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			country_event = { id = quelthalas_second_war.1 }
+		}
+	}
+
+	# ===========================================================================
+	# ROW 2 -- Deeper branches
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_the_debt_of_arathor
+		icon = GFX_focus_eng_imperial_federation
+		prerequisite = { focus = QUE_sw_old_oath_to_thoradin }
+		relative_position_id = QUE_sw_old_oath_to_thoradin
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			LOR = {
+				country_event = { id = quelthalas_second_war.5 }
+			}
+			add_stability = -0.02
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_kaelthas_pragmatism
+		icon = GFX_focus_alliance_prove_our_strength
+		prerequisite = { focus = QUE_sw_council_of_silvermoon }
+		relative_position_id = QUE_sw_council_of_silvermoon
+		x = -1
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			add_political_power = 60
+			add_stability = 0.03
+			add_timed_idea = {
+				idea = QUE_sw_kaelthas_influence
+				days = 365
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_detect_the_amani_threat
+		icon = GFX_focus_generic_golden_sword
+		prerequisite = { focus = QUE_sw_council_of_silvermoon }
+		prerequisite = { focus = QUE_sw_monitoring_the_border }
+		relative_position_id = QUE_sw_council_of_silvermoon
+		x = 1
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			country_event = { id = quelthalas_second_war.2 }
+		}
+	}
+
+	focus = {
+		id = QUE_sw_windrunner_rangers
+		icon = GFX_focus_alliance_footman
+		prerequisite = { focus = QUE_sw_allerias_defiance }
+		relative_position_id = QUE_sw_allerias_defiance
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_war_support = 0.08
+			army_experience = 25
+		}
+	}
+
+	# ===========================================================================
+	# ROW 3 -- Military and diplomatic commitment
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_alliance_membership
+		icon = GFX_focus_alliance_support_the_alliance
+		prerequisite = { focus = QUE_sw_the_debt_of_arathor }
+		relative_position_id = QUE_sw_the_debt_of_arathor
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 7
+			modifier = {
+				factor = 2
+				has_opinion = {
+					target = LOR
+					value > 70
+				}
+			}
+		}
+
+		completion_reward = {
+			add_political_power = -40
+			add_war_support = 0.10
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.08
+			}
+			LOR = {
+				add_opinion_modifier = {
+					target = QUE
+					modifier = large_increase
+				}
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = large_increase
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_modernize_elven_army
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = QUE_sw_kaelthas_pragmatism }
+		prerequisite = { focus = QUE_sw_the_debt_of_arathor }
+		relative_position_id = QUE_sw_kaelthas_pragmatism
+		x = -1
+		y = 2
+		cost = 7
+
+		available = {
+			OR = {
+				has_completed_focus = QUE_sw_kaelthas_pragmatism
+				has_completed_focus = QUE_sw_the_debt_of_arathor
+			}
+		}
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			army_experience = 30
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 0.5
+					days = 50
+					track = operations
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = QUE_sw_reinforce_the_runestones
+		icon = GFX_focus_stormwind_mage_tower
+		prerequisite = { focus = QUE_sw_detect_the_amani_threat }
+		relative_position_id = QUE_sw_detect_the_amani_threat
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			34 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_ranger_defense_network
+		icon = GFX_focus_stormwind_scout_tower
+		prerequisite = { focus = QUE_sw_windrunner_rangers }
+		relative_position_id = QUE_sw_windrunner_rangers
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 20
+			add_ideas = { QUE_farstriders }
+		}
+	}
+
+	# ===========================================================================
+	# ROW 4 -- War preparation and crisis
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_token_fleet
+		icon = GFX_focus_alliance_kultiran_fleet
+		prerequisite = { focus = QUE_sw_alliance_membership }
+		relative_position_id = QUE_sw_alliance_membership
+		x = 0
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = QUE_sw_full_fleet_mobilization }
+
+		ai_will_do = {
+			base = 6
+		}
+
+		completion_reward = {
+			add_political_power = 30
+			add_stability = 0.03
+			add_war_support = -0.03
+			LOR = {
+				add_opinion_modifier = {
+					target = QUE
+					modifier = small_increase
+				}
+			}
+			country_event = { id = quelthalas_second_war.3 }
+		}
+	}
+
+	focus = {
+		id = QUE_sw_full_fleet_mobilization
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = QUE_sw_alliance_membership }
+		relative_position_id = QUE_sw_alliance_membership
+		x = 2
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = QUE_sw_token_fleet }
+
+		ai_will_do = {
+			base = 4
+		}
+
+		completion_reward = {
+			add_political_power = -15
+			add_war_support = 0.08
+			LOR = {
+				add_opinion_modifier = {
+					target = QUE
+					modifier = medium_increase
+				}
+			}
+			navy_experience = 30
+			add_offsite_building = {
+				type = naval_base
+				level = 1
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_arcane_warfare_doctrine
+		icon = GFX_focus_generic_magic_infused_weapons
+		prerequisite = { focus = QUE_sw_modernize_elven_army }
+		prerequisite = { focus = QUE_sw_reinforce_the_runestones }
+		relative_position_id = QUE_sw_modernize_elven_army
+		x = 2
+		y = 2
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus_arcane
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_burning_of_the_borderlands
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = QUE_sw_reinforce_the_runestones }
+		relative_position_id = QUE_sw_reinforce_the_runestones
+		x = 0
+		y = 2
+		cost = 7
+
+		available = {
+			AMA = { exists = yes }
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = -0.05
+			country_event = { id = quelthalas_second_war.6 }
+		}
+	}
+
+	focus = {
+		id = QUE_sw_lorthemar_secures_pass
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = QUE_sw_ranger_defense_network }
+		relative_position_id = QUE_sw_ranger_defense_network
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			army_experience = 20
+			add_war_support = 0.05
+			34 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# ===========================================================================
+	# ROW 5 -- Response and counter-attack
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_elves_on_the_front
+		icon = GFX_focus_alliance_mount_and_blade
+		prerequisite = { focus = QUE_sw_token_fleet }
+		prerequisite = { focus = QUE_sw_full_fleet_mobilization }
+		relative_position_id = QUE_sw_token_fleet
+		x = 0
+		y = 2
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.10
+			}
+			LOR = {
+				add_manpower = 500
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_spellbreaker_corps
+		icon = GFX_focus_alliance_guard_against_the_darkness
+		prerequisite = { focus = QUE_sw_arcane_warfare_doctrine }
+		relative_position_id = QUE_sw_arcane_warfare_doctrine
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			army_experience = 30
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 200
+			}
+			add_manpower = 1000
+		}
+	}
+
+	focus = {
+		id = QUE_sw_repel_the_amani
+		icon = GFX_focus_generic_orc_warrior
+		prerequisite = { focus = QUE_sw_burning_of_the_borderlands }
+		relative_position_id = QUE_sw_burning_of_the_borderlands
+		x = 0
+		y = 1
+		cost = 7
+
+		available = {
+			AMA = { exists = yes }
+		}
+
+		bypass = {
+			NOT = { AMA = { exists = yes } }
+		}
+
+		will_lead_to_war_with = AMA
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				target = AMA
+				type = take_state_focus
+			}
+			add_war_support = 0.08
+			army_experience = 25
+		}
+	}
+
+	focus = {
+		id = QUE_sw_hold_the_elrendar
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = QUE_sw_lorthemar_secures_pass }
+		relative_position_id = QUE_sw_lorthemar_secures_pass
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_war_support = 0.08
+			add_stability = 0.03
+			183 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# ===========================================================================
+	# ROW 6 -- Victory and legacy
+	# ===========================================================================
+
+	focus = {
+		id = QUE_sw_shared_sacrifice
+		icon = GFX_focus_alliance_wartime_alliance
+		prerequisite = { focus = QUE_sw_elves_on_the_front }
+		relative_position_id = QUE_sw_elves_on_the_front
+		x = 0
+		y = 1
+		cost = 10
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.10
+			}
+			LOR = {
+				add_opinion_modifier = {
+					target = QUE
+					modifier = large_increase
+				}
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = large_increase
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_sunwells_blessing
+		icon = GFX_focus_stormwind_castle
+		prerequisite = { focus = QUE_sw_spellbreaker_corps }
+		relative_position_id = QUE_sw_spellbreaker_corps
+		x = 0
+		y = 1
+		cost = 10
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_stability = 0.08
+			add_war_support = 0.08
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = QUE_sw_secure_quelthalas
+		icon = GFX_focus_alliance_foundations
+		prerequisite = { focus = QUE_sw_repel_the_amani }
+		relative_position_id = QUE_sw_repel_the_amani
+		x = 0
+		y = 1
+		cost = 10
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_stability = 0.08
+			add_war_support = 0.08
+			17 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+			18 = {
+				add_claim_by = QUE
+			}
+		}
+	}
+
+	focus = {
+		id = QUE_sw_farstriders_glory
+		icon = GFX_focus_alliance_turalyon
+		prerequisite = { focus = QUE_sw_hold_the_elrendar }
+		relative_position_id = QUE_sw_hold_the_elrendar
+		x = 0
+		y = 1
+		cost = 10
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			army_experience = 50
+			add_ideas = { QUE_farstriders }
+		}
+	}
+}
