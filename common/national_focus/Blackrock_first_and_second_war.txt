@@ -727,11 +727,7 @@ focus_tree = {
 			#cosmetic STO_REF), so has_capitulated / annexation checks are unreliable. Robust signal:
 			#Stormwind Keep (state 22, the capital) is no longer controlled by Stormwind.
 			#At the Second War start it is already held by the Horde (SRC). Does NOT require the alliance to fall.
-			OR = {
-				NOT = { 22 = { is_controlled_by = STO } }
-				STO = { has_country_flag = STO_REF }
-				NOT = { STO = { exists = yes } }
-			}
+			stormwind_has_fallen = yes
 			TSC = {
 				exists = yes
 				has_full_control_of_state = 524
@@ -803,11 +799,7 @@ focus_tree = {
 			#Robust signal: Stormwind Keep (state 22) is no longer controlled by Stormwind. When Stormwind
 			#falls it reforms in the north as refugees (still tag STO), so tag checks are unreliable.
 			#Does NOT require Stormwind's whole alliance to fall.
-			OR = {
-				NOT = { 22 = { is_controlled_by = STO } }
-				STO = { has_country_flag = STO_REF }
-				NOT = { STO = { exists = yes } }
-			}
+			stormwind_has_fallen = yes
 			is_neighbor_of = 28.owner
 			TSC = {
 				NOT = {
@@ -851,8 +843,15 @@ focus_tree = {
 			controls_state = 28
 		}
 
+		#Changed (VinerX): don't hard-require war with the exact current owner of state 28 (owner can
+		#change hands / be an ally / be gone). Any of: already controlling it, at war with its owner,
+		#or an enemy in the current war holds it, unblocks the northern push.
 		available = {
-			has_war_with = 28.owner
+			OR = {
+				controls_state = 28
+				has_war_with = 28.owner
+				any_enemy_country = { controls_state = 28 }
+			}
 		}
 
 		completion_reward = {

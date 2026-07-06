@@ -19,6 +19,19 @@ can_ROOT_get_wargoal_on_THIS = {
 	NOT = { is_subject_of = ROOT }
 }
 
+# Robust "Stormwind City has fallen" check for Second War Horde progression.
+# When Stormwind falls it white-peaces and reforms in the north as refugees (still tag STO,
+# cosmetic STO_REF), so has_capitulated / annexation / flag checks alone are unreliable.
+# Primary signal: Stormwind Keep (state 22, the capital) is no longer controlled by Stormwind.
+# Used by BRC (journey north) and DMC (Zuluhed's vision / dragon chain).
+stormwind_has_fallen = {
+	OR = {
+		NOT = { 22 = { is_controlled_by = STO } }
+		STO = { has_country_flag = STO_REF }
+		NOT = { STO = { exists = yes } }
+	}
+}
+
 is_border_conflict_defender_vs_FROM = {
 	has_variable = ROOT.defender_state_vs_@FROM
 }

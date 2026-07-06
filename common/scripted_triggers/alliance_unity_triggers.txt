@@ -1,21 +1,52 @@
-alliance_unity_high = {
+# Alliance Unity — faction-wide triggers
+# Checks LOR's alliance_unity variable (0–100 scale)
+# Tiers: 0–19 Disintegrating | 20–39 Divided | 40–59 Fragile
+#        60–79 United | 80–100 Unbreakable
+
+# Unity is critically low (0–19): coalition is falling apart
+alliance_unity_disintegrating = {
 	LOR = {
-		check_variable = { alliance_unity > 2 }
+		check_variable = { alliance_unity < 20 }
 	}
 }
 
+# Unity is low (0–39): divided or worse
 alliance_unity_low = {
 	LOR = {
-		check_variable = { alliance_unity < 2 }
+		check_variable = { alliance_unity < 40 }
 	}
 }
 
+# Unity is moderate/mid (40–59): fragile but functional
+alliance_unity_medium = {
+	LOR = {
+		check_variable = { alliance_unity > 39 }
+		check_variable = { alliance_unity < 60 }
+	}
+}
+
+# Unity is high (60+): truly united
+alliance_unity_high = {
+	LOR = {
+		check_variable = { alliance_unity > 59 }
+	}
+}
+
+# Unity is very high / unbreakable (80+)
 alliance_unity_max = {
 	LOR = {
-		check_variable = { alliance_unity = 4 }
+		check_variable = { alliance_unity > 79 }
 	}
 }
 
+# Unity is at the very bottom — coalition collapse imminent
+alliance_unity_critical = {
+	LOR = {
+		check_variable = { alliance_unity < 10 }
+	}
+}
+
+# Is this country a member of the Alliance of Lordaeron?
 is_alliance_member = {
 	is_in_faction_with = LOR
 }

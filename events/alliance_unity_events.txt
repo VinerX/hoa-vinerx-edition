@@ -1,0 +1,198 @@
+add_namespace = alliance_unity_events
+
+# ============================================================
+# Alliance Unity events — faction-wide coalition mechanics
+# Triggered by focus trees, decisions, and other events
+# to reflect the changing state of the coalition.
+# ============================================================
+
+# 1: A new major realm joins the Alliance (+10 unity)
+# Triggered from focus trees when KUL, QUE, GIL, etc. commit
+country_event = {
+	id = alliance_unity_events.1
+	title = alliance_unity_events.1.t
+	desc  = alliance_unity_events.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.1 (new member)" }
+
+	option = {
+		name = alliance_unity_events.1.a
+		alliance_unity_raise_medium = yes
+	}
+}
+
+# 2: A nation refuses or withdraws commitment (-5 unity)
+# Triggered when Gilneas isolates, Quel'Thalas hesitates, etc.
+country_event = {
+	id = alliance_unity_events.2
+	title = alliance_unity_events.2.t
+	desc  = alliance_unity_events.2.d
+	picture = GFX_report_event_generic_treaty
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.2 (nation refuses)" }
+
+	option = {
+		name = alliance_unity_events.2.a
+		alliance_unity_lower = yes
+	}
+}
+
+# 3: Alterac or another ally betrays the Alliance (-15 unity)
+# Triggered from Alterac focus tree betrayal path
+country_event = {
+	id = alliance_unity_events.3
+	title = alliance_unity_events.3.t
+	desc  = alliance_unity_events.3.d
+	picture = GFX_report_event_coup
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.3 (betrayal)" }
+
+	option = {
+		name = alliance_unity_events.3.a
+		alliance_unity_lower_major = yes
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { add_war_support = -0.05 }
+		}
+	}
+}
+
+# 4: Lothar dies in battle (-15 unity)
+# Triggered from existing Lothar death event chain
+country_event = {
+	id = alliance_unity_events.4
+	title = alliance_unity_events.4.t
+	desc  = alliance_unity_events.4.d
+	picture = GFX_report_event_war_plan
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.4 (Lothar dies)" }
+
+	option = {
+		name = alliance_unity_events.4.a
+		alliance_unity_lower_major = yes
+		every_country = {
+			limit = { is_in_faction_with = LOR }
+			add_war_support = -0.05
+		}
+	}
+}
+
+# 5: Turalyon rallies the Alliance (+20 unity, restores war support)
+# Triggered shortly after Lothar's death if the Alliance survives
+country_event = {
+	id = alliance_unity_events.5
+	title = alliance_unity_events.5.t
+	desc  = alliance_unity_events.5.d
+	picture = GFX_report_event_generic_fascist_split
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.5 (Turalyon rallies)" }
+
+	option = {
+		name = alliance_unity_events.5.a
+		alliance_unity_raise_heroic = yes
+		every_country = {
+			limit = { is_in_faction_with = LOR }
+			add_war_support = 0.05
+			add_timed_idea = {
+				idea = alliance_unity_turalyon_inspiration
+				days = 180
+			}
+		}
+	}
+}
+
+# 6: Gul'dan abandons the Horde — window for counteroffensive
+# Triggered from existing second_war events when Gul'dan leaves
+country_event = {
+	id = alliance_unity_events.6
+	title = alliance_unity_events.6.t
+	desc  = alliance_unity_events.6.d
+	picture = GFX_report_event_generic_axis_breakthrough
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.6 (Horde splinters)" }
+
+	# Option A: Press the advantage (costs PP, only available if unity is high enough)
+	option = {
+		name = alliance_unity_events.6.a
+		trigger = {
+			alliance_unity_high = yes
+		}
+		ai_chance = { factor = 85 }
+		add_political_power = -25
+		alliance_unity_raise = yes
+		every_country = {
+			limit = { is_in_faction_with = LOR }
+			add_timed_idea = {
+				idea = alliance_unity_counteroffensive_window
+				days = 90
+			}
+		}
+	}
+
+	# Option B: Too weak to exploit
+	option = {
+		name = alliance_unity_events.6.b
+		ai_chance = { factor = 15 }
+		alliance_unity_lower = yes
+	}
+}
+
+# 7: Aid for a besieged ally — reinforces or weakens unity
+# Triggered from focus trees when sending/rejecting aid to Stromgarde etc.
+country_event = {
+	id = alliance_unity_events.7
+	title = alliance_unity_events.7.t
+	desc  = alliance_unity_events.7.d
+	picture = GFX_report_event_defend
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.7 (aid decision)" }
+
+	# Option A: Send aid (+5 unity, costs PP)
+	option = {
+		name = alliance_unity_events.7.a
+		ai_chance = { factor = 70 }
+		add_political_power = -30
+		alliance_unity_raise = yes
+	}
+
+	# Option B: Preserve reserves (-5 unity, gain PP)
+	option = {
+		name = alliance_unity_events.7.b
+		ai_chance = { factor = 30 }
+		add_political_power = 15
+		alliance_unity_lower = yes
+	}
+}
+
+# 8: An ally has capitulated to the Horde (-10 unity)
+# Triggered via on_action or other event when a faction member caps
+country_event = {
+	id = alliance_unity_events.8
+	title = alliance_unity_events.8.t
+	desc  = alliance_unity_events.8.d
+	picture = GFX_report_event_generic_axis_breakthrough
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event alliance_unity_events.8 (ally capitulated)" }
+
+	option = {
+		name = alliance_unity_events.8.a
+		alliance_unity_lower_medium = yes
+	}
+}

@@ -1,81 +1,254 @@
-alliance_unity_initialize = {
+# ============================================================
+# Alliance Unity — faction-wide coalition mechanic (0–100 scale)
+#
+# LOR holds the master variable "alliance_unity" (0–100).
+# On any change, every member of Alliance_of_Lordaeron receives
+# the appropriate national spirit for the current tier.
+#
+# Tiers: 0–19 Disintegrating | 20–39 Divided | 40–59 Fragile
+#        60–79 United (country-specific) | 80–100 Unbreakable (country-specific)
+# ============================================================
+
+# ------------------------------------------------------------
+# Initialize unity to starting value (25 = Divided Alliance)
+# Called once at game start for LOR.
+# ------------------------------------------------------------
+alliance_unity_init = {
 	LOR = {
-		set_variable = { alliance_unity = 1 }
-		alliance_unity_sync = yes
-		every_country = {
-			limit = { is_in_faction_with = ROOT }
-			alliance_unity_sync = yes
-		}
+		set_variable = { alliance_unity = 25 }
+		alliance_unity_sync_faction = yes
 	}
-	alliance_unity_sync = yes
 }
 
+# ------------------------------------------------------------
+# Unity change effects (each clamps 0–100 and syncs faction)
+# ------------------------------------------------------------
+
+# +5 — minor cooperative act, small diplomatic win
 alliance_unity_raise = {
 	LOR = {
-		add_to_variable = { alliance_unity = 1 }
+		add_to_variable = { alliance_unity = 5 }
 		if = {
 			limit = { check_variable = { alliance_unity < 0 } }
 			set_variable = { alliance_unity = 0 }
 		}
 		if = {
-			limit = { check_variable = { alliance_unity > 4 } }
-			set_variable = { alliance_unity = 4 }
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
 		}
-		alliance_unity_sync = yes
-		every_country = {
-			limit = { is_in_faction_with = ROOT }
-			alliance_unity_sync = yes
-		}
+		alliance_unity_sync_faction = yes
 	}
-	alliance_unity_sync = yes
 }
 
+# +10 — focus completion, country joining the Alliance
+alliance_unity_raise_medium = {
+	LOR = {
+		add_to_variable = { alliance_unity = 10 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
+		}
+		alliance_unity_sync_faction = yes
+	}
+}
+
+# +15 — major diplomatic victory, hero inspiration
+alliance_unity_raise_major = {
+	LOR = {
+		add_to_variable = { alliance_unity = 15 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
+		}
+		alliance_unity_sync_faction = yes
+	}
+}
+
+# +20 — game-changing event (Turalyon rallies, grand counteroffensive)
+alliance_unity_raise_heroic = {
+	LOR = {
+		add_to_variable = { alliance_unity = 20 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
+		}
+		alliance_unity_sync_faction = yes
+	}
+}
+
+# -5 — minor diplomatic setback, refused aid
 alliance_unity_lower = {
 	LOR = {
-		subtract_from_variable = { alliance_unity = 1 }
+		subtract_from_variable = { alliance_unity = 5 }
 		if = {
 			limit = { check_variable = { alliance_unity < 0 } }
 			set_variable = { alliance_unity = 0 }
 		}
 		if = {
-			limit = { check_variable = { alliance_unity > 4 } }
-			set_variable = { alliance_unity = 4 }
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
 		}
-		alliance_unity_sync = yes
-		every_country = {
-			limit = { is_in_faction_with = ROOT }
-			alliance_unity_sync = yes
-		}
+		alliance_unity_sync_faction = yes
 	}
-	alliance_unity_sync = yes
 }
 
-alliance_unity_sync = {
-	if = { limit = { has_idea = alliance_unity_0 } remove_ideas = alliance_unity_0 }
-	if = { limit = { has_idea = alliance_unity_1 } remove_ideas = alliance_unity_1 }
-	if = { limit = { has_idea = alliance_unity_2 } remove_ideas = alliance_unity_2 }
-	if = { limit = { has_idea = alliance_unity_3 } remove_ideas = alliance_unity_3 }
-	if = { limit = { has_idea = alliance_unity_4 } remove_ideas = alliance_unity_4 }
+# -10 — crisis, ally wavering or strained relations
+alliance_unity_lower_medium = {
+	LOR = {
+		subtract_from_variable = { alliance_unity = 10 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
+		}
+		alliance_unity_sync_faction = yes
+	}
+}
 
+# -15 — betrayal, hero death, major crisis
+alliance_unity_lower_major = {
+	LOR = {
+		subtract_from_variable = { alliance_unity = 15 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
+		}
+		alliance_unity_sync_faction = yes
+	}
+}
+
+# -20 — catastrophic loss
+alliance_unity_lower_heroic = {
+	LOR = {
+		subtract_from_variable = { alliance_unity = 20 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 100 } }
+			set_variable = { alliance_unity = 100 }
+		}
+		alliance_unity_sync_faction = yes
+	}
+}
+
+# ------------------------------------------------------------
+# Sync faction: reads LOR's variable, removes old unity ideas
+# from ROOT, applies the correct spirit based on tier and tag.
+# Called on every faction member individually.
+# ------------------------------------------------------------
+alliance_unity_remove_all_ideas = {
+	if = { limit = { has_idea = alliance_unity_disintegrating }		remove_ideas = alliance_unity_disintegrating }
+	if = { limit = { has_idea = alliance_unity_divided }			remove_ideas = alliance_unity_divided }
+	if = { limit = { has_idea = alliance_unity_fragile }			remove_ideas = alliance_unity_fragile }
+	if = { limit = { has_idea = alliance_unity_united_generic }		remove_ideas = alliance_unity_united_generic }
+	if = { limit = { has_idea = alliance_unity_united_lordaeron }	remove_ideas = alliance_unity_united_lordaeron }
+	if = { limit = { has_idea = alliance_unity_united_kultiras }		remove_ideas = alliance_unity_united_kultiras }
+	if = { limit = { has_idea = alliance_unity_united_dalaran }		remove_ideas = alliance_unity_united_dalaran }
+	if = { limit = { has_idea = alliance_unity_united_stromgarde }	remove_ideas = alliance_unity_united_stromgarde }
+	if = { limit = { has_idea = alliance_unity_united_quelthalas }	remove_ideas = alliance_unity_united_quelthalas }
+	if = { limit = { has_idea = alliance_unity_united_gilneas }		remove_ideas = alliance_unity_united_gilneas }
+	if = { limit = { has_idea = alliance_unity_united_stormwind }	remove_ideas = alliance_unity_united_stormwind }
+	if = { limit = { has_idea = alliance_unity_united_gnomeregan }	remove_ideas = alliance_unity_united_gnomeregan }
+	if = { limit = { has_idea = alliance_unity_united_ironforge }	remove_ideas = alliance_unity_united_ironforge }
+	if = { limit = { has_idea = alliance_unity_unbreakable_generic }	remove_ideas = alliance_unity_unbreakable_generic }
+	if = { limit = { has_idea = alliance_unity_unbreakable_lordaeron }	remove_ideas = alliance_unity_unbreakable_lordaeron }
+	if = { limit = { has_idea = alliance_unity_unbreakable_kultiras }	remove_ideas = alliance_unity_unbreakable_kultiras }
+	if = { limit = { has_idea = alliance_unity_unbreakable_dalaran }	remove_ideas = alliance_unity_unbreakable_dalaran }
+	if = { limit = { has_idea = alliance_unity_unbreakable_stromgarde }	remove_ideas = alliance_unity_unbreakable_stromgarde }
+	if = { limit = { has_idea = alliance_unity_unbreakable_quelthalas }	remove_ideas = alliance_unity_unbreakable_quelthalas }
+	if = { limit = { has_idea = alliance_unity_unbreakable_gilneas }	remove_ideas = alliance_unity_unbreakable_gilneas }
+	if = { limit = { has_idea = alliance_unity_unbreakable_stormwind }	remove_ideas = alliance_unity_unbreakable_stormwind }
+	if = { limit = { has_idea = alliance_unity_unbreakable_gnomeregan }	remove_ideas = alliance_unity_unbreakable_gnomeregan }
+	if = { limit = { has_idea = alliance_unity_unbreakable_ironforge }	remove_ideas = alliance_unity_unbreakable_ironforge }
+}
+
+# Internal: apply the correct spirit to ROOT based on LOR's variable value
+alliance_unity_apply_spirit = {
 	LOR = {
 		if = {
-			limit = { check_variable = { alliance_unity < 1 } }
-			PREV = { add_ideas = alliance_unity_0 }
+			limit = { check_variable = { alliance_unity < 20 } }
+			PREV = { add_ideas = alliance_unity_disintegrating }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_unity < 2 } }
-			PREV = { add_ideas = alliance_unity_1 }
+			limit = { check_variable = { alliance_unity < 40 } }
+			PREV = { add_ideas = alliance_unity_divided }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_unity < 3 } }
-			PREV = { add_ideas = alliance_unity_2 }
+			limit = { check_variable = { alliance_unity < 60 } }
+			PREV = { add_ideas = alliance_unity_fragile }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_unity < 4 } }
-			PREV = { add_ideas = alliance_unity_3 }
+			limit = { check_variable = { alliance_unity < 80 } }
+			# TIER 4: United — country-specific
+			PREV = { alliance_unity_apply_spirit_tier4 = yes }
 		}
 		else = {
-			PREV = { add_ideas = alliance_unity_4 }
+			# TIER 5: Unbreakable — country-specific
+			PREV = { alliance_unity_apply_spirit_tier5 = yes }
 		}
+	}
+}
+
+# Apply tier-4 United spirit based on ROOT's tag
+alliance_unity_apply_spirit_tier4 = {
+	if = {		limit = { tag = LOR }	add_ideas = alliance_unity_united_lordaeron }
+	else_if = {	limit = { tag = KUL }	add_ideas = alliance_unity_united_kultiras }
+	else_if = {	limit = { tag = DAL }	add_ideas = alliance_unity_united_dalaran }
+	else_if = {	limit = { tag = STR }	add_ideas = alliance_unity_united_stromgarde }
+	else_if = {	limit = { tag = QUE }	add_ideas = alliance_unity_united_quelthalas }
+	else_if = {	limit = { tag = GIL }	add_ideas = alliance_unity_united_gilneas }
+	else_if = {	limit = { tag = STO }	add_ideas = alliance_unity_united_stormwind }
+	else_if = {	limit = { tag = GNO }	add_ideas = alliance_unity_united_gnomeregan }
+	else_if = {	limit = { tag = IRO }	add_ideas = alliance_unity_united_ironforge }
+	else = {								add_ideas = alliance_unity_united_generic }
+}
+
+# Apply tier-5 Unbreakable spirit based on ROOT's tag
+alliance_unity_apply_spirit_tier5 = {
+	if = {		limit = { tag = LOR }	add_ideas = alliance_unity_unbreakable_lordaeron }
+	else_if = {	limit = { tag = KUL }	add_ideas = alliance_unity_unbreakable_kultiras }
+	else_if = {	limit = { tag = DAL }	add_ideas = alliance_unity_unbreakable_dalaran }
+	else_if = {	limit = { tag = STR }	add_ideas = alliance_unity_unbreakable_stromgarde }
+	else_if = {	limit = { tag = QUE }	add_ideas = alliance_unity_unbreakable_quelthalas }
+	else_if = {	limit = { tag = GIL }	add_ideas = alliance_unity_unbreakable_gilneas }
+	else_if = {	limit = { tag = STO }	add_ideas = alliance_unity_unbreakable_stormwind }
+	else_if = {	limit = { tag = GNO }	add_ideas = alliance_unity_unbreakable_gnomeregan }
+	else_if = {	limit = { tag = IRO }	add_ideas = alliance_unity_unbreakable_ironforge }
+	else = {								add_ideas = alliance_unity_unbreakable_generic }
+}
+
+# ------------------------------------------------------------
+# Main faction-wide sync — called on LOR after every change.
+# Removes old spirits and applies new ones to every member.
+# ------------------------------------------------------------
+alliance_unity_sync_faction = {
+	alliance_unity_remove_all_ideas = yes
+	alliance_unity_apply_spirit = yes
+
+	every_country = {
+		limit = { is_in_faction_with = PREV }
+		alliance_unity_remove_all_ideas = yes
+		alliance_unity_apply_spirit = yes
 	}
 }

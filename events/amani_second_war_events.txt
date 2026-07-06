@@ -41,6 +41,15 @@ country_event = {
 	option = {
 		name = amani_second_war.2.option.1
 		set_country_flag = ama_sw_horde_allied
+		# The Amani formally join the Horde faction (led by the Blackrock Clan). Without this they
+		# only held a cosmetic alliance and could wage a separate war instead of the Horde's.
+		if = {
+			limit = {
+				BRC = { exists = yes is_faction_leader = yes }
+				NOT = { is_in_faction_with = BRC }
+			}
+			BRC = { add_to_faction = AMA }
+		}
 		add_popularity = {
 			ideology = horde
 			popularity = 0.10

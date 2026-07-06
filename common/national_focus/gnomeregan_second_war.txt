@@ -287,7 +287,7 @@ focus_tree = {
 		ai_will_do = { factor = 10 }
 
 		available = {
-			has_war_with = BRC
+			is_fighting_second_war_horde = yes
 		}
 
 		completion_reward = {
@@ -305,6 +305,12 @@ focus_tree = {
 				neutral = 15
 			}
 			add_ideas = GNO_sw_alliance_tech
+			# Gnomeregan is invited into the Alliance (secondary path;
+			# it normally arrives with the Coalition of Khaz Modan merge).
+			if = {
+				limit = { NOT = { is_in_faction_with = STO } }
+				country_event = { id = grand_alliance.4 hours = 6 }
+			}
 		}
 	}
 
@@ -413,7 +419,7 @@ focus_tree = {
 		ai_will_do = { factor = 10 }
 
 		available = {
-			LOR = { has_war_with = BRC }
+			LOR = { is_fighting_second_war_horde = yes }
 		}
 
 		completion_reward = {
@@ -467,7 +473,7 @@ focus_tree = {
 		ai_will_do = { factor = 12 }
 
 		available = {
-			has_war_with = BHC
+			is_fighting_second_war_horde = yes
 		}
 
 		completion_reward = {
@@ -564,7 +570,7 @@ focus_tree = {
 		ai_will_do = { factor = 10 }
 
 		available = {
-			has_war_with = BHC
+			is_fighting_second_war_horde = yes
 		}
 
 		completion_reward = {

@@ -61,7 +61,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = -35
-			LOR_second_war_proto_raise_alliance_unity = yes
+			alliance_unity_raise_major = yes
 			LOR_second_war_proto_lower_overextension = yes
 			country_event = { id = lordaeron_second_war_proto.2 }
 		}
@@ -124,7 +124,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_political_power = 40
-			LOR_second_war_proto_raise_alliance_unity = yes
+			alliance_unity_raise_medium = yes
 			add_opinion_modifier = {
 				target = GIL
 				modifier = small_increase
@@ -137,6 +137,16 @@ focus_tree = {
 				target = KUL
 				modifier = small_increase
 			}
+			# Envoys reach the dwarven realms: invite the Coalition of Khaz Modan
+			# (Ironforge + Gnomeregan + Northeron) to fold into the Alliance.
+			if = {
+				limit = {
+					IRO = { exists = yes NOT = { is_in_faction_with = STO } NOT = { has_war_with = STO } }
+				}
+				IRO = { country_event = { id = grand_alliance.5 hours = 6 } }
+			}
+			# Bring in the smaller alliance-aligned realms (Nethergarde, Stormpike, Aerie Peak).
+			consolidate_grand_alliance_minors = yes
 		}
 	}
 
@@ -235,7 +245,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			LOR_second_war_proto_raise_alliance_unity = yes
+			alliance_unity_raise_major = yes
 			add_war_support = 0.05
 			add_political_power = 35
 		}

@@ -1508,4 +1508,32 @@ on_actions = {
 			}
 		}
 	}
+
+	# Alliance Unity — sync spirits when a country joins or leaves the faction
+	on_faction_joined = {
+		effect = {
+			if = {
+				limit = {
+					FROM = { is_in_faction_with = LOR }
+				}
+				ROOT = {
+					alliance_unity_remove_all_ideas = yes
+					alliance_unity_apply_spirit = yes
+				}
+			}
+		}
+	}
+
+	on_faction_left = {
+		effect = {
+			if = {
+				limit = {
+					FROM = { is_in_faction_with = LOR }
+				}
+				ROOT = {
+					alliance_unity_remove_all_ideas = yes
+				}
+			}
+		}
+	}
 }

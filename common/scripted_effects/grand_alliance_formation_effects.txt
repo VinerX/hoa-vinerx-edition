@@ -17,15 +17,19 @@
 # never leaves the Alliance in the Second War.
 join_grand_alliance = {
 	if = {
-		# Guard: skip if ROOT is already allied to the anchor (already a member).
+		# Guard: skip if the current country is already allied to the anchor
+		# (i.e. already a member of the Alliance).
 		limit = { NOT = { is_in_faction_with = STO } }
+		# Capture the joining country so it resolves correctly even when this
+		# effect is called from within a target/every_country scope.
+		save_event_target_as = grand_alliance_joiner
 		if = {
 			limit = { LOR = { exists = yes is_faction_leader = yes } }
-			LOR = { add_to_faction = ROOT }
+			LOR = { add_to_faction = event_target:grand_alliance_joiner }
 		}
 		else_if = {
 			limit = { STO = { exists = yes is_faction_leader = yes } }
-			STO = { add_to_faction = ROOT }
+			STO = { add_to_faction = event_target:grand_alliance_joiner }
 		}
 		else = {
 			random_country = {
@@ -36,10 +40,10 @@ join_grand_alliance = {
 						tag = STO
 					}
 				}
-				add_to_faction = ROOT
+				add_to_faction = event_target:grand_alliance_joiner
 			}
 		}
-		alliance_unity_raise = yes
+		alliance_unity_raise_medium = yes
 	}
 }
 
