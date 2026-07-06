@@ -1,0 +1,173 @@
+add_namespace = amani_second_war
+
+# Tribal War Council — Zul'jin calls the tribes
+country_event = {
+	id = amani_second_war.1
+	title = amani_second_war.1.t
+	desc = amani_second_war.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event amani_second_war.1" }
+
+	option = {
+		name = amani_second_war.1.option.1
+		add_war_support = 0.10
+		add_stability = 0.05
+		add_popularity = {
+			ideology = horde
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Horde War Council — alliance with the Blackrock Clan
+country_event = {
+	id = amani_second_war.2
+	title = amani_second_war.2.t
+	desc = amani_second_war.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event amani_second_war.2" }
+
+	option = {
+		name = amani_second_war.2.option.1
+		set_country_flag = ama_sw_horde_allied
+		add_popularity = {
+			ideology = horde
+			popularity = 0.10
+		}
+		BRC = {
+			add_manpower = 1000
+			add_opinion_modifier = {
+				target = AMA
+				modifier = small_increase
+			}
+		}
+		add_opinion_modifier = {
+			target = BRC
+			modifier = small_increase
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Burning the Borderlands — the attack on Quel'Thalas begins
+country_event = {
+	id = amani_second_war.3
+	title = amani_second_war.3.t
+	desc = amani_second_war.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event amani_second_war.3" }
+
+	option = {
+		name = amani_second_war.3.option.1
+		add_war_support = 0.10
+		add_stability = 0.03
+		QUE = {
+			add_opinion_modifier = {
+				target = AMA
+				modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Victory or Defeat — the crossroads of the Second War
+country_event = {
+	id = amani_second_war.4
+	title = amani_second_war.4.t
+	desc = amani_second_war.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event amani_second_war.4" }
+
+	option = {
+		name = amani_second_war.4.option.1
+		trigger = {
+			has_war_with = QUE
+			QUE = {
+				OR = {
+					has_capitulated = yes
+				}
+				surrender_progress > 0.5
+			}
+		}
+		set_country_flag = ama_sw_horde_victory
+		add_stability = 0.10
+		add_war_support = 0.10
+		add_political_power = 100
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = amani_second_war.4.option.2
+		trigger = {
+			NOT = {
+				has_war_with = QUE
+				QUE = {
+					OR = {
+						has_capitulated = yes
+					}
+					surrender_progress > 0.5
+				}
+			}
+		}
+		set_country_flag = ama_sw_horde_defeated
+		add_stability = 0.15
+		add_war_support = -0.10
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.20
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = amani_second_war.4.option.3
+		trigger = {
+			has_war_with = QUE
+		}
+		set_country_flag = ama_sw_horde_victory
+		add_stability = 0.05
+		add_war_support = 0.05
+		add_political_power = 50
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = amani_second_war.4.option.4
+		set_country_flag = ama_sw_horde_defeated
+		add_stability = 0.20
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.15
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}

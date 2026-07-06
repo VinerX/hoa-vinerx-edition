@@ -472,23 +472,24 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
             if len(tree_foci) < 2:
                 continue
 
-            pos_to_foci: dict[tuple[int, int], list[str]] = {}
+            tree_foci_list: list[tuple[str, tuple[int, int]]] = []
             for fid in tree_foci:
                 if fid in abs_positions:
-                    pos = abs_positions[fid]
-                    pos_to_foci.setdefault(pos, []).append(fid)
+                    tree_foci_list.append((fid, abs_positions[fid]))
 
-            for pos, foci in pos_to_foci.items():
-                if len(foci) > 1:
-                    errors.append(
-                        f"[focus-collision] {r}: focus tree '{tree_id}' overlapping at "
-                        f"(x={pos[0]}, y={pos[1]}): {', '.join(sorted(foci))}"
-                    )
+            reported_pairs: set[tuple[str, str]] = set()
+            for i in range(len(tree_foci_list)):
+                for j in range(i + 1, len(tree_foci_list)):
+                    fid_a, (xa, ya) = tree_foci_list[i]
+                    fid_b, (xb, yb) = tree_foci_list[j]
+                    if abs(xa - xb) <= 1 and abs(ya - yb) <= 1:
+                        reported_pairs.add((fid_a, fid_b))
+                        errors.append(
+                            f"[focus-collision] {r}: focus tree '{tree_id}' overlapping at "
+                            f"(x={xa}, y={ya}) '{fid_a}' and (x={xb}, y={yb}) '{fid_b}'"
+                        )
 
-            # WARN on cross-file near-collisions (distance <= 1 Manhattan)
-            # Only flag when focuses come from different files — catches
-            # custom-into-shared-branch overlaps without noise from normal
-            # adjacency within a single tree.
+            # WARN on cross-file near-collisions not already caught above
             for fid_a in tree_foci:
                 for fid_b in tree_foci:
                     if fid_a >= fid_b:
@@ -496,6 +497,8 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
                     if fid_a not in abs_positions or fid_b not in abs_positions:
                         continue
                     if focus_data.get(fid_a, {}).get("file") == focus_data.get(fid_b, {}).get("file"):
+                        continue
+                    if (fid_a, fid_b) in reported_pairs:
                         continue
                     pa, pb = abs_positions[fid_a], abs_positions[fid_b]
                     if abs(pa[0] - pb[0]) <= 1 and abs(pa[1] - pb[1]) <= 1:
