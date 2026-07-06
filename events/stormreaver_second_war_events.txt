@@ -1,0 +1,182 @@
+###########################
+# stormreaver_second_war
+###########################
+
+add_namespace = stormreaver_second_war
+
+# Teron Gorefiend - the first Death Knight rises
+country_event = {
+	id = stormreaver_second_war.1
+	title = stormreaver_second_war.1.t
+	desc = stormreaver_second_war.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stormreaver_second_war.1" }
+
+	option = {
+		name = stormreaver_second_war.1.option.1
+		add_political_power = 50
+		set_country_flag = SRC_death_knights_created
+		add_ideas = SRC_raise_them_all
+		if = {
+			limit = {
+				has_character = SRC_terongor
+			}
+			add_country_leader_role = {
+				character = SRC_terongor
+				promote_leader = yes
+				country_leader = {
+					ideology = fel_type
+				}
+			}
+		}
+		add_breakthrough_progress = {
+			specialization = specialization_magic
+			value = 0.25
+		}
+		if = {
+			limit = { BRC = { exists = yes } }
+			BRC = { country_event = { id = stormreaver_second_war.6 days = 1 } }
+		}
+	}
+}
+
+# Doomhammer's Ultimatum - prove your worth or die
+country_event = {
+	id = stormreaver_second_war.2
+	title = stormreaver_second_war.2.t
+	desc = stormreaver_second_war.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stormreaver_second_war.2" }
+
+	option = {
+		name = stormreaver_second_war.2.option.1
+		set_country_flag = SRC_ultimatum_received
+		add_political_power = 25
+	}
+}
+
+# The Great Betrayal - Gul'dan abandons the Horde
+country_event = {
+	id = stormreaver_second_war.3
+	title = stormreaver_second_war.3.t
+	desc = stormreaver_second_war.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stormreaver_second_war.3" }
+
+	option = {
+		name = stormreaver_second_war.3.option.1
+		set_country_flag = SRC_betrayed_horde
+		leave_faction = yes
+		if = {
+			limit = { BRC = { exists = yes } }
+			BRC = {
+				add_opinion_modifier = {
+					target = SRC
+					modifier = SRC_betrayed_horde
+				}
+				set_country_flag = SRC_betrayed_the_horde_flag
+			}
+		}
+		add_stability = -0.20
+		add_war_support = -0.10
+		if = {
+			limit = { THC = { is_in_faction_with = SRC } }
+			THC = { leave_faction = yes }
+		}
+	}
+}
+
+# The Tomb of Sargeras - Gul'dan's demise
+country_event = {
+	id = stormreaver_second_war.4
+	title = stormreaver_second_war.4.t
+	desc = stormreaver_second_war.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stormreaver_second_war.4" }
+
+	option = {
+		name = stormreaver_second_war.4.option.1
+		retire_country_leader = yes
+		set_country_flag = SRC_guldan_dead
+		add_stability = -0.30
+		add_war_support = -0.15
+		add_manpower = -2000
+		remove_ideas = SRC_guldans_horde_2
+		remove_ideas = SRC_demonic_scouts_idea
+		if = {
+			limit = { has_idea = SRC_raise_them_all }
+			remove_ideas = SRC_raise_them_all
+		}
+		hidden_effect = {
+			kill_country_leader = yes
+			if = {
+				limit = {
+					has_character = SRC_guldan
+				}
+				SRC = { remove_country_leader = { character = SRC_guldan } }
+			}
+			if = {
+				limit = { THC = { exists = yes } }
+				THC = {
+					add_political_power = 50
+					add_stability = 0.10
+				}
+			}
+		}
+	}
+}
+
+# Doomhammer learns of Gul'dan's secret scouts (news event for BRC)
+country_event = {
+	id = stormreaver_second_war.5
+	title = stormreaver_second_war.5.t
+	desc = stormreaver_second_war.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stormreaver_second_war.5" }
+
+	option = {
+		name = stormreaver_second_war.5.option.1
+		add_opinion_modifier = {
+			target = SRC
+			modifier = SRC_suspicious_activity
+		}
+	}
+}
+
+# Death Knight news (BRC informed)
+country_event = {
+	id = stormreaver_second_war.6
+	title = stormreaver_second_war.6.t
+	desc = stormreaver_second_war.6.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stormreaver_second_war.6" }
+
+	option = {
+		name = stormreaver_second_war.6.option.1
+		add_political_power = 25
+	}
+}

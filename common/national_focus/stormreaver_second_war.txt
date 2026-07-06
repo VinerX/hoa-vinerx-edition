@@ -1,0 +1,484 @@
+focus_tree = {
+	id = stormreaver_second_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = SRC
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = { x = 2000 y = 0 }
+
+	shared_focus = develop_the_country
+	shared_focus = arming_the_nation
+
+	focus = {
+		id = SRC_sw_guldans_bargain
+		icon = GFX_orc_warlock
+		cost = 5
+		x = 34
+		y = 0
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_rise_of_the_stormreavers
+		icon = GFX_focus_call_the_clans
+		cost = 14
+		prerequisite = { focus = SRC_sw_guldans_bargain }
+		x = 34
+		y = 1
+
+		completion_reward = {
+			add_manpower = 1500
+			add_war_support = 0.05
+			add_ideas = SRC_loyal_clansmen
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_forge_stormreaver
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 21
+		prerequisite = { focus = SRC_sw_rise_of_the_stormreavers }
+		x = 34
+		y = 2
+
+		completion_reward = {
+			22 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = forge_technology
+				bonus = 0.5
+				uses = 1
+				category = forge_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_warlock_gathering
+		icon = GFX_focus_archimonde_1
+		cost = 14
+		prerequisite = { focus = SRC_sw_guldans_bargain }
+		x = 36
+		y = 1
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				bonus = 0.5
+				uses = 1
+				category = warlock_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_twilights_hammer
+		icon = GFX_focus_smiling_buddha
+		cost = 21
+		prerequisite = { focus = SRC_sw_warlock_gathering }
+		x = 36
+		y = 2
+
+		completion_reward = {
+			country_event = { id = twilights_hammer.4 }
+			add_ideas = SRC_demonic_scouts_idea
+			add_opinion_modifier = {
+				target = THC
+				modifier = horde_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = THC
+				modifier = horde_loyalty
+			}
+			if = {
+				limit = { is_in_faction_with = THC }
+				THC = {
+					add_tech_bonus = {
+						name = dire_orc_technology
+						uses = 1
+						bonus = 0.25
+						category = dire_orc_technology
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_ogre_magi
+		icon = GFX_focus_wonderweapons
+		cost = 30
+		prerequisite = { focus = SRC_sw_twilights_hammer }
+		x = 36
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spellcaster_technology
+				bonus = 0.5
+				uses = 1
+				category = spellcaster_technology
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				bonus = 0.5
+				uses = 1
+				category = warlock_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_shadow_council_remnants
+		icon = GFX_focus_hun_assassinate_horthy
+		cost = 21
+		prerequisite = { focus = SRC_sw_warlock_gathering }
+		x = 38
+		y = 1
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_ideas = SRC_warlock_scryers
+			add_tech_bonus = {
+				name = assassins_den_technology
+				bonus = 0.5
+				uses = 1
+				category = assassins_den_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_death_knight_project
+		icon = GFX_goal_generic_secret_weapon
+		cost = 30
+		prerequisite = {
+			focus = SRC_sw_shadow_council_remnants
+			focus = SRC_sw_forge_stormreaver
+		}
+		x = 38
+		y = 2
+
+		completion_reward = {
+			country_event = { id = stormreaver_second_war.1 }
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_necromantic_advancements
+		icon = GFX_focus_research
+		cost = 30
+		prerequisite = { focus = SRC_sw_death_knight_project }
+		x = 38
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = orc_death_knight_technology
+				bonus = 1
+				uses = 1
+				category = orc_death_knight_technology
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_runeblades
+		icon = GFX_focus_secret_rearmament
+		cost = 30
+		prerequisite = { focus = SRC_sw_necromantic_advancements }
+		x = 38
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = grunt_technology
+				bonus = 0.5
+				uses = 1
+				category = grunt_technology
+			}
+			add_tech_bonus = {
+				name = spearman_technology
+				bonus = 0.5
+				uses = 1
+				category = spearman_technology
+			}
+			hidden_effect = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_doomhammers_ultimatum
+		icon = GFX_focus_blackrock_banner
+		cost = 14
+		prerequisite = {
+			focus = SRC_sw_death_knight_project
+			focus = SRC_sw_ogre_magi
+		}
+		x = 34
+		y = 4
+
+		completion_reward = {
+			country_event = { id = stormreaver_second_war.2 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_serve_the_warchief
+		icon = GFX_focus_blackrock_banner
+		cost = 5
+		prerequisite = { focus = SRC_sw_doomhammers_ultimatum }
+		mutually_exclusive = { focus = SRC_sw_secret_agenda }
+		x = 32
+		y = 5
+
+		completion_reward = {
+			set_country_flag = SRC_loyal_to_doomhammer
+			add_ideas = SRC_the_true_horde
+			add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_horde_war_machine
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 21
+		prerequisite = { focus = SRC_sw_serve_the_warchief }
+		x = 31
+		y = 6
+
+		completion_reward = {
+			add_ideas = SRC_fuel_the_horde_idea
+			add_ideas = SRC_forge_of_the_stormreavers
+		}
+	}
+
+	focus = {
+		id = SRC_sw_proven_our_worth
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = { focus = SRC_sw_horde_war_machine }
+		x = 32
+		y = 7
+
+		available = { has_war = yes }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			swap_ideas = {
+				remove_idea = SRC_loyal_clansmen
+				add_idea = SRC_loyal_clansmen_2
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_loyal_to_the_end
+		icon = GFX_focus_call_the_clans
+		cost = 30
+		prerequisite = { focus = SRC_sw_proven_our_worth }
+		x = 32
+		y = 8
+
+		completion_reward = {
+			add_ideas = SRC_glory_to_the_horde
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_secret_agenda
+		icon = GFX_goal_generic_attack_allies
+		cost = 5
+		prerequisite = { focus = SRC_sw_doomhammers_ultimatum }
+		mutually_exclusive = { focus = SRC_sw_serve_the_warchief }
+		x = 36
+		y = 5
+
+		completion_reward = {
+			set_country_flag = SRC_secret_agenda
+			add_popularity = {
+				ideology = fel
+				popularity = 0.10
+			}
+			add_ideas = SRC_guldans_horde
+			add_stability = -0.05
+		}
+	}
+
+	focus = {
+		id = SRC_sw_whispers_of_the_deep
+		icon = GFX_goal_generic_secret_weapon
+		cost = 21
+		prerequisite = { focus = SRC_sw_secret_agenda }
+		x = 35
+		y = 6
+
+		completion_reward = {
+			add_ideas = SRC_demonic_scouts_idea
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+			add_tech_bonus = {
+				name = encryption_technology
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_search_for_the_tomb
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 30
+		prerequisite = { focus = SRC_sw_whispers_of_the_deep }
+		x = 36
+		y = 7
+
+		completion_reward = {
+			set_country_flag = SRC_tomb_scouted
+			add_ideas = SRC_call_of_the_deep
+			add_tech_bonus = {
+				name = navigator_technology
+				bonus = 0.5
+				uses = 1
+				category = navigator_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_the_tombs_location
+		icon = GFX_focus_the_dark_portal
+		cost = 30
+		prerequisite = { focus = SRC_sw_search_for_the_tomb }
+		x = 36
+		y = 8
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SRC_guldans_horde
+				add_idea = SRC_guldans_horde_2
+			}
+			set_country_flag = SRC_tomb_found
+			add_stability = -0.10
+			BRC = { country_event = { id = stormreaver_second_war.5 days = 3 } }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_the_great_betrayal
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		cost = 30
+		prerequisite = { focus = SRC_sw_the_tombs_location }
+		prerequisite = { focus = SRC_sw_necromantic_advancements }
+		x = 34
+		y = 9
+
+		available = {
+			has_country_flag = SRC_tomb_found
+			has_war_with = LOR
+		}
+
+		completion_reward = {
+			country_event = { id = stormreaver_second_war.3 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_tomb_of_sargeras
+		icon = GFX_focus_wonderweapons
+		cost = 30
+		prerequisite = { focus = SRC_sw_the_great_betrayal }
+		x = 34
+		y = 10
+
+		completion_reward = {
+			country_event = { id = stormreaver_second_war.4 }
+		}
+	}
+}
