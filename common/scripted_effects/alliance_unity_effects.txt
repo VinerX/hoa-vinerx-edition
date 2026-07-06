@@ -1,0 +1,81 @@
+alliance_unity_initialize = {
+	LOR = {
+		set_variable = { alliance_unity = 1 }
+		alliance_unity_sync = yes
+		every_country = {
+			limit = { is_in_faction_with = ROOT }
+			alliance_unity_sync = yes
+		}
+	}
+	alliance_unity_sync = yes
+}
+
+alliance_unity_raise = {
+	LOR = {
+		add_to_variable = { alliance_unity = 1 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 4 } }
+			set_variable = { alliance_unity = 4 }
+		}
+		alliance_unity_sync = yes
+		every_country = {
+			limit = { is_in_faction_with = ROOT }
+			alliance_unity_sync = yes
+		}
+	}
+	alliance_unity_sync = yes
+}
+
+alliance_unity_lower = {
+	LOR = {
+		subtract_from_variable = { alliance_unity = 1 }
+		if = {
+			limit = { check_variable = { alliance_unity < 0 } }
+			set_variable = { alliance_unity = 0 }
+		}
+		if = {
+			limit = { check_variable = { alliance_unity > 4 } }
+			set_variable = { alliance_unity = 4 }
+		}
+		alliance_unity_sync = yes
+		every_country = {
+			limit = { is_in_faction_with = ROOT }
+			alliance_unity_sync = yes
+		}
+	}
+	alliance_unity_sync = yes
+}
+
+alliance_unity_sync = {
+	if = { limit = { has_idea = alliance_unity_0 } remove_ideas = alliance_unity_0 }
+	if = { limit = { has_idea = alliance_unity_1 } remove_ideas = alliance_unity_1 }
+	if = { limit = { has_idea = alliance_unity_2 } remove_ideas = alliance_unity_2 }
+	if = { limit = { has_idea = alliance_unity_3 } remove_ideas = alliance_unity_3 }
+	if = { limit = { has_idea = alliance_unity_4 } remove_ideas = alliance_unity_4 }
+
+	LOR = {
+		if = {
+			limit = { check_variable = { alliance_unity < 1 } }
+			PREV = { add_ideas = alliance_unity_0 }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_unity < 2 } }
+			PREV = { add_ideas = alliance_unity_1 }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_unity < 3 } }
+			PREV = { add_ideas = alliance_unity_2 }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_unity < 4 } }
+			PREV = { add_ideas = alliance_unity_3 }
+		}
+		else = {
+			PREV = { add_ideas = alliance_unity_4 }
+		}
+	}
+}
