@@ -20,6 +20,10 @@ Checks:
   6. HOA ideologies  - vanilla ideology tokens in script contexts (ERROR).
   7. Scripted syntax - invalid scripted effect / trigger constructs that HOI4 usually
                        reports only at load time.
+  8. Runtime anti-patterns - targeted checks for known bad trigger/effect names and
+                       malformed constructs that otherwise only surface in HOI4 logs.
+  9. Data vocab      - unknown decision categories, opinion modifiers, and idea
+                       modifier keys that HOI4 otherwise rejects at load time.
 
 Usage:
   python tools/validate.py
@@ -47,6 +51,9 @@ TEXT_EXT = (".txt", ".gui", ".gfx", ".lua", ".yml", ".asset")
 SCRIPTED_EFFECTS_DIR = "common/scripted_effects"
 SCRIPTED_TRIGGERS_DIR = "common/scripted_triggers"
 BUILDINGS_DIR = "common/buildings"
+IDEAS_DIR = "common/ideas"
+DECISION_CATEGORIES_DIR = "common/decisions/categories"
+OPINION_MODIFIERS_DIR = "common/opinion_modifiers"
 DEFAULT_REFERENCE_ROOTS = (
     r"C:\SteamLibrary\steamapps\common\Hearts of Iron IV",
 )
@@ -70,6 +77,27 @@ RE_LOC_KEY = re.compile(r"^\s*([^\s:#][^:]*?)\s*:\d+\s", re.MULTILINE)
 RE_IDEOLOGY = re.compile(r"\b(?:ruling_party|ideology)\s*=\s*([A-Za-z_]+)")
 RE_FOCUS_COORD = re.compile(r"\b(x|y)\s*=\s*(-?\d+)")
 RE_FOCUS_PREREQ = re.compile(r"\bprerequisite\s*=\s*\{([^}]*)\}")
+RE_BAD_HAS_TECHNOLOGY = re.compile(r"\bhas_technology\s*=")
+RE_BAD_LOAD_NAVAL_OOB = re.compile(r"\bload_naval_oob\s*=")
+RE_BAD_TRANSFER_EQUIPMENT = re.compile(r"\btransfer_equipment\s*=")
+RE_BAD_REMOVE_COUNTRY_LEADER = re.compile(r"\bremove_country_leader\s*=")
+RE_BAD_SET_VARIABLE_VALUE = re.compile(r"\bset_variable\s*=\s*\{\s*([A-Za-z0-9_@.:\'-]+)\s+value\s*=")
+RE_OPINION_MODIFIER_REF = re.compile(
+    r"\b(?:add_opinion_modifier|reverse_add_opinion_modifier)\s*=\s*\{[^{}]*?\bmodifier\s*=\s*([A-Za-z0-9_.']+)",
+    re.DOTALL,
+)
+RE_IDEA_REF = re.compile(
+    r"\b(?:add_ideas|remove_idea|has_idea|idea)\s*=\s*([A-Za-z0-9_.']+)"
+)
+
+BUILTIN_OPINION_MODIFIERS = {
+    "small_increase",
+    "medium_increase",
+    "large_increase",
+    "small_decrease",
+    "medium_decrease",
+    "large_decrease",
+}
 
 VALID_IDEOLOGIES = {"alliance", "horde", "death", "fel", "old_gods", "titans", "neutral"}
 INVALID_IDEOLOGY_TOKENS = {"democratic", "fascism", "communism", "neutrality", "nazism", "despotic"}
@@ -104,6 +132,27 @@ ALLOWED_TRIGGER_META_KEYS = {
     "any_of",
     "meta_trigger",
 }
+
+TRIGGER_BLOCK_NAMES = {
+    "allowed",
+    "available",
+    "visible",
+    "limit",
+    "trigger",
+    "abort",
+    "cancel_trigger",
+    "available_if_capitulated",
+    "bypass",
+    "activation",
+    "highlight_states",
+    "enable",
+}
+
+SCRIPT_RUNTIME_DIR_HINTS = (
+    "/events/",
+    "/common/decisions/",
+    "/common/national_focus/",
+)
 
 
 # --- helpers ---------------------------------------------------------------
@@ -231,6 +280,128 @@ def extract_named_blocks(text: str, block_name: str) -> list[tuple[str, int]]:
     return blocks
 
 
+def validate_runtime_antipatterns(
+    root: str,
+    errors: list[str],
+) -> None:
+    """
+    Catch a short list of high-value anti-patterns that repeatedly caused
+    startup/runtime parser failures in this project. This stays deliberately
+    narrow to avoid the noise of a fake "full parser".
+    """
+    for path in iter_files(root, SCRIPT_EXT):
+        r = rel(root, path)
+        if not any(hint in "/" + r for hint in SCRIPT_RUNTIME_DIR_HINTS):
+            continue
+
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+
+        for m in RE_BAD_HAS_TECHNOLOGY.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            errors.append(
+                f"[runtime-antipattern] {r}:{line}: use 'has_tech = ...' instead of unsupported 'has_technology = ...'"
+            )
+
+        for m in RE_BAD_LOAD_NAVAL_OOB.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            errors.append(
+                f"[runtime-antipattern] {r}:{line}: unsupported 'load_naval_oob'; use 'load_oob = ...'"
+            )
+
+        for m in RE_BAD_TRANSFER_EQUIPMENT.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            errors.append(
+                f"[runtime-antipattern] {r}:{line}: unsupported 'transfer_equipment' effect in HOI4 1.18.3"
+            )
+
+        for m in RE_BAD_REMOVE_COUNTRY_LEADER.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            errors.append(
+                f"[runtime-antipattern] {r}:{line}: unsupported 'remove_country_leader' effect; use supported leader-role/retire/kill flow"
+            )
+
+        for m in RE_BAD_SET_VARIABLE_VALUE.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            var_name = m.group(1)
+            errors.append(
+                f"[runtime-antipattern] {r}:{line}: malformed set_variable syntax for '{var_name}' (expected '{var_name} = <value>')"
+            )
+
+
+def validate_data_vocab(
+    root: str,
+    errors: list[str],
+    known_idea_modifier_keys: set[str],
+    known_decision_categories: set[str],
+    known_opinion_modifiers: set[str],
+    known_ideas: set[str],
+) -> None:
+    decisions_root = os.path.join(root, "common", "decisions")
+    if os.path.isdir(decisions_root):
+        for path in iter_files(decisions_root, SCRIPT_EXT):
+            r = rel(root, path)
+            if "/common/decisions/categories/" in "/" + r:
+                continue
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for name, _body, line in extract_top_level_definitions(clean):
+                if name not in known_decision_categories:
+                    errors.append(
+                        f"[decision-category] {r}:{line}: unknown decision category '{name}' (missing category definition)"
+                    )
+
+    ideas_root = os.path.join(root, IDEAS_DIR)
+    if os.path.isdir(ideas_root):
+        for path in iter_files(ideas_root, SCRIPT_EXT):
+            r = rel(root, path)
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for modifier_body, line in extract_named_blocks(clean, "modifier"):
+                for key, rel_line in extract_direct_keys(modifier_body):
+                    if key not in known_idea_modifier_keys:
+                        errors.append(
+                            f"[idea-modifier] {r}:{line + rel_line - 1}: unknown modifier '{key}'"
+                        )
+
+    for path in iter_files(root, SCRIPT_EXT):
+        r = rel(root, path)
+        if not (
+            "/events/" in "/" + r
+            or "/common/national_focus/" in "/" + r
+            or "/common/decisions/" in "/" + r
+        ):
+            continue
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        for m in RE_OPINION_MODIFIER_REF.finditer(clean):
+            mod_name = m.group(1)
+            if mod_name not in known_opinion_modifiers:
+                line = clean.count("\n", 0, m.start(1)) + 1
+                errors.append(
+                    f"[opinion-modifier] {r}:{line}: unknown opinion modifier '{mod_name}'"
+                )
+        for m in RE_IDEA_REF.finditer(clean):
+            idea_name = m.group(1)
+            if idea_name not in known_ideas:
+                line = clean.count("\n", 0, m.start(1)) + 1
+                errors.append(
+                    f"[idea-ref] {r}:{line}: unknown idea '{idea_name}'"
+                )
+
+
 def extract_direct_keys(block_text: str) -> list[tuple[str, int]]:
     """
     Return direct child keys for a block, line-based and depth-aware.
@@ -327,6 +498,87 @@ def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
                 trigger_keys.add(name)
 
     return effect_keys, trigger_keys
+
+
+def build_data_vocab(mod_root: str) -> tuple[set[str], set[str], set[str], set[str]]:
+    """
+    Build lightweight vocabularies for:
+    - idea modifier keys
+    - decision category ids
+    - opinion modifier ids
+    - idea ids
+    """
+    idea_modifier_keys: set[str] = set()
+    decision_categories: set[str] = set()
+    opinion_modifiers: set[str] = set()
+    ideas: set[str] = set()
+
+    def _load_top_level_names(base_dir: str) -> set[str]:
+        names: set[str] = set()
+        if not os.path.isdir(base_dir):
+            return names
+        for path in iter_files(base_dir, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for name, _body, _line in extract_top_level_definitions(clean):
+                names.add(name)
+        return names
+
+    def _collect_modifier_keys(base_dir: str) -> None:
+        if not os.path.isdir(base_dir):
+            return
+        for path in iter_files(base_dir, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for modifier_body, _line in extract_named_blocks(clean, "modifier"):
+                idea_modifier_keys.update(key for key, _ in extract_direct_keys(modifier_body))
+
+    def _collect_idea_ids(base_dir: str) -> None:
+        if not os.path.isdir(base_dir):
+            return
+        for path in iter_files(base_dir, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for ideas_body, _line in extract_named_blocks(clean, "ideas"):
+                for _section_name, section_body, _section_line in extract_top_level_definitions(ideas_body):
+                    ideas.update(key for key, _ in extract_direct_keys(section_body))
+
+    def _collect_opinion_modifier_ids(base_dir: str) -> None:
+        if not os.path.isdir(base_dir):
+            return
+        for path in iter_files(base_dir, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for mods_body, _line in extract_named_blocks(clean, "opinion_modifiers"):
+                opinion_modifiers.update(key for key, _ in extract_direct_keys(mods_body))
+
+    for ref_root in DEFAULT_REFERENCE_ROOTS:
+        if not os.path.isdir(ref_root):
+            continue
+        _collect_modifier_keys(os.path.join(ref_root, IDEAS_DIR))
+        _collect_idea_ids(os.path.join(ref_root, IDEAS_DIR))
+        decision_categories.update(_load_top_level_names(os.path.join(ref_root, DECISION_CATEGORIES_DIR)))
+        _collect_opinion_modifier_ids(os.path.join(ref_root, OPINION_MODIFIERS_DIR))
+
+    _collect_modifier_keys(os.path.join(mod_root, IDEAS_DIR))
+    _collect_idea_ids(os.path.join(mod_root, IDEAS_DIR))
+    decision_categories.update(_load_top_level_names(os.path.join(mod_root, DECISION_CATEGORIES_DIR)))
+    _collect_opinion_modifier_ids(os.path.join(mod_root, OPINION_MODIFIERS_DIR))
+    opinion_modifiers.update(BUILTIN_OPINION_MODIFIERS)
+
+    return idea_modifier_keys, decision_categories, opinion_modifiers, ideas
 
 
 
@@ -778,7 +1030,7 @@ def main() -> int:
         "--category",
         nargs="*",
         default=None,
-        choices=["loc", "focus-ref", "collision", "encoding", "braces", "event-ref", "ideology", "scripted"],
+        choices=["loc", "focus-ref", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab"],
         help="only run specific check categories (default: all)",
     )
     args = ap.parse_args()
@@ -815,6 +1067,7 @@ def main() -> int:
     tooltip_loc_expected: dict[str, set[str]] = {}
 
     known_effect_keys, known_trigger_keys = build_scripted_vocab(root)
+    known_idea_modifier_keys, known_decision_categories, known_opinion_modifiers, known_ideas = build_data_vocab(root)
 
     for path in iter_files(root, TEXT_EXT):
         r = rel(root, path)
@@ -896,6 +1149,17 @@ def main() -> int:
 
     if _cat_active("scripted"):
         validate_scripted_constructs(root, errors, known_effect_keys, known_trigger_keys)
+    if _cat_active("runtime-script"):
+        validate_runtime_antipatterns(root, errors)
+    if _cat_active("data-vocab"):
+        validate_data_vocab(
+            root,
+            errors,
+            known_idea_modifier_keys,
+            known_decision_categories,
+            known_opinion_modifiers,
+            known_ideas,
+        )
     if _cat_active("collision"):
         validate_focus_coordinate_collisions(root, errors, warnings, _focus_file_filter)
     if args.hoi4_smoke:

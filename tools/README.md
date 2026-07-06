@@ -31,6 +31,17 @@ Exit code is non-zero if there are ERRORS, so it works as a pre-commit gate.
   `limit = {}` block or a trigger used where an effect should be.
 - `scripted-trigger` - unknown trigger usage in scripted triggers or `limit` blocks
   that HOI4 would otherwise only report in runtime `error.log`.
+- `runtime-antipattern` - known bad runtime constructs in normal script files
+  (`events/`, `common/decisions/`, `common/national_focus/`) that this project has
+  already tripped over, such as `has_technology`, `load_naval_oob`,
+  `transfer_equipment`, unsupported `remove_country_leader`, or malformed
+  `set_variable = { foo value = ... }`.
+- `decision-category` - a file in `common/decisions/` introduces a top-level category
+  that is not declared in `common/decisions/categories/` or vanilla category files.
+- `idea-modifier` - an idea uses a modifier key that does not exist in the vanilla/mod
+  idea modifier vocabulary.
+- `opinion-modifier` - `add_opinion_modifier` / `reverse_add_opinion_modifier` points
+  at an undefined opinion modifier id.
 
 **WARN** (eyeball; may be a false positive for cross-mod or vanilla references):
 - `event-ref` - a `country_event` / `news_event` / etc. points at an event id no file defines.
@@ -45,6 +56,11 @@ regressions like:
 - `limit = {}` placed directly at the top level of a scripted effect.
 - typos such as `num_of_owned_states` in trigger contexts where HOI4 only accepts
   `num_of_controlled_states`.
+
+There is also a narrower runtime anti-pattern pass for regular script files.
+It is intentionally rule-based rather than a fake full parser: the goal is to
+catch a short list of high-value mistakes that repeatedly caused startup/parser
+crashes in HOA without drowning the output in false positives.
 
 Scope note: this is still a lightweight static check, not a full parser. A clean run
 does not guarantee the game loads, but it removes the cheap and common failure
