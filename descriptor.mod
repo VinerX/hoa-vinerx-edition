@@ -1,4 +1,4 @@
-name="Hearts of Azeroth (A Warcraft Total Overhaul)"
+name="HOA VinerX Edition (rebuild)"
 tags={
 	"Alternative History"
 	"Gameplay"
@@ -62,6 +62,5 @@ replace_path="history/states"
 replace_path="history/units"
 replace_path="map/strategicregions"
 replace_path="portraits"
-version="0.7.3"
+version="0.7.3-vinerx"
 supported_version="1.18.*"
-remote_file_id="2643760708"
