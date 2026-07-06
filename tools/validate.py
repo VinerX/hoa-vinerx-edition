@@ -827,6 +827,8 @@ def main() -> int:
         clean = strip_comments_and_strings(text)
 
         if path.lower().endswith(".yml") and _cat_active("loc"):
+            if raw[:3] != b"\xef\xbb\xbf":
+                errors.append(f"[encoding] {r}: missing UTF-8 BOM (HOI4 requires EF BB BF for localisation files)")
             for key in RE_LOC_KEY.findall(text):
                 if key != "l_english":
                     loc_defs.setdefault(key.strip(), []).append(r)
