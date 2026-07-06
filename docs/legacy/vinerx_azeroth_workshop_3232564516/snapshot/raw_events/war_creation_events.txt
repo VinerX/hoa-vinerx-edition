@@ -1,0 +1,282 @@
+﻿#######################
+# War Creation Events #
+#######################
+# Originally scripted by Mechano - edited for HoA
+# These events exist for AI reasons, AI with claims will actually justify war and create conflict.
+add_namespace = war_creation
+
+country_event = {
+	id = war_creation.5
+	#immediate = { log = "ASDASDAS" }
+	trigger = {
+		is_puppet = no
+		is_in_faction = no
+		threat > 0.01
+	}	
+	mean_time_to_happen = {
+		days = 1000
+		modifier = {
+			has_government = alliance
+			add = -300
+		}
+		modifier = {
+			has_war = yes
+			add = -300
+		}
+		modifier = {
+				threat >0.74
+				add = -200
+		}
+		modifier = {
+				threat >0.94
+				add = -200
+		}
+	}
+	hidden = yes
+	option = {
+		name = "Lets do this"		
+		#create_faction = faction_name
+		set_rule = {
+			can_create_factions = yes
+		}
+		add_ideas = {
+			More_fraction
+		}
+		ai_chance = { 
+			base = 100
+			modifier = {
+				threat >0.74
+				add = 25
+			}
+			modifier = {
+				threat >0.94
+				add = 25
+			}
+
+		}
+
+	}
+	option = {
+		name = "It is not necessary"
+		ai_chance = { base = 0 }
+	}
+}
+
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.1" }
+	id = war_creation.1
+	hidden = yes
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		is_ai = yes
+		is_puppet = no
+	}
+	#Direct
+	option = {
+		ai_chance ={ base = 30}
+		name = war_creation.1.a
+		#log = "[GetDateText]: [Root.GetName]:  war_creation.1 alone"
+		random_neighbor_country = {
+			limit = {
+				NOT = {
+					is_ally_with = ROOT
+					has_opinion = {
+						target = ROOT
+						value > 15
+					}
+				}
+				strength_ratio = {
+					tag = ROOT
+					ratio < 0.75
+				}
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_controlled_by_ROOT_or_subject = yes
+						impassable = no
+						#check_variable = { THIS.impassable_to@PREV = 0 }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+	}
+	#For vassal owners
+	option = {
+		
+		trigger = {
+			ROOT = {num_subjects > 0}
+		}
+		ai_chance ={ base = 70}
+		name = war_creation.1.a
+		#log = "[GetDateText]: [Root.GetName]:  war_creation.1 subject"
+		random_subject_country ={
+
+			random_neighbor_country = {
+				limit = {
+					NOT = {
+						is_ally_with = ROOT
+					}
+					any_owned_state = {
+						impassable = no
+						any_neighbor_state = {
+							is_controlled_by_ROOT_or_subject = yes
+							impassable = no
+							#check_variable = { THIS.impassable_to@PREV = 0 }
+						}
+					}
+				}
+				THIS = { country_event = { days = 1 id = war_creation.2 } }
+			}
+		 }
+		
+	}
+	#For vassal
+	option = {
+		trigger = {
+			ROOT = {is_puppet = yes}
+		}
+		ai_chance ={ base = 100}
+		name = war_creation.1.a
+		#log = "[GetDateText]: [Root.GetName]:  war_creation.1 subject"
+		random_subject_country ={
+
+			random_neighbor_country = {
+				limit = {
+					NOT = {
+						is_ally_with = ROOT
+					}
+					any_owned_state = {
+						impassable = no
+						any_neighbor_state = {
+							is_controlled_by_ROOT_or_subject = yes
+							impassable = no
+							#check_variable = { THIS.impassable_to@PREV = 0 }
+						}
+					}
+				}
+				
+				overlord = { PREV = { country_event = { days = 1 id = war_creation.2 } } }
+			}
+		 }
+		
+	}
+	mean_time_to_happen = {
+		days = 3000
+		modifier = {
+			factor = 1.25
+			is_in_faction = yes
+			is_faction_leader = no
+		}
+		modifier = {
+			factor = 0.75
+			is_faction_leader = yes
+		}
+		modifier = {
+			has_war = yes
+			factor = 1.1
+		}
+		
+		modifier = {
+			add = -450
+			threat > 0.24
+		}
+		modifier = {
+			add = -450
+			threat > 0.4
+		}
+		modifier = {
+			add = -450
+			threat > 0.74
+		}
+		modifier = {
+			add = -450
+			threat > 0.99
+		}
+		modifier = {
+			add = -1000
+			OR = {
+				has_government = fel
+				has_government = old_gods
+				has_government = death
+			}
+		}
+		modifier = {
+			add = -400
+			OR = {
+				has_government = horde
+				has_idea = aggressive_strategy_idea
+			}
+		}
+
+	}
+}
+
+country_event = {
+	#immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.2" }
+	id = war_creation.2
+	title = war_creation.2.t
+	desc = war_creation.2.d
+	picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.2.a
+		custom_effect_tooltip = war_creation.2.a_tt
+		FROM = { country_event = { days = 1 id = war_creation.3 } }
+	}
+}
+
+country_event = {
+	#immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.3" }
+	id = war_creation.3
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		#FROM = { country_event = { days = 2 id = war_creation.4 } }
+		FROM = {
+			#log = "[GetDateText]: [Root.GetName]: Tried end 1 "
+			random_owned_state = {
+				limit = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						OR = {
+							impassable = no
+							#is_valid_state_for_civilian_factory = yes
+							dockyard > 0
+							industrial_complex > 0
+							arms_factory > 0
+						}
+					}
+				}
+				add_claim_by = ROOT
+				
+			
+			}
+			ROOT = {
+				#log = "[GetDateText]: [Root.GetName]: Tried end2 "
+				create_wargoal = { 
+					type = annex_everything 
+					target = FROM 
+				}
+			}
+		}
+		
+	}
+}
+
+#Turned off
+country_event = {
+	#immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.4" }
+	id = war_creation.4
+	title = war_creation.4.t
+	desc = war_creation.4.d
+	picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.4.a
+		FROM = { create_wargoal = { type = take_claimed_state target = FROM } }
+	}
+}

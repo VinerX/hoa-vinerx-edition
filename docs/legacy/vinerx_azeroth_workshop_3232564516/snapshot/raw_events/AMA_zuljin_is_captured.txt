@@ -1,0 +1,107 @@
+add_namespace = AMA_zuljin_is_captured
+
+#Zul'jin is captured
+country_event = {
+	id = AMA_zuljin_is_captured.1
+	title = AMA_zuljin_is_captured.1.t
+	desc = AMA_zuljin_is_captured.1.d
+
+	picture = AMA_zuljin_is_captured-595581
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	timeout_days = 70
+	option = {
+		name = AMA_zuljin_is_captured.1.a
+		trigger = {
+			
+		}
+		ai_chance = { base = 50 }
+		#activate_decision = AMA_Zul'jin's_salvation
+		hidden_effect = {
+			
+		}
+	}
+}
+
+#Zul'jin is captured
+country_event = {
+	id = AMA_zuljin_is_captured.2
+	title = AMA_zuljin_is_captured.2.t
+	desc = AMA_zuljin_is_captured.2.d
+
+	picture = AMA_zuljin_is_captured-595581
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	timeout_days = 70
+	option = {
+		name = AMA_zuljin_is_captured.2.a
+		trigger = {
+			
+		}
+		ai_chance = { factor = 100 }
+		
+
+
+		hidden_effect = {
+			#activate_mission = zuljinssalvation 
+		}
+	}
+	option = {
+		name = AMA_zuljin_is_captured.2.b
+		trigger = {
+			
+		}
+		ai_chance = { factor = 1 }
+		
+		hidden_effect = {
+			
+		}
+	}
+}
+
+#Zul'jin is saved!
+country_event = {
+	id = AMA_zuljin_is_captured.3
+	title = AMA_zuljin_is_captured.3.t
+	desc = AMA_zuljin_is_captured.3.d
+
+	picture = AMA_zuljin_is_saved-595581
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	timeout_days = 70
+	option = {
+		name = AMA_zuljin_is_captured.3.a
+		ai_chance = { base = 100 }
+		if = { limit = { TAG = AMA}
+		remove_country_leader_role = {
+			character = AMA_daakara
+			ideology = neutral_type
+		}
+		add_political_power = 50
+		add_country_leader_role = {
+			Character = AMA_zuljin
+			Promote_leader = yes
+			Country_leader = {
+			ideology = neutral_type
+				}
+		}
+
+		}
+
+
+		else_if = { 
+			limit = { TAG = BRC}
+			add_political_power = 100
+		AMA = {
+				add_timed_idea = {
+				idea = AMA_Debt_to_the_horde
+				days = 365
+				}
+				remove_ideas = AMA_Captured_leader
+				}
+		}
+
+		set_country_flag = zuljin_first_escape
+
+	}
+}

@@ -1,0 +1,365 @@
+quelthalas_protection = {
+	activate_magic_shield = {
+		allowed = {
+			tag = QUE
+			always = no
+        }
+		# visible = { 
+		# 	has_war = yes
+		# }
+		available = {
+			NOT = { Has_global_flag = shield_broken }
+			has_war = yes
+		}
+		icon = GFX_idea_generic_religion_sunwell
+		cost = 75
+		fire_only_once = no
+		days_remove = 25
+		#days_re_enable = 1
+		complete_effect = {
+			2105 = { 
+				add_dynamic_modifier = {
+					modifier = QUE_shield
+				}
+			}
+			168 = { 
+				add_dynamic_modifier = {
+					modifier = QUE_shield
+				}
+			}
+			756 = { 
+				add_dynamic_modifier = {
+					modifier = QUE_shield
+				}
+			}
+			1522 = { 
+				add_dynamic_modifier = {
+					modifier = QUE_shield
+				}
+			}
+			1523 = { 
+				add_dynamic_modifier = {
+					modifier = QUE_shield
+				}
+			}
+			add_ideas = QUE_Maintaining_shield
+		}
+		remove_effect = {
+			remove_ideas = QUE_Maintaining_shield
+		}
+		cancel_trigger = {
+			Has_global_flag = shield_broken
+		}
+		# cancel_effect = {
+		# 	remove_ideas = QUE_Maintaining_shield
+		# }
+		#days_mission_timeout = 45
+		ai_will_do = {
+   		 	base = 75
+			modifier = {
+				add = 25
+				surrender_progress > 0.8
+			}
+			
+			# modifier = {
+        	# 		add = 50
+        	# 		tag = BRC
+			# }
+		}
+
+
+
+
+	}
+	Find_information_about_shield = {
+		allowed = {
+            	always = yes
+        	}
+		visible = { 
+			has_war_with = QUE
+		}
+		icon = decision_arcane_studies
+		
+
+		# Amani have problems with it...
+
+			cost = 150
+			days_remove = 30
+		
+		fire_only_once = yes
+		
+		# complete_effect = {
+		# 	add_command_power = -100
+		# }
+
+		remove_effect = {
+			set_country_flag = finding_shield_solution
+		}
+		# cancel_trigger = {
+		# 	AMA = { 
+		# 		NO = { has_idea = { AMA_zuljin_is_captured } }
+		# 	}
+		# }
+		#days_mission_timeout = 45
+		ai_will_do = {
+   		 	base = 50
+
+			
+			# modifier = {
+        	# 		add = 50
+        	# 		tag = BRC
+			# }
+		}
+
+
+
+
+	}
+	Find_required_keys = {
+		allowed = {
+            	always = yes
+        	}
+		visible = { 
+			has_war_with = QUE
+			has_country_flag = finding_shield_solution
+		}
+		available = {
+			170 = { is_controlled_by_ROOT_or_subject = yes
+			}
+			176 = { is_controlled_by_ROOT_or_subject = yes
+			}
+			189 = { is_controlled_by_ROOT_or_subject = yes
+			}
+			185 = { is_controlled_by_ROOT_or_subject = yes
+			}
+		}
+		icon = decision_arcane_studies
+		# Amani have problems with it...
+
+			cost = 150
+			days_remove = 30
+		
+		# complete_effect = {
+		# 	add_command_power = -100
+		# }
+
+		remove_effect = {
+			set_country_flag = keys_ours
+		}
+
+		# cancel_trigger = {
+		# 	AMA = { 
+		# 		NO = { has_idea = { AMA_zuljin_is_captured } }
+		# 	}
+		# }
+
+		#days_mission_timeout = 45
+		ai_will_do = {
+   		 	base = 50
+
+			
+			# modifier = {
+        	# 		add = 50
+        	# 		tag = BRC
+			# }
+		}
+
+
+
+
+	}
+	Destroy_shield = {
+		allowed = {
+            	always = yes
+        	}
+		visible = { 
+			has_war_with = QUE
+			
+			
+		}
+		available = {
+			has_country_flag = keys_ours
+			mana > 25
+		}
+		icon = decision_arcane_studies
+		fire_only_once = yes
+
+		# Amani have problems with it...
+
+
+			cost = 150
+			days_remove = 30
+		
+		modifier = {
+			country_resource_cost_mana = 25
+		}
+		remove_effect = {
+			#remove_country_flag = keys_ours
+			set_global_flag = shield_broken
+		}
+		cancel_trigger = {
+			Has_global_flag = shield_broken
+		}
+		#days_mission_timeout = 45
+		ai_will_do = {
+   		 	base = 50
+
+			
+			# modifier = {
+        	# 		add = 50
+        	# 		tag = BRC
+			# }
+		}
+
+
+
+
+	}
+	Destroy_runestone = {
+		state_target = yes
+		allowed = {
+            	always = yes
+        	}
+		visible = { 
+			has_war_with = QUE
+			QUE = {
+				any_owned_state = {
+					has_dynamic_modifier = {
+						modifier = QUE_runestone
+					} 
+				}
+			}
+			
+		}
+		available = {
+			always = yes
+		}
+		target_array = QUE.owned_states
+		target_trigger = {
+			FROM = {
+				has_dynamic_modifier = {
+					modifier = QUE_runestone
+				} 
+			}
+		}
+
+
+
+		
+		on_map_mode = map_only
+		icon = GFX_idea_profession_enchanting
+		fire_only_once = yes
+
+			cost = 10
+			days_remove = 15
+		
+		# complete_effect = {
+		# 	add_command_power = -100
+		# }
+		modifier = {
+			country_resource_cost_mana = 20
+		}
+		remove_effect = {
+			#remove_country_flag = keys_ours
+			FROM = {
+				remove_dynamic_modifier = {
+					modifier = QUE_runestone
+				}
+			}
+		}
+		# cancel_trigger = {
+		# 	Has_global_flag = shield_broken
+		# }
+		#days_mission_timeout = 45
+		ai_will_do = {
+   		 	base = 50
+
+			
+			# modifier = {
+        	# 		add = 50
+        			
+			# }
+		}
+
+
+
+
+	}
+	Repair_runestone = {
+		state_target = yes
+		allowed = {
+            	tag = QUE
+				QUE = {
+					any_owned_state = {
+						NOT = {
+							has_dynamic_modifier = {
+								modifier = QUE_runestone
+							} 
+						}
+						impassable = no
+					}
+				}
+        	}
+		available = {
+			QUE = {
+				any_owned_state = {
+					NOT = {
+						has_dynamic_modifier = {
+							modifier = QUE_runestone
+						} 
+					}
+					impassable = no
+				}
+			}
+		}
+		target_array = QUE.controlled_states
+		target_trigger = {
+			FROM = {
+				NOT = { has_dynamic_modifier = {
+					modifier = QUE_runestone
+				} }
+				impassable = no
+			}
+		}
+
+
+
+		
+		on_map_mode = map_only
+		icon = GFX_idea_profession_enchanting
+		cost = 1
+		fire_only_once = no
+		days_remove = 90
+		# complete_effect = {
+		# 	add_command_power = -100
+		# }
+		modifier = {
+			country_resource_cost_mana = 20
+		}
+		remove_effect = {
+			#remove_country_flag = keys_ours
+			FROM = {
+				add_dynamic_modifier = {
+					modifier = QUE_runestone
+				}
+			}
+		}
+		# cancel_trigger = {
+		# 	Has_global_flag = shield_broken
+		# }
+		#days_mission_timeout = 45
+		ai_will_do = {
+   		 	base = 1
+			
+			
+			# modifier = {
+        	# 		add = 50
+        			
+			# }
+		}
+
+
+
+
+	}
+}	

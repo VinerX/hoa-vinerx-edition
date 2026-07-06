@@ -1,0 +1,989 @@
+focus_tree = {
+	id = que-focus-tree-first-and-second
+	continuous_focus_position = { x = 500 y = 4 } 
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = QUE
+			has_start_date < 593.01.02
+		}
+	}
+shared_focus = arming_the_nation
+shared_focus = develop_the_country
+
+focus = {
+	id = que_just_another_millenium
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	x = 37
+	y = 1
+	completion_reward = { 
+		add_political_power = 100
+		set_country_flag = unlocked_other_branches
+	}
+}
+focus = {
+	id = que_Glory_to_Sunstrider
+	icon = GFX_focus_rom_royal_dictatorship
+	relative_position_id = que_just_another_millenium
+	prerequisite = {
+		focus = que_just_another_millenium
+	}
+	mutually_exclusive = {
+		focus = que_Councel_of_Power
+	}
+	cost = 10
+	x = -2
+	y = 1
+	completion_reward = {
+		add_political_power = 100
+		#set_state_flag = unlocked
+	}
+}
+focus = {
+	id = que_Anasterian_rule
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Glory_to_Sunstrider
+	prerequisite = {
+		focus = que_Glory_to_Sunstrider
+	}
+	mutually_exclusive = {
+		focus = que_Kaelthas_rule
+	}
+	cost = 10
+	x = -1
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Kaelthas_rule
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Glory_to_Sunstrider
+	prerequisite = {
+		focus = que_Glory_to_Sunstrider
+	}
+	mutually_exclusive = {
+		focus = que_Anasterian_rule
+	}
+	cost = 10
+	x = 1
+	y = 1
+	completion_reward = { 
+		add_ideas = QUE_Transition_period
+		remove_country_leader_role = {
+			character = QUE_anasterian_sunstrider
+			ideology = neutral_type
+		}
+		add_country_leader_role = {
+			Character = QUE_kaelthas_sunstrider
+			Promote_leader = yes
+			Country_leader = {
+				ideology = neutral_type
+				traits = { diplomat_leader_trait mage_leader_trait }
+			}
+		}
+	}
+}
+focus = {
+	id = que_Pragmatic_approach
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Kaelthas_rule
+	prerequisite = {
+		focus = que_Kaelthas_rule
+	}
+cost = 10
+	prerequisite = {
+		focus = que_Glory_to_Sunstrider
+	}
+	x = 0
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Endless_isolation
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Anasterian_rule
+	prerequisite = {
+		focus = que_Anasterian_rule
+	}
+	prerequisite = {
+		focus = que_Glory_to_Sunstrider
+	}
+	available = {
+		NOT = { has_idea = QUE_Transition_period }
+	}
+	cost = 10
+	x = 0
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Peaceful_doctrine
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Glory_to_Sunstrider
+	prerequisite = {
+		focus = que_Endless_isolation
+		focus = que_Pragmatic_approach
+		focus = que_Dalaran_diplomacy
+	}
+	mutually_exclusive = {
+		focus = que_Prepared_for_theats
+	}
+	cost = 10
+	x = 0
+	y = 3
+	completion_reward = { 
+		add_war_support = -0.1
+		add_stability = 0.1
+		add_ideas = QUE_Era_of_Peace
+	}
+}
+focus = {
+	id = que_Continue_Development
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Peaceful_doctrine
+	prerequisite = {
+		focus = que_Peaceful_doctrine
+	}
+cost = 10
+	x = -2
+	y = 2
+	completion_reward = { }
+}
+focus = {
+	id = que_Ides_of_Reliquary
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Continue_Development
+	prerequisite = {
+		focus = que_Continue_Development
+	}
+cost = 10
+	x = -1
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Magic_researh
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Ides_of_Reliquary
+	prerequisite = {
+		focus = que_Ides_of_Reliquary
+	}
+cost = 10
+	x = -1
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Ruler_practises
+	icon = GFX_focus_hun_elect_a_king
+	relative_position_id = que_Continue_Development
+	prerequisite = {
+		focus = que_Continue_Development
+	}
+cost = 10
+	x = 1
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Ruler_image
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Ruler_practises
+	prerequisite = {
+		focus = que_Ruler_practises
+	}
+cost = 10
+	x = 1
+	y = 1
+	completion_reward = { add_trait = {
+		trait = cult_of_personality_trait
+	} }
+}
+focus = {
+	id = que_Felomelorn
+	icon = GFX_focus_generic_magic_infused_weapons
+	relative_position_id = que_Ruler_practises
+	prerequisite = {
+		focus = que_Ruler_practises
+	}
+	prerequisite = {
+		focus = que_Ides_of_Reliquary
+	}
+cost = 10
+	x = -1
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Just_Another_Decade
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Felomelorn
+	prerequisite = {
+		focus = que_Felomelorn
+	}
+	prerequisite = {
+		focus = que_Magic_researh
+	}
+	prerequisite = {
+		focus = que_Ruler_image
+	}
+cost = 10
+	x = 0
+	y = 1
+	completion_reward = { }
+}
+focus = {
+	id = que_Councel_of_Power
+	icon = GFX_focus_rom_handle_king
+	relative_position_id = que_just_another_millenium
+	prerequisite = {
+		focus = que_just_another_millenium
+	}
+	mutually_exclusive = {
+		focus = que_Glory_to_Sunstrider
+	}
+	cost = 10
+	x = 2
+	y = 1
+	completion_reward = { 
+		add_timed_idea = {
+			idea = QUE_Transition_period
+			days = 180
+		}
+	}
+	ai_will_do = {
+		base = 100
+	}
+	}
+focus = {
+	id = que_Magisters
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Councel_of_Power
+	prerequisite = {
+		focus = que_Councel_of_Power
+	}
+	mutually_exclusive = {
+		focus = que_Rangers
+	}
+	available = {
+		NOT = { has_idea = QUE_Transition_period }
+	}
+	cost = 10
+	x = -1
+	y = 1
+	completion_reward = { 
+		remove_country_leader_role = {
+			character = QUE_anasterian_sunstrider
+			ideology = neutral_type
+		}
+		add_country_leader_role = {
+			Character = QUE_Belovir_Salonar
+			Promote_leader = yes
+			Country_leader = {
+				ideology = neutral_type
+				traits = { mage_leader_trait }
+			}
+		}
+	}
+}
+focus = {
+	id = que_Dalaran_diplomacy
+	icon = GFX_focus_DAL_generic
+	relative_position_id = que_Magisters
+	prerequisite = {
+		focus = que_Magisters
+	}
+	cost = 10
+	x = 0
+	y = 1
+	completion_reward = { 
+		DAL = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		add_opinion_modifier = {
+			target = DAL
+			modifier = medium_increase
+		}
+		swap_ideas = {
+			remove_idea = QUE_dalaran_concord
+			add_idea = QUE_dalaran_concord_2
+		}
+	
+	}
+}
+focus = {
+	id = que_Rangers
+	icon = GFX_focus_generic_air_defense
+
+	relative_position_id = que_Councel_of_Power
+	prerequisite = {
+		focus = que_Councel_of_Power
+	}
+	mutually_exclusive = {
+		focus = que_Magisters
+	}
+	available = {
+		NOT = { has_idea = QUE_Transition_period }
+	}
+	cost = 10
+	x = 1
+	y = 1
+	completion_reward = { 
+		remove_country_leader_role = {
+			character = QUE_anasterian_sunstrider
+			ideology = neutral_type
+		}
+		add_country_leader_role = {
+			Character = QUE_lireesa_windrunner
+			Promote_leader = yes
+			Country_leader = {
+				ideology = neutral_type
+				traits = { hunter_leader_trait }
+			}
+	}
+}
+}
+focus = {
+	id = que_Lordaeron_cooperation
+	icon = GFX_focus_LOR_generic
+	relative_position_id = que_Rangers
+	prerequisite = {
+		focus = que_Rangers
+	}
+	cost = 10
+	x = 0
+	y = 1
+	completion_reward = { 
+		LOR = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		add_opinion_modifier = {
+			target = LOR
+			modifier = medium_increase
+		}
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		add_ideas = { QUE_Lordaeron_diplomacy }
+	}
+}
+focus = {
+	id = que_Prepared_for_theats
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Councel_of_Power
+	prerequisite = {
+		focus = que_Dalaran_diplomacy
+		focus = que_Lordaeron_cooperation
+		focus = que_Pragmatic_approach
+	}
+	mutually_exclusive = {
+		focus = que_Peaceful_doctrine
+	}
+	cost = 10
+	x = 0
+	y = 3
+	completion_reward = { 
+		swap_ideas = {
+			remove_idea = QUE_convocation_of_silvermoon
+			add_idea = QUE_convocation_of_silvermoon_2
+		}
+		
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+focus = {
+	id = que_Small_problems_for_great_nation
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_just_another_millenium
+	prerequisite = {
+		focus = que_Peaceful_doctrine
+		focus = que_Prepared_for_theats
+	}
+	
+	cost = 10
+	x = 0
+	y = 6
+	completion_reward = { 
+		remove_ideas = QUE_queldanas_imports_less
+	}
+}
+focus = {
+	id = que_Runestones_issue
+	icon = GFX_idea_profession_enchanting
+	relative_position_id = que_Small_problems_for_great_nation
+	prerequisite = {
+		focus = que_Small_problems_for_great_nation
+	}
+	cost = 10
+	x = 0
+	y = 2
+	completion_reward = { 
+		country_event = QUE_events.1 
+	}
+
+}
+focus = {
+	id = que_Enemy_jast_waits
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Prepared_for_theats
+	prerequisite = {
+		focus = que_Prepared_for_theats
+	}
+	cost = 10
+	x = 2
+	y = 2
+	completion_reward = {
+		add_war_support = 0.1
+		add_stability = -0.1
+	}
+}
+focus = {
+	id = que_War_Propaganda
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Enemy_jast_waits
+	prerequisite = {
+		focus = que_Enemy_jast_waits
+	}
+	cost = 10
+	x = -1
+	y = 1
+	completion_reward = { add_war_support = 0.1 }
+}
+	focus = {
+	id = que_Militarize_nation
+	icon = GFX_focus_generic_little_entente
+	relative_position_id = que_War_Propaganda
+	prerequisite = {
+		focus = que_War_Propaganda
+	}
+	prerequisite = {
+		focus = que_War_Preparations
+	}
+	cost = 10
+	x = 1
+	y = 1
+	completion_reward = {
+		remove_ideas = QUE_secluded_lives
+		remove_ideas = QUE_convocation_of_silvermoon_2
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+focus = {
+	id = que_Elves_Strike_first
+	icon = GFX_idea_AMA_GFX_goal_generic_major_war
+	relative_position_id = que_Militarize_nation
+	prerequisite = {
+		focus = que_Militarize_nation
+	}
+	prerequisite = {
+		focus = que_Memories_of_Troll_war
+	}
+	prerequisite = {
+		focus = que_Continental_approach
+	}
+	cost = 10
+	x = 0
+	y = 1
+	completion_reward = { 
+		create_wargoal = {
+			target = AMA
+			type = puppet_wargoal_focus
+		}
+		create_wargoal = {
+			target = FTT
+			type = puppet_wargoal_focus
+		}
+		create_wargoal = {
+			target = MFT
+			type = puppet_wargoal_focus
+		}
+		create_wargoal = {
+			target = SPT
+			type = puppet_wargoal_focus
+		}
+		create_wargoal = {
+			target = SMR
+			type = puppet_wargoal_focus
+		}
+	}
+	will_lead_to_war_with = AMA
+	will_lead_to_war_with = FTT
+	will_lead_to_war_with = MFT
+	will_lead_to_war_with = SPT
+	will_lead_to_war_with = SMR
+	ai_will_do = {
+		base = 100
+	}
+}
+focus = {
+	id = que_Memories_of_Troll_war
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_War_Propaganda
+	prerequisite = {
+		focus = que_War_Propaganda
+	}
+	cost = 10
+	x = -1
+	y = 1
+	completion_reward = { swap_ideas = {
+		remove_idea = QUE_remembrance_of_troll_wars
+		add_idea = QUE_remembrance_of_troll_wars_2
+	} 
+	
+	}
+	ai_will_do = {
+		base = 50
+	}
+}
+focus = {
+	id = que_War_Preparations
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Enemy_jast_waits
+	prerequisite = {
+		focus = que_Enemy_jast_waits
+	}
+	cost = 10
+	x = 1
+	y = 1
+	completion_reward = { }
+	ai_will_do = {
+		base = 50
+	}
+}
+focus = {
+	id = que_Continental_approach
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_War_Preparations
+	prerequisite = {
+		focus = que_War_Preparations
+	}
+	cost = 10
+	x = 1
+	y = 1
+	completion_reward = { 
+		AER = { country_event = QUE_events.2 }
+		IRO = { country_event = QUE_events.2 }
+	}
+	ai_will_do = {
+		base = 50
+	}
+}
+focus = {
+	id = que_Destroy_murloc_homes
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Small_problems_for_great_nation
+	prerequisite = {
+		focus = que_Small_problems_for_great_nation
+	}
+	cost = 10
+	x = -1
+	y = 1
+	completion_reward = { remove_ideas = QUE_murloc_pirates}
+	ai_will_do = {
+		base = 50
+	}
+}
+focus = {
+	id = que_Kill_gnoll_leaders
+	icon = GFX_idea_AMA_captured_leader-595629
+	relative_position_id = que_Small_problems_for_great_nation
+	prerequisite = {
+		focus = que_Small_problems_for_great_nation
+	}
+	cost = 10
+	x = 1
+	y = 1
+	completion_reward = { 
+		remove_ideas = QUE_gnoll_trouble
+	}
+}
+
+
+focus = {
+	id = que_unstable_times
+	icon = GFX_focus_ger_return_of_the_kaiser
+	mutually_exclusive = {
+		focus = que_regional_power
+		focus = que_almost_broken
+	}
+	cost = 10
+	relative_position_id = que_just_another_millenium
+	x = 17
+	y = 0
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 100
+	}
+}
+focus = {
+	id = que_regional_power
+	icon = GFX_focus_ger_return_of_the_kaiser
+	mutually_exclusive = {
+		focus = que_unstable_times
+		focus = que_almost_broken
+	}
+	cost = 10
+	relative_position_id = que_unstable_times
+	x = -4
+	y = 0
+	available = {
+		
+		OR = {
+
+			has_country_flag = QUE_pyrrhic_win
+			AND = {
+				OR = { 
+					NOT = { AMA = { exists = no	}
+					AMA = { is_controlled_by_ROOT_or_subject = yes  }
+				}
+				}
+				OR = { 
+					NOT = { FTT = { exists = no	}
+					FTT = { is_controlled_by_ROOT_or_subject = yes  }
+				}
+				}
+			}
+
+		}
+	
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+	
+}
+focus = {
+	id = que_almost_broken
+	icon = GFX_focus_ger_return_of_the_kaiser
+	mutually_exclusive = {
+		focus = que_unstable_times
+		focus = que_regional_power
+	}
+	cost = 10
+	relative_position_id = que_unstable_times
+	x = 4
+	y = 0
+	available = {
+		has_country_flag = QUE_Almost_broken_flag
+	}
+	completion_reward = { 
+		add_political_power = -100
+	}
+}
+focus = {
+	id = que_power_issue
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	prerequisite = {
+		focus = que_regional_power
+		focus = que_unstable_times
+		focus = que_almost_broken
+	}
+	relative_position_id = que_unstable_times
+	x = 0
+	y = 1
+	available = {
+		has_country_flag = que_ended_first_war
+	}
+	completion_reward = { 
+		add_political_power = -100
+	}
+}
+focus = {
+	id = que_rise_of_imperialism
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	mutually_exclusive = { focus = que_old_methods focus =  que_new_ways }
+	relative_position_id = que_power_issue
+	x = -6
+	y = 1
+	prerequisite = {
+		focus = que_regional_power
+	}
+	prerequisite = {
+		focus = que_power_issue
+	}
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_expantion_issue
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_rise_of_imperialism
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = que_rise_of_imperialism
+	}
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_Alterac_pact
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_expantion_issue
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = que_expantion_issue
+	}
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_ancient_glory
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_rise_of_imperialism
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = que_rise_of_imperialism
+	}
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_remaining_highborns
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_ancient_glory
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = que_ancient_glory
+	}
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_old_methods
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	prerequisite = {
+		focus = que_power_issue
+	}
+	mutually_exclusive = { focus =  que_rise_of_imperialism focus =  que_new_ways }
+	relative_position_id = que_power_issue
+	x = 0
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_isolation_diplomacy
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_old_methods
+	prerequisite = { focus = que_old_methods }
+	mutually_exclusive = { focus = que_alliance_involvement }
+	x = -1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_alliance_involvement
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_old_methods
+	prerequisite = { focus = que_old_methods }
+	mutually_exclusive = { focus = que_isolation_diplomacy }
+	x = 1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_ignore_orcs
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_isolation_diplomacy
+	prerequisite = { focus = que_isolation_diplomacy }
+	x = -1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_limited_help
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_isolation_diplomacy
+	prerequisite = { focus = que_isolation_diplomacy focus = que_alliance_involvement }
+	x = 1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_resist_orcs
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_alliance_involvement
+	prerequisite = { focus = que_alliance_involvement }
+	x = 1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+
+focus = {
+	id = que_new_ways
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	mutually_exclusive = { focus =  que_old_methods focus =  que_rise_of_imperialism }
+	prerequisite = {
+		focus = que_power_issue
+	}
+	prerequisite = {
+		focus = que_almost_broken
+	}
+	relative_position_id = que_power_issue
+	x = 6
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+focus = {
+	id = que_Fel_power
+	icon = GFX_focus_promise_of_power
+	cost = 10
+	relative_position_id = que_new_ways
+	prerequisite = { focus = que_new_ways }
+	x = -1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_ideas = promise_of_power_idea
+		set_country_flag = fel_alignment
+	}
+}
+focus = {
+	id = que_Void_power
+	icon = GFX_focus_whispers_of_the_old_gods
+	cost = 10
+	relative_position_id = que_new_ways
+	prerequisite = { focus = que_new_ways }
+	x = 1
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_ideas = whispers_of_the_old_gods_idea
+		set_country_flag = old_alignment
+	}
+}
+focus = {
+	id = que_Death_power
+	icon = GFX_focus_death
+	cost = 10
+	relative_position_id = que_new_ways
+	prerequisite = { focus = que_new_ways }
+	x = 3
+	y = 1
+	available = {
+		
+	}
+	completion_reward = { 
+		add_ideas = whispers_of_the_old_gods_idea
+		set_country_flag = old_alignment
+	}
+}
+focus = {
+	id = que_assist_orcs
+	icon = GFX_focus_ger_return_of_the_kaiser
+	cost = 10
+	relative_position_id = que_Fel_power
+	x = 1
+	y = 5
+	available = {
+		
+	}
+	completion_reward = { 
+		add_political_power = 200
+	}
+}
+# focus = {
+# 	id = que_horde_as_new_apportunity
+# 	icon = GFX_focus_ger_return_of_the_kaiser
+# 	cost = 10
+# 	relative_position_id = que_new_ways
+# 	x = -1
+# 	y = 1
+# 	available = {
+		
+# 	}
+# 	completion_reward = { 
+# 		add_political_power = 200
+# 	}
+# }
+}

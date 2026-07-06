@@ -1,0 +1,2244 @@
+focus_tree = {
+	id = amany-focus-tree
+	continuous_focus_position = { x = 150 y = 1570 } 
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = AMA
+			has_start_date < 593.01.02
+		}
+	}
+	
+
+	#New leadeship
+	focus = {
+		id = AMA_new_leadeship
+		icon = GFX_AMA_new_leadeship-595914
+		x = 5
+		y = 0
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		completion_reward = {
+			add_political_power = 100
+			
+		}
+	}
+
+	#Axes for war
+	focus = {
+		id = AMA_axes_for_war
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		x = 4
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_new_leadeship  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = arms_factory
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Contact with other tribes
+	focus = {
+		id = AMA_contact_with_other_tribes
+		icon = GFX_focus_BUL_destroy_the_zveno
+		x = 16
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_new_leadeship  }
+		completion_reward = {
+			add_political_power = 125
+			
+			
+		}
+		ai_will_do = {
+			base = 150
+		}
+	}
+
+	#Call for union
+	focus = {
+		id = AMA_call_for_union
+		icon = GFX_focus_BUL_found_the_brannik
+		x = 16
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_contact_with_other_tribes  }
+		available = {
+			NOT = { has_idea = AMA_Integration_process }
+		}
+		ai_will_do = { factor = 110 }
+		completion_reward = {
+			create_faction = "Amani Tribes"
+			add_timed_idea = {
+			    idea = AMA_Integration_process
+			    days = 70
+			}
+			#country_event = AMA_cal_for_tribes.1
+			FTT = {
+				country_event = AMA_tribes_unification.1
+			}
+			SPT = {
+					country_event = AMA_tribes_unification.1
+				}
+			SMR = {
+					country_event = AMA_tribes_unification.1
+				}
+			MFT = {
+					country_event = AMA_tribes_unification.1
+				}
+			
+		}
+		ai_will_do = {
+			base = 150
+		}
+	}
+
+	#Integrate new tribes
+	focus = {
+		id = AMA_integrate_new_tribes
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		x = 16
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_set_hierarchy  }
+		available = {
+			NOT = { has_idea = AMA_Integration_process }
+
+			FTT = {
+				OR = { 
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			SPT = {
+				OR = { 
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			SMR = {
+				OR = { 
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			MFT = {
+				OR = { 
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			
+		}
+		completion_reward = {
+			FTT = {
+				country_event = AMA_tribes_unification.2
+			}
+			SPT = {
+					country_event = AMA_tribes_unification.2
+				}
+			SMR = {
+					country_event = AMA_tribes_unification.2
+				}
+			MFT = {
+					country_event = AMA_tribes_unification.2
+				}
+			add_timed_idea = {
+			    idea = AMA_Integration_process
+			    days = 70
+			}
+			
+			
+			
+			leave_faction = yes
+			
+			
+		}
+		ai_will_do = {
+			base = 150
+		}
+	}
+
+	#Troll's navy
+	focus = {
+		id = AMA_trollsnavy
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_new_leadeship  }
+		
+		completion_reward = {
+			18 = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = dockyard
+								level = 1
+								instant_build = yes
+			
+							}
+			
+				   }
+			196 = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = dockyard
+								level = 1
+								instant_build = yes
+			
+							}
+			
+				   }
+		}
+	}
+
+	#Southen tribes
+	focus = {
+		id = AMA_southen_tribes
+		icon = GFX_AMA_southen_tribes-595911
+		x = 11
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_new_army  } 
+		prerequisite = { focus = AMA_war_economy  } 
+		prerequisite = { focus = AMA_fleet_is_ready  } 
+		prerequisite = { focus = AMA_reach_unity  }
+		mutually_exclusive = { focus = AMA_time_for_revenge  }
+		ai_will_do = { base = 5 }
+		completion_reward = {
+			remove_country_leader_role = {
+			    character = AMA_zuljin
+			    ideology = neutral_type
+			}
+			add_ideas = AMA_Captured_leader
+			country_event = AMA_zuljin_is_captured.1
+			# activate_targeted_decision = {
+			# 	target = THIS
+			# 	decision = sent_troops_to_save_him
+			# }
+			# BRC = {     activate_targeted_decision = {
+			# 	target = BRC
+			# 	decision = sent_troops_to_save_him
+			# } }
+			
+			
+			add_country_leader_role = {
+			  Character = AMA_daakara
+			  Promote_leader = yes
+			  Country_leader = {
+				ideology = neutral_type
+			    }
+			}
+			
+			
+			
+			
+		}
+	}
+
+	#Time for revenge
+	focus = {
+		id = AMA_time_for_revenge
+		icon = GFX_AMA_time_for_revenge-595910
+		x = 7
+		y = 9
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_new_army  } 
+		prerequisite = { focus = AMA_war_economy  } 
+		prerequisite = { focus = AMA_fleet_is_ready  } 
+		prerequisite = { focus = AMA_reach_unity  }
+		mutually_exclusive = { focus = AMA_southen_tribes  }
+		ai_will_do = { base = 100 }
+		completion_reward = {
+			declare_war_on = {
+			    target = QUE
+			    type = annex_everything
+			}
+			
+			QUE = { country_event = QUE_amani_attack.1 }
+			
+		}
+		will_lead_to_war_with = QUE
+	}
+
+	#Return of Zul'jin
+	focus = {
+		id = AMA_returnofzuljin
+		icon = GFX_focus_YUG_zmaj
+		x = 23
+		y = 0
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		mutually_exclusive = { 
+			focus = AMA_zuljinstriumph
+			focus = AMA_death_of_zuldjin  }
+		available = {
+			has_country_flag = zuljin_first_escape
+			
+			
+			
+		}
+		completion_reward = {
+			add_political_power = 100
+			
+			
+		}
+	}
+	#AMA_death_of_zuldjin
+	focus = {
+		id = AMA_death_of_zuldjin
+		icon = GFX_focus_generic_strike_at_democracy2
+		x = 25
+		y = 0
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		mutually_exclusive = { 
+			focus = AMA_zuljinstriumph
+			focus = AMA_returnofzuljin   }
+		available = {
+			has_country_flag = zuljin_death			
+		}
+		completion_reward = {
+			add_political_power = -150
+			remove_ideas = AMA_Captured_leader
+			
+		}
+	}
+	#Trolls destroyers
+	focus = {
+		id = AMA_trolls_destroyers
+		icon = GFX_goal_generic_navy_submarine
+		x = 1
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_oil_for_war  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = destroyer_tech_1
+			    bonus = 0.4
+			    uses = 1
+			    category = destroyer_technology
+			}
+			add_tech_bonus = {
+				name = destroyer_tech_2
+			    bonus = 0.4
+			    uses = 1
+			    category = destroyer_technology
+			}
+						
+			
+		}
+	}
+
+	#New approaches
+	focus = {
+		id = AMA_new_approaches
+		icon = GFX_focus_chi_army_reform
+		x = 12
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_new_leadeship  }
+		completion_reward = {
+			army_experience = 15
+			add_war_support = 0.025
+			add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.25
+							uses = 1
+							category = land_doctrine
+						}
+		}
+	}
+
+	#Amani's development
+	focus = {
+		id = AMA_amanisdevelopment
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 7
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_new_leadeship  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = industrial_complex
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = industrial_complex
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Fast operations
+	focus = {
+		id = AMA_fast_operations
+		icon = GFX_focus_prc_infiltration
+		x = 10
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_new_approaches  }
+		mutually_exclusive = { focus = AMA_defensive_strategy  } mutually_exclusive = { focus = AMA_quantity_is_key_to_victory  }
+		completion_reward = {
+			add_ideas = AMA_Offensive_tactics
+			add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.25
+							uses = 1
+							category = mobile_warfare
+						}
+		}
+	}
+
+	#Defensive strategy
+	focus = {
+		id = AMA_defensive_strategy
+		icon = GFX_goal_generic_defence
+		x = 12
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_new_approaches  }
+		mutually_exclusive = { focus = AMA_fast_operations  } 
+		mutually_exclusive = { focus = AMA_quantity_is_key_to_victory  }
+		completion_reward = {
+			add_ideas = AMA_Defensive_tactics
+			add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.25
+							uses = 1
+							category = grand_battle_plan
+						}
+		}
+	}
+
+	#Quantity is key to victory
+	focus = {
+		id = AMA_quantity_is_key_to_victory
+		icon = GFX_goal_tfv_can_forced_quebec_conscription
+		x = 14
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_new_approaches  }
+		mutually_exclusive = { focus = AMA_fast_operations  } mutually_exclusive = { focus = AMA_defensive_strategy  }
+		completion_reward = {
+			add_ideas = AMA_Quantity_is_key_to_victory
+			add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.25
+							uses = 1
+							category = mass_assault
+						}
+		}
+	}
+
+	#More lumbermills
+	focus = {
+		id = AMA_more_lumbermills
+		icon = GFX_focus_generic_aluminum
+		x = 6
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_amanisdevelopment  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = lumber_mill
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = lumber_mill 
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Steel for war
+	focus = {
+		id = AMA_steel_for_war
+		icon = GFX_focus_generic_steel
+		x = 4
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_axes_for_war  }
+		completion_reward = {
+			200 = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = iron_mine
+								level = 1
+								instant_build = yes
+			
+							}
+			
+				   }
+			199 = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = iron_mine
+								level = 1
+								instant_build = yes
+			
+							}
+			
+				   }
+		}
+	}
+
+	#Walls of Zul'Aman
+	focus = {
+		id = AMA_wallsofzulaman
+		icon = GFX_focus_generic_provoke_border_clashes
+		x = 12
+		y = 3
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_defensive_strategy  }
+		completion_reward = {
+			1513= {
+							
+				add_building_construction = {
+					province = 5707
+					type = bunker
+					level = 3
+					instant_build = yes
+
+				}
+
+					}
+			197 = {
+							
+					add_building_construction = {
+						province = 4719
+						type = bunker
+						level = 3
+						instant_build = yes
+
+					}
+
+				}
+		}
+	}
+
+	#New Army
+	focus = {
+		id = AMA_new_army
+		icon = GFX_focus_generic_air_defense
+		x = 12
+		y = 7
+		search_filters = {
+			FOCUS_FILTER_WAR_SUPPORT
+		}
+		prerequisite = { focus = AMA_military_training  } prerequisite = { focus = AMA_send_scouts  } prerequisite = { focus = AMA_priests_of_loa  }
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = AMA_Poor_discipline
+			    add_idea = AMA_Poor_discipline_2
+			}
+			
+			
+			
+		}
+	}
+
+	#Lizard farming
+	focus = {
+		id = AMA_lizard_farming
+		icon = GFX_AMA_lizard_farming-595903
+		x = 10
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_fast_operations  }
+		completion_reward = {
+			add_tech_bonus = {
+							name = raptor_equipment_1
+							bonus = 0.5
+							uses = 1
+							category = raptor_technology
+						}
+					
+		}
+	}
+
+	#Improve production
+	focus = {
+		id = AMA_improve_production
+		icon = GFX_AMA_improve_production-595902
+		x = 14
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_quantity_is_key_to_victory  }
+		completion_reward = {
+			add_ideas = AMA_Mass_Production
+		}
+	}
+
+	#Military training
+	focus = {
+		id = AMA_military_training
+		icon = GFX_goal_continuous_reduce_training_time
+		x = 10
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_practise_of_new_tactics  }
+		completion_reward = {
+			army_experience = 15
+			add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.25
+							uses = 1
+							category = land_doctrine
+						}
+		}
+	}
+
+	#Second return of Zul'jin's
+	focus = {
+		id = AMA_secondreturnofzuljins
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		x = 41
+		y = 0
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			has_country_flag = {
+			    flag = zuljin_second_escape
+			    value > 0
+			}
+			
+			
+			
+		}
+	}
+
+	#Set hierarchy
+	focus = {
+		id = AMA_set_hierarchy
+		icon = GFX_AMA_set_hierarchy-336
+		x = 16
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_call_for_union  }
+		available = {
+			NOT = { has_idea = AMA_Integration_process }
+			FTT = {
+				OR = { 
+					is_ally_with = ROOT
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			SPT = {
+				OR = { 
+					is_ally_with = ROOT
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			SMR = {
+				OR = { 
+					is_ally_with = ROOT
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+			MFT = {
+				OR = { 
+					is_ally_with = ROOT
+					is_controlled_by_ROOT_or_subject = yes
+					NOT = { country_exists = THIS }
+				}
+			}
+		}
+		completion_reward = {
+			add_timed_idea = {
+			    idea = AMA_Integration_process
+			    days = 70
+			}
+			FTT = {
+				country_event = AMA_tribes_unification.3
+			}
+			SPT = {
+					country_event = AMA_tribes_unification.3
+				}
+			SMR = {
+					country_event = AMA_tribes_unification.3
+				}
+			MFT = {
+					country_event = AMA_tribes_unification.3
+				}
+		}
+	}
+
+	#Send scouts
+	focus = {
+		id = AMA_send_scouts
+		icon = GFX_focus_TUR_the_sun_language_theory
+		x = 12
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_practise_of_new_tactics  }
+		completion_reward = {
+			add_tech_bonus = {
+							name = shadow_lodge_tech
+							bonus = 0.5
+							uses = 1
+							category = troll_craftsman_technology
+						}
+			add_tech_bonus = {
+				name = troll_encryption_1
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+			add_tech_bonus = {
+				name = troll_decryption_1
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+			add_tech_bonus = {
+				name = troll_pathfinder_tech
+				bonus = 0.5
+				uses = 1
+				category = troll_pathfinder_technology
+						}
+			add_tech_bonus = {
+				name = improved_pathfinder
+				bonus = 0.5
+				uses = 1
+				category = troll_pathfinder_technology
+						}
+		}
+	}
+
+	#More farms
+	focus = {
+		id = AMA_more_farms
+		icon = GFX_AMA_more_farms-595907
+		x = 8
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_amanisdevelopment  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = farm
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = farm
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#More mines
+	focus = {
+		id = AMA_more_mines
+		icon = GFX_AMA_more_mines-595909
+		x = 6
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_more_lumbermills  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = sulfur_mine
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = sulfur_mine 
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Advanced bases
+	focus = {
+		id = AMA_advanced_bases
+		icon = GFX_AMA_advanced_bases-595904
+		x = 8
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_more_farms  }
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.3
+			    uses = 1
+			    category = troll_tier_technology
+			}
+			
+			
+			
+		}
+	}
+
+	#Practise of new tactics
+	focus = {
+		id = AMA_practise_of_new_tactics
+		icon = GFX_focus_mex_triumph_over_the_cristeros
+		x = 12
+		y = 4
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_lizard_farming  focus = AMA_wallsofzulaman  focus = AMA_improve_production  }
+		completion_reward = {
+			army_experience = 15
+			add_war_support = 0.025
+			add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.25
+							uses = 1
+							category = land_doctrine
+						}
+		}
+	}
+
+	#Focus on trade
+	focus = {
+		id = AMA_focus_on_trade
+		icon = GFX_idea_civilian_economy
+		x = 2
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_trolls_destroyers  }
+		mutually_exclusive = { focus = AMA_focus_on_firepower  }
+		completion_reward = {
+			add_ideas = AMA_Trade_with_other_tribes
+		}
+	}
+
+	#Focus on firepower
+	focus = {
+		id = AMA_focus_on_firepower
+		icon = GFX_goal_generic_navy_anti_submarine
+		x = 0
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_trolls_destroyers  }
+		mutually_exclusive = { focus = AMA_focus_on_trade  }
+		completion_reward = {
+			add_ideas = AMA_Fleet_firepower
+		}
+	}
+
+	#Priests of loa
+	focus = {
+		id = AMA_priests_of_loa
+		icon = GFX_AMA_priests_of_loa-595913
+		x = 14
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_practise_of_new_tactics  }
+		completion_reward = {
+			add_tech_bonus = {
+							name = hexxer_tech 
+							bonus = 0.5
+							uses = 1
+							category = mage_technology 
+						}
+			add_tech_bonus = {
+							name = hexxer_equipment_tech_1 
+							bonus = 0.5
+							uses = 1
+							category = mage_technology 
+						}
+			add_tech_bonus = {
+							name = wrath_of_de_spirits_tech 
+							bonus = 0.5
+							uses = 1
+							category = mage_technology 
+						}
+		}
+	}
+
+	#Reach unity
+	focus = {
+		id = AMA_reach_unity
+		icon = GFX_goal_generic_national_unity
+		x = 16
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_integrate_new_tribes  }
+		available = {
+			NOT = { has_idea = AMA_Integration_process }
+		}
+		available = {
+			 198  = { is_controlled_by_ROOT_or_subject = yes }
+			 1516  = { is_controlled_by_ROOT_or_subject = yes }
+			 1517  = { is_controlled_by_ROOT_or_subject = yes }
+			 1518  = { is_controlled_by_ROOT_or_subject = yes }
+			 195  = { is_controlled_by_ROOT_or_subject = yes }
+			 181  = { is_controlled_by_ROOT_or_subject = yes }
+			 1525  = { is_controlled_by_ROOT_or_subject = yes }
+			 190  = { is_controlled_by_ROOT_or_subject = yes }
+			 1519  = { is_controlled_by_ROOT_or_subject = yes }
+			 192  = { is_controlled_by_ROOT_or_subject = yes }
+			 191  = { is_controlled_by_ROOT_or_subject = yes }
+			 224  = { is_controlled_by_ROOT_or_subject = yes }
+			 195  = { is_controlled_by_ROOT_or_subject = yes }
+			
+		}
+		completion_reward = {
+			add_state_core = 198
+			add_state_core = 1516
+			add_state_core = 1517
+			add_state_core = 1518
+			add_state_core = 195
+			add_state_core = 181
+			add_state_core = 1525
+			add_state_core = 190
+			add_state_core = 1519
+			add_state_core = 192
+			add_state_core = 191
+			add_state_core = 224
+			add_state_core = 195
+			add_timed_idea = {
+			    idea = AMA_Integration_process
+			    days = 70
+			}
+			
+			
+			
+			
+			
+			add_political_power = 100
+			
+			
+		}
+		ai_will_do = {
+			base = 150
+		}
+	}
+
+	#War economy
+	focus = {
+		id = AMA_war_economy
+		icon = GFX_AMA_war_economy-595905
+		x = 7
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_workers_discipline  } prerequisite = { focus = AMA_animals_for_war  }
+		completion_reward = {
+			add_ideas = war_economy
+		}
+	}
+
+	#Fleet is ready
+	focus = {
+		id = AMA_fleet_is_ready
+		icon = GFX_AMA_fleet_is_ready-404
+		x = 1
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_focus_on_trade  focus = AMA_focus_on_firepower  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = destroyer_equipment
+			    amount = 35
+			    producer = AMA
+			}
+			
+			
+			
+		}
+	}
+
+	#Artefacts for war
+	focus = {
+		id = AMA_artefacts_for_war
+		icon = GFX_AMA_artefacts_for_war-595900
+		x = 4
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_steel_for_war  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = arcane_tower 
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = arcane_tower 
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Workers discipline
+	focus = {
+		id = AMA_workers_discipline
+		icon = GFX_AMA_workers_discipline-595906
+		x = 7
+		y = 6
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_more_mines  } prerequisite = { focus = AMA_advanced_bases  }
+		completion_reward = {
+			add_ideas = generic_expert_craftsmen_idea
+		}
+	}
+
+	#Oil for war
+	focus = {
+		id = AMA_oil_for_war
+		icon = GFX_goal_generic_oil_refinery
+		x = 1
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_trollsnavy  }
+		completion_reward = {
+			18 = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = synthetic_refinery
+								level = 1
+								instant_build = yes
+			
+							}
+			
+				   }
+			196 = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = synthetic_refinery
+								level = 1
+								instant_build = yes
+			
+							}
+			
+				   }
+		}
+	}
+
+	#Animals for war
+	focus = {
+		id = AMA_animals_for_war
+		icon = GFX_AMA_animals_for_war-595901
+		x = 4
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_artefacts_for_war  }
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = nesting_grounds
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+			type = nesting_grounds
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Join horde
+	focus = {
+		id = AMA_join_horde
+		icon = GFX_AMA_join_horde-595584
+		x = 21
+		y = 9
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_continue_integration  }
+		mutually_exclusive = { focus = AMA_offer_to_create_troll_union  }
+		available = {
+			BRC = { has_government = horde } 
+		}
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			set_country_leader_ideology = horde_type
+			set_politics = {
+							ruling_party = horde
+			}
+			add_popularity = {
+									ideology = horde
+									popularity = 0.9
+			}
+			BRC= { 
+			add_opinion_modifier = { 
+			target = AMA
+			modifier = medium_increase }
+			}
+			
+			add_ai_strategy = {
+			    type = alliance
+			    id = BRC
+			    value = 100
+			}
+			
+			
+			
+		}
+	}
+	#Attack Kul Tiras
+	focus = {
+		id = AMA_attack_kultiras
+		icon = GFX_focus_KUL_generic
+		x = 23
+		y = 11
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_union_cooperation  }
+		bypass = {
+			OR = { 
+			NOT = { country_exists = KUL}
+			KUL = { is_puppet_of = AMA }
+			}	
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = KUL
+			}
+			
+			
+			
+		}
+	}
+	#Troll Empires
+	focus = {
+		id = AMA_troll_empires
+		icon = GFX_focus_usa_union_representation_act
+		x = 25
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_continue_integration  }
+		completion_reward = {
+			GUR = { 
+			add_opinion_modifier = { 
+			target = AMA
+			modifier = medium_increase }
+			}
+			ZAN = { 
+			add_opinion_modifier = { 
+			target = AMA
+			modifier = medium_increase }
+			}
+			FAR = { 
+			add_opinion_modifier = { 
+			target = AMA
+			modifier = medium_increase }
+			}
+			DRA = { 
+			add_opinion_modifier = { 
+			target = AMA
+			modifier = medium_increase }
+			}
+		}
+	}
+
+	#Finish what we started
+	focus = {
+		id = AMA_finish_what_we_started
+		icon = GFX_AMA_finish_what_we_started-595911
+		x = 23
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+		focus = AMA_returnofzuljin  
+		focus = AMA_zuljinstriumph 
+		focus = AMA_death_of_zuldjin 
+	}
+		completion_reward = {
+			WBT = {  country_event = AMA_tribes_unification.3     }
+			VIL = {  country_event = AMA_tribes_unification.3     }
+			add_timed_idea = {
+			    idea = AMA_Integration_process
+			    days = 210
+			}
+		}
+	}
+	#Continue economy reform
+	focus = {
+		id = AMA_continue_economy_reform
+		icon = GFX_focus_generic_industry_3
+		x = 27
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_finish_what_we_started  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 2
+				category = land_doctrine
+			}
+		}
+	}
+	#AMA_develop_north
+	focus = {
+		id = AMA_develop_north
+		icon = GFX_focus_generic_industry_3
+		x = 26
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_continue_economy_reform  }
+		available = {
+			18 = { is_controlled_by_ROOT_or_subject = yes }
+			1514 = { is_controlled_by_ROOT_or_subject = yes }		
+		}
+		completion_reward = {
+			18 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+			1514 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+		}
+	}
+	#AMA_develop_south
+	focus = {
+		id = AMA_develop_south
+		icon = GFX_focus_generic_industry_3
+		x = 26
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_develop_north  }
+		available = {
+			19 = { is_controlled_by_ROOT_or_subject = yes }
+			138 = { is_controlled_by_ROOT_or_subject = yes }		
+		}
+		completion_reward = {
+			19 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+			138 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+		}
+	}
+	#Militarize North
+	focus = {
+		id = AMA_militarize_north
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		x = 28
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_continue_economy_reform  }
+		available = {
+		18 = { is_controlled_by_ROOT_or_subject = yes }
+		1514 = { is_controlled_by_ROOT_or_subject = yes }	
+		}	
+		completion_reward = {
+			18 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+			1514 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+		}
+	}
+	#Militarize South
+	focus = {
+		id = AMA_militarize_south
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		x = 28
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_militarize_north  }
+		available = {
+		19 = { is_controlled_by_ROOT_or_subject = yes }
+		138 = { is_controlled_by_ROOT_or_subject = yes }	
+		}	
+		completion_reward = {
+			19 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+		138 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+				}
+				set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+				}
+			}
+	}
+	#Continue army reform
+	focus = {
+		id = AMA_continue_army_reform
+		icon = GFX_focus_chi_army_reform
+		x = 33
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_finish_what_we_started  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			swap_ideas = {
+			    remove_idea = AMA_poor_discipline_2
+			    add_idea = AMA_Poor_discipline_3
+			}
+		}
+	}
+	focus = {
+		id = AMA_Amani_Bears
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		x = 33
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_continue_army_reform  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = raptor_rider_technology
+				cost_reduction = 0.25
+				uses = 2
+				category = raptor_rider_technology
+			}
+			
+			
+		}
+	}
+	focus = {
+		id = AMA_Amani_hawks
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		x = 35
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_continue_army_reform  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = raptor_rider_technology
+				cost_reduction = 0.25
+				uses = 2
+				category = raptor_rider_technology
+			}
+			
+			
+		}
+	}
+	focus = {
+		id = AMA_Expand_menageries
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		x = 34
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_Amani_hawks  }
+		prerequisite = { focus = AMA_Amani_Bears }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = raptor_rider_technology
+				cost_reduction = 0.25
+				uses = 2
+				category = raptor_rider_technology
+			}
+			
+			
+		}
+	}
+	#AMA_new_discipline
+	focus = {
+		id = AMA_new_discipline
+		icon = GFX_focus_generic_little_entente
+		x = 31
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_continue_army_reform  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			swap_ideas={
+				remove_idea = AMA_poor_discipline_2
+				add_idea = AMA_Poor_discipline_3
+			}
+			
+		}
+	}
+	#our_magical_answer
+	focus = {
+		id = AMA_our_magical_answer
+		icon = GFX_AMA_artefacts_for_war-595900
+
+		x = 37
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_continue_army_reform  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = mage_technology
+				cost_reduction = 0.25
+				uses = 1
+				category = mage_technology
+			}
+			add_doctrine_cost_reduction = {
+				name = mage_technology
+				cost_reduction = 0.25
+				uses = 1
+				category = mage_technology
+			}
+			remove_ideas = AMA_fear_of_mages
+		}
+	}
+	#our_magical_answer
+	focus = {
+		id = AMA_Chosen_of_loa
+		icon = GFX_AMA_artefacts_for_war-595900
+
+		x = 36
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_our_magical_answer  }
+		completion_reward = {
+
+			add_doctrine_cost_reduction = {
+				name = altar_technology_tech
+				cost_reduction = 0.25
+				uses = 3
+				category = altar_technology
+			}
+		}
+	}
+	#AMA_Ready_for_great_war
+	focus = {
+		id = AMA_Ready_for_great_war
+		icon = GFX_focus_chi_army_reform
+		x = 33
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_finish_what_we_started  }
+		prerequisite = { focus = AMA_Chosen_of_loa  }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			remove_ideas = AMA_poor_discipline_3
+		}
+					
+	}
+	#Continue naval reform
+	focus = {
+		id = AMA_continue_naval_reform
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 20
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_finish_what_we_started  }
+		available = {
+			200 = { is_controlled_by_ROOT_or_subject = yes }
+			196 = { is_controlled_by_ROOT_or_subject = yes }		
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doctrine_bonus
+				cost_reduction = 0.25
+				uses = 3
+				category = naval_doctrine
+			}
+		}
+	}
+	#Trolls destroyers
+	focus = {
+		id = AMA_trolls_destroyers_2
+		icon = GFX_goal_generic_navy_submarine
+		x = 18
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_continue_naval_reform  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = destroyer_tech_1
+			    bonus = 0.4
+			    uses = 1
+			    category = destroyer_technology
+			}
+			add_tech_bonus = {
+				name = destroyer_tech_2
+			    bonus = 0.4
+			    uses = 1
+			    category = destroyer_technology
+			}
+						
+			
+		}
+	}
+	#Oil for war 2
+	focus = {
+		id = AMA_oil_for_war_2
+		icon = GFX_goal_generic_oil_refinery
+		x = 18
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = AMA_trolls_destroyers_2  }
+		available = {
+			233 = { is_controlled_by_ROOT_or_subject = yes }
+			134 = { is_controlled_by_ROOT_or_subject = yes }		
+		}
+		completion_reward = {
+			233 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+
+				}
+
+			}
+			134 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+
+				}
+
+			}
+		}
+	}
+
+	focus = {
+		id = AMA_north_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 20
+		y = 3
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_continue_naval_reform }
+		available = {
+			196 = { is_controlled_by_ROOT_or_subject = yes }
+			200 = { is_controlled_by_ROOT_or_subject = yes }		
+		}
+		completion_reward = {
+			196 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+
+				}
+
+			}
+			200 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+
+				}
+
+			}
+		}
+	}
+	focus = {
+		id = AMA_south_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 20
+		y = 4
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_north_dockyards }
+		available = {
+			233 = { is_controlled_by_ROOT_or_subject = yes }
+			134 = { is_controlled_by_ROOT_or_subject = yes }		
+		}
+		completion_reward = {
+			233 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+
+				}
+
+			}
+			134 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+
+				}
+
+			}
+		}
+	}
+	#Continue integration
+	focus = {
+		id = AMA_continue_integration
+		icon = GFX_focus_book_2
+		x = 23
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_finish_what_we_started  }
+		available = {
+			NOT = { has_idea = AMA_Integration_process }
+		}
+		completion_reward = {
+			WBT = {  country_event = AMA_tribes_unification.2     }
+			VIL = {  country_event = AMA_tribes_unification.2    }
+			add_timed_idea = {
+			    idea = AMA_Integration_process
+			    days = 210
+			}
+		}
+	}
+	
+
+
+	#Southen expantion
+	focus = {
+		id = AMA_southen_expantion
+		icon = GFX_focus_gryphons
+		x = 23
+		y = 6
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		bypass = {
+			OR = { 
+			NOT = { country_exists = AER}
+			AER = { is_puppet_of = AMA }
+			}	
+		}
+		prerequisite = { focus = AMA_continue_integration  }
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = AER
+			}
+			
+			
+			
+		}
+		will_lead_to_war_with = AER
+	}
+
+	#Attack Elves
+	focus = {
+		id = AMA_attack_elves
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		x = 22
+		y = 12
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_join_horde  focus = AMA_offer_to_create_troll_union  }
+		bypass = {
+			OR = { 
+			NOT = { country_exists = QUE}
+			QUE = { is_puppet_of = AMA }
+			}	
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = QUE
+			}
+			
+			
+			
+		}
+	}
+
+	#Attack Trollbanes
+	focus = {
+		id = AMA_attack_trollbanes
+		icon = GFX_focus_STR_generic
+		x = 24
+		y = 12
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_join_horde  focus = AMA_offer_to_create_troll_union  }
+		bypass = {
+			OR = { 
+			NOT = { country_exists = STR}
+			STR = { is_puppet_of = AMA }
+			}
+			
+			
+			
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = STR
+			}
+			
+			
+			
+		}
+		will_lead_to_war_with = STR
+	}
+
+	#Offer to create Troll Union
+	focus = {
+		id = AMA_offer_to_create_troll_union
+		icon = GFX_focus_scroll_1
+		x = 25
+		y = 9
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_troll_empires  }
+		mutually_exclusive = { focus = AMA_join_horde  }
+		ai_will_do = { factor = 45 }
+		available = {
+			NOT = { has_idea = AMA_Debt_to_the_horde}
+		}
+		completion_reward = {
+			create_faction = "The Empire of Zul"
+			set_rule = { can_create_factions = yes }
+			add_ideas = { AMA_trolls_union }
+			GUR = { 
+			country_event = AMA_tribes_unification.4
+			add_ai_strategy = {
+			    type = alliance
+			    id = AMA
+			    value = 150
+			}
+			}
+			ZAN = { 
+			country_event = AMA_tribes_unification.4
+			add_ai_strategy = {
+			    type = alliance
+			    id = AMA
+			    value = 150
+			}
+			}
+			FAR = { 
+			country_event = AMA_tribes_unification.4
+			add_ai_strategy = {
+			    type = alliance
+			    id = AMA
+			    value = 150
+			}
+			}
+			DRA = { 
+			country_event = AMA_tribes_unification.4
+			add_ai_strategy = {
+			    type = alliance
+			    id = AMA
+			    value = 150
+			}
+			}
+		}
+	}
+
+	#Final strike
+	focus = {
+		id = AMA_final_strike
+		icon = GFX_fall_of_humanity
+		x = 23
+		y = 13
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_attack_elves  }
+		prerequisite = { focus = AMA_attack_trollbanes  }
+		available = {
+			AND = {
+			OR = { 
+			NOT = { country_exists = STR}
+			STR = { is_puppet_of = AMA }
+			}
+			OR = { 
+			NOT = { country_exists = QUE}
+			QUE = { is_puppet_of = AMA }
+			}
+			}
+		}
+		bypass = {
+			OR = { 
+			NOT = { country_exists = LOR}
+			LOR = { is_puppet_of = AMA }
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LOR
+			}
+			
+			
+			
+		}
+		will_lead_to_war_with = LOR
+	}
+
+	#Cut wings
+	focus = {
+		id = AMA_cut_wings
+		icon = GFX_focus_hol_war_on_pacifism
+		x = 23
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		prerequisite = { focus = AMA_southen_expantion  }
+		bypass = {
+			OR = { 
+			NOT = { country_exists = GSR}
+			GSR = { is_puppet_of = AMA }
+			}	
+		}
+		available = {
+			
+			OR = { 
+			NOT = { country_exists = AER }
+			AER = { is_puppet_of = AMA }
+			}
+			
+			
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = GSR
+			}
+			
+			
+			
+		}
+		will_lead_to_war_with = GSR
+	}
+
+	#Union cooperation
+	focus = {
+		id = AMA_union_cooperation
+		icon = GFX_focus_scroll_2
+		x = 23
+		y = 10
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = AMA_offer_to_create_troll_union  focus = AMA_join_horde  }
+		completion_reward = {
+			add_research_slot = 1						
+		}
+	}
+
+	#Zul'jin's Triumph
+	focus = {
+		id = AMA_zuljinstriumph
+		icon = GFX_focus_generic_golden_sword
+		x = 21
+		y = 0
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		mutually_exclusive = { 
+			focus = AMA_returnofzuljin
+			focus = AMA_death_of_zuldjin  }
+		available = {
+			OR = { 
+			NOT = { country_exists = QUE}
+			QUE = { is_puppet_of = AMA }
+			has_country_flag = AMA_Pyrrhic_victory
+			}
+			
+			
+			
+		}
+		completion_reward = {
+			add_political_power = 200
+			if = {
+				limit = { has_idea = AMA_Captured_leader }
+				remove_country_leader_role = {
+					character = AMA_daakara
+					ideology = neutral_type
+				}
+				add_political_power = 50
+				add_country_leader_role = {
+					Character = AMA_zuljin
+					Promote_leader = yes
+					Country_leader = {
+					ideology = neutral_type
+						}
+				}
+				remove_ideas = AMA_Captured_leader
+				
+			}
+		}
+	}
+
+	#Return all Hinterlands
+	focus = {
+		id = AMA_return_all_hinterlands
+		icon = GFX_focus_alterac_kingdom_of_alterac
+		x = 23
+		y = 8
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_ANNEXATION
+		}
+		bypass = {
+			OR = { 
+			NOT = { country_exists = ALT}
+			ALT = { is_puppet_of = AMA }
+			}	
+		}
+		prerequisite = { focus = AMA_cut_wings  }
+		available = {
+			AND = {
+			OR = { 
+			NOT = { country_exists = GSR}
+			GSR= { is_puppet_of = AMA }
+			}
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = ALT
+			}
+		}
+	}
+
+	#New Power
+	focus = {
+		id = AMA_new_power
+		icon = GFX_goal_generic_army_doctrines
+		x = 26
+		y = 10
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = AMA_offer_to_create_troll_union  }
+		available = {
+			GUR = {
+				OR = { NOT = { country_exists }
+				is_ally_with = ROOT
+				is_controlled_by_ROOT_or_subject = yes
+			}
+			}
+			ZAN = { 
+				OR = { NOT = { country_exists }
+				is_ally_with = ROOT
+				is_controlled_by_ROOT_or_subject = yes
+			}
+			}
+			FAR = { 
+				OR = { NOT = { country_exists }
+				is_ally_with = ROOT
+				is_controlled_by_ROOT_or_subject = yes
+			}
+			}
+			DRA = { 
+				OR = { NOT = { country_exists }
+				is_ally_with = ROOT
+				is_controlled_by_ROOT_or_subject = yes
+			}
+		}
+		}
+		completion_reward = {
+			add_political_power = 300
+
+		}
+	}
+
+}

@@ -1,0 +1,248 @@
+add_namespace = third_war_events
+
+country_event = {
+	
+	id = third_war_events.1
+	#title = "Lordaeron fall"
+	trigger = {
+		original_tag = CAE
+		OR = {
+			LOR = { exists = no }
+			has_subject = LOR
+			LOR = { has_capitulated = yes }
+			LOR = { surrender_progress > 0.70}
+		}
+		OR ={
+			is_puppet = no
+			overlord = {TAG = SRG}
+		}
+
+	}
+	hidden = yes
+	fire_only_once = yes
+	mean_time_to_happen = {
+		days = 15
+	}
+	option = {
+		create_wargoal = {
+			target = QUE
+			type = annex_everything
+		}
+		log = "T 1"
+	}
+}
+country_event = {
+	
+	id = third_war_events.2
+	#title = "Sanwell under dead control"
+	trigger = {
+		original_tag = CAE
+		OR ={
+			is_puppet = no
+			overlord = {TAG = SRG}
+		}
+		
+		33 = { is_controlled_by_ROOT_or_ally = yes }
+
+	}
+	hidden = yes
+	mean_time_to_happen = {
+		days = 15
+	}
+	fire_only_once = yes
+	option = {
+		create_wargoal = {
+			target = CRC
+			type = annex_everything
+		}
+		log = "T 2"
+	}
+}
+country_event = {
+	
+	id = third_war_events.3
+	#title = "Some orc"
+	trigger = {
+		original_tag = CAE
+		118 = { is_controlled_by_ROOT_or_ally = yes }
+		OR ={
+			is_puppet = no
+			overlord = {TAG = SRG}
+		}
+	}
+	hidden = yes
+	mean_time_to_happen = {
+		days = 15
+	}
+	fire_only_once = yes
+	option = {
+		create_wargoal = {
+			target = DAL
+			type = annex_everything
+		}
+		log = "T 3"
+	}
+}
+country_event = {
+	
+	id = third_war_events.4
+	#title = "Some orc"
+	trigger = {
+		original_tag = CAE
+		118 = { is_controlled_by_ROOT_or_ally = yes }
+		OR ={
+			is_puppet = no
+			overlord = {TAG = SRG}
+		}
+		has_government = death
+	}
+	hidden = yes
+	mean_time_to_happen = {
+		days = 30
+	}
+	fire_only_once = yes
+	option = {
+		create_wargoal = {
+			target = DAL
+			type = annex_everything
+		}
+		log = "T 4"
+	}
+}
+
+country_event = {
+	
+	id = third_war_events.5
+	#title = "Legion coming"
+	trigger = {
+		original_tag = CAE
+		14 = { is_controlled_by_ROOT_or_ally = yes }
+		OR ={
+			is_puppet = no
+			overlord = {TAG = SRG}
+		}
+		has_government = death
+	}
+	hidden = yes
+	mean_time_to_happen = {
+		days = 30
+	}
+	fire_only_once = yes
+	option = {
+		log = "T 4"
+		
+		declare_war_on = {
+			target = MAK
+			type = annex_everything
+		}
+		add_timed_idea = {
+			idea = Legion_Invansion
+			days = 180
+		}
+		set_state_controller = 1382
+		1382 = {  
+			create_unit = {
+			division = "name = \"Scourge Ghouls\" division_template = \"Scourge Ghouls\" "
+			owner = TBL
+			count = 12
+			allow_spawning_on_enemy_provs = yes
+
+		}}
+		
+		add_ideas = { promise_of_power_idea }
+		
+		SRG = {
+			set_faction_name = "The Burning Legion" 
+			add_to_faction = TBL
+			add_ideas = { promise_of_power_idea }		
+			add_timed_idea = {
+				idea = Legion_Invansion
+				days = 180
+			}
+		}
+
+		TBL = { 
+			annex_country = { 
+				target = LEG
+				transfer_troops = yes 
+			}
+			add_timed_idea = {
+				idea = Legion_Invansion
+				days = 180
+			}
+			1379 = { 
+			
+			create_unit = {
+				division = "name = \"Scourge Ghouls\" division_template = \"Scourge Ghouls\" "
+				owner = TBL
+				count = 32
+				allow_spawning_on_enemy_provs = yes
+				
+			}  }
+			
+			
+			add_offsite_building = { type = arms_factory level = 10 }
+			add_offsite_building = { type = industrial_complex level = 10 }
+		}
+	}
+}
+
+country_event = {
+	
+	id = third_war_events.6
+	#desc = "Road to tree"
+	trigger = {
+		original_tag = CAE
+		OR = {
+			MAK = { 
+				is_ally_with = CAE
+			}
+			NOT = { country_exists = MAK }
+			MAK = { has_capitulated = yes}
+		}
+		OR ={
+			is_puppet = no
+			overlord = {TAG = SRG}
+			overlord = {TAG = TBL}
+		}
+
+	}
+	hidden = yes
+	mean_time_to_happen = {
+		days = 30
+	}
+	fire_only_once = yes
+	option = {
+		log = "T 6"
+		declare_war_on = {
+			target = KAL
+			type = annex_everything
+		}
+		SRG = { 
+			declare_war_on = {
+				target = KAL
+				type = annex_everything
+			}
+			
+		}
+		TBL = { 
+			declare_war_on = {
+				target = KAL
+				type = annex_everything
+			}
+			
+		}
+		JFT = {
+			add_to_faction = ROOT
+		}
+		FMC = {
+			add_to_faction = ROOT
+		}
+		BHS = {
+			add_to_faction = ROOT
+		}
+		HFS = {
+			add_to_faction = ROOT
+		}
+	}
+}
