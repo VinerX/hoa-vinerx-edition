@@ -1,0 +1,183 @@
+add_namespace = horde_authority_events
+
+# ============================================================
+# Warchief Authority events — Horde faction-wide mechanics
+# Triggered by focus trees, decisions, and other events
+# to reflect the Warchief's grip on the clans.
+# ============================================================
+
+# 1: A clan submits to the Warchief (+10 authority)
+# Triggered from focus trees when a clan pledges loyalty
+country_event = {
+	id = horde_authority_events.1
+	title = horde_authority_events.1.t
+	desc  = horde_authority_events.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.1 (clan submits)" }
+
+	option = {
+		name = horde_authority_events.1.a
+		horde_authority_raise_medium = yes
+	}
+}
+
+# 2: A clan defies a direct order (-10 authority)
+# Triggered when a clan refuses Warchief's command
+country_event = {
+	id = horde_authority_events.2
+	title = horde_authority_events.2.t
+	desc  = horde_authority_events.2.d
+	picture = GFX_report_event_generic_treaty
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.2 (clan defies)" }
+
+	option = {
+		name = horde_authority_events.2.a
+		horde_authority_lower_medium = yes
+	}
+}
+
+# 3: Gul'dan betrays the Horde (-20 authority, massive crisis)
+# Triggered from existing second_war events when Gul'dan leaves for Tomb of Sargeras
+country_event = {
+	id = horde_authority_events.3
+	title = horde_authority_events.3.t
+	desc  = horde_authority_events.3.d
+	picture = GFX_report_event_coup
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.3 (Gul'dan betrays)" }
+
+	option = {
+		name = horde_authority_events.3.a
+		horde_authority_lower_heroic = yes
+		every_country = {
+			limit = { is_in_faction_with = BRC }
+			add_war_support = -0.05
+		}
+	}
+}
+
+# 4: Major Horde victory (+15 authority, +war support)
+# Triggered when Stormwind falls, a major Alliance city is taken, etc.
+country_event = {
+	id = horde_authority_events.4
+	title = horde_authority_events.4.t
+	desc  = horde_authority_events.4.d
+	picture = GFX_report_event_war_plan
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.4 (major victory)" }
+
+	option = {
+		name = horde_authority_events.4.a
+		horde_authority_raise_major = yes
+		every_country = {
+			limit = { is_in_faction_with = BRC }
+			add_war_support = 0.03
+		}
+	}
+}
+
+# 5: Major Horde defeat (-10 authority)
+# Triggered when a major Horde offensive fails
+country_event = {
+	id = horde_authority_events.5
+	title = horde_authority_events.5.t
+	desc  = horde_authority_events.5.d
+	picture = GFX_report_event_generic_axis_breakthrough
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.5 (major defeat)" }
+
+	option = {
+		name = horde_authority_events.5.a
+		horde_authority_lower_medium = yes
+		BRC = { add_war_support = -0.03 }
+	}
+}
+
+# 6: The Warchief Commands — spend authority for a massive offensive
+# Triggered from decision when authority is high enough
+country_event = {
+	id = horde_authority_events.6
+	title = horde_authority_events.6.t
+	desc  = horde_authority_events.6.d
+	picture = GFX_report_event_generic_fascist_split
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.6 (total commitment)" }
+
+	option = {
+		name = horde_authority_events.6.a
+		trigger = {
+			horde_authority_can_spend_large = yes
+		}
+		ai_chance = { factor = 85 }
+		horde_authority_spend_large = yes
+		every_country = {
+			limit = { is_in_faction_with = BRC }
+			add_timed_idea = {
+				idea = horde_authority_total_commitment
+				days = 90
+			}
+		}
+	}
+}
+
+# 7: A clan deserts the Horde (-15 authority)
+# Triggered when a clan leaves the faction
+country_event = {
+	id = horde_authority_events.7
+	title = horde_authority_events.7.t
+	desc  = horde_authority_events.7.d
+	picture = GFX_report_event_defend
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.7 (clan deserts)" }
+
+	option = {
+		name = horde_authority_events.7.a
+		horde_authority_lower_major = yes
+	}
+}
+
+# 8: Doomhammer crushes dissent — demonstrate power to restore authority
+# Available when authority is low and BRC has PP to spend
+country_event = {
+	id = horde_authority_events.8
+	title = horde_authority_events.8.t
+	desc  = horde_authority_events.8.d
+	picture = GFX_report_event_coup
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event horde_authority_events.8 (crush dissent)" }
+
+	# Option A: Make an example (+10 authority, costs PP, loses stability)
+	option = {
+		name = horde_authority_events.8.a
+		ai_chance = { factor = 70 }
+		add_political_power = -30
+		add_stability = -0.03
+		horde_authority_raise_medium = yes
+	}
+
+	# Option B: Let it go for now (-5 authority, preserve stability)
+	option = {
+		name = horde_authority_events.8.b
+		ai_chance = { factor = 30 }
+		horde_authority_lower = yes
+		add_stability = 0.02
+	}
+}

@@ -1,0 +1,280 @@
+# ============================================================
+# Warchief Authority — Horde faction-wide mechanic (0–100 scale)
+#
+# BRC holds the master variable "warchief_authority" (0–100).
+# On any change, every member of orcish_horde receives
+# the appropriate national spirit for the current tier.
+#
+# Tiers: 0–19 Defied | 20–39 Contested | 40–59 Fragile
+#        60–79 Recognized (country-specific) | 80–100 Will (country-specific)
+# ============================================================
+
+# ------------------------------------------------------------
+# Initialize authority to starting value (55 = Fragile Obedience)
+# Called once at game start for BRC.
+# ------------------------------------------------------------
+horde_authority_init = {
+	BRC = {
+		set_variable = { warchief_authority = 55 }
+		horde_authority_sync_faction = yes
+	}
+}
+
+# ------------------------------------------------------------
+# Authority change effects (each clamps 0–100 and syncs faction)
+# ------------------------------------------------------------
+
+# +5 — minor victory, small clan concession
+horde_authority_raise = {
+	BRC = {
+		add_to_variable = { warchief_authority = 5 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# +10 — focus completion, clan submits to Warchief
+horde_authority_raise_medium = {
+	BRC = {
+		add_to_variable = { warchief_authority = 10 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# +15 — major victory, Warchief proves his strength
+horde_authority_raise_major = {
+	BRC = {
+		add_to_variable = { warchief_authority = 15 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# +20 — game-changing triumph that silences all doubt
+horde_authority_raise_heroic = {
+	BRC = {
+		add_to_variable = { warchief_authority = 20 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# -5 — minor defeat, refused order
+horde_authority_lower = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 5 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# -10 — clan defiance, significant defeat
+horde_authority_lower_medium = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 10 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# -15 — major crisis, clan deserts or betrays
+horde_authority_lower_major = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 15 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# -20 — catastrophic crisis: Gul'dan's betrayal
+horde_authority_lower_heroic = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 20 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		if = {
+			limit = { check_variable = { warchief_authority > 100 } }
+			set_variable = { warchief_authority = 100 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# ------------------------------------------------------------
+# Authority spending — Warchief expends political capital
+# to demand more from the clans.
+# ------------------------------------------------------------
+
+# -8: Call clan reserves (manpower/speed boost)
+horde_authority_spend_small = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 8 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# -15: Force obedience / redirect clan forces
+horde_authority_spend_medium = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 15 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# -25: Demand Total Commitment — massive temporary offensive
+horde_authority_spend_large = {
+	BRC = {
+		subtract_from_variable = { warchief_authority = 25 }
+		if = {
+			limit = { check_variable = { warchief_authority < 0 } }
+			set_variable = { warchief_authority = 0 }
+		}
+		horde_authority_sync_faction = yes
+	}
+}
+
+# ------------------------------------------------------------
+# Sync faction: reads BRC's variable, removes old authority
+# ideas from ROOT, applies the correct spirit based on tier and tag.
+# ------------------------------------------------------------
+horde_authority_remove_all_ideas = {
+	if = { limit = { has_idea = horde_authority_defied }					remove_ideas = horde_authority_defied }
+	if = { limit = { has_idea = horde_authority_contested }				remove_ideas = horde_authority_contested }
+	if = { limit = { has_idea = horde_authority_fragile }				remove_ideas = horde_authority_fragile }
+	if = { limit = { has_idea = horde_authority_recognized_generic }		remove_ideas = horde_authority_recognized_generic }
+	if = { limit = { has_idea = horde_authority_recognized_blackrock }	remove_ideas = horde_authority_recognized_blackrock }
+	if = { limit = { has_idea = horde_authority_recognized_bleedinghollow }	remove_ideas = horde_authority_recognized_bleedinghollow }
+	if = { limit = { has_idea = horde_authority_recognized_dragonmaw }	remove_ideas = horde_authority_recognized_dragonmaw }
+	if = { limit = { has_idea = horde_authority_recognized_stormreaver }	remove_ideas = horde_authority_recognized_stormreaver }
+	if = { limit = { has_idea = horde_authority_recognized_twilighthammer }	remove_ideas = horde_authority_recognized_twilighthammer }
+	if = { limit = { has_idea = horde_authority_recognized_amani }		remove_ideas = horde_authority_recognized_amani }
+	if = { limit = { has_idea = horde_authority_will_generic }			remove_ideas = horde_authority_will_generic }
+	if = { limit = { has_idea = horde_authority_will_blackrock }			remove_ideas = horde_authority_will_blackrock }
+	if = { limit = { has_idea = horde_authority_will_bleedinghollow }		remove_ideas = horde_authority_will_bleedinghollow }
+	if = { limit = { has_idea = horde_authority_will_dragonmaw }			remove_ideas = horde_authority_will_dragonmaw }
+	if = { limit = { has_idea = horde_authority_will_stormreaver }		remove_ideas = horde_authority_will_stormreaver }
+	if = { limit = { has_idea = horde_authority_will_twilighthammer }		remove_ideas = horde_authority_will_twilighthammer }
+	if = { limit = { has_idea = horde_authority_will_amani }				remove_ideas = horde_authority_will_amani }
+}
+
+# Internal: apply the correct spirit to ROOT based on BRC's variable value
+horde_authority_apply_spirit = {
+	BRC = {
+		if = {
+			limit = { check_variable = { warchief_authority < 20 } }
+			PREV = { add_ideas = horde_authority_defied }
+		}
+		else_if = {
+			limit = { check_variable = { warchief_authority < 40 } }
+			PREV = { add_ideas = horde_authority_contested }
+		}
+		else_if = {
+			limit = { check_variable = { warchief_authority < 60 } }
+			PREV = { add_ideas = horde_authority_fragile }
+		}
+		else_if = {
+			limit = { check_variable = { warchief_authority < 80 } }
+			PREV = { horde_authority_apply_spirit_tier4 = yes }
+		}
+		else = {
+			PREV = { horde_authority_apply_spirit_tier5 = yes }
+		}
+	}
+}
+
+# Apply tier-4 Recognized spirit based on ROOT's tag
+horde_authority_apply_spirit_tier4 = {
+	if = {		limit = { tag = BRC }	add_ideas = horde_authority_recognized_blackrock }
+	else_if = {	limit = { tag = BHC }	add_ideas = horde_authority_recognized_bleedinghollow }
+	else_if = {	limit = { tag = DMC }	add_ideas = horde_authority_recognized_dragonmaw }
+	else_if = {	limit = { tag = SRC }	add_ideas = horde_authority_recognized_stormreaver }
+	else_if = {	limit = { tag = THC }	add_ideas = horde_authority_recognized_twilighthammer }
+	else_if = {	limit = { tag = AMA }	add_ideas = horde_authority_recognized_amani }
+	else = {								add_ideas = horde_authority_recognized_generic }
+}
+
+# Apply tier-5 Will of the Horde spirit based on ROOT's tag
+horde_authority_apply_spirit_tier5 = {
+	if = {		limit = { tag = BRC }	add_ideas = horde_authority_will_blackrock }
+	else_if = {	limit = { tag = BHC }	add_ideas = horde_authority_will_bleedinghollow }
+	else_if = {	limit = { tag = DMC }	add_ideas = horde_authority_will_dragonmaw }
+	else_if = {	limit = { tag = SRC }	add_ideas = horde_authority_will_stormreaver }
+	else_if = {	limit = { tag = THC }	add_ideas = horde_authority_will_twilighthammer }
+	else_if = {	limit = { tag = AMA }	add_ideas = horde_authority_will_amani }
+	else = {								add_ideas = horde_authority_will_generic }
+}
+
+# ------------------------------------------------------------
+# Main faction-wide sync — called on BRC after every change.
+# Removes old spirits and applies new ones to every member.
+# ------------------------------------------------------------
+horde_authority_sync_faction = {
+	horde_authority_remove_all_ideas = yes
+	horde_authority_apply_spirit = yes
+
+	every_country = {
+		limit = { is_in_faction_with = PREV }
+		horde_authority_remove_all_ideas = yes
+		horde_authority_apply_spirit = yes
+	}
+}

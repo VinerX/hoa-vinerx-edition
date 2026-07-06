@@ -1,0 +1,66 @@
+# Warchief Authority — Horde faction-wide triggers
+# Checks BRC's warchief_authority variable (0–100 scale)
+# Tiers: 0–19 Defied | 20–39 Contested | 40–59 Fragile
+#        60–79 Recognized | 80–100 Will of the Horde
+
+# Authority is critically low (0–19): Warchief is openly defied
+horde_authority_defied = {
+	BRC = {
+		check_variable = { warchief_authority < 20 }
+	}
+}
+
+# Authority is low (0–39): leadership contested or worse
+horde_authority_low = {
+	BRC = {
+		check_variable = { warchief_authority < 40 }
+	}
+}
+
+# Authority is moderate (40–59): fragile but functional
+horde_authority_medium = {
+	BRC = {
+		check_variable = { warchief_authority > 39 }
+		check_variable = { warchief_authority < 60 }
+	}
+}
+
+# Authority is high (60+): Warchief is recognized
+horde_authority_high = {
+	BRC = {
+		check_variable = { warchief_authority > 59 }
+	}
+}
+
+# Authority is at peak (80+): Will of the Horde
+horde_authority_max = {
+	BRC = {
+		check_variable = { warchief_authority > 79 }
+	}
+}
+
+# Authority is at the very bottom (0-9): imminent collapse
+horde_authority_critical = {
+	BRC = {
+		check_variable = { warchief_authority < 10 }
+	}
+}
+
+# Authority is high enough to spend (60+): can issue costly demands
+horde_authority_can_spend = {
+	BRC = {
+		check_variable = { warchief_authority > 59 }
+	}
+}
+
+# Authority is high enough for total commitment demand (80+)
+horde_authority_can_spend_large = {
+	BRC = {
+		check_variable = { warchief_authority > 79 }
+	}
+}
+
+# Is this country a member of the Orcish Horde?
+is_horde_member = {
+	is_in_faction_with = BRC
+}
