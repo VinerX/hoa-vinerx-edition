@@ -1,0 +1,99 @@
+###########################
+# Gnomeregan Second War Events
+###########################
+
+add_namespace = gnomeregan_second_war
+
+# Mekkatorque addresses the people — triggered by root focus
+country_event = {
+	id = gnomeregan_second_war.1
+	title = gnomeregan_second_war.1.t
+	desc = gnomeregan_second_war.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event gnomeregan_second_war.1" }
+
+	option = {
+		name = gnomeregan_second_war.1.option.1
+		add_war_support = 0.05
+		add_timed_idea = {
+			idea = GNO_sw_workshop_mobilized
+			days = 365
+		}
+	}
+}
+
+# Invention breakthrough — triggered by gnomish ingenuity focus
+country_event = {
+	id = gnomeregan_second_war.2
+	title = gnomeregan_second_war.2.t
+	desc = gnomeregan_second_war.2.d
+	picture = GFX_report_event_generic_research
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event gnomeregan_second_war.2" }
+
+	option = {
+		name = gnomeregan_second_war.2.option.1
+		add_political_power = 25
+		add_tech_bonus = {
+			name = dwarf_engineer_technology
+			bonus = 1.0
+			uses = 1
+			category = dwarf_engineer_technology
+		}
+		add_timed_idea = {
+			idea = GNO_sw_ingenuity_bonus
+			days = 365
+		}
+	}
+
+	option = {
+		name = gnomeregan_second_war.2.option.2
+		add_political_power = 50
+		add_tech_bonus = {
+			name = fighter_technology
+			bonus = 0.5
+			uses = 1
+			category = fighter_technology
+		}
+		add_timed_idea = {
+			idea = GNO_sw_ingenuity_bonus
+			days = 365
+		}
+	}
+}
+
+# Alliance relief arrives / final war machine — triggered by alliance war machine focus
+country_event = {
+	id = gnomeregan_second_war.3
+	title = gnomeregan_second_war.3.t
+	desc = gnomeregan_second_war.3.d
+	picture = GFX_report_event_alliance_victory
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event gnomeregan_second_war.3" }
+
+	option = {
+		name = gnomeregan_second_war.3.option.1
+		add_war_support = 0.10
+		add_stability = 0.05
+		set_temp_variable = { var_name = gno_war_participants value = 0 }
+		if = {
+			limit = { IRO = { has_war_with = BRC } }
+			IRO = { add_opinion_modifier = { target = GNO modifier = GNO_sw_debt_of_gratitude } }
+			set_temp_variable = { var_name = gno_war_participants value = 1 }
+		}
+		if = {
+			limit = { LOR = { has_war_with = BRC } }
+			LOR = { add_opinion_modifier = { target = GNO modifier = GNO_sw_debt_of_gratitude } }
+		}
+	}
+}

@@ -1,0 +1,658 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = gnomeregan_second_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = GNO
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = { x = 1300 y = 0 }
+
+	shared_focus = develop_the_country
+	shared_focus = arming_the_nation
+
+	# --- Root: Mekkatorque's Workshop ---
+	focus = {
+		id = GNO_sw_mekkatorque_workshop
+		icon = GFX_focus_research
+		x = 35
+		y = 0
+		cost = 7
+		ai_will_do = { factor = 20 }
+
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.05
+			add_political_power = 50
+			country_event = { id = gnomeregan_second_war.1 }
+		}
+	}
+
+	# --- Row 1: First Branches ---
+	focus = {
+		id = GNO_sw_dwarven_brotherhood
+		icon = GFX_goal_molotov_ribbentrop_pact
+		prerequisite = { focus = GNO_sw_mekkatorque_workshop }
+		x = 33
+		y = 1
+		cost = 7
+		ai_will_do = { factor = 15 }
+
+		completion_reward = {
+			IRO = { add_opinion_modifier = { target = GNO modifier = GNO_sw_dwarven_bonds } }
+			add_war_support = 0.03
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = GNO_sw_iron_gate_preparations
+		icon = GFX_focus_stormwind_bunker_i
+		prerequisite = { focus = GNO_sw_mekkatorque_workshop }
+		x = 37
+		y = 1
+		cost = 7
+		ai_will_do = { factor = 15 }
+
+		completion_reward = {
+			428 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1014
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1343
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# --- Row 2: Second Tier ---
+	focus = {
+		id = GNO_sw_engineering_exchange
+		icon = GFX_goal_generic_scientific_exchange
+		prerequisite = { focus = GNO_sw_dwarven_brotherhood }
+		x = 32
+		y = 2
+		cost = 7
+		ai_will_do = { factor = 12 }
+
+		completion_reward = {
+			add_research_slot = 1
+			add_breakthrough_points = {
+				specialization = specialization_magic
+				value = 1
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_ironforge_arms_deal
+		icon = GFX_focus_stormwind_blacksmith
+		prerequisite = { focus = GNO_sw_dwarven_brotherhood }
+		x = 34
+		y = 2
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		available = {
+			424 = { is_controlled_by = GNO }
+		}
+
+		completion_reward = {
+			424 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_timed_idea = {
+				idea = GNO_sw_ironforge_arms
+				days = 365
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_mechanical_defenses
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = GNO_sw_iron_gate_preparations }
+		x = 36
+		y = 2
+		cost = 7
+		ai_will_do = { factor = 12 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_mortar_team_technology
+				bonus = 0.5
+				uses = 2
+				category = dwarf_mortar_team_technology
+			}
+			army_experience = 10
+			427 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_gnomish_ingenuity
+		icon = GFX_goal_continuous_research
+		prerequisite = { focus = GNO_sw_iron_gate_preparations }
+		x = 38
+		y = 2
+		cost = 7
+		ai_will_do = { factor = 18 }
+
+		completion_reward = {
+			country_event = { id = gnomeregan_second_war.2 }
+		}
+	}
+
+	# --- Row 3: Third Tier ---
+	focus = {
+		id = GNO_sw_tinkers_mobilize
+		icon = GFX_goal_generic_allies_build_infantry
+		prerequisite = { focus = GNO_sw_engineering_exchange }
+		x = 32
+		y = 3
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		completion_reward = {
+			add_manpower = 2000
+			custom_effect_tooltip = GNO_sw_tinker_militia_tooltip
+			hidden_effect = {
+				load_oob = "GNO_sw_tinker_militia"
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_dwarven_artillery_corps
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = GNO_sw_ironforge_arms_deal }
+		x = 33
+		y = 3
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_mortar_team_technology
+				bonus = 1.0
+				uses = 1
+				category = dwarf_mortar_team_technology
+			}
+			army_experience = 15
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 100
+					track = infantry
+				}
+			}
+			else = { army_experience = 25 }
+		}
+	}
+
+	focus = {
+		id = GNO_sw_explosive_traps
+		icon = GFX_goal_generic_secret_weapon
+		prerequisite = { focus = GNO_sw_mechanical_defenses }
+		x = 35
+		y = 3
+		cost = 7
+		ai_will_do = { factor = 12 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_engineer_technology
+				bonus = 0.5
+				uses = 2
+				category = dwarf_engineer_technology
+			}
+			add_ideas = GNO_sw_explosive_defenses
+		}
+	}
+
+	focus = {
+		id = GNO_sw_flying_machines
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = GNO_sw_gnomish_ingenuity }
+		x = 37
+		y = 3
+		cost = 7
+		ai_will_do = { factor = 14 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_technology
+				bonus = 0.5
+				uses = 2
+				category = fighter_technology
+			}
+			air_experience = 15
+			423 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_alliance_tech_support
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = GNO_sw_gnomish_ingenuity }
+		x = 39
+		y = 3
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		available = {
+			has_war_with = BRC
+		}
+
+		completion_reward = {
+			set_politics = {
+				ruling_party = alliance
+				elections_allowed = no
+			}
+			set_popularities = {
+				alliance = 85
+				horde = 0
+				death = 0
+				fel = 0
+				old_gods = 0
+				titans = 0
+				neutral = 15
+			}
+			add_ideas = GNO_sw_alliance_tech
+		}
+	}
+
+	# --- Row 4: Fourth Tier ---
+	focus = {
+		id = GNO_sw_underground_production
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = GNO_sw_tinkers_mobilize }
+		x = 32
+		y = 4
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		available = {
+			425 = { is_controlled_by = GNO }
+		}
+
+		completion_reward = {
+			425 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			427 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_gearworks_militia
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = GNO_sw_dwarven_artillery_corps }
+		prerequisite = { focus = GNO_sw_explosive_traps }
+		x = 34
+		y = 4
+		cost = 7
+		ai_will_do = { factor = 12 }
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_manpower = 3000
+			add_ideas = GNO_sw_gearworks
+		}
+	}
+
+	focus = {
+		id = GNO_sw_gyrocopter_squadrons
+		icon = GFX_focus_chi_flying_tigers
+		prerequisite = { focus = GNO_sw_flying_machines }
+		x = 36
+		y = 4
+		cost = 7
+		ai_will_do = { factor = 12 }
+
+		completion_reward = {
+			air_experience = 20
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_points = {
+				specialization = specialization_air
+				value = 1
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = air } }
+				add_daily_mastery = {
+					name = doctrine_fighter
+					amount = 0.5
+					days = 100
+					track = fighter_aircraft
+				}
+			}
+			else = { air_experience = 25 }
+		}
+	}
+
+	focus = {
+		id = GNO_sw_lor_engineering_corps
+		icon = GFX_focus_generic_little_entente
+		prerequisite = { focus = GNO_sw_alliance_tech_support }
+		x = 38
+		y = 4
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		available = {
+			LOR = { has_war_with = BRC }
+		}
+
+		completion_reward = {
+			LOR = {
+				add_timed_idea = {
+					idea = GNO_sw_gnomish_engineers_lor
+					days = 365
+				}
+			}
+			STO = {
+				add_timed_idea = {
+					idea = GNO_sw_gnomish_engineers_lor
+					days = 365
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_spider_tank_development
+		icon = GFX_focus_generic_tank_production
+		prerequisite = { focus = GNO_sw_alliance_tech_support }
+		x = 40
+		y = 4
+		cost = 7
+		ai_will_do = { factor = 12 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_steam_tank_technology
+				bonus = 0.75
+				uses = 1
+				category = dwarf_steam_tank_technology
+			}
+			add_breakthrough_progress = {
+				value = 1
+				specialization = specialization_land
+			}
+		}
+	}
+
+	# --- Row 5: Fifth Tier ---
+	focus = {
+		id = GNO_sw_breaking_containment
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = GNO_sw_underground_production }
+		prerequisite = { focus = GNO_sw_gearworks_militia }
+		x = 33
+		y = 5
+		cost = 10
+		ai_will_do = { factor = 12 }
+
+		available = {
+			has_war_with = BHC
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			428 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_air_reconnaissance
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = GNO_sw_gyrocopter_squadrons }
+		x = 35
+		y = 5
+		cost = 7
+		ai_will_do = { factor = 10 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_technology
+				bonus = 0.75
+				uses = 1
+				category = fighter_technology
+			}
+			423 = {
+				add_building_construction = {
+					type = radar_station
+					province = 1348
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = GNO_sw_mechanical_warfare
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = GNO_sw_spider_tank_development }
+		x = 37
+		y = 5
+		cost = 10
+		ai_will_do = { factor = 10 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_steam_tank_technology
+				bonus = 1.0
+				uses = 1
+				category = dwarf_steam_tank_technology
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 0.5
+					days = 100
+					track = operations
+				}
+			}
+			else = { army_experience = 25 }
+		}
+	}
+
+	focus = {
+		id = GNO_sw_gnomes_strike_back
+		icon = GFX_focus_generic_strike_at_democracy2
+		prerequisite = { focus = GNO_sw_lor_engineering_corps }
+		x = 39
+		y = 5
+		cost = 10
+		ai_will_do = { factor = 10 }
+
+		available = {
+			has_war_with = BHC
+		}
+
+		completion_reward = {
+			add_manpower = 1500
+			custom_effect_tooltip = GNO_sw_assault_team_tooltip
+			hidden_effect = {
+				load_oob = "GNO_sw_assault_team"
+			}
+		}
+	}
+
+	# --- Row 6: Sixth Tier ---
+	focus = {
+		id = GNO_sw_gnomeregan_holds
+		icon = GFX_focus_rom_handle_king
+		prerequisite = { focus = GNO_sw_breaking_containment }
+		prerequisite = { focus = GNO_sw_air_reconnaissance }
+		x = 34
+		y = 6
+		cost = 10
+		ai_will_do = { factor = 10 }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GNO_in_defense_of_dun_morogh_1
+				add_idea = GNO_in_defense_of_dun_morogh_2
+			}
+			add_war_support = 0.05
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = GNO_sw_alliance_war_machine
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = GNO_sw_mechanical_warfare }
+		prerequisite = { focus = GNO_sw_gnomes_strike_back }
+		x = 38
+		y = 6
+		cost = 10
+		ai_will_do = { factor = 10 }
+
+		completion_reward = {
+			country_event = { id = gnomeregan_second_war.3 }
+			IRO = {
+				add_timed_idea = {
+					idea = GNO_sw_gnomish_reinforcements_iro
+					days = 365
+				}
+			}
+			LOR = {
+				add_timed_idea = {
+					idea = GNO_sw_gnomish_reinforcements_lor
+					days = 365
+				}
+			}
+		}
+	}
+
+	# --- Row 7: Victory ---
+	focus = {
+		id = GNO_sw_gnomeregan_victory
+		icon = GFX_goal_support_democracy
+		prerequisite = { focus = GNO_sw_gnomeregan_holds }
+		prerequisite = { focus = GNO_sw_alliance_war_machine }
+		x = 36
+		y = 7
+		cost = 10
+		ai_will_do = { factor = 10 }
+
+		available = {
+			is_subject = no
+			owns_state = 422
+			owns_state = 423
+			owns_state = 424
+			owns_state = 425
+			owns_state = 426
+			owns_state = 427
+			owns_state = 428
+		}
+
+		completion_reward = {
+			add_research_slot = 1
+			add_breakthrough_points = {
+				specialization = specialization_magic
+				value = 1
+			}
+			add_ideas = GNO_sw_victory_in_gnomeregan
+		}
+	}
+}

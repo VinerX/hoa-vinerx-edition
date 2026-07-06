@@ -1,0 +1,219 @@
+add_namespace = quelthalas_second_war
+
+# Alleria Windrunner defies Anasterian and leads the rangers south
+country_event = {
+	id = quelthalas_second_war.1
+	title = quelthalas_second_war.1.t
+	desc = quelthalas_second_war.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event quelthalas_second_war.1" }
+
+	option = {
+		name = quelthalas_second_war.1.option.1
+		add_war_support = 0.05
+		add_stability = -0.02
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		LOR = {
+			add_manpower = 500
+			add_opinion_modifier = {
+				target = QUE
+				modifier = small_increase
+			}
+		}
+		add_ideas = {
+			alleria_windrunner
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Amani threat to Quel'Thalas is formally detected and assessed
+country_event = {
+	id = quelthalas_second_war.2
+	title = quelthalas_second_war.2.t
+	desc = quelthalas_second_war.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event quelthalas_second_war.2" }
+
+	option = {
+		name = quelthalas_second_war.2.option.1
+		add_war_support = 0.05
+		add_stability = -0.02
+		AMA = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_decrease
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Council debates the token fleet contribution
+country_event = {
+	id = quelthalas_second_war.3
+	title = quelthalas_second_war.3.t
+	desc = quelthalas_second_war.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event quelthalas_second_war.3" }
+
+	option = {
+		name = quelthalas_second_war.3.option.1
+		add_manpower = -400
+		navy_experience = 15
+		LOR = {
+			add_manpower = 400
+			add_opinion_modifier = {
+				target = QUE
+				modifier = small_increase
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = quelthalas_second_war.3.option.2
+		add_political_power = 20
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.03
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Council of Silvermoon debates the response to the Horde
+country_event = {
+	id = quelthalas_second_war.4
+	title = quelthalas_second_war.4.t
+	desc = quelthalas_second_war.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event quelthalas_second_war.4" }
+
+	option = {
+		name = quelthalas_second_war.4.option.1
+		add_stability = 0.03
+		add_political_power = 20
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.02
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = quelthalas_second_war.4.option.2
+		add_stability = -0.02
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.04
+		}
+		LOR = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = small_increase
+			}
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Debt of Arathor is honored — LOR notified
+country_event = {
+	id = quelthalas_second_war.5
+	title = quelthalas_second_war.5.t
+	desc = quelthalas_second_war.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event quelthalas_second_war.5" }
+
+	option = {
+		name = quelthalas_second_war.5.option.1
+		add_stability = 0.03
+		add_war_support = 0.05
+		add_opinion_modifier = {
+			target = QUE
+			modifier = medium_increase
+		}
+		QUE = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = medium_increase
+			}
+			add_war_support = 0.03
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Amani attack — borderlands burn
+country_event = {
+	id = quelthalas_second_war.6
+	title = quelthalas_second_war.6.t
+	desc = quelthalas_second_war.6.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event quelthalas_second_war.6" }
+
+	option = {
+		name = quelthalas_second_war.6.option.1
+		34 = {
+			set_state_flag = borderlands_burned
+		}
+		AMA = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
