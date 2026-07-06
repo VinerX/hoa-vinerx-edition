@@ -125,6 +125,13 @@ Conventions:
   Russian falls back to English, so English is enough to be functional.
 - Prefer existing `GFX_*` event pictures unless art is provided (you can't add sprites).
 
+## Writing focus trees
+
+Reuse the generic **non-political backbone** — pull in the shared branches
+`develop_the_country` (economy/industry/research) and `arming_the_nation` (army/navy/air
+buildup) via `shared_focus = …`, and only hand-author the nation's political/story branch.
+Full skeleton + per-tree/per-focus/localisation checklist: **`docs/FOCUS_CHECKLIST.md`**.
+
 ## Validate, then commit (git)
 
 - Branch is **`rebuild`**. Stay on it unless told otherwise.
