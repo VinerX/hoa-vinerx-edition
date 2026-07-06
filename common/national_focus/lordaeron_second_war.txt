@@ -320,4 +320,233 @@ focus_tree = {
 			add_ideas = LOR_the_crown_endures
 		}
 	}
+
+	# ============================================================
+	# WAR-COURSE CONTINUATION — the Second War unfolds
+	# ============================================================
+
+	focus = {
+		id = LOR_the_war_moves_north
+		icon = GFX_goal_generic_major_war
+		# Either path through the mid-tree leads here.
+		prerequisite = { focus = LOR_a_common_cause focus = LOR_burden_of_the_crown }
+		relative_position_id = LOR_a_common_cause
+		x = 2
+		y = 1
+		cost = 10
+
+		available = {
+			OR = {
+				has_country_flag = orc_2nd_war
+				is_fighting_second_war_horde = yes
+				date > 597.1.1
+			}
+		}
+
+		ai_will_do = { base = 10 }
+
+		completion_reward = {
+			# Lordaeron shifts to a full war footing to meet the Horde's drive north.
+			add_ideas = LOR_northern_command
+			add_war_support = 0.05
+			add_command_power = 50
+			add_manpower = 5000
+			LOR_second_war_proto_raise_overextension = yes
+		}
+	}
+
+	focus = {
+		id = LOR_hold_hillsbrad
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = LOR_the_war_moves_north }
+		relative_position_id = LOR_the_war_moves_north
+		x = -2
+		y = 1
+		cost = 10
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Dig in along the southern marches against the Horde's advance.
+			add_war_support = 0.05
+			army_experience = 20
+			add_manpower = 4000
+			add_equipment_to_stockpile = { type = footman_equipment_1 amount = 300 }
+			add_equipment_to_stockpile = { type = pikeman_equipment_1 amount = 200 }
+			add_stability = 0.03
+		}
+	}
+
+	focus = {
+		id = LOR_the_alterac_question
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = LOR_the_war_moves_north }
+		relative_position_id = LOR_the_war_moves_north
+		x = 0
+		y = 1
+		cost = 10
+
+		available = { ALT = { exists = yes } }
+		bypass = { NOT = { ALT = { exists = yes } } }
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			if = {
+				limit = { ALT = { has_country_flag = ALT_betrayal_path } }
+				# Perenolde's treachery is exposed — brace for the opened passes.
+				add_war_support = 0.08
+				add_command_power = 40
+				add_stability = -0.03
+				add_ideas = LOR_northern_command
+			}
+			else = {
+				# Keep Alterac in the fold and secure the mountain passes.
+				ALT = {
+					add_opinion_modifier = { target = LOR modifier = medium_increase }
+				}
+				add_political_power = 60
+				alliance_unity_raise_medium = yes
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_relieve_khaz_modan
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = LOR_the_war_moves_north }
+		relative_position_id = LOR_the_war_moves_north
+		x = 2
+		y = 1
+		cost = 10
+
+		available = { OR = { IRO = { exists = yes } GNO = { exists = yes } } }
+		bypass = { NOT = { OR = { IRO = { exists = yes } GNO = { exists = yes } } } }
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Break the siege of the dwarven realms.
+			add_war_support = 0.05
+			if = {
+				limit = { IRO = { exists = yes } }
+				IRO = {
+					add_manpower = 3000
+					add_equipment_to_stockpile = { type = footman_equipment_1 amount = 250 }
+				}
+			}
+			if = {
+				limit = { GNO = { exists = yes } }
+				GNO = {
+					add_manpower = 2000
+					add_equipment_to_stockpile = { type = footman_equipment_1 amount = 150 }
+				}
+			}
+			alliance_unity_raise_medium = yes
+		}
+	}
+
+	focus = {
+		id = LOR_the_tide_turns
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_hold_hillsbrad focus = LOR_the_alterac_question focus = LOR_relieve_khaz_modan }
+		relative_position_id = LOR_the_war_moves_north
+		x = 0
+		y = 2
+		cost = 14
+
+		# The window opens once the Horde fractures — or, failing that, once the
+		# war has dragged on long enough that the initiative can be seized.
+		available = {
+			OR = {
+				has_global_flag = the_horde_divided
+				date > 598.6.1
+			}
+		}
+
+		ai_will_do = { base = 10 }
+
+		completion_reward = {
+			alliance_unity_raise_major = yes
+			add_war_support = 0.10
+			set_country_flag = lor_counteroffensive_begun
+			# The whole coalition prepares to turn from defence to attack.
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 150 }
+				add_command_power = 40
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_the_great_counteroffensive
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = LOR_the_tide_turns }
+		relative_position_id = LOR_the_tide_turns
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = { base = 10 }
+
+		completion_reward = {
+			# Lordaeron leads the Alliance from the defensive into the drive south.
+			add_ideas = LOR_the_counteroffensive
+			add_war_support = 0.05
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 200 }
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_liberate_the_south
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		prerequisite = { focus = LOR_the_great_counteroffensive }
+		relative_position_id = LOR_the_great_counteroffensive
+		x = -2
+		y = 1
+		cost = 14
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Retake the lands the Horde overran and rearm Stormwind's exiles.
+			add_war_support = 0.05
+			if = {
+				limit = { STO = { exists = yes } }
+				STO = {
+					add_manpower = 4000
+					add_equipment_to_stockpile = { type = footman_equipment_1 amount = 300 }
+					add_equipment_to_stockpile = { type = archer_equipment_1 amount = 150 }
+				}
+			}
+			alliance_unity_raise_medium = yes
+		}
+	}
+
+	focus = {
+		id = LOR_the_road_to_blackrock
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_the_great_counteroffensive }
+		relative_position_id = LOR_the_great_counteroffensive
+		x = 2
+		y = 1
+		cost = 18
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Set the Alliance's sights on the heart of the Horde.
+			add_war_support = 0.10
+			add_command_power = 60
+			set_country_flag = lor_marching_on_blackrock
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 180 }
+			}
+		}
+	}
 }
