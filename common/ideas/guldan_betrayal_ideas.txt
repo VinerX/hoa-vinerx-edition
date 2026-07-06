@@ -1,0 +1,87 @@
+# ============================================================
+# Gul'dan's Betrayal — crisis & opportunity spirits (Second War)
+#
+# Applied by guldan_betrayal_resolve when Stormreaver (and, at low Warchief
+# Authority, further clans) abandon the Horde. The remaining Horde suffers a
+# "Horde Divided" crisis scaled by severity; defecting clans turn inward; and
+# the Alliance gets a window of opportunity scaled by Alliance Unity.
+# ============================================================
+
+ideas = {
+
+	country = {
+
+		# --- Remaining Horde: the front buckles (severity tiers) ---
+		horde_the_horde_divided_mild = {
+			picture = generic_horde_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				planning_speed = -0.10
+				army_org_factor = -0.05
+				land_reinforce_rate = -0.05
+				supply_consumption_factor = 0.05
+			}
+		}
+
+		horde_the_horde_divided_moderate = {
+			picture = generic_horde_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				planning_speed = -0.20
+				max_planning_factor = -0.10
+				army_org_factor = -0.10
+				land_reinforce_rate = -0.10
+				supply_consumption_factor = 0.10
+				army_morale_factor = -0.05
+			}
+		}
+
+		horde_the_horde_divided_severe = {
+			picture = generic_horde_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				planning_speed = -0.30
+				max_planning_factor = -0.15
+				army_org_factor = -0.15
+				land_reinforce_rate = -0.15
+				supply_consumption_factor = 0.15
+				army_morale_factor = -0.10
+				army_attack_factor = -0.05
+				war_support_factor = -0.10
+			}
+		}
+
+		# --- Defecting clan: turned inward, no longer wages the Horde's war ---
+		guldan_clan_infighting = {
+			picture = generic_horde_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				planning_speed = -0.30
+				army_org_factor = -0.20
+				land_reinforce_rate = -0.20
+				supply_consumption_factor = 0.20
+				war_support_factor = -0.15
+				political_power_gain = -0.10
+			}
+		}
+
+		# --- Alliance: the enemy is divided (opportunity window) ---
+		alliance_the_enemy_is_divided = {
+			picture = alliance_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				planning_speed = 0.20
+				max_planning_factor = 0.10
+				army_org_factor = 0.05
+				land_reinforce_rate = 0.05
+				army_attack_factor = 0.05
+				supply_consumption_factor = -0.05
+			}
+		}
+	}
+}
