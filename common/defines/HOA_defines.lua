@@ -298,3 +298,18 @@ NDefines.NIndustrialOrganisation.DEFAULT_INITIAL_TASK_CAPACITY = 0				          
 NDefines.NIndustrialOrganisation.DEFAULT_INITIAL_POLICY_ATTACH_COST = 25		            -- Default start attach cost in PP for policies
 NDefines.NIndustrialOrganisation.DEFAULT_INITIAL_ATTACH_POLICY_COOLDOWN = 180	            -- Default start cooldown in days after attaching a policy
 NDefines.NIndustrialOrganisation.LEGACY_COST_FACTOR_SCALE = 1.0					            -- Multiplier to use when legacy Designer cost factors is applied to MIOs (<IdeaGroup>_cost_factor)
+--------------------------------------------------------------------------------
+-- Naval Domination Rework (intent integrated additively, HOA rebuild)
+-- Source mod 3734272971 shipped a FULL 1.17 00_defines.lua that overrode 1.18.3
+-- defines and MISSED newer naval defines -> engine read them as 0 -> the naval AI
+-- (set_as_reserve_fleet_command) hit EXCEPTION_INT_DIVIDE_BY_ZERO around 595.09.
+-- We instead apply ONLY its meaningful naval tweaks here, leaving all other
+-- 1.18.3 defines intact. Key intent: fewer ships needed to control a sea zone
+-- (DOMINANCE_CONTROLLED_THRESHOLD_RATIO 0.60 -> 0.51).
+--------------------------------------------------------------------------------
+NDefines.NNavy.DOMINANCE_CONTROLLED_THRESHOLD_RATIO = 0.51   -- was 0.60: need 51% of dominance to control a sea region
+NDefines.NNavy.SHIP_SUPPORT_NEED_FACTOR = 0.12               -- was 0.10
+NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.08         -- was 0.05
+NDefines.NNavy.COMBAT_MIN_HIT_CHANCE = 0.02                  -- was 0.005
+NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 35              -- was 60
+NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 5          -- was 4
