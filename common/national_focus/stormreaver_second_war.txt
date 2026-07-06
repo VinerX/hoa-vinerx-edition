@@ -1,3 +1,4 @@
+#!gfx:interface\hoa_focus.gfx
 focus_tree = {
 	id = stormreaver_second_war
 	country = {
@@ -15,10 +16,196 @@ focus_tree = {
 	shared_focus = develop_the_country
 	shared_focus = arming_the_nation
 
+	########################################
+	# PHASE I: Foundation of the Stormreavers
+	########################################
+
+	focus = {
+		id = SRC_sw_outcasts_united
+		icon = GFX_focus_call_the_clans
+		cost = 7
+		x = 28
+		y = 0
+
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.05
+			add_popularity = {
+				ideology = fel
+				popularity = 0.03
+			}
+			add_manpower = 1000
+		}
+	}
+
+	focus = {
+		id = SRC_sw_clan_of_warlocks
+		icon = GFX_focus_hun_assassinate_horthy
+		cost = 14
+		prerequisite = { focus = SRC_sw_outcasts_united }
+		x = 28
+		y = 1
+
+		completion_reward = {
+			add_ideas = SRC_clan_of_warlocks
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_stability = -0.03
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.15
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_shadow_in_the_horde
+		icon = GFX_goal_generic_secret_weapon
+		cost = 21
+		prerequisite = { focus = SRC_sw_clan_of_warlocks }
+		x = 28
+		y = 2
+
+		completion_reward = {
+			set_country_flag = SRC_shadow_council_reborn
+			add_political_power = 75
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_stability = -0.05
+			add_tech_bonus = {
+				name = assassins_den_technology
+				bonus = 0.25
+				uses = 1
+				category = assassins_den_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.15
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_medivhs_whispers
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 14
+		prerequisite = { focus = SRC_sw_outcasts_united }
+		x = 29
+		y = 1
+
+		completion_reward = {
+			set_country_flag = SRC_medivh_vision_remembered
+			add_political_power = 25
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.25
+				uses = 1
+				category = decryption_technology
+			}
+			add_tech_bonus = {
+				name = encryption_technology
+				bonus = 0.25
+				uses = 1
+				category = encryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_the_tombs_call
+		icon = GFX_focus_the_dark_portal
+		cost = 21
+		prerequisite = { focus = SRC_sw_medivhs_whispers }
+		x = 29
+		y = 2
+
+		completion_reward = {
+			set_country_flag = SRC_haunted_by_tomb
+			add_ideas = SRC_call_of_the_tomb
+			add_stability = -0.03
+			add_war_support = -0.05
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.15
+			}
+			add_tech_bonus = {
+				name = navigator_technology
+				bonus = 0.15
+				uses = 1
+				category = navigator_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_doomhammers_overseers
+		icon = GFX_focus_blackrock_banner
+		cost = 14
+		prerequisite = { focus = SRC_sw_outcasts_united }
+		x = 30
+		y = 1
+
+		completion_reward = {
+			add_ideas = SRC_horde_overseers
+			add_political_power = -25
+			add_stability = -0.05
+			add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+			if = {
+				limit = { BRC = { exists = yes } }
+				BRC = {
+					add_breakthrough_progress = {
+						specialization = specialization_intelligence
+						value = 0.10
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_agents_among_overseers
+		icon = GFX_goal_generic_improve_relations
+		cost = 21
+		prerequisite = { focus = SRC_sw_doomhammers_overseers }
+		x = 30
+		y = 2
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SRC_horde_overseers
+				add_idea = SRC_infiltrated_overseers
+			}
+			add_popularity = {
+				ideology = fel
+				popularity = 0.03
+			}
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.25
+				uses = 1
+				category = decryption_technology
+			}
+			custom_effect_tooltip = SRC_sw_agents_among_overseers_tt
+		}
+	}
+
+	########################################
+	# EXISTING CORE: Gul'dan's Bargain (modified with new prerequisites)
+	########################################
+
 	focus = {
 		id = SRC_sw_guldans_bargain
 		icon = GFX_orc_warlock
 		cost = 5
+		prerequisite = { focus = SRC_sw_shadow_in_the_horde }
+		prerequisite = { focus = SRC_sw_the_tombs_call }
 		x = 34
 		y = 0
 
@@ -270,6 +457,316 @@ focus_tree = {
 		}
 	}
 
+	########################################
+	# PHASE II: Covert Fel Operations
+	# Secret from Doomhammer - hidden from BRC
+	########################################
+
+	focus = {
+		id = SRC_sw_hidden_fel_rituals
+		icon = GFX_goal_generic_secret_weapon
+		cost = 21
+		prerequisite = { focus = SRC_sw_forge_stormreaver }
+		x = 29
+		y = 3
+
+		completion_reward = {
+			set_country_flag = SRC_covert_fel_operations
+			add_ideas = SRC_hidden_fel_rituals
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_stability = -0.05
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_fel_sanctums
+		icon = GFX_goal_generic_build_fort
+		cost = 30
+		prerequisite = { focus = SRC_sw_hidden_fel_rituals }
+		x = 29
+		y = 4
+
+		completion_reward = {
+			add_ideas = SRC_fel_sanctums
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_stability = -0.05
+			22 = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_slave_pens
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 21
+		prerequisite = { focus = SRC_sw_forge_stormreaver }
+		x = 30
+		y = 3
+
+		completion_reward = {
+			add_ideas = SRC_slave_pens
+			add_manpower = 800
+			add_stability = -0.05
+			add_popularity = {
+				ideology = fel
+				popularity = 0.03
+			}
+			if = {
+				limit = {
+					has_country_flag = SRC_covert_fel_operations
+				}
+				custom_effect_tooltip = SRC_sw_slave_pens_secret_tt
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_demonic_arsenal
+		icon = GFX_focus_secret_rearmament
+		cost = 30
+		prerequisite = { focus = SRC_sw_slave_pens }
+		x = 30
+		y = 4
+
+		completion_reward = {
+			army_experience = 25
+			add_tech_bonus = {
+				name = grunt_technology
+				bonus = 0.25
+				uses = 1
+				category = grunt_technology
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				bonus = 0.25
+				uses = 1
+				category = warlock_technology
+			}
+			hidden_effect = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 400
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_shadow_recruitment
+		icon = GFX_goal_generic_major_war
+		cost = 21
+		prerequisite = { focus = SRC_sw_forge_stormreaver }
+		x = 31
+		y = 3
+
+		completion_reward = {
+			set_country_flag = SRC_shadow_network_expanded
+			add_manpower = 600
+			add_popularity = {
+				ideology = fel
+				popularity = 0.03
+			}
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.25
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_warlock_initiates
+		icon = GFX_focus_archimonde_1
+		cost = 30
+		prerequisite = { focus = SRC_sw_shadow_recruitment }
+		x = 31
+		y = 4
+
+		completion_reward = {
+			add_ideas = SRC_warlock_initiates
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+			add_tech_bonus = {
+				name = spellcaster_technology
+				bonus = 0.25
+				uses = 1
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	########################################
+	# PHASE III: Quel'Thalas Campaign
+	# Runestones needed for Tomb raising ritual
+	########################################
+
+	focus = {
+		id = SRC_sw_the_runestone_secret
+		icon = GFX_goal_generic_improve_relations
+		cost = 14
+		prerequisite = { focus = SRC_sw_warlock_gathering }
+		x = 39
+		y = 1
+
+		available = {
+			has_war_with = QUE
+		}
+
+		completion_reward = {
+			set_country_flag = SRC_runestones_discovered
+			add_political_power = 50
+			add_popularity = {
+				ideology = fel
+				popularity = 0.03
+			}
+			add_tech_bonus = {
+				name = spellcaster_technology
+				bonus = 0.25
+				uses = 1
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_altar_of_storms
+		icon = GFX_focus_wonderweapons
+		cost = 21
+		prerequisite = { focus = SRC_sw_the_runestone_secret }
+		x = 39
+		y = 2
+
+		completion_reward = {
+			set_country_flag = SRC_altars_of_storms
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				bonus = 0.5
+				uses = 1
+				category = warlock_technology
+			}
+			if = {
+				limit = { has_country_flag = SRC_covert_fel_operations }
+				custom_effect_tooltip = SRC_sw_altar_of_storms_boost_tt
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_power_of_the_runestones
+		icon = GFX_goal_generic_secret_weapon
+		cost = 30
+		prerequisite = { focus = SRC_sw_altar_of_storms }
+		x = 39
+		y = 3
+
+		completion_reward = {
+			set_country_flag = SRC_has_runestones
+			add_ideas = SRC_runestone_power
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_ban_dinoriel_deception
+		icon = GFX_goal_generic_improve_relations
+		cost = 14
+		prerequisite = { focus = SRC_sw_the_runestone_secret }
+		x = 40
+		y = 2
+
+		completion_reward = {
+			set_country_flag = SRC_deceived_doomhammer
+			add_political_power = 50
+			add_stability = -0.03
+			add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+			if = {
+				limit = { BRC = { exists = yes } }
+				BRC = { country_event = { id = SRC_expanded.5 days = 1 } }
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_dragonmaw_watchdogs
+		icon = GFX_focus_blackrock_banner
+		cost = 21
+		prerequisite = { focus = SRC_sw_ban_dinoriel_deception }
+		x = 40
+		y = 3
+
+		completion_reward = {
+			set_country_flag = SRC_dragonmaw_overseers
+			add_ideas = SRC_dragonmaw_watch
+			add_political_power = -15
+			if = {
+				limit = { DMC = { exists = yes } }
+				add_opinion_modifier = {
+					target = DMC
+					modifier = SRC_suspicious_activity
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_three_days_deadline
+		icon = GFX_goal_generic_position_armies
+		cost = 14
+		prerequisite = { focus = SRC_sw_dragonmaw_watchdogs }
+		x = 40
+		y = 4
+
+		completion_reward = {
+			set_country_flag = SRC_deadline_set
+			country_event = { id = SRC_expanded.6 }
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_war_support = -0.05
+		}
+	}
+
+	########################################
+	# Doomhammer's Ultimatum (existing - unchanged)
+	########################################
+
 	focus = {
 		id = SRC_sw_doomhammers_ultimatum
 		icon = GFX_focus_blackrock_banner
@@ -285,6 +782,10 @@ focus_tree = {
 			country_event = { id = stormreaver_second_war.2 }
 		}
 	}
+
+	########################################
+	# THE FORK: Loyalty vs Betrayal (existing)
+	########################################
 
 	focus = {
 		id = SRC_sw_serve_the_warchief
@@ -308,6 +809,104 @@ focus_tree = {
 			}
 		}
 	}
+
+	focus = {
+		id = SRC_sw_secret_agenda
+		icon = GFX_goal_generic_attack_allies
+		cost = 5
+		prerequisite = { focus = SRC_sw_doomhammers_ultimatum }
+		mutually_exclusive = { focus = SRC_sw_serve_the_warchief }
+		x = 36
+		y = 5
+
+		completion_reward = {
+			set_country_flag = SRC_secret_agenda
+			add_popularity = {
+				ideology = fel
+				popularity = 0.10
+			}
+			add_ideas = SRC_guldans_horde
+			add_stability = -0.05
+		}
+	}
+
+	########################################
+	# PHASE IV: Expanded Loyalty Path
+	########################################
+
+	focus = {
+		id = SRC_sw_clan_unity
+		icon = GFX_focus_call_the_clans
+		cost = 21
+		prerequisite = { focus = SRC_sw_serve_the_warchief }
+		x = 30
+		y = 6
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SRC_struggle_for_power
+				add_idea = SRC_struggle_for_power_3
+			}
+			add_stability = 0.10
+			add_war_support = 0.05
+			add_manpower = 1000
+		}
+	}
+
+	focus = {
+		id = SRC_sw_honor_bound
+		icon = GFX_goal_generic_blood_brotherhood
+		cost = 30
+		prerequisite = { focus = SRC_sw_clan_unity }
+		x = 29
+		y = 7
+
+		completion_reward = {
+			add_ideas = SRC_blood_oath
+			add_stability = 0.05
+			country_event = { id = SRC_expanded.1 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_stormreaver_legacy
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 30
+		prerequisite = { focus = SRC_sw_honor_bound }
+		x = 29
+		y = 8
+
+		completion_reward = {
+			add_ideas = SRC_stormreaver_legacy
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_manpower = 1500
+		}
+	}
+
+	focus = {
+		id = SRC_sw_for_the_horde
+		icon = GFX_focus_blackrock_banner
+		cost = 14
+		prerequisite = { focus = SRC_sw_stormreaver_legacy }
+		prerequisite = { focus = SRC_sw_loyal_to_the_end }
+		x = 30
+		y = 9
+
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			add_manpower = 2000
+			add_political_power = 100
+			army_experience = 20
+		}
+	}
+
+	# Existing loyalty path focuses
 
 	focus = {
 		id = SRC_sw_horde_war_machine
@@ -366,25 +965,89 @@ focus_tree = {
 		}
 	}
 
+	########################################
+	# PHASE V: Expanded Betrayal Path
+	########################################
+
 	focus = {
-		id = SRC_sw_secret_agenda
+		id = SRC_sw_kiljaedens_promise
 		icon = GFX_goal_generic_attack_allies
-		cost = 5
-		prerequisite = { focus = SRC_sw_doomhammers_ultimatum }
-		mutually_exclusive = { focus = SRC_sw_serve_the_warchief }
-		x = 36
-		y = 5
+		cost = 21
+		prerequisite = { focus = SRC_sw_secret_agenda }
+		x = 37
+		y = 6
 
 		completion_reward = {
-			set_country_flag = SRC_secret_agenda
+			add_ideas = SRC_dark_patron
 			add_popularity = {
 				ideology = fel
 				popularity = 0.10
 			}
-			add_ideas = SRC_guldans_horde
 			add_stability = -0.05
+			country_event = { id = SRC_expanded.2 }
 		}
 	}
+
+	focus = {
+		id = SRC_sw_guldans_chosen
+		icon = GFX_goal_generic_improve_relations
+		cost = 30
+		prerequisite = { focus = SRC_sw_kiljaedens_promise }
+		x = 35
+		y = 7
+
+		completion_reward = {
+			add_ideas = SRC_guldans_chosen
+			add_manpower = 500
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_eliminate_overseers
+		icon = GFX_goal_generic_special_operation
+		cost = 14
+		prerequisite = { focus = SRC_sw_secret_agenda }
+		x = 38
+		y = 6
+
+		completion_reward = {
+			country_event = { id = SRC_expanded.3 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_fel_fleet_preparations
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 30
+		prerequisite = { focus = SRC_sw_eliminate_overseers }
+		x = 38
+		y = 7
+
+		completion_reward = {
+			set_country_flag = SRC_fleet_ready
+			add_ideas = SRC_fel_fleet
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.25
+			}
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.5
+				uses = 1
+				category = naval_technology
+			}
+		}
+	}
+
+	# Existing betrayal path focuses
 
 	focus = {
 		id = SRC_sw_whispers_of_the_deep
@@ -450,6 +1113,131 @@ focus_tree = {
 		}
 	}
 
+	########################################
+	# PHASE VI: Naval Branch
+	# Stormreavers were the maritime clan
+	########################################
+
+	focus = {
+		id = SRC_sw_secret_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 14
+		prerequisite = { focus = SRC_sw_twilights_hammer }
+		x = 41
+		y = 2
+
+		available = {
+			has_country_flag = SRC_secret_agenda
+		}
+
+		completion_reward = {
+			set_country_flag = SRC_shipyards_built
+			if = {
+				limit = { 317 = { is_owned_by = SRC } }
+				317 = {
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { 317 = { is_owned_by = SRC } } }
+				38 = {
+					add_building_construction = {
+						type = naval_base
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.25
+			}
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.25
+				uses = 1
+				category = naval_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_giant_turtles
+		icon = GFX_goal_generic_protect_against_storms
+		cost = 21
+		prerequisite = { focus = SRC_sw_secret_shipyards }
+		x = 41
+		y = 3
+
+		completion_reward = {
+			add_ideas = SRC_giant_turtles
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.5
+				uses = 1
+				category = naval_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_fel_powered_fleet
+		icon = GFX_goal_generic_major_naval_build_up
+		cost = 30
+		prerequisite = { focus = SRC_sw_giant_turtles }
+		x = 41
+		y = 4
+
+		completion_reward = {
+			navy_experience = 30
+			add_ideas = SRC_fel_fleet
+			add_tech_bonus = {
+				name = naval_cannon_technology
+				bonus = 0.5
+				uses = 1
+				category = naval_cannon_technology
+			}
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.5
+				uses = 1
+				category = naval_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_sea_warlocks
+		icon = GFX_focus_archimonde_1
+		cost = 21
+		prerequisite = { focus = SRC_sw_secret_shipyards }
+		x = 42
+		y = 3
+
+		completion_reward = {
+			navy_experience = 20
+			add_ideas = SRC_sea_warlocks
+			add_doctrine_cost_reduction = {
+				name = nav_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+
+	########################################
+	# The Great Betrayal & Tomb (existing, modified)
+	########################################
+
 	focus = {
 		id = SRC_sw_the_great_betrayal
 		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
@@ -479,6 +1267,115 @@ focus_tree = {
 
 		completion_reward = {
 			country_event = { id = stormreaver_second_war.4 }
+		}
+	}
+
+	########################################
+	# PHASE VII: Post-Tomb Survival
+	# What happens after Gul'dan's death
+	########################################
+
+	focus = {
+		id = SRC_sw_remnants_of_the_clan
+		icon = GFX_goal_generic_defeat_enemy
+		cost = 14
+		prerequisite = { focus = SRC_sw_tomb_of_sargeras }
+		x = 34
+		y = 11
+
+		available = {
+			has_country_flag = SRC_guldan_dead
+		}
+
+		completion_reward = {
+			add_stability = 0.15
+			add_war_support = 0.10
+			add_political_power = 100
+			country_event = { id = SRC_expanded.7 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_rise_of_gorefiend
+		icon = GFX_goal_generic_secret_weapon
+		cost = 21
+		prerequisite = { focus = SRC_sw_remnants_of_the_clan }
+		x = 33
+		y = 12
+
+		available = {
+			has_character = SRC_terongor
+		}
+
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 75
+			country_event = { id = SRC_expanded.8 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_the_skull_of_guldan
+		icon = GFX_focus_wonderweapons
+		cost = 30
+		prerequisite = { focus = SRC_sw_rise_of_gorefiend }
+		x = 33
+		y = 13
+
+		completion_reward = {
+			add_ideas = SRC_skull_of_guldan
+			add_stability = -0.05
+			add_popularity = {
+				ideology = fel
+				popularity = 0.10
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				bonus = 0.5
+				uses = 1
+				category = warlock_technology
+			}
+		}
+	}
+
+	focus = {
+		id = SRC_sw_draenor_exodus
+		icon = GFX_focus_the_dark_portal
+		cost = 14
+		prerequisite = { focus = SRC_sw_remnants_of_the_clan }
+		mutually_exclusive = { focus = SRC_sw_rise_of_gorefiend }
+		x = 35
+		y = 12
+
+		completion_reward = {
+			add_ideas = SRC_draenor_remnants
+			add_stability = 0.10
+			add_political_power = 50
+			country_event = { id = SRC_expanded.9 }
+		}
+	}
+
+	focus = {
+		id = SRC_sw_dark_horde_reborn
+		icon = GFX_goal_generic_major_war
+		cost = 14
+		prerequisite = { focus = SRC_sw_the_skull_of_guldan }
+		x = 33
+		y = 14
+
+		completion_reward = {
+			add_ideas = SRC_dark_horde_reborn
+			add_stability = -0.10
+			add_war_support = 0.15
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			country_event = { id = SRC_expanded.10 }
 		}
 	}
 }
