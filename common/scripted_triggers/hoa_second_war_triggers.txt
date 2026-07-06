@@ -24,11 +24,13 @@ is_second_war_horde_clan = {
 	}
 }
 
-# TRUE if ROOT is currently at war with any member of the Second War Horde.
+# TRUE if the country in scope is currently at war with any member of the
+# Second War Horde. Uses PREV so it resolves to the calling country even when
+# invoked in an ally scope, e.g. `AER = { is_fighting_second_war_horde = yes }`.
 # Use in `available`/`bypass` instead of `has_war_with = BRC` etc.
 is_fighting_second_war_horde = {
 	any_country = {
 		is_second_war_horde_clan = yes
-		has_war_with = ROOT
+		has_war_with = PREV
 	}
 }
