@@ -63,6 +63,9 @@ focus_tree = {
 			add_political_power = -35
 			alliance_unity_raise_major = yes
 			LOR_second_war_proto_lower_overextension = yes
+			# Lordaeron becomes the political heart of the coalition.
+			add_ideas = LOR_the_alliance_of_lordaeron
+			add_command_power = 50
 			country_event = { id = lordaeron_second_war_proto.2 }
 		}
 	}
@@ -168,6 +171,13 @@ focus_tree = {
 			LOR_second_war_proto_raise_alliance_unity = yes
 			add_command_power = 25
 			add_war_support = 0.03
+			# Coalition logistics come online — and the front-line realms are resupplied.
+			add_ideas = LOR_allied_war_logistics
+			every_country = {
+				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
+				add_equipment_to_stockpile = { type = footman_equipment_1 amount = 200 }
+				add_equipment_to_stockpile = { type = archer_equipment_1 amount = 100 }
+			}
 		}
 	}
 
@@ -198,6 +208,11 @@ focus_tree = {
 					idea = LOR_stromgarde_reinforcements_received
 					days = 120
 				}
+				# Real reinforcements march to Trollbane's front.
+				add_manpower = 5000
+				add_equipment_to_stockpile = { type = footman_equipment_1 amount = 400 }
+				add_equipment_to_stockpile = { type = pikeman_equipment_1 amount = 250 }
+				add_equipment_to_stockpile = { type = archer_equipment_1 amount = 200 }
 			}
 		}
 	}
@@ -228,6 +243,8 @@ focus_tree = {
 				idea = LOR_preserved_royal_reserves
 				days = 120
 			}
+			# A disciplined defensive posture along the northern line.
+			add_ideas = LOR_the_northern_reserve
 		}
 	}
 
@@ -248,6 +265,37 @@ focus_tree = {
 			alliance_unity_raise_major = yes
 			add_war_support = 0.05
 			add_political_power = 35
+			# Lordaeron takes command of the coalition's war effort.
+			add_ideas = LOR_grand_coalition
+			# A coordinated offensive across the whole Alliance, its reach
+			# scaled by how united the coalition is.
+			if = {
+				limit = { alliance_unity_high = yes }
+				every_country = {
+					limit = { is_in_faction_with = ROOT }
+					add_timed_idea = { idea = alliance_coordinated_offensive days = 180 }
+				}
+			}
+			else_if = {
+				limit = { alliance_unity_medium = yes }
+				every_country = {
+					limit = { is_in_faction_with = ROOT }
+					add_timed_idea = { idea = alliance_coordinated_offensive days = 100 }
+				}
+			}
+			else = {
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 60 }
+			}
+			# If Gul'dan's betrayal has already shattered the Horde, this is
+			# the moment to press the counteroffensive home.
+			if = {
+				limit = { has_global_flag = the_horde_divided }
+				add_war_support = 0.05
+				every_country = {
+					limit = { is_in_faction_with = ROOT }
+					add_command_power = 50
+				}
+			}
 		}
 	}
 
@@ -268,6 +316,8 @@ focus_tree = {
 			LOR_second_war_proto_lower_overextension = yes
 			add_political_power = 50
 			add_stability = 0.02
+			# The crown steadies a realm strained by war.
+			add_ideas = LOR_the_crown_endures
 		}
 	}
 }

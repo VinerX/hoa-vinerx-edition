@@ -1,0 +1,91 @@
+# ============================================================
+# Lordaeron — Second War "war console" spirits
+#
+# Lordaeron leads the Alliance of Lordaeron; its focuses should steer the
+# whole coalition's war effort, not just hand out political power. These
+# national spirits give Terenas' court real, permanent weight, and are
+# granted by the reworked LOR_second_war focus tree.
+# ============================================================
+
+ideas = {
+
+	country = {
+
+		# From LOR_the_council_of_lordaeron — the coalition's political core.
+		LOR_the_alliance_of_lordaeron = {
+			picture = alliance_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				political_power_gain = 0.10
+				command_power_gain_mult = 0.20
+				stability_factor = 0.05
+				high_command_cost_factor = -0.10
+			}
+		}
+
+		# From LOR_allied_logistics — coalition supply and production.
+		LOR_allied_war_logistics = {
+			picture = generic_construction
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				supply_consumption_factor = -0.10
+				production_speed_arms_factory_factor = 0.10
+				line_change_production_efficiency_factor = 0.10
+				army_org_factor = 0.05
+			}
+		}
+
+		# From LOR_hold_the_northern_reserve — the defensive posture.
+		LOR_the_northern_reserve = {
+			picture = generic_morale_bonus
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				army_defence_factor = 0.10
+				max_dig_in = 2
+				dig_in_speed_factor = 0.20
+				army_org_regain = 0.10
+			}
+		}
+
+		# From LOR_a_common_cause — Lordaeron directs the coalition offensive.
+		LOR_grand_coalition = {
+			picture = alliance_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				planning_speed = 0.15
+				max_planning_factor = 0.05
+				army_org_factor = 0.05
+				army_morale_factor = 0.05
+			}
+		}
+
+		# From LOR_burden_of_the_crown — the crown steadies the realm.
+		LOR_the_crown_endures = {
+			picture = generic_political_support
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				stability_factor = 0.10
+				political_power_gain = 0.10
+				war_support_factor = 0.05
+			}
+		}
+
+		# Applied to every faction member by LOR_a_common_cause: a coordinated
+		# push, scaled in duration/strength by Alliance Unity at the time.
+		alliance_coordinated_offensive = {
+			picture = alliance_idea
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				army_attack_factor = 0.05
+				planning_speed = 0.15
+				land_reinforce_rate = 0.05
+			}
+		}
+	}
+}
