@@ -44,6 +44,33 @@ join_grand_alliance = {
 			}
 		}
 		alliance_unity_raise_medium = yes
+		# If the Second War is already raging (a core Alliance member is at war
+		# with the Horde) and the new member is not yet in it, the Horde — the
+		# historical aggressor — extends the war to them. This reliably draws the
+		# fresh member into the ongoing conflict. If the war has NOT started yet,
+		# the member simply joins in peace and is called in defensively later.
+		if = {
+			limit = {
+				NOT = { is_fighting_second_war_horde = yes }
+				OR = {
+					STO = { is_fighting_second_war_horde = yes }
+					LOR = { is_fighting_second_war_horde = yes }
+				}
+			}
+			if = {
+				limit = { BRC = { exists = yes is_faction_leader = yes } }
+				BRC = { declare_war_on = { target = event_target:grand_alliance_joiner type = annex_everything } }
+			}
+			else = {
+				random_country = {
+					limit = {
+						is_second_war_horde_clan = yes
+						is_faction_leader = yes
+					}
+					declare_war_on = { target = event_target:grand_alliance_joiner type = annex_everything }
+				}
+			}
+		}
 	}
 }
 
