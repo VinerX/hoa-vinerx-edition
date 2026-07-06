@@ -482,7 +482,7 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
                 for j in range(i + 1, len(tree_foci_list)):
                     fid_a, (xa, ya) = tree_foci_list[i]
                     fid_b, (xb, yb) = tree_foci_list[j]
-                    if abs(xa - xb) <= 1 and abs(ya - yb) <= 1:
+                    if abs(xa - xb) <= 1 and abs(ya - yb) <= 1 and not (xa == xb and abs(ya - yb) == 1):
                         reported_pairs.add((fid_a, fid_b))
                         errors.append(
                             f"[focus-collision] {r}: focus tree '{tree_id}' overlapping at "
@@ -501,7 +501,7 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
                     if (fid_a, fid_b) in reported_pairs:
                         continue
                     pa, pb = abs_positions[fid_a], abs_positions[fid_b]
-                    if abs(pa[0] - pb[0]) <= 1 and abs(pa[1] - pb[1]) <= 1:
+                    if abs(pa[0] - pb[0]) <= 1 and abs(pa[1] - pb[1]) <= 1 and not (pa[0] == pb[0] and abs(pa[1] - pb[1]) == 1):
                         warnings.append(
                             f"[focus-nearby] {r}: focus tree '{tree_id}' nearby at "
                             f"(x={pa[0]}, y={pa[1]}) '{fid_a}' and "
