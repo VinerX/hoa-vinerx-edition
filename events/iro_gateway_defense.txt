@@ -1,0 +1,136 @@
+add_namespace = iro_gateway_defense
+
+country_event = {
+	id = iro_gateway_defense.1
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_ai = yes
+				OR = {
+					tag = IRO
+					tag = DUN
+				}
+			}
+
+			if = {
+				limit = {
+					NOT = { 476 = { is_controlled_by_ROOT_or_ally = yes } }
+				}
+				clr_country_flag = dun_algaz_gate_guard_active
+				476 = {
+					remove_dynamic_modifier = { modifier = IRO_dun_algaz_gate_alert }
+				}
+			}
+			else_if = {
+				limit = {
+					has_war = yes
+					476 = { is_controlled_by_ROOT_or_ally = yes }
+					OR = {
+						1048 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+						3586 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+						3588 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+						3590 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+						5931 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+						5932 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+						6073 = {
+							CONTROLLER = {
+								ROOT = { has_war_with = PREV }
+							}
+						}
+					}
+					NOT = { has_country_flag = dun_algaz_gate_guard_active }
+				}
+				set_country_flag = dun_algaz_gate_guard_active
+				476 = {
+					add_dynamic_modifier = { modifier = IRO_dun_algaz_gate_alert }
+				}
+				if = {
+					limit = { tag = IRO }
+					load_oob = "IRO_dun_algaz_gate_guard"
+				}
+				if = {
+					limit = { tag = DUN }
+					load_oob = "DUN_dun_algaz_gate_guard"
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = dun_algaz_gate_guard_active
+					OR = {
+						has_war = no
+						NOT = {
+							OR = {
+								1048 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+								3586 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+								3588 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+								3590 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+								5931 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+								5932 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+								6073 = {
+									CONTROLLER = {
+										ROOT = { has_war_with = PREV }
+									}
+								}
+							}
+						}
+					}
+				}
+				clr_country_flag = dun_algaz_gate_guard_active
+				476 = {
+					remove_dynamic_modifier = { modifier = IRO_dun_algaz_gate_alert }
+				}
+			}
+		}
+	}
+}
