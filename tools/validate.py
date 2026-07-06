@@ -68,6 +68,8 @@ RE_EVENT_REF = re.compile(
 RE_TOOLTIP_REF = re.compile(r"\bcustom_(?:effect|trigger)_tooltip\s*=\s*([A-Za-z0-9_.']+)")
 RE_LOC_KEY = re.compile(r"^\s*([^\s:#][^:]*?)\s*:\d+\s", re.MULTILINE)
 RE_IDEOLOGY = re.compile(r"\b(?:ruling_party|ideology)\s*=\s*([A-Za-z_]+)")
+RE_FOCUS_COORD = re.compile(r"\b(x|y)\s*=\s*(-?\d+)")
+RE_FOCUS_PREREQ = re.compile(r"\bprerequisite\s*=\s*\{([^}]*)\}")
 
 VALID_IDEOLOGIES = {"alliance", "horde", "death", "fel", "old_gods", "titans", "neutral"}
 INVALID_IDEOLOGY_TOKENS = {"democratic", "fascism", "communism", "neutrality", "nazism", "despotic"}
@@ -325,6 +327,183 @@ def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
                 trigger_keys.add(name)
 
     return effect_keys, trigger_keys
+
+
+
+def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings: list[str]) -> None:
+    """
+    Parse all focus_tree blocks, resolve absolute (x,y) for every focus
+    in each tree (including shared_focus subtrees), and report overlaps.
+    """
+    national_focus_dir = os.path.join(root, "common", "national_focus")
+    if not os.path.isdir(national_focus_dir):
+        return
+    focus_files = list(iter_files(national_focus_dir, SCRIPT_EXT))
+
+    focus_data: dict[str, dict] = {}
+
+    for path in focus_files:
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        r = rel(root, path)
+
+        for m in re.finditer(r"\b(?:focus|shared_focus)\s*=\s*\{", text):
+            open_idx = text.find("{", m.start())
+            if open_idx == -1:
+                continue
+            close_idx = find_matching_brace(text, open_idx)
+            if close_idx == -1:
+                continue
+            body = text[open_idx + 1 : close_idx]
+
+            idm = RE_ID.search(body)
+            if not idm:
+                continue
+            fid = idm.group(1)
+            if fid in FOCUS_REF_NOISE:
+                continue
+
+            x, y = 0, 0
+            relpos = None
+            prereqs: list[str] = []
+
+            xm = re.search(r"\bx\s*=\s*(-?\d+)", body)
+            if xm:
+                x = int(xm.group(1))
+            ym = re.search(r"\by\s*=\s*(-?\d+)", body)
+            if ym:
+                y = int(ym.group(1))
+            rm = RE_RELPOS.search(body)
+            if rm:
+                relpos = rm.group(1)
+            pm = re.search(r"\bprerequisite\s*=\s*\{([^}]*)\}", body)
+            if pm:
+                prereqs = RE_FOCUS_REF.findall(pm.group(1))
+
+            if fid in focus_data:
+                continue
+            focus_data[fid] = {"x": x, "y": y, "relpos": relpos, "prereqs": prereqs, "file": r}
+
+    def _resolve_abs_positions() -> dict[str, tuple[int, int]]:
+        positions: dict[str, tuple[int, int]] = {}
+        for fid, data in focus_data.items():
+            if data["relpos"] is None:
+                positions[fid] = (data["x"], data["y"])
+        changed = True
+        safety = 20
+        while changed and safety > 0:
+            safety -= 1
+            changed = False
+            for fid, data in focus_data.items():
+                if fid in positions:
+                    continue
+                ref = data["relpos"]
+                if ref and ref in positions:
+                    positions[fid] = (
+                        positions[ref][0] + data["x"],
+                        positions[ref][1] + data["y"],
+                    )
+                    changed = True
+        return positions
+
+    abs_positions = _resolve_abs_positions()
+
+    children_of: dict[str, set[str]] = {}
+    for fid, data in focus_data.items():
+        children_of.setdefault(fid, set())
+        for other_id, other_data in focus_data.items():
+            if other_id == fid:
+                continue
+            if other_data["file"] != data["file"]:
+                continue
+            if fid in other_data["prereqs"] or other_data.get("relpos") == fid:
+                children_of[fid].add(other_id)
+
+    for path in focus_files:
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        r = rel(root, path)
+
+        for tree_m in re.finditer(r"\bfocus_tree\s*=\s*\{", text):
+            open_idx = text.find("{", tree_m.start())
+            if open_idx == -1:
+                continue
+            close_idx = find_matching_brace(text, open_idx)
+            if close_idx == -1:
+                continue
+            tree_body = text[open_idx + 1 : close_idx]
+
+            tree_id_m = RE_ID.search(tree_body)
+            if not tree_id_m:
+                continue
+            tree_id = tree_id_m.group(1)
+
+            tree_foci: set[str] = set()
+
+            for fb in extract_named_blocks(tree_body, "focus"):
+                fim = RE_ID.search(fb[0])
+                if fim:
+                    tree_foci.add(fim.group(1))
+            for fb in extract_named_blocks(tree_body, "shared_focus"):
+                fim = RE_ID.search(fb[0])
+                if fim:
+                    tree_foci.add(fim.group(1))
+
+            for refm in RE_SHARED.finditer(tree_body):
+                ref_id = refm.group(1).strip()
+                after = tree_body[refm.end() : refm.end() + 10].strip()
+                if after.startswith("{"):
+                    continue
+                if ref_id in FOCUS_REF_NOISE or ref_id not in focus_data:
+                    continue
+                tree_foci.add(ref_id)
+                queue = [ref_id]
+                while queue:
+                    parent = queue.pop()
+                    for child in children_of.get(parent, set()):
+                        if child not in tree_foci:
+                            tree_foci.add(child)
+                            queue.append(child)
+
+            if len(tree_foci) < 2:
+                continue
+
+            pos_to_foci: dict[tuple[int, int], list[str]] = {}
+            for fid in tree_foci:
+                if fid in abs_positions:
+                    pos = abs_positions[fid]
+                    pos_to_foci.setdefault(pos, []).append(fid)
+
+            for pos, foci in pos_to_foci.items():
+                if len(foci) > 1:
+                    errors.append(
+                        f"[focus-collision] {r}: focus tree '{tree_id}' overlapping at "
+                        f"(x={pos[0]}, y={pos[1]}): {', '.join(sorted(foci))}"
+                    )
+
+            # WARN on cross-file near-collisions (distance <= 1 Manhattan)
+            # Only flag when focuses come from different files — catches
+            # custom-into-shared-branch overlaps without noise from normal
+            # adjacency within a single tree.
+            for fid_a in tree_foci:
+                for fid_b in tree_foci:
+                    if fid_a >= fid_b:
+                        continue
+                    if fid_a not in abs_positions or fid_b not in abs_positions:
+                        continue
+                    if focus_data.get(fid_a, {}).get("file") == focus_data.get(fid_b, {}).get("file"):
+                        continue
+                    pa, pb = abs_positions[fid_a], abs_positions[fid_b]
+                    if abs(pa[0] - pb[0]) <= 1 and abs(pa[1] - pb[1]) <= 1:
+                        warnings.append(
+                            f"[focus-nearby] {r}: focus tree '{tree_id}' nearby at "
+                            f"(x={pa[0]}, y={pa[1]}) '{fid_a}' and "
+                            f"(x={pb[0]}, y={pb[1]}) '{fid_b}'"
+                        )
 
 
 def validate_scripted_constructs(root: str, errors: list[str], known_effect_keys: set[str], known_trigger_keys: set[str]) -> None:
@@ -675,6 +854,7 @@ def main() -> int:
                     )
 
     validate_scripted_constructs(root, errors, known_effect_keys, known_trigger_keys)
+    validate_focus_coordinate_collisions(root, errors, warnings)
     if args.hoi4_smoke:
         run_hoi4_smoke(
             hoi4_exe=args.hoi4_exe,
