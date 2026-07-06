@@ -1,0 +1,354 @@
+add_namespace = dragon_allocation
+
+# Dragon Allocation System — DMC distributes enslaved Red Dragons to Horde allies
+# Uses Warchief Authority for coercion; DMC can refuse at low Authority
+
+# Triggered by DMC decision — Northern Front deployment (aid BRC vs Lordaeron)
+country_event = {
+	id = dragon_allocation.1
+	title = dragon_allocation.1.t
+	desc = dragon_allocation.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.1" }
+
+	# BRC receives the request result
+	option = {
+		name = dragon_allocation.1.option.1
+		trigger = {
+			NOT = { is_in_faction_with = BRC }
+		}
+		add_political_power = 25
+	}
+
+	option = {
+		name = dragon_allocation.1.option.2
+		trigger = {
+			is_in_faction_with = BRC
+			horde_authority_high = yes
+		}
+		DMC = { country_event = { id = dragon_allocation.2 hours = 6 } }
+	}
+
+	option = {
+		name = dragon_allocation.1.option.3
+		trigger = {
+			is_in_faction_with = BRC
+			horde_authority_low = yes
+		}
+		DMC = { country_event = { id = dragon_allocation.3 hours = 6 } }
+	}
+
+	option = {
+		name = dragon_allocation.1.option.4
+		trigger = {
+			is_in_faction_with = BRC
+			horde_authority_medium = yes
+		}
+		DMC = { country_event = { id = dragon_allocation.4 hours = 6 } }
+	}
+}
+
+# DMC event — Warchief demands dragons for Northern Front (high authority)
+country_event = {
+	id = dragon_allocation.2
+	title = dragon_allocation.2.t
+	desc = dragon_allocation.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.2" }
+
+	option = {
+		name = dragon_allocation.2.option.1
+		ai_chance = { factor = 85 }
+		BRC = {
+			add_timed_idea = {
+				idea = DMC_dragon_support_north
+				days = 180
+			}
+			transfer_equipment = {
+				type = fighter_drake_equipment_1
+				amount = 10
+				from = DMC
+			}
+			army_experience = 10
+		}
+		add_timed_idea = {
+			idea = DMC_dragons_deployed_north
+			days = 180
+		}
+		DMC = { add_political_power = 25 }
+	}
+
+	option = {
+		name = dragon_allocation.2.option.2
+		ai_chance = { factor = 15 }
+		BRC = {
+			transfer_equipment = {
+				type = fighter_drake_equipment_1
+				amount = 5
+				from = DMC
+			}
+		}
+		add_timed_idea = {
+			idea = DMC_dragons_deployed_north
+			days = 180
+		}
+		BRC = {
+			set_variable = { warchief_authority value = 50 }
+			horde_authority_sync_faction = yes
+		}
+	}
+}
+
+# DMC event — Warchief demands dragons for Northern Front (low authority — DMC resists)
+country_event = {
+	id = dragon_allocation.3
+	title = dragon_allocation.3.t
+	desc = dragon_allocation.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.3" }
+
+	option = {
+		name = dragon_allocation.3.option.1
+		ai_chance = { factor = 25 }
+		BRC = {
+			add_timed_idea = {
+				idea = DMC_dragon_support_north
+				days = 180
+			}
+			transfer_equipment = {
+				type = fighter_drake_equipment_1
+				amount = 10
+				from = DMC
+			}
+		}
+		add_timed_idea = {
+			idea = DMC_dragons_deployed_north
+			days = 180
+		}
+	}
+
+	option = {
+		name = dragon_allocation.3.option.2
+		ai_chance = { factor = 75 }
+		BRC = {
+			add_political_power = -25
+			set_variable = { warchief_authority value = 30 }
+			horde_authority_sync_faction = yes
+		}
+		add_political_power = 50
+		add_timed_idea = {
+			idea = DMC_dragons_hoarded
+			days = 365
+		}
+	}
+}
+
+# DMC event — Warchief demands dragons for Northern Front (medium authority)
+country_event = {
+	id = dragon_allocation.4
+	title = dragon_allocation.4.t
+	desc = dragon_allocation.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.4" }
+
+	option = {
+		name = dragon_allocation.4.option.1
+		ai_chance = { factor = 55 }
+		BRC = {
+			add_timed_idea = {
+				idea = DMC_dragon_support_north
+				days = 180
+			}
+			transfer_equipment = {
+				type = fighter_drake_equipment_1
+				amount = 8
+				from = DMC
+			}
+			army_experience = 5
+		}
+		add_timed_idea = {
+			idea = DMC_dragons_deployed_north
+			days = 180
+		}
+		BRC = {
+			horde_authority_raise = yes
+		}
+	}
+
+	option = {
+		name = dragon_allocation.4.option.2
+		ai_chance = { factor = 45 }
+		BRC = {
+			transfer_equipment = {
+				type = fighter_drake_equipment_1
+				amount = 4
+				from = DMC
+			}
+		}
+		add_timed_idea = {
+			idea = DMC_dragons_deployed_north
+			days = 180
+		}
+		BRC = {
+			horde_authority_lower = yes
+		}
+	}
+}
+
+# Fleet Raiding — DMC deploys dragons for naval strike against Alliance fleets
+country_event = {
+	id = dragon_allocation.5
+	title = dragon_allocation.5.t
+	desc = dragon_allocation.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.5" }
+
+	option = {
+		name = dragon_allocation.5.option.1
+		trigger = { horde_authority_high = yes }
+		add_timed_idea = {
+			idea = DMC_dragons_raiding_seas
+			days = 180
+		}
+		BRC = {
+			add_timed_idea = {
+				idea = horde_dragons_at_sea
+				days = 180
+			}
+		}
+		every_country = {
+			limit = {
+				OR = { tag = KUL tag = LOR }
+				has_war_with = BRC
+			}
+			add_timed_idea = {
+				idea = KUL_sw_dragonfire_crisis_idea
+				days = 180
+			}
+		}
+	}
+
+	option = {
+		name = dragon_allocation.5.option.2
+		trigger = { horde_authority_low = yes }
+		DMC = {
+			add_political_power = -30
+			BRC = { horde_authority_lower = yes }
+		}
+		add_timed_idea = {
+			idea = DMC_dragons_hoarded
+			days = 365
+		}
+	}
+}
+
+# Siege Support — DMC sends dragons to assist siege operations
+country_event = {
+	id = dragon_allocation.6
+	title = dragon_allocation.6.t
+	desc = dragon_allocation.6.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.6" }
+
+	option = {
+		name = dragon_allocation.6.option.1
+		trigger = { horde_authority_high = yes }
+		BRC = {
+			add_timed_idea = {
+				idea = DMC_dragon_siege_support
+				days = 180
+			}
+			add_command_power = 50
+		}
+		DMC = {
+			add_timed_idea = {
+				idea = DMC_dragons_sieging
+				days = 180
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	option = {
+		name = dragon_allocation.6.option.2
+		trigger = { horde_authority_low = yes }
+		add_political_power = 30
+		add_timed_idea = {
+			idea = DMC_dragons_hoarded
+			days = 365
+		}
+	}
+}
+
+# KUL reaction to dragon naval raids
+country_event = {
+	id = dragon_allocation.7
+	title = dragon_allocation.7.t
+	desc = dragon_allocation.7.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.7" }
+
+	option = {
+		name = dragon_allocation.7.option.1
+		add_war_support = 0.05
+		navy_experience = 25
+		add_timed_idea = {
+			idea = KUL_sw_dragonfire_emergency_idea
+			days = 180
+		}
+		LOR = { country_event = { id = dragon_allocation.8 hours = 12 } }
+	}
+}
+
+# LOR reaction — Alliance scrambles anti-dragon defenses
+country_event = {
+	id = dragon_allocation.8
+	title = dragon_allocation.8.t
+	desc = dragon_allocation.8.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event dragon_allocation.8" }
+
+	option = {
+		name = dragon_allocation.8.option.1
+		add_war_support = 0.03
+		every_country = {
+			limit = {
+				is_in_faction_with = LOR
+				NOT = { tag = LOR }
+				NOT = { tag = KUL }
+			}
+			add_opinion_modifier = {
+				target = LOR
+				modifier = small_increase
+			}
+		}
+	}
+}

@@ -191,3 +191,146 @@ STC_war_contracts = {
 		}
 	}
 }
+
+STC_fleet_delivery = {
+
+	icon = generic_navy_bonus
+
+	allowed = { original_tag = STC }
+
+	visible = {
+		is_in_faction_with = BRC
+		has_country_flag = STC_contracts_taken
+		has_war_with = LOR
+	}
+
+	priority = 15
+
+	STC_deploy_steamwheedle_battleships = {
+		priority = 10
+		cost = 80
+		fire_only_once = yes
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC }
+		visible = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+		}
+		available = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+			NOT = { has_country_flag = STC_battleships_delivered }
+		}
+		days_remove = 1
+		complete_effect = {
+			set_country_flag = STC_battleships_delivered
+			country_event = { id = steamwheedle_fleet.1 }
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	STC_deploy_amani_frigates = {
+		priority = 9
+		cost = 60
+		fire_only_once = yes
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC
+			AMA = { is_in_faction_with = BRC }
+		}
+		visible = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+		}
+		available = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+			NOT = { has_country_flag = STC_amani_frigates_delivered }
+		}
+		days_remove = 1
+		complete_effect = {
+			set_country_flag = STC_amani_frigates_delivered
+			country_event = { id = steamwheedle_fleet.2 }
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	STC_deploy_frostmane_destroyers = {
+		priority = 8
+		cost = 60
+		fire_only_once = yes
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC }
+		visible = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+		}
+		available = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+			NOT = { has_country_flag = STC_frostmane_destroyers_delivered }
+		}
+		days_remove = 1
+		complete_effect = {
+			set_country_flag = STC_frostmane_destroyers_delivered
+			country_event = { id = steamwheedle_fleet.3 }
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	STC_deploy_dreadmaul_battleships = {
+		priority = 7
+		cost = 80
+		fire_only_once = yes
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC }
+		visible = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+		}
+		available = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+			NOT = { has_country_flag = STC_dreadmaul_battleships_delivered }
+		}
+		days_remove = 1
+		complete_effect = {
+			set_country_flag = STC_dreadmaul_battleships_delivered
+			country_event = { id = steamwheedle_fleet.4 }
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	STC_emergency_shipments = {
+		priority = 6
+		cost = 50
+		fire_only_once = no
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC }
+		visible = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+		}
+		available = {
+			is_in_faction_with = BRC
+			has_idea = STC_naval_boom
+			BRC = {
+				has_navy_size = { size < 30 }
+				has_war_with = LOR
+			}
+		}
+		days_remove = 1
+		days_re_enable = 180
+		complete_effect = {
+			BRC = {
+				if = {
+					limit = { has_navy_size = { size < 20 } }
+					country_event = { id = steamwheedle_fleet.5 }
+				}
+				else = {
+					add_political_power = 25
+				}
+			}
+		}
+		ai_will_do = { factor = 10 }
+	}
+}

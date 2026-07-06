@@ -1,0 +1,111 @@
+DMC_dragon_allocation = {
+
+	icon = generic_air_bonus
+
+	allowed = { original_tag = DMC }
+
+	visible = {
+		has_country_flag = DMC_enslaved_dragons
+		has_technology = fighter_drake_tech
+	}
+
+	priority = 5
+
+	DMC_allocate_northern_front = {
+		priority = 10
+		cost = 50
+		fire_only_once = yes
+		icon = generic_air_bonus
+		allowed = { original_tag = DMC }
+		visible = {
+			has_country_flag = DMC_enslaved_dragons
+			is_in_faction_with = BRC
+			BRC = { has_war_with = LOR }
+		}
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			has_equipment = { fighter_drake_equipment_1 > 5 }
+			is_in_faction_with = BRC
+		}
+		days_remove = 1
+		complete_effect = {
+			BRC = { country_event = { id = dragon_allocation.1 } }
+		}
+		ai_will_do = { factor = 15 }
+	}
+
+	DMC_allocate_fleet_raiding = {
+		priority = 9
+		cost = 75
+		fire_only_once = no
+		icon = generic_air_bonus
+		allowed = { original_tag = DMC }
+		visible = {
+			has_country_flag = DMC_enslaved_dragons
+			is_in_faction_with = BRC
+			KUL = { has_war_with = BRC }
+		}
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			has_equipment = { fighter_drake_equipment_1 > 5 }
+			is_in_faction_with = BRC
+			NOT = { has_idea = DMC_dragons_raiding_seas }
+		}
+		days_remove = 1
+		days_re_enable = 180
+		complete_effect = {
+			DMC = { country_event = { id = dragon_allocation.5 } }
+		}
+		ai_will_do = { factor = 10 }
+	}
+
+	DMC_allocate_siege_support = {
+		priority = 8
+		cost = 75
+		fire_only_once = yes
+		icon = generic_air_bonus
+		allowed = { original_tag = DMC }
+		visible = {
+			has_country_flag = DMC_enslaved_dragons
+			is_in_faction_with = BRC
+			LOR = { has_war_with = BRC }
+		}
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			has_equipment = { fighter_drake_equipment_1 > 5 }
+			is_in_faction_with = BRC
+		}
+		days_remove = 1
+		complete_effect = {
+			DMC = { country_event = { id = dragon_allocation.6 } }
+		}
+		ai_will_do = { factor = 8 }
+	}
+
+	DMC_keep_strategic_reserve = {
+		priority = 5
+		cost = 25
+		fire_only_once = no
+		icon = generic_air_bonus
+		allowed = { original_tag = DMC }
+		visible = {
+			has_country_flag = DMC_enslaved_dragons
+		}
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			NOT = { has_idea = DMC_dragons_hoarded }
+		}
+		days_remove = 1
+		days_re_enable = 365
+		complete_effect = {
+			add_political_power = 30
+			add_timed_idea = {
+				idea = DMC_dragons_hoarded
+				days = 365
+			}
+			air_experience = 5
+			BRC = { horde_authority_lower = yes }
+		}
+		ai_will_do = { factor = 5 }
+	}
+}
