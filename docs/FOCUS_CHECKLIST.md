@@ -76,6 +76,22 @@ focus_tree = {
 - [ ] War focuses: prefer robust triggers (e.g. control of a state) over `has_capitulated`
       for nations that reform as refugees — see the Stormwind note in `AGENTS.md`.
 
+## Placeholder icons (fine for now — no art needed)
+
+You cannot add new sprites, but a focus `icon` just needs to reference an **existing**
+`GFX_*` sprite. A wrong/missing icon is **non-fatal** — the game shows a blank square and
+logs a texture warning, nothing crashes — so never block on icons; use a placeholder and
+move on. Known-good keys (defined in `interface/hoa_focus.gfx` or vanilla):
+
+- `GFX_goal_placeholder` — explicit placeholder (safest default).
+- Military: `GFX_focus_generic_golden_sword`, `GFX_focus_generic_orc_warrior`.
+- Economy/build: `GFX_focus_generic_construction_green` (`_blue` / `_brown` variants exist).
+- Nation flavour: `GFX_focus_stormwind_generic`.
+- Any vanilla `GFX_goal_generic_*` (e.g. `GFX_goal_generic_political_pressure`,
+  `GFX_goal_generic_construct_infrastructure`, `GFX_goal_generic_major_war`).
+
+To find more, grep existing sprites: `grep -rhoE 'name = "GFX_(goal|focus)_[a-z_0-9]+"' interface/*.gfx`.
+
 ## Localisation checklist
 
 For every focus id, add to a `localisation/english/<yourbatch>_l_english.yml`:

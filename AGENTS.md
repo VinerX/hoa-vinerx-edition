@@ -134,9 +134,13 @@ Full skeleton + per-tree/per-focus/localisation checklist: **`docs/FOCUS_CHECKLI
 
 ## Validate, then commit (git)
 
-- Branch is **`rebuild`**. Stay on it unless told otherwise.
-- Workflow: edit → `python tools/validate.py --quiet` (ERRORS: 0) → `git add -A` →
-  `git commit` → `git push origin rebuild` (HTTPS via the `gh` credential helper).
+- **Branch model:** the live playable folder `C:/Games/Hearts of Azeroth VinerX Editon` is
+  on **`rebuild`** (what the user plays — do not edit it while they play; changing focus
+  files resets their in-progress focuses). Agents work in the **dev worktree**
+  `C:/Games/HOA-dev` on branch **`dev`** (a sparse checkout: text dirs only, no binaries).
+  Ship by merging `dev` → `rebuild` when validated, then the user pulls + restarts HOI4.
+- Workflow (in the dev worktree): edit → `python tools/validate.py --quiet` (ERRORS: 0) →
+  `git add -A` → `git commit` → `git push origin dev` (HTTPS via the `gh` credential helper).
 - Commit message: short imperative subject + why, and end with:
   `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`
 - The remote is a **private** backup: `github.com/VinerX/hoa-vinerx-edition`.
