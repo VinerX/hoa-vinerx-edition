@@ -1,0 +1,105 @@
+LOR_second_war_proto_initialize = {
+	if = {
+		limit = { NOT = { has_country_flag = LOR_second_war_proto_initialized } }
+		set_country_flag = LOR_second_war_proto_initialized
+		set_variable = { alliance_unity = 1 }
+		set_variable = { lordaeron_overextension = 0 }
+	}
+
+	LOR_second_war_proto_sync_alliance_unity = yes
+	LOR_second_war_proto_sync_overextension = yes
+}
+
+LOR_second_war_proto_raise_alliance_unity = {
+	add_to_variable = { alliance_unity = 1 }
+	LOR_second_war_proto_sync_alliance_unity = yes
+}
+
+LOR_second_war_proto_lower_alliance_unity = {
+	subtract_from_variable = { alliance_unity = 1 }
+	LOR_second_war_proto_sync_alliance_unity = yes
+}
+
+LOR_second_war_proto_raise_overextension = {
+	add_to_variable = { lordaeron_overextension = 1 }
+	LOR_second_war_proto_sync_overextension = yes
+}
+
+LOR_second_war_proto_lower_overextension = {
+	subtract_from_variable = { lordaeron_overextension = 1 }
+	LOR_second_war_proto_sync_overextension = yes
+}
+
+LOR_second_war_proto_sync_alliance_unity = {
+	if = {
+		limit = { check_variable = { alliance_unity < 0 } }
+		set_variable = { alliance_unity = 0 }
+	}
+	if = {
+		limit = { check_variable = { alliance_unity > 4 } }
+		set_variable = { alliance_unity = 4 }
+	}
+
+	if = { limit = { has_idea = LOR_alliance_unity_0 } remove_ideas = LOR_alliance_unity_0 }
+	if = { limit = { has_idea = LOR_alliance_unity_1 } remove_ideas = LOR_alliance_unity_1 }
+	if = { limit = { has_idea = LOR_alliance_unity_2 } remove_ideas = LOR_alliance_unity_2 }
+	if = { limit = { has_idea = LOR_alliance_unity_3 } remove_ideas = LOR_alliance_unity_3 }
+	if = { limit = { has_idea = LOR_alliance_unity_4 } remove_ideas = LOR_alliance_unity_4 }
+
+	if = {
+		limit = { check_variable = { alliance_unity < 1 } }
+		add_ideas = LOR_alliance_unity_0
+	}
+	else_if = {
+		limit = { check_variable = { alliance_unity < 2 } }
+		add_ideas = LOR_alliance_unity_1
+	}
+	else_if = {
+		limit = { check_variable = { alliance_unity < 3 } }
+		add_ideas = LOR_alliance_unity_2
+	}
+	else_if = {
+		limit = { check_variable = { alliance_unity < 4 } }
+		add_ideas = LOR_alliance_unity_3
+	}
+	else = {
+		add_ideas = LOR_alliance_unity_4
+	}
+}
+
+LOR_second_war_proto_sync_overextension = {
+	if = {
+		limit = { check_variable = { lordaeron_overextension < 0 } }
+		set_variable = { lordaeron_overextension = 0 }
+	}
+	if = {
+		limit = { check_variable = { lordaeron_overextension > 4 } }
+		set_variable = { lordaeron_overextension = 4 }
+	}
+
+	if = { limit = { has_idea = LOR_overextension_0 } remove_ideas = LOR_overextension_0 }
+	if = { limit = { has_idea = LOR_overextension_1 } remove_ideas = LOR_overextension_1 }
+	if = { limit = { has_idea = LOR_overextension_2 } remove_ideas = LOR_overextension_2 }
+	if = { limit = { has_idea = LOR_overextension_3 } remove_ideas = LOR_overextension_3 }
+	if = { limit = { has_idea = LOR_overextension_4 } remove_ideas = LOR_overextension_4 }
+
+	if = {
+		limit = { check_variable = { lordaeron_overextension < 1 } }
+		add_ideas = LOR_overextension_0
+	}
+	else_if = {
+		limit = { check_variable = { lordaeron_overextension < 2 } }
+		add_ideas = LOR_overextension_1
+	}
+	else_if = {
+		limit = { check_variable = { lordaeron_overextension < 3 } }
+		add_ideas = LOR_overextension_2
+	}
+	else_if = {
+		limit = { check_variable = { lordaeron_overextension < 4 } }
+		add_ideas = LOR_overextension_3
+	}
+	else = {
+		add_ideas = LOR_overextension_4
+	}
+}

@@ -1,0 +1,144 @@
+add_namespace = lordaeron_second_war_proto
+
+country_event = {
+	id = lordaeron_second_war_proto.1
+	title = lordaeron_second_war_proto.1.t
+	desc = lordaeron_second_war_proto.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lordaeron_second_war_proto.1" }
+
+	option = {
+		name = lordaeron_second_war_proto.1.option.1
+	}
+}
+
+country_event = {
+	id = lordaeron_second_war_proto.2
+	title = lordaeron_second_war_proto.2.t
+	desc = lordaeron_second_war_proto.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lordaeron_second_war_proto.2" }
+
+	option = {
+		name = lordaeron_second_war_proto.2.option.1
+
+		if = {
+			limit = { STR = { exists = yes } }
+			STR = {
+				add_opinion_modifier = {
+					target = LOR
+					modifier = attented_the_meeting_of_the_seven_kingdoms
+				}
+			}
+		}
+		if = {
+			limit = { GIL = { exists = yes } }
+			GIL = {
+				add_opinion_modifier = {
+					target = LOR
+					modifier = attented_the_meeting_of_the_seven_kingdoms
+				}
+			}
+		}
+		if = {
+			limit = { KUL = { exists = yes } }
+			KUL = {
+				add_opinion_modifier = {
+					target = LOR
+					modifier = attented_the_meeting_of_the_seven_kingdoms
+				}
+			}
+		}
+		if = {
+			limit = { DAL = { exists = yes } }
+			DAL = {
+				add_opinion_modifier = {
+					target = LOR
+					modifier = attented_the_meeting_of_the_seven_kingdoms
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = lordaeron_second_war_proto.3
+	title = lordaeron_second_war_proto.3.t
+	desc = lordaeron_second_war_proto.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lordaeron_second_war_proto.3" }
+
+	option = {
+		name = lordaeron_second_war_proto.3.option.1
+
+		add_timed_idea = {
+			idea = LOR_stromgarde_reinforcement_commitment
+			days = 120
+		}
+		add_political_power = -40
+		add_stability = -0.03
+		LOR_second_war_proto_raise_alliance_unity = yes
+		LOR_second_war_proto_raise_overextension = yes
+
+		STR = {
+			add_timed_idea = {
+				idea = LOR_stromgarde_reinforcements_received
+				days = 120
+			}
+			add_war_support = 0.03
+		}
+
+		ai_chance = {
+			base = 70
+			modifier = {
+				factor = 2
+				STR = {
+					has_war = yes
+				}
+			}
+			modifier = {
+				factor = 0.5
+				check_variable = { lordaeron_overextension > 2 }
+			}
+			modifier = {
+				factor = 0.25
+				has_war_with = BRC
+			}
+		}
+	}
+
+	option = {
+		name = lordaeron_second_war_proto.3.option.2
+
+		add_timed_idea = {
+			idea = LOR_preserved_royal_reserves
+			days = 120
+		}
+		LOR_second_war_proto_lower_alliance_unity = yes
+		LOR_second_war_proto_lower_overextension = yes
+
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 2
+				check_variable = { lordaeron_overextension > 2 }
+			}
+			modifier = {
+				factor = 2
+				has_war_with = BRC
+			}
+		}
+	}
+}

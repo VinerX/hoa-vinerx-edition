@@ -1,0 +1,263 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = LOR_second_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = LOR
+		}
+	}
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = {
+		x = 1300
+		y = 0
+	}
+
+	shared_focus = develop_the_country
+	shared_focus = arming_the_nation
+
+	focus = {
+		id = LOR_survivors_of_stormwind
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		x = 15
+		y = 0
+		cost = 7
+
+		ai_will_do = {
+			base = 10
+		}
+
+		completion_reward = {
+			LOR_second_war_proto_initialize = yes
+			if = {
+				limit = { has_idea = LOR_era_of_peace }
+				swap_ideas = {
+					remove_idea = LOR_era_of_peace
+					add_idea = LOR_a_looming_threat_idea
+				}
+			}
+			add_stability = -0.03
+			add_war_support = 0.05
+			LOR_second_war_proto_raise_overextension = yes
+			country_event = { id = lordaeron_second_war_proto.1 }
+		}
+	}
+
+	focus = {
+		id = LOR_the_council_of_lordaeron
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_survivors_of_stormwind }
+		relative_position_id = LOR_survivors_of_stormwind
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 9
+		}
+
+		completion_reward = {
+			add_political_power = -35
+			LOR_second_war_proto_raise_alliance_unity = yes
+			LOR_second_war_proto_lower_overextension = yes
+			country_event = { id = lordaeron_second_war_proto.2 }
+		}
+	}
+
+	focus = {
+		id = LOR_secure_stromgarde
+		icon = GFX_focus_STR_generic
+		prerequisite = { focus = LOR_the_council_of_lordaeron }
+		relative_position_id = LOR_the_council_of_lordaeron
+		x = -2
+		y = 1
+		cost = 7
+
+		available = {
+			STR = {
+				exists = yes
+				NOT = { has_war_with = LOR }
+			}
+		}
+
+		bypass = {
+			NOT = {
+				STR = {
+					exists = yes
+					NOT = { has_war_with = LOR }
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = STR
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = STR
+				modifier = small_increase
+			}
+			country_event = { id = lordaeron_second_war_proto.3 }
+		}
+	}
+
+	focus = {
+		id = LOR_send_alliance_envoys
+		icon = GFX_focus_eng_imperial_federation
+		prerequisite = { focus = LOR_the_council_of_lordaeron }
+		relative_position_id = LOR_the_council_of_lordaeron
+		x = 2
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 7
+		}
+
+		completion_reward = {
+			add_political_power = 40
+			LOR_second_war_proto_raise_alliance_unity = yes
+			add_opinion_modifier = {
+				target = GIL
+				modifier = small_increase
+			}
+			add_opinion_modifier = {
+				target = DAL
+				modifier = small_increase
+			}
+			add_opinion_modifier = {
+				target = KUL
+				modifier = small_increase
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_allied_logistics
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = LOR_secure_stromgarde }
+		prerequisite = { focus = LOR_send_alliance_envoys }
+		relative_position_id = LOR_the_council_of_lordaeron
+		x = 0
+		y = 2
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			LOR_second_war_proto_raise_alliance_unity = yes
+			add_command_power = 25
+			add_war_support = 0.03
+		}
+	}
+
+	focus = {
+		id = LOR_reinforce_trollbanes_march
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = LOR_allied_logistics }
+		relative_position_id = LOR_allied_logistics
+		x = -2
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = LOR_hold_the_northern_reserve }
+
+		ai_will_do = {
+			base = 7
+			modifier = {
+				factor = 1.5
+				STR = { has_war = yes }
+			}
+		}
+
+		completion_reward = {
+			add_army_experience = 15
+			LOR_second_war_proto_raise_alliance_unity = yes
+			LOR_second_war_proto_raise_overextension = yes
+			STR = {
+				add_timed_idea = {
+					idea = LOR_stromgarde_reinforcements_received
+					days = 120
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_hold_the_northern_reserve
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_allied_logistics }
+		relative_position_id = LOR_allied_logistics
+		x = 2
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = LOR_reinforce_trollbanes_march }
+
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				check_variable = { lordaeron_overextension > 2 }
+			}
+		}
+
+		completion_reward = {
+			add_stability = 0.03
+			LOR_second_war_proto_lower_alliance_unity = yes
+			LOR_second_war_proto_lower_overextension = yes
+			add_timed_idea = {
+				idea = LOR_preserved_royal_reserves
+				days = 120
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_a_common_cause
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_reinforce_trollbanes_march }
+		relative_position_id = LOR_reinforce_trollbanes_march
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 8
+		}
+
+		completion_reward = {
+			LOR_second_war_proto_raise_alliance_unity = yes
+			add_war_support = 0.05
+			add_political_power = 35
+		}
+	}
+
+	focus = {
+		id = LOR_burden_of_the_crown
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = LOR_hold_the_northern_reserve }
+		relative_position_id = LOR_hold_the_northern_reserve
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = {
+			base = 6
+		}
+
+		completion_reward = {
+			LOR_second_war_proto_lower_overextension = yes
+			add_political_power = 50
+			add_stability = 0.02
+		}
+	}
+}
