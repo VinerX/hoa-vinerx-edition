@@ -1,0 +1,57 @@
+BRC_managing_our_territory_decisions = {
+
+	#icon = GFX_decision_category_generic_mana
+
+	#picture = GFX_decision_category_picture_prison_of_immolthar
+
+	allowed = {
+		original_tag = BRC
+	}
+
+	visible = {
+		has_completed_focus = BRC_consolidate_our_new_lands
+	}
+
+	priority = 9
+
+}
+
+# Not limited to BRC, but BRC has to have completed the focus to deal with it
+BRC_human_resistance_decisions = {
+
+	on_map_area = {
+        target_array = ROOT.owned_controlled_states
+		target_trigger = {
+            FROM = {
+                has_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+        }
+        name = BRC_human_resistance_decisions_map_area_tt
+        zoom = 850
+    }
+
+	#icon = GFX_decision_category_generic_mana
+
+	#picture = GFX_decision_category_picture_prison_of_immolthar
+
+	allowed = {
+		always = yes
+	}
+
+	visible = {
+		OR = {
+			AND = {
+				original_tag = BRC
+				has_completed_focus = BRC_deal_with_human_resistance
+			}
+			NOT = { original_tag = BRC }
+		}
+		# any_owned_state = {
+		# 	has_dynamic_modifier = { modifier = BRC_human_resistance }
+		# }
+		has_country_flag = BRC_human_resistance_present_flag
+	}
+
+	priority = 10
+
+}

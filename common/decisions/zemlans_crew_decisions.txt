@@ -1,0 +1,537 @@
+Voldun_Sea_Decision_Category = {
+    ZLC_chart_redrock_cape = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_5
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 50
+			has_navy_size = {
+				size > 4
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 60
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -50
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 40
+			add_stability = 0.025
+			random_list = {
+				50 = {
+					navy_experience = 50
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.5
+						uses = 1
+						category = naval_doctrine
+					}
+					navy_experience = 20
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 1
+						category = naval_technology
+					}
+					navy_experience = 20
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_5
+		}
+    }
+	ZLC_chart_voldun_basin = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			has_country_flag = explored_voldun_sea_zone_5
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_3
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 50
+			has_navy_size = {
+				size > 4
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 90
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -50
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 40
+			add_political_power = 50
+			random_list = {
+				50 = {
+					navy_experience = 60
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.6
+						uses = 1
+						category = naval_doctrine
+					}
+					navy_experience = 25
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.6
+						uses = 1
+						category = naval_technology
+					}
+					navy_experience = 25
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_3
+		}
+    }
+	ZLC_chart_voldun_plateau = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			OR = {
+				has_country_flag = explored_voldun_sea_zone_1
+				has_country_flag = explored_voldun_sea_zone_3
+			}
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_2
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 100
+			has_navy_size = {
+				size > 9
+			}
+			OR = {
+				has_navy_size = {
+					size > 3
+					archetype = light_frigate_equipment
+				}
+				has_navy_size = {
+					size > 1
+					archetype = heavy_frigate_equipment
+				}
+				has_navy_size = {
+					size > 0
+					archetype = juggernaught_equipment
+				}
+				has_navy_size = {
+					size > 0
+					archetype = battleship_equipment
+				}
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 120
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -100
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 80
+			army_experience = 25
+			random_list = {
+				50 = {
+					navy_experience = 75
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.75
+						uses = 1
+						category = naval_doctrine
+					}
+					navy_experience = 25
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.75
+						uses = 1
+						category = naval_technology
+					}
+					navy_experience = 25
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_2
+		}
+    }
+	ZLC_chart_zuldazar_coast = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			has_country_flag = explored_voldun_sea_zone_5
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_7
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 100
+			has_navy_size = {
+				size > 9
+			}
+			OR = {
+				has_navy_size = {
+					size > 3
+					archetype = light_frigate_equipment
+				}
+				has_navy_size = {
+					size > 1
+					archetype = heavy_frigate_equipment
+				}
+				has_navy_size = {
+					size > 0
+					archetype = juggernaught_equipment
+				}
+				has_navy_size = {
+					size > 0
+					archetype = battleship_equipment
+				}
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 120
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -100
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 80
+			add_war_support = 0.05
+			random_list = {
+				50 = {
+					navy_experience = 75
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.75
+						uses = 1
+						category = naval_doctrine
+					}
+					navy_experience = 25
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.75
+						uses = 1
+						category = naval_technology
+					}
+					navy_experience = 25
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_7
+		}
+    }
+	ZLC_chart_south_sea_trench = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			has_country_flag = explored_voldun_sea_zone_5
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_6
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 200
+			has_navy_size = {
+				size > 19
+			}
+			OR = {
+				has_navy_size = {
+					size > 14
+					archetype = light_frigate_equipment
+				}
+				has_navy_size = {
+					size > 6
+					archetype = heavy_frigate_equipment
+				}
+				has_navy_size = {
+					size > 2
+					archetype = juggernaught_equipment
+				}
+				has_navy_size = {
+					size > 0
+					archetype = battleship_equipment
+				}
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 180
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -200
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 160
+			custom_effect_tooltip = ZLC_south_sea_trench_faith_tt
+			add_to_variable = { faith_points = 100 }
+			random_list = {
+				50 = {
+					navy_experience = 100
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.5
+						uses = 2
+						category = naval_doctrine
+					}
+					navy_experience = 30
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 2
+						category = naval_technology
+					}
+					navy_experience = 30
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_6
+		}
+    }
+	ZLC_chart_thunder_ridge = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			has_country_flag = explored_voldun_sea_zone_5
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_4
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 200
+			has_navy_size = {
+				size > 19
+			}
+			OR = {
+				has_navy_size = {
+					size > 14
+					archetype = light_frigate_equipment
+				}
+				has_navy_size = {
+					size > 6
+					archetype = heavy_frigate_equipment
+				}
+				has_navy_size = {
+					size > 2
+					archetype = juggernaught_equipment
+				}
+				has_navy_size = {
+					size > 0
+					archetype = battleship_equipment
+				}
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 180
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -200
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 160
+			add_resource = {
+				type = wood
+				amount = 3
+				state = 2026
+			}
+			random_list = {
+				50 = {
+					navy_experience = 100
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.5
+						uses = 2
+						category = naval_doctrine
+					}
+					navy_experience = 30
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.5
+						uses = 2
+						category = naval_technology
+					}
+					navy_experience = 30
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_4
+		}
+    }
+	ZLC_chart_barren_depths = {
+
+        allowed = {
+      	    tag = ZLC
+      	}
+
+        available = {
+			hidden_trigger = {
+				has_country_flag = voldun_sea_exploration_unlocked
+			}
+			OR = {
+				has_country_flag = explored_voldun_sea_zone_2
+				has_country_flag = explored_voldun_sea_zone_3
+				has_country_flag = explored_voldun_sea_zone_4
+			}
+			NOT = {
+				has_country_flag = explored_voldun_sea_zone_4
+			}
+			NOT = {
+				has_country_flag = ZLC_ongoing_voyage
+			}
+			has_manpower > 200
+			has_navy_size = {
+				size > 29
+			}
+			OR = {
+				has_navy_size = {
+					size > 23
+					archetype = light_frigate_equipment
+				}
+				has_navy_size = {
+					size > 17
+					archetype = heavy_frigate_equipment
+				}
+				has_navy_size = {
+					size > 7
+					archetype = juggernaught_equipment
+				}
+				has_navy_size = {
+					size > 2
+					archetype = battleship_equipment
+				}
+			}
+        }
+
+        fire_only_once = yes
+
+		days_remove = 240
+
+		cost = 10
+
+		complete_effect = {
+			add_manpower = -250
+			set_country_flag = ZLC_ongoing_voyage
+		}
+
+		remove_effect = {
+			add_manpower = 200
+			add_command_power = 200
+			random_list = {
+				50 = {
+					navy_experience = 150
+				}
+				25 = {
+					add_doctrine_cost_reduction = {
+						cost_reduction = 0.75
+						uses = 2
+						category = naval_doctrine
+					}
+					navy_experience = 50
+				}
+				25 = {
+					add_tech_bonus = {
+						bonus = 0.75
+						uses = 2
+						category = naval_technology
+					}
+					navy_experience = 50
+				}
+			}
+			clr_country_flag = ZLC_ongoing_voyage
+			set_country_flag = explored_voldun_sea_zone_4
+		}
+    }
+}

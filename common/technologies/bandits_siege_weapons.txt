@@ -1,0 +1,677 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	bandits_abandoned_siege_works_tech = {
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_stolen_supply_wagon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_cannon_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			siege_works_technology
+		}
+	}
+
+	bandits_stolen_supply_wagon_tech = {
+
+		enable_subunits = {
+			bandits_stolen_supply_wagon
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_stolen_supply_wagon_equipment_tech_1 = 1	}
+			#custom_effect_tooltip = stolen_supply_wagon_tech_unit_details_tt
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_stolen_supply_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_stolen_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_stolen_supply_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_stolen_supply_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = improved_bandits_stolen_supply_wagon_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_stolen_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_bandits_stolen_supply_wagon_1 = {
+
+		bandits_stolen_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = improved_bandits_stolen_supply_wagon_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_stolen_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_bandits_stolen_supply_wagon_2 = {
+
+		bandits_stolen_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_bandits_stolen_supply_wagon_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_stolen_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_bandits_stolen_supply_wagon_3 = {
+
+		bandits_stolen_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = improved_bandits_stolen_supply_wagon_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_stolen_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_bandits_stolen_supply_wagon_4 = {
+
+		bandits_stolen_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_stolen_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	bandits_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_cannon_tech = {
+
+		enable_subunits = {
+			bandits_cannon
+			bandits_cannon_support
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_cannon_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_cannon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_cannon_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_cannon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_cannon_piercing_shot_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_cannon_bolas_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	bandits_cannon_piercing_shot_tech = {
+
+		bandits_cannon = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+		bandits_cannon_support = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_cannon_bolas_shot_tech }
+
+		path = {
+			leads_to_tech = bandits_cannon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_cannon_bolas_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_cannon_bolas_shot_tech
+			}
+		}
+	}
+
+	bandits_cannon_bolas_shot_tech = {
+
+		bandits_cannon = {
+			soft_attack = 0.20
+		}
+		bandits_cannon_support = {
+			soft_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_cannon_piercing_shot_tech }
+
+		path = {
+			leads_to_tech = bandits_cannon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_cannon_piercing_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_cannon_piercing_shot_tech
+			}
+		}
+	}
+
+	bandits_cannon_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_cannon_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_cannon_reinforced_frame_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_cannon_canister_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_cannon_reinforced_frame_tech = {
+
+		bandits_cannon = {
+			armor_value = 0.15
+			reliability_factor = 0.05
+		}
+		bandits_cannon_support = {
+			armor_value = 0.15
+			reliability_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_cannon_canister_shot_tech }
+
+		path = {
+			leads_to_tech = bandits_cannon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_cannon_canister_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_cannon_canister_shot_tech
+			}
+		}
+	}
+
+	bandits_cannon_canister_shot_tech = {
+
+		bandits_cannon = {
+			soft_attack = 0.15
+			anti_air_attack = 2
+		}
+		bandits_cannon_support = {
+			soft_attack = 0.15
+			anti_air_attack = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_cannon_reinforced_frame_tech }
+
+		path = {
+			leads_to_tech = bandits_cannon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_cannon_reinforced_frame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_cannon_reinforced_frame_tech
+			}
+		}
+	}
+
+	bandits_cannon_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_cannon_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			bandits_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

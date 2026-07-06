@@ -1,0 +1,5479 @@
+operations = {
+
+	### UNDEAD
+
+	GEN_undead_problem_8 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 8
+			8 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 8
+			has_war_support > 0.29
+			8 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 8 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			8 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 40 }
+			hidden_effect = { 8 = { set_state_race_to_primary_race = yes } }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_178 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 178
+			178 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 178
+			has_war_support > 0.29
+			187 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 105
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 178 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			178 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 70 }
+			hidden_effect = { 
+				178 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_187 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 187
+			187 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 187
+			has_war_support > 0.29
+			187 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 105
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 187 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			187 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 70 }
+			hidden_effect = { 
+				187 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_208 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 208
+			208 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 208
+			has_war_support > 0.29
+			208 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 75
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 208 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			208 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = { 208 = { set_state_race_to_primary_race = yes } }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_211 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 211
+			211 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 211
+			has_war_support > 0.29
+			211 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 150
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 211 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			if = {
+				limit = {
+					OR = {
+						tag = SCC
+						tag = FSK
+					}
+				}
+				add_stability = 0.05
+			}
+			211 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { 
+				gain_xp = 110 
+				add_planning = 1
+			}
+			hidden_effect = { 
+				211 = { 
+					set_state_race_to_primary_race = yes 
+					set_state_religion_to_primary_religion = yes
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_222 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 222
+			222 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 222
+			has_war_support > 0.29
+			222 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 75
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 222 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			222 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { 
+				gain_xp = 50 
+			}
+			hidden_effect = { 
+				222 = { 
+					set_state_race_to_primary_race = yes 
+					set_state_religion_to_primary_religion = yes
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_308 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 308
+			308 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 308
+			has_war_support > 0.29
+			308 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		days_remove = 45
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 308 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			308 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 30	}
+			hidden_effect = { 
+				308 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_489 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 489
+			489 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 489
+			has_war_support > 0.29
+			489 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		days_remove = 75
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 489 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			489 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = { 
+				489 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_719 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 719
+			719 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 719
+			has_war_support > 0.29
+			719 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 719 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			719 = { 
+				remove_dynamic_modifier = { modifier = GEN_undead_problem } 
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 70 }
+			hidden_effect = { 
+				719 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_720 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 720
+			720 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 720
+			has_war_support > 0.29
+			720 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 720 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			720 = { 
+				remove_dynamic_modifier = { modifier = GEN_undead_problem } 
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 70 }
+			hidden_effect = { 
+				720 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_1244 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1244
+			1244 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1244
+			has_war_support > 0.29
+			1244 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 120
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1244 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			1244 = { 
+				remove_dynamic_modifier = { modifier = GEN_undead_problem } 
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 80 }
+			hidden_effect = { 
+				1244 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_1445 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1445
+			1445 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1445
+			has_war_support > 0.29
+			1445 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		days_remove = 135
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1445 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			1445 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 90 }
+			hidden_effect = { 
+				1445 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_1573 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1573
+			1573 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1573
+			has_war_support > 0.29
+			1573 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		days_remove = 45
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1573 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			1573 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 30 }
+			hidden_effect = { 
+				1573 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_1600 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1600
+			1600 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1600
+			has_war_support > 0.29
+			1600 = { has_dynamic_modifier = { modifier = GEN_undead_problem }	}
+		}
+
+		days_remove = 150
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1600 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			1600 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = {
+				gain_xp = 100
+				add_attack = 1
+			}
+			hidden_effect = { 
+				1600 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_undead_problem_2227 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2227
+			2227 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2227
+			has_war_support > 0.29
+			2227 = { has_dynamic_modifier = { modifier = GEN_undead_problem } }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2227 } }
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			2227 = { remove_dynamic_modifier = { modifier = GEN_undead_problem } }
+			random_army_leader = { gain_xp = 20 }
+			hidden_effect = { 
+				2227 = { 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				} 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Paladins
+
+	GEN_paladin_activity_210 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 210
+			210 = { has_dynamic_modifier = { modifier = GEN_paladin_activity } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 210
+			has_war_support > 0.29
+			210 = { has_dynamic_modifier = { modifier = GEN_paladin_activity } }
+		}
+
+		days_remove = 180
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 210 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			210 = { 
+				remove_dynamic_modifier = { modifier = GEN_paladin_activity } 
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 90 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_paladin_activity_344 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 344
+			344 = { has_dynamic_modifier = { modifier = GEN_paladin_activity } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 344
+			has_war_support > 0.29
+			344 = { has_dynamic_modifier = { modifier = GEN_paladin_activity } }
+		}
+
+		days_remove = 160
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 344 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			344 = { remove_dynamic_modifier = { modifier = GEN_paladin_activity } }
+			random_army_leader = { gain_xp = 80 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_paladin_activity_1586 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1586
+			1586 = { has_dynamic_modifier = { modifier = GEN_paladin_activity } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1586
+			has_war_support > 0.29
+			1586 = { has_dynamic_modifier = { modifier = GEN_paladin_activity } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1586 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1586 = { remove_dynamic_modifier = { modifier = GEN_paladin_activity } }
+			random_army_leader = { gain_xp = 30 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### TROGGS
+
+	BHC_trogg_problem_462 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 462
+			462 = { has_dynamic_modifier = { modifier = BHC_trogg_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 462
+			has_war_support > 0.29
+			462 = { has_dynamic_modifier = { modifier = BHC_trogg_problem }	}
+		}
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 462 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50	}
+
+		remove_effect = {
+			462 = { remove_dynamic_modifier = { modifier = BHC_trogg_problem } }
+			462 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 90	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	BHC_trogg_problem_465 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 465
+			465 = { has_dynamic_modifier = { modifier = BHC_trogg_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 465
+			has_war_support > 0.29
+			465 = { has_dynamic_modifier = { modifier = BHC_trogg_problem }	}
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 465 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50	}
+
+		remove_effect = {
+			465 = { remove_dynamic_modifier = { modifier = BHC_trogg_problem } }
+			465 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	BHC_trogg_problem_474 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 474
+			474 = { has_dynamic_modifier = { modifier = BHC_trogg_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 474
+			has_war_support > 0.29
+			474 = { has_dynamic_modifier = { modifier = BHC_trogg_problem }	}
+		}
+
+		days_remove = 70
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 474 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50	}
+
+		remove_effect = {
+			474 = { remove_dynamic_modifier = { modifier = BHC_trogg_problem } }
+			474 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 70	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### KOBOLDS
+
+	GEN_kobold_menace_145 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 145
+			145 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 145
+			has_war_support > 0.29
+			145 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 145 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			145 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			145 = {
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_kobold_menace_351 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 351
+			351 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 351
+			has_war_support > 0.29
+			351 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 351 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			351 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			351 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_kobold_menace_355 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 355
+			355 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 355
+			has_war_support > 0.29
+			355 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 355 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			355 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			355 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_kobold_menace_575 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 575
+			575 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 575
+			has_war_support > 0.29
+			575 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 575 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			575 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			575 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_kobold_menace_1175 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1175
+			1175 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1175
+			has_war_support > 0.29
+			1175 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1175 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			1175 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			1175 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_kobold_menace_2186 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2186
+			2186 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2186
+			has_war_support > 0.29
+			2186 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2186 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			2186 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			2186 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_kobold_menace_2211 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2211
+			2211 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2211
+			has_war_support > 0.29
+			2211 = { has_dynamic_modifier = { modifier = GEN_kobold_menace }	}
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2211 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			2211 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+			2211 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 30 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### DEMONS
+
+	GEN_demon_problem_379 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 379
+			379 = { has_dynamic_modifier = { modifier = GEN_demon_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 379
+			has_war_support > 0.49
+			has_manpower > 999
+			379 = { has_dynamic_modifier = { modifier = GEN_demon_problem }	}
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 379 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			379 = { remove_dynamic_modifier = { modifier = GEN_demon_problem } }
+			379 = { set_state_race_to_primary_race = yes }
+			379 = {	add_manpower = -250	}
+			army_experience = 15
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_demon_problem_380 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 380
+			380 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 380
+			has_war_support > 0.49
+			has_manpower > 999
+			380 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 380 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			380 = { remove_dynamic_modifier = { modifier = GEN_demon_problem } }
+			380 = { set_state_race_to_primary_race = yes }
+			380 = {	add_manpower = -250	}
+			army_experience = 15
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_demon_problem_1341 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1341
+			1341 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1341
+			has_war_support > 0.49
+			has_manpower > 999
+			1341 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1341 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			1341 = { remove_dynamic_modifier = { modifier = GEN_demon_problem } }
+			1341 = { set_state_race_to_primary_race = yes }
+			1341 = { add_manpower = -250 }
+			army_experience = 15
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_demon_problem_1361 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1361
+			1361 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1361
+			has_war_support > 0.49
+			has_manpower > 999
+			1361 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1361 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			1361 = { remove_dynamic_modifier = { modifier = GEN_demon_problem } }
+			1361 = { set_state_race_to_primary_race = yes }
+			1361 = { add_manpower = -250 }
+			army_experience = 15
+			random_army_leader = { gain_xp = 80 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### OGRES
+
+	GEN_ogre_problem_37 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 37
+			37 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 37
+			has_war_support > 0.29
+			37 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 37 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			37 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			37 = {
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_42 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 42
+			42 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 42
+			has_war_support > 0.29
+			42 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 70
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 42 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			42 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			42 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 70	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_43 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 43
+			43 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 43
+			has_war_support > 0.29
+			43 = {	has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 43 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			43 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			43 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_130 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 130
+			130 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 130
+			has_war_support > 0.29
+			130 = {	has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 110
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 130 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			130 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			130 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = {
+				gain_xp = 110
+				add_attack = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_133 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 133
+			133 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 133
+			has_war_support > 0.29
+			133 = {	has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 133 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			133 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			133 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+			hidden_effect = {
+				133 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_280 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 280
+			280 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 280
+			has_war_support > 0.29
+			280 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 280 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			280 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			280 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40	}
+			hidden_effect = {
+				280 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_296 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 296
+			296 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 296
+			has_war_support > 0.29
+			296 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 296 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			296 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			296 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 90	}
+			hidden_effect = {
+				296 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_304 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 304
+			304 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 304
+			has_war_support > 0.29
+			304 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 304 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			304 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			304 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = {
+				304 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_385 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 385
+			385 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 385
+			has_war_support > 0.29
+			385 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 385 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			385 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			385 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+			hidden_effect = {
+				385 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_386 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 386
+			386 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 386
+			has_war_support > 0.29
+			386 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 386 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			386 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			386 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 80	}
+			hidden_effect = {
+				386 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_404 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 404
+			404 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 404
+			has_war_support > 0.29
+			404 = {	has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 404 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			404 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			404 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_472 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 472
+			472 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 472
+			has_war_support > 0.29
+			472 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 120
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 472 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			472 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			472 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = {
+				gain_xp = 120
+				add_attack = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_577 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 577
+			577 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 577
+			has_war_support > 0.29
+			577 = {	has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 577 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			577 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			577 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_579 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 579
+			579 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 579
+			has_war_support > 0.29
+			579 = {	has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 579 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			579 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			579 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = {
+				579 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_1567 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1567
+			1567 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1567
+			has_war_support > 0.29
+			1567 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1567 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1567 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			1567 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_ogre_problem_2187 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2187
+			2187 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2187
+			has_war_support > 0.29
+			2187 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2187 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			2187 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+			2187 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Bog Beasts
+
+	GEN_bog_beast_problem_406 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 406
+			406 = { has_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 406
+			has_war_support > 0.29
+			406 = {	has_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 406 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			406 = { remove_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+			406 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+				hidden_effect = {
+					set_state_religion_to_primary_religion = yes
+					set_state_race_to_primary_race = yes
+				}
+			}
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_bog_beast_problem_1310 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1310
+			1310 = { has_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1310
+			has_war_support > 0.29
+			1310 = {	has_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1310 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1310 = { remove_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+			1310 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+				hidden_effect = {
+					set_state_religion_to_primary_religion = yes
+					set_state_race_to_primary_race = yes
+				}
+			}
+			random_army_leader = {
+				gain_xp = 170
+				add_planning = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_bog_beast_problem_2196 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2196
+			2196 = { has_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2196
+			has_war_support > 0.29
+			2196 = { has_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 2196 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			2196 = { remove_dynamic_modifier = { modifier = GEN_bog_beast_problem } }
+			2196 = {
+				add_resource = {
+					type = wood
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Night Elves
+
+	GEN_night_elf_problem_1360 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1360
+			1360 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1360
+			has_war_support > 0.29
+			1360 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1360 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1360 = { remove_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+			1360 = {
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 80 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_night_elf_problem_1379 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1379
+			1379 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1379
+			has_war_support > 0.29
+			1379 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1379 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1379 = { remove_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+			1379 = {
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_night_elf_problem_2239 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2239
+			2239 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2239
+			has_war_support > 0.29
+			2239 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2239 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			2239 = { remove_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+			2239 = {
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_night_elf_problem_2243 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2243
+			2243 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2243
+			has_war_support > 0.29
+			2243 = { has_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2243 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			2243 = { remove_dynamic_modifier = { modifier = GEN_night_elf_problem } }
+			2243 = {
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### GNOLLS
+
+	GEN_gnolls_problem_213 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 213
+			213 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 213
+			has_war_support > 0.39
+			213 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 130
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 213 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			213 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 80	}
+			random_army_leader = { gain_xp = 50	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_311 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 311
+			311 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 311
+			has_war_support > 0.39
+			311 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 311 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			311 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 50	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_362 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 362
+			362 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 362
+			has_war_support > 0.39
+			362 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 362 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			362 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_367 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 367
+			367 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 367
+			has_war_support > 0.39
+			367 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 367 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			367 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_364 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 364
+			364 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 364
+			has_war_support > 0.39
+			364 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 364 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			364 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_368 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 368
+			368 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 368
+			has_war_support > 0.39
+			368 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 368 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			368 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_372 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 372
+			372 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 372
+			has_war_support > 0.39
+			372 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 372 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			372 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_467 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 467
+			467 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 467
+			has_war_support > 0.39
+			467 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 467 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			467 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_1289 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1289
+			1289 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1289
+			has_war_support > 0.39
+			1289 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1289 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1289 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			army_experience = 10
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_1520 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1520
+			1520 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1520
+			has_war_support > 0.39
+			1520 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 1520 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1520 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			1520 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 30 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_1528 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1528
+			1528 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1528
+			has_war_support > 0.39
+			1528 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1528 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1528 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			1528 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_gnolls_problem_1588 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1588
+			1588 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1588
+			has_war_support > 0.39
+			1588 = { has_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1588 }
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			1588 = { remove_dynamic_modifier = { modifier = LOR_gnoll_problem } }
+			RPP = { remove_resource_rights = 1588 }
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Murlocs
+
+	GEN_murloc_pests_36 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 36
+			36 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 36
+			has_war_support > 0.29
+			36 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 36 }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			36 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			36 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_39 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 39
+			39 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 39
+			has_war_support > 0.29
+			39 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 39 }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			39 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			39 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_77 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 77
+			77 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 77
+			has_war_support > 0.29
+			77 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 77 } }
+
+		days_remove = 150
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			77 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			77 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { 
+				gain_xp = 150
+				add_planning = 1 
+			}
+			hidden_effect = {
+				77 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_353 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 353
+			353 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 353
+			has_war_support > 0.29
+			353 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 353 } }
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			353 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			353 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_390 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 390
+			390 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 390
+			has_war_support > 0.29
+			390 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 390 } }
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			390 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			390 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_864 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 864
+			864 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 864
+			has_war_support > 0.29
+			864 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 864 } }
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			864 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			864 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 80 }
+			hidden_effect = {
+				864 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_1529 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1529
+			1529 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1529
+			has_war_support > 0.29
+			1529 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 1529 } }
+
+		days_remove = 20
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1529 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1529 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 20 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	LOR_murloc_pests_1531 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1531
+			1531 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1531
+			has_war_support > 0.29
+			1531 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1531 }
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1531 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1531 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	LOR_murloc_pests_1537 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1537
+			1537 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1537
+			has_war_support > 0.29
+			1537 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 1537 } }
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1537 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1537 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	LOR_murloc_pests_1541 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1541
+			1541 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1541
+			has_war_support > 0.29
+			1541 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1541 }
+		}
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1541 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1541 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	LOR_murloc_pests_1542 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1542
+			1542 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1542
+			has_war_support > 0.29
+			1542 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1542 }
+		}
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1542 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1542 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_1591 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1591
+			1591 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1591
+			has_war_support > 0.29
+			1591 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1591 }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1591 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1591 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_1592 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1592
+			1592 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1592
+			has_war_support > 0.29
+			1592 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1592 }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1592 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1592 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_1593 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1593
+			1593 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1593
+			has_war_support > 0.29
+			1593 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 1593 }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			1593 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1593 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_2101 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2101
+			2101 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2101
+			has_war_support > 0.29
+			2101 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 2101 }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			2101 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			2101 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40	}
+			hidden_effect = {
+				2101 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_2103 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2103
+			2103 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2103
+			has_war_support > 0.29
+			2103 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 2103 }
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			2103 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			2103 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_murloc_pests_2162 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2162
+			2162 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2162
+			has_war_support > 0.29
+			2162 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 2162 }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			2162 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			2162 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### SPIDERS
+
+	GEN_spider_problem_208 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 208
+			208 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 208
+			has_war_support > 0.29
+			208 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 208 } }
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.30 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			army_experience = 5
+			208 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			208 = {	add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 90	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_208 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 208
+			208 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 208
+			208 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 208 } }
+
+		days_remove = 60
+
+		cost = 75
+
+		modifier = { political_power_gain = -0.10 }
+
+		remove_effect = {
+			208 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			208 = {	
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant 
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			208 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				  count = 3
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_218 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 218
+			218 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 218
+			has_war_support > 0.29
+			218 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 218 } }
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.30 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			army_experience = 5
+			218 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			218 = {	add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 90	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_218 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 218
+			218 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 218
+			218 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 218 } }
+
+		days_remove = 60
+
+		cost = 75
+
+		modifier = { political_power_gain = -0.10 }
+
+		remove_effect = {
+			218 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			218 = {	
+				add_extra_state_shared_building_slots = 1 
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			218 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				  count = 3
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_370 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 370
+			370 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 370
+			has_war_support > 0.29
+			370 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 370 } }
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			370 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			370 = {	add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_370 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 370
+			370 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 370
+			370 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 370 } }
+
+		days_remove = 60
+
+		cost = 75
+
+		modifier = { political_power_gain = -0.10 }
+
+		remove_effect = {
+			370 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			370 = {	
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			208 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_718 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 718
+			718 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 718
+			has_war_support > 0.29
+			718 = {	has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 718  }
+		}
+
+		days_remove = 240
+
+		modifier = { command_power_gain = -0.30 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { add_command_power = -75 }
+
+		remove_effect = {
+			army_experience = 15
+			166 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			717 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			718 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			166 = { add_extra_state_shared_building_slots = 1 }
+			717 = { add_extra_state_shared_building_slots = 1 }
+			718 = {	add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 70	}
+			random_army_leader = { gain_xp = 90	}
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_718 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 718
+			718 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 718
+			718 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 718 } }
+
+		days_remove = 160
+
+		cost = 75
+
+		modifier = { political_power_gain = -0.10 }
+
+		remove_effect = {
+			718 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			718 = {	
+				add_extra_state_shared_building_slots = 1 
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			718 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				  count = 6
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_245 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 245
+			245 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 245
+			has_war_support > 0.29
+			245 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { 
+			highlight_state_targets = { state = 245 }
+		}
+
+		days_remove = 100
+
+		modifier = { command_power_gain = -0.20 }
+
+		custom_cost_trigger = {	command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			army_experience = 5
+			245 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			245 = {	add_extra_state_shared_building_slots = 1 }
+			random_army_leader = {
+				gain_xp = 100
+				add_attack = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_245 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 245
+			245 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 245
+			245 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 245 } }
+
+		days_remove = 70
+
+		cost = 75
+
+		modifier = { political_power_gain = -0.10 }
+
+		remove_effect = {
+			245 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			245 = {	
+				add_extra_state_shared_building_slots = 1 
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			245 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				  count = 3
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_221 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 221
+			221 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 221
+			has_war_support > 0.29
+			221 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 221	}
+		}
+
+		days_remove = 260
+
+		modifier = { command_power_gain = -0.20	}
+
+		custom_cost_trigger = {	command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			army_experience = 5
+			221 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			221 = { add_extra_state_shared_building_slots = 1 }
+			random_army_leader = {
+				gain_xp = 260
+				add_attack = 1
+				add_logistics = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_221 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 221
+			221 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			has_tech = undead_crypt_lord_tech
+			controls_state = 221
+			221 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 221} }
+
+		days_remove = 170
+
+		cost = 50
+
+		modifier = { political_power_gain = -0.10	}
+
+		remove_effect = {
+			221 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			221 = { 
+				add_extra_state_shared_building_slots = 1 
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant
+			}
+			create_corps_commander = {
+				name = "Blackmarshes Bane"
+				#picture = "gfx/leaders/STR/Portrait_STR_Generic_land_5.dds" NEED an Spider Picture at some point
+				traits = { swamp_fox }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 3
+			}
+			division_template = {
+				name = "Blackmarshes Bane"
+				priority = 1
+				regiments = {
+				  undead_crypt_lord = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				  undead_crypt_lord = { x = 1 y = 0 }
+				  undead_crypt_fiend = { x = 1 y = 1 }
+				  undead_crypt_fiend = { x = 1 y = 2 }
+				  undead_crypt_fiend = { x = 1 y = 3 }
+				}
+			}
+			221 = {
+				create_unit = {
+				  division = "name = \"Blackmarshs Bane\" division_template = \"Blackmarshs Bane\" start_experience_factor = 0.5"
+				  owner = FROM
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_1319 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1319
+			1319 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1319
+			has_war_support > 0.29
+			1319 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { 
+			highlight_state_targets = { state = 1319 }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.20 }
+
+		custom_cost_trigger = {	command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			army_experience = 5
+			1319 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			1319 = { add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_2226 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2226
+			2226 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2226
+			has_war_support > 0.29
+			2226 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2226 } }
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.30 }
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			army_experience = 5
+			2226 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			2226 = { add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 30	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_2226 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 2226
+			2226 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 2226
+			2226 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2226 } }
+
+		days_remove = 20
+
+		cost = 25
+
+		modifier = { political_power_gain = -0.1 }
+
+		remove_effect = {
+			2226 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			2226 = { 
+				add_extra_state_shared_building_slots = 1 
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			2226 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_2227 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2227
+			2227 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2227
+			has_war_support > 0.29
+			2227 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2227 } }
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.30 }
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			army_experience = 5
+			2227 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			2227 = { add_extra_state_shared_building_slots = 1 }
+			random_army_leader = { gain_xp = 20	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_spider_problem_assist_2227 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = undead_technology
+			controls_state = 2227
+			2227 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		available = {
+			has_tech = undead_crypt_fiend_tech
+			controls_state = 2227
+			2227 = { has_dynamic_modifier = { modifier = GEN_spider_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2227 } }
+
+		days_remove = 20
+
+		cost = 25
+
+		modifier = { political_power_gain = -0.1 }
+
+		remove_effect = {
+			2227 = { remove_dynamic_modifier = { modifier = GEN_spider_problem } }
+			2227 = { 
+				add_extra_state_shared_building_slots = 1 
+				set_temp_variable = { pop_to_grant = state_population }
+				multiply_temp_variable = { pop_to_grant = 0.15 }
+				add_manpower = pop_to_grant 
+			}
+			division_template = {
+				name = "Controlled Spiders"
+				priority = 1
+				regiments = {
+				  undead_crypt_fiend = { x = 0 y = 0 }
+				  undead_crypt_fiend = { x = 0 y = 1 }
+				  undead_crypt_fiend = { x = 0 y = 2 }
+				  undead_crypt_fiend = { x = 0 y = 3 }
+				}
+			}
+			2227 = {
+				create_unit = {
+				  division = "name = \"Controlled Spiders\" division_template = \"Controlled Spiders\" start_experience_factor = 0.2"
+				  owner = FROM
+				}
+			} 
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### TROLLS
+
+	GEN_troll_problems_230 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 230
+			230 = { has_dynamic_modifier = { modifier = LOR_troll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 230
+			has_war_support > 0.39
+			has_manpower > 499
+			230 = { has_dynamic_modifier = { modifier = LOR_troll_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 230 }
+		}
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.20 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = {
+			add_command_power = -50
+			add_manpower = -500
+		}
+
+		remove_effect = {
+			army_experience = 10
+			add_manpower = -100
+			230 = { remove_dynamic_modifier = { modifier = LOR_troll_problem } }
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_troll_problems_2238 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2238
+			2238 = { has_dynamic_modifier = { modifier = LOR_troll_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2238
+			has_war_support > 0.39
+			has_manpower > 499
+			2238 = { has_dynamic_modifier = { modifier = LOR_troll_problem } }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 2238 }
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.20 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = {
+			add_command_power = -50
+			add_manpower = -500
+		}
+
+		remove_effect = {
+			army_experience = 10
+			add_manpower = -100
+			2238 = { remove_dynamic_modifier = { modifier = LOR_troll_problem } }
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### ORC PROBLEMS
+
+	GEN_orc_problems_115 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 115
+			115 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 115
+			has_war_support > 0.55
+			has_manpower > 179
+			115 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 115 } }
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { 
+			add_command_power = -75
+			add_manpower = -180 
+		}
+
+		remove_effect = {
+			115 = { remove_dynamic_modifier = { modifier = GEN_orc_problem } }
+			115 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 90 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_orc_problems_392 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 392
+			392 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 392
+			has_war_support > 0.55
+			has_manpower > 159
+			392 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 392 } }
+
+		days_remove = 80
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { 
+			add_command_power = -75
+			add_manpower = -160
+		}
+
+		remove_effect = {
+			392 = { remove_dynamic_modifier = { modifier = GEN_orc_problem } }
+			392 = {
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 80 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_orc_problems_476 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 476
+			476 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 476
+			has_war_support > 0.55
+			has_manpower > 239
+			476 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 476 } }
+
+		days_remove = 120
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { 
+			add_command_power = -75
+			add_manpower = -240 
+		}
+
+		remove_effect = {
+			476 = { remove_dynamic_modifier = { modifier = GEN_orc_problem } }
+			476 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_army_leader = {
+				gain_xp = 120
+				add_attack = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_orc_problems_480 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 480
+			480 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 480
+			has_war_support > 0.55
+			has_manpower > 179
+			480 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 480 } }
+
+		days_remove = 90
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+		complete_effect = { 
+			add_command_power = -75 
+			add_manpower = -180
+		}
+
+		remove_effect = {
+			480 = { remove_dynamic_modifier = { modifier = GEN_orc_problem } }
+			480 = {
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+			}
+			random_army_leader = { gain_xp = 90	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Black Dragons
+
+	GEN_black_dragon_problem_112 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 112
+			112 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 112
+			has_war_support > 0.49
+			112 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 112 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			112 = { remove_dynamic_modifier = { modifier = GEN_black_dragon_problem } }
+			army_experience =10
+			random_army_leader = { 
+				gain_xp = 60
+			}
+			hidden_effect = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_black_dragon_problem_123 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 123
+			123 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 123
+			has_war_support > 0.49
+			has_manpower > 799
+			123 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 123 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			123 = { remove_dynamic_modifier = { modifier = GEN_black_dragon_problem } }
+			123 = {	add_manpower = -200	}
+			army_experience = 20
+			random_army_leader = { 
+				gain_xp = 100
+				add_planning = 1 
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_black_dragon_problem_535 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 535
+			535 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 535
+			has_war_support > 0.49
+			has_manpower > 799
+			535 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 535 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			535 = { remove_dynamic_modifier = { modifier = GEN_black_dragon_problem } }
+			535 = { set_state_race_to_primary_race = yes }
+			535 = {	add_manpower = -200	}
+			army_experience = 20
+			random_army_leader = { gain_xp = 80	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_black_dragon_problem_2176 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2176
+			2176 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2176
+			has_war_support > 0.49
+			has_manpower > 599
+			2176 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem }	}
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 2176 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			2176 = { remove_dynamic_modifier = { modifier = GEN_black_dragon_problem } }
+			2176 = { set_state_race_to_primary_race = yes }
+			2176 = { add_manpower = -150 }
+			army_experience = 15
+			random_army_leader = { gain_xp = 60 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Blue Dragon
+
+	GEN_blue_dragon_problem_204 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 204
+			204 = { has_dynamic_modifier = { modifier = GEN_blue_dragon_problem }	}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 204
+			has_war_support > 0.49
+			has_manpower > 599
+			204 = { has_dynamic_modifier = { modifier = GEN_blue_dragon_problem }	}
+		}
+
+		days_remove = 30
+
+		modifier = { command_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 204 } }
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+		complete_effect = { add_command_power = -100 }
+
+		remove_effect = {
+			204 = { remove_dynamic_modifier = { modifier = GEN_blue_dragon_problem } }
+			204 = { set_state_race_to_primary_race = yes }
+			204 = { add_manpower = -150 }
+			army_experience = 15
+			random_army_leader = { 
+				gain_xp = 100 
+				add_defense = 1
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_blue_dragon_problem_assist_204 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			has_idea = blue_dragon_primary_race
+			controls_state = 204
+			204 = { has_dynamic_modifier = { modifier = GEN_blue_dragon_problem }	}
+		}
+
+		available = {
+			controls_state = 204
+			204 = { has_dynamic_modifier = { modifier = GEN_blue_dragon_problem }	}
+		}
+
+		days_remove = 30
+
+		cost = 25
+
+		modifier = { political_power_gain = -0.10 }
+
+		highlight_states = { highlight_state_targets = { state = 204 } }
+
+		remove_effect = {
+			204 = { remove_dynamic_modifier = { modifier = GEN_blue_dragon_problem } }
+			add_equipment_to_stockpile = {
+				type = fighter_drake_equipment_1
+				amount = 50
+			}
+			add_manpower = 500
+			air_experience = 15
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Bandits
+
+	GEN_bandit_problem_305 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 305
+			305 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 305
+			has_war_support > 0.29
+			305 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 305 } }
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			305 = { remove_dynamic_modifier = { modifier = GEN_bandit_problem } }
+			random_army_leader = { gain_xp = 40	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_bandit_problem_326 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 326
+			326 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 326
+			has_war_support > 0.29
+			326 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 326 } }
+
+		days_remove = 70
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			326 = { remove_dynamic_modifier = { modifier = GEN_bandit_problem } }
+			random_army_leader = { gain_xp = 70	}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_bandit_problem_354 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 354
+			354 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 354
+			has_war_support > 0.29
+			354 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 354 } }
+
+		days_remove = 40
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			354 = { remove_dynamic_modifier = { modifier = GEN_bandit_problem } }
+			random_army_leader = { gain_xp = 40 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_bandit_problem_666 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 666
+			666 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 666
+			has_war_support > 0.29
+			666 = { has_dynamic_modifier = { modifier = GEN_bandit_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 666 } }
+
+		days_remove = 50
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+		complete_effect = { add_command_power = -25 }
+
+		remove_effect = {
+			666 = { remove_dynamic_modifier = { modifier = GEN_bandit_problem } }
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = {
+				666 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Quilboar
+	
+	GEN_quilboar_problem_998 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 998
+			998 = { has_dynamic_modifier = { modifier = GEN_quilboar_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 998
+			has_war_support > 0.29
+			998 = { has_dynamic_modifier = { modifier = GEN_quilboar_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 998 } }
+
+		days_remove = 70
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			998 = { remove_dynamic_modifier = { modifier = GEN_quilboar_problem } }
+			random_army_leader = { gain_xp = 70 }
+			hidden_effect = {
+				998 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Wretched Elf
+
+	GEN_wretched_problem_174 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 174
+			174 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 174
+			has_war_support > 0.29
+			174 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 174 } }
+
+		days_remove = 75
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			174 = { remove_dynamic_modifier = { modifier = GEN_wretched_problem } }
+			174 = { add_resource = { type = mana amount = 2 } }
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = {
+				174 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_wretched_problem_2104 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2104
+			2104 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 174
+			has_war_support > 0.29
+			2104 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2104 } }
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			2104 = { remove_dynamic_modifier = { modifier = GEN_wretched_problem } }
+			2104 = { add_resource = { type = mana amount = 2 } }
+			random_army_leader = { gain_xp = 40 }
+			hidden_effect = {
+				2104 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_wretched_problem_2105 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2105
+			2105 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 174
+			has_war_support > 0.29
+			2105 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2105 } }
+
+		days_remove = 75
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			2105 = { remove_dynamic_modifier = { modifier = GEN_wretched_problem } }
+			2105 = { add_resource = { type = mana amount = 2 } }
+			random_army_leader = { gain_xp = 50 }
+			hidden_effect = {
+				2105 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_wretched_problem_2106 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 2106
+			2106 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 2106
+			has_war_support > 0.29
+			2106 = { has_dynamic_modifier = { modifier = GEN_wretched_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 2106 } }
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			2106 = { remove_dynamic_modifier = { modifier = GEN_wretched_problem } }
+			2106 = { add_resource = { type = mana amount = 2 } }
+			random_army_leader = { gain_xp = 40 }
+			hidden_effect = {
+				2106 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Goblin Problems
+	GEN_goblin_problem_275 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 275
+			586 = { has_dynamic_modifier = { modifier = GEN_goblin_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 275
+			has_war_support > 0.29
+			586 = { has_dynamic_modifier = { modifier = GEN_goblin_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 275 } }
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			275 = { remove_dynamic_modifier = { modifier = GEN_goblin_problem } }
+			275 = { 
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_army_leader = { gain_xp = 60 }
+			hidden_effect = {
+				275 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	GEN_goblin_problem_586 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 586
+			586 = { has_dynamic_modifier = { modifier = GEN_goblin_problem } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 586
+			has_war_support > 0.29
+			586 = { has_dynamic_modifier = { modifier = GEN_goblin_problem } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 586 } }
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			586 = { remove_dynamic_modifier = { modifier = GEN_goblin_problem } }
+			586 = { add_extra_state_shared_building_slots = 2 }
+			random_army_leader = { 
+				gain_xp = 100
+				add_planning = 1 
+			}
+			hidden_effect = {
+				586 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### Elemental Problems
+	GEN_elemental_instability_1259 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			controls_state = 1259
+			1259 = { has_dynamic_modifier = { modifier = GEN_elemental_instability } }
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			controls_state = 1259
+			has_war_support > 0.29
+			1259 = { has_dynamic_modifier = { modifier = GEN_elemental_instability } }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 1259 } }
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.10 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			1259 = { remove_dynamic_modifier = { modifier = GEN_elemental_instability } }
+			1259 = { add_resource = { type = mana amount = 2 } }
+			random_army_leader = { gain_xp = 40 }
+			hidden_effect = {
+				1259 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	### MISC
+
+	GEN_flood_wreckage_dec = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {
+			any_owned_state = {
+				has_dynamic_modifier = { modifier = GEN_flood_wreckage }
+			}
+		}
+
+		available = {
+			NOT = { has_idea = recruit_guards }
+			any_owned_state = {
+				has_dynamic_modifier = { modifier = GEN_flood_wreckage }
+				infrastructure > 3
+			}
+		}
+
+		days_remove = 60
+
+		modifier = { command_power_gain = -0.20 }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+		complete_effect = { add_command_power = -50 }
+
+		remove_effect = {
+			random_owned_state = {
+				limit = {
+					has_dynamic_modifier = { modifier = GEN_flood_wreckage }
+					infrastructure > 3
+				}
+				remove_dynamic_modifier = { modifier = GEN_flood_wreckage }
+			}
+			random_army_leader = { gain_xp = 50 }
+		}
+
+		ai_will_do = { base = 1 }
+	}
+}

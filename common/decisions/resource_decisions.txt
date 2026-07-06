@@ -1,0 +1,2552 @@
+construction_decisions = {
+	
+	expand_iron_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				iron_mine > 2
+				NOT = { has_state_flag = iron_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				iron_mine > 2
+				NOT = { has_state_flag = iron_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+
+			random_owned_state = {
+				limit = {
+					impassable = no
+					iron_mine > 2
+					NOT = {	has_state_flag = iron_resouce_expanded }
+				}
+				set_state_flag = iron_resouce_expanded
+				add_resource = { type = ores amount = 3 }
+			}
+    	}
+		
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_gunpowder_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				sulfur_mine > 2
+				NOT = {	has_state_flag = sulfur_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				sulfur_mine > 2
+				NOT = {	has_state_flag = sulfur_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			random_owned_state = {
+				limit = {
+					impassable = no
+					sulfur_mine > 2
+					NOT = {	has_state_flag = sulfur_resouce_expanded }
+				}
+				set_state_flag = sulfur_resouce_expanded
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_mana_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				arcane_tower > 2
+				NOT = { has_state_flag = mana_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				arcane_tower > 2
+				NOT = { has_state_flag = mana_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			random_owned_state = {
+				limit = {
+					impassable = no
+					arcane_tower > 2
+					NOT = { has_state_flag = mana_resouce_expanded }
+				}
+				set_state_flag = mana_resouce_expanded
+				add_resource = { type = mana amount = 3 }
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+    	}
+		
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_food_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				farm > 2
+				NOT = { has_state_flag = food_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				farm > 2
+				NOT = { has_state_flag = food_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+
+			random_owned_state = {
+				limit = {
+					impassable = no
+					farm > 2
+					NOT = { has_state_flag = food_resouce_expanded }
+				}
+				set_state_flag = food_resouce_expanded
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+			}
+    	}
+		
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_egg_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				nesting_grounds > 2
+				NOT = { has_state_flag = egg_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				nesting_grounds > 2
+				NOT = { has_state_flag = egg_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+
+			random_owned_state = {
+				limit = {
+					impassable = no
+					nesting_grounds > 2
+					NOT = { has_state_flag = egg_resouce_expanded }
+				}
+				set_state_flag = egg_resouce_expanded
+				add_resource = {
+					type = eggs
+					amount = 3
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_oil_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				synthetic_refinery > 2
+				NOT = { has_state_flag = oil_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				synthetic_refinery > 2
+				NOT = { has_state_flag = oil_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			random_owned_state = {
+				limit = {
+					impassable = no
+					synthetic_refinery > 2
+					NOT = { has_state_flag = oil_resouce_expanded }
+				}
+				set_state_flag = oil_resouce_expanded
+				add_resource = {
+					type = oil
+					amount = 3
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_wood_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				lumber_mill > 2
+				NOT = { has_state_flag = wood_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				lumber_mill > 2
+				NOT = { has_state_flag = wood_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			random_owned_state = {
+				limit = {
+					impassable = no
+					lumber_mill > 2
+					NOT = { has_state_flag = wood_resouce_expanded }
+				}
+				set_state_flag = wood_resouce_expanded
+				add_resource = {
+					type = wood
+					amount = 3
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	expand_mount_excavation = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+
+		visible = {
+			any_controlled_state = {
+				stable > 2
+				NOT = { has_state_flag = mount_resouce_expanded }
+			}
+		}
+
+		available = {
+			NOT = {	has_country_flag = ongoing_construction_project_flag }
+			num_of_civilian_factories_available_for_projects > 1
+			any_controlled_state = {
+				stable > 2
+				NOT = { has_state_flag = mount_resouce_expanded }
+			}
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		modifier = { civilian_factory_use = 2 }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+
+			random_owned_state = {
+				limit = {
+					impassable = no
+					stable > 2
+					NOT = { has_state_flag = mount_resouce_expanded }
+				}
+				set_state_flag = mount_resouce_expanded
+				add_resource = {
+					type = mounts
+					amount = 3
+				}
+			}
+    	}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+}
+
+
+resource_decisions = { 
+
+	###OIL
+
+	oil_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 19
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 29
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+			dockyard > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_oil_project 
+			add_command_power = -50
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.1
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_dockyard = 0.05
+			country_resource_cost_oil = 30
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_oil_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	oil_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 49
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 59
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+			num_of_civilian_factories_available_for_projects > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_oil_project 
+			add_command_power = -100
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.2
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_dockyard = 0.10
+			land_night_attack = 0.05
+			civilian_factory_use = 1
+			country_resource_cost_oil = 60
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_oil_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	oil_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 79
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 89
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_oil_project 
+			add_command_power = -150
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.3
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_dockyard = 0.15
+			land_night_attack = 0.10
+			civilian_factory_use = 3
+			country_resource_cost_oil = 90
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_oil_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	oil_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 109
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = oil
+				amount > 119
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_oil_project }
+			num_of_civilian_factories_available_for_projects > 4
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_oil_project 
+			add_command_power = -200
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.4
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_dockyard = 0.20
+			land_night_attack = 0.15
+			civilian_factory_use = 5
+			country_resource_cost_oil = 120
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_oil_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	###MANA
+
+	mana_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 19
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 29
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_mana_project
+			add_command_power = -50 
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.1
+			}
+		}
+
+		modifier = { 
+			research_speed_factor = 0.025
+			country_resource_cost_mana = 30
+			custom_modifier_tooltip = nuclear_production_factor_10_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 0.1 
+				thermonuclear_production_factor = 0.1
+			}
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mana_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	mana_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 49
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 59
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+			num_of_civilian_factories_available_for_projects > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_mana_project 
+			add_command_power = -100
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.2
+			}
+		}
+
+		modifier = { 
+			research_speed_factor = 0.05
+			civilian_factory_use = 1
+			country_resource_cost_mana = 60
+			custom_modifier_tooltip = nuclear_production_factor_20_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 0.2
+				thermonuclear_production_factor = 0.2
+			}
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mana_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	mana_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 79
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 89
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+			num_of_civilian_factories_available_for_projects > 1
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_mana_project 
+			add_command_power = -150
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.3
+			}
+		}
+
+		modifier = { 
+			research_speed_factor = 0.075
+			civilian_factory_use = 2
+			country_resource_cost_mana = 90
+			custom_modifier_tooltip = nuclear_production_factor_30_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 0.3 
+				thermonuclear_production_factor = 0.3
+			}
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mana_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	mana_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 109
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mana
+				amount > 119
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mana_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_mana_project 
+			add_command_power = -200
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.4
+			}
+		}
+
+		modifier = { 
+			research_speed_factor = 0.10
+			civilian_factory_use = 3
+			country_resource_cost_mana = 120
+			custom_modifier_tooltip = nuclear_production_factor_40_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 0.4 
+				thermonuclear_production_factor = 0.4
+			}
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mana_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	### WOOD
+
+	wood_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 19
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 29
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_wood_project 
+			add_command_power = -50
+		}
+
+		modifier = { 
+			production_speed_buildings_factor = 0.05
+			country_resource_cost_wood = 30
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wood_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	wood_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 49
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 59
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_wood_project 
+			add_command_power = -100
+		}
+
+		modifier = { 
+			production_speed_buildings_factor = 0.10
+			country_resource_cost_wood = 60
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wood_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	wood_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 79
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 89
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_wood_project 
+			add_command_power = -150
+		}
+
+		modifier = { 
+			production_speed_buildings_factor = 0.15
+			production_speed_industrial_complex_factor = 0.10
+			local_resources_factor = -0.10
+			country_resource_cost_wood = 90
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wood_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	wood_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 109
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wood
+				amount > 119
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wood_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_wood_project 
+			add_command_power = -200
+		}
+
+		modifier = { 
+			production_speed_buildings_factor = 0.20
+			production_speed_industrial_complex_factor = 0.10
+			production_speed_arms_factory_factor = 0.10
+			local_resources_factor = -0.15
+			country_resource_cost_wood = 120
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wood_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	### Gunpowder
+
+	gunpowder_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 19
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 29
+				extracted = yes
+			}
+			any_owned_state = {
+				state_population > 39999
+				is_core_of = ROOT
+				NOT = {	has_state_flag = gunpowder_level_1 }
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_gunpowder_project 
+			add_command_power = -50
+		}
+
+		modifier = { 
+			country_resource_cost_gunpowder = 30
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_gunpowder_project
+			random_owned_state = {
+				limit = {
+					state_population > 39999
+					is_core_of = ROOT
+					NOT = {	has_state_flag = gunpowder_level_1 }
+				}
+				set_state_flag = gunpowder_level_1
+				add_extra_state_shared_building_slots = 1
+				random_list = {
+					25 = {
+						add_resource = {
+							type = ores
+							amount = 3
+						}
+					}
+					25 = {
+						add_resource = {
+							type = gunpowder
+							amount = 3
+						}
+					}
+					25 = {
+						add_resource = {
+							type = mana
+							amount = 3
+						}
+					}
+					25 = {
+						### Big Old Nothing
+					}
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	gunpowder_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 49
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 59
+				extracted = yes
+			}
+			any_owned_state = {
+				state_population > 34999
+				is_core_of = ROOT
+				NOT = {	has_state_flag = gunpowder_level_1 }
+				NOT = {	has_state_flag = gunpowder_level_2 }
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+			num_of_civilian_factories_available_for_projects > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_gunpowder_project 
+			add_command_power = -100
+		}
+
+		modifier = { 
+			civilian_factory_use = 1
+			country_resource_cost_gunpowder = 60
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_gunpowder_project
+			random_owned_state = {
+				limit = {
+					state_population > 29999
+					is_core_of = ROOT
+					NOT = {	has_state_flag = gunpowder_level_1 }
+					NOT = {	has_state_flag = gunpowder_level_2 }
+				}
+				set_state_flag = gunpowder_level_2
+				add_extra_state_shared_building_slots = 1
+				random_list = {
+					25 = {
+						add_resource = {
+							type = ores
+							amount = 3
+						}
+					}
+					25 = {
+						add_resource = {
+							type = gunpowder
+							amount = 3
+						}
+					}
+					25 = {
+						add_resource = {
+							type = mana
+							amount = 3
+						}
+					}
+					25 = {
+						### Big Old Nothing
+					}
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	gunpowder_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 79
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 89
+				extracted = yes
+			}
+			any_owned_state = {
+				state_population > 39999
+				is_core_of = ROOT
+				NOT = {	has_state_flag = gunpowder_level_2 }
+				NOT = {	has_state_flag = gunpowder_level_3 }
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_gunpowder_project 
+			add_command_power = -150
+		}
+
+		modifier = { 
+			civilian_factory_use = 3
+			country_resource_cost_gunpowder = 90
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_gunpowder_project
+			random_owned_state = {
+				limit = {
+					state_population > 34999
+					is_core_of = ROOT
+					NOT = {	has_state_flag = gunpowder_level_2 }
+					NOT = {	has_state_flag = gunpowder_level_3 }
+				}
+				set_state_flag = gunpowder_level_3
+				add_extra_state_shared_building_slots = 1
+				random_list = {
+					25 = {
+						add_resource = {
+							type = ores
+							amount = 5
+						}
+					}
+					25 = {
+						add_resource = {
+							type = gunpowder
+							amount = 5
+						}
+					}
+					25 = {
+						add_resource = {
+							type = mana
+							amount = 5
+						}
+					}
+					25 = {
+						### Big Old Nothing
+					}
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	gunpowder_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 109
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 119
+				extracted = yes
+			}
+			any_owned_state = {
+				state_population > 24999
+				is_core_of = ROOT
+				NOT = {	has_state_flag = gunpowder_level_3 }
+				NOT = {	has_state_flag = gunpowder_level_4 }
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_gunpowder_project }
+			num_of_civilian_factories_available_for_projects > 4
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_gunpowder_project 
+			add_command_power = -200
+		}
+
+		modifier = { 
+			civilian_factory_use = 5
+			country_resource_cost_gunpowder = 120
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_gunpowder_project
+			random_owned_state = {
+				limit = {
+					state_population > 24999
+					is_core_of = ROOT
+					NOT = {	has_state_flag = gunpowder_level_3 }
+					NOT = {	has_state_flag = gunpowder_level_4 }
+				}
+				set_state_flag = gunpowder_level_4
+				add_extra_state_shared_building_slots = 1
+				random_list = {
+					25 = {
+						add_resource = {
+							type = ores
+							amount = 5
+						}
+					}
+					25 = {
+						add_resource = {
+							type = gunpowder
+							amount = 5
+						}
+					}
+					25 = {
+						add_resource = {
+							type = mana
+							amount = 5
+						}
+					}
+					25 = {
+						### Big Old Nothing
+					}
+				}
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	### ORES
+
+	ores_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 19
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 29
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_ores_project 
+			add_command_power = -50
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.1
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_factory = 0.05
+			country_resource_cost_ores = 30
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_ores_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	ores_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 49
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 59
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+			num_of_civilian_factories_available_for_projects > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_ores_project 
+			add_command_power = -100
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.2
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_factory = 0.10
+			production_factory_max_efficiency_factor = 0.05
+			civilian_factory_use = 1
+			country_resource_cost_ores = 60
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_ores_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	ores_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 79
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 89
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_ores_project 
+			add_command_power = -150
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.3
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_factory = 0.15
+			production_factory_max_efficiency_factor = 0.05
+			production_factory_efficiency_gain_factor = 0.20
+			civilian_factory_use = 3
+			country_resource_cost_ores = 90
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_ores_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	ores_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 109
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = ores
+				amount > 119
+				extracted = yes
+			}
+			NOT = {	has_country_flag = ongoing_ores_project }
+			num_of_civilian_factories_available_for_projects > 4
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_ores_project 
+			add_command_power = -200
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.4
+			}
+		}
+
+		modifier = { 
+			industrial_capacity_factory = 0.20
+			production_factory_max_efficiency_factor = 0.10
+			production_factory_efficiency_gain_factor = 0.30
+			civilian_factory_use = 5
+			country_resource_cost_ores = 120
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_ores_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	### MOUNTS
+
+	mounts_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 19
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 29
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_mounts_project 
+			add_command_power = -50
+		}
+
+		modifier = { 
+			political_power_gain = 0.15
+			country_resource_cost_mounts = 30
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mounts_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	mounts_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 49
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 59
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+			num_of_civilian_factories_available_for_projects > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_mounts_project 
+			add_command_power = -100
+		}
+
+		modifier = { 
+			political_power_gain = 0.30
+			political_power_factor = 0.05
+			civilian_factory_use = 1
+			country_resource_cost_mounts = 60
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mounts_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	mounts_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 79
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 89
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_mounts_project 
+			add_command_power = -150
+		}
+
+		modifier = { 
+			political_power_gain = 0.45
+			political_power_factor = 0.10
+			civilian_factory_use = 3
+			country_resource_cost_mounts = 90
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mounts_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	mounts_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 109
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = mounts
+				amount > 119
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_mounts_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_mounts_project 
+			add_command_power = -200
+		}
+
+		modifier = { 
+			political_power_gain = 0.60
+			political_power_factor = 0.15
+			civilian_factory_use = 5
+			country_resource_cost_mounts = 120
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_mounts_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	### WHEAT
+
+	wheat_decision_30 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 19
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 29
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			set_country_flag = ongoing_wheat_project
+			add_command_power = -50 
+		}
+
+		modifier = { 
+			monthly_population = 0.25
+			country_resource_cost_wheat = 30
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wheat_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	wheat_decision_60 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 49
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 59
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+			num_of_civilian_factories_available_for_projects > 0
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 99
+		}
+		custom_cost_text = decision_cost_command_100
+
+		complete_effect = {	
+			set_country_flag = ongoing_wheat_project 
+			add_command_power = -100
+		}
+
+		modifier = { 
+			monthly_population = 0.50
+			stability_weekly = 0.001
+			civilian_factory_use = 1
+			country_resource_cost_wheat = 60
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wheat_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	wheat_decision_90 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 79
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 89
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+			num_of_civilian_factories_available_for_projects > 2
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 149
+		}
+		custom_cost_text = decision_cost_command_150
+
+		complete_effect = {	
+			set_country_flag = ongoing_wheat_project 
+			add_command_power = -150
+		}
+
+		modifier = { 
+			monthly_population = 0.75
+			stability_weekly = 0.002
+			civilian_factory_use = 3
+			country_resource_cost_wheat = 90
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wheat_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	wheat_decision_120 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 109
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+		}
+
+		available = {
+			#is_ai = no
+			has_resources_in_country = {
+				resource = wheat
+				amount > 119
+				extracted = yes
+			}
+			has_war = no
+			NOT = {	has_country_flag = ongoing_wheat_project }
+			num_of_civilian_factories_available_for_projects > 4
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 199
+		}
+		custom_cost_text = decision_cost_command_200
+
+		complete_effect = {	
+			set_country_flag = ongoing_wheat_project 
+			add_command_power = -200
+		}
+
+		modifier = { 
+			monthly_population = 1.00
+			stability_weekly = 0.003
+			weekly_manpower = 10
+			civilian_factory_use = 5
+			country_resource_cost_wheat = 120
+		}
+
+		remove_effect = {
+			clr_country_flag = ongoing_wheat_project
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+}
+
+war_measures = {
+
+	scrape_the_sunwell = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			ROOT = {
+				owns_state = 33 
+				OR = {
+					has_idea = primary_religion_the_sun_well
+					hidden_trigger = { has_idea = secondary_religion_the_sun_well }
+				}
+			}
+		}
+
+		available = {
+			ROOT = {
+				owns_state = 33 
+				OR = {
+					has_idea = primary_religion_the_sun_well
+					hidden_trigger = { has_idea = secondary_religion_the_sun_well }
+				}
+				is_special_project_completed = sp:sp_magic_mana_bomb
+				surrender_progress > 0.40
+			}
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			if = {
+				limit = { 33 = { arcane_tower > 2 } }
+				33 = {
+					remove_building = {
+						type = arcane_tower
+						level = 3
+					}
+				}
+			}
+			else_if = {
+				limit = { 33 = { arcane_tower < 3 } }
+				33 = {
+					add_resource = {
+						type = mana
+						amount = -24
+					}
+				}
+				add_stability = -0.10
+			}
+		}
+
+		modifier = { 
+			monthly_population = -0.25
+			stability_weekly = -0.003
+			country_resource_cost_mana = 120
+			custom_modifier_tooltip = nuclear_production_factor_150_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 1.5 
+				thermonuclear_production_factor = 1.5
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	sap_the_leylines = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			ROOT = {
+				owns_state = 14 
+				OR = {
+					has_idea = primary_religion_arcane_studies
+					hidden_trigger = { has_idea = secondary_religion_arcane_studies }
+				}
+			}
+		}
+
+		available = {
+			ROOT = {
+				owns_state = 14
+				OR = {
+					has_idea = primary_religion_arcane_studies
+					hidden_trigger = { has_idea = secondary_religion_arcane_studies }
+				}
+				is_special_project_completed = sp:sp_magic_mana_bomb
+				surrender_progress > 0.40
+			}
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			if = {
+				limit = { 14 = { arcane_tower > 2 } }
+				14 = {
+					remove_building = {
+						type = arcane_tower
+						level = 3
+					}
+				}
+			}
+			else_if = {
+				limit = { 14 = { arcane_tower < 3 } }
+				14 = {
+					add_resource = {
+						type = mana
+						amount = -24
+					}
+				}
+			}
+			add_stability = -0.10
+		}
+
+		modifier = { 
+			stability_weekly = -0.003
+			country_resource_cost_mana = 120
+			custom_modifier_tooltip = nuclear_production_factor_150_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 1.5
+				thermonuclear_production_factor = 1.5
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+	harvest_the_nexus = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = no
+		cancel_if_not_visible = no
+
+		visible = {
+			ROOT = {
+				owns_state = 299 
+				OR = {
+					has_idea = primary_religion_arcane_studies
+					hidden_trigger = { has_idea = secondary_religion_arcane_studies }
+				}
+			}
+		}
+
+		available = {
+			ROOT = {
+				owns_state = 299
+				OR = {
+					has_idea = primary_religion_arcane_studies
+					hidden_trigger = { has_idea = secondary_religion_arcane_studies }
+				}
+				is_special_project_completed = sp:sp_magic_mana_bomb
+				surrender_progress > 0.40
+			}
+		}
+
+		days_remove = 90
+
+		custom_cost_trigger = {
+			command_power > 49
+		}
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			if = {
+				limit = { 299 = { arcane_tower > 2 } }
+				299 = {
+					remove_building = {
+						type = arcane_tower
+						level = 3
+					}
+				}
+			}
+			else_if = {
+				limit = { 299 = { arcane_tower < 3 } }
+				299 = {
+					add_resource = {
+						type = mana
+						amount = -24
+					}
+				}
+			}
+			add_stability = -0.10
+		}
+
+		modifier = { 
+			stability_weekly = -0.003
+			country_resource_cost_mana = 120
+			custom_modifier_tooltip = nuclear_production_factor_150_tt
+			hidden_modifier = { 
+				nuclear_production_factor = 1.5
+				thermonuclear_production_factor = 1.5
+			}
+		}
+
+		ai_will_do = { base = 0 }
+	}
+
+}

@@ -1,0 +1,766 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+# contain
+# area_priority
+
+default_unit_production = {
+	enable = {
+		always = yes
+	}
+
+	abort = { always = no }
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 10
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = motorized
+		value = 10
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 80
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = anti_air
+		value = 15
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_special
+		value = 10
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 1
+	}
+
+	#Air unit factors
+	ai_strategy = {
+		type = air_factory_balance
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 60
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 30
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = naval_bomber
+		value = 0 ### They can use CAS and Tactical, they Stop otherwise
+	}
+
+	# Naval unit factors
+    ai_strategy = {
+        type = unit_ratio
+        id = capital_ship
+        value = 10
+    }
+
+    ai_strategy = {
+        type = unit_ratio
+        id = submarine
+        value = 10
+    }
+
+    ai_strategy = {
+        type = unit_ratio
+        id = screen_ship
+        value = 40
+    }
+
+    ai_strategy = {
+        type = unit_ratio
+        id = convoy
+        value = 15
+    }
+
+	#ai_strategy = {
+	#	type = equipment_production_factor
+	#	id = infantry
+	#	value = 40
+	#}
+
+	#ai_strategy = {
+	#	type = equipment_production_factor
+	#	id = artillery
+	#	value = 25
+	#}
+}
+
+monster_unit_production = {
+	enable = {
+		OR = {
+			has_country_flag = undead_technology
+			has_country_flag = orc_technology
+		}
+	}
+
+	abort = { always = no }
+
+	ai_strategy = {
+		type = role_ratio
+		id = monsters
+		value = 10
+	}
+}
+
+anti_tank_unit_production = {
+	enable = {
+		OR = {
+			has_country_flag = human_technology
+			has_country_flag = ogre_technology
+			has_country_flag = quilboar_technology
+			has_country_flag = saurok_technology
+		}
+	}
+
+	abort = { always = no }
+
+	ai_strategy = {
+		type = role_ratio
+		id = anti_tank
+		value = 10
+	}
+}
+
+basic_infantry_unit_production = {
+	enable = {
+		OR = {
+			has_country_flag = human_technology
+			has_country_flag = undead_technology
+		}
+	}
+
+	abort = { always = no }
+
+	ai_strategy = {
+		type = role_ratio
+		id = basic_infantry
+		value = 2
+	}
+}
+
+AI_build_some_dockyards = {
+	enable = {
+		any_owned_state = {
+			is_coastal = yes
+		}
+	}
+	ai_strategy = {
+		type = dockyard_to_military_factory_ratio
+		value = 30
+	}
+
+	abort = { always = no }
+}
+
+AI_build_some_more_dockyards = {
+	enable = {
+		any_owned_state = {
+			is_coastal = yes
+		}
+		arms_factory > 25
+	}
+	ai_strategy = {
+		type = dockyard_to_military_factory_ratio
+		value = 40
+	}
+
+	abort = { always = no }
+}
+
+default_role_ratios = {
+	enable = {
+		NOT = {
+			original_tag = ZZT
+		}
+		always = yes
+		#not = {
+		#	has_dlc = "Man the Guns"
+		#}
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_submarine
+		value = 100
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_carrier
+		value = 0 ###ONLY CARRIER NATIONS
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_dreadnaught
+		value = 100
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_battleship
+		value = 100
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_juggernaught
+		value = 100
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_light_frigate
+		value = 100
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_destroyer
+		value = 100
+	}
+
+	abort = { always = no }
+}
+
+default_role_ratios = {
+	enable = {
+		always = no
+		has_dlc = "Man the Guns"
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_capital_bb
+		value = -80
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_capital_bc
+		value = -20
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_carrier
+		value = -70
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_submarine
+		value = 100
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_screen
+		value = 65
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_escort
+		value = 35
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_cruiser_light
+		value = 25
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_cruiser_heavy
+		value = 20
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_sweeper
+		value = 15
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_layer
+		value = 20
+	}
+
+	abort = { always = no }
+}
+
+convoy_voy_voy_voy = {
+	enable = {
+		always = no
+		has_dlc = "Man the Guns"
+		convoy_threat > 0.2
+	}
+	abort = {
+		convoy_threat < 0.2
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_cruiser_light
+		value = -20
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_escort
+		value = 25
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_layer
+		value = -10
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 30
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = -10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 25
+	}
+}
+
+ill_show_you_mine = {
+	enable = {
+		always = no
+		has_dlc = "Man the Guns"
+		mine_threat > 0.2
+	}
+	abort = {
+		mine_threat < 0.2
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_cruiser_heavy
+		value = -20
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_sweeper
+		value = 25
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_layer
+		value = -10
+	}
+}
+
+ill_show_you_mine_2 = {
+	enable = {
+		always = no
+		has_dlc = "Man the Guns"
+		mine_threat > 0.5
+	}
+	abort = {
+		mine_threat < 0.5
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_cruiser_light
+		value = -20
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_sweeper
+		value = 25
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_mine_layer
+		value = -10
+	}
+}
+
+default_pp_spend_amount = {
+	enable = {
+		always = yes
+	}
+
+	ai_strategy = {
+		type = pp_spend_amount
+		id = idea
+		value = 100
+	}
+
+	ai_strategy = {
+		type = pp_spend_amount
+		id = decision
+		value = 100
+	}
+
+	abort = { always = no }
+}
+
+default_garrison_production = {
+	enable = {
+		has_war = no
+	}
+	abort = {
+		has_war = yes
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 10
+	}
+	
+}
+
+war_garrison_production = {
+	enable = {
+		has_war = yes
+	}
+	abort = {
+		has_war = no
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 2
+	}
+
+}
+
+default_armored_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 2
+	}
+}
+
+highered_armored_production = {
+	enable = {
+		num_of_military_factories > 69
+	}
+	abort = {
+		num_of_military_factories < 70
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 5
+	}
+}
+
+default_area_priority = {
+	enable = {
+		always = yes
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = lordaeron
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = khaz_modan
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = azeroth
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = kalimdor
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = outland
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = draenor
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = pandaria
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = northrend
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = the_great_sea
+		value = 100
+	}
+
+	ai_strategy = {
+		type = area_priority
+		id = argus
+		value = 100
+	}
+
+	abort = { always = no }
+
+}
+
+default_stockpile_management = {
+	enable = {
+		num_divisions > 150
+	}
+
+	abort = {
+		num_divisions < 130
+	}
+
+	ai_strategy = {
+		type = equipment_stockpile_surplus_ratio
+		value = 35 # double base stockpile #from 25 to 35
+	}
+}
+
+DEFAULT_template_design = {
+	enable = {
+		has_tech = town_hall_tech
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = mounted_footman
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = knight
+		value = 20
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = archer
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = pikeman
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = footman
+		value = 60
+	}
+
+	abort = { always = no }
+}
+
+DEFAULT_template_design = {
+	enable = {
+		has_tech = great_hall
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = dire_wolf
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = raider
+		value = 20
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = spearman
+		value = 20
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = grunt
+		value = 60
+	}
+
+	abort = { always = no }
+}
+
+save_admiral_pp_for_later = {
+	enable = {
+		has_war = no
+		threat < 0.3
+		has_political_power < 200
+	}
+	abort = {
+		OR = {
+			has_war = yes
+			threat > 0.3
+			has_political_power > 200
+		}
+	}
+
+	ai_strategy = { # dont burn PP on admirals (can still get free ones)
+		type = pp_spend_priority
+		id = admiral
+		value = -100
+	}
+}
+
+do_not_waste_pp_if_saving_for_manpower_laws = {
+
+	enable = {
+		manpower_per_military_factory < 25
+		has_war = yes
+	}
+	abort = {
+		OR = {
+			manpower_per_military_factory > 25
+			has_war = no
+		}
+	}
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = relation
+		value = -9999
+	}
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = guarantee
+		value = -9999
+	}
+}
+
+build_roads = {
+	enable = {
+		always = yes
+	}
+	ai_strategy = {
+		type = building_target
+		id = rail_way
+		value = 500
+	}
+
+	abort = { always = no }
+}
+
+dont_build_convoys = {
+	enable = {
+		has_equipment = {
+			convoy > 199
+		}
+	}
+	abort = {
+		has_equipment = {
+			convoy < 200
+		}
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = -500
+	}
+}
+
+########################## importing from vanilla/expert ai
+ask_foreign_manpower_as_major = {
+	enable = {
+		is_major = yes
+		garrison_manpower_need > 5000
+	}
+
+	abort = {
+		garrison_manpower_need < 2500
+	}
+
+	ai_strategy = {
+		type = asking_foreign_garrison
+		value = 100
+		# id = ITA # id is optionnal. If it is filled, the value will just apply for this country. If not, the value will apply for all countries.
+	}
+}

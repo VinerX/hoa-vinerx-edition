@@ -1,0 +1,267 @@
+foreign_politics = {
+    
+    BRC_take_more_jungle = {
+
+        priority = 10
+
+        cost = 25
+
+        allowed = { original_tag = BHC }
+
+        visible = {
+			BHC = {
+				OR = {
+					has_country_flag = GUR_no_resistance
+					has_country_flag = GUR_little_resistance
+				}
+			}
+        }
+
+        available = {
+			BHC = {
+				OR = {
+					has_country_flag = GUR_no_resistance
+					has_country_flag = GUR_little_resistance
+				}
+			}
+        }
+
+        complete_effect = {
+			BHC = {
+				271 = {	transfer_state_to = BHC	}
+				hidden_effect = {
+					clr_country_flag = GUR_little_resistance
+					clr_country_flag = GUR_no_resistance
+					369 = { transfer_state_to = BHC	}
+				}
+			}
+            GUR = { country_event = { id = gurubashi.19 days = 1 } }
+		}
+    }
+
+	BHC_take_our_rightful_land = {
+
+        priority = 10
+
+        cost = 0
+
+        visible = {
+			is_puppet_of = BHC
+			has_idea = orc_primary_race
+			has_country_flag = LSC_new_world
+			44 = { is_owned_and_controlled_by = ROOT }
+        }
+
+        available = {
+			BHC = {	has_completed_focus = BHC_home_among_the_horde	}
+        }
+
+        complete_effect = {
+			transfer_state = 273
+			transfer_state = 279
+			transfer_state = 280
+			transfer_state = 281
+			transfer_state = 1609
+			transfer_state = 1610
+			transfer_state = 1611
+			transfer_state = 1612
+			transfer_state = 1613
+
+			273 = { add_claim_by = ROOT }
+			279 = { add_claim_by = ROOT }
+			280 = { add_claim_by = ROOT }
+			281 = { add_claim_by = ROOT }
+			1609 = { add_claim_by = ROOT }
+			1610 = { add_claim_by = ROOT }
+			1611 = { add_claim_by = ROOT }
+			1612 = { add_claim_by = ROOT }
+			1613 = { add_claim_by = ROOT }
+			
+			hidden_effect = {
+				transfer_state = 771
+				771 = { add_claim_by = ROOT }
+				44 = {
+					set_state_religion_to_primary_religion = yes
+					set_state_race_to_primary_race = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	SFC_construct_the_mound = {
+
+        fire_only_once = yes
+
+        cost = 0
+
+        visible = {
+			original_tag = SFC
+        }
+
+        available = {
+			original_tag = SFC
+			owns_state = 304
+        }
+
+        complete_effect = {
+			304 = {
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+				add_manpower = 1500
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = { load_oob = SFC_596 }
+		}
+
+		ai_will_do = { factor = 1 }
+    }
+
+	GUR_orc_enslavement = {
+
+        fire_only_once = yes
+
+        cost = 0
+
+        visible = {
+			original_tag = GUR
+			has_cosmetic_tag = GUR_SLAVE
+        }
+
+        available = {
+			has_cosmetic_tag = GUR_SLAVE
+			owns_state = 2146
+			owns_state = 795
+			owns_state = 283
+        }
+
+        complete_effect = {
+			add_stability = -0.15
+			276 = { set_state_religion_to_primary_religion = yes }
+			277 = { set_state_religion_to_primary_religion = yes }
+			278 = { set_state_religion_to_primary_religion = yes }
+			282 = { set_state_religion_to_primary_religion = yes }
+			283 = {
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+				add_manpower = 1500
+				set_state_name = "Shattered Arena"
+			}
+			290 = { set_state_religion_to_primary_religion = yes }
+			754 = { set_state_religion_to_primary_religion = yes }
+			795 = {
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+				add_manpower = 1500
+			}
+			2082 = { set_state_religion_to_primary_religion = yes }
+			2146 = {
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+				add_manpower = 1500
+			}
+			2149 = {
+				add_core_of = GUR
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+			}
+			hidden_effect = {
+				load_oob = GUR_enslavement
+				GUR = {	inherit_technology = BHC }
+				set_technology = {
+					generic_naval_naval_facilities_tech = 1
+					generic_naval_small_frames_tech = 1
+					generic_naval_convoy_tech_1 = 1
+					generic_naval_destroyer_tech_1 = 1
+					generic_naval_light_frigate_tech_1 = 1
+				}
+			}
+			hidden_effect = {
+				389 = {
+					add_core_of = GUR
+					set_state_religion_to_primary_religion = yes
+					set_state_race_to_primary_race = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	BHC_siege_of_ironforge = {
+		icon = GFX_decision_category_generic_industry
+		days_mission_timeout = 180
+		fire_only_once = yes
+		is_good = yes
+
+		allowed = { always = no } 
+
+		available = {
+			429 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		timeout_effect = {
+			country_event = bleeding_hollow.13
+		}
+
+		complete_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = BHC
+						is_in_faction_with = BHC
+					}
+				}
+				modify_timed_idea = {
+					idea = BHC_besiege_ironforge
+					days = -60
+				}
+			}
+		}
+	}
+
+	BHC_siege_of_gnomeregan = {
+		icon = GFX_decision_category_generic_industry
+		days_mission_timeout = 180
+		fire_only_once = yes
+		is_good = yes
+
+		allowed = { always = no } 
+
+		available = {
+			OR = {
+				428 = { is_controlled_by_ROOT_or_ally = yes	}
+				1575 = { is_controlled_by_ROOT_or_ally = yes }
+			}
+		}
+
+		timeout_effect = {
+			country_event = bleeding_hollow.14
+		}
+
+		complete_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = BHC
+						is_in_faction_with = BHC
+					}
+				}
+				modify_timed_idea = {
+					idea = BHC_besiege_gnomeregan
+					days = -60
+				}
+			}
+		}
+	}
+
+}

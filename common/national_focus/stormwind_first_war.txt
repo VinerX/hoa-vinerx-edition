@@ -1,0 +1,4344 @@
+#!gfx:interface\hoa_focus.gfx
+### search_filters = {FOCUS_FILTER_CANNON_STORY}
+
+focus_tree = {
+	id = stormwind_first_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = STO
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = {
+		x = 0
+		y = 2000
+	}
+
+	focus = {
+		id = STO_legacy_of_the_gurubashi_war
+		icon = GFX_focus_stormwind_crest
+		cost = 5
+		x = 22
+		y = 0
+
+		search_filters = { FOCUS_FILTER_CANNON_STORY }
+		completion_reward = {
+			country_event = stormwind.1
+		}
+	}
+
+	focus = {
+		id = STO_rebuild_the_nation
+		icon = GFX_focus_stormwind_develope_the_kingdom
+		cost = 5
+		prerequisite = { focus = STO_legacy_of_the_gurubashi_war }
+		relative_position_id = STO_legacy_of_the_gurubashi_war
+		x = -18
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = {
+					STO = {
+						controls_state = 143
+						controls_state = 309
+						controls_state = 361
+					}
+				}
+				country_event = stormwind.2
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						STO = {
+							controls_state = 143
+							controls_state = 309
+							controls_state = 361
+						}
+					}
+				}
+				complete_national_focus = STO_repair_the_city
+			}
+		}
+	}
+
+	focus = {
+		id = STO_repair_the_kingdom
+		icon = GFX_goal_generic_construction
+		cost = 5
+		prerequisite = { focus = STO_rebuild_the_nation }
+		mutually_exclusive = { focus = STO_repair_the_city }
+		relative_position_id = STO_rebuild_the_nation
+		x = -2
+		y = 1
+
+		available = {
+			always = no
+		}
+	}
+
+	focus = {
+		id = STO_westfall_investments
+		icon = GFX_focus_generic_construction_blue
+		cost = 60
+		prerequisite = { focus = STO_repair_the_kingdom }
+		relative_position_id = STO_repair_the_kingdom
+		x = -2
+		y = 1
+
+		available = {
+			has_war = no
+			NOT = {
+				has_country_flag = STO_brightwood_investments
+				has_country_flag = STO_redridge_investments
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STO_westfall_investment_idea_1
+			set_country_flag = STO_westfall_investments
+		}
+	}
+
+	focus = {
+		id = STO_brightwood_investments
+		icon = GFX_focus_generic_construction_green
+		cost = 60
+		prerequisite = { focus = STO_repair_the_kingdom }
+		relative_position_id = STO_repair_the_kingdom
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+			NOT = {
+				has_country_flag = STO_westfall_investments
+				has_country_flag = STO_redridge_investments
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STO_brightwood_investment_idea_1
+			set_country_flag = STO_brightwood_investments
+		}
+	}
+
+	focus = {
+		id = STO_sunnyglade_fortifications
+		icon = GFX_focus_stormwind_inn
+		cost = 30
+		prerequisite = { focus = STO_brightwood_investments }
+		relative_position_id = STO_brightwood_investments
+		x = 0
+		y = 1
+
+		available = {
+			301 = {	is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_brightwood_investment_idea_1
+				add_idea = STO_brightwood_investment_idea_2
+			}
+			301 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = anti_air_building
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = arcane_tower
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = STO_improve_the_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 30
+		prerequisite = { focus = STO_sunnyglade_fortifications }
+		relative_position_id = STO_sunnyglade_fortifications
+		x = 0
+		y = 1
+
+		available = {
+			301 = {	is_controlled_by_ROOT_or_subject = yes }
+			303 = {	is_controlled_by_ROOT_or_subject = yes }
+			304 = {	is_controlled_by_ROOT_or_subject = yes }
+			305 = {	is_controlled_by_ROOT_or_subject = yes }
+			306 = {	is_controlled_by_ROOT_or_subject = yes }
+			308 = {	is_controlled_by_ROOT_or_subject = yes }
+			309 = {	is_controlled_by_ROOT_or_subject = yes }
+			1602 = { is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_brightwood_investment_idea_2
+				add_idea = STO_brightwood_investment_idea_3
+			}
+			301 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			303 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			304 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			305 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			306 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			309 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			1602 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			1598 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			308 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			1601 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			1603 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			1600 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_expand_grand_hamlet
+		icon = GFX_focus_stormwind_town_hall
+		cost = 30
+		prerequisite = { focus = STO_improve_the_roads }
+		relative_position_id = STO_improve_the_roads
+		x = 0
+		y = 1
+
+		available = {
+			309 = {	is_controlled_by_ROOT_or_subject = yes }
+			305 = {	is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			clr_country_flag = STO_brightwood_investments
+			swap_ideas = {
+				remove_idea = STO_brightwood_investment_idea_3
+				add_idea = STO_brightwood_investment_idea_4
+			}
+			309 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = radar_station
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			305 = {
+				add_building_construction = {
+					type = bunker
+					province = 1988
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 6944
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_redridge_investments
+		icon = GFX_focus_generic_construction_brown
+		cost = 60
+		prerequisite = { focus = STO_repair_the_kingdom }
+		relative_position_id = STO_repair_the_kingdom
+		x = 2
+		y = 1
+
+		available = {
+			has_war = no
+			NOT = {
+				has_country_flag = STO_brightwood_investments
+				has_country_flag = STO_westfall_investments
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STO_redridge_investment_idea_1
+			set_country_flag = STO_redridge_investments
+		}
+	}
+
+	focus = {
+		id = STO_refurbish_stonewatch
+		icon = GFX_focus_stormwind_barracks
+		cost = 30
+		prerequisite = { focus = STO_redridge_investments }
+		relative_position_id = STO_redridge_investments
+		x = 0
+		y = 1
+
+		available = {
+			368 = {	is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_redridge_investment_idea_1
+				add_idea = STO_redridge_investment_idea_2
+			}
+			368 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = anti_air_building
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 2250
+					level = 3 #5
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 2256
+					level = 2 #4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 6932
+					level = 2 #4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 894
+					level = 2 #4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 2251
+					level = 2 #4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 2246
+					level = 2 #4
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_open_new_mines
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = { focus = STO_refurbish_stonewatch }
+		relative_position_id = STO_refurbish_stonewatch
+		x = 0
+		y = 1
+
+		available = {
+			361 = {	is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_redridge_investment_idea_2
+				add_idea = STO_redridge_investment_idea_3
+			}
+			361 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = iron_mine
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_burden_no_more
+		icon = GFX_focus_stormwind_town_hall
+		cost = 30
+		prerequisite = { focus = STO_open_new_mines	}
+		relative_position_id = STO_open_new_mines
+		x = 0
+		y = 1
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = STO_burden_no_more_tt
+				all_state = {
+					OR = {
+						NOT = { region = 25 }
+						state = 372
+						state = 373
+						impassable = yes
+						OWNER = {
+							OR = {
+								tag = STO
+								is_subject_of = STO
+							}
+						}
+					}
+				}
+			}
+			# OR = {
+			# 	STO = {
+			# 		controls_state = 360
+			# 		controls_state = 361
+			# 		controls_state = 370
+			# 		controls_state = 368
+			# 		controls_state = 367
+			# 		controls_state = 363
+			# 		controls_state = 364
+			# 		controls_state = 1530
+			# 		controls_state = 362
+			# 		controls_state = 1528
+			# 		controls_state = 1529
+			# 		controls_state = 365
+			# 	}
+			# 	any_subject_country = {
+			# 		controls_state = 360
+			# 		controls_state = 361
+			# 		controls_state = 370
+			# 		controls_state = 368
+			# 		controls_state = 367
+			# 		controls_state = 363
+			# 		controls_state = 364
+			# 		controls_state = 1530
+			# 		controls_state = 362
+			# 		controls_state = 1528
+			# 		controls_state = 1529
+			# 		controls_state = 365
+			# 	}
+			# }
+		}
+
+		completion_reward = {
+			clr_country_flag = STO_redridge_investments
+			swap_ideas = {
+				remove_idea = STO_redridge_investment_idea_3
+				add_idea = STO_redridge_investment_idea_4
+			}
+			360 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			361 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			370 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			368 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			367 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			363 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			364 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			1530 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			362 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			1528 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			1529 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			365 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			if = {
+				limit = {
+					373 = {	is_controlled_by_ROOT_or_subject = yes }
+				}
+				373 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					372 = {	is_controlled_by_ROOT_or_subject = yes }
+				}
+				372 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_repair_the_city
+		icon = GFX_goal_continuous_non_factory_construct
+		cost = 5
+		prerequisite = { focus = STO_rebuild_the_nation }
+		mutually_exclusive = { focus = STO_repair_the_kingdom }
+		relative_position_id = STO_rebuild_the_nation
+		x = 3
+		y = 1
+
+	}
+
+	focus = {
+		id = STO_expand_the_trade_district
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 30
+		prerequisite = { focus = STO_repair_the_city }
+		relative_position_id = STO_repair_the_city
+		x = -1
+		y = 1
+
+		available = {
+			315 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			country_event = stormwind.4
+			315 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_citywide_infastructure
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 30
+		prerequisite = { focus = STO_expand_the_trade_district }
+		relative_position_id = STO_expand_the_trade_district
+		x = 0
+		y = 1
+
+		available = {
+			control_stormwind_directly_or_puppets = yes
+			#controls_state = 318
+			#controls_state = 319
+			#controls_state = 320
+			#controls_state = 22
+			#controls_state = 321
+			#controls_state = 322
+			#controls_state = 315
+			#controls_state = 316
+			#controls_state = 317
+		}
+
+		completion_reward = {
+			318 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			319 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			320 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			22 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			321 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			322 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			315 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			316 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			317 = {
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_stormwind_dock_investments
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 30
+		prerequisite = { focus = STO_citywide_infastructure }
+		relative_position_id = STO_citywide_infastructure
+		x = 0
+		y = 1
+
+		available = {
+			318 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			318 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+			set_technology = {
+				generic_naval_battleship_tech_2 = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_reorganise_the_dwarven_district
+		icon = GFX_focus_generic_industry_3
+		cost = 30
+		prerequisite = { focus = STO_repair_the_city }
+		relative_position_id = STO_repair_the_city
+		x = 1
+		y = 1
+
+		available = {
+			321 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			321 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = iron_mine
+    				level = 2
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_fund_the_cathedral
+		icon = GFX_goal_generic_construct_civilian
+		cost = 30
+		prerequisite = { focus = STO_reorganise_the_dwarven_district }
+		relative_position_id = STO_reorganise_the_dwarven_district
+		x = 0
+		y = 1
+
+		available = {
+			controls_state = 319
+		}
+
+		completion_reward = {
+			319 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			add_ideas = STO_cathedral_of_light
+			add_tech_bonus = {
+				name = priest_technology
+				bonus = 0.25
+				uses = 1
+				category = priest_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_fortify_the_keep
+		icon = GFX_focus_stormwind_castle
+		cost = 30
+		prerequisite = { focus = STO_fund_the_cathedral }
+		relative_position_id = STO_fund_the_cathedral
+		x = 0
+		y = 1
+
+		available = {
+			controls_state = 22
+		}
+
+		completion_reward = {
+			22 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+    				type = anti_air_building
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 2386
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_fortress_stormwind
+		icon = GFX_focus_stormwind_gates_of_stormwind
+		cost = 30
+		prerequisite = { focus = STO_stormwind_dock_investments }
+		prerequisite = { focus = STO_fortify_the_keep }
+		relative_position_id = STO_stormwind_dock_investments
+		x = 1
+		y = 1
+
+		available = {
+			controls_state = 315
+			controls_state = 318
+			controls_state = 319
+			controls_state = 320
+			controls_state = 22
+			controls_state = 321
+			controls_state = 322
+			controls_state = 316
+			controls_state = 317
+		}
+
+		completion_reward = {
+			#Level 4 walls on the entrance of Stormwind
+			315 = {
+				add_building_construction = {
+					type = bunker
+					province = 2469
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 2465
+					level = 4
+					instant_build = yes
+				}
+				add_manpower = 5000
+			}
+			#Level 2 coastal forts on the port of Stormwind
+			318 = {
+				hidden_effect = {
+					add_building_construction = {
+						type = coastal_bunker
+						province = {
+							all_provinces = yes
+							limit_to_coastal = yes
+						}
+						level = 2
+						instant_build = yes
+					}
+				}
+				add_manpower = 1600
+			}
+			custom_effect_tooltip = STO_fortress_stormwind_fortify_harbor_tt
+			319 = {	add_manpower = 4600	}
+			320 = {	add_manpower = 2300	}
+			22 = { add_manpower = 2100 }
+			321 = {	add_manpower = 3500	}
+			322 = {	add_manpower = 4400	}
+			316 = {	add_manpower = 3800	}
+			317 = {	add_manpower = 2100	}
+		}
+	}
+
+	focus = {
+		id = STO_address_noble_concerns
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 5
+		prerequisite = { focus = STO_legacy_of_the_gurubashi_war }
+		relative_position_id = STO_legacy_of_the_gurubashi_war
+		x = -9
+		y = 1
+
+		completion_reward = {
+			country_event = { id = stormwind.5 }
+			custom_effect_tooltip = STO_address_noble_concerns_tt
+		}
+	}
+
+	focus = {
+		id = STO_extend_noble_privilages
+		icon = GFX_focus_generic_strike_at_democracy2
+		cost = 5
+		prerequisite = { focus = STO_address_noble_concerns }
+		mutually_exclusive = { focus = STO_curtail_the_nobles }
+		relative_position_id = STO_address_noble_concerns
+		x = -2
+		y = 1
+
+		available = {
+			has_country_flag = STO_extend_noble_privilages
+		}
+	}
+
+	focus = {
+		id = STO_feudal_reform
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		cost = 30
+		prerequisite = { focus = STO_extend_noble_privilages }
+		mutually_exclusive = {
+			focus = STO_found_the_house_of_nobles
+			focus = STO_investigate_the_troublemakers
+		}
+		relative_position_id = STO_extend_noble_privilages
+		x = -1
+		y = 1
+
+		completion_reward = {
+			set_country_flag = alliance_alignment
+			add_ideas = STO_feudal_reform
+			release_puppet = WST
+			release_puppet = DSK
+			release_puppet = RDR
+			custom_effect_tooltip = STO_feudal_reform_tt
+		}
+	}
+
+	focus = {
+		id = STO_curtail_the_nobles
+		icon = GFX_focus_rom_handle_king
+		cost = 5
+		prerequisite = { focus = STO_address_noble_concerns }
+		mutually_exclusive = { focus = STO_extend_noble_privilages }
+		relative_position_id = STO_address_noble_concerns
+		x = 2
+		y = 1
+
+		available = {
+			has_country_flag = STO_curtail_the_nobles
+		}
+	}
+
+	focus = {
+		id = STO_found_the_house_of_nobles
+		icon = GFX_focus_stormwind_castle
+		cost = 30
+		prerequisite = {
+			focus = STO_curtail_the_nobles
+			focus = STO_extend_noble_privilages
+		}
+		mutually_exclusive = {
+			focus = STO_feudal_reform
+			focus = STO_investigate_the_troublemakers
+		}
+		relative_position_id = STO_extend_noble_privilages
+		x = 2
+		y = 1
+
+		completion_reward = {
+			set_country_flag = neutral_alignment
+			add_ideas = STO_house_of_nobles
+		}
+	}
+
+	focus = {
+		id = STO_state_patronage
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		prerequisite = { focus = STO_found_the_house_of_nobles }
+		mutually_exclusive = { focus = STO_a_noble_council }
+		relative_position_id = STO_found_the_house_of_nobles
+		x = -1
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_house_of_nobles
+				add_idea = STO_house_of_nobles_2
+			}
+		}
+	}
+
+	focus = {
+		id = STO_exempt_nobles_from_taxation
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		cost = 30
+		prerequisite = { focus = STO_state_patronage }
+		relative_position_id = STO_state_patronage
+		x = 0
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_house_of_nobles_2
+				add_idea = STO_house_of_nobles_3
+			}
+		}
+	}
+
+	focus = {
+		id = STO_a_noble_council
+		icon = GFX_goal_generic_national_unity
+		cost = 30
+		prerequisite = { focus = STO_found_the_house_of_nobles }
+		mutually_exclusive = { focus = STO_state_patronage }
+		relative_position_id = STO_found_the_house_of_nobles
+		x = 1
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_house_of_nobles
+				add_idea = STO_house_of_nobles_4
+			}
+		}
+	}
+
+	focus = {
+		id = STO_raise_taxes
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		cost = 30
+		prerequisite = { focus = STO_a_noble_council }
+		relative_position_id = STO_a_noble_council
+		x = 0
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_house_of_nobles_4
+				add_idea = STO_house_of_nobles_5
+			}
+		}
+	}
+
+	focus = {
+		id = STO_the_noble_veto
+		icon = GFX_focus_generic_treaty
+		cost = 30
+		prerequisite = {
+			focus = STO_exempt_nobles_from_taxation
+			focus = STO_raise_taxes
+		}
+		relative_position_id = STO_exempt_nobles_from_taxation
+		x = 1
+		y = 1
+
+		completion_reward = {
+			set_country_flag = STO_noble_veto
+			custom_effect_tooltip = STO_noble_veto_tt
+			if = {
+				limit = { has_idea = STO_house_of_nobles_2 }
+				swap_ideas = {
+					remove_idea = STO_house_of_nobles_5
+					add_idea = STO_house_of_nobles_5_1
+				}
+			}
+			if = {
+				limit = { has_idea = STO_house_of_nobles_2 }
+				swap_ideas = {
+					remove_idea = STO_house_of_nobles_2
+					add_idea = STO_house_of_nobles_2_1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_investigate_the_troublemakers
+		icon = GFX_focus_AST_rats_tobruk
+		cost = 30
+		prerequisite = { focus = STO_curtail_the_nobles }
+		mutually_exclusive = {
+			focus = STO_feudal_reform
+			focus = STO_found_the_house_of_nobles
+		}
+		relative_position_id = STO_curtail_the_nobles
+		x = 1
+		y = 1
+
+		completion_reward = {
+			set_country_flag = alliance_alignment
+			country_event = { id = stormwind.22 }
+			add_ideas = STO_noble_schemes
+		}
+	}
+
+	focus = {
+		id = STO_reward_loyalty
+		icon = GFX_goal_tripartite_pact
+		cost = 30
+		prerequisite = { focus = STO_investigate_the_troublemakers }
+		relative_position_id = STO_investigate_the_troublemakers
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = -50
+			add_popularity = { ideology = neutral popularity = -0.1 }
+			swap_ideas = {
+				remove_idea = STO_noble_schemes
+				add_idea = STO_noble_schemes_2
+			}
+		}
+	}
+
+	focus = {
+		id = STO_expose_the_traitorous_dissent
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = { focus = STO_reward_loyalty }
+		relative_position_id = STO_reward_loyalty
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_laws_of_loyalty
+		}
+	}
+
+	focus = {
+		id = STO_deal_with_the_troublemakers
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		cost = 30
+		prerequisite = { focus = STO_expose_the_traitorous_dissent }
+		relative_position_id = STO_expose_the_traitorous_dissent
+		x = -1
+		y = 1
+
+		completion_reward = {
+			remove_ideas = STO_noble_schemes_2
+		}
+	}
+
+	focus = {
+		id = STO_revoke_their_titles
+		icon = GFX_focus_rom_abdicate
+		cost = 30
+		prerequisite = { focus = STO_deal_with_the_troublemakers }
+		mutually_exclusive = { focus = STO_a_series_of_unfortunate_events }
+		relative_position_id = STO_deal_with_the_troublemakers
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STO_titles_revoked
+				days = 360
+			}
+		}
+	}
+
+	focus = {
+		id = STO_a_series_of_unfortunate_events
+		icon = GFX_focus_mex_exile_calles
+		cost = 30
+		prerequisite = { focus = STO_deal_with_the_troublemakers }
+		mutually_exclusive = { focus = STO_revoke_their_titles }
+		relative_position_id = STO_deal_with_the_troublemakers
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_manpower = -5
+			add_war_support = -0.1
+			add_stability = -0.1
+			add_timed_idea = {
+				idea = STO_purges_among_the_noble_elite
+				days = 360
+			}
+		}
+	}
+
+	focus = {
+		id = STO_rumours_in_the_east
+		icon = GFX_focus_usa_focus_on_asia
+		cost = 30
+		prerequisite = { focus = STO_legacy_of_the_gurubashi_war }
+		x = 25
+		y = 1
+
+		completion_reward = {
+			add_stability = -0.02
+			add_war_support = 0.05
+			hidden_effect = {
+				TSC = {
+					country_event = {
+						id = black_dragon_first.1
+						days = 180
+					}
+				}
+				BRC = {
+					country_event = {
+						id = black_dragon_first.2
+						days = 180
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_expedition_into_the_swamps
+		icon = GFX_goal_generic_more_territorial_claims
+		cost = 30
+		prerequisite = { focus = STO_rumours_in_the_east }
+		x = 25
+		y = 2
+
+		bypass = {
+			OR = {
+				has_war_with = BRC
+				has_war_with = TSC
+				has_war_with = BHC
+			}
+		}
+
+		available = {
+			has_political_power > 100
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = -100
+			hidden_effect = {
+				add_ideas = BLF_interfering_emissary
+			}
+		}
+	}
+
+	focus = {
+		id = STO_end_isolationism
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+		cost = 30
+		prerequisite = { focus = STO_expedition_into_the_swamps }
+		mutually_exclusive = { focus = STO_stand_firm }
+		x = 22
+		y = 3
+
+		available = {
+			has_political_power > 150
+		}
+
+		completion_reward = {
+			country_event = stormwind.24
+			add_political_power = -150
+			hidden_effect = {
+				remove_ideas = BLF_interfering_emissary
+				add_timed_idea = {
+					idea = BLF_interfering_emissary
+					days = 360
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+	            factor = 2
+				is_historical_focus_on = no
+	        }
+		}
+	}
+
+	focus = {
+		id = STO_establish_diplomatic_ties_in_the_north
+		icon = GFX_focus_stormwind_diplomatic
+		cost = 5
+		prerequisite = { focus = STO_end_isolationism }
+		mutually_exclusive = { focus = STO_early_intervention }
+		x = 20
+		y = 4
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = STO_send_emissaries_to_quelthalas
+		icon = GFX_goal_generic_improve_relations
+		cost = 14
+		prerequisite = { focus = STO_establish_diplomatic_ties_in_the_north }
+		x = 18
+		y = 5
+
+		completion_reward = {
+			QUE = {
+				add_opinion_modifier = {
+					target = STO
+					modifier = envoy_to_quelthalas
+				}
+				reverse_add_opinion_modifier = {
+					target = STO
+					modifier = envoy_to_quelthalas
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_early_intervention
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 5
+		prerequisite = { focus = STO_end_isolationism }
+		mutually_exclusive = { focus = STO_establish_diplomatic_ties_in_the_north }
+		x = 25
+		y = 4
+
+		available = {
+			has_completed_focus = STO_end_political_turmoil
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+			if = {
+				limit = { has_idea = peacetime_economy }
+				swap_ideas = {
+					remove_idea = peacetime_economy
+					add_idea = early_military_development
+				}
+			}
+			if = {
+				limit = { has_idea = early_military_development }
+				swap_ideas = {
+					remove_idea = early_military_development
+					add_idea = preparing_for_war
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_rally_the_troops
+		icon = GFX_focus_generic_military_mission
+		cost = 30
+		prerequisite = { focus = STO_early_intervention }
+		x = 24
+		y = 5
+
+		completion_reward = {
+			add_war_support = 0.1
+			add_command_power = 50
+		}
+	}
+
+	focus = {
+		id = STO_conscription_initiative
+		icon = GFX_focus_hol_war_on_pacifism
+		cost = 30
+		prerequisite = { focus = STO_early_intervention }
+		x = 26
+		y = 5
+
+		completion_reward = {
+			add_ideas = extensive_conscription
+		}
+	}
+
+	focus = {
+		id = STO_expand_the_supply_lines
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 30
+		prerequisite = { focus = STO_rally_the_troops }
+		prerequisite = { focus = STO_conscription_initiative }
+		x = 25
+		y = 6
+
+		completion_reward = {
+			add_ideas = STO_expanded_supply_lines
+		}
+	}
+
+	focus = {
+		id = STO_preemptive_strike
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		cost = 21
+		prerequisite = { focus = STO_expand_the_supply_lines }
+		x = 25
+		y = 7
+
+		bypass = {
+			OR = {
+				has_war_with = BRC
+				has_war_with = TSC
+			}
+		}
+
+		completion_reward = {
+			declare_war_on = { target = BRC type = annex_everything }
+			declare_war_on = { target = TSC type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = STO_stand_firm
+		icon = GFX_goal_generic_special_forces
+		cost = 30
+		prerequisite = { focus = STO_expedition_into_the_swamps }
+		mutually_exclusive = { focus = STO_end_isolationism }
+		x = 29
+		y = 3
+
+		available = {
+			OR = {
+				has_war = yes
+				threat > 0.09
+			}
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.1
+		}
+	}
+
+	focus = {
+		id = STO_armed_isolationism
+		icon = GFX_focus_generic_strike_at_democracy1
+		cost = 30
+		prerequisite = { focus = STO_stand_firm }
+		x = 29
+		y = 4
+
+		completion_reward = {
+			add_ideas = STO_armed_isolationism_idea
+		}
+	}
+
+	focus = {
+		id = STO_expand_military_industry
+		icon = GFX_focus_stormwind_blacksmith
+		cost = 30
+		prerequisite = { focus = STO_armed_isolationism }
+		x = 28
+		y = 5
+		completion_reward = {
+			22 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			322 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_protector_of_the_south
+		icon = GFX_focus_generic_support_the_left_right
+		cost = 30
+		prerequisite = { focus = STO_armed_isolationism }
+		x = 30
+		y = 5
+
+		completion_reward = {
+			add_ideas = STO_protector_of_the_south_idea
+		}
+	}
+
+	focus = {
+		id = STO_a_lions_pride
+		icon = GFX_focus_hol_united_netherlands
+		cost = 30
+		prerequisite = { focus = STO_expand_military_industry }
+		prerequisite = { focus = STO_protector_of_the_south }
+		x = 29
+		y = 6
+
+		completion_reward = {
+			add_ideas = STO_a_lions_pride_idea
+		}
+	}
+
+	focus = {
+		id = STO_bulwark_of_mankind
+		icon = GFX_focus_generic_home_defense
+		cost = 30
+		prerequisite = { focus = STO_a_lions_pride }
+		x = 29
+		y = 7
+		completion_reward = {
+			add_ideas = STO_bulwark_of_mankind_idea
+		}
+	}
+
+	focus = {
+		id = STO_legacy_of_arathor
+		icon = GFX_focus_ger_revive_kaiserreich
+		cost = 30
+		prerequisite = {
+			focus = STO_bulwark_of_mankind
+			focus = STO_preemptive_strike
+		}
+		x = 27
+		y = 9
+
+		completion_reward = {
+			add_ideas = STO_legacy_of_arathor
+		}
+	}
+
+	focus = {
+		id = STO_elwynn_security
+		icon = GFX_goal_generic_military_sphere
+		cost = 30
+		prerequisite = { focus = STO_legacy_of_the_gurubashi_war }
+		relative_position_id = STO_legacy_of_the_gurubashi_war
+		x = 10
+		y = 1
+
+		available = {
+			threat > 0.04 
+		}
+
+		completion_reward = {
+			add_war_support = 0.025
+			unlock_decision_category_tooltip = stormwind_elwynn_militia
+		}
+	}
+
+	focus = {
+		id = STO_clear_out_the_mines
+		icon = GFX_goal_generic_construction2
+		cost = 21
+		prerequisite = { focus = STO_elwynn_security }
+		relative_position_id = STO_elwynn_security
+		x = -1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = ELK
+			}
+		}
+	}
+
+	focus = {
+		id = STO_deal_with_hogger
+		icon = GFX_goal_generic_wolf_pack
+		cost = 21
+		prerequisite = { focus = STO_elwynn_security }
+		relative_position_id = STO_elwynn_security
+		x = 1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = RPP
+			}
+		}
+	}
+
+	focus = {
+		id = STO_clash_in_redridge_pass
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 30
+		prerequisite = { focus = STO_clear_out_the_mines }
+		prerequisite = { focus = STO_deal_with_hogger }
+		relative_position_id = STO_clear_out_the_mines
+		x = 1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = RRP
+			}
+		}
+	}
+
+	focus = {
+		id = STO_integrate_redridge
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = { focus = STO_clash_in_redridge_pass }
+		relative_position_id = STO_clash_in_redridge_pass
+		x = 0
+		y = 1
+
+		available = {
+			372 = {	is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			if = {
+				limit = { 41 = { is_controlled_by = STO } }
+				41 = {
+					add_core_of = STO
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			if = {
+				limit = { 372 = { is_controlled_by = STO } }
+				372 = {
+					add_core_of = STO
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			if = {
+				limit = { 372 = { is_controlled_by = RDR } }
+				372 = {
+					add_core_of = RDR
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			if = {
+				limit = { 372 = { is_controlled_by = RDR } }
+				372 = {
+					add_core_of = RDR
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			custom_effect_tooltip = will_convert_race_religion_tt
+		}
+	}
+
+	focus = {
+		id = STO_protect_the_caravans
+		icon = GFX_goal_tfv_saf_support_ossebrandwag
+		cost = 14
+		prerequisite = { focus = STO_integrate_redridge }
+		relative_position_id = STO_integrate_redridge
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_stability = 0.05
+			remove_ideas = STO_gnoll_attacks
+		}
+	}
+
+	focus = {
+		id = STO_reform_the_military
+		icon = GFX_focus_generic_little_entente
+		cost = 30
+		prerequisite = { focus = STO_legacy_of_the_gurubashi_war }
+		relative_position_id = STO_legacy_of_the_gurubashi_war
+		x = 16
+		y = 1
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+		}
+
+		completion_reward = {
+			army_experience = 10
+			add_timed_idea = {
+				idea =  STO_initial_army_reforms
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STO_revitalise_military_industry
+		icon = GFX_focus_stormwind_blacksmith
+		cost = 30
+		prerequisite = { focus = STO_legacy_of_the_gurubashi_war }
+		relative_position_id = STO_legacy_of_the_gurubashi_war
+		x = 18
+		y = 1
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 1000
+			}
+			add_equipment_to_stockpile = {
+				type = pikeman_equipment_1
+				amount = 1000
+			}
+			321 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_anduin_lothars_reforms
+		icon = GFX_focus_ger_return_of_the_kaiser
+		cost = 30
+		prerequisite = { focus = STO_reform_the_military }
+		prerequisite = { focus = STO_revitalise_military_industry }
+		relative_position_id = STO_reform_the_military
+		x = 1
+		y = 1
+
+		available = {
+			NOT = { has_idea = STO_initial_army_reforms }
+			OR = {
+				has_completed_focus = STO_end_isolationism
+				has_completed_focus = STO_stand_firm
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STO_lothars_reforms_idea
+			if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_5 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_5
+					add_idea = STO_over_reliance_on_medivh_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_4 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_4
+					add_idea = STO_over_reliance_on_medivh_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_3 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_3
+					add_idea = STO_over_reliance_on_medivh_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_2 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_2
+					add_idea = STO_over_reliance_on_medivh_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_1 }
+				remove_ideas = STO_over_reliance_on_medivh_1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_standardized_weapons
+		icon = GFX_focus_mex_restore_the_army_of_christ
+		cost = 30
+		prerequisite = { focus = STO_anduin_lothars_reforms }
+		relative_position_id = STO_anduin_lothars_reforms
+		x = -4
+		y = 1
+
+		completion_reward = {
+			country_event = stormwind.23
+		}
+	}
+
+	focus = {
+		id = STO_raise_the_banners
+		icon = GFX_focus_chi_united_front
+		cost = 30
+		prerequisite = {
+			focus = STO_standardized_weapons
+		}
+		relative_position_id = STO_standardized_weapons
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_raise_the_banners_idea
+		}
+	}
+
+	focus = {
+		id = STO_crossbow_training
+		icon = GFX_focus_generic_air_defense
+		cost = 30
+		prerequisite = {
+			focus = STO_raise_the_banners
+		}
+		relative_position_id = STO_raise_the_banners
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = archer_technology
+				bonus = 0.5
+				uses = 1
+				category = archer_technology
+			}
+			315 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+		}
+	}
+
+	focus = {
+		id = STO_develop_the_mage_quarter
+		icon = GFX_focus_stormwind_mage_tower
+		cost = 30
+		prerequisite = { focus = STO_standardized_weapons }
+		relative_position_id = STO_standardized_weapons
+		x = 1
+		y = 1
+
+		completion_reward = {
+			316 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = mage_technology
+				bonus = 0.25
+				uses = 1
+				category = mage_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = STO_recruit_the_clerics_of_northshire
+		icon = GFX_focus_chosen_of_the_light
+		cost = 30
+		prerequisite = { focus = STO_develop_the_mage_quarter }
+		relative_position_id = STO_develop_the_mage_quarter
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = priest_technology
+				bonus = 0.75
+				uses = 1
+				category = priest_technology
+			}
+			327 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			create_corps_commander = {
+				name = "Lady Mara Fordragon"
+				picture = "gfx/leaders/STO/Lady_Mara_Fordragon.dds"
+				traits = {  }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STO_finalise_infantry_reform
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = STO_crossbow_training }
+		prerequisite = { focus = STO_recruit_the_clerics_of_northshire }
+		relative_position_id = STO_recruit_the_clerics_of_northshire
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 100
+					track = infantry
+				}
+			}
+			else = { army_experience = 25 }
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
+			if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_5 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_5
+					add_idea = STO_over_reliance_on_medivh_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_4 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_4
+					add_idea = STO_over_reliance_on_medivh_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_3 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_3
+					add_idea = STO_over_reliance_on_medivh_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_2 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_2
+					add_idea = STO_over_reliance_on_medivh_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_1 }
+				remove_ideas = STO_over_reliance_on_medivh_1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_form_brotherhood_of_the_horse
+		icon = GFX_focus_ger_revive_kaiserreich
+		cost = 30
+		prerequisite = { focus = STO_anduin_lothars_reforms }
+		relative_position_id = STO_anduin_lothars_reforms
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_brotherhood_of_horse_idea
+		}
+	}
+
+	focus = {
+		id = STO_selective_horse_breeding
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = STO_form_brotherhood_of_the_horse }
+		relative_position_id = STO_form_brotherhood_of_the_horse
+		x = -1
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = STO_brotherhood_of_horse_idea_2 }
+				swap_ideas = {
+					remove_idea = STO_brotherhood_of_horse_idea_2
+					add_idea = STO_brotherhood_of_horse_idea_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = STO_brotherhood_of_horse_idea
+					add_idea = STO_brotherhood_of_horse_idea_2
+				}
+			}
+			add_tech_bonus = {
+				name = cavalry_technology
+				bonus = 0.25
+				uses = 1
+				category = cavalry_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_supply_wagons
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = STO_selective_horse_breeding }
+		relative_position_id = STO_selective_horse_breeding
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = supply_wagon_equipment_1
+				amount = 100
+				producer = STO
+			}
+			add_tech_bonus = {
+				name = supply_wagon_technology
+				bonus = 0.5
+				uses = 1
+				category = supply_wagon_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_mounted_militias
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = STO_form_brotherhood_of_the_horse }
+		relative_position_id = STO_form_brotherhood_of_the_horse
+		x = 1
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = STO_brotherhood_of_horse_idea_2 }
+				swap_ideas = {
+					remove_idea = STO_brotherhood_of_horse_idea_2
+					add_idea = STO_brotherhood_of_horse_idea_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = STO_brotherhood_of_horse_idea
+					add_idea = STO_brotherhood_of_horse_idea_2
+				}
+			}
+			add_tech_bonus = {
+				name = cavalry_technology
+				bonus = 0.25
+				uses = 1
+				category = cavalry_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_knights_of_stormwind
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = STO_mounted_militias }
+		relative_position_id = STO_mounted_militias
+		x = 0
+		y = 1
+
+		completion_reward = {
+			322 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = knight_technology
+				bonus = 0.25
+				uses = 1
+				category = knight_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_finalise_cavalry_reform
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = STO_supply_wagons }
+		prerequisite = { focus = STO_knights_of_stormwind }
+		relative_position_id = STO_anduin_lothars_reforms
+		x = 0
+		y = 4
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_armor
+					amount = 0.5
+					days = 75
+					track = armor
+				}
+			}
+			else = { army_experience = 20 }
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+			if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_5 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_5
+					add_idea = STO_over_reliance_on_medivh_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_4 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_4
+					add_idea = STO_over_reliance_on_medivh_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_3 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_3
+					add_idea = STO_over_reliance_on_medivh_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_2 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_2
+					add_idea = STO_over_reliance_on_medivh_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_1 }
+				remove_ideas = STO_over_reliance_on_medivh_1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_expand_flightpath_network
+		icon = GFX_goal_generic_build_airforce
+		cost = 30
+		prerequisite = { focus = STO_anduin_lothars_reforms }
+		relative_position_id = STO_anduin_lothars_reforms
+		x = 4
+		y = 1
+
+		completion_reward = {
+			318 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			315 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			327 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			325 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			312 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			146 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			143 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			301 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			309 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			358 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			361 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			368 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 2
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_gryphon_breeding_initiative
+		icon = GFX_focus_gryphons
+		cost = 30
+		prerequisite = { focus = STO_expand_flightpath_network }
+		relative_position_id = STO_expand_flightpath_network
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_gryphon_breeding
+		}
+	}
+
+	focus = {
+		id = STO_aerial_focus
+		icon = GFX_focus_gryphons
+		cost = 30
+		prerequisite = { focus = STO_gryphon_breeding_initiative }
+		mutually_exclusive = { focus = STO_ground_focus }
+		relative_position_id = STO_gryphon_breeding_initiative
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = organic_fighter_equipment_1
+				amount = 25
+				producer = STO
+			}
+			add_tech_bonus = {
+				name = fighter_technology
+				bonus = 0.5
+				uses = 1
+				category = fighter_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_ground_focus
+		icon = GFX_focus_gryphons
+		cost = 30
+		prerequisite = { focus = STO_gryphon_breeding_initiative }
+		mutually_exclusive = { focus = STO_aerial_focus }
+		relative_position_id = STO_gryphon_breeding_initiative
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = organic_cas_equipment_1
+				amount = 25
+				producer = STO
+			}
+			add_tech_bonus = {
+				name = cas_technology
+				bonus = 0.5
+				uses = 1
+				category = cas_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_finalise_air_reform
+		icon = GFX_goal_generic_air_doctrine
+		cost = 30
+		prerequisite = {
+			focus = STO_aerial_focus
+			focus = STO_ground_focus
+		}
+		relative_position_id = STO_aerial_focus
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = air_doctrine
+			}
+			if = {
+				limit = {
+					ROOT = { has_any_grand_doctrine = air }
+				}
+				add_daily_mastery = {
+					name = doctrine_fighter
+					amount = 0.5
+					days = 100
+					track = fighter_aircraft
+				}
+			}
+			else = { air_experience = 25 }
+			add_breakthrough_points = {
+				specialization = specialization_air
+				value = 1
+			}
+			if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_5 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_5
+					add_idea = STO_over_reliance_on_medivh_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_4 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_4
+					add_idea = STO_over_reliance_on_medivh_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_3 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_3
+					add_idea = STO_over_reliance_on_medivh_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_2 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_2
+					add_idea = STO_over_reliance_on_medivh_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_1 }
+				remove_ideas = STO_over_reliance_on_medivh_1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_stormwind_dry_docks
+		icon = GFX_goal_generic_build_navy
+		cost = 30
+		prerequisite = { focus = STO_anduin_lothars_reforms }
+		relative_position_id = STO_anduin_lothars_reforms
+		x = 8
+		y = 1
+
+		available = {
+			STO = { controls_state = 318 }
+		}
+
+		completion_reward = {
+			navy_experience = 10
+			318 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = dockyard
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_modernized_designs
+		icon = GFX_focus_generic_destroyer
+		cost = 30
+		prerequisite = { focus = STO_stormwind_dry_docks }
+		relative_position_id = STO_stormwind_dry_docks
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = small_frame_technology
+				bonus = 0.5
+				uses = 1
+				category = small_frame_technology
+			}
+			add_tech_bonus = {
+				name = large_frame_technology
+				bonus = 0.5
+				uses = 1
+				category = large_frame_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_found_balor_naval_academy
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 30
+		prerequisite = { focus = STO_stormwind_dry_docks }
+		relative_position_id = STO_stormwind_dry_docks
+		x = 1
+		y = 1
+
+		completion_reward = {
+			323 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			set_technology = {
+				generic_naval_naval_academy_tech = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_the_pride_of_the_fleet
+		icon = GFX_focus_generic_refit_civilian_ships
+		cost = 30
+		prerequisite = { focus = STO_modernized_designs }
+		prerequisite = { focus = STO_found_balor_naval_academy }
+		relative_position_id = STO_modernized_designs
+		x = 1
+		y = 1
+
+		completion_reward = {
+			country_event = stormwind.12
+		}
+
+	}
+
+	focus = {
+		id = STO_battleship_fleet
+		icon = GFX_focus_generic_navy_battleship2
+		cost = 30
+		prerequisite = { focus = STO_the_pride_of_the_fleet }
+		mutually_exclusive = { focus = STO_carrier_fleet }
+		relative_position_id = STO_the_pride_of_the_fleet
+		x = -1
+		y = 1
+
+		available = {
+			has_country_flag = battleship_focused
+		}
+
+		completion_reward = {
+			add_ideas = STO_battleship_fleet_idea
+		}
+	}
+
+	focus = {
+		id = STO_carrier_fleet
+		icon = GFX_goal_generic_navy_carrier
+		cost = 30
+		prerequisite = { focus = STO_the_pride_of_the_fleet }
+		mutually_exclusive = { focus = STO_battleship_fleet }
+		relative_position_id = STO_the_pride_of_the_fleet
+		x = 1
+		y = 1
+
+		available = {
+			has_country_flag = carrier_focused
+		}
+
+		completion_reward = {
+			add_ideas = STO_carrier_fleet_idea
+		}
+	}
+
+	focus = {
+		id = STO_rule_the_waves
+		icon = GFX_goal_generic_navy_battleship
+		cost = 30
+		prerequisite = {
+			focus = STO_battleship_fleet
+			focus = STO_carrier_fleet
+		}
+		relative_position_id = STO_battleship_fleet
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = naval_doctrine
+			}
+			if = {
+				limit = {
+					ROOT = { has_any_grand_doctrine = naval }
+				}
+				add_daily_mastery = {
+					name = doctrine_screens
+					amount = 0.5
+					days = 100
+					track = screens
+				}
+			}
+			else = { navy_experience = 25 }
+			add_breakthrough_points = {
+				specialization = specialization_naval
+				value = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_jewel_of_the_south
+		icon = GFX_focus_generic_the_giant_wakes
+		cost = 30
+		prerequisite = { focus = STO_fortress_stormwind }
+		relative_position_id = STO_fortress_stormwind
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_jewel_of_the_south_idea
+		}
+	}
+
+	focus = {
+		id = STO_rebuild_moonbrook
+		icon = GFX_focus_stormwind_inn
+		cost = 30
+		prerequisite = { focus = STO_westfall_investments }
+		relative_position_id = STO_westfall_investments
+		x = 0
+		y = 1
+
+		available = {
+			143 = { is_controlled_by_ROOT_or_ally = yes	}
+        }
+
+		completion_reward = {
+			143 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = STO_westfall_investment_idea_1
+				add_idea = STO_westfall_investment_idea_2
+			}
+		}
+	}
+
+	focus = {
+		id = STO_revitalise_the_fields
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = STO_rebuild_moonbrook }
+		relative_position_id = STO_rebuild_moonbrook
+		x = 0
+		y = 1
+
+		available = {
+			38 = {	is_controlled_by_ROOT_or_subject = yes }
+			147 = { is_controlled_by_ROOT_or_subject = yes }
+			148 = {	is_controlled_by_ROOT_or_subject = yes }
+			149 = {	is_controlled_by_ROOT_or_subject = yes }
+			1590 = { is_controlled_by_ROOT_or_subject = yes }
+			1594 = { is_controlled_by_ROOT_or_subject = yes }
+			1596 = { is_controlled_by_ROOT_or_subject = yes }
+			2163 = { is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 148
+						state = 1590
+						state = 149
+						state = 38
+						state = 1594
+						state = 2163
+						state = 1596
+						state = 147
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = farm
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = STO_westfall_investment_idea_2
+				add_idea = STO_westfall_investment_idea_3
+			}
+		}
+	}
+
+	focus = {
+		id = STO_excavate_the_deadmines
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = { focus = STO_revitalise_the_fields }
+		relative_position_id = STO_revitalise_the_fields
+		x = 0
+		y = 1
+
+		available = {
+			142 = {	is_controlled_by_ROOT_or_subject = yes }
+			144 = { is_controlled_by_ROOT_or_subject = yes }
+			145 = {	is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			clr_country_flag = STO_westfall_investments
+
+			swap_ideas = {
+				remove_idea = STO_westfall_investment_idea_3
+				add_idea = STO_westfall_investment_idea_4
+			}
+
+			142 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = sulfur_mine
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = iron_mine
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = synthetic_refinery
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			144 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = iron_mine
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			145 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = iron_mine
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_rural_prosperity
+		icon = GFX_focus_generic_industry_2
+		cost = 30
+		prerequisite = { focus = STO_expand_grand_hamlet }
+		prerequisite = { focus = STO_burden_no_more	}
+		prerequisite = { focus = STO_excavate_the_deadmines }
+		relative_position_id = STO_expand_grand_hamlet
+		x = 0
+		y = 1
+
+		completion_reward = {
+			country_event = stormwind.3
+		}
+	}
+
+	focus = {
+		id = STO_finish_gurubashi_recovery
+		icon = GFX_goal_generic_production
+		cost = 30
+		prerequisite = {
+			focus = STO_jewel_of_the_south
+			focus = STO_rural_prosperity
+		}
+		relative_position_id = STO_rural_prosperity
+		x = 2
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = STO_legacy_of_gurubashi_war_2 }
+				remove_ideas = STO_legacy_of_gurubashi_war_2
+			}
+			if = {
+				limit = { has_idea = STO_legacy_of_gurubashi_war_1 }
+				swap_ideas = {
+					remove_idea = STO_legacy_of_gurubashi_war_1
+					add_idea = STO_legacy_of_gurubashi_war_2
+				}
+			}
+			remove_ideas = STO_rebuilding_the_nation
+		}
+	}
+
+	focus = {
+		id = STO_noble_administration
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = { focus = STO_feudal_reform }
+		relative_position_id = STO_feudal_reform
+		x = 0
+		y = 1
+
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			create_faction = stormwind_alliance
+			WST = { add_ideas = STO_noble_administration_idea }
+			RDR = { add_ideas = STO_noble_administration_idea }
+			DSK = { add_ideas = STO_noble_administration_idea }
+		}
+	}
+
+	focus = {
+		id = STO_vassal_consessions
+		icon = GFX_focus_usa_union_representation_act
+		cost = 30
+		prerequisite = { focus = STO_noble_administration }
+		relative_position_id = STO_noble_administration
+		x = 0
+		y = 1
+
+		completion_reward = {
+			### Corrected Manpower Costs
+			RDR = {	add_manpower = -500 } 
+			WST = { add_manpower = -2000 }
+			DSK = {	add_manpower = -2000 }
+			custom_effect_tooltip = STO_vassal_consessions_tt
+			hidden_effect = {
+				division_template = {
+					name = "Vassal Knights"
+					priority = 1
+					regiments = {
+						knight = { x = 0 y = 0 }
+						knight = { x = 0 y = 1 }
+						knight = { x = 0 y = 2 }
+						knight = { x = 0 y = 3 }
+						knight = { x = 0 y = 4 }
+					}
+				}
+
+				division_template = {
+					name = "Vassal Footmen"
+					priority = 1
+					regiments = {
+						footman = { x = 0 y = 0 }
+						footman = { x = 0 y = 1 }
+						footman = { x = 0 y = 2 }
+						footman = { x = 0 y = 3 }
+						footman = { x = 0 y = 4 }
+						footman = { x = 1 y = 0 }
+						footman = { x = 1 y = 1 }
+						footman = { x = 1 y = 2 }
+						footman = { x = 1 y = 3 }
+						footman = { x = 1 y = 4 }
+					}
+				}
+
+				capital_scope = {
+					#This have to be in one line to work apparently
+					#Knights
+					create_unit = {
+						division = "name = \"Redridge Knights\" division_template = \"Vassal Knights\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = STO
+						count = 2
+					}
+					#Footmen
+					create_unit = {
+						division = "name = \"Westfall Footmen\" division_template = \"Vassal Footmen\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = STO
+						count = 4
+					}
+					create_unit = {
+						division = "name = \"Duskwood Footmen\" division_template = \"Vassal Footmen\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = STO
+						count = 4
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_invest_in_local_garrisons
+		icon = GFX_focus_stormwind_tent
+		cost = 30
+		prerequisite = { focus = STO_vassal_consessions }
+		relative_position_id = STO_vassal_consessions
+		x = 1
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						country_exists = WST
+						country_exists = RDR
+						country_exists = DSK
+					}
+				}
+				custom_effect_tooltip = STO_invest_in_local_garrisons_preview_tt
+			}
+			if = {
+				limit = {
+					country_exists = WST
+					WST = {	is_puppet_of = STO }
+				}
+				WST = { country_event = { id = stormwind.6 } }
+			}
+			if = {
+				limit = {
+					country_exists = DSK
+					DSK = {	is_puppet_of = STO }
+				}
+				DSK = { country_event = { id = stormwind.7 } }
+			}
+			if = {
+				limit = {
+					country_exists = RDR
+					RDR = {	is_puppet_of = STO }
+				}
+				RDR = { country_event = { id = stormwind.8 } }
+			}
+		}
+	}
+
+	focus = {
+		id = STO_fortify_our_vassals
+		icon = GFX_focus_stormwind_bunker_i
+		cost = 30
+		prerequisite = { focus = STO_invest_in_local_garrisons }
+		mutually_exclusive = { focus = STO_develop_our_vassals }
+		relative_position_id = STO_invest_in_local_garrisons
+		x = -1
+		y = 1
+
+		completion_reward = {
+			WST = {
+				swap_ideas = {
+					remove_idea = STO_noble_administration_idea
+					add_idea = STO_noble_administration_idea_def
+				}
+				every_owned_state = {
+					limit = {
+						impassable = no
+						any_neighbor_state = {
+							NOT = {
+								is_owned_by = STO
+								is_owned_by = ELW
+								is_owned_by = DSK
+								is_owned_by = RDR
+							}
+							impassable = no
+						}
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1 #3
+						instant_build = yes
+					}
+				}
+			}
+			WST = {
+				capital_scope = {
+					add_building_construction = {
+						type = bunker
+						province = 2304
+						level = 2 #5
+						instant_build = yes
+					}
+				}
+			}
+			RDR = {
+				swap_ideas = {
+					remove_idea = STO_noble_administration_idea
+					add_idea = STO_noble_administration_idea_def
+				}
+				every_owned_state = {
+					limit = {
+						impassable = no
+						any_neighbor_state = {
+							NOT = {
+								is_owned_by = STO
+								is_owned_by = ELW
+								is_owned_by = WST
+								is_owned_by = DSK
+							}
+							impassable = no
+						}
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1 #3
+						instant_build = yes
+					}
+				}
+			}
+			RDR = {
+				capital_scope = {
+					add_building_construction = {
+						type = bunker
+						province = 2230
+						level = 2 #5
+						instant_build = yes
+					}
+				}
+			}
+			DSK = {
+				swap_ideas = {
+					remove_idea = STO_noble_administration_idea
+					add_idea = STO_noble_administration_idea_def
+				}
+				every_owned_state = {
+					limit = {
+						impassable = no
+						any_neighbor_state = {
+							NOT = {
+								is_owned_by = STO
+								is_owned_by = ELW
+								is_owned_by = WST
+								is_owned_by = RDR
+							}
+							impassable = no
+						}
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1 #3
+						instant_build = yes
+					}
+				}
+				capital_scope = {
+					add_building_construction = {
+						type = bunker
+						province = 2181
+						level = 2 #5
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_develop_our_vassals
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = STO_invest_in_local_garrisons }
+		mutually_exclusive = { focus = STO_fortify_our_vassals }
+		relative_position_id = STO_invest_in_local_garrisons
+		x = 1
+		y = 1
+
+		completion_reward = {
+			WST = {
+				swap_ideas = {
+					remove_idea = STO_noble_administration_idea
+					add_idea = STO_noble_administration_idea_con
+				}
+				capital_scope = {
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = industrial_complex
+						level = 3
+						instant_build = yes
+					}
+				}
+			}
+			DSK = {
+				swap_ideas = {
+					remove_idea = STO_noble_administration_idea
+					add_idea = STO_noble_administration_idea_con
+				}
+				capital_scope = {
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = industrial_complex
+						level = 3
+						instant_build = yes
+					}
+				}
+			}
+			RDR = {
+				swap_ideas = {
+					remove_idea = STO_noble_administration_idea
+					add_idea = STO_noble_administration_idea_con
+				}
+				capital_scope = {
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = industrial_complex
+						level = 3
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_end_political_turmoil
+		icon = GFX_focus_alliance_symbol
+		cost = 30
+		prerequisite = {
+			focus = STO_revoke_their_titles
+			focus = STO_a_series_of_unfortunate_events
+			focus = STO_the_noble_veto
+			focus = STO_develop_our_vassals
+			focus = STO_fortify_our_vassals
+		}
+		relative_position_id = STO_the_noble_veto
+		x = 0
+		y = 2
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = STO_unsatisfied_nobles }
+				remove_ideas = { STO_unsatisfied_nobles }
+			}
+			else = {
+				add_stability = 0.1
+				add_political_power = 150
+			}
+
+			if = {
+				limit = { has_idea = STO_legacy_of_gurubashi_war_2 }
+				remove_ideas = STO_legacy_of_gurubashi_war_2
+			}
+			if = {
+				limit = { has_idea = STO_legacy_of_gurubashi_war_1 }
+				swap_ideas = {
+					remove_idea = STO_legacy_of_gurubashi_war_1
+					add_idea = STO_legacy_of_gurubashi_war_2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_a_nation_rebuilt
+		icon = GFX_focus_hol_continue_the_war_in_batavia
+		cost = 30
+		prerequisite = { focus = STO_end_political_turmoil }
+		prerequisite = { focus = STO_finish_gurubashi_recovery }
+		relative_position_id = STO_finish_gurubashi_recovery
+		x = 4
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_a_nation_rebuilt_idea
+		}
+	}
+
+	focus = {
+		id = STO_educational_initiative
+		icon = GFX_focus_research
+		cost = 30
+		prerequisite = { focus = STO_a_nation_rebuilt }
+		relative_position_id = STO_a_nation_rebuilt
+		x = -4
+		y = 1
+
+		completion_reward = {
+			add_research_slot = 1
+			add_breakthrough_points = {
+                specialization = specialization_magic
+                value = 1
+            }
+		}
+	}
+
+	focus = {
+		id = STO_school_of_warfare
+		icon = GFX_focus_generic_strike_at_democracy1
+		cost = 30
+		prerequisite = { focus = STO_educational_initiative }
+		mutually_exclusive = { focus = STO_scholarly_initiative }
+		relative_position_id = STO_educational_initiative
+		x = -2
+		y = 1
+
+		completion_reward = {
+			army_experience = 10
+			navy_experience = 10
+			air_experience = 10
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 0.5
+					days = 100
+					track = operations
+				}
+			}
+			else = { army_experience = 25 }
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_school_of_magic
+		icon = GFX_focus_stormwind_mage_tower
+		cost = 30
+		prerequisite = { focus = STO_school_of_warfare }
+		relative_position_id = STO_school_of_warfare
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spellcaster_technology
+				bonus = 0.5
+				uses = 3
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_replicate_dwarven_war_machines
+		icon = GFX_focus_mobile_siege_weapons
+		cost = 30
+		prerequisite = { focus = STO_school_of_magic }
+		relative_position_id = STO_school_of_magic
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = catapult_technology
+				bonus = 1
+				uses = 1
+				category = catapult_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_scholarly_initiative
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 30
+		prerequisite = { focus = STO_educational_initiative }
+		mutually_exclusive = { focus = STO_school_of_warfare }
+		relative_position_id = STO_educational_initiative
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_scholarly_initiative_idea
+		}
+	}
+
+	focus = {
+		id = STO_research_grants
+		icon = GFX_focus_hol_the_foundations_of_defense
+		cost = 30
+		prerequisite = { focus = STO_scholarly_initiative }
+		relative_position_id = STO_scholarly_initiative
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = forge_technology
+				bonus = 0.5
+				uses = 2
+				category = construction_tools_technology
+				category = forge_technology
+			}
+			add_tech_bonus = {
+				name = resource_building_technology
+				bonus = 0.5
+				uses = 1
+				category = resource_building_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_stormwind_research_guild
+		icon = GFX_focus_research2
+		cost = 30
+		prerequisite = { focus = STO_research_grants }
+		relative_position_id = STO_research_grants
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = STO_stormwind_research_guild_idea
+		}
+	}
+
+	focus = {
+		id = STO_heart_of_the_kingdom
+		icon = GFX_focus_stormwind_inn
+		cost = 30
+		prerequisite = { focus = STO_a_nation_rebuilt }
+		relative_position_id = STO_a_nation_rebuilt
+		x = 0
+		y = 1
+
+		completion_reward = {
+			#goldshire industry
+			#choice of 2 civs or 2 mils or 1/1
+			country_event = stormwind.19
+		}
+	}
+
+	focus = {
+		id = STO_invest_in_elwynn_farms
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = STO_heart_of_the_kingdom }
+		relative_position_id = STO_heart_of_the_kingdom
+		x = -1
+		y = 1
+
+		available = {
+			326 = { is_controlled_by_ROOT_or_ally = yes	}
+			352 = { is_controlled_by_ROOT_or_ally = yes	}
+			358 = { is_controlled_by_ROOT_or_ally = yes	}
+			666 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			358 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			352 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			326 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			666 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_develop_eastvale
+		icon = GFX_goal_generic_construct_civilian
+		cost = 30
+		prerequisite = { focus = STO_invest_in_elwynn_farms }
+		relative_position_id = STO_invest_in_elwynn_farms
+		x = 0
+		y = 1
+
+		completion_reward = {
+			country_event = stormwind.20
+		}
+	}
+
+	focus = {
+		id = STO_reinforce_ridgepoint
+		icon = GFX_focus_stormwind_tent
+		cost = 30
+		prerequisite = { focus = STO_heart_of_the_kingdom }
+		relative_position_id = STO_heart_of_the_kingdom
+		x = 1
+		y = 1
+
+		available = {
+			359 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			359 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = {
+						all_provinces = yes
+						limit_to_victory_point = yes
+					}
+					level = 2 #4
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_fortify_westbrook
+		icon = GFX_focus_stormwind_barracks
+		cost = 30
+		prerequisite = { focus = STO_reinforce_ridgepoint }
+		relative_position_id = STO_reinforce_ridgepoint
+		x = 0
+		y = 1
+
+		available = {
+			312 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			312 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				hidden_effect = {
+					add_building_construction = {
+						type = bunker
+						province = {
+							all_provinces = yes
+							limit_to_victory_point < 1
+						}
+						level = 2 #4
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						province = {
+							all_provinces = yes
+							limit_to_victory_point = yes
+						}
+						level = 2 #5
+						instant_build = yes
+					}
+				}
+				custom_effect_tooltip = STO_fortify_westbrook_tt
+			}
+		}
+	}
+
+	focus = {
+		id = STO_expand_northshire
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = STO_develop_eastvale }
+		prerequisite = { focus = STO_fortify_westbrook }
+		relative_position_id = STO_develop_eastvale
+		x = 1
+		y = 1
+
+		available = {
+			327 = { is_controlled_by_ROOT_or_ally = yes	}
+			666 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			327 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			666 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id= STO_establish_si7
+		icon = GFX_goal_generic_major_war
+		cost = 30
+		prerequisite = { focus = STO_a_nation_rebuilt }
+		relative_position_id = STO_a_nation_rebuilt
+		x = 3
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "La Resistance"	}
+				create_intelligence_agency = {
+					name = "SI:7"
+					icon = GFX_intelligence_agency_logo_bel
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = rogues_guild_technology
+					bonus = 0.5
+					uses = 2
+					category = rogues_guild_technology
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_espionage_efforts
+		icon = GFX_focus_eng_special_air_service
+		cost = 30
+		prerequisite = { focus = STO_establish_si7 }
+		relative_position_id = STO_establish_si7
+		x = 0
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				add_ideas = STO_information_networks
+			}
+			if = {
+				limit = { NOT = { has_dlc = "La Resistance" } }
+				add_ideas = STO_information_networks_non_lar
+			}
+		}
+	}
+
+	focus = {
+		id = STO_monitor_internal_affairs
+		icon = GFX_goal_generic_intelligence_exchange
+		cost = 30
+		prerequisite = { focus = STO_espionage_efforts }
+		relative_position_id = STO_espionage_efforts
+		x = 0
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = STO_information_networks }
+				swap_ideas = {
+					remove_idea = STO_information_networks
+					add_idea = STO_information_networks_1
+				}
+			}
+			if = {
+				limit = { has_idea = STO_information_networks_non_lar }
+				swap_ideas = {
+					remove_idea = STO_information_networks_non_lar
+					add_idea = STO_information_networks_non_lar_1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_stormwind_intelligence_services
+		icon = GFX_focus_YUG_zmaj
+		cost = 30
+		prerequisite = { focus = STO_monitor_internal_affairs }
+		relative_position_id = STO_monitor_internal_affairs
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = STO_stormwind_intelligence_services
+				bonus = 0.5
+				uses = 2
+				category = rogues_guild_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_the_southern_bastion
+		icon = GFX_focus_generic_the_giant_wakes
+		cost = 30
+		prerequisite = {
+			focus = STO_stormwind_research_guild
+			focus = STO_replicate_dwarven_war_machines
+		}
+		prerequisite = { focus = STO_expand_northshire }
+		prerequisite = { focus = STO_stormwind_intelligence_services }
+		relative_position_id = STO_expand_northshire
+		x = 0
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_a_nation_rebuilt_idea
+				add_idea = STO_southern_bastion_idea
+			}
+		}
+	}
+
+	focus = {
+		id = STO_queldorei_rangers
+		icon = GFX_focus_generic_air_defense
+		cost = 30
+		prerequisite = { focus = STO_send_emissaries_to_quelthalas }
+		x = 18
+		y = 6
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = archer_technology
+				bonus = 0.75
+				uses = 1
+				category = archer_technology
+			}
+			add_equipment_to_stockpile = {
+				type = archer_equipment_1
+				amount = 75
+				producer = QUE
+			}
+		}
+	}
+
+	focus = {
+		id = STO_send_emissaries_to_ironforge
+		icon = GFX_goal_generic_improve_relations
+		cost = 14
+		prerequisite = { focus = STO_establish_diplomatic_ties_in_the_north	}
+		x = 20
+		y = 5
+
+		completion_reward = {
+			IRO = {
+				add_opinion_modifier = {
+					target = STO
+					modifier = envoy_to_ironforge
+				}
+				reverse_add_opinion_modifier = {
+					target = STO
+					modifier = envoy_to_ironforge
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_dwarven_axeman
+		icon = GFX_focus_secret_rearmament
+		cost = 30
+		prerequisite = { focus = STO_send_emissaries_to_ironforge }
+		x = 20
+		y = 6
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = footman_technology
+				bonus = 0.75
+				uses = 1
+				category = footman_technology
+			}
+			add_equipment_to_stockpile = {
+				type = dwarf_axeman_equipment_1
+				amount = 75
+				producer = IRO
+			}
+		}
+	}
+
+	focus = {
+		id = STO_send_emissaries_to_lordaeron
+		icon = GFX_goal_generic_improve_relations
+		cost = 14
+		prerequisite = { focus = STO_establish_diplomatic_ties_in_the_north }
+		x = 22
+		y = 5
+
+		completion_reward = {
+			LOR = {
+				add_opinion_modifier = {
+					target = STO
+					modifier = envoy_to_lordaeron
+				}
+				reverse_add_opinion_modifier = {
+					target = STO
+					modifier = envoy_to_lordaeron
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_lordaeron_knights
+		icon = GFX_goal_generic_cavalry
+		cost = 30
+		prerequisite = { focus = STO_send_emissaries_to_lordaeron }
+		x = 22
+		y = 6
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = cavalry_technology
+				bonus = 0.75
+				uses = 1
+				category = cavalry_technology
+			}
+			add_equipment_to_stockpile = {
+				type = knight_equipment_1
+				amount = 75
+				producer = LOR
+			}
+		}
+	}
+
+	focus = {
+		id = STO_pact_of_mutual_defense
+		icon = GFX_focus_stormwind_alliance
+		cost = 30
+		prerequisite = { focus = STO_dwarven_axeman }
+		prerequisite = { focus = STO_lordaeron_knights }
+		prerequisite = { focus = STO_queldorei_rangers }
+		x = 20
+		y = 7
+
+		completion_reward = {
+			QUE = { country_event = stormwind.25 }
+			IRO = { country_event = stormwind.25 }
+			LOR = { country_event = stormwind.25 }
+		}
+	}
+
+	focus = {
+		id = STO_foundations_of_the_stormwind_alliance
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		prerequisite = { focus = STO_pact_of_mutual_defense }
+		x = 20
+		y = 8
+
+		completion_reward = {
+			create_faction = the_alliance_of_stormwind
+			LOR = { country_event = stormwind.26 }
+			IRO = { country_event = stormwind.26 }
+			QUE = { country_event = stormwind.26 }
+		}
+	}
+
+	focus = {
+		id = STO_expand_the_alliance
+		icon = GFX_focus_alliance_symbol
+		cost = 30
+		prerequisite = { focus = STO_foundations_of_the_stormwind_alliance }
+		x = 20
+		y = 9
+
+		completion_reward = {
+			STR = { country_event = stormwind.26 }
+			DAL = { country_event = stormwind.26 }
+			ALT = { country_event = stormwind.26 }
+			GIL = { country_event = stormwind.26 }
+			KUL = { country_event = stormwind.26 }
+			AER = { country_event = stormwind.26 }
+			GNO = { country_event = stormwind.26 }
+			NRT = { country_event = stormwind.26 }
+			SPC = { country_event = stormwind.26 }
+		}
+	}
+
+	focus = {
+		id = STO_towards_the_black_morass
+		icon = GFX_focus_usa_tank_destroyer_doctrine
+		cost = 30
+		prerequisite = {
+			focus = STO_expand_the_alliance
+			focus = STO_legacy_of_arathor
+		}
+		x = 23
+		y = 10
+
+		completion_reward = {
+			add_timed_idea = {
+				idea =  STO_towards_the_black_morass_idea
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STO_triumphant_victory
+		icon = GFX_goal_support_democracy
+		cost = 30
+		prerequisite = { focus = STO_towards_the_black_morass }
+		x = 23
+		y = 11
+
+		available = {
+			NOT = { country_exists = BRC }
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.10
+			add_political_power = 200
+			hidden_effect = {
+				set_nationality = {
+					target_country = HON
+					character = STO_commander_borton
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_the_dark_portal_question
+		icon = GFX_focus_the_dark_portal
+		cost = 30
+		prerequisite = { focus = STO_triumphant_victory }
+		x = 23
+		y = 12
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				STO = {
+					if = {
+						limit = { has_dlc = "Together for Victory" }
+						set_autonomy = {
+							target = HON
+							autonomous_state = military_state
+							freedom_level = 0.80
+						}
+						else = { puppet = HON }
+					}
+				}
+				if = {
+					limit = { STO = { is_in_faction = no } }
+					create_faction = stormwind_alliance
+				}
+				HON = {
+					retire_character = HON_danath_trollbane
+					set_capital = { state = 394 }
+					add_ideas = military_admin
+					add_ideas = recruit_adventurers
+					add_ideas = limited_exports
+					add_ideas = early_military_development
+					annex_blasted_lands = yes
+					set_cosmetic_tag = HON_STO
+					if = {
+						limit = { STO = { has_government = alliance } }
+						set_popularities = {
+							alliance = 90
+							horde = 0
+							death = 0
+							fel = 0
+							old_gods = 0
+							titans = 0
+							neutral = 10
+						}
+						add_ideas = advisors_guild
+					}
+					if = {
+						limit = { STO = { has_government = neutral } }
+						set_popularities = {
+							alliance = 10
+							horde = 0
+							death = 0
+							fel = 0
+							old_gods = 0
+							titans = 0
+							neutral = 90
+						}
+						add_ideas = noble_guild
+					}
+				}
+				26 = { 
+					add_core_of = HON 
+					add_manpower = -6600
+				}
+				377 = { 
+					add_core_of = HON
+					add_manpower = -22200 
+				}
+				378 = { 
+					add_core_of = HON 
+					add_manpower = -17400
+				}
+				379 = {
+					add_dynamic_modifier = { modifier = GEN_demon_problem }
+				}
+				380 = {
+					add_dynamic_modifier = { modifier = GEN_demon_problem }
+				}
+				384 = { 
+					add_core_of = HON 
+					add_manpower = -82800
+				}
+				385 = { 
+					add_core_of = HON 
+					add_manpower = -25200
+					add_dynamic_modifier = { modifier = GEN_ogre_problem }
+				}
+				386 = { 
+					add_core_of = HON
+					add_manpower = -67200 
+					add_dynamic_modifier = { modifier = GEN_ogre_problem }
+				}
+				391 = { 
+					add_core_of = HON 
+					add_manpower = -8800
+				}
+				392 = { 
+					add_core_of = HON
+					add_manpower = -61800 
+				}
+				393 = { 
+					add_core_of = HON 
+				}
+				394 = { 
+					add_core_of = HON 
+					add_manpower = -44400
+				}
+				2160 = { 
+					add_core_of = HON 
+					add_manpower = -6600
+				}
+				hidden_effect = {
+					785 = { add_core_of = HON }
+					2159 = { add_core_of = HON }
+					784 = { add_core_of = HON }
+					74 = { add_core_of = HON }
+					788 = { add_core_of = HON }
+				}
+			}
+			hidden_effect = {
+				every_state = {
+					limit = { 
+						is_controlled_by_ROOT_or_subject = yes
+						check_variable = { race = 96 }
+						NOT = {
+							state = 379
+							state = 380
+							state = 381
+							state = 307
+							state = 40
+							state = 302
+							state = 1528
+							state = 364
+						} 
+					}
+					set_state_race_to_primary_race = yes
+				}
+				every_state = {
+					limit = { 
+						OR = {
+							check_variable = { religion = 44 }
+							check_variable = { religion = 7 }
+						}
+						is_controlled_by_ROOT_or_subject = yes 
+						NOT = {
+							state = 379
+							state = 380
+							state = 381
+							state = 307
+							state = 40
+							state = 302
+							state = 1528
+							state = 364
+						} 
+					}
+					set_variable = { religion = 1 }
+				}	
+			}
+			307 = {
+				add_dynamic_modifier = { modifier = GEN_orc_resistance }
+				hidden_effect = { set_variable = { race = 96 } }
+			}
+			40 = {
+				add_dynamic_modifier = { modifier = GEN_orc_resistance }
+				hidden_effect = { set_variable = { race = 96 } }
+			}
+			302 = {
+				add_dynamic_modifier = { modifier = GEN_orc_resistance }
+				hidden_effect = { set_variable = { race = 96 } }
+			}
+			1528 = {
+				add_dynamic_modifier = { modifier = GEN_orc_resistance }
+				hidden_effect = { set_variable = { race = 96 } }
+			}
+			364 = {
+				add_dynamic_modifier = { modifier = GEN_orc_resistance }
+				hidden_effect = { set_variable = { race = 96 } }
+			}
+		}
+	}
+
+	focus = {
+		id = STO_fortify_the_portal
+		icon = GFX_focus_the_dark_portal
+		cost = 14
+		prerequisite = { focus = STO_the_dark_portal_question }
+		x = 20
+		y = 13
+
+		completion_reward = {
+			HON = {
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = 30
+				}
+				hidden_effect = {
+					division_template = {
+						name = "Honorhold Footmen"
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 1 y = 0 }
+							footman = { x = 1 y = 1 }
+							footman = { x = 1 y = 2 }
+						}
+					}
+					division_template = {
+						name = "Honorhold Spears"
+						regiments = {
+							pikeman = { x = 0 y = 0 }
+							pikeman = { x = 0 y = 1 }
+							archer = { x = 0 y = 2 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+							archer = { x = 1 y = 2 }
+						}
+					}
+					division_template = {
+						name = "Honorhold Mages"
+						regiments = {
+							footman = { x = 0 y = 0 }
+							mage = { x = 0 y = 1 }
+							mage = { x = 0 y = 2 }
+							footman = { x = 1 y = 0 }
+							mage = { x = 1 y = 1 }
+							mage = { x = 1 y = 2 }
+						}
+					}
+					division_template = {
+						name = "Honorhold Knights"
+						regiments = {
+							knight = { x = 0 y = 0 }
+							knight = { x = 0 y = 1 }
+							knight = { x = 0 y = 2 }
+							mounted_footman = { x = 1 y = 0 }
+							mounted_footman = { x = 1 y = 1 }
+							mounted_footman = { x = 1 y = 2 }
+						}
+					}
+				}
+				394 = {
+					create_unit = {
+						division = "name = \"Honorhold Footmen\" division_template = \"Honorhold Footmen\" start_experience_factor = 0.3"
+						owner = HON
+					}
+				}
+				386 = {
+					create_unit = {
+						division = "name = \"Honorhold Footmen\" division_template = \"Honorhold Footmen\" start_experience_factor = 0.3"
+						owner = HON
+					}
+				}
+				26 = {
+					create_unit = {
+						division = "name = \"Honorhold Spears\" division_template = \"Honorhold Spears\" start_experience_factor = 0.3"
+						owner = HON
+					}
+				}
+				378 = {
+					create_unit = {
+						division = "name = \"Honorhold Mages\" division_template = \"Honorhold Mages\" start_experience_factor = 0.3"
+						owner = HON
+					}
+				}
+				391 = {
+					create_unit = {
+						division = "name = \"Honorhold Spears\" division_template = \"Honorhold Spears\" start_experience_factor = 0.3"
+						owner = HON
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_beyond_the_dark_portal
+		icon = GFX_focus_the_dark_portal
+		cost = 30
+		prerequisite = { focus = STO_the_dark_portal_question }
+		x = 26
+		y = 13
+
+		available = {
+			always = no
+		}
+
+	}
+
+	focus = {
+		id = STO_finalise_the_reforms
+		icon = GFX_goal_generic_military_sphere
+		cost = 30
+		prerequisite = { focus = STO_finalise_infantry_reform }
+		prerequisite = { focus = STO_finalise_cavalry_reform }
+		prerequisite = { focus = STO_finalise_air_reform }
+		relative_position_id = STO_finalise_cavalry_reform
+		x = 0
+		y = 1
+
+		completion_reward = {
+			remove_ideas = STO_lothars_reforms_idea
+			if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_5 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_5
+					add_idea = STO_over_reliance_on_medivh_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_4 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_4
+					add_idea = STO_over_reliance_on_medivh_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_3 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_3
+					add_idea = STO_over_reliance_on_medivh_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_2 }
+				swap_ideas = {
+					remove_idea = STO_over_reliance_on_medivh_2
+					add_idea = STO_over_reliance_on_medivh_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = STO_over_reliance_on_medivh_1 }
+				remove_ideas = STO_over_reliance_on_medivh_1
+			}
+			add_ideas = STO_modern_army_idea
+		}
+	}
+
+	focus = {
+		id = STO_trust_in_medivh
+		icon = GFX_goal_molotov_ribbentrop_pact
+		cost = 30
+		prerequisite = { focus = STO_finalise_the_reforms }
+		mutually_exclusive = { focus = STO_the_last_guardian }
+		x = 38
+		y = 8
+
+		available = {
+			has_country_flag = coming_soon
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = STO_trust_in_medivh_tt
+		}
+	}
+
+	focus = {
+		id = STO_the_last_guardian
+		icon = GFX_focus_hun_assassinate_horthy
+		cost = 30
+		prerequisite = { focus = STO_finalise_the_reforms }
+		mutually_exclusive = { focus = STO_trust_in_medivh }
+		x = 40
+		y = 8
+
+		available = {
+			has_country_flag = coming_soon
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = STO_the_last_guardian_tt
+		}
+	}
+
+}

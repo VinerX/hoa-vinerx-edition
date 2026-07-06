@@ -1,0 +1,1171 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	vrykul_altar_of_frozen_kings_tech = {
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_trials_of_northrend_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_shield_maiden_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mammoth_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_valkyr_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_trials_of_northrend_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_trials_of_northrend_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_trials_of_northrend_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_trials_of_northrend_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_trials_of_northrend_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_shield_maiden_tech = {
+
+		enable_subunits = {
+			vrykul_shield_maiden
+		}
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				vrykul_shield_maiden_equipment_tech_1 = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_shield_maiden_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_shield_maiden_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_breach_armor_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_shield_maiden_mortal_hew_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	vrykul_shield_maiden_breach_armor_tech = {
+
+		vrykul_shield_maiden = {
+			hard_attack = 0.1
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_shield_maiden_mortal_hew_tech }
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_shield_maiden_mortal_hew_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_shield_maiden_mortal_hew_tech
+			}
+		}
+	}
+
+	vrykul_shield_maiden_mortal_hew_tech = {
+
+		vrykul_shield_maiden = {
+			entrenchment = 0.05
+			defense = 0.15
+			armor_value = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_shield_maiden_breach_armor_tech }
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_shield_maiden_breach_armor_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_shield_maiden_breach_armor_tech
+			}
+		}
+	}
+
+	vrykul_shield_maiden_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_shield_maiden_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_inspiring_cry_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_shield_maiden_adrenaline_rush_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_shield_maiden_inspiring_cry_tech = {
+
+		vrykul_shield_maiden = {
+			breakthrough = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_shield_maiden_adrenaline_rush_tech }
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_shield_maiden_adrenaline_rush_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_shield_maiden_adrenaline_rush_tech
+			}
+		}
+	}
+
+	vrykul_shield_maiden_adrenaline_rush_tech = {
+
+		vrykul_shield_maiden = {
+			soft_attack = 0.15
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_shield_maiden_inspiring_cry_tech }
+
+		path = {
+			leads_to_tech = vrykul_shield_maiden_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_shield_maiden_inspiring_cry_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_shield_maiden_inspiring_cry_tech
+			}
+		}
+	}
+
+	vrykul_shield_maiden_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_shield_maiden_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_shield_maiden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_mammoth_tech = {
+
+		enable_subunits = {
+			vrykul_mammoth
+		}
+
+		path = {
+			leads_to_tech = vrykul_mammoth_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_mammoth_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_mammoth_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_mammoth_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mammoth_trample_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mammoth_sharpened_tusks_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	vrykul_mammoth_trample_tech = {
+
+		vrykul_mammoth = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_mammoth_sharpened_tusks_tech }
+
+		path = {
+			leads_to_tech = vrykul_mammoth_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_mammoth_sharpened_tusks_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_mammoth_sharpened_tusks_tech
+			}
+		}
+	}
+
+	vrykul_mammoth_sharpened_tusks_tech = {
+
+		vrykul_mammoth = {
+			defense = 0.15
+			max_strength = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_mammoth_trample_tech }
+
+		path = {
+			leads_to_tech = vrykul_mammoth_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_mammoth_trample_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_mammoth_trample_tech
+			}
+		}
+	}
+
+	vrykul_mammoth_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_mammoth_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_mammoth_imposing_breed_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mammoth_war_saddle_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_mammoth_imposing_breed_tech = {
+
+		vrykul_mammoth = {
+			maximum_speed = 0.15
+			breakthrough = 0.1
+			default_morale = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_mammoth_war_saddle_tech }
+
+		path = {
+			leads_to_tech = vrykul_mammoth_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_mammoth_war_saddle_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_mammoth_war_saddle_tech
+			}
+		}
+	}
+
+	vrykul_mammoth_war_saddle_tech = {
+
+		vrykul_mammoth = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_mammoth_imposing_breed_tech }
+
+		path = {
+			leads_to_tech = vrykul_mammoth_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_mammoth_imposing_breed_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_mammoth_imposing_breed_tech
+			}
+		}
+	}
+
+	vrykul_mammoth_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_mammoth_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_mammoth_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_valkyr_tech = {
+
+		enable_subunits = {
+			vrykul_valkyr
+		}
+
+		path = {
+			leads_to_tech = vrykul_valkyr_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				vrykul_valkyr_equipment_tech_1 = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_valkyr_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_valkyr_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_valkyr_call_of_eyir_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_valkyr_doomhowl_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	vrykul_valkyr_call_of_eyir_tech = {
+
+		vrykul_valkyr = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_valkyr_doomhowl_tech }
+
+		path = {
+			leads_to_tech = vrykul_valkyr_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_valkyr_doomhowl_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_valkyr_doomhowl_tech
+			}
+		}
+	}
+
+	vrykul_valkyr_doomhowl_tech = {
+
+		vrykul_valkyr = {
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_valkyr_call_of_eyir_tech }
+
+		path = {
+			leads_to_tech = vrykul_valkyr_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_valkyr_call_of_eyir_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_valkyr_call_of_eyir_tech
+			}
+		}
+	}
+
+	vrykul_valkyr_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_valkyr_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_valkyr_sanctify_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_valkyr_curse_of_helya_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_valkyr_sanctify_tech = {
+
+		vrykul_valkyr = {
+			breakthrough = 0.1
+			supply_consumption = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_valkyr_curse_of_helya_tech }
+
+		path = {
+			leads_to_tech = vrykul_valkyr_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_valkyr_curse_of_helya_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_valkyr_curse_of_helya_tech
+			}
+		}
+	}
+
+	vrykul_valkyr_curse_of_helya_tech = {
+
+		vrykul_valkyr = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_valkyr_sanctify_tech }
+
+		path = {
+			leads_to_tech = vrykul_valkyr_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_valkyr_sanctify_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_valkyr_sanctify_tech
+			}
+		}
+	}
+
+	vrykul_valkyr_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_valkyr_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			vrykul_valkyr_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

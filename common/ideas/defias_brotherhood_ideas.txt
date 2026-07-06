@@ -1,0 +1,522 @@
+ideas = {
+
+	country = {
+
+		DFB_stone_masons = {
+			picture = ger_rebuild_the_nation
+			allowed = { original_tag = DFB }
+			modifier = {
+				production_speed_buildings_factor = 0.10
+			}
+		}
+
+		DFB_the_peoples_army = {
+			picture = generic_reserve_divisions
+			allowed = { original_tag = DFB }
+			cancel = {
+				date > 614.1.1
+			}
+			modifier = {
+				army_core_defence_factor = 0.15
+				conscription_factor = 0.25
+				weekly_manpower = 5
+			}
+		}
+
+		DFB_lack_training_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				army_attack_factor = -0.20
+				army_defence_factor = -0.20
+				experience_gain_army_unit_factor = -0.20
+				experience_loss_factor = 0.20
+				minimum_training_level = -0.20
+			}
+		}
+
+		DFB_lack_training_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				army_attack_factor = -0.10
+				army_defence_factor = -0.10
+				experience_gain_army_unit_factor = -0.10
+				experience_loss_factor = 0.10
+				minimum_training_level = -0.10
+			}
+		}
+
+		DFB_lack_training_3 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				army_attack_factor = -0.05
+				army_defence_factor = -0.05
+				experience_gain_army_unit_factor = -0.05
+				experience_loss_factor = 0.05
+				minimum_training_level = -0.05
+			}
+		}
+
+		DFB_no_kings_no_queens = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				alliance_drift = -0.02
+				resistance_growth_on_our_occupied_states = 0.15
+			}
+		}
+
+		DFB_we_fight_alone = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				army_core_defence_factor = 0.1
+				consumer_goods_expected_value = -0.05
+				ai_get_ally_desire_factor = -200
+			}
+		}
+
+		DFB_gold_dust_trade = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.03
+				political_power_gain = 0.1
+			}
+		}
+
+		DFB_gold_dust_trade_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.05
+				political_power_gain = 0.15
+				stability_factor = 0.05
+			}
+		}
+
+		DFB_gnoll_issues = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			cancel = { NOT = { has_war_with = STO }	}
+			modifier = {
+				stability_factor = -0.1
+				stability_weekly = -0.002
+				local_resources_factor = -0.10
+			}
+		}
+
+		DFB_discretionary_funds = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.10
+			}
+		}
+
+		DFB_child_labour = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			cancel = { NOT = { has_war_with = STO }	}
+			modifier = {
+				trade_opinion_factor = -0.50
+				consumer_goods_expected_value = -0.02
+				stability_factor = -0.05
+				industrial_capacity_dockyard = 0.10
+				industrial_capacity_factory = 0.10
+			}
+		}
+
+		DFB_stolen_goods = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.05
+			}
+		}
+
+		DFB_plates_blade_maces = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				industrial_capacity_factory = 0.15
+				production_factory_max_efficiency_factor = 0.05
+			}
+		}
+
+		DFB_beasts_of_burden = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				country_resource_mounts = 5
+				local_resources_factor = 0.1
+			}
+			equipment_bonus = {
+				mounts_equipment = {
+					build_cost_ic = -0.10
+					instant = yes
+				}
+			}
+		}
+
+		DFB_bushells_of_grain = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				stability_factor = 0.05
+				stability_weekly = 0.001
+				monthly_population = 0.25
+				country_resource_wheat = 5
+			}
+		}
+
+		DFB_rural_unrest = {
+			picture = can_send_in_the_zombies
+			allowed = {
+				has_stability < 0.60
+			}
+			modifier = {
+				stability_factor = -0.05
+				production_speed_buildings_factor = -0.1
+				industrial_capacity_dockyard = -0.1
+				industrial_capacity_factory = -0.1
+				local_resources_factor = -0.1
+			}
+		}
+
+		### Planned Ideas
+
+		### Criminal
+
+		DFB_banditry_perm = {
+			picture = can_send_in_the_zombies
+			allowed = { NOT = { country_exists = DFB } }
+			modifier = {
+				consumer_goods_expected_value = 0.025
+				conscription_factor = -0.05
+				local_resources_factor = -0.1
+			}
+		}
+
+		DFB_burned_aviary = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				air_mission_efficiency = -0.25
+				country_resource_eggs = -10
+			}
+
+			equipment_bonus = {
+				fighter_equipment = {
+					build_cost_ic = 0.25
+					instant = yes
+				}
+				cas_equipment = {
+					build_cost_ic = 0.25
+					instant = yes
+				}
+			}
+		}
+
+		DFB_banditry_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				conscription_factor = -0.10
+				local_resources_factor = -0.15
+			}
+		}
+
+		DFB_banditry_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				consumer_goods_expected_value = 0.075
+				conscription_factor = -0.15
+				local_resources_factor = -0.3
+			}
+		}
+
+		DFB_criminal_control_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.025
+				stability_factor = -0.05
+				encryption_factor = 0.10
+				decryption_factor = 0.10
+				political_power_gain = -0.05
+				resistance_growth_on_our_occupied_states = 0.15
+			}
+		}
+
+		DFB_criminal_control_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.05
+				stability_factor = -0.075
+				encryption_factor = 0.20
+				decryption_factor = 0.20
+				political_power_gain = -0.10
+				resistance_growth_on_our_occupied_states = 0.30
+			}
+		}
+
+		DFB_criminal_control_3 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				consumer_goods_expected_value = -0.1
+				stability_factor = -0.10
+				encryption_factor = 0.30
+				decryption_factor = 0.30
+				political_power_gain = -0.15
+				resistance_growth_on_our_occupied_states = 0.45
+			}
+		}
+
+		### Militia
+
+		DFB_deserters_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				army_org_factor = -0.1
+				planning_speed = -0.1
+				command_power_gain = -0.1
+				conscription_factor = -0.05
+				army_attack_factor = -0.05
+				experience_gain_army = -0.02
+			}
+		}
+
+		DFB_deserters_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				army_org_factor = -0.2
+				planning_speed = -0.2
+				command_power_gain = -0.2
+				conscription_factor = -0.10
+				army_attack_factor = -0.10
+				experience_gain_army = -0.05
+			}
+		}
+
+		DFB_militia_control_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				conscription_factor = 0.05
+				army_core_defence_factor = 0.05
+				experience_gain_army = 0.02
+				stability_factor = 0.05
+				political_power_gain = -0.05
+				command_power_gain = 0.1
+			}
+		}
+
+		DFB_militia_control_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				conscription_factor = 0.10
+				army_core_defence_factor = 0.10
+				experience_gain_army = 0.05
+				consumer_goods_expected_value = 0.025
+				stability_factor = 0.075
+				political_power_gain = -0.10
+				command_power_gain = 0.2
+			}
+		}
+
+		DFB_militia_control_3 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				conscription_factor = 0.15
+				army_core_defence_factor = 0.15
+				experience_gain_army = 0.07
+				consumer_goods_expected_value = 0.05
+				stability_factor = 0.10
+				war_support_factor = 0.05
+				political_power_gain = -0.15
+				command_power_gain = 0.3
+			}
+		}
+
+		### Workers
+		DFB_peasant_unrest_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				industrial_capacity_factory = -0.1
+				industrial_capacity_dockyard = -0.1
+				local_resources_factor = -0.1
+				production_speed_buildings_factor = -0.1
+			}
+		}
+
+		DFB_peasant_unrest_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { always = yes }
+			modifier = {
+				industrial_capacity_factory = -0.2
+				industrial_capacity_dockyard = -0.2
+				local_resources_factor = -0.2
+				production_speed_buildings_factor = -0.2
+			}
+		}
+
+		DFB_workers_control_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				industrial_capacity_factory = 0.1
+				industrial_capacity_dockyard = 0.1
+				local_resources_factor = 0.1
+				production_speed_buildings_factor = 0.1
+				consumer_goods_factor = 0.01
+				political_power_gain = -0.05
+				conscription_factor = -0.05
+			}
+		}
+
+		DFB_workers_control_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				industrial_capacity_factory = 0.2
+				industrial_capacity_dockyard = 0.2
+				local_resources_factor = 0.2
+				production_speed_buildings_factor = 0.2
+				consumer_goods_factor = 0.02
+				political_power_gain = -0.10
+				conscription_factor = -0.10
+			}
+		}
+
+		DFB_workers_control_3 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				industrial_capacity_factory = 0.3
+				industrial_capacity_dockyard = 0.3
+				local_resources_factor = 0.3
+				production_speed_buildings_factor = 0.3
+				consumer_goods_factor = 0.03
+				political_power_gain = -0.15
+				conscription_factor = -0.15
+			}
+		}
+
+		#Gnolls
+		DFB_red_bandannas = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = RPP }
+			modifier = {
+				command_power_gain = 0.1
+				consumer_goods_factor = -0.02
+			}
+		}
+
+		DFB_gnoll_control_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				army_core_attack_factor = 0.05
+				supply_consumption_factor = 0.1
+				training_time_army_factor = -0.05
+				army_morale_factor = 0.05
+				consumer_goods_factor = 0.02
+			}
+		}
+
+		DFB_gnoll_control_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				army_core_attack_factor = 0.10
+				supply_consumption_factor = 0.15
+				training_time_army_factor = -0.10
+				army_morale_factor = 0.10
+				consumer_goods_factor = 0.05
+				stability_factor = -0.05
+			}
+		}
+
+		#Goblins
+		DFB_defias_riches = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = BOO }
+			modifier = {
+				political_power_gain = 0.1
+				consumer_goods_factor = -0.05
+			}
+		}
+
+		DFB_goblin_control_1 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.1
+				industrial_capacity_dockyard = 0.05
+				production_speed_dockyard_factor = 0.1
+				stability_factor = -0.05
+				consumer_goods_factor = 0.05
+			}
+			targeted_modifier = {
+				tag = BOO
+				extra_trade_to_target_factor = 0.10
+			}
+		}
+
+		DFB_goblin_control_2 = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.15
+				industrial_capacity_dockyard = 0.10
+				production_speed_dockyard_factor = 0.15
+				stability_factor = -0.075
+				consumer_goods_factor = 0.075
+			}
+			targeted_modifier = {
+				tag = BOO
+				extra_trade_to_target_factor = 0.20
+			}
+		}
+
+		DFB_prestors_backing = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			targeted_modifier = {
+				tag = STO
+				army_intel_factor = 0.2
+				civilian_intel_factor = 0.2
+				navy_intel_factor = 0.2
+				airforce_intel_factor = 0.2
+			}
+		}
+	}
+
+	economy = {
+		DFB_undermanned_economy = {
+			picture = can_send_in_the_zombies
+			allowed = { original_tag = DFB }
+			cancel = { NOT = { has_war_with = STO }	}
+			on_remove = { add_ideas = early_military_development }
+			modifier = {
+				industrial_capacity_dockyard = -0.25
+				industrial_capacity_factory = -0.25
+				consumer_goods_expected_value = 0.20
+				production_speed_buildings_factor = -0.25
+			}
+		}
+	}
+
+}

@@ -1,0 +1,93 @@
+form_gurubashi_empire_category = {
+
+	GUR_fragmented_no_longer = {
+
+		allowed = { original_tag = GUR }
+
+		available = {
+			control_gurubashi_lands_directly_or_puppets = yes
+		}
+
+		visible = {
+			always = yes
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 1 }
+
+		cost = 50
+
+		complete_effect = {
+			remove_ideas = GUR_Civil_Conflicts
+			hidden_effect = {
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = SKU
+							is_core_of = BLO
+							is_core_of = DST
+						}
+						impassable = yes
+					}
+					add_core_of = GUR
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			every_state = {
+				limit = { 
+					is_core_of = BLO
+					state_population_k < 12
+				}
+				add_core_of = GUR
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			every_state = {
+				limit = { 
+					is_core_of = SKU 
+					state_population_k < 12
+				}
+				add_core_of = GUR
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			every_state = {
+				limit = { is_core_of = DST }
+				add_core_of = GUR
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			country_event = gurubashi.30
+		}
+	}
+
+	GUR_all_under_controll = {
+
+		allowed = { original_tag = GUR }
+
+		available = {
+			control_stormwind_directly_or_puppets = yes
+		}
+
+		visible = { always = yes }
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 1 }
+
+		cost = 25
+
+		complete_effect = {
+			remove_ideas = GUR_Gurubashi_War
+		}
+	}
+
+}

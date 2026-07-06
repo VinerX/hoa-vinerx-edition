@@ -1,0 +1,560 @@
+﻿###########################
+# Gnomeregan
+###########################
+
+add_namespace = gnomeregan
+
+### Orcs at the Gates
+country_event = {
+	id = gnomeregan.1
+	title = gnomeregan.1.t
+	desc = gnomeregan.1.d
+	picture = GFX_report_event_german_parade_paris
+	fire_only_once = yes
+	trigger = {
+		tag = GNO
+		or = {
+			any_other_country = {
+				controls_state = 437
+				has_idea = orc_primary_race
+				has_war_with = GNO
+			}
+		}
+	}
+	option = {
+		name = gnomeregan.1.a
+		BHC = {
+			complete_national_focus = BHC_the_siege_of_gnomeregan
+		}
+	}
+}
+
+###########################
+# Gnomeregan Third War
+###########################
+
+add_namespace = gnomeregan_third_war
+
+# Starting event
+country_event = {
+	id = gnomeregan_third_war.1
+	title = gnomeregan_third_war.1.t
+	desc = gnomeregan_third_war.1.d
+	picture = GFX_gnomeregan_event
+
+	fire_only_once = yes
+
+    trigger = {
+        tag = GNO
+        has_start_date > 609.12.31
+		has_start_date < 610.01.02
+        date > 610.01.07
+    }
+
+	option = {
+		name = gnomeregan_third_war.1.option.1
+
+		add_political_power = 25
+	}
+}
+
+# Odd Activities
+country_event = {
+	id = gnomeregan_third_war.2
+	title = gnomeregan_third_war.2.t
+	desc = gnomeregan_third_war.2.d
+	picture = GFX_gnomeregan_ruins_event
+
+    fire_only_once = yes
+
+    trigger = {
+        tag = GNO
+        has_start_date > 609.12.31
+		has_start_date < 610.01.02
+        date > 612.03.01
+    }
+
+	option = {
+		name = gnomeregan_third_war.2.option.1
+
+		hidden_effect = {
+			country_event = {
+				id = gnomeregan_third_war.3
+				days = 7
+			}
+		}
+	}
+}
+
+# Strange Creatures in Lower Levels
+country_event = {
+	id = gnomeregan_third_war.3
+	title = gnomeregan_third_war.3.t
+	desc = gnomeregan_third_war.3.d
+	picture = GFX_trogg_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gnomeregan_third_war.3.option.1
+
+		add_stability = -0.05
+
+		422 = {
+			add_manpower = -10000
+			set_demilitarized_zone = yes
+			add_dynamic_modifier = {
+				modifier = BHC_trogg_problem
+			}
+		}
+		423 = {
+			add_manpower = -5000
+			set_demilitarized_zone = yes
+			add_dynamic_modifier = {
+				modifier = BHC_trogg_problem
+			}
+		}
+		424 = {
+			add_manpower = -7500
+			set_demilitarized_zone = yes
+			add_dynamic_modifier = {
+				modifier = BHC_trogg_problem
+			}
+		}
+		# Numbers don't add up with substraction from above, some died
+		425 = {
+			add_manpower = 2500
+		}
+		426 = {
+			add_manpower = 4500
+		}
+		427 = {
+			add_manpower = 2500
+		}
+
+		hidden_effect = {
+			country_event = {
+				id = gnomeregan_third_war.4
+				days = 3
+			}
+		}
+	}
+}
+
+# Lower Levels Overrun
+country_event = {
+	id = gnomeregan_third_war.4
+	title = gnomeregan_third_war.4.t
+	desc = gnomeregan_third_war.4.d
+	picture = GFX_trogg_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			422 = {
+				transfer_state_to = CVD
+				add_core_of = CVD
+				set_demilitarized_zone = no
+				remove_dynamic_modifier = {
+					modifier = BHC_trogg_problem
+				}
+				set_variable = { var = race value = 127 } # Convert race to Trogg
+				set_variable = { var = religion value = 50 } # Convert religion to Geomancy
+				# Re-add trogg pop
+				hidden_effect = { add_manpower = 10000 }
+			}
+			423 = {
+				transfer_state_to = CVD
+				add_core_of = CVD
+				set_demilitarized_zone = no
+				remove_dynamic_modifier = {
+					modifier = BHC_trogg_problem
+				}
+				set_variable = { var = race value = 127 } # Convert race to Trogg
+				set_variable = { var = religion value = 50 } # Convert religion to Geomancy
+				# Re-add trogg pop
+				hidden_effect = { add_manpower = 10000 }
+			}
+			424 = {
+				transfer_state_to = CVD
+				add_core_of = CVD
+				set_demilitarized_zone = no
+				remove_dynamic_modifier = {
+					modifier = BHC_trogg_problem
+				}
+				set_variable = { var = race value = 127 } # Convert race to Trogg
+				set_variable = { var = religion value = 50 } # Convert religion to Geomancy
+				# Re-add trogg pop
+				hidden_effect = { add_manpower = 10000 }
+			}
+
+			CVD = {
+				set_country_flag = human_technology
+
+				load_oob = "CVD_gnomeregan_invasion"
+			}
+
+			GNO = {
+				country_event = {
+					id = gnomeregan_third_war.5
+					days = 1
+				}
+			}
+		}
+	}
+
+	option = {
+		name = gnomeregan_third_war.4.option.1
+
+		add_political_power = -50
+		add_stability = -0.05
+	}
+
+	option = {
+		name = gnomeregan_third_war.4.option.2
+
+		CVD = { change_tag_from = GNO }
+	}
+}
+
+# Dealing with the Troggs
+country_event = {
+	id = gnomeregan_third_war.5
+	title = gnomeregan_third_war.5.t
+	desc = gnomeregan_third_war.5.d
+	picture = GFX_trogg_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Don't allow the Alliance to join war (historical)
+		name = gnomeregan_third_war.5.option.1
+		custom_effect_tooltip = gnomeregan_third_war.5.option.1.d
+
+		declare_war_on = {
+            target = CVD
+            type = annex_everything
+        }
+		hidden_effect = { add_civil_war_target = CVD }
+		leave_faction = yes
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Allow the Alliance to join war
+		name = gnomeregan_third_war.5.option.2
+
+		add_political_power = -100
+
+		declare_war_on = {
+            target = CVD
+            type = annex_everything
+        }
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Sicco's Plan
+country_event = {
+	id = gnomeregan_third_war.6
+	title = gnomeregan_third_war.6.t
+	desc = gnomeregan_third_war.6.d
+	picture = GFX_sicco_thermaplugg_good_event
+
+	trigger = {
+		CVD = {
+			has_war_with = GNO
+			controls_province = 1333
+			controls_province = 1335
+			controls_province = 1341
+			controls_province = 3675
+			controls_province = 5222
+			controls_province = 6111
+			controls_province = 6117
+		}
+	}
+
+	fire_only_once = yes
+
+	option = { # Go on with the plan (historical)
+		name = gnomeregan_third_war.6.option.1
+
+		add_stability = -0.025
+
+		hidden_effect = {
+			country_event = {
+				id = gnomeregan_third_war.7
+				days = 1
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Refuse the plan
+		name = gnomeregan_third_war.6.option.2
+
+		add_stability = 0.05
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Sicco's Plan - Part 2
+country_event = {
+	id = gnomeregan_third_war.7
+	title = gnomeregan_third_war.7.t
+	desc = gnomeregan_third_war.7.d
+	picture = GFX_sicco_thermaplugg_good_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gnomeregan_third_war.7.option.1
+
+		add_war_support = 0.05
+
+		country_event = gnomeregan_third_war.8
+	}
+}
+
+# Backfire
+country_event = {
+	id = gnomeregan_third_war.8
+	title = gnomeregan_third_war.8.t
+	desc = gnomeregan_third_war.8.d
+	picture = gfx_trogg_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gnomeregan_third_war.8.option.1
+
+		add_political_power = -100
+		add_stability = -0.1
+		add_war_support = -0.1
+
+		CVD = {
+			add_timed_idea = {
+			    idea = CVD_bloodthirsty_frenzy_idea
+			    days = 30
+			}
+		}
+
+		hidden_effect = {
+			country_event = {
+				id = gnomeregan_third_war.9
+				days = 3
+			}
+		}
+	}
+}
+
+# The Evacuation
+country_event = {
+	id = gnomeregan_third_war.9
+	title = gnomeregan_third_war.9.t
+	desc = gnomeregan_third_war.9.d
+	picture = gfx_gnomeregan_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = gnomeregan_third_war.9.option.1
+
+		add_stability = -0.1
+
+		set_capital = { state = 437 }
+		425 = {
+			set_demilitarized_zone = yes
+			add_manpower = -12500
+		}
+		426 = {
+			set_demilitarized_zone = yes
+			add_manpower = -25000
+		}
+		427 = {
+			set_demilitarized_zone = yes
+			add_manpower = -12500
+		}
+		428 = {
+			set_demilitarized_zone = yes
+			add_manpower = -5000
+		}
+		1575 = {
+			set_demilitarized_zone = yes
+			add_manpower = -5000
+		}
+
+		white_peace = CVD
+
+		hidden_effect = {
+			country_event = {
+				id = gnomeregan_third_war.10
+				days = 1
+			}
+		}
+	}
+}
+
+# The Fate of Sicco
+country_event = {
+	id = gnomeregan_third_war.10
+	title = gnomeregan_third_war.10.t
+	desc = gnomeregan_third_war.10.d
+	picture = GFX_sicco_thermaplugg_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			27 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+			423 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				# Do not convert this state
+			}
+			425 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_demilitarized_zone = no
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+			426 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_demilitarized_zone = no
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+			427 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_demilitarized_zone = no
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+			428 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_demilitarized_zone = no
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+			1575 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_demilitarized_zone = no
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+			1581 = {
+				transfer_state_to = LEP
+				add_core_of = LEP
+				set_variable = { var = race value = 73 } # Convert race to Leper Gnome
+			}
+
+			LEP = {
+				set_country_flag = dwarf_technology
+
+				declare_war_on = {
+		            target = CVD
+		            type = annex_everything
+		        }
+				add_civil_war_target = CVD
+
+				diplomatic_relation = {
+				    country = GNO
+				    relation = non_aggression_pact
+				    active = yes
+				}
+
+				inherit_technology = GNO
+
+				load_oob = "LEP_gnomeregan_takeover"
+			}
+		}
+	}
+
+	option = { # Keep playing as GNO
+		name = gnomeregan_third_war.10.option.1
+
+		add_stability = -0.05
+		add_war_support = -0.25
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Play as Leper Gnomes
+		name = gnomeregan_third_war.10.option.2
+
+		add_stability = -0.05
+		add_war_support = -0.25
+
+		LEP = {
+			change_tag_from = GNO
+		}
+
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+# rejoining the alliance
+country_event = {
+	id = gnomeregan_third_war.11
+	title = gnomeregan_third_war.11.t
+	desc = gnomeregan_third_war.11.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = gnomeregan_third_war.11.option.1
+
+		if = {
+			limit = { LOR = { is_faction_leader = yes }	}
+			LOR = {	add_to_faction = GNO }
+		}
+		else_if = {
+			limit = { STO = { is_faction_leader = yes }	}
+			STO = {	add_to_faction = GNO }
+		}
+		else_if = {
+			limit = { IRO = { is_faction_leader = yes }	}
+			IRO = {	add_to_faction = GNO }
+		}
+	}
+
+	option = { 
+		name = gnomeregan_third_war.11.option.2
+
+	}
+}

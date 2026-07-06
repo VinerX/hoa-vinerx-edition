@@ -1,0 +1,171 @@
+on_actions = {
+
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						tag = BOO
+						has_defensive_war_with = GUR
+					}
+				}
+				country_event = boogurwar.1
+			}
+		}
+	}
+
+	# ROOT is winner, FROM is loser
+	### Stormwind 1st War
+	on_peaceconference_ended = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = { original_tag = BRC }
+					FROM = { original_tag = STO }
+					# First War start date
+					has_start_date > 591.12.31
+					has_start_date < 593.01.01
+				}
+				STO = { country_event = stormwind_capitulation.101 }
+				BRC = {	set_country_flag = fall_of_stormwind }
+				STC = {	country_event = steamwheedle.13 }
+			}
+			if = {
+				limit = {
+					has_start_date > 591.12.31
+					has_start_date < 592.01.02
+				}
+				# dragonmaw vs marshtide tribe (dragonmaw winner)
+				if = {
+					limit = {
+						ROOT = { original_tag = DMC }
+						FROM = { original_tag = MTT }
+					}
+					DMC = { country_event = dragonmaw.2 }
+				}
+				# dragonmaw vs marshtide tribe (marshtide winner)
+				else_if = {
+					limit = {
+						ROOT = { original_tag = MTT }
+						FROM = { original_tag = DMC }
+					}
+					MTT = { country_event = marshtide_tribe.2 }
+					BRC = { country_event = blackrock.1 }
+				}
+				#Bleeding Hollow vs Bog Beasts (Bleeding hollow winner)
+				else_if = {
+					limit = {
+						ROOT = { original_tag = BHC }
+						FROM = { original_tag = TSW }
+					}
+					BHC = { country_event = bleeding_hollow.2 }
+				}
+				#Bleeding Hollow vs Bog Beasts (Bog Beast winner)
+				else_if = {
+					limit = {
+						ROOT = { original_tag = TSW }
+						FROM = { original_tag = BHC }
+					}
+					TSW = {
+						set_country_flag = bleeding_hollow_defeated
+						country_event = swampwalkers.2
+					}
+					BRC = { country_event = blackrock.2 }
+				}
+				#hakkari beats the horde (Bog Beast winner)
+				else_if = {
+					limit = {
+						ROOT = { original_tag = HAK }
+						FROM = { original_tag = BRC }
+					}
+					HAK = { country_event = hakkari.4 }
+				}
+				# Blackrock wins civil war against Shadow Council (Gul'dan)
+				else_if = {
+					limit = {
+						ROOT = { original_tag = BRC }
+						FROM = { original_tag = TSC }
+						BRC = {
+							NOT = {
+								has_completed_focus = BRC_doomhammers_horde
+								has_completed_focus = BRC_blackhands_horde
+							}
+						}
+					}
+					BRC = {
+						country_event = blackrock.8 # End of civil war
+						annex_country = { # Annex Shadow Council
+						    target = TSC
+						    transfer_troops = yes
+						}
+					}
+				}
+				# Doomhammer War against Shadow Council (from blackrock.44 event)
+				else_if = {
+					limit = {
+						ROOT = { original_tag = BRC }
+						FROM = { original_tag = TSC }
+						BRC = {
+							AND = {
+								has_country_flag = doomhammers_horde
+								has_completed_focus = BRC_hunt_the_shadow_council
+							}
+						}
+					}
+					TSC = { country_event = shadow_council.6 }
+					BRC = {
+						puppet = TSC
+						annex_searing_gorge = yes
+						core_searing_gorge = yes
+						annex_burning_steppes = yes
+						core_burning_steppes = yes
+					}
+				}
+			}
+			if = { # Lordaeron capitulate in Second War against the Horde
+				limit = {
+					ROOT = { original_tag = BRC }
+					FROM = { original_tag = LOR }
+					# From First War to Second War start dates
+					has_start_date > 591.12.31
+					has_start_date < 597.01.01
+				}
+				BRC = {
+					country_event = second_war.1 # LOR capitulation event / scripted peace
+				}
+			}
+			### Lordaeron is defeated by The Scourge
+			if = {
+				limit = {
+					ROOT = { 
+						OR = {
+							original_tag = CAE 
+							original_tag = SRG
+						}
+					}
+					FROM = { original_tag = LOR }
+					# First War start date
+					has_start_date > 601.12.31
+					has_start_date < 616.01.01
+				}
+				LOR = { country_event = lordaeron_capitulation.1 }
+			}
+			### Quel'Thalas is defeated by The Scourge
+			if = {
+				limit = {
+					ROOT = { 
+						OR = {
+							original_tag = CAE 
+							original_tag = SRG
+						}
+					}
+					FROM = { original_tag = QUE }
+					# First War start date
+					has_start_date > 601.12.31
+					has_start_date < 616.01.01
+				}
+				QUE = { country_event = quelthalas_capitulation.1 }
+			}
+		}
+	}
+}

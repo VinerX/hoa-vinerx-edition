@@ -1,0 +1,66 @@
+﻿###########################
+#aggramars vault
+###########################
+
+add_namespace = owb_aggramars_vault
+
+country_event = {
+	id = owb_aggramars_vault.1
+	title = owb_aggramars_vault.1.t
+	desc = owb_aggramars_vault.1.d
+	picture = GFX_owb_vault_door_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = TID
+        has_start_date > 580.12.31
+		has_start_date < 581.01.02
+        date > 581.01.07
+        has_game_rule = {
+            rule = owb_april_fools_2025_game_rule
+            option = ENABLED
+        }
+	}
+
+	option = { # play as vault
+    	name = owb_aggramars_vault.1.option.1
+		OAV = {
+			transfer_state = 860
+			860 = {
+				add_core_of = OAV
+			}
+			hidden_effect = {
+				load_oob = OAV_581
+				load_oob = OAV_581_naval
+				add_equipment_to_stockpile = {
+					type = owb_vault_dweller_equipment_1
+					amount = 5000
+					producer = OAV
+				}
+				add_manpower = 10000
+			}
+			change_tag_from = TID
+		}
+	}
+    
+    option = { # remain player nation
+    	name = owb_aggramars_vault.1.option.2
+		OAV = {
+			transfer_state = 860
+			860 = {
+				add_core_of = OAV
+			}
+			hidden_effect = {
+				load_oob = OAV_581
+				load_oob = OAV_581_naval
+				add_equipment_to_stockpile = {
+					type = owb_vault_dweller_equipment_1
+					amount = 5000
+					producer = OAV
+				}
+				add_manpower = 10000
+			}
+		}
+	}
+}

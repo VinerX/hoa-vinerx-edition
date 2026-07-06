@@ -1,0 +1,3241 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	ogre_slave_pits = {
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_stronghold_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_slave_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	ogre_stronghold_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		on_research_complete = {
+			set_technology = { tier_2_tech = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = {
+			ogre_tier_2 = 1
+		}
+
+		path = {
+			leads_to_tech = ogre_citadel_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	ogre_citadel_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			ogre_tier_3 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_3_tech = 1
+			}
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "601.1.1"
+			}
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	ogre_slave_tech = {
+
+		enable_subunits = {
+			ogre_slave
+		}
+
+		on_research_complete = {
+			set_technology = {
+				ogre_slave_equipment_tech = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_tools_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_slave_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_boulder_works_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 7 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+			ogre_slave_technology
+		}
+	}
+
+	ogre_slave_tools_tech = {
+
+		production_speed_buildings_factor = 0.075
+		production_speed_arms_factory_factor = 0.075
+		industry_repair_factor = 0.075
+		local_resources_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_tools_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 4 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			construction_tools_technology
+			peasant_tools_technology
+		}
+	}
+
+	ogre_slave_tools_tech_2 = {
+
+		production_speed_buildings_factor = 0.075
+		production_speed_arms_factory_factor = 0.075
+		industry_repair_factor = 0.075
+		local_resources_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_tools_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 4 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			construction_tools_technology
+			peasant_tools_technology
+		}
+	}
+
+	ogre_slave_tools_tech_3 = {
+
+		production_speed_buildings_factor = 0.075
+		production_speed_arms_factory_factor = 0.075
+		industry_repair_factor = 0.075
+		local_resources_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_slave_tools_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			construction_tools_technology
+			peasant_tools_technology
+		}
+	}
+
+	ogre_slave_tools_tech_4 = {
+
+		production_speed_buildings_factor = 0.075
+		production_speed_arms_factory_factor = 0.075
+		industry_repair_factor = 0.075
+		local_resources_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_tools_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			construction_tools_technology
+			peasant_tools_technology
+		}
+	}
+
+	ogre_slave_tools_tech_5 = {
+
+		production_speed_buildings_factor = 0.075
+		production_speed_arms_factory_factor = 0.075
+		industry_repair_factor = 0.075
+		local_resources_factor = 0.075
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			construction_tools_technology
+			peasant_tools_technology
+		}
+	}
+
+	ogre_slave_equipment_tech = {
+
+		enable_equipments = {
+			ogre_slave_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 7 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+			ogre_slave_technology
+		}
+	}
+
+	ogre_slave_training_tech_1 = {
+
+		ogre_slave = {
+			entrenchment = 0.75
+			fort = {
+				defence = 0.075
+				attack = 0.075
+			}
+			equipment_capture_factor = 0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 7 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+			ogre_slave_technology
+		}
+	}
+
+	ogre_slave_training_tech_2 = {
+
+		ogre_slave = {
+			entrenchment = 0.75
+			river = {
+				defence = 0.075
+				attack = 0.075
+			}
+			equipment_capture_factor = 0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_slave_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 7 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+			ogre_slave_technology
+		}
+	}
+
+	ogre_slave_training_tech_3 = {
+
+		ogre_slave = {
+			entrenchment = 0.75
+			city = {
+				defence = 0.075
+				attack = 0.075
+			}
+			equipment_capture_factor = 0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_slave_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 7 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+			ogre_slave_technology
+		}
+	}
+
+	ogre_slave_training_tech_4 = {
+
+		ogre_slave = {
+			entrenchment = 0.75
+			gateway = {
+				defence = 0.075
+				attack = 0.075
+			}
+			equipment_capture_factor = 0.01
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 7 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+			ogre_slave_technology
+		}
+	}
+
+	ogre_boulder_works_tech = {
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+
+		path = {
+			leads_to_tech = ogre_meat_hall_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_runestone_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_quarry_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_slag_pit_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_lumber_mill_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_nesting_grounds_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_boulder_wall_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_boulder_tower_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_scryer_hut_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 28 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+		}
+	}
+
+	ogre_meat_hall_tech = {
+
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1	popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_meat_hooks_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_hide_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 12 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			pig_farm_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_meat_hooks_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = ogre_meat_hooks_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 12 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			pig_farm_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_meat_hooks_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_meat_hooks_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			pig_farm_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_meat_hooks_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+
+		path = {
+			leads_to_tech = ogre_meat_hooks_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			pig_farm_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_meat_hooks_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			pig_farm_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_hide_tech = {
+
+		ogre_brute = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_geomancer = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_magi = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		acclimatization_cold_climate_gain_factor = 0.05
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_hide_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 10 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			armor_technology
+			climate_technology
+		}
+	}
+
+	ogre_hide_tech_2 = {
+
+		ogre_brute = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_geomancer = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_magi = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		acclimatization_cold_climate_gain_factor = 0.05
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_hide_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			armor_technology
+			climate_technology
+		}
+	}
+
+	ogre_hide_tech_3 = {
+
+		ogre_brute = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_geomancer = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_magi = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		acclimatization_cold_climate_gain_factor = 0.05
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_hide_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			armor_technology
+			climate_technology
+		}
+	}
+
+	ogre_hide_tech_4 = {
+
+		ogre_brute = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_geomancer = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_magi = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		acclimatization_cold_climate_gain_factor = 0.05
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			armor_technology
+			climate_technology
+		}
+	}
+
+	ogre_lumber_mill_tech = {
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_wood_working_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 14 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_wood_working_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_wood_working_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 14 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_wood_working_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_wood_working_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 14 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_wood_working_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_wood_working_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 14 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_wood_working_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 14 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_nesting_grounds_tech = {
+
+		enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { nest_tech_global = 1 popup = no }
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_breeding_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 16 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_breeding_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_breeding_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 16 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_breeding_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_2
+					remove_idea = air_manufacturing_buff_1
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_improved_breeding_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_breeding_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_3
+					remove_idea = air_manufacturing_buff_2
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_breeding_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_breeding_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_4
+					remove_idea = air_manufacturing_buff_3
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_runestone_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { arcane_tower_tech_global = 1 popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_rituals_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_blueprints_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 18 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_rituals_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		ogre_scryer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_magi = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.1
+
+		path = {
+			leads_to_tech = ogre_rituals_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 18 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_rituals_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		ogre_scryer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_magi = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.1
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_rituals_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_rituals_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		ogre_scryer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_magi = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.1
+
+		path = {
+			leads_to_tech = ogre_rituals_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_rituals_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		ogre_scryer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		ogre_magi = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.1
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_blueprints_tech = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_blueprints_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 20 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			blueprint_technology
+		}
+	}
+
+	ogre_blueprints_tech_2 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_blueprints_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 20 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			blueprint_technology
+		}
+	}
+
+	ogre_blueprints_tech_3 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_blueprints_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			blueprint_technology
+		}
+	}
+
+	ogre_blueprints_tech_4 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_blueprints_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			blueprint_technology
+		}
+	}
+
+	ogre_blueprints_tech_5 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			blueprint_technology
+		}
+	}
+
+	ogre_quarry_tech = {
+
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { iron_mine_tech_global = 1 popup = no	}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_quarry_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 30 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_quarry_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_quarry_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 30 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_quarry_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_improved_quarry_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 30 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_quarry_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_quarry_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 30 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_quarry_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 30 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_slag_pit_tech = {
+
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { sulfur_mine_tech_global = 1 popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_slag_pit_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_forges_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 28 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_slag_pit_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_slag_pit_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 28 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_slag_pit_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_improved_slag_pit_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 28 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_slag_pit_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_improved_slag_pit_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 28 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_improved_slag_pit_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 28 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	ogre_weapon_tech_1 = {
+
+		ogre_brute = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_mauler = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_gladiator = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_warlord = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_weapon_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 22 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	ogre_weapon_tech_2 = {
+
+		ogre_brute = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_mauler = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_gladiator = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_warlord = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_weapon_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 22 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			sword_technology
+		}
+	}
+
+	ogre_weapon_tech_3 = {
+
+		ogre_brute = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_mauler = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_gladiator = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_warlord = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_weapon_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	ogre_weapon_tech_4 = {
+
+		ogre_brute = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_mauler = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_gladiator = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+		ogre_warlord = {
+			soft_attack = 0.08
+			hard_attack = 0.05
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 22 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			sword_technology
+		}
+	}
+
+	ogre_armor_tech_1 = {
+
+		ogre_mauler = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_demolisher = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_gladiator = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_warlord = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_armor_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 24 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	ogre_armor_tech_2 = {
+
+		ogre_mauler = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_demolisher = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_gladiator = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_warlord = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_armor_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	ogre_armor_tech_3 = {
+
+		ogre_mauler = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_demolisher = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_gladiator = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_warlord = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_armor_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 24 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	ogre_armor_tech_4 = {
+
+		ogre_mauler = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_demolisher = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_gladiator = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		ogre_warlord = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			forge_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	ogre_forges_tech = {
+
+		industrial_capacity_factory = 0.18
+		industrial_capacity_dockyard = 0.1
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_forges_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_weapon_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_armor_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 26 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			forge_technology
+			blacksmith_technology
+		}
+	}
+
+	ogre_forges_tech_2 = {
+
+		industrial_capacity_factory = 0.18
+		industrial_capacity_dockyard = 0.1
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_forges_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 26 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			forge_technology
+			blacksmith_technology
+		}
+	}
+
+	ogre_forges_tech_3 = {
+
+		industrial_capacity_factory = 0.18
+		industrial_capacity_dockyard = 0.1
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_forges_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			forge_technology
+			blacksmith_technology
+		}
+	}
+
+	ogre_forges_tech_4 = {
+
+		industrial_capacity_factory = 0.18
+		industrial_capacity_dockyard = 0.1
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_forges_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			forge_technology
+			blacksmith_technology
+		}
+	}
+
+	ogre_forges_tech_5 = {
+
+		industrial_capacity_factory = 0.18
+		industrial_capacity_dockyard = 0.1
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			war_mill_technology
+			forge_technology
+			blacksmith_technology
+		}
+	}
+
+	ogre_boulder_wall_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		global_building_slots_factor = 0.16
+
+		path = {
+			leads_to_tech = ogre_reinforced_stone_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 32 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			fortification_technology
+			city_growth_technology
+		}
+	}
+
+	ogre_reinforced_stone_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+
+		global_building_slots_factor = 0.16
+		
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_reinforced_stone_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 32 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			fortification_technology
+			city_growth_technology
+		}
+	}
+
+	ogre_reinforced_stone_tech_2 = {
+
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_reinforced_stone_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 32 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			fortification_technology
+			city_growth_technology
+		}
+	}
+
+	ogre_reinforced_stone_tech_3 = {
+
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_reinforced_stone_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 32 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			fortification_technology
+			city_growth_technology
+		}
+	}
+
+	ogre_reinforced_stone_tech_4 = {
+
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+
+		global_building_slots_factor = 0.16
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 32 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			fortification_technology
+			city_growth_technology
+		}
+	}
+
+	ogre_boulder_tower_tech = {
+
+		enable_building = {
+			building = radar_station
+			level = 1
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+		on_research_complete = {
+			set_technology = {
+				guard_tower_tech_global = 1
+				scout_tower_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_boulder_tower_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_horns_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = low_light_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 36 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tower_technology
+			guard_tower_technology
+			scout_tower_technology
+		}
+	}
+
+	ogre_boulder_tower_tech_2 = {
+
+		enable_building = {
+			building = radar_station
+			level = 2
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_boulder_tower_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 36 y = 4 }
+		}
+		ai_will_do = { factor = 1 }
+		categories = {
+			administration_technology
+			tower_technology
+			guard_tower_technology
+			scout_tower_technology
+		}
+	}
+
+	ogre_boulder_tower_tech_3 = {
+
+		enable_building = {
+			building = radar_station
+			level = 3
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_boulder_tower_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 36 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tower_technology
+			guard_tower_technology
+			scout_tower_technology
+		}
+	}
+
+	ogre_boulder_tower_tech_4 = {
+
+		enable_building = {
+			building = radar_station
+			level = 4
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_boulder_tower_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 36 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tower_technology
+			guard_tower_technology
+			scout_tower_technology
+		}
+	}
+
+	ogre_boulder_tower_tech_5 = {
+
+		enable_building = {
+			building = radar_station
+			level = 5
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 36 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tower_technology
+			guard_tower_technology
+			scout_tower_technology
+		}
+	}
+
+	ogre_horns_tech = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_horns_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 34 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	ogre_horns_tech_2 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_horns_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 34 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	ogre_horns_tech_3 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 34 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	low_light_tech_1 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = low_light_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 38 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	low_light_tech_2 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = low_light_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 38 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	low_light_tech_3 = {
+
+		land_night_attack = 0.1
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 38 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	ogre_scryer_hut_tech = {
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { spy_tech_global = 1 popup = no }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_encryption_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_decryption_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 41 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+		}
+	}
+
+	ogre_encryption_tech = {
+
+		encryption = 1
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_encryption_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 40 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			encryption_technology
+		}
+	}
+
+	ogre_encryption_tech_2 = {
+
+		encryption = 1
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_encryption_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 40 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			encryption_technology
+		}
+	}
+
+	ogre_encryption_tech_3 = {
+
+		encryption = 1
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_encryption_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 40 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			encryption_technology
+		}
+	}
+
+	ogre_encryption_tech_4 = {
+
+		encryption = 1
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 40 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			encryption_technology
+		}
+	}
+
+	ogre_decryption_tech = {
+
+		decryption = 1
+		
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_decryption_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 42 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			decryption_technology
+		}
+	}
+
+	ogre_decryption_tech_2 = {
+
+		decryption = 1
+		
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_decryption_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 42 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			decryption_technology
+		}
+	}
+
+	ogre_decryption_tech_3 = {
+
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_decryption_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 42 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			decryption_technology
+		}
+	}
+
+	ogre_decryption_tech_4 = {
+
+		decryption = 1
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = ogre_administration_folder
+			position = { x = 42 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			assassins_den_technology
+			decryption_technology
+		}
+	}
+}
+
+#slave
+#	tools
+#	housing
+#	slag pitt
+#		forge master
+#			forge
+#			armor
+#			attack
+#	quarry
+#	egg collectors
+#	boulder works
+#		walls
+#		towers
+#		meat hall
+#		scryer's hall
+#			encrypy/decrypt

@@ -1,0 +1,951 @@
+economy_decisions = {
+
+	NET_stability_efforts_1 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = yes
+
+		visible = {
+			tag = NET
+			has_war = no
+			OR = {
+				has_idea = NET_funding_2
+				has_idea = NET_funding_1
+				has_idea = NET_funding_0
+			}
+		}
+
+		available = {
+			has_war = no
+			OR = {
+				has_idea = NET_funding_2
+				has_idea = NET_funding_1
+				has_idea = NET_funding_0
+			}
+			industrial_complex > 24
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			if = {
+				limit = { has_idea = NET_funding_0 }
+				swap_ideas = {
+					remove_idea = NET_funding_0
+					add_idea = NET_funding_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_1 }
+				swap_ideas = {
+					remove_idea = NET_funding_1
+					add_idea = NET_funding_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_2 }
+				swap_ideas = {
+					remove_idea = NET_funding_2
+					add_idea = NET_funding_3
+				}
+			}
+    	}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	NET_stability_efforts_2 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = yes
+
+		visible = {
+			tag = NET
+			has_war = no
+			OR = {
+				has_idea = NET_funding_2
+				has_idea = NET_funding_1
+				has_idea = NET_funding_0
+			}
+		}
+
+		available = {
+			has_war = no
+			OR = {
+				has_idea = NET_funding_2
+				has_idea = NET_funding_1
+				has_idea = NET_funding_0
+			}
+			industrial_complex > 34
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			if = {
+				limit = { has_idea = NET_funding_0 }
+				swap_ideas = {
+					remove_idea = NET_funding_0
+					add_idea = NET_funding_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_1 }
+				swap_ideas = {
+					remove_idea = NET_funding_1
+					add_idea = NET_funding_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_2 }
+				swap_ideas = {
+					remove_idea = NET_funding_2
+					add_idea = NET_funding_3
+				}
+			}
+    	}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	NET_stability_efforts_3 = {
+		icon = GFX_decision_category_generic_industry
+
+		fire_only_once = yes
+
+		visible = {
+			tag = NET
+			has_war = no
+			OR = {
+				has_idea = NET_funding_2
+				has_idea = NET_funding_1
+				has_idea = NET_funding_0
+			}
+		}
+
+		available = {
+			has_war = no
+			OR = {
+				has_idea = NET_funding_2
+				has_idea = NET_funding_1
+				has_idea = NET_funding_0
+			}
+			industrial_complex > 49
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		complete_effect = {	set_country_flag = ongoing_construction_project_flag }
+
+		remove_effect = {
+			clr_country_flag = ongoing_construction_project_flag
+			if = {
+				limit = { has_idea = NET_funding_0 }
+				swap_ideas = {
+					remove_idea = NET_funding_0
+					add_idea = NET_funding_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_1 }
+				swap_ideas = {
+					remove_idea = NET_funding_1
+					add_idea = NET_funding_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_2 }
+				swap_ideas = {
+					remove_idea = NET_funding_2
+					add_idea = NET_funding_3
+				}
+			}
+    	}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 165 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+	NET_resistance_LOR = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			LOR = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			LOR = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_LOR 
+				days = 60
+			}
+			LOR = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_HEA = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			HEA = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			HEA = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_HEA 
+				days = 60
+			}
+			HEA = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_STH = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			STH = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			STH = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_STH
+				days = 60
+			}
+			STH = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_GIL = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			GIL = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			GIL = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_GIL
+				days = 60
+			}
+			GIL = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_STO = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			STO = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			STO = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_STO
+				days = 60
+			}
+			STO = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_STR = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			STR = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			STR = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_STR
+				days = 60
+			}
+			STR = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_AER = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			AER = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			AER = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_AER
+				days = 60
+			}
+			AER = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_resistance_SPC = {
+
+        priority = 10
+
+        cost = 0
+
+		days_remove = 60
+
+		days_re_enable = 100
+
+		allowed = {	tag = NET }
+
+        visible = {
+			has_completed_focus = NET_resistance_campaign
+			SPC = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        available = {
+			SPC = {
+				OR = {
+					has_war_with = CAE
+					has_war_with = SRG
+				}
+			}
+        }
+
+        complete_effect = {
+			add_timed_idea = {
+				idea = NET_resistance_campaign_NET_SPC
+				days = 60
+			}
+			SPC = {
+				add_timed_idea = {
+					idea = NET_resistance_campaign_assist
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	### Related Decisions
+
+	NET_the_agreement = {
+
+        priority = 10
+
+        cost = 0
+
+		fire_only_once = yes
+
+        visible = {
+			is_puppet_of = NET
+			has_idea = orc_primary_race
+        }
+
+        available = {
+			NET = {	has_completed_focus = NET_the_agreement	}
+        }
+
+        complete_effect = {
+			transfer_state = 385
+			385 = {
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+			}
+			386 = {
+				set_state_religion_to_primary_religion = yes
+				set_state_race_to_primary_race = yes
+			}
+			385 = {	add_core_of = ROOT }
+			386 = {	add_core_of = ROOT }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	RCP_retreat = {
+
+        priority = 10
+
+        cost = 0
+
+		fire_only_once = yes
+
+        visible = {
+			tag = RCP
+			has_war_with = NET
+			NET = { has_completed_focus = NET_murloc_relocation }
+        }
+
+        available = {
+			NOT = {	390 = { is_controlled_by = RCP } }
+			NET = { has_completed_focus = NET_murloc_relocation }
+        }
+
+        complete_effect = {
+			390 = {	
+				transfer_state_to = NET
+				remove_core_of = RCP
+				add_claim_by = RCP	
+			}
+			NET = {
+				white_peace = RCP
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	DRM_first = {
+
+        priority = 10
+
+        cost = 0
+
+		fire_only_once = yes
+
+        visible = {
+			tag = DRM
+			has_start_date > 609.1.1 
+			has_start_date < 616.1.1
+			controls_state = 385
+        }
+
+        available = {
+			tag = DRM
+			has_start_date > 609.1.1 
+			has_start_date < 616.1.1
+			controls_state = 385
+        }
+
+        complete_effect = {
+			hidden_effect = {
+				division_template = {
+					name = "Ogre Brutes"
+					priority = 1
+					regiments = {
+						ogre_brute = { x = 0 y = 0 }
+						ogre_brute = { x = 0 y = 1 }
+						ogre_brute = { x = 0 y = 2 }
+						ogre_brute = { x = 1 y = 0 }
+						ogre_brute = { x = 1 y = 1 }
+						ogre_brute = { x = 1 y = 2 }
+					}
+				}
+				386 = {
+					create_unit = {
+						division = "name = \"Ogre Brutes\" division_template = \"Ogre Brutes\" start_experience_factor = 0.75"
+						owner = DRM
+					}
+				}
+				385 = {
+					create_unit = {
+						division = "name = \"Ogre Brutes\" division_template = \"Ogre Brutes\" start_experience_factor = 0.75"
+						owner = DRM
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	DRM_second = {
+
+        priority = 10
+
+        cost = 0
+
+		fire_only_once = yes
+
+        visible = {
+			tag = DRM
+			has_start_date > 609.1.1 
+			has_start_date < 616.1.1
+			controls_state = 384
+        }
+
+        available = {
+			tag = DRM
+			has_start_date > 609.1.1 
+			has_start_date < 616.1.1
+			controls_state = 384
+        }
+
+        complete_effect = {
+			hidden_effect = {
+				division_template = {
+					name = "Ogre Brutes"
+					priority = 1
+					regiments = {
+						ogre_brute = { x = 0 y = 0 }
+						ogre_brute = { x = 0 y = 1 }
+						ogre_brute = { x = 0 y = 2 }
+						ogre_brute = { x = 1 y = 0 }
+						ogre_brute = { x = 1 y = 1 }
+						ogre_brute = { x = 1 y = 2 }
+					}
+				}
+				384 = {
+					create_unit = {
+						division = "name = \"Ogre Brutes\" division_template = \"Ogre Brutes\" start_experience_factor = 0.75"
+						owner = DRM
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	KZL_second_invasion = {
+
+        priority = 10
+
+        cost = 0
+
+		fire_only_once = yes
+
+        visible = {
+			tag = KZL
+			NET = { has_completed_focus = NET_a_new_invasion }
+        }
+
+        available = {
+			tag = KZL
+			NET = { has_completed_focus = NET_a_new_invasion }
+        }
+
+        complete_effect = {
+			hidden_effect = {
+				KZL = { load_oob = "KZL_Demon_war" }
+				KZL = {
+					declare_war_on = {
+						target = NET
+						type = annex_everything
+					}
+					declare_war_on = {
+						target = RWC
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_convince_lesser_leaders = {
+
+        priority = 10
+
+        cost = 25
+
+        visible = {
+			tag = NET
+			has_completed_focus = NET_by_hammer_or_shield
+			any_owned_state = {
+				is_core_of = DFC
+				NOT = { is_core_of = NET }
+			}
+        }
+
+        available = {
+			tag = NET
+			has_completed_focus = NET_by_hammer_or_shield
+			any_owned_state = {
+				is_core_of = DFC
+				NOT = { is_core_of = NET }
+			}
+        }
+
+		days_remove = 30
+
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+        complete_effect = {
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = NET }
+					is_core_of = DFC
+				}
+				add_compliance = 15
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_dispose_of_warriors = {
+
+        priority = 10
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+
+        visible = {
+			tag = NET
+			has_completed_focus = NET_by_hammer_or_shield
+			any_owned_state = {
+				is_core_of = DFC
+				NOT = { is_core_of = NET }
+			}
+        }
+
+        available = {
+			tag = NET
+			has_completed_focus = NET_by_hammer_or_shield
+			any_owned_state = {
+				is_core_of = DFC
+				NOT = { is_core_of = NET }
+			}
+        }
+
+		days_remove = 30
+
+		modifier = {
+			command_power_gain = -0.10
+		}
+
+        complete_effect = {
+			add_command_power = -25
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = NET }
+					is_core_of = DFC
+				}
+				add_compliance = 15
+				add_resistance = -2
+				add_manpower = -100
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+
+	NET_enforce_containment = {
+
+        priority = 10
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+        visible = {
+			tag = NET
+			has_completed_focus = NET_by_hammer_or_shield
+			any_owned_state = {
+				is_core_of = DFC
+				NOT = { is_core_of = NET }
+				compliance > 25
+			}
+        }
+
+        available = {
+			tag = NET
+			has_completed_focus = NET_by_hammer_or_shield
+			any_owned_state = {
+				is_core_of = DFC
+				NOT = { is_core_of = NET }
+				compliance > 70
+			}
+        }
+
+		days_remove = 30
+
+		modifier = {
+			command_power_gain = -0.2
+		}
+
+        complete_effect = {
+			add_command_power = -50
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = NET }
+					is_core_of = DFC
+					compliance > 70
+				}
+				add_core_of = NET
+				add_dynamic_modifier = {
+					modifier = NET_suppressing_uprisings
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+    }
+}

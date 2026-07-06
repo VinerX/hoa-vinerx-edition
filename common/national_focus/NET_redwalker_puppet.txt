@@ -1,0 +1,429 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = NET_redwalker
+	country = {
+		factor = 0
+		modifier = {
+			add = 100
+			tag = RWC
+			is_puppet_of = NET
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 1150
+		y = 1800
+	}
+
+	shared_focus = our_nation
+	shared_focus = arming_the_nation
+	shared_focus = the_path_forward
+	
+	focus = {
+		id = RWC_P_clear_the_rubble
+		icon = GFX_goal_continuous_non_factory_construct
+		cost = 30
+		x = 24
+		y = 3
+
+		available = { has_war = no }
+
+		completion_reward = {
+			every_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}	
+
+	focus = {
+		id = RWC_P_secure_the_holds
+		icon = GFX_goal_generic_military_sphere
+		prerequisite = { focus = RWC_P_clear_the_rubble }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 1
+		y = 1
+
+		available = { has_war = no }
+
+		completion_reward = {
+			army_experience = 15
+			add_equipment_to_stockpile = {
+				type = grunt_equipment_1
+				amount = 100
+				producer = BRC
+			}
+			add_equipment_to_stockpile = {
+				type = spearman_equipment_1
+				amount = 100
+				producer = BRC
+			}
+			add_equipment_to_stockpile = {
+				type = orc_catapult_equipment_1
+				amount = 15
+				producer = DRM
+			}
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 50
+				producer = STO
+			}
+			NET = {
+				add_equipment_to_stockpile = {
+					type = pikeman_equipment_1
+					amount = 50
+					producer = STO
+				}
+			}
+		}
+	}	
+
+	focus = {
+		id = RWC_P_maintain_night_watch
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		prerequisite = { focus = RWC_P_clear_the_rubble }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = -1
+		y = 1
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nights_watch_technology
+				bonus = 0.5
+				uses = 1
+				category = nights_watch_technology
+			}
+		}
+	}	
+
+	focus = {
+		id = RWC_P_strive_for_subsistence
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = RWC_P_maintain_night_watch }
+		prerequisite = { focus = RWC_P_secure_the_holds }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 0
+		y = 2
+
+		available = { has_war = no }
+
+		completion_reward = {
+			385 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			386 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}		
+
+	focus = {
+		id = RWC_P_unity_of_the_clans
+		icon = GFX_goal_continuous_increase_nu
+		prerequisite = { focus = RWC_P_strive_for_subsistence }
+		cost = 21
+		relative_position_id = RWC_P_clear_the_rubble
+		x = -2
+		y = 3
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = horde
+				popularity = 0.10
+			}
+			add_popularity = {
+				ideology = neutral
+				popularity = -0.10
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_to_build_a_home
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = RWC_P_strive_for_subsistence }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 0
+		y = 3
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = RWC_P_to_build_a_home
+				bonus = 0.30
+				uses = 3
+				category = construction_tools_technology
+				category = resource_tools_technology
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_no_mistreatment
+		icon = GFX_focus_NET_equality
+		prerequisite = { focus = RWC_P_strive_for_subsistence }
+		cost = 21
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 2
+		y = 3
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_stability = 0.05
+			385 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+				add_resource = {
+					type = gunpowder
+					amount = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_redland_hunters
+		icon = GFX_focus_NET_red_waste_hunters
+		prerequisite = { focus = RWC_P_unity_of_the_clans }
+		prerequisite = { focus = RWC_P_to_build_a_home }
+		prerequisite = { focus = RWC_P_no_mistreatment }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 0
+		y = 4
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_ideas = leatherworking_guild
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = RWC_P_elemental_communion
+		icon = GFX_focus_NET_Shaman
+		prerequisite = { focus = RWC_P_redland_hunters }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 0
+		y = 5
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = shaman_technology
+				bonus = 0.5
+				uses = 1
+				category = shaman_technology
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_dire_wolf_pups
+		icon = GFX_focus_NET_frostwolf_wolves
+		prerequisite = { focus = RWC_P_redland_hunters }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = -2
+		y = 5
+
+		available = {
+			NET = {	has_completed_focus = NET_the_frostwolf_clan }
+			has_war = no
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dire_wolf_technology
+				bonus = 0.5
+				uses = 1
+				category = dire_wolf_technology
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_wolfriders
+		icon = focus_generic_frostwolf_rider
+		prerequisite = { focus = RWC_P_dire_wolf_pups }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = -2
+		y = 6
+
+		available = {
+			has_idea = NET_frostwolf_clan_2
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = stable_technology
+				bonus = 0.5
+				uses = 1
+				category = stable_technology
+			}
+			RWC = {
+				hidden_effect = {
+					division_template = {
+						name = "Wolfriders"
+						priority = 1
+						regiments = {
+							raider = { x = 0 y = 0 }
+							dire_wolf = { x = 0 y = 1 }
+							dire_wolf = { x = 0 y = 2 }
+							raider = { x = 1 y = 0 }
+							dire_wolf = { x = 1 y = 1 }
+							dire_wolf = { x = 1 y = 2 }
+						}
+					}
+					382 = {
+						create_unit = {
+							division = "name = \"Wolfriders\" division_template = \"Wolfriders\" start_experience_factor = 0.75"
+							owner = RWC
+						}
+					}
+					383 = {
+						create_unit = {
+							division = "name = \"Wolfriders\" division_template = \"Wolfriders\" start_experience_factor = 0.75"
+							owner = RWC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_scout_old_lodgings
+		icon = focus_generic_kilrog_deadeye
+		prerequisite = { focus = RWC_P_redland_hunters }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 2
+		y = 5
+
+		available = {
+			NET = {	has_completed_focus = NET_the_bleeding_hollow }
+			has_war = no
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = outrider_technology
+				bonus = 0.5
+				uses = 1
+				category = outrider_technology
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_war_on_any_front
+		icon = focus_generic_kilrog_deadeye
+		prerequisite = { focus = RWC_P_scout_old_lodgings }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 2
+		y = 6
+
+		available = {
+			has_idea = NET_bleeding_hollow_2
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dire_orc_technology
+				bonus = 0.5
+				uses = 1
+				category = dire_orc_technology
+			}
+			RWC = {
+				hidden_effect = {
+					division_template = {
+						name = "Long Knives"
+						priority = 1
+						regiments = {
+							dire_orc = { x = 0 y = 0 }
+							grunt = { x = 0 y = 1 }
+							grunt = { x = 0 y = 2 }
+							dire_orc = { x = 1 y = 0 }
+							grunt = { x = 1 y = 1 }
+							grunt = { x = 1 y = 2 }
+						}
+					}
+					395 = {
+						create_unit = {
+							division = "name = \"Long Knives\" division_template = \"Long Knives\" start_experience_factor = 0.75"
+							owner = RWC
+						}
+					}
+					405 = {
+						create_unit = {
+							division = "name = \"Long Knives\" division_template = \"Long Knives\" start_experience_factor = 0.75"
+							owner = RWC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = RWC_P_guide_the_burning_blade
+		icon = focus_generic_blademaster
+		prerequisite = { focus = RWC_P_elemental_communion }
+		cost = 30
+		relative_position_id = RWC_P_clear_the_rubble
+		x = 0
+		y = 6
+
+		available = {
+			NET = {	has_completed_focus = NET_the_burning_blade_cult }
+			has_war = no
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = -0.02
+			}
+			add_tech_bonus = {
+				name = altar_technology
+				bonus = 0.5
+				uses = 1
+				category = altar_technology
+			}
+		}
+	}
+}

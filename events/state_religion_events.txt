@@ -1,0 +1,1604 @@
+###########################
+# Events triggered at the start of the game in 00_hoa_on_actions.txt to setup
+# the state religion of each state.
+# Events ID number correspond to the associated start date.
+###########################
+# List of all religions and their ID:
+
+# NO RELIGION (never used, do not mistake with irreligious ID:76)
+# CHURCH OF THE HOLY LIGHT 1
+# THE NAARU 2
+# SCARLET CHURCH 3
+# ARGENT CHURCH 4
+# ORDER OF THE BLOOD KNIGHTS 5
+# THE DISCIPLES OF RHUKMAR 6
+# NECROLYTES 7
+# VOODOO 8
+# THE CULT OF THE FORGOTTEN SHADOWS 9
+# THE DISCIPLES OF ANZU 10
+# THE VOID 11
+# ARCANE STUDIES 12
+# THE SUNWELL 13
+# THE NIGHTWELL 14
+# DRUIDISM 15
+# THE DISCIPLES OF URSOC 16
+# THE DISCIPLES OF LOGOSH 17
+# THE DISCIPLES OF AGAMAGGAN 18
+# THE DISCIPLES OF AVIANA 19
+# THE DISCIPLES OF TORTOLLA 20
+# AUGUST CELESTIAL 21
+# THORNSPEAKERS 22
+# HARVEST WITCHCRAFT 23
+# NATURAL MAGIC 24
+# LOA SPIRITS 25
+# THE FEL 26
+# DEMONOLOGY 27
+# NECROMANCY 28
+# THE DISCIPLES OF THE LICH KING 29
+# THE FOLLOWERS OF HELYA 30
+# DRUST 31
+# THE FOLLOWERS OF Y'SHAARJ 32
+# THE FOLLOWERS OF N'ZOTH 33
+# THE FOLLOWERS OF YOGG-SARON 34
+# THE FOLLOWERS OF C'THUN 35
+# THE HOUR OF TWILIGHT 36
+# THE DARK CONCLAVE 37
+# THE FOLLOWER OF G'HUUN 38
+# THE MYSTERY OF THE MAKERS 39
+# THE FOLLOWERS OF ODYN 40
+# THE TITANS 41
+# CHI 42
+# THE ELEMENTAL FURIES 43
+# SHAMANISM 44
+# DARK SHAMANISM 45
+# THE FOLLOWERS OF THE FIRELORD 46
+# THE FOLLOWERS OF THE TIDEHUNTER 47
+# THE FOLLOWERS OF THE STONEMOTHER 48
+# THE FOLLOWERS OF THE WINDLORD 49
+# GEOMANCY 50
+# PYROMANCY 51
+# THE FOLLOWERS OF ORDOS 52
+# THE FOLLOWERS OF GUROK 53
+# THE FOLLOWERS OF THE TIDEMOTHER 54
+# WATERSPEAKING 55
+# THE SISTERHOOD OF ELUNE 56
+# TAUREN MYTHOLOGY 57
+# PANDAREN FOLKLORE 58
+# MOGU MYTHOLOGY 59
+# LUCKYDOS 60
+# FOLLOWERS OF VOLCANOTH 61
+# FOLLOWERS OF MAZU 62
+# FOLLOWERS OF KROS 63
+# TUSKARR MYTHOLOGY 64
+# ANCIENT NERUBIAN 65
+# GAHZRILLA 66
+# THE WYRMCULT 67
+# GRONN WORSHIP 68
+# MAGNATAUR WORSHIP 69
+# FOLLOWERS OF ZAR'JIRA 70
+# FOLLOWERS OF BORROK 71
+# GENESAUR WORSHIP 72
+# NARAXAS 73
+# JORHUTTAN 74
+# WAY OF THE JADE FIST 75
+# IRRELIGIOUS 76
+# BANANA WORSHIP 77
+
+add_namespace = state_religion_setup
+
+# Rise of the Horde (year 581) religion setup
+country_event = {
+	id = state_religion_setup.581
+	title = state_religion_setup.581.t
+	desc = state_religion_setup.581.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.581.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 316
+						state = 356
+						state = 367
+						state = 432
+						state = 473
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 1597
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			367 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+			1597 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			432 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# First War (year 592) religion setup
+country_event = {
+	id = state_religion_setup.592
+	title = state_religion_setup.592.t
+	desc = state_religion_setup.592.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.592.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 316
+						state = 356
+						state = 367
+						state = 432
+						state = 473
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 1597
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			367 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+			1597 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			432 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# Second War (year 596) religion setup
+country_event = {
+	id = state_religion_setup.596
+	title = state_religion_setup.596.t
+	desc = state_religion_setup.596.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.596.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 356
+						state = 432
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			432 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# Invasion of Draenor (year 600) religion setup
+country_event = {
+	id = state_religion_setup.600
+	title = state_religion_setup.600.t
+	desc = state_religion_setup.600.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.600.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 316
+						state = 356
+						state = 367
+						state = 432
+						state = 473
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 1597
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			367 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+			1597 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			432 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# Third War (year 610) religion setup
+country_event = {
+	id = state_religion_setup.610
+	title = state_religion_setup.610.t
+	desc = state_religion_setup.610.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.610.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 316
+						state = 356
+						state = 367
+						state = 432
+						state = 473
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 1597
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			367 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+			1597 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			432 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# Frozen Throne (year 613) religion setup
+country_event = {
+	id = state_religion_setup.613
+	title = state_religion_setup.613.t
+	desc = state_religion_setup.613.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.613.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 316
+						state = 356
+						state = 367
+						state = 432
+						state = 473
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 1597
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			367 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+			1597 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			432 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# Old Hatred / Classic WoW (year 617) religion setup
+country_event = {
+	id = state_religion_setup.617
+	title = state_religion_setup.617.t
+	desc = state_religion_setup.617.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.617.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 38
+						state = 77
+						state = 112
+						state = 133
+						state = 135
+						state = 142
+						state = 143
+						state = 144
+						state = 145
+						state = 147
+						state = 203
+						state = 211
+						state = 213
+						state = 217
+						state = 280
+						state = 303
+						state = 316
+						state = 356
+						state = 362
+						state = 364
+						state = 368
+						state = 371
+						state = 374
+						state = 404
+						state = 406
+						state = 432
+						state = 460
+						state = 465
+						state = 473
+						state = 480
+						state = 526
+						state = 527
+						state = 535
+						state = 579
+						state = 719
+						state = 760
+						state = 864
+						state = 983
+						state = 998
+						state = 1001
+						state = 1036
+						state = 1172
+						state = 1173
+						state = 1186
+						state = 1341
+						state = 1342
+						state = 1348
+						state = 1354
+						state = 1358
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1432
+						state = 1445
+						state = 1490
+						state = 1503
+						state = 1512
+						state = 1532
+						state = 1537
+						state = 1538
+						state = 1578
+						state = 1590
+						state = 1594
+						state = 1595
+						state = 1596
+						state = 1597
+						state = 1623
+						state = 2155
+						state = 2161
+						state = 2163
+						state = 2164
+						state = 2165
+						state = 2176
+						state = 2218
+						state = 2224
+						state = 2227
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+			38 = { set_variable = { var = religion value = 1 } }
+			142 = { set_variable = { var = religion value = 1 } }
+			143 = { set_variable = { var = religion value = 1 } }
+			144 = { set_variable = { var = religion value = 1 } }
+			145 = { set_variable = { var = religion value = 1 } }
+			147 = { set_variable = { var = religion value = 1 } }
+			303 = { set_variable = { var = religion value = 1 } }
+			374 = { set_variable = { var = religion value = 1 } }
+			782 = { set_variable = { var = religion value = 1 } }
+			1590 = { set_variable = { var = religion value = 1 } }
+			1594 = { set_variable = { var = religion value = 1 } }
+			1595 = { set_variable = { var = religion value = 1 } }
+			1596 = { set_variable = { var = religion value = 1 } }
+			1597 = { set_variable = { var = religion value = 1 } }
+			2161 = { set_variable = { var = religion value = 1 } }
+			2163 = { set_variable = { var = religion value = 1 } }
+			2164 = { set_variable = { var = religion value = 1 } }
+			2218 = { set_variable = { var = religion value = 1 } }
+
+			# SCARLET CHURCH 3
+			2227 = { set_variable = { var = religion value = 3 } }
+
+			# NECROLYTES 7
+			364 = { set_variable = { var = religion value = 7 } }
+			368 = { set_variable = { var = religion value = 7 } }
+			480 = { set_variable = { var = religion value = 7 } }
+
+			# ARCANE STUDIES 12
+			133 = { set_variable = { var = religion value = 12 } }
+			203 = { set_variable = { var = religion value = 12 } }
+			280 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			579 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AGAMAGGAN 18
+			998 = { set_variable = { var = religion value = 18 } }
+			1001 = { set_variable = { var = religion value = 18 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# NATURAL MAGIC 24
+			404 = { set_variable = { var = religion value = 24 } }
+			406 = { set_variable = { var = religion value = 24 } }
+			1342 = { set_variable = { var = religion value = 24 } }
+			1358 = { set_variable = { var = religion value = 24 } }
+			2155 = { set_variable = { var = religion value = 24 } }
+			2165 = { set_variable = { var = religion value = 24 } }
+
+			# THE FEL 26
+			1341 = { set_variable = { var = religion value = 26 } }
+			1503 = { set_variable = { var = religion value = 26 } }
+
+			# DEMONOLOGY 27
+			983 = { set_variable = { var = religion value = 27 } }
+			1186 = { set_variable = { var = religion value = 27 } }
+			1623 = { set_variable = { var = religion value = 27 } }
+
+			# NECROMANCY 28
+			213 = { set_variable = { var = religion value = 28 } }
+
+			# THE DISCIPLES OF THE LICH KING 29
+			211 = { set_variable = { var = religion value = 29 } }
+			217 = { set_variable = { var = religion value = 29 } }
+			719 = { set_variable = { var = religion value = 29 } }
+			1532 = { set_variable = { var = religion value = 29 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+			371 = { set_variable = { var = religion value = 33 } }
+			460 = { set_variable = { var = religion value = 33 } }
+			526 = { set_variable = { var = religion value = 33 } }
+			527 = { set_variable = { var = religion value = 33 } }
+			535 = { set_variable = { var = religion value = 33 } }
+			2176 = { set_variable = { var = religion value = 33 } }
+
+			# SHAMANISM 44
+			362 = { set_variable = { var = religion value = 44 } }
+			564 = { set_variable = { var = religion value = 44 } }
+			1036 = { set_variable = { var = religion value = 44 } }
+			1172 = { set_variable = { var = religion value = 44 } }
+
+			# THE FOLLOWERS OF THE FIRELORD 46
+			2166 = { set_variable = { var = religion value = 46 } }
+
+			# THE FOLLOWERS OF THE TIDEHUNTER 47
+			77 = { set_variable = { var = religion value = 47 } }
+			864 = { set_variable = { var = religion value = 47 } }
+			1537 = { set_variable = { var = religion value = 47 } }
+			1538 = { set_variable = { var = religion value = 47 } }
+			2224 = { set_variable = { var = religion value = 47 } }
+
+			# THE FOLLOWERS OF THE STONEMOTHER 48
+			2173 = { set_variable = { var = religion value = 48 } }
+
+			# GEOMANCY 50
+			465 = { set_variable = { var = religion value = 50 } }
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# THE SISTERHOOD OF ELUNE 56
+			1173 = { set_variable = { var = religion value = 56 } }
+			1354 = { set_variable = { var = religion value = 56 } }
+			1432 = { set_variable = { var = religion value = 56 } }
+
+			# IRRELIGIOUS 76
+			174 = { set_variable = { var = religion value = 76 } }
+			432 = { set_variable = { var = religion value = 76 } }
+			2104 = { set_variable = { var = religion value = 76 } }
+			2105 = { set_variable = { var = religion value = 76 } }
+			2106 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# The Burning Crusade (year 618) religion setup
+country_event = {
+	id = state_religion_setup.618
+	title = state_religion_setup.618.t
+	desc = state_religion_setup.618.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.618.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 38
+						state = 77
+						state = 112
+						state = 133
+						state = 135
+						state = 142
+						state = 143
+						state = 144
+						state = 145
+						state = 147
+						state = 203
+						state = 211
+						state = 213
+						state = 217
+						state = 280
+						state = 303
+						state = 316
+						state = 356
+						state = 362
+						state = 364
+						state = 368
+						state = 371
+						state = 374
+						state = 404
+						state = 406
+						state = 432
+						state = 460
+						state = 465
+						state = 473
+						state = 480
+						state = 526
+						state = 527
+						state = 535
+						state = 579
+						state = 719
+						state = 760
+						state = 864
+						state = 983
+						state = 998
+						state = 1001
+						state = 1036
+						state = 1172
+						state = 1173
+						state = 1186
+						state = 1341
+						state = 1342
+						state = 1348
+						state = 1354
+						state = 1358
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1432
+						state = 1445
+						state = 1490
+						state = 1503
+						state = 1512
+						state = 1532
+						state = 1537
+						state = 1538
+						state = 1578
+						state = 1590
+						state = 1594
+						state = 1595
+						state = 1596
+						state = 1597
+						state = 1623
+						state = 2155
+						state = 2161
+						state = 2163
+						state = 2164
+						state = 2165
+						state = 2176
+						state = 2218
+						state = 2224
+						state = 2227
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+			38 = { set_variable = { var = religion value = 1 } }
+			142 = { set_variable = { var = religion value = 1 } }
+			143 = { set_variable = { var = religion value = 1 } }
+			144 = { set_variable = { var = religion value = 1 } }
+			145 = { set_variable = { var = religion value = 1 } }
+			147 = { set_variable = { var = religion value = 1 } }
+			303 = { set_variable = { var = religion value = 1 } }
+			374 = { set_variable = { var = religion value = 1 } }
+			782 = { set_variable = { var = religion value = 1 } }
+			1590 = { set_variable = { var = religion value = 1 } }
+			1594 = { set_variable = { var = religion value = 1 } }
+			1595 = { set_variable = { var = religion value = 1 } }
+			1596 = { set_variable = { var = religion value = 1 } }
+			1597 = { set_variable = { var = religion value = 1 } }
+			2161 = { set_variable = { var = religion value = 1 } }
+			2163 = { set_variable = { var = religion value = 1 } }
+			2164 = { set_variable = { var = religion value = 1 } }
+			2218 = { set_variable = { var = religion value = 1 } }
+
+			# SCARLET CHURCH 3
+			2227 = { set_variable = { var = religion value = 3 } }
+
+			# NECROLYTES 7
+			364 = { set_variable = { var = religion value = 7 } }
+			368 = { set_variable = { var = religion value = 7 } }
+			480 = { set_variable = { var = religion value = 7 } }
+
+			# ARCANE STUDIES 12
+			133 = { set_variable = { var = religion value = 12 } }
+			203 = { set_variable = { var = religion value = 12 } }
+			280 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			579 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AGAMAGGAN 18
+			998 = { set_variable = { var = religion value = 18 } }
+			1001 = { set_variable = { var = religion value = 18 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# NATURAL MAGIC 24
+			404 = { set_variable = { var = religion value = 24 } }
+			406 = { set_variable = { var = religion value = 24 } }
+			1342 = { set_variable = { var = religion value = 24 } }
+			1358 = { set_variable = { var = religion value = 24 } }
+			2155 = { set_variable = { var = religion value = 24 } }
+			2165 = { set_variable = { var = religion value = 24 } }
+
+			# THE FEL 26
+			1341 = { set_variable = { var = religion value = 26 } }
+			1503 = { set_variable = { var = religion value = 26 } }
+
+			# DEMONOLOGY 27
+			983 = { set_variable = { var = religion value = 27 } }
+			1186 = { set_variable = { var = religion value = 27 } }
+			1623 = { set_variable = { var = religion value = 27 } }
+
+			# NECROMANCY 28
+			213 = { set_variable = { var = religion value = 28 } }
+
+			# THE DISCIPLES OF THE LICH KING 29
+			211 = { set_variable = { var = religion value = 29 } }
+			217 = { set_variable = { var = religion value = 29 } }
+			719 = { set_variable = { var = religion value = 29 } }
+			1532 = { set_variable = { var = religion value = 29 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+			371 = { set_variable = { var = religion value = 33 } }
+			460 = { set_variable = { var = religion value = 33 } }
+			526 = { set_variable = { var = religion value = 33 } }
+			527 = { set_variable = { var = religion value = 33 } }
+			535 = { set_variable = { var = religion value = 33 } }
+			2176 = { set_variable = { var = religion value = 33 } }
+
+			# SHAMANISM 44
+			362 = { set_variable = { var = religion value = 44 } }
+			564 = { set_variable = { var = religion value = 44 } }
+			1036 = { set_variable = { var = religion value = 44 } }
+			1172 = { set_variable = { var = religion value = 44 } }
+
+			# THE FOLLOWERS OF THE FIRELORD 46
+			2166 = { set_variable = { var = religion value = 46 } }
+
+			# THE FOLLOWERS OF THE TIDEHUNTER 47
+			77 = { set_variable = { var = religion value = 47 } }
+			864 = { set_variable = { var = religion value = 47 } }
+			1537 = { set_variable = { var = religion value = 47 } }
+			1538 = { set_variable = { var = religion value = 47 } }
+			2224 = { set_variable = { var = religion value = 47 } }
+
+			# THE FOLLOWERS OF THE STONEMOTHER 48
+			2173 = { set_variable = { var = religion value = 48 } }
+
+			# GEOMANCY 50
+			465 = { set_variable = { var = religion value = 50 } }
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# THE SISTERHOOD OF ELUNE 56
+			1173 = { set_variable = { var = religion value = 56 } }
+			1354 = { set_variable = { var = religion value = 56 } }
+			1432 = { set_variable = { var = religion value = 56 } }
+
+			# IRRELIGIOUS 76
+			174 = { set_variable = { var = religion value = 76 } }
+			432 = { set_variable = { var = religion value = 76 } }
+			2104 = { set_variable = { var = religion value = 76 } }
+			2105 = { set_variable = { var = religion value = 76 } }
+			2106 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# Wrath of the Lich king (year 619) religion setup
+country_event = {
+	id = state_religion_setup.619
+	title = state_religion_setup.619.t
+	desc = state_religion_setup.619.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.619.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 38
+						state = 77
+						state = 112
+						state = 133
+						state = 135
+						state = 142
+						state = 143
+						state = 144
+						state = 145
+						state = 147
+						state = 203
+						state = 211
+						state = 213
+						state = 217
+						state = 280
+						state = 303
+						state = 316
+						state = 356
+						state = 362
+						state = 364
+						state = 368
+						state = 371
+						state = 374
+						state = 404
+						state = 406
+						state = 432
+						state = 460
+						state = 465
+						state = 473
+						state = 480
+						state = 526
+						state = 527
+						state = 535
+						state = 579
+						state = 719
+						state = 760
+						state = 864
+						state = 983
+						state = 998
+						state = 1001
+						state = 1036
+						state = 1172
+						state = 1173
+						state = 1186
+						state = 1341
+						state = 1342
+						state = 1348
+						state = 1354
+						state = 1358
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1432
+						state = 1445
+						state = 1490
+						state = 1503
+						state = 1512
+						state = 1532
+						state = 1537
+						state = 1538
+						state = 1578
+						state = 1590
+						state = 1594
+						state = 1595
+						state = 1596
+						state = 1597
+						state = 1623
+						state = 2155
+						state = 2161
+						state = 2163
+						state = 2164
+						state = 2165
+						state = 2176
+						state = 2218
+						state = 2224
+						state = 2227
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+			38 = { set_variable = { var = religion value = 1 } }
+			142 = { set_variable = { var = religion value = 1 } }
+			143 = { set_variable = { var = religion value = 1 } }
+			144 = { set_variable = { var = religion value = 1 } }
+			145 = { set_variable = { var = religion value = 1 } }
+			147 = { set_variable = { var = religion value = 1 } }
+			303 = { set_variable = { var = religion value = 1 } }
+			374 = { set_variable = { var = religion value = 1 } }
+			782 = { set_variable = { var = religion value = 1 } }
+			1590 = { set_variable = { var = religion value = 1 } }
+			1594 = { set_variable = { var = religion value = 1 } }
+			1595 = { set_variable = { var = religion value = 1 } }
+			1596 = { set_variable = { var = religion value = 1 } }
+			1597 = { set_variable = { var = religion value = 1 } }
+			2161 = { set_variable = { var = religion value = 1 } }
+			2163 = { set_variable = { var = religion value = 1 } }
+			2164 = { set_variable = { var = religion value = 1 } }
+			2218 = { set_variable = { var = religion value = 1 } }
+
+			# SCARLET CHURCH 3
+			2227 = { set_variable = { var = religion value = 3 } }
+
+			# NECROLYTES 7
+			364 = { set_variable = { var = religion value = 7 } }
+			368 = { set_variable = { var = religion value = 7 } }
+			480 = { set_variable = { var = religion value = 7 } }
+
+			# ARCANE STUDIES 12
+			133 = { set_variable = { var = religion value = 12 } }
+			203 = { set_variable = { var = religion value = 12 } }
+			280 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			579 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AGAMAGGAN 18
+			998 = { set_variable = { var = religion value = 18 } }
+			1001 = { set_variable = { var = religion value = 18 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# NATURAL MAGIC 24
+			404 = { set_variable = { var = religion value = 24 } }
+			406 = { set_variable = { var = religion value = 24 } }
+			1342 = { set_variable = { var = religion value = 24 } }
+			1358 = { set_variable = { var = religion value = 24 } }
+			2155 = { set_variable = { var = religion value = 24 } }
+			2165 = { set_variable = { var = religion value = 24 } }
+
+			# THE FEL 26
+			1341 = { set_variable = { var = religion value = 26 } }
+			1503 = { set_variable = { var = religion value = 26 } }
+
+			# DEMONOLOGY 27
+			983 = { set_variable = { var = religion value = 27 } }
+			1186 = { set_variable = { var = religion value = 27 } }
+			1623 = { set_variable = { var = religion value = 27 } }
+
+			# NECROMANCY 28
+			213 = { set_variable = { var = religion value = 28 } }
+
+			# THE DISCIPLES OF THE LICH KING 29
+			211 = { set_variable = { var = religion value = 29 } }
+			217 = { set_variable = { var = religion value = 29 } }
+			719 = { set_variable = { var = religion value = 29 } }
+			1532 = { set_variable = { var = religion value = 29 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+			371 = { set_variable = { var = religion value = 33 } }
+			460 = { set_variable = { var = religion value = 33 } }
+			526 = { set_variable = { var = religion value = 33 } }
+			527 = { set_variable = { var = religion value = 33 } }
+			535 = { set_variable = { var = religion value = 33 } }
+			2176 = { set_variable = { var = religion value = 33 } }
+
+			# SHAMANISM 44
+			362 = { set_variable = { var = religion value = 44 } }
+			564 = { set_variable = { var = religion value = 44 } }
+			1036 = { set_variable = { var = religion value = 44 } }
+			1172 = { set_variable = { var = religion value = 44 } }
+
+			# THE FOLLOWERS OF THE FIRELORD 46
+			2166 = { set_variable = { var = religion value = 46 } }
+
+			# THE FOLLOWERS OF THE TIDEHUNTER 47
+			77 = { set_variable = { var = religion value = 47 } }
+			864 = { set_variable = { var = religion value = 47 } }
+			1537 = { set_variable = { var = religion value = 47 } }
+			1538 = { set_variable = { var = religion value = 47 } }
+			2224 = { set_variable = { var = religion value = 47 } }
+
+			# THE FOLLOWERS OF THE STONEMOTHER 48
+			2173 = { set_variable = { var = religion value = 48 } }
+
+			# GEOMANCY 50
+			465 = { set_variable = { var = religion value = 50 } }
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# THE SISTERHOOD OF ELUNE 56
+			1173 = { set_variable = { var = religion value = 56 } }
+			1354 = { set_variable = { var = religion value = 56 } }
+			1432 = { set_variable = { var = religion value = 56 } }
+
+			# IRRELIGIOUS 76
+			174 = { set_variable = { var = religion value = 76 } }
+			432 = { set_variable = { var = religion value = 76 } }
+			2104 = { set_variable = { var = religion value = 76 } }
+			2105 = { set_variable = { var = religion value = 76 } }
+			2106 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}
+
+# The Shattering / Cataclysm (year 620) religion setup
+country_event = {
+	id = state_religion_setup.620
+	title = state_religion_setup.620.t
+	desc = state_religion_setup.620.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_religion_setup.620.a
+
+		every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary religion (see below)
+						state = 112
+						state = 135
+						state = 203
+						state = 316
+						state = 356
+						state = 367
+						state = 432
+						state = 473
+						state = 1348
+						state = 1360
+						state = 1368
+						state = 1385
+						state = 1394
+						state = 1445
+						state = 1453
+						state = 1489
+						state = 1490
+						state = 1491
+						state = 1493
+						state = 1495
+						state = 1496
+						state = 1512
+						state = 1578
+						state = 1597
+						state = 2218
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary religion
+        			text = {
+        				set_variable = { religion = [MAIN_RELIGION] }
+        			}
+        			MAIN_RELIGION = "[PREV.GetMainReligionVariable]"
+        		}
+            }
+
+			# Setup the state religion for the states that have been excluded (see above limit block)
+	        # If modifying a state religion, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+	        # Order by religion ID and then state ID
+
+	        # CHURCH OF THE HOLY LIGHT 1
+	        2218 = { set_variable = { var = religion value = 1 } }
+
+			# ARCANE STUDIES 12
+			203 = { set_variable = { var = religion value = 12 } }
+			316 = { set_variable = { var = religion value = 12 } }
+			356 = { set_variable = { var = religion value = 12 } }
+			367 = { set_variable = { var = religion value = 12 } }
+			1368 = { set_variable = { var = religion value = 12 } }
+			1385 = { set_variable = { var = religion value = 12 } }
+			1445 = { set_variable = { var = religion value = 12 } }
+			1453 = { set_variable = { var = religion value = 12 } }
+			1597 = { set_variable = { var = religion value = 12 } }
+
+			# THE SUNWELL 13
+			135 = { set_variable = { var = religion value = 13 } }
+			473 = { set_variable = { var = religion value = 13 } }
+
+			# DRUIDISM 15
+			1360 = { set_variable = { var = religion value = 15 } }
+			1489 = { set_variable = { var = religion value = 15 } }
+			1491 = { set_variable = { var = religion value = 15 } }
+			1493 = { set_variable = { var = religion value = 15 } }
+			1495 = { set_variable = { var = religion value = 15 } }
+			1496 = { set_variable = { var = religion value = 15 } }
+
+			# THE DISCIPLES OF URSOC 16
+			1348 = { set_variable = { var = religion value = 16 } }
+			1394 = { set_variable = { var = religion value = 16 } }
+			1512 = { set_variable = { var = religion value = 16 } }
+
+			# THE DISCIPLES OF AVIANA 19
+			1490 = { set_variable = { var = religion value = 19 } }
+
+			# THE FOLLOWERS OF N'ZOTH 33
+			112 = { set_variable = { var = religion value = 33 } }
+
+			# GEOMANCY 50
+			1578 = { set_variable = { var = religion value = 50 } }
+
+			# IRRELIGIOUS 76
+			174 = { set_variable = { var = religion value = 76 } }
+			432 = { set_variable = { var = religion value = 76 } }
+			2104 = { set_variable = { var = religion value = 76 } }
+			2105 = { set_variable = { var = religion value = 76 } }
+			2106 = { set_variable = { var = religion value = 76 } }
+        }
+	}
+}

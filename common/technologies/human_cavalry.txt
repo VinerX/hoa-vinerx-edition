@@ -1,0 +1,817 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	stable_tech_1 = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_human = yes	
+		}
+
+		path = {
+			leads_to_tech = breeding_methods_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = horse_equipment_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 5 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	breeding_methods_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_human = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = breeding_methods_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	breeding_methods_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_human = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = breeding_methods_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 5 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	breeding_methods_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_human = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = breeding_methods_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	breeding_methods_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_human = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 5 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	horse_equipment_tech = {
+
+		enable_equipments = {
+			horse_equipment_1
+		}
+
+		on_research_complete = {
+			set_technology = { mounted_footman_tech = 1 popup = no }
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = mounted_footman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = horse_equipment_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = knight_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	horse_equipment_tech_2 = {
+
+		enable_equipments = {
+			horse_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = horse_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	horse_equipment_tech_3 = {
+
+		enable_equipments = {
+			horse_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	mounted_footman_tech = {
+
+		enable_subunits = {
+			mounted_footman
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = mounted_footman_tech_unit_details_tt
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = dual_wield
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = gallop
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dual_wield = {
+
+		mounted_footman = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { gallop }
+
+		path = {
+			leads_to_tech = mounted_captains
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dismount_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = gallop
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = gallop
+			}
+		}
+	}
+
+	gallop = {
+
+		mounted_footman = {
+			soft_attack = 0.1
+			maximum_speed = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { dual_wield }
+
+		path = {
+			leads_to_tech = mounted_captains
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dismount_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dual_wield
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dual_wield
+			}
+		}
+	}
+
+	mounted_captains = {
+
+		mounted_footman = {
+			max_organisation = 5
+			initiative = 0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { dismount_tech }
+
+		dependencies = { keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dismount_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dismount_tech
+			}
+		}
+	}
+
+	dismount_tech = {
+
+		mounted_footman = {
+			hardness = -0.2
+			default_morale = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { mounted_captains }
+
+		dependencies = { keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = mounted_captains
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = mounted_captains
+			}
+		}
+	}
+
+	knight_tech = {
+
+		enable_subunits = {
+			knight
+		}
+
+		on_research_complete = {
+			set_technology = { knight_equipment_tech = 1 }
+			custom_effect_tooltip = knight_tech_unit_details_tt
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = knight_equipment_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 16 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	knight_equipment_tech = {
+
+		enable_equipments = {
+			knight_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = sundering_blades
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = improved_lance
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sundering_blades = {
+
+		knight = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { improved_lance }
+
+		path = {
+			leads_to_tech = knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = improved_lance
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = improved_lance
+			}
+		}
+	}
+
+	improved_lance = {
+
+		knight = {
+			hard_attack = 0.1
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { sundering_blades }
+
+		path = {
+			leads_to_tech = knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = sundering_blades
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sundering_blades
+			}
+		}
+	}
+
+	knight_equipment_tech_2 = {
+
+		enable_equipments = {
+			knight_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = stampede_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = reinforced_knight_armor
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	stampede_tech = {
+
+		knight = {
+			breakthrough = 0.1
+			maximum_speed = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { reinforced_knight_armor }
+
+		path = {
+			leads_to_tech = knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = reinforced_knight_armor
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = reinforced_knight_armor
+			}
+		}
+	}
+
+	reinforced_knight_armor = {
+
+		knight = {
+			max_organisation = 2
+			armor_value = 0.15
+			max_strength = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { stampede_tech }
+
+		research_cost = 1.5
+
+		path = {
+			leads_to_tech = knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = stampede_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = stampede_tech
+			}
+		}
+	}
+
+	knight_equipment_tech_3 = {
+
+		enable_equipments = {
+			knight_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	human_animal_war_training = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_animal_war_training } 
+		}
+
+		category_cavalry = {
+			max_strength = 0.2
+			defense = 0.1
+			breakthrough = 0.1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_cavalry_folder
+			position = { x = 3 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+}

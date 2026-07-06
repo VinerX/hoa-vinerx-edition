@@ -1,0 +1,972 @@
+# leader_traits contain a list of UnitLeaderTrait with the following structure:
+# trait_key = {
+# 	type = all # or either of field_marshal, corps_commander, navy
+#	trait_type = basic_trait # or either of status_trait, personality_trait, assignable_trait, basic_terrain_trait, assignable_terrain_trait, exile
+#	attack_skill = 0 # integer
+#	defense_skill = 0 # integer
+#	logistics_skill = 0 # integer
+#	planning_skill = 0 # integer
+#	maneuvering_skill = 0 # integer
+#	coordination_skill = 0 # integer
+#	attack_skill_factor = 0.0 # decimal
+#	defense_skill_factor = 0.0 # decimal
+#	logistics_skill_factor = 0.0 # decimal
+#	planning_skill_factor = 0.0 # decimal
+#	maneuvering_skill_factor = 0.0 # decimal
+#	coordination_skill_factor = 0.0 # decimal
+#	show_in_combat = yes # boolean
+#	override_effect_tooltip = "" # loc key
+#	custom_effect_tooltip = "" # loc key
+#	custom_prerequisite_tooltip = "" # loc key
+#	custom_gain_xp_trigger_tooltip = "" # loc key
+#	mutually_exclusive = other_trait # trait key
+#	parent = other_trait # trait key
+#	num_parents_needed = -1 # integer, -1 means "all"
+#	gui_row = -1 # integer, starts at 0, -1 means auto
+#	gui_column = -1 # integer, starts at 0, -1 means auto
+#	allowed = trigger # scope is a unit leader
+#	prerequisites = trigger # scope is an unit leader
+#	gain_xp = trigger # scope is a combatant
+#	gain_xp_leader = trigger # scope is a unit leader. ROOT is country you are from and FROM is any target nationality for agents
+#	gain_xp_on_spotting = 0 # integer
+#	modifier = { } # list of modifiers
+#	non_shared_modifier = {} #
+#	modifier = {} #
+#	field_marshal_modifier = {} #
+#	sub_unit_modifiers = { # list of sub unit def
+#		# e.g.
+#		submarine {
+#			units = {} # list of adjusters
+#			# list of modifiers e.g.
+#			naval_visibility = -0.1
+#		}
+#	}
+#	trait_xp_factor = {} # list of trait_key/decimal
+#	on_add = effect # scope is an unit leader
+#	on_remove = effect # scope is an unit leader
+#	daily_effect = effect # scope is an unit leader
+#	cost = 1000 # integer
+#	ai_will_do = {} # weight
+#	new_commander_weight = {} # weight
+#	enable_ability = ability_key
+#}
+leader_traits = {
+##################################
+# Weapons
+##################################
+
+	death_knight_trait = {
+		type = land
+		trait_type = personality_trait
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	demon_hunter_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+	
+	druid_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	evoker_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	hunter_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	mage_trait = {
+		type = land
+		trait_type = personality_trait
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	monk_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	necromancer_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	paladin_trait = {
+		type = land
+		trait_type = personality_trait
+
+		new_commander_weight = {
+            factor = 0  # Scripted starting leaders only
+        }
+	}
+
+	priest_trait = {
+		type = land
+		trait_type = personality_trait
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}	
+	
+	rogue_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	shaman_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	tinker_trait = {
+		type = land
+		trait_type = personality_trait
+	
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	warlock_trait = {
+		type = land
+		trait_type = personality_trait
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	warrior_trait = {
+		type = land
+		trait_type = personality_trait
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+########################################
+#class traits
+########################################
+
+protection_warrior_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	defense_skill = 1
+	defense_skill_factor = 1
+
+	field_marshal_modifier = {
+		defence = 0.15
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+arms_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.10
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+fury_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 2
+	attack_skill_factor = 1
+
+	modifier = {
+		wounded_chance_factor = 0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+protection_paladin_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	defense_skill = 1
+	defense_skill_factor = 1
+
+	corps_commander_modifier = {
+		max_army_group_size = 4
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+retribution_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		cavalry_attack_factor = 0.15
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}
+}
+
+holy_paladin_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	planning_skill = 1
+	planning_skill_factor = 1
+
+	field_marshal_modifier = {
+		defence = 0.1
+	}
+
+	modifier = {
+		army_morale_factor = 0.05
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+marksman_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+	
+	modifier = {
+		cas_damage_reduction = 0.3
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+beast_master_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.05
+	}
+
+	modifier = {
+		army_morale_factor = 0.05
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+survival_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		terrain_penalty_reduction = 0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+elemental_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		max_dig_in_factor = 0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+enhancement_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		army_infantry_attack_factor = 0.1
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+restoration_shaman_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	planning_skill = 1
+	planning_skill_factor = 1
+
+	modifier = {
+		attrition = -0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+assassination_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		army_infantry_attack_factor = 0.10
+	}
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.05
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+outlaw_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		equipment_capture = 0.05
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+subtlety_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		cas_damage_reduction = 0.2
+		recon_factor = 0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}				
+}
+
+guardian_druid_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	defense_skill = 1
+	defense_skill_factor = 1
+
+	modifier = {
+		cavalry_defence_factor = 0.15
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+feral_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		recon_factor = 0.25
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}				
+}
+
+balance_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		max_planning_factor = 0.15
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}				
+}
+
+restoration_druid_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	planning_skill = 1
+	planning_skill_factor = 1
+
+	field_marshal_modifier = {
+		supply_consumption_factor = -0.1
+	}
+
+	modifier = {
+		attrition = -0.1
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+shadow_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.15
+	}
+
+	modifier = {
+		army_morale_factor = -0.05
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+discipline_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	planning_skill = 1
+	planning_skill_factor = 1
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.05
+		defence = 0.1
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+holy_priest_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	planning_skill = 1
+	planning_skill_factor = 1
+
+	modifier = {
+		army_morale_factor = 0.10
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+frost_mage_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		max_dig_in_factor = 0.25
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+fire_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.15
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+arcane_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	field_marshal_modifier = {
+		supply_consumption_factor = -0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+archmage_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 3
+	attack_skill_factor = 3
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.075
+		supply_consumption_factor = -0.1
+	}
+
+	modifier = {
+		max_dig_in_factor = 0.125
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+destruction_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	field_marshal_modifier = {
+		breakthrough_factor = 0.25
+		defence = -0.1
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+affliction_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		planning_speed = 0.2
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+demonology_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	modifier = {
+		dig_in_speed_factor = 0.3
+	}
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+###
+
+blood_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	defense_skill = 1
+	defense_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+frost_death_knight_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}		
+}
+
+unholy_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}	
+}
+
+havoc_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+vengeance_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	defense_skill = 1
+	defense_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+brewmaster_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	defense_skill = 1
+	defense_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}				
+}
+
+windwalker_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	attack_skill = 1
+	attack_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+mistweaver_trait = { 
+	type = land
+	trait_type = personality_trait
+
+	planning_skill = 1
+	planning_skill_factor = 1
+
+	new_commander_weight = {
+		factor = 0  # Scripted starting leaders only
+	}			
+}
+
+### Dragon Related
+	red_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 1
+		attack_skill_factor = 1
+		logistics_skill = 1
+		logistics_skill_factor = 1
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	blue_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		planning_skill = 1
+		planning_skill_factor = 1
+		logistics_skill = 1
+		logistics_skill_factor = 1
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	green_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		defense_skill = 1
+		defense_skill_factor = 1
+		logistics_skill = 1
+		logistics_skill_factor = 1
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	bronze_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		planning_skill = 3
+		planning_skill_factor = 3
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	black_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 1
+		attack_skill_factor = 1
+		planning_skill = 1
+		planning_skill_factor = 1
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	nightmare_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 3
+		attack_skill_factor = 3
+		planning_skill = -1
+		planning_skill_factor = -1
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	Infinite_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 2
+		attack_skill_factor = 2
+		planning_skill = 2
+		planning_skill_factor = 2
+		logistics_skill = -2
+		logistics_skill_factor = -2
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+	chromatic_dragon_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 3
+		attack_skill_factor = 3
+		defense_skill = -1
+		planning_skill_factor = -1
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}			
+	}
+
+### Other Related (Some Races dont have Classes)
+
+	bog_beast_trait = {
+		type = land
+		trait_type = personality_trait
+
+		planning_skill = 1
+		planning_skill_factor = 1
+
+		modifier = {
+			jungle = {
+				attack = 0.05
+				defence = 0.05
+			}
+			forest = {
+				attack = 0.05
+				defence = 0.05
+			}
+			marsh = {
+				attack = 0.05
+				defence = 0.05
+			}
+			attrition = -0.1
+		}
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}
+	}
+
+	warden_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 1
+		attack_skill_factor = 1
+
+		modifier = {
+			recon_factor = 0.20
+			cas_damage_reduction = 0.20
+			terrain_penalty_reduction = 0.15
+		}
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}	
+	}
+
+### Prestiege Classes
+
+	steam_warrior_trait = { 
+		type = land
+		trait_type = personality_trait
+
+		attack_skill = 1
+		attack_skill_factor = 1
+		defense_skill = 1
+		defense_skill_factor = 1
+
+		field_marshal_modifier = {
+			breakthrough_factor = 0.05
+		}
+
+		modifier = {
+			attrition = -0.1
+		}
+
+		new_commander_weight = {
+			factor = 0  # Scripted starting leaders only
+		}		
+	}
+
+}

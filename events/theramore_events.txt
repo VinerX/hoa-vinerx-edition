@@ -1,0 +1,442 @@
+﻿###########################
+# Theramore
+###########################
+
+add_namespace = theramore_third
+
+country_event = { #Landfall
+  id = theramore_third.1
+  title = theramore_third.1.t
+  desc = theramore_third.1.d
+
+  is_triggered_only = yes
+	fire_only_once = yes
+
+  immediate = {
+    105 = { add_manpower = 3000 }
+  }
+
+  option = {
+    name = theramore_third.1.option.1
+    hidden_effect = {
+      country_event = {
+        id = theramore_third.10
+        days = 14
+      }
+    }
+    MIR = {
+      declare_war_on = {
+        target = TMI
+        type = annex_everything
+      }
+    }
+  }
+}
+
+country_event = { #Settling the Coast
+  id = theramore_third.2
+  title = theramore_third.2.t
+  desc = theramore_third.2.d
+
+  trigger = {
+    tag = TMI
+    TMI = { controls_state = 77 }
+    TMI = { controls_state = 105 }
+    TMI = { controls_state = 726 }
+    TMI = { controls_state = 864 }
+    NOT = { country_exists = MIR }
+    has_start_date < 616.1.1
+  }
+
+  fire_only_once = yes
+
+  option = {
+    name = theramore_third.2.option.1
+
+    custom_effect_tooltip = theramore_third.2.option.1.d
+
+    hidden_effect = {
+      country_event = {
+        id = theramore_third.3
+        days = 14
+      }
+
+      70 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      77 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      725 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      726 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      864 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      976 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+    }
+  }
+}
+
+country_event = { #Westward Expansion
+  id = theramore_third.3
+  title = theramore_third.3.t
+  desc = theramore_third.3.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = {
+    name = theramore_third.3.option.1
+
+    TMI = {
+      declare_war_on = {
+        target = TWV
+        type = annex_everything
+      }
+    }
+  }
+}
+
+country_event = { #Settling the West
+  id = theramore_third.4
+  title = theramore_third.4.t
+  desc = theramore_third.4.d
+
+  trigger = {
+    tag = TMI
+    TMI = { controls_state = 105 }
+    TMI = { controls_state = 865 }
+    NOT = { country_exists = TWV }
+  }
+
+  fire_only_once = yes
+
+  option = {
+    name = theramore_third.4.option.1
+
+    custom_effect_tooltip = theramore_third.4.option.1.d
+
+    hidden_effect = {
+      country_event = {
+        id = theramore_third.5
+        days = 14
+      }
+
+      97 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      865 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      866 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      867 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      868 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      869 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+      870 = {
+        transfer_state_to = TMI
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        add_core_of = TMI
+      }
+    }
+  }
+}
+
+country_event = { #Bael Modan
+  id = theramore_third.5
+  title = theramore_third.5.t
+  desc = theramore_third.5.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = {
+    name = theramore_third.5.option.1
+
+    965 = {
+      transfer_state_to = BAM
+      add_core_of = BAM
+    }
+
+    TMI = { 
+      create_faction = Human_Expedition
+      add_to_faction = BAM
+    }
+
+    custom_effect_tooltip = theramore_third.5.option.1.d
+
+    hidden_effect = {
+      965 = {
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        set_state_name = "Bael Modan"
+      }
+
+      BAM = {
+        load_oob = "BAM_610"
+        inherit_technology = SPC ### Stops them being at base Tech
+
+        # Deleting AI spam templates they made since nation did not exist at game start.
+        delete_unit_template_and_units = { division_template = "Militia 610 A" }
+        delete_unit_template_and_units = { division_template = "Militia 610 B" }
+        delete_unit_template_and_units = { division_template = "Militia 610 C" }
+        delete_unit_template_and_units = { division_template = "Militia 610 D" }
+        delete_unit_template_and_units = { division_template = "Militia 610 E" }
+        delete_unit_template_and_units = { division_template = "Militia 610 F" }
+        delete_unit_template_and_units = { division_template = "Militia 610 G" }
+        delete_unit_template_and_units = { division_template = "Militia 610 H" }
+        delete_unit_template_and_units = { division_template = "Militia 611 A" }
+        delete_unit_template_and_units = { division_template = "Militia 611 B" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 A" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 B" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 C" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 D" }
+        #delete_unit_template_and_units = { division_template = "Giant Crab Rider 611 A" }
+        delete_unit_template_and_units = { division_template = "Stonespire Warriors" }
+        delete_unit_template_and_units = { division_template = "Lordaeron Settlers" }
+        delete_unit_template_and_units = { division_template = "Kul'Tiran Marines" }
+        delete_unit_template_and_units = { division_template = "Kirin Tor Mages" }
+        delete_unit_template_and_units = { division_template = "Lordaeron Scout Cavalry" }
+        delete_unit_template_and_units = { division_template = "Kul'Tiran Elite Guards" }
+      }
+
+      SOP = { country_event = { id = stonespire_third.1 days = 2 } }
+    }
+  }
+
+  option = {
+    name = theramore_third.5.option.2
+
+    965 = {
+      transfer_state_to = BAM
+      add_core_of = BAM
+    }
+
+    TMI = { 
+      create_faction = Human_Expedition
+      add_to_faction = BAM
+    }
+
+    BAM = { change_tag_from = TMI }
+
+    hidden_effect = {
+      965 = {
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+        set_state_name = "Bael Modan"
+      }
+
+      BAM = {
+        load_oob = "BAM_610"
+        inherit_technology = SPC ### Stops them being at base Tech
+
+        # Deleting AI spam templates they made since nation did not exist at game start.
+        delete_unit_template_and_units = { division_template = "Militia 610 A" }
+        delete_unit_template_and_units = { division_template = "Militia 610 B" }
+        delete_unit_template_and_units = { division_template = "Militia 610 C" }
+        delete_unit_template_and_units = { division_template = "Militia 610 D" }
+        delete_unit_template_and_units = { division_template = "Militia 610 E" }
+        delete_unit_template_and_units = { division_template = "Militia 610 F" }
+        delete_unit_template_and_units = { division_template = "Militia 610 G" }
+        delete_unit_template_and_units = { division_template = "Militia 610 H" }
+        delete_unit_template_and_units = { division_template = "Militia 611 A" }
+        delete_unit_template_and_units = { division_template = "Militia 611 B" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 A" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 B" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 C" }
+        #delete_unit_template_and_units = { division_template = "Footman 610 D" }
+        #delete_unit_template_and_units = { division_template = "Giant Crab Rider 611 A" }
+        delete_unit_template_and_units = { division_template = "Stonespire Warriors" }
+        delete_unit_template_and_units = { division_template = "Lordaeron Settlers" }
+        delete_unit_template_and_units = { division_template = "Kul'Tiran Marines" }
+        delete_unit_template_and_units = { division_template = "Kirin Tor Mages" }
+        delete_unit_template_and_units = { division_template = "Lordaeron Scout Cavalry" }
+        delete_unit_template_and_units = { division_template = "Kul'Tiran Elite Guards" }
+      }
+
+      SOP = { country_event = { id = stonespire_third.1 days = 2 } }
+    }
+  }
+}
+
+country_event = { #Stonespire Tribe Accepts
+  id = theramore_third.6
+  title = theramore_third.6.t
+  desc = theramore_third.6.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = {
+    name = theramore_third.6.option.1
+  }
+}
+
+country_event = {
+  id = theramore_third.7
+  title = theramore_third.7.t
+  desc = theramore_third.7.d
+
+  trigger = {
+    tag = TMI
+    has_global_flag = SOP_war_path
+    BAM = { controls_state = 965 }
+    NOT = { country_exists = SOP }
+  }
+
+  fire_only_once = yes
+
+  option = {
+    name = theramore_third.7.option.1
+  }
+}
+
+country_event = { # Second Ship
+  id = theramore_third.10
+  title = theramore_third.10.t
+  desc = theramore_third.10.d
+
+  is_triggered_only = yes
+	fire_only_once = yes
+
+  immediate = {
+    105 = { add_manpower = 2500 }
+  }
+
+  option = {
+    name = theramore_third.10.option.1
+    add_manpower = 500
+    add_equipment_to_stockpile = {
+      type = footman_equipment_1
+      amount = 180
+      producer = LOR
+    }
+    add_equipment_to_stockpile = {
+      type = pikeman_equipment_1
+      amount = 120
+      producer = LOR
+    }
+    add_equipment_to_stockpile = {
+      type = militia_equipment_1
+      amount = 200
+      producer = LOR
+    }
+    hidden_effect = {
+      country_event = {
+        id = theramore_third.11
+        days = 7
+      }
+    }
+  }
+}
+
+country_event = { # Third Ship
+  id = theramore_third.11
+  title = theramore_third.11.t
+  desc = theramore_third.11.d
+
+  is_triggered_only = yes
+	fire_only_once = yes
+
+  immediate = {
+    105 = { add_manpower = 2000 }
+  }
+
+  option = {
+    name = theramore_third.11.option.1
+    add_manpower = 420
+    add_equipment_to_stockpile = {
+      type = footman_equipment_1
+      amount = 120
+      producer = LOR
+    }
+    add_equipment_to_stockpile = {
+      type = archer_equipment_1
+      amount = 200
+      producer = LOR
+    }
+    add_equipment_to_stockpile = {
+      type = militia_equipment_1
+      amount = 100
+      producer = LOR
+    }
+    hidden_effect = {
+      country_event = {
+        id = theramore_third.12
+        days = 7
+      }
+    }
+  }
+}
+
+country_event = { # Shipwreck Survivors
+  id = theramore_third.12
+  title = theramore_third.12.t
+  desc = theramore_third.12.d
+
+  is_triggered_only = yes
+	fire_only_once = yes
+
+  immediate = {
+    105 = { add_manpower = 500 }
+  }
+
+  option = {
+    name = theramore_third.12.option.1
+    add_equipment_to_stockpile = {
+      type = royal_guard_equipment_1
+      amount = 80
+      producer = LOR
+    }
+  }
+}

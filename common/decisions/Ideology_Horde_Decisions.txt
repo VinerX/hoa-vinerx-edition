@@ -1,0 +1,2370 @@
+###################
+# DEMAND RESPECT
+###################
+
+displace_pests_decisions = {
+
+	displace_pests = {
+
+		available = {
+			has_completed_focus = generic_horde_displace_pests
+			any_neighbor_country = {
+				OR = {
+					has_idea = murloc_primary_race
+					has_idea = snobold_primary_race
+					has_idea = kobold_primary_race
+					has_idea = grell_primary_race
+					has_idea = sprite_primary_race
+					has_idea = gorlocs_primary_race
+					has_idea = grummle_primary_race
+					has_idea = vulpera_primary_race
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+				NOT = { has_war_with = ROOT }
+			} 
+		}
+
+		visible = {
+			has_completed_focus = generic_horde_displace_pests
+			any_neighbor_country = {
+				OR = {
+					has_idea = murloc_primary_race
+					has_idea = snobold_primary_race
+					has_idea = kobold_primary_race
+					has_idea = grell_primary_race
+					has_idea = sprite_primary_race
+					has_idea = gorlocs_primary_race
+					has_idea = grummle_primary_race
+					has_idea = vulpera_primary_race
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				NOT = { has_war_with = ROOT }
+			} 
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 10
+
+		days_re_enable = 60
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = murloc_primary_race
+						has_idea = snobold_primary_race
+						has_idea = kobold_primary_race
+						has_idea = grell_primary_race
+						has_idea = sprite_primary_race
+						has_idea = gorlocs_primary_race
+						has_idea = grummle_primary_race
+						has_idea = vulpera_primary_race
+					}
+					NOT = { is_in_faction_with = ROOT}
+					NOT = {	is_subject_of = ROOT }
+					NOT = { has_war_with = ROOT }
+				}
+				set_country_flag = displace_pests_target
+			}
+			hidden_effect = { add_command_power = -50 }
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					any_neighbor_country = {
+						has_country_flag = displace_pests_target
+					}
+				}
+				random_neighbor_country = {
+					limit = {
+						OR = {
+							has_idea = murloc_primary_race
+							has_idea = snobold_primary_race
+							has_idea = kobold_primary_race
+							has_idea = grell_primary_race
+							has_idea = sprite_primary_race
+							has_idea = gorlocs_primary_race
+							has_idea = grummle_primary_race
+							has_idea = vulpera_primary_race
+						}
+						has_country_flag = displace_pests_target
+						NOT = { is_in_faction_with = ROOT}
+						NOT = {	is_subject_of = ROOT }
+						any_owned_state = {
+							impassable = no
+							any_neighbor_state = {
+								is_owned_by = ROOT
+								impassable = no
+							}
+						}
+						NOT = { has_war_with = ROOT }
+					}
+					ROOT = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+					PREV = {
+						clr_country_flag = displace_pests_target
+					}
+				}
+			}			
+			if = {
+				limit = {
+					NOT = {
+						any_neighbor_country = {
+							has_country_flag = displace_pests_target
+						}
+					}
+				}
+				random_neighbor_country = {
+					limit = {
+						OR = {
+							has_idea = murloc_primary_race
+							has_idea = snobold_primary_race
+							has_idea = kobold_primary_race
+							has_idea = grell_primary_race
+							has_idea = sprite_primary_race
+							has_idea = gorlocs_primary_race
+							has_idea = grummle_primary_race
+							has_idea = vulpera_primary_race
+						}
+						NOT = { is_in_faction_with = ROOT}
+						NOT = {	is_subject_of = ROOT }
+						any_owned_state = {
+							impassable = no
+							any_neighbor_state = {
+								is_owned_by = ROOT
+								impassable = no
+							}
+						}
+						NOT = { has_war_with = ROOT }
+					}
+					ROOT = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				factor = 1
+			}
+		}
+	}
+
+	by_the_blade = {
+
+		available = {
+			has_completed_focus = generic_horde_by_the_blade
+			any_neighbor_country = {
+				OR = {
+					has_idea = gnoll_primary_race
+					has_idea = hozen_primary_race
+					has_idea = furbolg_primary_race
+					has_idea = gorilla_primary_race
+					has_idea = makrura_primary_race
+					has_idea = lobstrok_primary_race
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+				NOT = { has_war_with = ROOT }
+			} 
+		}
+
+		visible = {
+			has_completed_focus = generic_horde_by_the_blade
+			any_neighbor_country = {
+				OR = {
+					has_idea = gnoll_primary_race
+					has_idea = hozen_primary_race
+					has_idea = furbolg_primary_race
+					has_idea = gorilla_primary_race
+					has_idea = makrura_primary_race
+					has_idea = lobstrok_primary_race
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				NOT = { has_war_with = ROOT }
+			} 
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 10
+
+		days_re_enable = 60
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = gnoll_primary_race
+						has_idea = hozen_primary_race
+						has_idea = furbolg_primary_race
+						has_idea = gorilla_primary_race
+						has_idea = makrura_primary_race
+						has_idea = lobstrok_primary_race
+					}
+					NOT = { is_in_faction_with = ROOT}
+					NOT = {	is_subject_of = ROOT }
+					NOT = { has_war_with = ROOT }
+				}
+				set_country_flag = by_the_blade_target
+			}
+			hidden_effect = { add_command_power = -75 }
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					any_neighbor_country = {
+						has_country_flag = by_the_blade_target
+					}
+				}
+				random_neighbor_country = {
+					limit = {
+						OR = {
+							has_idea = gnoll_primary_race
+							has_idea = hozen_primary_race
+							has_idea = furbolg_primary_race
+							has_idea = gorilla_primary_race
+							has_idea = makrura_primary_race
+							has_idea = lobstrok_primary_race
+						}
+						has_country_flag = by_the_blade_target
+						NOT = { is_in_faction_with = ROOT}
+						NOT = {	is_subject_of = ROOT }
+						any_owned_state = {
+							impassable = no
+							any_neighbor_state = {
+								is_owned_by = ROOT
+								impassable = no
+							}
+						}
+						NOT = { has_war_with = ROOT }
+					}
+					ROOT = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+					PREV = {
+						clr_country_flag = by_the_blade_target
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { any_neighbor_country = { has_country_flag = by_the_blade_target	} }
+				}
+				random_neighbor_country = {
+					limit = {
+						OR = {
+							has_idea = gnoll_primary_race
+							has_idea = hozen_primary_race
+							has_idea = furbolg_primary_race
+							has_idea = gorilla_primary_race
+							has_idea = makrura_primary_race
+							has_idea = lobstrok_primary_race
+						}
+						NOT = { is_in_faction_with = ROOT}
+						NOT = {	is_subject_of = ROOT }
+						any_owned_state = {
+							impassable = no
+							any_neighbor_state = {
+								is_owned_by = ROOT
+								impassable = no
+							}
+						}
+						NOT = { has_war_with = ROOT }
+					}
+					ROOT = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				factor = 1
+			}
+		}
+	}
+
+	break_their_wills = {
+
+		available = {
+			any_allied_country = {
+				NOT = { has_country_flag = enforced_our_loyalty }
+				is_subject_of = ROOT
+				has_country_flag = dragon_technology
+				NOT = {
+					tag = GTG
+					tag = GSR
+					tag = GDD
+					tag = GTH
+				}	
+			}
+		}
+
+		visible = {
+			has_country_flag = GEN_dragon_wranglers
+		}
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+
+		days_remove = 180
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -100 }
+		}
+
+		remove_effect = {
+			random_allied_country = {
+				limit = {
+					NOT = { has_country_flag = enforced_our_loyalty }
+					is_subject_of = ROOT
+					has_country_flag = dragon_technology
+					NOT = {
+						tag = GTG
+						tag = GSR
+						tag = GDD
+						tag = GTH
+					}
+				}
+				set_country_flag = enforced_our_loyalty
+			}
+			if = {
+				limit = { NOT = { has_tech = fighter_drake_tech } }
+				set_country_flag = dragon_wrangling_1
+				set_technology = {
+					fighter_drake_tech = 1
+					fighter_drake_equipment_tech_1 = 1
+				}
+				add_equipment_to_stockpile = {
+					type = fighter_drake_equipment_1
+					amount = 25
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = dragon_wrangling_1 }
+				set_country_flag = dragon_wrangling_2
+				set_technology = {
+					bombardment_drake_equipment_tech_1 = 1
+					dragon_improved_scales_tech = 1
+					dragon_improved_breath_tech = 1
+					dragon_improved_claws_tech = 1
+					dragon_improved_wings_tech = 1
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = dragon_wrangling_2	}
+				set_country_flag = dragon_wrangling_3
+				set_technology = {
+					fighter_drake_equipment_tech_2 = 1
+					bombardment_drake_equipment_tech_2 = 1
+					dragon_improved_scales_tech_2 = 1
+					dragon_improved_breath_tech_2 = 1
+					dragon_improved_claws_tech_2 = 1
+					dragon_improved_wings_tech_2 = 1
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = dragon_wrangling_3 }
+				set_country_flag = dragon_wrangling_4
+				set_technology = {
+					fighter_drake_equipment_tech_3 = 1
+					bombardment_drake_equipment_tech_3 = 1
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = dragon_wrangling_4 }
+				set_country_flag = dragon_wrangling_5
+				set_technology = {
+					drake_razor_claws = 1
+					drake_flame_bursts = 1
+					drake_siege_runs = 1
+					drake_fanned_flames = 1
+				}
+			}
+			else_if = {
+				limit = { has_country_flag = dragon_wrangling_5 }
+				set_technology = {
+					dragon_improved_scales_tech_3 = 1
+					dragon_improved_breath_tech_3 = 1
+					dragon_improved_claws_tech_3 = 1
+					dragon_improved_wings_tech_3 = 1
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				factor = 1
+			}
+		}
+	}
+
+	black_dragon_bastards = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = black_dragon_primary_race
+					has_idea = black_dragon_secondary_race
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+				NOT = { has_war_with = ROOT }
+			} 
+		}
+
+		visible = {
+			has_country_flag = GEN_kill_a_monster
+			any_country = {
+				OR = {
+					has_idea = black_dragon_primary_race
+					has_idea = black_dragon_secondary_race
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				NOT = { has_war_with = ROOT }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 10
+
+		days_re_enable = 60
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+		}
+
+		remove_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = black_dragon_primary_race
+						has_idea = black_dragon_secondary_race
+					}
+					NOT = { is_in_faction_with = ROOT}
+					NOT = {	is_subject_of = ROOT }
+					any_owned_state = {
+						impassable = no
+						any_neighbor_state = {
+							is_owned_by = ROOT
+							impassable = no
+						}
+					}
+					NOT = { has_war_with = ROOT }
+				}
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				factor = 1
+			}
+		}
+	}
+
+	dragon_god_worshiper = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = primary_religion_followers_of_nzoth
+					has_idea = secondary_religion_followers_of_nzoth
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+				NOT = { has_war_with = ROOT }
+			} 
+		}
+
+		visible = {
+			has_country_flag = GEN_kill_a_monster
+			any_country = {
+				OR = {
+					has_idea = primary_religion_followers_of_nzoth
+					has_idea = secondary_religion_followers_of_nzoth
+				}
+				NOT = { is_in_faction_with = ROOT}
+				NOT = {	is_subject_of = ROOT }
+				NOT = { has_war_with = ROOT }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 10
+
+		days_re_enable = 60
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+		}
+
+		remove_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = primary_religion_followers_of_nzoth
+						has_idea = secondary_religion_followers_of_nzoth
+					}
+					NOT = { is_in_faction_with = ROOT}
+					NOT = {	is_subject_of = ROOT }
+					any_owned_state = {
+						impassable = no
+						any_neighbor_state = {
+							is_owned_by = ROOT
+							impassable = no
+						}
+					}
+					NOT = { has_war_with = ROOT }
+				}
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				factor = 1
+			}
+		}
+	}
+
+	### Use Later On
+
+	#overdue_revenge = {
+
+	#	available = {
+	#		has_completed_focus = generic_horde_revenge_long_overdue
+	#		any_neighbor_country = {
+	#			has_government = fel
+	#			NOT = { is_in_faction_with = ROOT}
+	#			NOT = {	is_subject_of = ROOT }
+	#			any_owned_state = {
+	#				impassable = no
+	#				any_neighbor_state = {
+	#					is_owned_by = ROOT
+	#					impassable = no
+	#				}
+	#			}
+	#		} 
+	#	}
+
+	#	visible = {
+	#		has_completed_focus = generic_horde_revenge_long_overdue
+	#		any_neighbor_country = {
+	#			has_government = fel
+	#			NOT = { is_in_faction_with = ROOT}
+	#			NOT = {	is_subject_of = ROOT }
+	#		} 
+	#	}
+
+	#	custom_cost_trigger = { command_power > 74 }
+	#	custom_cost_text = decision_cost_command_75
+
+	#	days_remove = 10
+
+	#	days_re_enable = 60
+
+	#	complete_effect = {
+	#		hidden_effect = { add_command_power = -75 }
+	#	}
+
+	#	remove_effect = {
+	#		random_neighbor_country = {
+	#			limit = {
+	#				has_government = fel
+	#				NOT = { is_in_faction_with = ROOT}
+	#				NOT = {	is_subject_of = ROOT }
+	#				any_owned_state = {
+	#					impassable = no
+	#					any_neighbor_state = {
+	#						is_owned_by = ROOT
+	#						impassable = no
+	#					}
+	#				}
+	#			}
+	#			ROOT = {
+	#				declare_war_on = {
+	#					target = PREV
+	#					type = annex_everything
+	#				}
+	#			}
+	#		}
+	#	}
+
+	#	ai_will_do = {
+	#		factor = 0
+	#		modifier = {
+	#			is_historical_focus_on = no
+	#			factor = 1
+	#		}
+	#	}
+	#}
+}
+
+horde_demand_respect_decisions = {
+
+	horde_respect_1_to_2_decision = {
+
+		available = {
+			has_idea = horde_clan_respect_1_idea
+			has_army_experience > 24
+		}
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = horde_clan_respect_2_idea
+					has_idea = horde_clan_respect_3_idea
+					has_idea = horde_clan_respect_4_idea
+					has_idea = horde_clan_respect_5_idea
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+
+		days_remove = 120
+
+		complete_effect = {
+			army_experience = -25
+			add_command_power = -25
+		}
+
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = horde_clan_respect_1_idea
+				add_idea = horde_clan_respect_2_idea
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	horde_respect_2_to_3_decision = {
+
+		available = {
+			has_idea = horde_clan_respect_2_idea
+			has_army_experience > 49
+		}
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = horde_clan_respect_3_idea
+					has_idea = horde_clan_respect_4_idea
+					has_idea = horde_clan_respect_5_idea
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 120
+
+		complete_effect = {
+			army_experience = -50
+			add_command_power = -50
+		}
+
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = horde_clan_respect_2_idea
+				add_idea = horde_clan_respect_3_idea
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	horde_respect_3_to_4_decision = {
+
+		available = {
+			has_idea = horde_clan_respect_3_idea
+			has_army_experience > 74
+		}
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = horde_clan_respect_4_idea
+					has_idea = horde_clan_respect_5_idea
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 120
+
+		complete_effect = {
+			army_experience = -75
+			add_command_power = -75
+		}
+
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = horde_clan_respect_3_idea
+				add_idea = horde_clan_respect_4_idea
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	horde_respect_4_to_5_decision = {
+
+		available = {
+			has_idea = horde_clan_respect_4_idea
+			has_army_experience > 99
+		}
+
+		visible = {
+			NOT = {	has_idea = horde_clan_respect_5_idea }
+		}
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+
+		days_remove = 120
+
+		complete_effect = {
+			army_experience = -100
+			add_command_power = -100
+		}
+
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = horde_clan_respect_4_idea
+				add_idea = horde_clan_respect_5_idea
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}
+
+###################
+# WARTIME ACTIVITIES
+###################
+
+horde_wartime_fervour_decisions = {
+
+	horde_charge_1_decision = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_war = yes
+			has_army_experience > 24
+			NOT = {	has_country_flag = horde_charging_flag }
+		}
+
+		cost = 50
+
+		days_remove = 60
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		complete_effect = {
+			army_experience = -25
+			add_timed_idea = {
+				idea = horde_charge_1_idea
+				days = 60
+			}
+			set_country_flag = horde_charging_flag
+		}
+
+		remove_effect = { clr_country_flag = horde_charging_flag }
+
+		ai_will_do = { factor = 1 }
+	}
+
+	horde_charge_2_decision = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_army_experience > 49
+			has_war = yes
+			NOT = {	has_country_flag = horde_charging_flag }
+			OR = {
+            	has_idea = horde_clan_respect_3_idea
+            	has_idea = horde_clan_respect_4_idea
+            	has_idea = horde_clan_respect_5_idea
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 60
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		complete_effect = {
+			army_experience = -50
+			add_timed_idea = {
+				idea = horde_charge_2_idea
+				days = 60
+			}
+			set_country_flag = horde_charging_flag
+		}
+
+		remove_effect = { clr_country_flag = horde_charging_flag }
+	}
+
+	horde_charge_3_decision = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_army_experience > 74
+			has_war = yes
+			NOT = {	has_country_flag = horde_charging_flag }
+			has_idea = horde_clan_respect_5_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 60
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		complete_effect = {
+			army_experience = -75
+			add_timed_idea = {
+				idea = horde_charge_3_idea
+				days = 60
+			}
+			set_country_flag = horde_charging_flag
+		}
+
+		remove_effect = { clr_country_flag = horde_charging_flag }
+	}
+
+	horde_light_forges_1_decision = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_war = yes
+			OR = {
+				has_idea = horde_clan_respect_3_idea
+				has_idea = horde_clan_respect_4_idea
+				has_idea = horde_clan_respect_5_idea
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		modifier = {
+			political_power_gain = -0.25
+			industrial_capacity_factory = 0.1
+		}
+
+		days_remove = 140
+		days_re_enable = 280
+
+		fire_only_once = no
+
+		complete_effect = { set_country_flag = horde_forges_lit_up_flag }
+
+		remove_effect = { clr_country_flag = horde_forges_lit_up_flag }
+	}
+
+	horde_light_forges_2_decision = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_war = yes
+			has_country_flag = horde_forges_lit_up_flag
+			OR = {
+				has_idea = horde_clan_respect_4_idea
+				has_idea = horde_clan_respect_5_idea
+			}
+		}
+
+		visible = {
+			has_war = yes
+			OR = {
+				has_idea = horde_clan_respect_4_idea
+				has_idea = horde_clan_respect_5_idea
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		modifier = {
+			industrial_capacity_factory = 0.15
+			local_resources_factor = -0.1
+		}
+
+		days_remove = 70
+		days_re_enable = 280
+
+		fire_only_once = no
+
+		complete_effect = { set_country_flag = horde_forges_fueled_flag }
+
+		remove_effect = { clr_country_flag = horde_forges_fueled_flag }
+	}
+
+	horde_light_forges_3_decision = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_war = yes
+			has_country_flag = horde_forges_fueled_flag
+			has_idea = horde_clan_respect_5_idea
+		}
+
+		visible = {
+			has_war = yes
+			has_idea = horde_clan_respect_5_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		modifier = {
+			industrial_capacity_factory = 0.2
+			production_speed_buildings_factor = -0.1
+			monthly_population = -0.1
+		}
+
+		days_remove = 45
+		days_re_enable = 280
+
+		fire_only_once = no
+	}
+}
+
+#####################
+# HORDE PEACETIME
+#####################
+
+horde_peacetime_preparations_decisions = {
+
+	rally_the_clan_1_decision = {
+
+		available = { has_war = no }
+
+		visible = { has_idea = horde_clan_respect_1_idea }
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			MONTHLY_POPULATION = 0.1
+			industrial_capacity_factory = -0.05
+			production_speed_buildings_factor = -0.05
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	rally_the_clan_2_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_2_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			MONTHLY_POPULATION = 0.15
+			industrial_capacity_factory = -0.1
+			production_speed_buildings_factor = -0.1
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	rally_the_clan_3_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_3_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			MONTHLY_POPULATION = 0.25
+			industrial_capacity_factory = -0.2
+			production_speed_buildings_factor = -0.2
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	rally_the_clan_4_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_4_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			MONTHLY_POPULATION = 0.3
+			industrial_capacity_factory = -0.25
+			production_speed_buildings_factor = -0.25
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	rally_the_clan_5_decision = {
+
+		available = { has_war = no }
+
+		visible = { has_idea = horde_clan_respect_5_idea }
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			MONTHLY_POPULATION = 0.4
+			industrial_capacity_factory = -0.3
+			production_speed_buildings_factor = -0.3
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	smack_heads_together_1_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_1_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.001
+			war_support_weekly = -0.005
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	smack_heads_together_2_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_2_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.002
+			war_support_weekly = -0.004
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	smack_heads_together_3_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_3_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.003
+			war_support_weekly = -0.003
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	smack_heads_together_4_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_4_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 90
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.004
+			war_support_weekly = -0.002
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	smack_heads_together_5_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_5_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 70
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.005
+			war_support_weekly = -0.001
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	beat_the_drums_1_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			OR = {
+				has_idea = horde_clan_respect_1_idea
+				has_idea = horde_clan_respect_2_idea
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 70
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.25
+			war_support_weekly = 0.005
+			army_org_factor = -0.10
+			experience_gain_army = 0.15
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	beat_the_drums_2_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			OR = {
+				has_idea = horde_clan_respect_3_idea
+				has_idea = horde_clan_respect_4_idea
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 70
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.20
+			war_support_weekly = 0.01
+			army_org_factor = -0.075
+			experience_gain_army = 0.35
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+
+	beat_the_drums_3_decision = {
+
+		available = { has_war = no }
+
+		visible = {
+			has_idea = horde_clan_respect_5_idea
+		}
+
+		cost = 50
+
+		ai_will_do = { factor = 1 }
+
+		days_remove = 70
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.15
+			war_support_weekly = 0.015
+			army_org_factor = -0.05
+			experience_gain_army = 0.50
+		}
+
+		cancel_trigger = { has_war = yes }
+	}
+}
+
+#####################
+# TIDE OF CONQUEST
+#####################
+
+the_tides_of_conquest_decisions = {
+
+	raze_and_rebuild_decision = {
+
+		available = { 
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				OR = {
+					industrial_complex > 0
+					arms_factory > 0
+					dockyard > 0
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+
+		modifier = {
+			consumer_goods_expected_value = -0.05
+			resistance_growth = 0.10
+		}
+
+		days_remove = 120
+
+		fire_only_once = no
+
+		complete_effect = { 
+			hidden_effect = { add_command_power = -25 }
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						industrial_complex > 0
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						industrial_complex > 0 
+						NOT = { is_core_of = ROOT }
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						arms_factory > 0
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						arms_factory > 0 
+						NOT = { is_core_of = ROOT }
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						dockyard > 0
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						dockyard > 0 
+						NOT = { is_core_of = ROOT }
+					}
+					remove_building = {
+						type = dockyard
+						level = 1
+					}
+				}
+			}
+		}
+	}
+
+	plunder_stockpiles_decision = {
+
+		available = { 
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				OR = {
+					oil > 4
+					mana > 4
+					wood > 4
+					gunpowder > 4
+					ores > 4
+					mounts > 4
+					eggs > 4
+					wheat > 4
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 120
+
+		fire_only_once = no
+
+		modifier = {
+			equipment_capture = 0.05
+		}
+
+		complete_effect = { 
+			hidden_effect = { add_command_power = -50 }
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						oil > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						oil > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_oil
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_oil_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						mana > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						mana > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_mana
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_mana_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						wood > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						wood > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_wood
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_wood_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						wood > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						wood > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_wood
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_wood_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						gunpowder > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						gunpowder > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_gunpowder
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_gunpowder_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						ores > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						ores > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_ores
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_ores_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						mounts > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						mounts > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_mounts
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_mounts_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						eggs > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						eggs > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_eggs
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_eggs_bonus
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					any_owned_state = {
+						NOT = { is_core_of = ROOT }
+						wheat > 4
+					}
+				}
+				random_owned_state = {
+					limit = { 
+						NOT = { is_core_of = ROOT }
+						wheat > 4
+					}
+					add_dynamic_modifier = {
+						modifier = pillaged_resouces_wheat
+						days = 120
+					}
+				}
+				add_timed_idea = {
+					idea = pillaged_wheat_bonus
+					days = 120
+				}
+			}
+		}
+	}
+
+	slave_labor_decision = {
+
+		available = { 
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				state_population > 750
+			}
+		}
+
+		custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 120
+
+		fire_only_once = no
+
+		modifier = {
+			production_speed_buildings_factor = 0.1
+			industrial_capacity_factory = 0.1
+			industrial_capacity_dockyard = 0.1
+		}
+
+		complete_effect = { 
+			hidden_effect = { add_command_power = -50 }
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					state_population > 750
+				}
+				add_manpower = -500
+				add_compliance = -20
+				add_resistance = 10
+			}
+		}
+	}
+
+	rally_warbands_decision = {
+
+		available = { 
+			has_war = no
+		}
+
+		cost = 50
+
+		days_remove = 120
+
+		fire_only_once = no
+
+		modifier = {
+			command_power_gain = 0.15
+			justify_war_goal_time = -0.15
+			minimum_training_level = -0.2
+		}
+
+		complete_effect = { 
+			add_command_power = 25
+		}
+	}
+}
+
+#####################
+# FORGE NEW NATION
+#####################
+
+horde_forge_new_nation_decisions = {
+
+	horde_prepare_industrial_sector_decision = {
+
+		available = { NOT = { has_country_flag = horde_nation_project_flag } }
+
+		cost = 50
+
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					state_population > 1000
+					is_capital = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+					state_population > 1000
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+					state_population > 1000
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+					state_population > 1000
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+					state_population > 1000
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+					state_population > 1000
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_roads_decision = {
+
+		available = { NOT = { has_country_flag = horde_nation_project_flag } }
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			buildmacro_infrastructure = yes
+			buildmacro_infrastructure = yes
+			buildmacro_infrastructure = yes
+			buildmacro_infrastructure = yes
+			buildmacro_infrastructure = yes
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_military_factories_decision = {
+
+		available = { NOT = { has_country_flag = horde_nation_project_flag } }
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = -0.1
+			local_resources_factor = -0.1
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			buildmacro_arms_factory = yes
+			buildmacro_arms_factory = yes
+			buildmacro_arms_factory = yes
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_civilian_factories_decision = {
+
+		available = { NOT = { has_country_flag = horde_nation_project_flag } }
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = -0.1
+			local_resources_factor = -0.1
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			buildmacro_industrial_complex = yes
+			buildmacro_industrial_complex = yes
+			buildmacro_industrial_complex = yes
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_farms_decision = {
+
+		available = {
+			NOT = {	has_country_flag = horde_nation_project_flag }
+			has_tech = farm_tech_global
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = farm
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = farm
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_stables_decision = {
+
+		available = {
+			has_war = no
+			NOT = {	has_country_flag = horde_nation_project_flag }
+			has_tech = stable_tech_global
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = stable
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = stable
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_lumber_mills_decision = {
+
+		available = {
+			has_war = no
+			NOT = { has_country_flag = horde_nation_project_flag }
+			has_tech = lumber_mill_tech_global
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = lumber_mill
+						size > 0
+						include_locked = yes
+					}
+					has_resources_amount = {
+					    resource = wood
+					    amount > 0
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = lumber_mill
+						size > 0
+						include_locked = yes
+					}
+					has_resources_amount = {
+					    resource = wood
+					    amount > 0
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_iron_mines_decision = {
+
+		available = {
+			has_war = no
+			NOT = {	has_country_flag = horde_nation_project_flag }
+			has_tech = iron_mine_tech_global
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = iron_mine
+						size > 0
+						include_locked = yes
+					}
+					has_resources_amount = {
+					    resource = ores
+					    amount > 0
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = iron_mine
+						size > 0
+						include_locked = yes
+					}
+					has_resources_amount = {
+					    resource = ores
+					    amount > 0
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_sulfur_mines_decision = {
+
+		available = {
+			has_war = no
+			NOT = {	has_country_flag = horde_nation_project_flag }
+			has_tech = sulfur_mine_tech_global
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = sulfur_mine
+						size > 0
+						include_locked = yes
+					}
+					has_resources_amount = {
+					    resource = gunpowder
+					    amount > 0
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = sulfur_mine
+						size > 0
+						include_locked = yes
+					}
+					has_resources_amount = {
+					    resource = gunpowder
+					    amount > 0
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_oil_refinery_decision = {
+
+		available = {
+			has_war = no
+			NOT = {	has_country_flag = horde_nation_project_flag }
+			has_tech = generic_naval_oil_refinery_tech
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = synthetic_refinery
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = synthetic_refinery
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+
+	horde_build_arcane_towers_decision = {
+
+		available = {
+			NOT = {	has_country_flag = horde_nation_project_flag }
+			has_tech = arcane_tower_tech_global
+		}
+
+		cost = 50
+
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_buildings_factor = -0.05
+			local_resources_factor = -0.05
+		}
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		complete_effect = { set_country_flag = horde_nation_project_flag }
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arcane_tower
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arcane_tower
+						size > 0
+						include_locked = yes
+					}
+					is_in_home_area = yes
+					impassable = no
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			clr_country_flag = horde_nation_project_flag
+		}
+	}
+}

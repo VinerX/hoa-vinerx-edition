@@ -1,0 +1,465 @@
+set_country_flag = orc_technology
+set_research_slots = 3
+
+581.1.1 = {
+	set_capital = { state = 337 }
+
+	load_focus_tree = generic_focus
+
+	oob = "BRC_581"
+	set_naval_oob = "BRC_581_naval"
+
+	set_convoys = 15
+	set_stability = 0.45
+	set_war_support = 0.8
+
+	add_ideas = {
+		clan
+		limited_conscription
+		preparing_for_war
+		limited_exports
+
+		orc_primary_race
+		primary_trait_axe_specialization
+		primary_trait_hardness
+		primary_trait_bloodfury
+
+		ogre_secondary_race
+
+		primary_religion_the_elemental_furies
+
+		BRC_orgrim_doomhammer
+	}
+	
+	set_technology = {
+		great_hall = 1
+		peon_tech = 1
+		orc_tools_tech_1 = 1
+		orc_mines_tech = 1
+		peon_equipment_tech = 1
+		city_development_1 = 1
+		pig_farm_tech = 1
+		war_mill_tech = 1
+		forge_master_tech = 1
+		orc_lumber_mill_tech = 1
+		burrow_tech = 1
+		watch_tower_tech = 1
+		assassins_den_tech = 1
+
+		orc_barracks_tech = 1
+		grunt_tech = 1
+		grunt_equipment_tech_1 = 1
+		overseer_tech = 1
+		spearman_tech = 1
+		spearman_equipment_tech_1 = 1
+		orc_spirit_lodge_tech = 1
+		shaman_tech = 1
+		shaman_equipment_tech_1 = 1
+		restoration_shaman_tech = 1
+
+		orc_beastiary_tech = 1
+		dire_wolf_tech = 1
+		dire_wolf_equipment_tech_1 = 1
+		raider_tech = 1
+		raider_equipment_tech_1 = 1
+		outrider_tech = 1
+
+		orc_siege_works = 1
+		orc_supply_cart_tech = 1
+		orc_supply_cart_equipment_tech_1 = 1
+		orc_caravan_equipment_tech_1 = 1
+		orc_catapult_tech = 1
+		orc_catapult_equipment_tech_1 = 1
+		orc_caravan_equipment_tech_1 = 1
+
+		altar_of_storms_tech = 1
+		blade_master_tech = 1
+		blade_master_equipment_tech_1 = 1
+		warlord_tech = 1
+		warlord_equipment_tech_1 = 1
+		far_seer_tech = 1
+		far_seer_equipment_tech_1 = 1
+
+		generic_naval_naval_facilities_tech = 1
+		generic_naval_small_frames_tech = 1
+		generic_naval_convoy_tech_1 = 1
+		generic_naval_destroyer_tech_1 = 1
+		generic_naval_light_frigate_tech_1 = 1
+		generic_naval_heavy_frigate_tech_1 = 1
+		generic_naval_naval_transport_1_tech = 1
+		generic_naval_large_frames_tech = 1
+		generic_naval_battleship_tech_1 = 1
+	}
+
+	recruit_character = BRC_blackhand_the_destroyer
+	recruit_character = BRC_orgrim_doomhammer
+	recruit_character = BRC_dalrend_blackhand_advisor
+	recruit_character = BRC_eitrigg
+	recruit_character = BRC_varok_saurfang
+	recruit_character = BRC_tharbek
+	recruit_character = BRC_jubei_thos
+	recruit_character = BRC_broxigar
+	recruit_character = BRC_general_thorg_izog
+	recruit_character = BRC_bannok_grimaxe
+	recruit_character = BRC_aknor_steelbringer
+	recruit_character = BRC_kaoshin
+	recruit_character = BRC_othana
+	recruit_character = BRC_uratok
+	recruit_character = BRC_b_randt
+	recruit_character = BRC_solog_roark
+	recruit_character = BRC_peon_master
+	recruit_character = BRC_xilun
+	recruit_character = BRC_maim_blackhand
+
+	set_politics = {
+		ruling_party = neutral
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+    set_popularities = {
+        alliance = 0
+        horde = 0
+        death = 0
+        fel = 0
+        old_gods = 0
+        titans = 0
+        neutral = 100
+    }
+}
+
+592.1.1 = {
+	set_capital = { state = 384 }
+
+	load_focus_tree = Blackrock_focus
+
+	oob = "BRC_592"
+	set_naval_oob = "BRC_592_naval"
+
+	add_ideas = {
+		primary_religion_demonology
+
+		BRC_dreadmaul_clan_1
+		BRC_firegut_clan_1
+		BTG_spirestone_clan
+	}
+
+	remove_ideas = {
+		primary_religion_the_elemental_furies
+	}
+
+	add_timed_idea = {
+		idea = horde_lost_generations_1
+		days = 180
+	}
+
+	set_country_flag = Invasion_Clan
+
+	set_technology = {
+		orc_temple_of_the_damned_tech = 1
+		warlock_tech = 1
+		warlock_equipment_tech_1 = 1
+		necrolyte_tech = 1
+
+		orc_spirit_lodge_tech = 0
+		shaman_tech = 0
+		shaman_equipment_tech_1 = 0
+		restoration_shaman_tech = 0
+
+		far_seer_tech = 0
+		far_seer_equipment_tech_1 = 0
+	}
+
+	create_faction = orcish_horde
+	add_to_faction = BRC
+	add_to_faction = TSC
+	add_to_faction = FWC
+	add_to_faction = THC
+	add_to_faction = BHC
+	add_to_faction = BTG
+	add_to_faction = BBC
+	add_to_faction = DMC
+
+	recruit_character = BRC_rexxar
+	recruit_character = BRC_utok_scratcher
+
+	if = {
+		limit = { has_dlc = "Together for Victory" }
+		set_autonomy = {
+			target = BTG
+			autonomous_state = autonomy_personal_union
+			freedom_level = 0.05
+		}
+		else = { puppet = BTG }
+	}
+
+	set_politics = {
+		ruling_party = fel
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+    set_popularities = {
+        alliance = 0
+        horde = 0
+        death = 0
+        fel = 100
+        old_gods = 0
+        titans = 0
+        neutral = 0
+    }
+}
+
+596.1.1 = {
+	set_capital = { state = 524 }
+
+	load_focus_tree = Blackrock_focus
+
+	declare_war_on = {
+		target = IRO
+		type = annex_everything
+	}
+	declare_war_on = {
+		target = GNO
+		type = annex_everything
+	}
+	declare_war_on = {
+		target = NRT
+		type = annex_everything
+	}
+
+	add_to_faction = SRC
+	add_to_faction = STC
+	add_to_faction = BOO
+	add_to_faction = SFC
+	add_to_faction = DWC
+	remove_from_faction = FWC
+	remove_from_faction = TSC
+
+	oob = "BRC_596"
+
+	set_convoys = 150
+	set_stability = 0.6
+	set_war_support = 0.8
+
+	add_ideas = {
+		extensive_conscription
+		war_economy
+		limited_exports
+
+		primary_religion_necrolytes
+
+		BRC_orgrim_doomhammer
+		BRC_dreadmaul_clan_2
+		BRC_firegut_clan_2
+		BRC_the_blackrock_war_machine
+		BRC_blade_masters
+		BRC_banned_fel_magic
+		BRC_securing_our_place_idea
+		BRC_blackrock_lancers_idea
+	}
+
+	remove_ideas = {
+		BRC_orgrim_doomhammer
+		BRC_dreadmaul_clan_1
+		BRC_firegut_clan_1
+		horde_lost_generations_1
+		horde_lost_generations_2
+		horde_lost_generations_3
+	}
+
+	unlock_national_focus = BRC_a_new_world
+	unlock_national_focus = BRC_discipline_peons
+	unlock_national_focus = BRC_light_the_forges
+	unlock_national_focus = BRC_a_new_foundry
+	unlock_national_focus = BRC_clear_land
+	unlock_national_focus = BRC_thorium_deposits
+	unlock_national_focus = BRC_thorium_weapons
+	unlock_national_focus = BRC_prospecting_the_land
+	unlock_national_focus = BRC_the_blackrock_war_machine
+	unlock_national_focus = BRC_expand_rockard
+	unlock_national_focus = BRC_the_road_north
+	unlock_national_focus = BRC_dreadmaul_brutes
+	unlock_national_focus = BRC_firegut_flamespeakers
+	unlock_national_focus = BRC_construct_ogre_mounds
+	unlock_national_focus = BRC_ogre_forges
+	unlock_national_focus = BRC_discipline_the_war_band
+	unlock_national_focus = BRC_adapting_to_azeroth
+	unlock_national_focus = BRC_grunt_equipment
+	unlock_national_focus = BRC_tame_a_new_sea
+	unlock_national_focus = BRC_new_naval_tactics
+	unlock_national_focus = BRC_infantry_army
+	unlock_national_focus = BRC_support_weapons
+	unlock_national_focus = BRC_improved_catapults
+	unlock_national_focus = BRC_blademasters
+	unlock_national_focus = BRC_adapted_army
+	unlock_national_focus = BRC_blackrock_raiders
+	unlock_national_focus = BRC_blackrock_warlocks
+	unlock_national_focus = BRC_necrolytes
+	unlock_national_focus = BRC_constuct_roosts
+	unlock_national_focus = BRC_dragonwmaw_rylaks
+	unlock_national_focus = BRC_found_stonard
+	unlock_national_focus = BRC_feed_the_clan
+	unlock_national_focus = BRC_hakkari_tablets
+	unlock_national_focus = BRC_the_pink_skins
+	unlock_national_focus = BRC_send_scouts_north
+	unlock_national_focus = BRC_raid_border_settlements
+	unlock_national_focus = BRC_dawn_of_the_first_war
+	unlock_national_focus = BRC_pillage_redridge
+	unlock_national_focus = BRC_lakeshire_great_hall
+	unlock_national_focus = BRC_stonewatch_barracks
+	unlock_national_focus = BRC_pillage_elwynn
+	unlock_national_focus = BRC_push_into_the_city
+	unlock_national_focus = BRC_study_human_tactics
+	unlock_national_focus = BRC_human_drills
+	unlock_national_focus = BRC_reinforced_armor
+	unlock_national_focus = BRC_blackrock_assassins
+	unlock_national_focus = BRC_blackrock_spearman
+	unlock_national_focus = BRC_blackrock_lancers
+	unlock_national_focus = BRC_supply_the_frontline
+	unlock_national_focus = BRC_human_tools
+	unlock_national_focus = BRC_human_masonry
+	unlock_national_focus = BRC_deal_with_the_trade_prince
+	unlock_national_focus = BRC_securing_our_place_on_azeroth
+	unlock_national_focus = BRC_a_home_in_the_spire
+	unlock_national_focus = BRC_alliance_with_the_dark_iron
+	unlock_national_focus = BRC_distribute_lands
+
+	# Second Branch
+	set_country_flag = doomhammer_horde
+	set_country_flag = rends_loyalty
+	set_country_flag = fall_of_stormwind
+	unlock_national_focus = BRC_doomhammers_horde
+	unlock_national_focus = BRC_deal_with_rend
+	unlock_national_focus = BRC_ban_fel_magic
+	unlock_national_focus = BRC_the_fall_of_stormwind
+	unlock_national_focus = BRC_pillage_the_city
+	unlock_national_focus = BRC_human_maps
+	unlock_national_focus = BRC_the_gnolls
+	unlock_national_focus = BRC_hunt_the_shadow_council
+	unlock_national_focus = BRC_the_fate_of_guldan
+	unlock_national_focus = BRC_the_battle_for_khaz_modan
+
+	retire_character = BRC_blackhand_the_destroyer
+
+	set_politics = {
+		ruling_party = horde
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+		alliance = 0
+		horde = 100
+		death = 0
+		fel = 0
+		old_gods = 0
+		titans = 0
+		neutral = 0
+	}
+}
+
+609.1.1 = {
+	recruit_character = BRC_dalrend_blackhand
+	retire_character = BRC_rexxar
+	retire_character = BRC_jubei_thos
+	retire_character = BRC_utok_scratcher
+
+	dismantle_faction = yes
+}
+
+610.1.1 = {
+	oob = "BRC_610"
+
+	load_focus_tree = generic_focus
+
+	add_ideas = {
+		limited_conscription
+		preparing_for_war
+		black_dragon_secondary_race
+		BRC_Forest_Troll_Allies
+	}
+
+	remove_ideas = {
+		BRC_banned_fel_magic
+		BRC_securing_our_place_idea
+		BRC_blade_masters
+		BRC_blackrock_lancers_idea
+		BRC_dreadmaul_clan_2
+	}
+
+	clr_country_flag = Invasion_Clan
+
+	diplomatic_relation = { country = IRO relation = war_relation active = no }
+	diplomatic_relation = { country = GNO relation = war_relation active = no }
+	diplomatic_relation = { country = NRT relation = war_relation active = no }
+
+	# DMC pledging support
+	# Not added to faction directly to prevent widespread faction
+	diplomatic_relation = {
+	    country = DMC
+	    relation = non_aggression_pact
+	    active = yes
+	}
+	diplomatic_relation = {
+	    country = DMC
+	    relation = military_access
+	    active = yes
+	}
+	diplomatic_relation = {
+	    country = DMC
+	    relation = docking_rights
+	    active = yes
+	}
+
+	retire_character = BRC_orgrim_doomhammer
+	retire_character = BRC_dalrend_blackhand_advisor
+	retire_character = BRC_eitrigg
+	retire_character = BRC_varok_saurfang
+	retire_character = BRC_broxigar
+	retire_character = BRC_tharbek
+	retire_character = BRC_maim_blackhand
+
+	recruit_character = BRC_jed_runewatcher
+	recruit_character = BRC_quartermaster_zigris
+	recruit_character = BRC_akumi
+	recruit_character = BRC_quartermaster_kaoshin
+	recruit_character = BRC_goraluk_anvilcrack
+	recruit_character = BRC_malkorok
+	recruit_character = BRC_urok_doomhowl
+	recruit_character = BRC_worgmistress_othana
+	recruit_character = BRC_warlock_xi_lun
+	recruit_character = BRC_omokk
+	recruit_character = BRC_ghok_bashguud
+	recruit_character = BRC_kurtok_the_slayer
+	recruit_character = BRC_terromath_the_seared
+	recruit_character = BRC_war_master_voone
+
+	set_politics = {
+		ruling_party = neutral
+		last_election = "616.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+		alliance = 0
+		horde = 5
+		death = 0
+		fel = 15
+		old_gods = 10
+		titans = 0
+		neutral = 70
+	}
+}
+
+617.1.1 = {
+	oob = BRC_617
+
+	add_ideas = {
+		recruit_adventurers
+	}
+}

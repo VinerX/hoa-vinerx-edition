@@ -1,0 +1,2021 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	troll_barracks_tech = {
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = troll_axeman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = head_hunter_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 8 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+		}
+	}
+
+	troll_axeman_tech = {
+
+		enable_subunits = {
+			troll_axeman
+		}
+
+		path = {
+			leads_to_tech = troll_axeman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { troll_axeman_equipment_tech_1 = 1 }
+			increase_tech_count_troll = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 4 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	troll_axeman_equipment_tech_1 = {
+
+		enable_equipments = {
+			troll_axeman_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = blood_craze_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = unbridled_wrath_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 4 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	blood_craze_tech = {
+
+		troll_axeman = {
+			defense = 0.2
+			soft_attack = 0.05
+			max_strength = 0.25
+		}
+		hireek_chosen = {
+			defense = 0.2
+			soft_attack = 0.05
+			max_strength = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { unbridled_wrath_tech }
+
+		path = {
+			leads_to_tech = troll_axeman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 3 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = unbridled_wrath_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = unbridled_wrath_tech
+			}
+		}
+	}
+
+	unbridled_wrath_tech = {
+
+		troll_axeman = {
+			breakthrough = 0.15
+			soft_attack = 0.05
+			maximum_speed = 0.05
+		}
+		hireek_chosen = {
+			breakthrough = 0.15
+			soft_attack = 0.05
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { blood_craze_tech }
+
+		path = {
+			leads_to_tech = troll_axeman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 5 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = blood_craze_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = blood_craze_tech
+			}
+		}
+	}
+
+	troll_axeman_equipment_tech_2 = {
+
+		enable_equipments = {
+			troll_axeman_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = raging_blow_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bloodthirst_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	raging_blow_tech = {
+
+		troll_axeman = {
+			ap_attack = 0.2
+			hard_attack = 0.4
+		}
+		hireek_chosen = {
+			ap_attack = 0.2
+			hard_attack = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { bloodthirst_tech }
+
+		path = {
+			leads_to_tech = troll_axeman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 3 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bloodthirst_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bloodthirst_tech
+			}
+		}
+	}
+
+	bloodthirst_tech = {
+
+		troll_axeman = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			defense = 0.05
+			breakthrough = 0.10
+		}
+		hireek_chosen = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			defense = 0.05
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { raging_blow_tech }
+
+		path = {
+			leads_to_tech = troll_axeman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 5 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = raging_blow_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = raging_blow_tech
+			}
+		}
+	}
+
+	troll_axeman_equipment_tech_3 = {
+
+		enable_equipments = {
+			troll_axeman_equipment_3
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 4 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_axeman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	head_hunter_tech = {
+
+		enable_subunits = {
+			head_hunter
+			head_hunter_support
+		}
+
+		path = {
+			leads_to_tech = head_hunter_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = troll_berserker_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = troll_pathfinder_tech
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { head_hunter_equipment_tech_1 = 1 }
+			increase_tech_count_troll = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	head_hunter_equipment_tech_1 = {
+
+		enable_equipments = {
+			head_hunter_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = dead_eye
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = camouflage
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dead_eye = {
+
+		head_hunter ={
+			hard_attack = 0.15
+			air_attack = 0.15
+			defense = 0.05
+		}
+		head_hunter_support = {
+			hard_attack = 0.15
+			air_attack = 0.15
+			defense = 0.05
+		}
+		berserker = {
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { camouflage }
+
+		path = {
+			leads_to_tech = head_hunter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = camouflage
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = camouflage
+			}
+		}
+	}
+
+	camouflage = {
+
+		head_hunter ={
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+		head_hunter_support = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+		pathfinder = {
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { dead_eye }
+
+		path = {
+			leads_to_tech = head_hunter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = dead_eye
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = dead_eye
+			}
+		}
+	}
+
+	head_hunter_equipment_tech_2 = {
+
+		enable_equipments = {
+			head_hunter_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = sundering_throw
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = frenzy_regen
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	sundering_throw = {
+
+		head_hunter ={
+			ap_attack = 0.25
+			hard_attack = 0.25
+		}
+		head_hunter_support = {
+			ap_attack = 0.25
+			hard_attack = 0.25
+		}
+		berserker = {
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { frenzy_regen }
+
+		path = {
+			leads_to_tech = head_hunter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = frenzy_regen
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = frenzy_regen
+			}
+		}
+	}
+
+	frenzy_regen = {
+
+		head_hunter = {
+			max_strength = 0.15
+			defense = 0.1
+			breakthrough = 0.1
+		}
+		head_hunter_support = {
+			max_strength = 0.15
+			defense = 0.1
+			breakthrough = 0.1
+		}
+		pathfinder = {
+			max_strength = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { sundering_throw }
+
+		path = {
+			leads_to_tech = head_hunter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = sundering_throw
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = sundering_throw
+			}
+		}
+	}
+
+	head_hunter_equipment_tech_3 = {
+
+		enable_equipments = {
+			head_hunter_equipment_3
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			head_hunter_technology
+			archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	troll_berserker_tech = {
+
+		enable_subunits = {
+			berserker
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_berserker_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = heightened_senses_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_berserker_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_berserker_1 = {
+
+		berserker = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_berserker_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_berserker_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_berserker_2 = {
+
+		berserker = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_berserker_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_berserker_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_berserker_3 = {
+
+		berserker = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_berserker_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x =9 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_berserker_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_berserker_4 = {
+
+		berserker = {
+			initiative = 0.1
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_berserker_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	heightened_senses_1 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = heightened_senses_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			heightened_senses_technology
+		}
+
+	}
+
+	heightened_senses_2 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = heightened_senses_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			heightened_senses_technology
+		}
+	}
+
+	heightened_senses_3 = {
+
+		land_night_attack = 0.1
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 7 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			heightened_senses_technology
+		}
+	}
+
+	troll_pathfinder_tech = {
+
+		enable_subunits = {
+			pathfinder
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_pathfinder_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_pathfinder_technology
+			troll_support_technology
+			support_technology
+		}
+	}
+
+	improved_pathfinder_1 = {
+
+		pathfinder = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_pathfinder_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 15 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_pathfinder_technology
+			troll_support_technology
+			support_technology
+		}
+	}
+
+	improved_pathfinder_2 = {
+
+		pathfinder = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_pathfinder_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_pathfinder_technology
+			troll_support_technology
+			support_technology
+		}
+	}
+
+	improved_pathfinder_3 = {
+
+		pathfinder = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_pathfinder_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 15 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_pathfinder_technology
+			troll_support_technology
+			support_technology
+		}
+	}
+
+	improved_pathfinder_4 = {
+
+		pathfinder = {
+			recon = 1.5
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_barracks_technology
+			troll_pathfinder_technology
+			troll_support_technology
+			support_technology
+		}
+	}
+
+	pathfinder_sentry_wards = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_sentry_wards	} 
+		}
+
+		pathfinder = {
+			breakthrough = 0.1
+			defense = 0.1
+			recon = 0.5
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 15 y = 14 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_fetishes_technology
+		}
+	}
+
+	troll_spirit_lodge_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { arcane_tower_tech_global = 1 popup = no }
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = troll_fetishes_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = hexxer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = witch_doctor_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spirit_ritual_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 22 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	hexxer_tech = {
+
+		enable_subunits = {
+			hexxer
+			hexxer_support
+		}
+
+		on_research_complete = {
+			set_technology = { hexxer_equipment_tech_1 = 1 }
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = hexxer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 22 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	hexxer_equipment_tech_1 = {
+
+		enable_equipments = {
+			hexxer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = hex_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = voodoo_idol_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 22 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	hex_tech = {
+
+		hexxer = {
+			defense = 0.1
+			default_morale = 0.10
+		}
+		hexxer_support = {
+			defense = 0.1
+			default_morale = 0.10
+		}
+
+		paku_chosen = {
+			defense = 0.1
+			default_morale = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { voodoo_idol_tech }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 21 y = 6 }
+		}
+
+		path = {
+			leads_to_tech = hexxer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = voodoo_idol_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = voodoo_idol_tech
+			}
+		}
+	}
+
+	voodoo_idol_tech = {
+
+		hexxer = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+		hexxer_support = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		paku_chosen = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { hex_tech }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 23 y = 6 }
+		}
+
+		path = {
+			leads_to_tech = hexxer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = hex_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = hex_tech
+			}
+		}
+	}
+
+	hexxer_equipment_tech_2 = {
+
+		enable_equipments = {
+			hexxer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = wrath_of_de_spirits_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = hex_of_weakness_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 22 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wrath_of_de_spirits_tech = {
+
+		hexxer = {
+			soft_attack = 0.2
+			breakthrough = 0.2
+		}
+		hexxer_support = {
+			soft_attack = 0.2
+			breakthrough = 0.2
+		}
+
+		paku_chosen = {
+			soft_attack = 0.2
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { hex_of_weakness_tech }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 21 y = 10 }
+		}
+
+		path = {
+			leads_to_tech = hexxer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = hex_of_weakness_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = hex_of_weakness_tech
+			}
+		}
+	}
+
+	hex_of_weakness_tech = {
+
+		hexxer = {
+			defense = 0.2
+		}
+		hexxer_support = {
+			defense = 0.2
+		}
+
+		paku_chosen = {
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { wrath_of_de_spirits_tech }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 23 y = 10 }
+		}
+
+		path = {
+			leads_to_tech = hexxer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wrath_of_de_spirits_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wrath_of_de_spirits_tech
+			}
+		}
+	}
+
+	hexxer_equipment_tech_3 = {
+
+		enable_equipments = {
+			hexxer_equipment_3
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 22 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_hexxer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	witch_doctor_tech = {
+
+		enable_subunits = {
+			witch_doctor
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_witch_doctor_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 25 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_witch_doctor_technology
+			troll_support_technology
+			support_technology
+		}
+	}
+
+	improved_witch_doctor_1 = {
+
+		witch_doctor = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_witch_doctor_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 25 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_witch_doctor_technology
+			troll_support_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_witch_doctor_2 = {
+
+		witch_doctor = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_witch_doctor_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 25 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_witch_doctor_technology
+			troll_support_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_witch_doctor_3 = {
+
+		witch_doctor = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_witch_doctor_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 25 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_witch_doctor_technology
+			troll_support_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_witch_doctor_4 = {
+
+		witch_doctor = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 25 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_witch_doctor_technology
+			troll_support_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	spirit_ritual_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = spirit_ritual_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 27 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	spirit_ritual_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = spirit_ritual_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 27 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	spirit_ritual_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = spirit_ritual_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 27 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	spirit_ritual_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 27 y = 12 }
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	troll_fetishes_1 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = troll_fetishes_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 19 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_fetishes_technology
+		}
+	}
+
+	troll_fetishes_2 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = troll_fetishes_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 19 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_fetishes_technology
+		}
+	}
+
+	troll_fetishes_3 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 19 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_fetishes_technology
+		}
+	}
+
+	lesser_serpent_wards = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_lesser_serpent_wards	} 
+		}
+
+		hexxer = {
+			hard_attack = 0.15
+			defense = 0.1
+		}
+		hexxer_support = {
+			hard_attack = 0.15
+			defense = 0.1
+		}
+		witch_doctor = {
+			hard_attack = 0.15
+			defense = 0.1
+		}
+
+		paku_chosen = {
+			hard_attack = 0.15
+			defense = 0.1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_infantry_folder
+			position = { x = 22 y = 14 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			troll_spirit_lodge_technology
+			troll_fetishes_technology
+		}
+	}
+}

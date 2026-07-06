@@ -1,0 +1,986 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	ogre_altar_of_storms_tech = {
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_warlord_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_gladiator_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_magi_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_heroic_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	ogre_warlord_tech = {
+
+		enable_subunits = {
+			ogre_warlord
+		}
+
+		on_research_complete = {
+			set_technology = { ogre_warlord_equipment_tech_1 = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_warlord_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 6 y = 3 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_warlord_equipment_tech_1 = {
+
+		enable_equipments = {
+			ogre_warlord_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ironhide_armor
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thundering_charge
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 6 y = 5 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	ironhide_armor = {
+
+		ogre_warlord = {
+			armor_value = 0.1
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { thundering_charge }
+
+		path = {
+			leads_to_tech = ogre_warlord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 5 y = 7 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	thundering_charge = {
+
+		ogre_warlord = {
+			breakthrough = 0.15
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { ironhide_armor }
+
+		path = {
+			leads_to_tech = ogre_warlord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 7 y = 7 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_warlord_equipment_tech_2 = {
+
+		enable_equipments = {
+			ogre_warlord_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = war_banners
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = razor_reins
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 6 y = 9 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	war_banners = {
+
+		ogre_warlord = {
+			max_organisation = 5
+			default_morale = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { razor_reins }
+
+		path = {
+			leads_to_tech = ogre_warlord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 5 y = 11 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	razor_reins = {
+
+		ogre_warlord = {
+			maximum_speed = 0.2
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { war_banners }
+
+		path = {
+			leads_to_tech = ogre_warlord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 7 y = 11 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_warlord_equipment_tech_3 = {
+
+		enable_equipments = {
+			ogre_warlord_equipment_3
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 6 y = 13 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_warlord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_gladiator_tech = {
+
+		enable_subunits = {
+			ogre_gladiator
+		}
+
+		on_research_complete = {
+			set_technology = { ogre_gladiator_equipment_tech_1 = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_gladiator_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 10 y = 3 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_gladiator_equipment_tech_1 = {
+
+		enable_equipments = {
+			ogre_gladiator_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = titan_grip
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ironclad_shields
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 10 y = 5 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	titan_grip = {
+
+		ogre_gladiator = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			ap_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { ironclad_shields }
+
+		path = {
+			leads_to_tech = ogre_gladiator_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 9 y = 7 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ironclad_shields = {
+
+		ogre_gladiator = {
+			armor_value = 0.2
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { titan_grip }
+
+		path = {
+			leads_to_tech = ogre_gladiator_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 11 y = 7 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_gladiator_equipment_tech_2 = {
+
+		enable_equipments = {
+			ogre_gladiator_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ferocious_onslaught
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = great_spears
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 10 y = 9 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ferocious_onslaught = {
+
+		ogre_gladiator = {
+			breakthrough = 0.10
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { great_spears }
+
+		path = {
+			leads_to_tech = ogre_gladiator_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 9 y = 11 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	great_spears = {
+
+		ogre_gladiator = {
+			hard_attack = 0.2
+			ap_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { ferocious_onslaught }
+
+		path = {
+			leads_to_tech = ogre_gladiator_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 11 y = 11 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_gladiator_equipment_tech_3 = {
+
+		enable_equipments = {
+			ogre_gladiator_equipment_3
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 10 y = 13 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_gladiator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_magi_tech = {
+
+		enable_subunits = {
+			ogre_magi
+		}
+
+		on_research_complete = {
+			set_technology = { ogre_magi_equipment_tech_1 = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_magi_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 14 y = 3 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_magi_equipment_tech_1 = {
+
+		enable_equipments = {
+			ogre_magi_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = arcane_amplification
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = mystic_wards
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 14 y = 5 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	arcane_amplification = {
+
+		ogre_magi = {
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { mystic_wards }
+
+		path = {
+			leads_to_tech = ogre_magi_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 13 y = 7 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	mystic_wards = {
+
+		ogre_magi = {
+			max_strength = 0.25
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { arcane_amplification }
+
+		path = {
+			leads_to_tech = ogre_magi_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 15 y = 7 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_magi_equipment_tech_2 = {
+
+		enable_equipments = {
+			ogre_magi_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = skyward_barrage
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = mystic_veil
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 14 y = 9 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	skyward_barrage = {
+
+		ogre_magi = {
+			anti_air_attack = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { mystic_veil }
+
+		path = {
+			leads_to_tech = ogre_magi_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 13 y = 11 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	mystic_veil = {
+
+		ogre_magi = {
+			hardness = 0.3
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { skyward_barrage }
+
+		path = {
+			leads_to_tech = ogre_magi_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 15 y = 11 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_magi_equipment_tech_3 = {
+
+		enable_equipments = {
+			ogre_magi_equipment_3
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 14 y = 13 }
+		}
+
+		categories = {
+			altar_technology
+			ogre_magi_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_heroic_training_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_heroic_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 17 y = 5 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	ogre_heroic_training_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_heroic_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 17 y = 9 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	ogre_heroic_training_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_heroic_units_folder
+			position = { x = 17 y = 13 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+}

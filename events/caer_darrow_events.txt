@@ -1,0 +1,1407 @@
+###########################
+# Caer Darrow events
+###########################
+
+# Used for events pre-Cult of the Damned or non related to it
+# add_namespace = caer_darrow
+
+add_namespace = cult_of_the_damned
+
+# The Cult of the Damned Rises (from lordaeron_third_war.7)
+country_event = {
+	id = cult_of_the_damned.1
+	title = cult_of_the_damned.1.t
+	desc = cult_of_the_damned.1.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.1.option.1
+
+		hidden_effect = {
+			retire_character = CAE_magistrate_marduke
+
+			add_war_support = 0.25
+			add_ideas = war_economy
+			add_ideas = cult
+
+			country_lock_all_division_template = no
+
+			hidden_effect = {
+				set_division_template_lock = {
+					division_template = "Cult of the Damned Necromancers"
+					is_locked = no
+				}
+				set_division_template_lock = {
+					division_template = "Cult of the Damned Skeletons"
+					is_locked = no
+				}
+			}
+
+			load_oob = CAE_andorhal
+			load_oob = CAE_scholomance
+			if = {
+				limit = {
+					has_country_flag = andorhall_abomination
+				}
+				1708 = {
+					create_unit = {
+						division = "name = \"Cult of the Damned Abominations\" division_template = \"Cult of the Damned Abominations\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = CAE
+						count = 3
+					}
+				}
+				1567 = {
+					create_unit = {
+						division = "name = \"Cult of the Damned Abominations\" division_template = \"Cult of the Damned Abominations\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = CAE
+						count = 3
+					}					
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = andorhall_undead_plague_hounds
+				}
+				1708 = {
+					create_unit = {
+						division = "name = \"Cult of the Damned Plague Hounds\" division_template = \"Cult of the Damned Plague Hounds\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = CAE
+						count = 3
+					}
+				}
+				1567 = {
+					create_unit = {
+						division = "name = \"Cult of the Damned Plague Hounds\" division_template = \"Cult of the Damned Plague Hounds\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = CAE
+						count = 3
+					}					
+				}
+			}
+		}
+
+		set_politics = {
+			ruling_party = death
+		}
+
+		add_popularity = {
+		    ideology = death
+		    popularity = 0.9
+		}
+
+		# Accept Undead (id 129)
+		set_temp_variable = { race_to_accept = 129 }
+		add_race_as_accepted_race = yes
+		add_ideas = undead_primary_race
+
+		# Unaccept humans (id 60)
+		# (technically there are humans in the cult, but that allows to convert
+		# the race of the human conquered lands to undead)
+		set_temp_variable = { race_to_accept = 60 }
+		remove_race_as_accepted_race = yes
+
+		# Accept Disciples of the Lich King (id 29)
+		set_temp_variable = { religion_to_accept = 29 }
+		add_religion_as_accepted_religion = yes
+		add_ideas = primary_religion_disciples_of_the_lich_king
+
+		# Unaccept Church of the Holy Light (id 1)
+		set_temp_variable = { religion_to_unaccept = 1 }
+		remove_religion_as_accepted_religion = yes
+
+		every_owned_state = {
+			add_core_of = CAE
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+
+		swap_ideas = {
+			remove_idea = primary_trait_diplomatic
+			add_idea = primary_trait_cannibalism
+		}
+		swap_ideas = {
+			remove_idea = primary_trait_human_spirit
+			add_idea = primary_trait_no_need_to_sleep
+		}
+		swap_ideas = {
+			remove_idea = primary_trait_perception
+			add_idea = primary_trait_dismemberment_irrelevant
+		}
+	}
+}
+
+# Prince Arthas takes Command (from lordaeron_third_war.32)
+country_event = {
+	id = cult_of_the_damned.2
+	title = cult_of_the_damned.2.t
+	desc = cult_of_the_damned.2.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.2.option.1
+
+		retire_character = CAE_cult_of_the_damned
+		create_country_leader = {
+			name = "Arthas Menethil"
+			desc = "POLITICS_ARTHAS_SCOURGE_DESC"
+			picture = "gfx/leaders/CAE/arthas_death_knight.dds"
+			expire = "1965.1.1"
+			ideology = death_type
+			traits = { king_of_lordaeron }
+		}
+		create_field_marshal = {
+			name = "Arthas Menethil"
+			picture = "gfx/leaders/CAE/arthas_death_knight.dds"
+			traits = { unholy_trait }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+
+		hidden_effect = {
+			LOR = { retire_character = LOR_arthas_menethil }
+            country_event = {
+                id = cult_of_the_damned.3
+                days = 7
+            }
+        }
+	}
+}
+
+# Rallying the Cult (from cult_of_the_damned.3)
+country_event = {
+	id = cult_of_the_damned.3
+	title = cult_of_the_damned.3.t
+	desc = cult_of_the_damned.3.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.3.option.1
+
+		add_manpower = 5000
+
+		add_popularity = {
+		    ideology = death
+		    popularity = 0.05
+		}
+
+		#SRG = { puppet = CAE }
+
+		set_cosmetic_tag = CAE_scourge
+
+		hidden_effect = {
+			set_popularities = {
+			    alliance = 0
+			    horde = 0
+			    death = 85
+			    fel = 5
+			    old_gods = 0
+			    titans = 0
+			    neutral = 10
+			}
+
+            country_event = {
+                id = cult_of_the_damned.4
+                days = 7
+            }
+        }
+	}
+}
+
+# Return to Andorhal (from cult_of_the_damned.3)
+country_event = {
+	id = cult_of_the_damned.4
+	title = cult_of_the_damned.4.t
+	desc = cult_of_the_damned.4.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.4.option.1
+
+		hidden_effect = {
+            country_event = {
+                id = cult_of_the_damned.5
+                days = 1
+            }
+        }
+	}
+}
+
+# The Remains (from cult_of_the_damned.4)
+country_event = {
+	id = cult_of_the_damned.5
+	title = cult_of_the_damned.5.t
+	desc = cult_of_the_damned.5.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.5.option.1
+
+		hidden_effect = {
+            country_event = {
+                id = cult_of_the_damned.6
+                days = 1
+            }
+        }
+	}
+}
+
+# An Old Friend - Part 1 (from cult_of_the_damned.5)
+country_event = {
+	id = cult_of_the_damned.6
+	title = cult_of_the_damned.6.t
+	desc = cult_of_the_damned.6.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.6.option.1
+
+		country_event = cult_of_the_damned.7
+		hidden_effect = {
+			LOR = {
+				add_country_leader_role = {
+					character = LOR_othmar_garithos
+					promote_leader = yes
+					country_leader = {
+						ideology = alliance_type
+						expire = "616.1.1.1"
+						traits = { }
+					}
+				}
+			}
+		}
+	}
+}
+
+# An Old Friend - Part 2 (from cult_of_the_damned.6)
+country_event = {
+	id = cult_of_the_damned.7
+	title = cult_of_the_damned.7.t
+	desc = cult_of_the_damned.7.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.7.option.1
+
+		custom_effect_tooltip = cult_of_the_damned.7.option.1.d
+		set_country_flag = CAE_quelthalas_flag
+		LOR = { retire_character = LOR_uther }
+	}
+}
+
+# The Ranger General
+country_event = {
+	id = cult_of_the_damned.8
+	title = cult_of_the_damned.8.t
+	desc = cult_of_the_damned.8.d
+	# picture = GFX_report_event_german_parade_paris
+
+	trigger = {
+		original_tag = CAE
+		has_war_with = QUE
+		has_government = death
+
+		OR = {
+			controls_state = 104
+			controls_state = 169
+			controls_state = 177
+			controls_state = 2107
+			controls_state = 2246
+		}
+	}
+
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.8.option.1
+
+		custom_effect_tooltip = cult_of_the_damned.8.option.1.d
+
+		#TODO: add banshee Sylvannas as army general / advisor
+
+		QUE = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+	}
+
+	option = {
+    	name = cult_of_the_damned.8.option.2
+
+		custom_effect_tooltip = cult_of_the_damned.8.option.2.d
+
+		QUE = {
+			add_stability = -0.05
+			add_war_support = -0.05
+		}
+	}
+}
+
+# The Lich Lord
+country_event = {
+	id = cult_of_the_damned.9
+	title = cult_of_the_damned.9.t
+	desc = cult_of_the_damned.9.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.9.option.1
+
+		custom_effect_tooltip = cult_of_the_damned.9.option.1.d
+
+		hidden_effect = {
+            country_event = {
+                id = cult_of_the_damned.10
+                days = 14
+            }
+        }
+	}
+}
+
+# The Revelation
+country_event = {
+	id = cult_of_the_damned.10
+	title = cult_of_the_damned.10.t
+	desc = cult_of_the_damned.10.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.10.option.1
+
+		hidden_effect = {
+            country_event = {
+                id = cult_of_the_damned.11
+                days = 3
+            }
+        }
+	}
+}
+
+# Archimonde
+country_event = {
+	id = cult_of_the_damned.11
+	title = cult_of_the_damned.11.t
+	desc = cult_of_the_damned.11.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.11.option.1
+
+		custom_effect_tooltip = cult_of_the_damned.11.option.1.d
+
+		set_country_flag = CAE_summoning_archimonde_flag
+	}
+}
+
+# Under the Burning Sky
+country_event = {
+	id = cult_of_the_damned.12
+	title = cult_of_the_damned.12.t
+	desc = cult_of_the_damned.12.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.12.option.1
+
+		custom_effect_tooltip = cult_of_the_damned.12.option.1.d
+
+		TBL = {
+			transfer_state = 14
+			transfer_state = 2250
+			transfer_state = 2251
+
+			declare_war_on = {
+                target = DAL
+                type = annex_everything
+            }
+
+			declare_war_on = {
+                target = LOR
+                type = annex_everything
+            }
+		}
+	}
+}
+
+# The Destruction of Dalaran
+country_event = {
+	id = cult_of_the_damned.13
+	title = cult_of_the_damned.13.t
+	desc = cult_of_the_damned.13.d
+	# picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.13.option.1
+		TBL = { change_tag_from = CAE }
+
+		14 = {
+			damage_building = {
+			    type = infrastructure
+			    damage = 2
+			}
+			damage_building = {
+			    type = industrial_complex
+			    damage = 1
+			}
+			damage_building = {
+			    type = arms_factory
+			    damage = 1
+			}
+		}
+		2250 = {
+			damage_building = {
+			    type = infrastructure
+			    damage = 2
+			}
+			damage_building = {
+			    type = industrial_complex
+			    damage = 2
+			}
+		}
+		2251 = {
+			damage_building = {
+			    type = infrastructure
+			    damage = 2
+			}
+			damage_building = {
+			    type = industrial_complex
+			    damage = 2
+			}
+		}
+	}
+
+	option = {
+    	name = cult_of_the_damned.13.option.2
+		14 = {
+			damage_building = {
+			    type = infrastructure
+			    damage = 2
+			}
+			damage_building = {
+			    type = industrial_complex
+			    damage = 1
+			}
+			damage_building = {
+			    type = arms_factory
+			    damage = 1
+			}
+		}
+		2250 = {
+			damage_building = {
+			    type = infrastructure
+			    damage = 2
+			}
+			damage_building = {
+			    type = industrial_complex
+			    damage = 2
+			}
+		}
+		2251 = {
+			damage_building = {
+			    type = infrastructure
+			    damage = 2
+			}
+			damage_building = {
+			    type = industrial_complex
+			    damage = 2
+			}
+		}
+	}
+}
+
+# starting event
+country_event = {
+	id = cult_of_the_damned.14
+	title = cult_of_the_damned.14.t
+	desc = cult_of_the_damned.14.d
+	picture = GFX_caer_darrow_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.14.option.1
+		add_political_power = 25
+	}
+}
+
+# the scholomance
+country_event = {
+	id = cult_of_the_damned.15
+	title = cult_of_the_damned.15.t
+	desc = cult_of_the_damned.15.d
+	picture = GFX_scholomance_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.15.option.1
+    	103 = {	
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = nuclear_facility
+				level = 1
+				province = 1853
+			}
+		}
+    	add_ideas = CAE_the_scholomance_idea
+	}
+}
+
+# naxxramas the floating citadel
+country_event = {
+	id = cult_of_the_damned.16
+	title = cult_of_the_damned.16.t
+	desc = cult_of_the_damned.16.d
+	picture = GFX_naxxramas_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.16.option.1
+		add_offsite_building = {
+			type = arms_factory
+			level = 5
+		}
+		add_offsite_building = {
+			type = industrial_complex
+			level = 5
+		}
+		103 = {
+			add_building_construction = {
+				type = radar_station
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = anti_air_building
+				level = 3
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 7
+				instant_build = yes
+			}
+    	}
+	}
+}
+
+# lich king discovers undead_ghouls #sent from lich king events
+country_event = {
+	id = cult_of_the_damned.17
+	title = cult_of_the_damned.17.t
+	desc = cult_of_the_damned.17.d
+	picture = GFX_undead_ghoul_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.17.option.1
+		set_technology = {
+			undead_crypt_tech = 1
+			undead_ghoul_tech = 1
+			undead_ghoul_equipment_tech_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = undead_ghoul_equipment_1
+			amount = 1000
+			producer = CAE
+		}
+		division_template = {
+			name = "Cult of the Damned Ghouls"
+			regiments = {
+				undead_ghoul = { x = 0 y = 0 }
+				undead_ghoul = { x = 0 y = 1 }
+				undead_ghoul = { x = 0 y = 2 }
+				undead_ghoul = { x = 0 y = 3 }
+				undead_ghoul = { x = 0 y = 4 }
+				undead_ghoul = { x = 1 y = 0 }
+				undead_ghoul = { x = 1 y = 1 }
+				undead_ghoul = { x = 1 y = 2 }
+				undead_ghoul = { x = 1 y = 3 }
+				undead_ghoul = { x = 1 y = 4 }
+			}
+			priority = 1
+		}
+
+		hidden_effect = { set_country_flag = CAE_undead_ghoul_event }
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.18
+	title = cult_of_the_damned.18.t
+	desc = cult_of_the_damned.18.d
+	picture = GFX_abomination_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.18.option.1
+		set_technology = {
+			undead_abomination_tech = 1
+			undead_abomination_equipment_tech_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = undead_abomination_equipment_1
+			amount = 500
+			producer = CAE
+		}
+		division_template = {
+			name = "Cult of the Damned Abominations"
+			regiments = {
+				undead_abomination = { x = 0 y = 0 }
+				undead_abomination = { x = 0 y = 1 }
+				undead_abomination = { x = 0 y = 2 }
+				undead_abomination = { x = 0 y = 3 }
+				undead_abomination = { x = 0 y = 4 }
+				undead_abomination = { x = 1 y = 0 }
+				undead_abomination = { x = 1 y = 1 }
+				undead_abomination = { x = 1 y = 2 }
+				undead_abomination = { x = 1 y = 3 }
+				undead_abomination = { x = 1 y = 4 }
+			}
+			priority = 1
+		}
+	}
+}
+
+#gargoyles from northrend
+country_event = { #from scourge event
+	id = cult_of_the_damned.19
+	title = cult_of_the_damned.19.t
+	desc = cult_of_the_damned.19.d
+	picture = GFX_gargoyle_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.19.option.1
+		set_technology = {
+			aviary_tech = 1
+			organic_flight = 1
+			swift_breeds = 1
+			fighter_breeds_1 = 1
+			cas_breeds_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = organic_fighter_equipment_1
+			amount = 300
+			producer = SRG
+		}
+		add_equipment_to_stockpile = {
+			type = organic_cas_equipment_1
+			amount = 100
+			producer = SRG
+		}
+	}
+}
+
+#summoning rituals
+country_event = {
+	id = cult_of_the_damned.20
+	title = cult_of_the_damned.20.t
+	desc = cult_of_the_damned.20.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.20.option.1
+		set_technology = {
+			undead_haunted_mine_tech = 1
+			undead_graveyard_tech = 1
+			undead_sacrificial_pit_tech = 1
+			undead_ziggurat_tech = 1
+			undead_spirit_tower_tech = 1
+			undead_saronite_wall_tech = 1
+			undead_altar_of_darkness_tech = 1
+		}
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.21
+	title = cult_of_the_damned.21.t
+	desc = cult_of_the_damned.21.d
+	picture = GFX_baron_riverdare_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.21.option.1
+		create_field_marshal = {
+			name = "Baron Riverdare"
+			picture = "baron_rivendare.dds"
+			traits = {  }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.22
+	title = cult_of_the_damned.22.t
+	desc = cult_of_the_damned.22.d
+	picture = GFX_skeletal_horse_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.22.option.1
+		set_technology = {
+			undead_skeletal_knight_tech = 1
+			undead_skeletal_knight_equipment_tech_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = undead_skeletal_knight_equipment_1
+			amount = 300
+			producer = CAE
+		}
+		division_template = {
+			name = "Cult of the Damned Skeletal Knights"
+			regiments = {
+				undead_skeletal_knight = { x = 0 y = 0 }
+				undead_skeletal_knight = { x = 0 y = 1 }
+				undead_skeletal_knight = { x = 0 y = 2 }
+				undead_skeletal_knight = { x = 1 y = 0 }
+				undead_skeletal_knight = { x = 1 y = 1 }
+				undead_skeletal_knight = { x = 1 y = 2 }
+				undead_plague_hound = { x = 2 y = 0 }
+				undead_plague_hound = { x = 2 y = 1 }
+				undead_plague_hound = { x = 2 y = 2 }
+				undead_plague_hound = { x = 2 y = 3 }
+			}
+			priority = 1
+		}
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.23
+	title = cult_of_the_damned.23.t
+	desc = cult_of_the_damned.23.d
+	picture = GFX_skeletal_horse_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.23.option.1
+		set_technology = {
+			undead_lich_tech = 1
+			undead_lich_equipment_tech_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = undead_lich_equipment_1
+			amount = 100
+			producer = CAE
+		}
+		create_corps_commander = {
+			name = "Araj the Summoner"
+			picture = "araj_the_summoner.dds"
+			traits = { frost_mage_trait }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		create_corps_commander = {
+			name = "Ras Frostwhisper"
+			picture = "ras_frostwhisper.dds"
+			traits = { frost_mage_trait }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+		division_template = {
+			name = "Cult of the Damned Lichs"
+			regiments = {
+				undead_lich = { x = 0 y = 0 }
+				undead_lich = { x = 0 y = 1 }
+				undead_lich = { x = 0 y = 2 }
+				undead_lich = { x = 0 y = 3 }
+				undead_lich = { x = 0 y = 4 }
+				undead_lich = { x = 1 y = 0 }
+				undead_lich = { x = 1 y = 1 }
+				undead_lich = { x = 1 y = 2 }
+				undead_lich = { x = 1 y = 3 }
+				undead_lich = { x = 1 y = 4 }
+			}
+			priority = 1
+		}
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.24
+	title = cult_of_the_damned.24.t
+	desc = cult_of_the_damned.24.d
+	picture = GFX_skeletal_horse_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.24.option.1
+		set_technology = {
+			undead_haunted_stable_tech = 1
+			undead_plague_hound_tech = 1
+			undead_plague_hound_equipment_tech_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = undead_plague_hound_equipment_1
+			amount = 200
+			producer = CAE
+		}
+		division_template = {
+			name = "Cult of the Damned Plague Hounds"
+			regiments = {
+				undead_plague_hound = { x = 0 y = 0 }
+				undead_plague_hound = { x = 0 y = 1 }
+				undead_plague_hound = { x = 0 y = 2 }
+				undead_plague_hound = { x = 0 y = 3 }
+				undead_plague_hound = { x = 0 y = 4 }
+				undead_plague_hound = { x = 1 y = 0 }
+				undead_plague_hound = { x = 1 y = 1 }
+				undead_plague_hound = { x = 1 y = 2 }
+				undead_plague_hound = { x = 1 y = 3 }
+				undead_plague_hound = { x = 1 y = 4 }
+			}
+			priority = 1
+		}
+	}
+}
+
+#slaughterhouse
+country_event = {
+	id = cult_of_the_damned.25
+	title = cult_of_the_damned.25.t
+	desc = cult_of_the_damned.25.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.25.option.1
+		add_equipment_to_stockpile = {
+			type = haunted_caravan_equipment_1
+			amount = 300
+			producer = CAE
+		}
+		add_equipment_to_stockpile = {
+			type = undead_meat_wagon_equipment_1
+			amount = 150
+			producer = CAE
+		}
+		set_technology = {
+			slaughterhouse_tech = 1
+			undead_meat_wagon_tech = 1
+			undead_meat_wagon_equipment_tech_1 = 1
+			haunted_caravan_equipment_tech_1 = 1
+		}
+	}
+}
+
+#the scourging of lordaeron
+country_event = {
+	id = cult_of_the_damned.26
+	title = cult_of_the_damned.26.t
+	desc = cult_of_the_damned.26.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { #deploy abominations
+    	name = cult_of_the_damned.26.option.1
+		# 6 abominations
+		hidden_effect = { set_country_flag = andorhall_abomination }
+	}
+
+    option = { # deploy plague hounds
+    	name = cult_of_the_damned.26.option.2
+		# 6 plague hounds
+		hidden_effect = { set_country_flag = andorhall_undead_plague_hounds }
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.27
+	desc = cult_of_the_damned.27.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+
+    title = { #
+        text = cult_of_the_damned.27.t.1
+        trigger = {
+			NOT = {
+				OR = {
+					has_country_flag = CAE_infect_darrowshire
+					has_country_flag = CAE_infect_northdale	
+					has_country_flag = CAE_infect_new_avalon
+					has_country_flag = CAE_infect_corins_crossing
+				}
+			}
+		}
+	}
+
+    title = { #
+        text = cult_of_the_damned.27.t.2
+        trigger = {
+			OR = {
+				has_country_flag = CAE_infect_darrowshire
+				has_country_flag = CAE_infect_northdale	
+				has_country_flag = CAE_infect_new_avalon
+				has_country_flag = CAE_infect_corins_crossing
+			}
+		}
+	}
+
+    option = { #infect darrowshire
+    	name = cult_of_the_damned.27.option.1
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_darrowshire }
+        }
+
+		set_country_flag = CAE_infect_darrowshire
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_northdale
+						has_country_flag = CAE_infect_new_avalon
+						has_country_flag = CAE_infect_corins_crossing
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.27
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect northdale
+    	name = cult_of_the_damned.27.option.2
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_northdale	}
+        }
+
+		set_country_flag = CAE_infect_northdale
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_darrowshire
+						has_country_flag = CAE_infect_new_avalon
+						has_country_flag = CAE_infect_corins_crossing
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.27
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect new avalon
+    	name = cult_of_the_damned.27.option.3
+
+		trigger = {
+			NOT = {	has_country_flag = CAE_infect_new_avalon }
+        }
+
+		set_country_flag = CAE_infect_new_avalon
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_darrowshire
+						has_country_flag = CAE_infect_northdale
+						has_country_flag = CAE_infect_corins_crossing
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.27
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect corin's crossing
+    	name = cult_of_the_damned.27.option.4
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_corins_crossing }
+        }
+
+		set_country_flag = CAE_infect_corins_crossing
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_darrowshire
+						has_country_flag = CAE_infect_northdale
+						has_country_flag = CAE_infect_new_avalon
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.27
+	                days = 1
+	            }
+            }
+        }
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.28
+	title = cult_of_the_damned.28.t
+	desc = cult_of_the_damned.28.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { #deploy abominations
+    	name = cult_of_the_damned.28.option.1
+		# 5 abominations
+		hidden_effect = {
+			set_country_flag = stratholme_abomination
+        }
+	}
+
+    option = { # deploy plague hounds
+    	name = cult_of_the_damned.28.option.2
+		# 3 Skeletal knights
+		hidden_effect = {
+			set_country_flag = stratholme_undead_skeletal_knights
+        }
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.29
+	title = cult_of_the_damned.29.t
+	desc = cult_of_the_damned.29.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+
+    option = { #infect vandermar
+    	name = cult_of_the_damned.29.option.1
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_vandermar }
+        }
+
+		set_country_flag = CAE_infect_vandermar
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_agamand_mills
+						has_country_flag = CAE_infect_brill
+						has_country_flag = CAE_infect_the_old_monastery
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.29
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect northdale
+    	name = cult_of_the_damned.29.option.2
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_agamand_mills }
+        }
+
+		set_country_flag = CAE_infect_agamand_mills
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_vandermar
+						has_country_flag = CAE_infect_brill
+						has_country_flag = CAE_infect_the_old_monastery
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.29
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect new avalon
+    	name = cult_of_the_damned.29.option.3
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_brill	}
+        }
+
+		set_country_flag = CAE_infect_brill
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_vandermar
+						has_country_flag = CAE_infect_agamand_mills
+						has_country_flag = CAE_infect_the_old_monastery
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.29
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect corin's crossing
+    	name = cult_of_the_damned.29.option.4
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_the_old_monastery	}
+        }
+
+		set_country_flag = CAE_infect_the_old_monastery
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_vandermar
+						has_country_flag = CAE_infect_agamand_mills
+						has_country_flag = CAE_infect_brill
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.29
+	                days = 1
+	            }
+            }
+        }
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.30
+	title = cult_of_the_damned.30.t
+	desc = cult_of_the_damned.30.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+    	name = cult_of_the_damned.30.option.1
+
+		set_country_flag = CAE_the_sepulcher
+	}
+
+    option = { # deploy plague hounds
+    	name = cult_of_the_damned.30.option.2
+		
+		set_country_flag = CAE_the_farmlands
+	}
+
+    option = { #infect fenris isle
+    	name = cult_of_the_damned.30.option.3
+
+		set_country_flag = CAE_fenris_isle
+	}
+}
+
+country_event = {
+	id = cult_of_the_damned.31
+	title = cult_of_the_damned.31.t
+	desc = cult_of_the_damned.31.d
+	picture = GFX_acolyte_event
+
+	is_triggered_only = yes
+
+    #title = { 
+    #    text = cult_of_the_damned.31.t.1
+    #    trigger = {
+	#		NOT = {
+	#			OR = {
+	#				has_country_flag = CAE_infect_hillsbrad
+	#				has_country_flag = CAE_infect_southshore
+	#				has_country_flag = CAE_infect_tarren_mill
+	#				has_country_flag = CAE_infect_durnholde
+	#			}
+	#		}
+	#	}
+	#}
+
+    #title = { 
+    #    text = cult_of_the_damned.31.t.2
+    #    trigger = {
+	#		OR = {
+	#			has_country_flag = CAE_infect_hillsbrad
+	#			has_country_flag = CAE_infect_southshore
+	#			has_country_flag = CAE_infect_tarren_mill
+	#			has_country_flag = CAE_infect_durnholde
+	#		}
+	#	}
+	#}
+
+    option = { #infect hillsbrad
+    	name = cult_of_the_damned.31.option.1
+
+		trigger = {
+			NOT = {	has_country_flag = CAE_infect_hillsbrad	}
+        }
+
+		set_country_flag = CAE_infect_hillsbrad
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_southshore
+						has_country_flag = CAE_infect_tarren_mill
+						has_country_flag = CAE_infect_durnholde
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.31
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect northdale
+    	name = cult_of_the_damned.31.option.2
+
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_southshore }
+        }
+
+		set_country_flag = CAE_infect_southshore
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_hillsbrad
+						has_country_flag = CAE_infect_tarren_mill
+						has_country_flag = CAE_infect_durnholde
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.31
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect Tarren Mill
+    	name = cult_of_the_damned.31.option.3
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_tarren_mill }
+        }
+
+		set_country_flag = CAE_infect_tarren_mill
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_hillsbrad
+						has_country_flag = CAE_infect_southshore
+						has_country_flag = CAE_infect_durnholde
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.31
+	                days = 1
+	            }
+            }
+        }
+	}
+    option = { #infect durnholde
+    	name = cult_of_the_damned.31.option.4
+		trigger = {
+			NOT = { has_country_flag = CAE_infect_durnholde	}
+        }
+
+		set_country_flag = CAE_infect_durnholde
+		hidden_effect = {
+			if = {
+	            limit = {
+		            NOT = {
+						has_country_flag = CAE_infect_hillsbrad
+						has_country_flag = CAE_infect_southshore
+						has_country_flag = CAE_infect_tarren_mill
+					}
+	            }
+	            country_event = {
+	                id = cult_of_the_damned.31
+	                days = 1
+	            }
+            }
+        }
+	}
+}
+#32 infiltrate andorhal
+#33 death of kel thuzad
+#straholme result - lore friendly
+#malganis takeover of arthas stays good/doesnt purge strath
+#death of terenas/capital city transfer/ free DKs

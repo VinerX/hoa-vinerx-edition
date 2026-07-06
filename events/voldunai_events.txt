@@ -1,0 +1,110 @@
+﻿###########################
+# The Voldunai
+###########################
+
+add_namespace = voldunai
+
+# Fleeing to the Hideaway
+country_event = {
+	id = voldunai.1
+	title = voldunai.1.t
+	desc = voldunai.1.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = voldunai.1.option.1
+		#This is done already inside the on action
+		effect_tooltip = {
+			2043 = {
+				add_core_of = VOL
+				remove_core_of = ZNE
+				OWNER = {
+					country_event = voldunai.3
+				}
+			}
+			transfer_state = 2043
+		}
+	}
+}
+
+# The Vulpera have capitulated to us and flee to the hideaway
+country_event = {
+	id = voldunai.2
+	title = voldunai.2.t
+	desc = voldunai.2.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = voldunai.2.option.1
+		#This is done already inside the on action
+		effect_tooltip = {
+			VOL = {
+				every_owned_state = {
+					limit = {
+						NOT = { state = 2043 }
+					}
+					transfer_state_to = PREV
+				}
+			}
+		}
+	}
+}
+
+# The Vulpera have capitulated and occupied our owned state in the hideaway!
+country_event = {
+	id = voldunai.3
+	title = voldunai.3.t
+	desc = voldunai.3.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Only ZNE have to take the truce, everyone else can do something about it
+	option = {
+		name = voldunai.3.option.1
+		trigger = {
+			original_tag = ZNE
+		}
+		#This is done already inside the on action
+		effect_tooltip = {
+			2043 = {
+				add_core_of = VOL
+				transfer_state_to = VOL
+				remove_core_of = ZNE
+			}
+		}
+		hidden_effect = {
+			set_truce = {
+				target = VOL
+				days = 720
+			}
+		}
+	}
+
+	#Only ZNE have to take the truce, everyone else can do something about it
+	option = {
+		name = voldunai.3.option.2
+		trigger = {
+			NOT = { original_tag = ZNE }
+		}
+		#This is done already inside the on action
+		effect_tooltip = {
+			2043 = {
+				add_core_of = VOL
+				transfer_state_to = VOL
+				remove_core_of = ZNE
+			}
+		}
+		add_state_claim = 2043
+	}
+}

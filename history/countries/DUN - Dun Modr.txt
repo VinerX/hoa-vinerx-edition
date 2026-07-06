@@ -1,0 +1,120 @@
+﻿capital = 490
+
+set_country_flag = dwarf_technology
+set_research_slots = 3
+
+set_convoys = 40
+
+add_ideas = {
+	military_admin
+	limited_conscription
+	early_military_development
+	limited_exports
+
+	dwarf_primary_race
+	primary_trait_stoneform
+	primary_trait_dwarven_forges
+	primary_trait_might_of_the_mountain
+
+	primary_religion_mystery_of_the_makers
+}
+
+set_technology = {
+	dwarf_hovel_tech = 1
+	dwarf_craftsman_tech = 1
+	dwarf_tools_equipment_tech = 1
+	dwarf_miner_tech = 1
+	dwarf_workshop_tech = 1
+	dwarf_foundry_tech = 1
+
+	dwarf_mustering_hall_tech = 1
+	dwarf_axeman_tech = 1
+	dwarf_axeman_equipment_tech_1 = 1
+	dwarf_enforcer_tech = 1
+	dwarf_rifleman_tech = 1
+	dwarf_rifleman_equipment_tech_1 = 1
+	dwarf_engineer_tech = 1
+	dwarf_runecarvers_sanctum_tech = 1
+	dwarf_rune_priest_tech = 1
+	dwarf_runes_equipment_tech = 1
+	dwarf_thane_tech = 1
+
+	dwarf_siege_workshop_tech = 1
+
+	dwarf_altar_of_stoneborn_kings_tech = 1
+	dwarf_mountain_king_tech = 1
+	dwarf_mountain_king_equipment_tech_1 = 1
+
+	generic_naval_naval_facilities_tech = 1
+	generic_naval_small_frames_tech = 1
+	generic_naval_convoy_tech_1 = 1
+	generic_naval_destroyer_tech_1 = 1
+	generic_naval_naval_transport_1_tech = 1
+}
+
+set_cosmetic_tag = DUN_puppet
+
+recruit_character = DUN_hjalmar_anvilmar
+recruit_character = DUN_thargas_anvilmar
+
+set_politics = {
+	ruling_party = neutral
+	last_election = "590.10.27"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+	alliance = 0
+	horde = 0
+	death = 0
+	fel = 0
+	old_gods = 0
+	titans = 0
+	neutral = 100
+}
+
+596.1.1 = {
+	oob = "DUN_596"
+	set_naval_oob = "DUN_596_naval"
+	set_stability = 0.60
+	set_war_support = 0.4
+
+	add_ideas = {
+		war_economy
+	}
+
+	IRO = {
+		if = {
+			limit = { has_dlc = "Together for Victory" }
+			set_autonomy = {
+				target = DUN
+				autonomous_state = autonomy_personal_union
+				freedom_level = 0.1
+			}
+			else = {
+				puppet = DUN
+			}
+			DUN = {
+				set_popularities = {
+					alliance = 88
+					horde = 0
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 12
+				}
+			}
+		}
+	}
+
+	set_politics = {
+		ruling_party = alliance
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+
+}

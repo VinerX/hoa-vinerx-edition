@@ -1,0 +1,419 @@
+###########################
+# Shadowmoon Clan
+###########################
+add_namespace = shadowmoon_roth
+
+# The death of rulkan
+country_event = {
+	id = shadowmoon_roth.1
+	title = shadowmoon_roth.1.t
+	desc = shadowmoon_roth.1.d
+	picture = GFX_death_of_rulkan_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = shadowmoon_roth.1.option.1
+		add_country_leader_trait = {
+			trait = SMC_death_of_rulkan_trait
+		}
+  	}
+}
+
+# The dark star
+country_event = {
+	id = shadowmoon_roth.2
+	title = shadowmoon_roth.2.t
+	desc = shadowmoon_roth.2.d
+	picture = GFX_shadowmoon_valley_draenor_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = shadowmoon_roth.2.option.1
+		add_to_variable = { faith_points = 100 }
+  	}
+}
+
+
+# The future of the shadowmoon
+country_event = {
+	id = shadowmoon_roth.3
+	title = shadowmoon_roth.3.t
+	desc = shadowmoon_roth.3.d
+	picture = GFX_shadowmoon_valley_draenor_2_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = shadowmoon_roth.3.option.1
+		add_political_power = 50
+  	}
+}
+
+#The Pillars of Fate event
+country_event = {
+	id = shadowmoon_roth.4
+	title = shadowmoon_roth.4.t
+	desc = shadowmoon_roth.4.d
+	picture = GFX_northshire_abbey_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+    option = { #crylak breeding
+        name = shadowmoon_roth.4.option.1
+		complete_national_focus =  SMC_roth_rylak_breeding
+		
+		ai_chance = { 
+			base = 33
+		}
+	}
+
+    option = { #balanced approach
+        name = shadowmoon_roth.4.option.2
+		complete_national_focus = SMC_roth_balanced_approach
+		ai_chance = { 
+			base = 34 
+		}
+	}
+
+    option = { #agriculture focus
+        name = shadowmoon_roth.4.option.3
+		complete_national_focus = SMC_roth_agriculture_focus
+		
+		ai_chance = { 
+			base = 33
+		}
+	}
+}
+
+#throne of elemnts upheavel
+country_event = {
+	id = shadowmoon_roth.5
+	title = shadowmoon_roth.5.t
+	desc = shadowmoon_roth.5.d
+	picture = GFX_shadowmoon_valley_draenor_2_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = shadowmoon_roth.5.option.1
+		#trigger news event for all draenor nations
+  	}
+}
+
+#red pox outbreaks
+country_event = {
+	id = shadowmoon_roth.6
+	title = shadowmoon_roth.6.t
+	desc = shadowmoon_roth.6.d
+	picture = GFX_shadowmoon_valley_draenor_2_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = shadowmoon_roth.6.option.1
+		#trigger news event for all draenor nations
+  	}
+}
+
+#great storms
+country_event = {
+	id = shadowmoon_roth.7
+	title = shadowmoon_roth.7.t
+	desc = shadowmoon_roth.7.d
+	picture = GFX_shadowmoon_valley_draenor_2_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = shadowmoon_roth.7.option.1
+		#trigger news event for all draenor nations
+  	}
+}
+
+add_namespace = shadowmoon
+
+country_event = {
+	id = shadowmoon.1
+	title = shadowmoon.1.t
+	desc = shadowmoon.1.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = shadowmoon.1.option.1
+	}
+}
+
+add_namespace = shadowmoon_obedience
+
+country_event = {
+	id = shadowmoon_obedience.1
+	title = shadowmoon_obedience.1.t
+	desc = shadowmoon_obedience.1.d
+	picture = GFX_news_event_guldans_village
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			LSC = {
+				create_faction = "Fel Horde"
+				add_to_faction = ANG
+				add_to_faction = CAB
+				add_to_faction = STM
+				add_to_faction = WMC
+				add_to_faction = BSC
+				add_to_faction = BMC
+				add_to_faction = BFC
+				add_to_faction = GOR
+			}
+		}
+	}
+
+	option = {
+		name = shadowmoon_obedience.1.option.1
+
+		start_civil_war = {
+			ruling_party = horde
+			ideology = fel
+			size = 0.4
+			capital = 328
+			states = { 328 689 688 693 687 692 695 2268 }
+
+			keep_all_characters = yes
+
+			PREV = { SMC_kelidan_the_breaker = { set_nationality = PREV.PREV } }
+
+			hidden_effect = {
+
+				set_popularities = {
+					alliance = 0
+					horde = 0
+					death = 0
+					fel = 100
+					old_gods = 0
+					titans = 0
+					neutral = 0
+				}
+
+				add_ideas = {
+					tyrant
+					limited_conscription
+					war_economy
+					closed_economy
+	
+					fel_orc_primary_race
+					primary_trait_hardness
+					primary_trait_fel_blood
+	
+					primary_religion_the_fel
+	
+					fel_blood_idea
+				}
+	
+				set_country_flag = orc_technology
+				inherit_technology = SMC
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = {
+				clan
+				limited_conscription
+				war_economy
+				limited_conscription
+			}
+			remove_ideas = secondary_religion_demonology
+			LSC = {
+				declare_war_on = {
+					target = MOK
+					type = annex_everything
+				}
+			}
+			STM = {
+				declare_war_on = {
+					target = MOK
+					type = annex_everything
+				}
+			}
+			
+			328 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			687 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			688 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			689 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			692 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			693 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			695 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			2268 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+
+			set_popularities = {
+				alliance = 0
+				horde = 88
+				death = 0
+				fel = 0
+				old_gods = 0
+				titans = 0
+				neutral = 12
+			}
+
+			
+		}
+	}
+
+	option = {
+		name = shadowmoon_obedience.1.option.2
+		kill_country_leader = yes
+
+		hidden_effect = {
+			set_popularities = {
+				alliance = 0
+				horde = 0
+				death = 0
+				fel = 100
+				old_gods = 0
+				titans = 0
+				neutral = 0
+			}
+
+			add_ideas = {
+				tyrant
+				limited_conscription
+				war_economy
+				closed_economy
+
+				fel_orc_primary_race
+				primary_trait_hardness
+				primary_trait_fel_blood
+
+				primary_religion_the_fel
+			}
+		}
+		
+		start_civil_war = {
+			ruling_party = fel
+			ideology = horde
+			size = 0.4
+			capital = 711
+			states = { 697 2266 696 2270 712 711 715 566 2269 343 713 2267 }
+
+			keep_all_characters = yes
+
+			PREV = { SMC_kelidan_the_breaker = { set_nationality = PREV.PREV } }
+
+			hidden_effect = {
+
+				set_popularities = {
+					alliance = 0
+					horde = 88
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 12
+				}
+
+				add_ideas = {
+					clan
+					limited_conscription
+					war_economy
+					limited_conscription
+	
+					orc_primary_race
+					primary_trait_hardness
+					primary_trait_axe_specialization
+					primary_trait_bloodfury
+	
+					primary_religion_necrolytes
+				}
+	
+				set_country_flag = orc_technology
+				inherit_technology = SMC
+			}
+		}
+
+		hidden_effect = {
+			remove_ideas = orc_primary_race
+			add_ideas = fel_orc_primary_race
+			add_ideas = fel_blood_idea
+			set_capital = { state = 328 }
+			LSC = {
+				declare_war_on = {
+					target = MOK
+					type = annex_everything
+				}
+			}
+			STM = {
+				declare_war_on = {
+					target = MOK
+					type = annex_everything
+				}
+			}
+			328 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			687 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			688 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			689 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			692 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			693 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			695 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+			2268 = {
+				set_variable = { var = race	value = 31 }
+				set_variable = { var = religion	value = 26 }
+			}
+		}
+	}
+}

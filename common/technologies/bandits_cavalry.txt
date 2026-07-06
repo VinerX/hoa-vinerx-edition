@@ -1,0 +1,830 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	bandit_abandoned_stable_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_bandits = yes	
+		}
+
+		path = {
+			leads_to_tech = bandits_breeding_methods_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_stolen_horse_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 5 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	bandits_breeding_methods_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_bandits = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = bandits_breeding_methods_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+
+	}
+
+	bandits_breeding_methods_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_bandits = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_breeding_methods_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 5 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	bandits_breeding_methods_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_bandits = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = bandits_breeding_methods_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	bandits_breeding_methods_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_bandits = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 5 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	bandits_stolen_horse_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_stolen_horse_equipment_1
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_mounted_bandit_tech = 1 popup = no }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_mounted_bandit_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_stolen_horse_equipment_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_bribed_knight_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_stolen_horse_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_stolen_horse_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_stolen_horse_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_stolen_horse_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_stolen_horse_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_mounted_bandit_tech = {
+
+		enable_subunits = {
+			bandits_mounted_bandit
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = bandits_mounted_bandit_tech_unit_details_tt
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_proper_cavalry_training_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_forward_operations_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_mounted_bandit_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_proper_cavalry_training_tech = {
+
+		bandits_mounted_bandit = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+			maximum_speed = 0.05
+		}
+		bandits_raiders = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_forward_operations_tech }
+
+		path = {
+			leads_to_tech = bandits_armoured_saddles_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_assorted_weaponry_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_mounted_bandit_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_forward_operations_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_forward_operations_tech
+			}
+		}
+	}
+
+	bandits_forward_operations_tech = {
+
+		bandits_mounted_bandit = {
+			entrenchment = 3
+			supply_consumption_factor = -0.15
+		}
+		bandits_raiders = {
+			entrenchment = 3
+			supply_consumption_factor = -0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_proper_cavalry_training_tech }
+
+		path = {
+			leads_to_tech = bandits_armoured_saddles_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_assorted_weaponry_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_mounted_bandit_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_proper_cavalry_training_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_proper_cavalry_training_tech
+			}
+		}
+	}
+
+	bandits_armoured_saddles_tech = {
+
+		bandits_mounted_bandit = {
+			max_organisation = 3
+			defense = 0.10
+			armor_value = 0.15
+		}
+		bandits_raiders = {
+			max_organisation = 3
+			defense = 0.10
+			armor_value = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_assorted_weaponry_tech }
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_mounted_bandit_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_assorted_weaponry_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_assorted_weaponry_tech
+			}
+		}
+	}
+
+	bandits_assorted_weaponry_tech = {
+
+		bandits_mounted_bandit = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			ap_attack = 0.15
+		}
+		bandits_raiders = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			ap_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_armoured_saddles_tech }
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_mounted_bandit_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_armoured_saddles_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_armoured_saddles_tech
+			}
+		}
+	}
+
+	bandits_bribed_knight_tech = {
+
+		enable_subunits = {
+			bandits_bribed_knight
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_bribed_knight_equipment_tech_1 = 1 popup = no }
+			#custom_effect_tooltip = bandits_bribed_knight_tech_unit_details_tt
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_bribed_knight_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 16 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_bribed_knight_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_bribed_knight_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_thorium_plating_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_bought_loyalty_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_thorium_plating_tech = {
+
+		bandits_bribed_knight = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			reliability = -0.03
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_bought_loyalty_tech }
+
+		path = {
+			leads_to_tech = bandits_bribed_knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_bought_loyalty_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_bought_loyalty_tech
+			}
+		}
+	}
+
+	bandits_bought_loyalty_tech = {
+
+		bandits_bribed_knight = {
+			max_organisation = 5
+			defense = 0.15
+			default_morale = -0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_thorium_plating_tech }
+
+		path = {
+			leads_to_tech = bandits_bribed_knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_thorium_plating_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_thorium_plating_tech
+			}
+		}
+	}
+
+	bandits_bribed_knight_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_bribed_knight_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_luxury_warhorses_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_underhanded_tactics_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_luxury_warhorses_tech = {
+
+		bandits_bribed_knight = {
+			maximum_speed = 0.15
+			breakthrough = 0.1
+			supply_consumption_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_underhanded_tactics_tech }
+
+		path = {
+			leads_to_tech = bandits_bribed_knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_underhanded_tactics_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_underhanded_tactics_tech
+			}
+		}
+	}
+
+	bandits_underhanded_tactics_tech = {
+
+		bandits_bribed_knight = {
+			breakthrough = 0.3
+			defense = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_luxury_warhorses_tech }
+
+		research_cost = 1.5
+
+		path = {
+			leads_to_tech = bandits_bribed_knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = bandits_luxury_warhorses_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_luxury_warhorses_tech
+			}
+		}
+	}
+
+	bandits_bribed_knight_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_bribed_knight_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_cavalry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			bandits_bribed_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

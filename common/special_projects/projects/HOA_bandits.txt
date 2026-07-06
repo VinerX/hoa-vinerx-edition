@@ -1,0 +1,178 @@
+### Raiders
+sp_raiders = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			OR = {
+				has_tech = bandits_proper_cavalry_training_tech 
+				has_tech = bandits_forward_operations_tech
+			}
+			has_tech = bandits_stolen_horse_equipment_tech_2
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = bandits_bandit_hideout_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 18
+			ores = 9
+			mounts = 3
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			bandits_raiders
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Raiders"
+				priority = 1
+				regiments = {
+					bandits_raiders = { x = 0 y = 0 }
+					bandits_raiders = { x = 0 y = 1 }
+					bandits_raiders = { x = 0 y = 2 }
+					bandits_raiders = { x = 0 y = 3 }
+					bandits_raiders = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Raiders\" division_template = \"Raiders\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_1
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+sp_beastmasters = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = bandits_brigand_equipment_tech_1 }
+	}
+
+	visible = {
+		FROM = { has_tech = bandits_bandit_hideout_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 6
+			wood = 6
+			ores = 3
+			mounts = 2
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			bandits_beastmasters
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Beastmasters"
+				priority = 1
+				regiments = {
+					bandits_beastmasters = { x = 0 y = 0 }
+					bandits_beastmasters = { x = 0 y = 1 }
+					bandits_beastmasters = { x = 0 y = 2 }
+					bandits_beastmasters = { x = 0 y = 3 }
+					bandits_beastmasters = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Beastmasters\" division_template = \"Beastmasters\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}

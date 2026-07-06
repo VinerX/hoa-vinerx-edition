@@ -1,0 +1,3547 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	centaur_war_hut_tech = {
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_drudge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_outrunner_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_windchaser_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_bloodcharger_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_ballista_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 14 y = 0 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_drudge_tech = {
+
+		enable_subunits = {
+			centaur_drudge
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_drudge_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_drudge_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_drudge_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 3 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_drudge_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_drudge_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_drudge_rushing_charge
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_drudge_sundering_slash
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_drudge_rushing_charge = {
+
+		centaur_drudge = {
+			maximum_speed = 0.1
+			breakthrough = 0.05
+		}
+
+		centaur_ironhoof = {
+			maximum_speed = 0.1
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_drudge_sundering_slash }
+
+		path = {
+			leads_to_tech = centaur_drudge_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_drudge_sundering_slash
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_drudge_sundering_slash
+			}
+		}
+	}
+
+	centaur_drudge_sundering_slash = {
+
+		centaur_drudge = {
+			ap_attack = 0.25
+			soft_attack = 0.05
+		}
+
+		centaur_ironhoof = {
+			ap_attack = 0.25
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_drudge_rushing_charge }
+
+		path = {
+			leads_to_tech = centaur_drudge_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_drudge_rushing_charge
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_drudge_rushing_charge
+			}
+		}
+	}
+
+	centaur_drudge_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_drudge_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_drudge_pummel
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_drudge_heroic_strike
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_drudge_pummel = {
+
+		centaur_drudge = {
+			soft_attack = 0.2
+		}
+
+		centaur_ironhoof = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_drudge_heroic_strike }
+
+		path = {
+			leads_to_tech = centaur_drudge_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_drudge_heroic_strike
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_drudge_heroic_strike
+			}
+		}
+	}
+
+	centaur_drudge_heroic_strike = {
+
+		centaur_drudge = {
+			hard_attack = 0.4
+		}
+
+		centaur_ironhoof = {
+			hard_attack = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_drudge_pummel }
+
+		path = {
+			leads_to_tech = centaur_drudge_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_drudge_pummel
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_drudge_pummel
+			}
+		}
+	}
+
+	centaur_drudge_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_drudge_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 3 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_drudge_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_outrunner_tech = {
+
+		enable_subunits = {
+			centaur_outrunner
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_outrunner_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_outrunner_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_outrunner_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_scout_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 7 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_outrunner_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_outrunner_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 7 y = 4 }
+		}
+
+		path = {
+			leads_to_tech = centaur_outrunner_bola_volley
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_outrunner_hyena_companion
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_outrunner_bola_volley = {
+
+		centaur_outrunner = {
+			soft_attack = 0.1
+			ap_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_outrunner_hyena_companion }
+
+		path = {
+			leads_to_tech = centaur_outrunner_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_outrunner_hyena_companion
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_outrunner_hyena_companion
+			}
+		}
+	}
+
+	centaur_outrunner_hyena_companion = {
+
+		centaur_outrunner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			breakthrough = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_outrunner_bola_volley }
+
+		path = {
+			leads_to_tech = centaur_outrunner_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_outrunner_bola_volley
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_outrunner_bola_volley
+			}
+		}
+	}
+
+	centaur_outrunner_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_outrunner_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_outrunner_poisoned_arrows
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_outrunner_rain_of_arrows
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_outrunner_poisoned_arrows = {
+
+		centaur_outrunner = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_outrunner_rain_of_arrows }
+
+		path = {
+			leads_to_tech = centaur_outrunner_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_outrunner_rain_of_arrows
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_outrunner_rain_of_arrows
+			}
+		}
+	}
+
+	centaur_outrunner_rain_of_arrows = {
+
+		centaur_outrunner = {
+			defense = 0.1
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_outrunner_poisoned_arrows }
+
+		path = {
+			leads_to_tech = centaur_outrunner_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_outrunner_poisoned_arrows
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_outrunner_poisoned_arrows
+			}
+		}
+	}
+
+	centaur_outrunner_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_outrunner_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_outrunner_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_scout_tech = {
+
+		enable_subunits = {
+			centaur_scout
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = centaur_scout_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_scout_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_scout_1 = {
+
+		centaur_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_scout_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_scout_2 = {
+
+		centaur_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_centaur_scout_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_scout_3 = {
+
+		centaur_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_scout_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_scout_4 = {
+
+		centaur_scout = {
+			recon = 1.5
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_windchaser_tech = {
+
+		enable_subunits = {
+			centaur_windchaser
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_windchaser_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_windchaser_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_windchaser_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_shaman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	centaur_windchaser_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_windchaser_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_windchaser_enveloping_winds
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_windchaser_healing_wave
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_windchaser_enveloping_winds = {
+
+		centaur_windchaser = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			air_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_windchaser_healing_wave }
+
+		path = {
+			leads_to_tech = centaur_windchaser_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_windchaser_healing_wave
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_windchaser_healing_wave
+			}
+		}
+	}
+
+	centaur_windchaser_healing_wave = {
+		
+		centaur_windchaser = {
+			default_morale = 0.05
+			experience_loss_factor = 0.02
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_windchaser_enveloping_winds }
+
+		path = {
+			leads_to_tech = centaur_windchaser_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_windchaser_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_windchaser_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_windchaser_dust_cloud
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_windchaser_frost_shock
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	centaur_windchaser_dust_cloud = {
+		
+		centaur_windchaser = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_windchaser_frost_shock}
+
+		path = {
+			leads_to_tech = centaur_windchaser_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_windchaser_frost_shock = {
+		
+		centaur_windchaser = {
+			hard_attack = 0.1
+			ap_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_windchaser_dust_cloud }
+
+		path = {
+			leads_to_tech = centaur_windchaser_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_windchaser_dust_cloud
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_windchaser_dust_cloud
+			}
+		}
+	}
+
+	centaur_windchaser_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_windchaser_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_windchaser_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	centaur_shaman_tech = {
+
+		enable_subunits = {
+			centaur_shaman
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = centaur_shaman_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_shaman_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_shaman_1 = {
+
+		centaur_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_shaman_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_shaman_2 = {
+
+		centaur_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_centaur_shaman_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_shaman_3 = {
+
+		centaur_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_shaman_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_shaman_4 = {
+
+		centaur_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_bloodcharger_tech = {
+
+		enable_subunits = {
+			centaur_bloodcharger
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_bloodcharger_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_bloodcharger_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_battlelord_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 19 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_bloodcharger_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_bloodcharger_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_plains_running
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_reinforced_shield
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 19 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_bloodcharger_plains_running = {
+
+		centaur_bloodcharger = {
+			maximum_speed = 0.2
+			breakthrough = 0.1
+			plains = {
+				attack = 0.1
+				movement = 0.1
+			}
+		}
+
+		centaur_ravagers = {
+			maximum_speed = 0.2
+			breakthrough = 0.1
+			plains = {
+				attack = 0.1
+				movement = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_bloodcharger_reinforced_shield }
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_bloodcharger_reinforced_shield
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_bloodcharger_reinforced_shield
+			}
+		}
+	}
+
+	centaur_bloodcharger_reinforced_shield = {
+		
+		centaur_bloodcharger = {
+			max_organisation = 2
+			defense = 0.15
+		}
+
+		centaur_ravagers = {
+			max_organisation = 2
+			defense = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_bloodcharger_plains_running }
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_bloodcharger_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_bloodcharger_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_trample
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_bloodcharger_bloodletting
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 19 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_bloodcharger_trample = {
+		
+		centaur_bloodcharger = {
+			breakthrough = 0.1
+			soft_attack = 0.15
+		}
+
+		centaur_ravagers = {
+			breakthrough = 0.1
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_bloodcharger_bloodletting}
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_bloodcharger_bloodletting = {
+		
+		centaur_bloodcharger = {
+			ap_attack = 0.2
+			hard_attack = 0.15
+		}
+
+		centaur_ravagers = {
+			ap_attack = 0.2
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_bloodcharger_trample }
+
+		path = {
+			leads_to_tech = centaur_bloodcharger_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_bloodcharger_trample
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_bloodcharger_trample
+			}
+		}
+	}
+
+	centaur_bloodcharger_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_bloodcharger_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 19 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_bloodcharger_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_battlelord_tech = {
+
+		enable_subunits = {
+			centaur_battlelord
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = centaur_battlelord_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_battlelord_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 22 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_battlelord_1 = {
+
+		centaur_battlelord = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_battlelord_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_battlelord_2 = {
+
+		centaur_battlelord = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_centaur_battlelord_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 22 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_battlelord_3 = {
+
+		centaur_battlelord = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = improved_centaur_battlelord_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_centaur_battlelord_4 = {
+
+		centaur_battlelord = {
+			initiative = 0.09
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 22 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_ballista_tech = {
+
+		enable_subunits = {
+			centaur_ballista
+			centaur_ballista_support
+		}
+
+		dependencies = {
+			centaur_pack_animals_equipment_tech = 1
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_ballista_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_ballista_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_ballista_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 25 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_ballista_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_ballista_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_ballista_improved_caissons
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_ballista_reinforced_frame
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 25 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_ballista_improved_caissons = {
+
+		centaur_ballista = {
+			maximum_speed = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_ballista_reinforced_frame }
+
+		path = {
+			leads_to_tech = centaur_ballista_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_ballista_reinforced_frame
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_ballista_reinforced_frame
+			}
+		}
+	}
+
+	centaur_ballista_reinforced_frame = {
+
+		centaur_ballista = {
+			max_organisation = 5
+			max_strength = 0.1
+		}
+		centaur_ballista_support = {
+			max_organisation = 5
+			max_strength = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_ballista_improved_caissons }
+
+		path = {
+			leads_to_tech = centaur_ballista_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_ballista_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_ballista_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_ballista_iron_tips
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_ballista_multi_shot
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 25 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_ballista_iron_tips = {
+		centaur_ballista = {
+			ap_attack = 0.25
+		}
+		centaur_ballista_support = {
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_ballista_multi_shot}
+
+		path = {
+			leads_to_tech = centaur_ballista_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_ballista_multi_shot = {
+
+		centaur_ballista = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+		centaur_ballista_support = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_ballista_iron_tips }
+
+		path = {
+			leads_to_tech = centaur_ballista_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_ballista_iron_tips
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_ballista_iron_tips
+			}
+		}
+	}
+
+	centaur_ballista_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_ballista_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 25 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_ballista_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_training_grounds_tech = {
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_plains_running_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_night_patrols_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_khans_chosen_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 30 y = 0 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_plains_running_tech_1 = {
+
+		centaur_drudge = {
+			maximum_speed = 0.05
+		}
+		centaur_outrunner = {
+			maximum_speed = 0.05
+		}
+		centaur_windchaser = {
+			maximum_speed = 0.05
+		}
+		centaur_bloodcharger = {
+			maximum_speed = 0.05
+		}
+		centaur_khan = {
+			maximum_speed = 0.05
+		}
+		centaur_stormseer= {
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_plains_running_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 28 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_plains_running_tech_2 = {
+
+		centaur_drudge = {
+			maximum_speed = 0.05
+		}
+		centaur_outrunner = {
+			maximum_speed = 0.05
+		}
+		centaur_windchaser = {
+			maximum_speed = 0.05
+		}
+		centaur_bloodcharger = {
+			maximum_speed = 0.05
+		}
+		centaur_khan = {
+			maximum_speed = 0.05
+		}
+		centaur_stormseer= {
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_plains_running_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 28 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_plains_running_tech_3 = {
+
+		centaur_drudge = {
+			maximum_speed = 0.05
+		}
+		centaur_outrunner = {
+			maximum_speed = 0.05
+		}
+		centaur_windchaser = {
+			maximum_speed = 0.05
+		}
+		centaur_bloodcharger = {
+			maximum_speed = 0.05
+		}
+		centaur_khan = {
+			maximum_speed = 0.05
+		}
+		centaur_stormseer= {
+			maximum_speed = 0.05
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 28 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+	}
+
+	centaur_night_patrols_tech_1 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_night_patrols_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 30 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			nights_watch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_night_patrols_tech_2 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_night_patrols_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 30 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			nights_watch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_night_patrols_tech_3 = {
+
+		land_night_attack = 0.1
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 30 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			nights_watch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+	}
+
+	centaur_khans_chosen_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_khans_chosen_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 32 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	centaur_khans_chosen_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_khans_chosen_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 32 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_khans_chosen_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 32 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+	}
+
+	centaur_command_tent_tech = {
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_khan_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_stormseer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 37 y = 0 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_khan_tech = {
+
+		enable_subunits = {
+			centaur_khan
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_khan_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_khan_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_khan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 35 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_khan_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_khan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_khan_iron_stampede
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_khan_thunder_clap
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 35 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_khan_iron_stampede = {
+
+		centaur_khan = {
+			maximum_speed = 0.2
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_khan_thunder_clap }
+
+		path = {
+			leads_to_tech = centaur_khan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 34 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_khan_thunder_clap
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_khan_thunder_clap
+			}
+		}
+	}
+
+	centaur_khan_thunder_clap = {
+
+		centaur_khan = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_khan_iron_stampede }
+
+		path = {
+			leads_to_tech = centaur_khan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 36 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_khan_iron_stampede
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_khan_iron_stampede
+			}
+		}
+	}
+
+	centaur_khan_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_khan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_khan_savage_strike
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_khan_command_aura
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 35 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_khan_savage_strike = {
+
+		centaur_khan = {
+			ap_attack = 0.2
+			hard_attack = 0.05
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_khan_command_aura }
+
+		path = {
+			leads_to_tech = centaur_khan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 34 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_khan_command_aura
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_khan_command_aura
+			}
+		}
+	}
+
+	centaur_khan_command_aura = {
+
+		centaur_khan = {
+			max_organisation = 3
+			armor_value = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_khan_savage_strike }
+
+		path = {
+			leads_to_tech = centaur_khan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 36 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_khan_savage_strike
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_khan_savage_strike
+			}
+		}
+	}
+
+	centaur_khan_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_khan_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 35 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_khan_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	centaur_stormseer_tech = {
+
+		enable_subunits = {
+			centaur_stormseer
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_stormseer_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = centaur_stormseer_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_stormseer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 39 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	centaur_stormseer_equipment_tech_1 = {
+
+		enable_equipments = {
+			centaur_stormseer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_stormseer_lightning_shield
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_stormseer_lightning_cloud
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 39 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	centaur_stormseer_lightning_shield = {
+
+		centaur_stormseer = {
+			defense = 0.1
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_stormseer_lightning_cloud }
+
+		path = {
+			leads_to_tech = centaur_stormseer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 38 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_stormseer_lightning_cloud
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_stormseer_lightning_cloud
+			}
+		}
+	}
+
+	centaur_stormseer_lightning_cloud = {
+
+		centaur_stormseer = {
+			soft_attack = 0.05
+			anti_air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_stormseer_lightning_shield }
+
+		path = {
+			leads_to_tech = centaur_stormseer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 40 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_stormseer_lightning_shield
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_stormseer_lightning_shield
+			}
+		}
+	}
+
+	centaur_stormseer_equipment_tech_2 = {
+
+		enable_equipments = {
+			centaur_stormseer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_stormseer_storms_winds
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_stormseer_storm_shock
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 39 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	centaur_stormseer_storms_winds = {
+
+		centaur_stormseer = {
+			soft_attack = 0.4
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_stormseer_storm_shock }
+
+		path = {
+			leads_to_tech = centaur_stormseer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 38 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_stormseer_storm_shock
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_stormseer_storm_shock
+			}
+		}
+	}
+
+	centaur_stormseer_storm_shock = {
+
+		centaur_stormseer = {
+			soft_attack = 0.2
+			hard_attack = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		xor = { centaur_stormseer_storms_winds }
+
+		path = {
+			leads_to_tech = centaur_stormseer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 40 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = centaur_stormseer_storms_winds
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = centaur_stormseer_storms_winds
+			}
+		}
+	}
+
+	centaur_stormseer_equipment_tech_3 = {
+
+		enable_equipments = {
+			centaur_stormseer_equipment_3
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_ground_folder
+			position = { x = 39 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			centaur_stormseer_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

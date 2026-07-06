@@ -1,0 +1,54 @@
+﻿###########################
+#frostmane
+###########################
+
+add_namespace = frostmane
+
+# Offer to join the Horde (from BRC_alliance_with_the_frostmane)
+country_event = {
+	id = frostmane.1
+	title = frostmane.1.t
+	desc = frostmane.1.d
+	picture = GFX_horde_flag_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # Accept
+        name = frostmane.1.option.1
+
+		set_politics = {
+			ruling_party = horde
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = horde
+			popularity = 1
+		}
+
+		BRC = {
+			add_to_faction = ROOT
+			country_event = { id = blackrock.24 }
+		}
+
+		ai_chance = {
+			base = 90
+		}
+	}
+
+    option = { # Reject
+        name = frostmane.1.option.2
+
+		BRC = {
+			country_event = {
+				id = blackrock.25
+				days = 1
+			}
+		}
+
+		ai_chance = {
+			base = 10
+		}
+	}
+}

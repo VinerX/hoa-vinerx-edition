@@ -1,0 +1,540 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	saurok_basilisk_den_tech = {
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_improved_baskalisk_den_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_basilisk_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 10 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+		}
+	}
+
+	saurok_improved_baskalisk_den_tech_1 = {
+
+		saurok_basilisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_improved_baskalisk_den_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_dino_taming_tech_1
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 2
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_improved_baskalisk_den_tech_2 = {
+
+		saurok_basilisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_improved_baskalisk_den_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_improved_baskalisk_den_tech_3 = {
+
+		saurok_basilisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_improved_baskalisk_den_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_improved_baskalisk_den_tech_4 = {
+
+		saurok_basilisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_dino_taming_tech_1 = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_saurok_dino_taming_tech } 
+		}
+
+		category_cavalry = {
+			max_organisation = 2
+		}
+
+		path = {
+			leads_to_tech = saurok_dino_taming_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_dino_taming_tech_2 = {
+
+		category_cavalry = {
+			max_organisation = 2
+		}
+
+		path = {
+			leads_to_tech = saurok_dino_taming_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_dino_taming_tech_3 = {
+
+		category_cavalry = {
+			max_organisation = 2
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	saurok_basilisk_tech = {
+
+		enable_subunits = {
+			saurok_basilisk
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_basilisk_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_basilisk_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ravager_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 13 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_basilisk_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_basilisk_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_stonehide_scales_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_petrifying_gaze_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_stonehide_scales_tech = {
+
+		saurok_basilisk = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_petrifying_gaze_tech }
+
+		path = {
+			leads_to_tech = saurok_basilisk_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_petrifying_gaze_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_petrifying_gaze_tech
+			}
+		}
+	}
+
+	saurok_petrifying_gaze_tech = {
+
+		saurok_basilisk = {
+			breakthrough = 0.10
+			defense = 0.10
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_stonehide_scales_tech }
+
+		path = {
+			leads_to_tech = saurok_basilisk_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 14 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_stonehide_scales_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_stonehide_scales_tech
+			}
+		}
+	}
+
+	saurok_basilisk_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_basilisk_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_stone_venom_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_regenerative_prowess_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_stone_venom_tech = {
+
+		saurok_basilisk = {
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_regenerative_prowess_tech }
+
+		path = {
+			leads_to_tech = saurok_basilisk_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_regenerative_prowess_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_regenerative_prowess_tech
+			}
+		}
+	}
+
+	saurok_regenerative_prowess_tech = {
+
+		saurok_basilisk = {
+			max_organisation = 5
+			soft_attack = 0.10
+			hard_attack = 0.10
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_stone_venom_tech }
+
+		path = {
+			leads_to_tech = saurok_basilisk_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 14 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_stone_venom_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_stone_venom_tech
+			}
+		}
+	}
+
+	saurok_basilisk_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_basilisk_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_cavalry_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			saurok_basilisk_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

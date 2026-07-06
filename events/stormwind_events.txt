@@ -1,0 +1,1615 @@
+﻿###########################
+#stormwind
+###########################
+
+add_namespace = stormwind
+
+#aftermath of the gurubashi war focus event
+country_event = {
+	id = stormwind.1
+	title = stormwind.1.t
+	desc = stormwind.1.d
+	picture = GFX_goldshire_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { #protect itself from future threats
+        name = stormwind.1.option.1
+		add_war_support = 0.1
+		22 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+
+		ai_chance = { 
+			base = 0 
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+		}
+	}
+    option = { #rebuild and prosper
+        name = stormwind.1.option.2
+		add_stability = 0.1
+		322 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+
+		ai_chance = { 
+			base = 0 
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+#city or coutnryside event
+country_event = {
+	id = stormwind.2
+	title = stormwind.2.t
+	desc = stormwind.2.d
+	picture = GFX_northshire_abbey_event
+
+	is_triggered_only = yes
+
+    option = { #city
+        name = stormwind.2.option.1
+		complete_national_focus = STO_repair_the_city
+		
+		ai_chance = { 
+			base = 1
+		}
+	}
+
+    option = { #countryside
+        name = stormwind.2.option.2
+		complete_national_focus = STO_repair_the_kingdom
+		
+		ai_chance = { 
+			base = 0
+		}
+	}
+}
+
+#investmentspay off
+country_event = {
+	id = stormwind.3
+	title = stormwind.3.t
+	desc = stormwind.3.d
+	picture = GFX_cathedral_of_light_event
+
+	is_triggered_only = yes
+
+    option = { # long term repayments
+        name = stormwind.3.option.1
+		remove_ideas = STO_westfall_investment_idea_4
+		remove_ideas = STO_brightwood_investment_idea_4
+		remove_ideas = STO_redridge_investment_idea_4
+		add_ideas = STO_kingdom_rebuilt
+		add_timed_idea = {
+			idea = STO_long_term_payments
+			days = 600
+		}
+
+		ai_chance = { 
+			base = 50 
+		}
+	}
+
+    option = { # short term repayments
+        name = stormwind.3.option.2
+		remove_ideas = STO_westfall_investment_idea_4
+		remove_ideas = STO_brightwood_investment_idea_4
+		remove_ideas = STO_redridge_investment_idea_4
+		add_ideas = STO_kingdom_rebuilt
+		add_timed_idea = {
+			idea = STO_short_term_payments
+			days = 300
+		}
+
+		ai_chance = { 
+			base = 40 
+		}
+	}
+
+    option = { # pay now
+        name = stormwind.3.option.3
+		remove_ideas = STO_westfall_investment_idea_4
+		remove_ideas = STO_brightwood_investment_idea_4
+		remove_ideas = STO_redridge_investment_idea_4
+		add_ideas = STO_kingdom_rebuilt
+		add_political_power = -600
+
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+#stormwind trade policy
+country_event = {
+	id = stormwind.4
+	title = stormwind.4.t
+	desc = stormwind.4.d
+	picture = GFX_stormwind_harbor_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { #priortize imports
+        name = stormwind.4.option.1
+
+		add_ideas = STO_internal_trade
+		random_controlled_state = {
+			limit = { impassable = no }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = { impassable = no }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = { impassable = no }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = { impassable = no }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+    option = { #priortize exports
+        name = stormwind.4.option.2
+
+		add_ideas = STO_export_focus
+		315 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		319 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		318 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		317 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+
+	}
+}
+
+#The Noble Council
+country_event = {
+	id = stormwind.5
+	title = stormwind.5.t
+	desc = stormwind.5.d
+	picture = GFX_stormwind_keep_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = stormwind.5.option.1
+		complete_national_focus = STO_extend_noble_privilages
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+		}
+    }
+	option = {
+		name = stormwind.5.option.2
+		complete_national_focus = STO_curtail_the_nobles
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stormwind.6
+	title = stormwind.6.t
+	desc = stormwind.6.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = stormwind.6.option.1
+		load_oob = "WST_farmers"
+    }
+}
+
+country_event = {
+	id = stormwind.7
+	title = stormwind.7.t
+	desc = stormwind.7.d
+	picture = GFX_darkshire_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.7.option.1
+		load_oob = "DSK_rangers"
+	}
+}
+
+country_event = {
+	id = stormwind.8
+	title = stormwind.8.t
+	desc = stormwind.8.d
+	picture = GFX_lakeshire_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.8.option.1
+		load_oob = "RDR_redridge_militia"
+	}
+}
+
+country_event = {  #blackrock annexes mountain pass in redridge
+	id = stormwind.9
+	title = stormwind.9.t
+	desc = stormwind.9.d
+	picture = GFX_redridge_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.9.option.1
+		add_stability = -0.02
+		add_war_support = 0.05
+	}
+}
+
+country_event = {  #blackrock annexes tower of ilgalar
+	id = stormwind.10
+	title = stormwind.10.t
+	desc = stormwind.10.d
+	picture = GFX_redridge_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.10.option.1
+	}
+}
+
+country_event = { #unused id
+	id = stormwind.11
+	title = stormwind.11.t
+	desc = stormwind.11.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.11.option.1
+		load_focus_tree = stormwind_second_war
+	}
+}
+
+country_event = {  #Pride of the Fleet
+	id = stormwind.12
+	title = stormwind.12.t
+	desc = stormwind.12.d
+	picture = GFX_stormwind_ship_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.12.option.1
+		set_technology = {
+			generic_naval_battleship_tech_2 = 1
+		}
+		load_oob = STO_fleet_battleship
+		set_country_flag = battleship_focused
+	}
+
+	option = {
+        name = stormwind.12.option.2
+		set_technology = {
+			generic_naval_carrier_tech_1 = 1
+		}
+		load_oob = STO_fleet_carrier
+		set_country_flag = carrier_focused
+	}
+}
+
+country_event = { #dawn of first war event
+	id = stormwind.15
+	title = stormwind.15.t
+	desc = stormwind.15.d
+	picture = "GFX_first_war_event"
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormwind.15.option.1
+	}
+}
+
+country_event = { #unused event id
+	id = stormwind.16
+	title = stormwind.16.t
+	desc = stormwind.16.d
+	picture = GFX_report_event_german_parade_paris
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { 
+		name = stormwind.16.option.1
+
+	}
+}
+
+# attending meeting of the seven kingdoms
+country_event = {
+	id = stormwind.17
+	title = stormwind.17.t
+	desc = stormwind.17.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = stormwind.17.option.1
+	add_popularity = { ideology = alliance popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_alliance
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance > 49
+			}
+		}
+  	}
+
+	option = {
+    name = stormwind.17.option.2
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance < 50
+			}
+		}
+  	}
+}
+
+country_event = { #unused event id
+	id = stormwind.18
+	title = stormwind.18.t
+	desc = stormwind.18.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { 
+		name = stormwind.18.option.1
+
+	}
+}
+
+# Heart of the Kingdom
+country_event = {
+	id = stormwind.19
+	title = stormwind.19.t
+	desc = stormwind.19.d
+	picture = GFX_goldshire_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+    	name = stormwind.19.option.1
+		325 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+			}
+		}
+  	}
+
+	option = {
+    	name = stormwind.19.option.2
+		325 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+			}
+		}
+  	}
+
+	option = {
+    	name = stormwind.19.option.3
+		325 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+			}
+		}
+  	}
+}
+
+# Develop Eastvale
+country_event = {
+	id = stormwind.20
+	title = stormwind.20.t
+	desc = stormwind.20.d
+	picture = GFX_eastvale_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = stormwind.20.option.1
+		358 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+	}
+
+	option = {
+		name = stormwind.20.option.2
+		358 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = lumber_mill
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+	}
+
+	option = {
+		name = stormwind.20.option.3
+		358 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = stable
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+	}
+}
+
+#Feudal Reform Civil War
+country_event = {
+	id = stormwind.21
+	title = stormwind.21.t
+	desc = stormwind.21.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = stormwind.21.option.1
+		annex_country = {
+			target = ELW
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = WST
+			transfer_troops = yes
+		}
+		start_civil_war = {
+			ideology = neutral
+			size = 0.5
+			capital = 325
+			### Dont know what army leaders they used to be
+			#keep_unit_leaders = {
+			#	61800 61801 61802
+			#}
+		}
+    }
+}
+
+# The Troublemakers
+country_event = {
+	id = stormwind.22
+	title = stormwind.22.t
+	desc = stormwind.22.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = stormwind.22.option.1
+    }
+}
+
+# Standardized Weapons
+country_event = {
+	id = stormwind.23
+	title = stormwind.23.t
+	desc = stormwind.23.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = stormwind.23.option.1
+		add_ideas = STO_pikeman_weapons_idea
+		add_tech_bonus = {
+			name = pikeman_technology
+			bonus = 0.5
+			uses = 1
+			category = pikeman_technology
+		}
+    }
+
+	option = {
+		name = stormwind.23.option.2
+		add_ideas = STO_footman_weapons_idea
+		add_tech_bonus = {
+			name = footman_technology
+			bonus = 0.5
+			uses = 1
+			category = footman_technology
+		}
+    }
+}
+
+# end isolationism
+country_event = {
+	id = stormwind.24
+	title = stormwind.24.t	# TODO
+	desc = stormwind.24.d	#TODO
+
+	is_triggered_only = yes
+
+    option = { #diplomatic ties
+        name = stormwind.24.option.1
+
+		ai_chance = { factor = 50 }
+
+		add_stability = 0.1
+		complete_national_focus = STO_establish_diplomatic_ties_in_the_north
+
+	}
+
+    option = { #early intervention
+        name = stormwind.24.option.2
+
+		ai_chance = { factor = 50 }
+
+		add_war_support = 0.1
+		complete_national_focus = STO_early_intervention
+	}
+}
+
+country_event = {
+	id = stormwind.25
+	title = stormwind.25.t
+	desc = stormwind.25.d
+
+	is_triggered_only = yes
+
+    option = { #Accept Pact
+        name = stormwind.25.option.1
+		give_guarantee = STO
+		STO = { give_guarantee = ROOT }
+		set_country_flag = stormwind_pact
+
+		ai_chance = { 
+			base = 0 
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 20
+				tag = IRO
+			}
+		}
+	}
+
+    option = { #Deny Pact
+        name = stormwind.25.option.2
+		
+		ai_chance = { 
+			base = 0 
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 30
+				tag = QUE
+			}
+			modifier = {
+				factor = 10
+				tag = LOR
+			}
+		}
+	}
+}
+
+# invite stormwind alliance
+country_event = {
+	id = stormwind.26
+	title = stormwind.26.t
+	desc = stormwind.26.d
+
+	is_triggered_only = yes
+
+    option = {
+        name = stormwind.26.option.1
+
+		ai_chance = { factor = 50 }
+
+		STO = { add_to_faction = ROOT }
+
+	}
+
+    option = {
+        name = stormwind.26.option.2
+
+		ai_chance = { factor = 50 }
+
+	}
+}
+
+### Orcs at the Gates
+country_event = {
+	id = stormwind.30
+	title = stormwind.30.t
+	desc = stormwind.30.d
+	picture = GFX_report_event_german_parade_paris
+	fire_only_once = yes
+	trigger = {
+		tag = STO
+		OR = {
+			any_other_country = {
+				controls_state = 325
+				has_idea = orc_primary_race
+				has_war_with = STO
+			}
+		}
+	}
+	option = {
+		name = stormwind.30.option.1
+		BHC = {
+			complete_national_focus = BHC_besiege_stormwind
+		}
+	}
+}
+
+### Noble Veto
+country_event = {
+	id = stormwind.31
+	title = stormwind.31.t
+	desc = stormwind.31.d
+	picture = GFX_report_event_german_parade_paris
+
+	trigger = {
+		tag = STO
+		has_country_flag = STO_noble_veto
+		NOT = { has_idea = STO_lessen_taxes }
+		NOT = {	has_idea = STO_family_commanders }
+		NOT = {	has_idea = STO_private_labor }
+		NOT = {	has_idea = STO_private_sales_mil }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	option = {
+		name = stormwind.31.option.1
+		random_list = {
+			25 = {
+				add_timed_idea = {
+					idea = STO_lessen_taxes
+					days = 60
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			25 = {
+				add_timed_idea = {
+					idea = STO_family_commanders
+					days = 60
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			25 = {
+				add_timed_idea = {
+					idea = STO_private_labor
+					days = 60
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			25 = {
+				add_timed_idea = {
+					idea = STO_private_sales_mil
+					days = 60
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stormwind.32
+	title = stormwind.32.t
+	desc = stormwind.32.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = stormwind.32.option.1
+	add_popularity = { ideology = neutral popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_neutral
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 1
+		}
+  	}
+
+	option = {
+    name = stormwind.17.option.2
+		ai_chance = {
+			base = 0
+		}
+  	}
+}
+
+###########################
+# stormwind send emissaries chain
+###########################
+
+add_namespace = stormwind_SendEmissaries
+
+country_event = { #"Stormwind seeks aid", triggered by "STO_send_emissaries_to_north"
+	id = stormwind_SendEmissaries.0
+	title = stormwind_SendEmissaries.0.t
+	desc = stormwind_SendEmissaries.0.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = { #Dragons choose to interfere
+		name = stormwind_SendEmissaries.0.option.1
+		BLF = { add_ideas = BLF_interfering_emissary }
+		LOR = { country_event = { days = 2 id = stormwind_SendEmissaries.1 } }
+		ALT = { country_event = { days = 4 id = stormwind_SendEmissaries.1 } }
+		KUL = { country_event = { days = 6 id = stormwind_SendEmissaries.1 } }
+		DAL = { country_event = { days = 8 id = stormwind_SendEmissaries.1 } }
+		STR = { country_event = { days = 10 id = stormwind_SendEmissaries.1 } }
+		GIL = { country_event = { days = 12 id = stormwind_SendEmissaries.1 } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes # if we are being historical, this should ALWAYS happen
+			}
+		}
+		STO = {country_event = {days = 20 id = stormwind_SendEmissaries.3 } }
+	}
+
+	option = { #Dragons choose to not interfere
+		name = stormwind_SendEmissaries.0.option.2
+		hidden_effect = {
+			BLF = { remove_ideas = BLF_interfering_emissary }
+		}
+		LOR = { country_event = { days = 0 id = stormwind_SendEmissaries.1 } }
+		ALT = { country_event = { days = 0 id = stormwind_SendEmissaries.1 } }
+		KUL = { country_event = { days = 0 id = stormwind_SendEmissaries.1 } }
+		DAL = { country_event = { days = 0 id = stormwind_SendEmissaries.1 } }
+		STR = { country_event = { days = 0 id = stormwind_SendEmissaries.1 } }
+		GIL = { country_event = { days = 0 id = stormwind_SendEmissaries.1 } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 100
+				NOT = { is_historical_focus_on = yes } # if we are NOT being historical, this should ALWAYS happen BECAUSE ITS FUN LOL
+			}
+		}
+		STO = {country_event = {days = 20 id = stormwind_SendEmissaries.3 } }
+	}
+}
+
+country_event = { #"Stormwind seeks aid"
+	id = stormwind_SendEmissaries.1
+	title = stormwind_SendEmissaries.1.t
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	desc = { #Dragons have interfered
+		text = stormwind_SendEmissaries.1.ddrag
+		trigger = {
+			BLF = {has_idea = BLF_interfering_emissary}
+		}
+	}
+
+	desc = { #Dragons have NOT interfered
+		text = stormwind_SendEmissaries.1.dnodrag
+		trigger = {
+			NOT = { BLF = {has_idea = BLF_interfering_emissary} }
+		}
+	}
+
+	option = { #Dragons have interfered, Not send help, Not LOR
+		name =  stormwind_SendEmissaries.1.option.1drag
+		trigger = {
+			BLF = {has_idea = BLF_interfering_emissary}
+			NOT = { tag = LOR }
+		}
+		country_event = stormwind_SendEmissaries.8
+		ai_chance = { factor = 1 }
+	}
+
+	option = { #Dragons have interfered, Not send help, is LOR
+		name =  stormwind_SendEmissaries.1.option.LOR1drag
+		trigger = {
+			BLF = {has_idea = BLF_interfering_emissary}
+			tag = LOR
+		}
+		country_event = stormwind_SendEmissaries.8
+		ai_chance = { factor = 1 }
+	}
+
+	option = { #Dragons have interfered, send help
+		name =  stormwind_SendEmissaries.1.option.2drag
+		trigger = {
+			BLF = {has_idea = BLF_interfering_emissary}
+		}
+		country_event = stormwind_SendEmissaries.2
+		add_ideas = Stormwind_First_War_Aid
+		ai_chance = { factor = 0 }
+	}
+
+	option = { #Dragons have NOT interfered, Not send help
+		name =  stormwind_SendEmissaries.1.option.1nodrag
+		trigger = {
+			NOT = { BLF = {has_idea = BLF_interfering_emissary} }
+		}
+		country_event = stormwind_SendEmissaries.8
+		ai_chance = { factor = 0 }
+	}
+
+	option = { #Dragons have NOT interfered, send help
+		name =  stormwind_SendEmissaries.1.option.2nodrag
+		trigger = {
+			NOT = { BLF = {has_idea = BLF_interfering_emissary} }
+		}
+		ai_chance = { factor = 1 }
+		country_event = stormwind_SendEmissaries.2
+		add_ideas = Stormwind_First_War_Aid
+	}
+}
+
+country_event = { #"Stormwind recieves aid"
+	id = stormwind_SendEmissaries.2
+	title = stormwind_SendEmissaries.2.t
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		trigger = {
+			tag = LOR
+		}
+		STO = {
+			add_ideas = Stormwind_Help_from_LOR
+			add_opinion_modifier = { target = LOR modifier = lordaeron_offers_aid }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = ALT
+		}
+		STO = {
+			add_ideas = Stormwind_Help_from_ALT
+			add_opinion_modifier = { target = ALT modifier = alterac_offers_aid }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = KUL
+		}
+		STO = {
+			add_ideas = Stormwind_Help_from_KUL
+			add_opinion_modifier = { target = KUL modifier = kultiras_offers_aid }
+		}
+
+	}
+
+	option = {
+		trigger = {
+			tag = DAL
+		}
+		STO = {
+			add_ideas = Stormwind_Help_from_DAL
+			add_opinion_modifier = { target = DAL modifier = dalaran_offers_aid }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = STR
+		}
+		STO = {
+			add_ideas = Stormwind_Help_from_STR
+			add_opinion_modifier = { target = STR modifier = stromgarde_offers_aid }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = GIL
+		}
+		STO = {
+			add_ideas = Stormwind_Help_from_GIL
+			add_opinion_modifier = { target = GIL modifier = gilneas_offers_aid }
+		}
+	}
+
+}
+
+country_event = { #"Stormwind aid refused"
+	id = stormwind_SendEmissaries.8
+	title = stormwind_SendEmissaries.8.t
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		trigger = {
+			tag = LOR
+		}
+		STO = {
+			add_opinion_modifier = { target = LOR modifier = lordaeron_refuses_to_help }
+		}
+		LOR = {
+			add_ideas = LOR_Valad_Toreps
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = ALT
+		}
+		STO = {
+			add_opinion_modifier = { target = ALT modifier = alterac_refuses_to_help }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = KUL
+		}
+		STO = {
+			add_opinion_modifier = { target = KUL modifier = kultiras_refuses_to_help }
+		}
+
+	}
+
+	option = {
+		trigger = {
+			tag = DAL
+		}
+		STO = {
+			add_opinion_modifier = { target = DAL modifier = dalaran_refuses_to_help }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = STR
+		}
+		STO = {
+			add_opinion_modifier = { target = STR modifier = stromgarde_refuses_to_help }
+		}
+	}
+
+	option = {
+		trigger = {
+			tag = GIL
+		}
+		STO = {
+			add_opinion_modifier = { target = GIL modifier = gilneas_refuses_to_help }
+		}
+	}
+
+}
+
+country_event = { #"Aid outcome"
+	id = stormwind_SendEmissaries.3
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	title = stormwind_SendEmissaries.3.t
+
+	desc = { #Dragons have interfered
+		text = stormwind_SendEmissaries.3.ddrag
+		trigger = {
+			BLF = {has_idea = BLF_interfering_emissary}
+			NOT = {
+				OR = {
+					has_idea = Stormwind_Help_from_LOR
+					has_idea = Stormwind_Help_from_ALT
+					has_idea = Stormwind_Help_from_KUL
+					has_idea = Stormwind_Help_from_DAL
+					has_idea = Stormwind_Help_from_STR
+					has_idea = Stormwind_Help_from_GIL
+				}
+			}
+		}
+	}
+
+	desc = { #Dragons have NOT interfered
+		text = stormwind_SendEmissaries.3.dnodrag
+		trigger = {
+			NOT = { BLF = {has_idea = BLF_interfering_emissary} }
+			NOT = {
+				OR = {
+					has_idea = Stormwind_Help_from_LOR
+					has_idea = Stormwind_Help_from_ALT
+					has_idea = Stormwind_Help_from_KUL
+					has_idea = Stormwind_Help_from_DAL
+					has_idea = Stormwind_Help_from_STR
+					has_idea = Stormwind_Help_from_GIL
+				}
+			}
+		}
+	}
+
+	desc = { #Dragons have interfered
+		text = stormwind_SendEmissaries.4.ddrag
+		trigger = {
+			BLF = {has_idea = BLF_interfering_emissary}
+			OR = {
+				has_idea = Stormwind_Help_from_LOR
+				has_idea = Stormwind_Help_from_ALT
+				has_idea = Stormwind_Help_from_KUL
+				has_idea = Stormwind_Help_from_DAL
+				has_idea = Stormwind_Help_from_STR
+				has_idea = Stormwind_Help_from_GIL
+			}
+		}
+	}
+
+	desc = { #Dragons have NOT interfered
+		text = stormwind_SendEmissaries.4.dnodrag
+		trigger = {
+			NOT = { BLF = {has_idea = BLF_interfering_emissary} }
+			OR = {
+				has_idea = Stormwind_Help_from_LOR
+				has_idea = Stormwind_Help_from_ALT
+				has_idea = Stormwind_Help_from_KUL
+				has_idea = Stormwind_Help_from_DAL
+				has_idea = Stormwind_Help_from_STR
+				has_idea = Stormwind_Help_from_GIL
+			}
+		}
+	}
+
+	option = { #Dragons choose to not interfere
+		name = stormwind_SendEmissaries.3.option.1
+		trigger = {
+			NOT = {
+				OR = {
+					has_idea = Stormwind_Help_from_LOR
+					has_idea = Stormwind_Help_from_ALT
+					has_idea = Stormwind_Help_from_KUL
+					has_idea = Stormwind_Help_from_DAL
+					has_idea = Stormwind_Help_from_STR
+					has_idea = Stormwind_Help_from_GIL
+				}
+			}
+		}
+	}
+
+	option = { #Dragons choose to not interfere
+		name = stormwind_SendEmissaries.4.option.1
+		trigger = {
+			OR = {
+				has_idea = Stormwind_Help_from_LOR
+				has_idea = Stormwind_Help_from_ALT
+				has_idea = Stormwind_Help_from_KUL
+				has_idea = Stormwind_Help_from_DAL
+				has_idea = Stormwind_Help_from_STR
+				has_idea = Stormwind_Help_from_GIL
+			}
+		}
+	}
+}
+
+country_event = { #Stormwind invites country to the Allience
+	id = stormwind_SendEmissaries.5
+	title = stormwind_SendEmissaries.5.t
+	desc = stormwind_SendEmissaries.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = { #Country joins the Allience
+		name = stormwind_SendEmissaries.5.option.1
+		STO = {
+			add_to_faction = ROOT
+			country_event = {days = 3 id = stormwind_SendEmissaries.6 }
+
+		}
+		ai_chance = { factor = 1 }
+	}
+
+	option = { #Country doesn't join
+		name = stormwind_SendEmissaries.5.option.2
+		country_event = {days = 7 id = stormwind_SendEmissaries.7 }
+		ai_chance = { factor = 0 }
+	}
+}
+
+country_event = { #Event stormwind recieves if the country chooses to join the allience
+	id = stormwind_SendEmissaries.6
+	title = stormwind_SendEmissaries.6.t
+	desc = stormwind_SendEmissaries.6.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_SendEmissaries.6.option.1
+	}
+}
+
+country_event = { #Event stormwind recieves if the country chooses to NOT join the allience
+	id = stormwind_SendEmissaries.7
+	title = stormwind_SendEmissaries.7.t
+	desc = stormwind_SendEmissaries.7.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_SendEmissaries.7.option.1
+	}
+}
+
+
+###########################
+# stormwind Third War events
+###########################
+
+add_namespace = stormwind_third_war
+
+# stone masons riot
+country_event = {
+    id = stormwind_third_war.1
+    title = stormwind_third_war.1.t
+    desc = stormwind_third_war.1.d
+	picture = GFX_cathedral_of_light_event
+
+    fire_only_once = yes
+
+    trigger = {
+        tag = STO
+        has_start_date > 609.12.31
+		has_start_date < 610.01.02
+        date > 611.06.01
+    }
+
+    option = { # stormwind revolt
+        name = stormwind_third_war.1.option.1
+
+		hidden_effect = {
+			country_event = {
+                id = stormwind_third_war.2
+                days = 2
+            }
+		}
+    }
+
+}
+
+#rip tiffin
+country_event = {
+	id = stormwind_third_war.2
+	title = stormwind_third_war.2.t
+	desc = stormwind_third_war.2.d
+	picture = GFX_tiffin_wyrnn_death_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = stormwind_third_war.2.option.1
+
+		STO = {
+			add_country_leader_trait = {
+				ideology = alliance
+				trait = grieving_trait
+			}
+		}
+		hidden_effect = {
+			activate_mission = STO_negotiation_breakdown
+			country_event = {
+                id = stormwind_third_war.3
+                days = 365
+            }
+		}
+  	}
+}
+
+#civil war
+country_event = {
+	id = stormwind_third_war.3
+	title = stormwind_third_war.3.t
+	desc = stormwind_third_war.3.d
+	picture = GFX_vancleef_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			RPP = {
+				country_event = { id = riverpaw_third.1 days = 21 }
+			}
+		}
+	}
+
+	option = { # stormwind
+    	name = stormwind_third_war.3.option.1
+
+		DFB = {
+			annex_westfall = yes
+			hidden_effect = {
+				add_manpower = 2500
+				load_oob = DFB_610
+				add_ideas = DFB_the_peoples_army
+				add_ideas = DFB_lack_training_1
+				add_equipment_to_stockpile = {
+					type = caravan_equipment_1
+					amount = 10
+					producer = STO
+				}
+			}
+		}
+		DFB = { country_event = { id = defias.1	random_hours = 12 } }
+		STO = {
+			create_wargoal = { target = DFB type = annex_everything }
+			add_timed_idea = {
+				idea = STO_stone_masons
+				days = 730
+			}	
+			remove_country_leader_trait = {
+				ideology = alliance
+				trait = grieving_trait
+			} 
+			remove_ideas = construction_guild
+		}
+  	}
+
+	option = { #the defias
+   		name = stormwind_third_war.3.option.2
+		DFB = {
+			annex_westfall = yes
+			hidden_effect = {
+				add_manpower = 2500
+				load_oob = DFB_610
+				add_ideas = DFB_the_peoples_army
+				add_ideas = DFB_lack_training_1
+				add_equipment_to_stockpile = {
+					type = caravan_equipment_1
+					amount = 10
+					producer = STO
+				}
+			}
+			change_tag_from = STO
+		}
+		DFB = {
+			country_event = { id = defias.1	random_hours = 12 }
+		}
+		STO = {
+			create_wargoal = { target = DFB type = annex_everything }
+			hidden_effect = {
+				add_timed_idea = {
+					idea = STO_stone_masons
+					days = 730
+				}
+			}
+			remove_ideas = construction_guild
+		}
+  	}
+}
+
+country_event = {
+	id = stormwind_third_war.10
+	title = stormwind_third_war.10.t
+	desc = stormwind_third_war.10.d
+
+	is_triggered_only = yes
+
+	immediate = {
+		272 = { transfer_state_to = STO }
+	}
+
+	option = {
+    	name = stormwind_third_war.10.option.1
+		272 = {
+			set_state_name = "Rebel Camp"
+			set_province_name = { id = 1686 name = "Rebel Camp" }
+		}
+		hidden_effect = {
+			GUR = { add_war_support = 0.05 }
+		}
+  	}
+}
+
+country_event = {
+	id = stormwind_third_war.11
+	title = stormwind_third_war.11.t
+	desc = stormwind_third_war.11.d
+
+	is_triggered_only = yes
+
+	option = {
+    	name = stormwind_third_war.11.option.1
+  	}
+}
+
+### Cancel Event, Meant to be Empty
+country_event = {
+	id = stormwind_third_war.12
+	title = stormwind_third_war.12.t
+	desc = stormwind_third_war.12.d
+
+	is_triggered_only = yes
+
+	option = {
+    	name = stormwind_third_war.12.option.1
+  	}
+}
+
+###########################
+# classic
+###########################
+add_namespace = stormwind_classic
+
+# The dissapearance of varian wrynn
+country_event = {
+	id = stormwind_classic.1
+	title = stormwind_classic.1.t
+	desc = stormwind_classic.1.d
+	picture = GFX_death_of_rulkan_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_classic.1.option.1
+		add_stability = -0.1
+  	}
+}
+
+# corronation of anduin wrynn
+country_event = {
+	id = stormwind_classic.2
+	title = stormwind_classic.2.t
+	desc = stormwind_classic.2.d
+	picture = GFX_shadowmoon_valley_draenor_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_classic.2.option.1
+		add_stability = 0.1
+  	}
+}
+
+#The Pillars of Fate event
+country_event = {
+	id = stormwind_classic.3
+	title = stormwind_classic.3.t
+	desc = stormwind_classic.3.d
+	picture = GFX_northshire_abbey_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+    option = { #bolvar fordragon
+        name = stormwind_classic.3.option.1
+		complete_national_focus =  STO_bolvar_fordragon
+		
+		ai_chance = { 
+			base = 33
+		}
+	}
+
+    option = { #lady katrana prestor
+        name = stormwind_classic.3.option.2
+		complete_national_focus = STO_lady_katrana_prestor
+		ai_chance = { 
+			base = 34 
+		}
+	}
+
+}

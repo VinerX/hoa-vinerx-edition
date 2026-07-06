@@ -1,0 +1,7064 @@
+focus_tree = {
+	id = nethergarde_third_war
+	
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NET
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 2400
+		y = 2800
+	}
+
+	shortcut = {
+		name = NET_the_first_bastion
+		target = NET_the_first_bastion
+		scroll_wheel_factor = 0.60
+	}
+
+	shortcut = {
+		name = NET_shipwreck_coast
+		target = NET_a_common_tongue
+		#target = NET_shipwreck_coast
+		scroll_wheel_factor = 1
+	}
+
+	shortcut = {
+		name = NET_the_bastion_agreement
+		target = NET_the_bastion_agreement
+		scroll_wheel_factor = 0.9
+	}
+	
+	focus = { 
+		id = NET_the_first_bastion
+		icon = GFX_focus_NET_nethergarde_keep
+		cost = 5
+		x = 8
+		y = 0
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+	focus = { 
+		id = NET_second_war_veterans
+		icon = GFX_focus_generic_little_entente
+		cost = 5
+		prerequisite = { focus = NET_the_first_bastion }
+		x = 8
+		y = 1
+
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+
+	focus = { 
+		id = NET_stormwind_supplies
+		icon = GFX_focus_ITA_grande_rivolta_rurale
+		cost = 5
+		prerequisite = { focus = NET_second_war_veterans }
+		x = 8
+		y = 2
+
+		completion_reward = {
+			add_ideas = NET_food_stores
+		}
+	}
+
+	### ALLIANCE/HORDE
+	focus = { 
+		id = NET_quartermaster_lungertz_com
+		icon = GFX_focus_NET_quartermaster_lungertz
+		cost = 5
+		prerequisite = { focus = NET_stormwind_supplies }
+		mutually_exclusive = {
+			focus = NET_general_lordenson_com
+			focus = NET_archmage_thasranan_com
+		}
+		x = 18
+		y = 3
+
+		completion_reward = {
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+			add_political_power = 50
+			add_opinion_modifier = {
+				target = DAL
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = DAL
+				modifier = alliance_loyalty
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_refill_the_stockpiles
+		icon = GFX_goal_continuous_reduce_training_time
+		cost = 30
+		prerequisite = { focus = NET_quartermaster_lungertz_com }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = NET_rebuild_stockpile
+				days = 180
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_agriculture_diversification
+		icon = GFX_focus_generic_agricultural_subsidies
+		cost = 30
+		prerequisite = { focus = NET_refill_the_stockpiles }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = -1
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = agriculture_technology
+				bonus = 0.5
+				uses = 1
+				category = agriculture_technology
+			}
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_redridge_miners
+		icon = GFX_focus_generic_mining_industry
+		cost = 30
+		prerequisite = { focus = NET_refill_the_stockpiles }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = 1
+		y = 3
+
+		completion_reward = {
+			394 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+				add_manpower = 2500
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_signal_towers
+		icon = GFX_focus_generic_air_defense
+		cost = 30
+		prerequisite = { focus = NET_redridge_miners }
+		prerequisite = { focus = NET_agriculture_diversification }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = 0
+		y = 4
+
+		completion_reward = {
+			26 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			392 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_stockade_agreement
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = NET_signal_towers }
+		mutually_exclusive = { focus = NET_penal_workers }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = -1
+		y = 5
+
+		completion_reward = {
+			add_ideas = NET_harsh_laws
+		}
+	}
+
+	focus = { 
+		id = NET_northern_disturbance
+		icon = GFX_focus_stormwind_crest
+		cost = 5
+		prerequisite = { focus = NET_the_stockade_agreement }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = -1
+		y = 6
+
+		available = {
+			has_country_flag = northern_disturbance
+		}
+
+		completion_reward = {
+			set_country_flag = alliance_alignment
+			custom_effect_tooltip = NET_alliance_alignment
+		}
+	}
+
+	focus = { 
+		id = NET_penal_workers
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = NET_signal_towers }
+		mutually_exclusive = { focus = NET_the_stockade_agreement }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = 1
+		y = 5
+
+		completion_reward = {
+			add_ideas = NET_orc_workers_1
+		}
+	}
+
+	focus = { 
+		id = NET_shipwrecks
+		icon = GFX_focus_support_the_horde
+		cost = 30
+		prerequisite = { focus = NET_penal_workers }
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = 1
+		y = 6
+
+		available = { has_country_flag = horde_exodus }
+
+		completion_reward = {
+			set_country_flag = horde_alignment
+			complete_national_focus = NET_shipwreck_coast
+			add_war_support = 0.05
+		}
+	}
+
+	focus = { 
+		id = NET_research_operations
+		icon = GFX_focus_research
+		cost = 30
+		prerequisite = {
+			focus = NET_quartermaster_lungertz_com
+			focus = NET_archmage_thasranan_com
+		}
+		mutually_exclusive = { focus = NET_military_operations }
+		x = 13
+		y = 4
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = military_admin
+				add_idea = military_admin_res
+			}
+		}
+	}
+
+	###ALLIANCE/DEATH/FEL
+	focus = { 
+		id = NET_archmage_thasranan_com
+		icon = GFX_focus_NET_archmage_thasranan
+		cost = 5
+		prerequisite = { focus = NET_stormwind_supplies }
+		mutually_exclusive = {
+			focus = NET_general_lordenson_com
+			focus = NET_quartermaster_lungertz_com
+		}
+		x = 8
+		y = 3
+
+		completion_reward = {
+			promote_character = {
+				character = NET_archmage_thasranan
+				ideology = alliance_type
+			}
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+			add_political_power = 50
+			add_opinion_modifier = {
+				target = QUE
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = QUE
+				modifier = alliance_loyalty
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_progress_arcane_research
+		icon = GFX_goal_continuous_research
+		cost = 30
+		prerequisite = { focus = NET_archmage_thasranan_com }
+		x = 8
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = administration_technology
+				bonus = 0.5
+				uses = 1
+				category = administration_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_enchant_the_defenses
+		icon = GFX_goal_fortify_the_westwall
+		cost = 30
+		prerequisite = { focus = NET_progress_arcane_research }
+		x = 7
+		y = 6
+
+		completion_reward = {
+			393 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2919
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2907
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2913
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2921
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2928
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_recruit_from_QUE
+		icon = GFX_focus_NET_high_elf
+		cost = 30
+		prerequisite = { focus = NET_progress_arcane_research }
+		x = 9
+		y = 6
+
+		completion_reward = {
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.02
+			}
+			hidden_effect = { load_oob = NET_QUE_recruit }
+			custom_effect_tooltip = QUE_researchers_tt
+		}
+	}
+
+	focus = { 
+		id = NET_control_magical_beings
+		icon = GFX_goal_continuous_restrict_freedom
+		cost = 30
+		prerequisite = { focus = NET_enchant_the_defenses }
+		prerequisite = { focus = NET_recruit_from_QUE }
+		x = 8
+		y = 7
+
+		completion_reward = {
+			country_event = nethergarde.6
+		}
+	}
+
+	focus = { 
+		id = NET_maintain_trade_relations
+		icon = GFX_goal_generic_intelligence_exchange
+		cost = 30
+		prerequisite = { focus = NET_control_magical_beings }
+		x = 9
+		y = 8
+
+		completion_reward = {
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.02
+			}
+			STO = {
+				325 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			swap_ideas = {
+				remove_idea = NET_food_stores
+				add_idea = NET_food_stores_1
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_tame_the_rifts
+		icon = GFX_goal_continuous_suppression
+		cost = 30
+		prerequisite = { focus = NET_control_magical_beings }
+		x = 7
+		y = 8
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.02
+			}
+			377 = {
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+			378 = { add_resource = { type = mana amount = 3	} }
+			386 = { add_resource = { type = mana amount = 3	} }
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_search_for_horde_relics
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = { focus = NET_control_magical_beings	}
+		x = 8
+		y = 9
+
+		available = {
+			has_country_flag = northern_disturbance
+		}
+
+		completion_reward = {
+			country_event = nethergarde.7
+		}
+	}
+
+	###ALLIANCE/NEUTRAL (Crusaders)
+	focus = { 
+		id = NET_general_lordenson_com
+		icon = GFX_focus_NET_general_londenson
+		cost = 5
+		prerequisite = { focus = NET_stormwind_supplies }
+		mutually_exclusive = {
+			focus = NET_archmage_thasranan_com
+			focus = NET_quartermaster_lungertz_com
+		}
+		x = -2
+		y = 3
+
+		completion_reward = {
+			promote_character = {
+				character = NET_general_lordenson
+				ideology = alliance_type
+			}
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.05
+			}
+			add_political_power = 50
+			add_opinion_modifier = {
+				target = HEA
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = HEA
+				modifier = alliance_loyalty
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_secure_blasted_lands
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = NET_general_lordenson_com }
+		relative_position_id = NET_general_lordenson_com
+		x = 0
+		y = 2
+
+		completion_reward = {
+			393 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_local_commanders
+		icon = GFX_focus_generic_military_mission
+		cost = 30
+		prerequisite = { focus = NET_secure_blasted_lands }
+		relative_position_id = NET_general_lordenson_com
+		x = -1
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = captain_technology
+				bonus = 0.5
+				uses = 1
+				category = captain_technology
+			}
+			add_ideas = NET_frontline_captains
+		}
+	}
+
+	focus = { 
+		id = NET_garrison_expansion
+		icon = GFX_goal_fortify_the_westwall
+		cost = 30
+		prerequisite = { focus = NET_secure_blasted_lands }
+		relative_position_id = NET_general_lordenson_com
+		x = 1
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 0.5
+				uses = 1
+				category = fortification_technology
+			}
+			393 = { add_dynamic_modifier = { modifier = military_district_mod } }
+		}
+	}
+
+	focus = { 
+		id = NET_liaison_office
+		icon = GFX_focus_chi_army_reform
+		cost = 30
+		prerequisite = { focus = NET_local_commanders }
+		prerequisite = { focus = NET_garrison_expansion }
+		relative_position_id = NET_general_lordenson_com
+		x = 0
+		y = 4
+
+		completion_reward = {
+			country_event = nethergarde.9
+		}
+	}
+
+	focus = { 
+		id = NET_demonic_containment
+		icon = focus_generic_doomguard
+		cost = 30
+		prerequisite = { focus = NET_liaison_office }
+		relative_position_id = NET_general_lordenson_com
+		x = 0
+		y = 5
+
+		completion_reward = {
+			if = {
+				limit = {
+					379 = {	has_dynamic_modifier = { modifier = GEN_demon_problem } }
+				}
+				379 = { remove_dynamic_modifier = { modifier = GEN_demon_problem } }
+				379 = { set_state_race_to_primary_race = yes }
+				379 = {	add_manpower = -250	}
+				army_experience = 15
+				random_army_leader = {
+					gain_xp = 50
+				}
+			}
+			else_if = {
+				limit = {
+					380 = {	has_dynamic_modifier = { modifier = GEN_demon_problem } }
+				}
+				380 = { remove_dynamic_modifier = { modifier = GEN_demon_problem } }
+				380 = { set_state_race_to_primary_race = yes }
+				380 = {	add_manpower = -250	}
+				army_experience = 15
+				random_army_leader = {
+					gain_xp = 60
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						379 = {	has_dynamic_modifier = { modifier = GEN_demon_problem } }
+						380 = {	has_dynamic_modifier = { modifier = GEN_demon_problem } }
+					}
+				}
+				army_experience = 15
+				random_army_leader = {
+					gain_xp = 60
+				}
+			}
+		}
+	}
+
+	focus = { ###Alliance Path
+		id = NET_the_light_protects
+		icon = GFX_focus_chosen_of_the_light
+		cost = 14
+		prerequisite = { focus = NET_liaison_office }
+		mutually_exclusive = { focus = NET_the_lights_fury }
+		relative_position_id = NET_general_lordenson_com
+		x = -1
+		y = 6
+
+		available = {
+			has_country_flag = northern_disturbance
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = paladin_technology
+				bonus = 0.5
+				uses = 1
+				category = paladin_technology
+			}
+			set_country_flag = alliance_alignment
+			custom_effect_tooltip = NET_alliance_alignment
+		}
+	}
+
+	focus = { ###Crusade Path
+		id = NET_the_lights_fury
+		icon = GFX_focus_LAT_latvia_for_latvians
+		cost = 14
+		prerequisite = { focus = NET_liaison_office }
+		mutually_exclusive = { focus = NET_the_light_protects }
+		relative_position_id = NET_general_lordenson_com
+		x = 1
+		y = 6
+
+		available = {
+			has_country_flag = northern_disturbance
+			always = no
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = paladin_technology
+				bonus = 0.5
+				uses = 1
+				category = paladin_technology
+			}
+			set_country_flag = neutral_alignment
+			###MIlitary Build up (Scarlet Crusade Stuff)
+		}
+	}
+
+	focus = { 
+		id = NET_military_operations
+		icon = GFX_focus_mex_restore_the_army_of_christ
+		cost = 30
+		prerequisite = {
+			focus = NET_general_lordenson_com
+			focus = NET_archmage_thasranan_com
+		}
+		mutually_exclusive = { focus = NET_research_operations }
+		x = 3
+		y = 4
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = military_admin
+				add_idea = military_admin_mil
+			}
+		}
+	}
+
+	### military operations
+
+	focus = { 
+		id = NET_repair_lookouts
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = NET_military_operations }
+		cost = 30
+		x = 3
+		y = 5
+
+		completion_reward = {
+			393 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			384 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_repair_fortifications
+		icon = GFX_goal_fortify_the_westwall
+		prerequisite = { focus = NET_military_operations }
+		cost = 30
+        relative_position_id = NET_repair_lookouts
+		y = 0
+        x = -2
+
+		completion_reward = {
+			393 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2908
+					instant_build = yes
+				}
+			}
+			26 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2878
+					instant_build = yes
+				}
+			}
+			394 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2297
+					instant_build = yes
+				}
+			}
+			391 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2902
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_reform_milita
+		icon = GFX_focus_TUR_reform_the_balkan_pact
+		prerequisite = { focus = NET_military_operations }
+		cost = 30
+        relative_position_id = NET_repair_lookouts
+        y = 0
+		x = 2
+
+		completion_reward = {
+			hidden_effect = { load_oob = NET_garrison }
+			custom_effect_tooltip = NET_garrison_tt
+		}
+	}
+
+	focus = { 
+		id = NET_self_reliance
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 30
+		prerequisite = { focus = NET_repair_fortifications }
+		prerequisite = { focus = NET_repair_lookouts }
+        relative_position_id = NET_repair_lookouts
+        y = 1
+		x = -1
+
+		completion_reward = {
+			393 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_secure_support
+		icon = GFX_goal_generic_military_deal
+		cost = 30
+		prerequisite = { focus = NET_self_reliance }
+        relative_position_id = NET_repair_lookouts
+        y = 2
+		x = -1
+
+		completion_reward = {
+			if = {
+				limit = {
+					NET_archmage_thasranan = { is_country_leader = yes }
+				}
+				QUE = {
+					diplomatic_relation = {
+						country = NET
+						relation = guarantee
+					}
+				}
+			}
+			if = {
+				limit = {
+					NET_general_lordenson = { is_country_leader = yes }
+				}
+				LOR = {
+					diplomatic_relation = {
+						country = NET
+						relation = guarantee
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_front_secured
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 30
+		prerequisite = { focus = NET_reform_milita }
+		prerequisite = { focus = NET_repair_lookouts }
+		bypass = { NOT = { is_in_faction = yes } }
+        relative_position_id = NET_repair_lookouts
+        y = 1
+		x = 1
+
+		completion_reward = {
+			add_stability = 0.05
+			STO = {
+				if = {
+					limit = { is_in_faction_with = NET }
+					add_stability = 0.05
+				}	
+			}
+			IRO = {
+				if = {
+					limit = { is_in_faction_with = NET }
+					add_stability = 0.05
+				}	
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_cull_the_swamp
+		icon = GFX_focus_NET_claim_the_swamp
+		cost = 30
+		prerequisite = { focus = NET_front_secured }
+		bypass = {
+			395 = { is_controlled_by_ROOT_or_ally = no }
+			405 = { is_controlled_by_ROOT_or_ally = no }
+			406 = { is_controlled_by_ROOT_or_ally = no }
+		}
+        relative_position_id = NET_repair_lookouts
+        y = 2
+		x = 1
+
+		completion_reward = {
+			if = {
+				limit = { 395 = { is_controlled_by_ROOT_or_ally = yes }	}
+				395 = { add_compliance = 10 }
+				army_experience = 5
+			}
+			if = {
+				limit = { 405 = { is_controlled_by_ROOT_or_ally = yes }	}
+				405 = { add_compliance = 10 }
+				army_experience = 5
+			}
+			if = {
+				limit = { 406 = { is_controlled_by_ROOT_or_ally = yes }	}
+				406 = { add_compliance = 10 }
+				army_experience = 5
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_recruitment_drive
+		icon = GFX_focus_SOV_mobilization_plan
+		cost = 30
+		prerequisite = { focus = NET_secure_support }
+		prerequisite = { focus = NET_cull_the_swamp	}
+        relative_position_id = NET_repair_lookouts
+        y = 3
+		x = 0
+
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = NET_recruitment_drive_idea
+				days = 360
+			}
+			custom_effect_tooltip = advisors_funding
+			GEN_upgrade_advisors = yes
+			if = {
+				limit = { is_ai = yes }
+				add_ideas = advisors_guild
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = advisors_guild
+					add_idea = advisors_guild_1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_combat_operations
+		icon = GFX_goal_continuous_reduce_training_time
+		cost = 30
+		prerequisite = { focus = NET_recruitment_drive }
+        relative_position_id = NET_repair_lookouts
+        y = 4
+		x = -2
+
+		completion_reward = {
+			if = {
+				limit = {
+					controls_state = 390
+					390 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } }
+				}
+					390 = { remove_dynamic_modifier = { modifier = LOR_murloc_problem }
+					390 = {
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = { 
+					OR = {
+						NOT = { controls_state = 390 }
+						NOT = { 390 = { has_dynamic_modifier = { modifier = LOR_murloc_problem } } }
+					}
+				}
+				army_experience = 10
+				add_command_power = 25
+				RCP = { add_manpower = -500 }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_information_network
+		icon = GFX_focus_generic_secret_service_agency
+		cost = 30
+		prerequisite = { focus = NET_recruitment_drive }
+        relative_position_id = NET_repair_lookouts
+        y = 4
+		x = 0
+
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "La Resistance"	}
+				if = {
+					limit = { has_intelligence_agency = yes }
+					upgrade_intelligence_agency = upgrade_passive_defense
+				}
+				else = {
+					create_intelligence_agency = {
+						name = "The Watch"
+						icon = GFX_intelligence_agency_logo_bel
+					}
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = rogues_guild_technology
+					bonus = 0.25
+					uses = 2
+					category = rogues_guild_technology
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_counterespionage
+		icon = GFX_focus_generic_vatican_agents
+		cost = 30
+		prerequisite = { focus = NET_recruitment_drive }
+        relative_position_id = NET_repair_lookouts
+        y = 4
+		x = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = encryption_technology
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_lay_new_roads
+		icon = GFX_focus_SOV_the_road_of_life
+		cost = 30
+		prerequisite = { focus = NET_combat_operations }
+		prerequisite = { focus = NET_information_network }
+        relative_position_id = NET_repair_lookouts
+        y = 5
+		x = -1
+
+		completion_reward = {
+			391 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			392 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			393 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			394 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_army_advancement
+		icon = GFX_focus_chi_army_reform
+		cost = 30
+		prerequisite = { focus = NET_lay_new_roads }
+        relative_position_id = NET_repair_lookouts
+        y = 6
+		x = -1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_technology
+				bonus = 0.25
+				uses = 3
+				category = infantry_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_fix_supply_lines
+		icon = GFX_focus_generic_truck
+		cost = 21
+		prerequisite = { focus = NET_counterespionage }
+		prerequisite = { focus = NET_information_network }
+        relative_position_id = NET_repair_lookouts
+        y = 5
+		x = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = supply_cart_technology
+				bonus = 0.5
+				uses = 1
+				category = supply_cart_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_invite_miners
+		icon = GFX_focus_generic_mining_industry
+		cost = 30
+		prerequisite = { focus = NET_fix_supply_lines }
+        relative_position_id = NET_repair_lookouts
+        y = 6
+		x = 1
+
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+
+		completion_reward = {
+			394 = {
+				add_manpower = 3000
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = mine_technology
+				bonus = 0.5
+				uses = 1
+				category = mine_technology
+			}
+			custom_effect_tooltip = mining_funding
+			GEN_upgrade_mining = yes
+			if = {
+				limit = { is_ai = yes }
+				add_ideas = mining_guild
+			}
+			if = {
+				limit = {
+					is_ai = no
+					has_idea = mining_guild
+				}
+				swap_ideas = {
+					remove_idea = mining_guild
+					add_idea = mining_guild_1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_research_doctrine
+		icon = GFX_focus_hol_the_foundations_of_defense
+		prerequisite = { focus = NET_research_operations }
+		cost = 30
+		x = 12
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = arcane_tower_technology
+				bonus = 1
+				uses = 1
+				category = arcane_tower_technology
+			}
+			add_ideas = NET_research_wards
+		}
+	}
+
+	focus = { 
+		id = NET_advanced_infrastructure
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = NET_research_operations }
+		cost = 30
+        relative_position_id = NET_research_doctrine
+        y = 0
+		x = 2
+
+		available = { has_completed_focus = NET_research_operations	}
+
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_controlled_by = ROOT
+					has_resources_amount = {
+						resource = mana
+						amount > 0
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_mage_tower_repairs
+		icon = GFX_goal_generic_radar
+		cost = 30
+		prerequisite = { focus = NET_research_doctrine }
+		prerequisite = { focus = NET_advanced_infrastructure }
+        relative_position_id = NET_research_doctrine
+        y = 1
+		x = 1
+
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+
+		completion_reward = {
+			393 = {
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = mage_funding
+			GEN_upgrade_mage = yes
+			if = {
+				limit = { has_idea = mage_guild }
+				swap_ideas = {
+					remove_idea = mage_guild
+					add_idea = mage_guild_1
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_study_fel_mutations
+		icon = GFX_focus_legion_faction_2
+		cost = 30
+		prerequisite = { focus = NET_advanced_infrastructure }
+        relative_position_id = NET_research_doctrine
+        y = 1
+		x = 3
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.02
+			}
+			add_tech_bonus = {
+				name = agriculture_technology
+				bonus = 0.5
+				uses = 1
+				category = agriculture_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_archaeological_excavations
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = { focus = NET_research_doctrine }
+        relative_position_id = NET_research_doctrine
+        y = 1
+		x = -1
+
+		completion_reward = {
+			if= {
+				limit = { 
+					NET_quartermaster_lungertz = { is_country_leader = yes }
+				}
+				add_opinion_modifier = {
+					target = IRO
+					modifier = alliance_loyalty
+				}
+				reverse_add_opinion_modifier = {
+					target = IRO
+					modifier = alliance_loyalty
+				}
+				add_tech_bonus = {
+					name = peasant_tools_technology
+					bonus = 0.5
+					uses = 1
+					category = peasant_tools_technology
+				}
+				IRO = {
+					add_tech_bonus = {
+						name = peasant_tools_technology
+						bonus = 0.5
+						uses = 1
+						category = peasant_tools_technology
+					}
+				}
+			}
+			if = {
+				limit = { 
+					NET_archmage_thasranan = { is_country_leader = yes }
+				}
+				add_opinion_modifier = {
+					target = QUE
+					modifier = alliance_loyalty
+				}
+				reverse_add_opinion_modifier = {
+					target = QUE
+					modifier = alliance_loyalty
+				}
+				add_tech_bonus = {
+					name = peasant_tools_technology
+					bonus = 0.5
+					uses = 1
+					category = peasant_tools_technology
+				}
+				QUE = {
+					add_tech_bonus = {
+						name = peasant_tools_technology
+						bonus = 0.5
+						uses = 1
+						category = peasant_tools_technology
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_alchemy_applications
+		icon = GFX_focus_research2
+		cost = 30
+		prerequisite = { focus = NET_archaeological_excavations }
+		prerequisite = { focus = NET_mage_tower_repairs }
+        relative_position_id = NET_research_doctrine
+        y = 2
+		x = 0
+
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+
+		available = {
+			if = {
+				limit = { is_ai = no }
+				has_idea = alchemy_guild
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = { is_ai = yes }
+				add_ideas = alchemy_guild
+			}
+			custom_effect_tooltip = alchemy_funding
+			GEN_upgrade_alchemy = yes
+			if = {
+				limit = { has_idea = alchemy_guild }
+				swap_ideas = {
+					remove_idea = alchemy_guild
+					add_idea = alchemy_guild_1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_northen_base_camp
+		icon = GFX_goal_fortify_the_westwall
+		cost = 30
+		prerequisite = { focus = NET_mage_tower_repairs }
+		prerequisite = { focus = NET_study_fel_mutations }
+        relative_position_id = NET_research_doctrine
+        y = 2
+		x = 2
+
+		completion_reward = {
+			26 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2878
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2881
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2883
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_dragon_remnants
+		icon = GFX_focus_POL_expand_polish_intelligence
+		cost = 30
+		prerequisite = { focus = NET_alchemy_applications }
+        relative_position_id = NET_research_doctrine
+        y = 3
+		x = 0
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = NET_dragon_remnants
+				bonus = 0.5
+				uses = 1
+				category = armor_technology
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_spy_on_the_cult
+		icon = GFX_focus_generic_vatican_agents
+		cost = 30
+		prerequisite = { focus = NET_northen_base_camp }
+        relative_position_id = NET_research_doctrine
+        y = 3
+		x = 2
+
+		available = {
+			392 = { has_dynamic_modifier = { modifier = GEN_orc_problem	} }
+		}
+
+		bypass = {
+			NOT = { 392 = { has_dynamic_modifier = { modifier = GEN_orc_problem	} } }
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_tainted_land
+		icon = GFX_focus_generic_concessions
+		cost = 30
+		prerequisite = { focus = NET_dragon_remnants }
+		prerequisite = { focus = NET_spy_on_the_cult }
+        relative_position_id = NET_research_doctrine
+        y = 4
+		x = 1
+
+		completion_reward = {
+			### Also to be used when taking in Elf Refugees
+			### Add Ability to stop them becoming Wretches
+			add_tech_bonus = {
+				name = priest_technology
+				bonus = 1
+				uses = 1
+				category = priest_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_guldans_throne
+		icon = GFX_orc_warlock
+		cost = 30
+		prerequisite = { focus = NET_the_tainted_land }
+        relative_position_id = NET_research_doctrine
+        y = 5
+		x = 0
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_tech_bonus = {
+				name = altar_technology
+				bonus = 0.5
+				uses = 1
+				category = altar_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_restrain_elementals
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		cost = 30
+		prerequisite = { focus = NET_guldans_throne }
+		prerequisite = { focus = NET_demonology_studies }
+        relative_position_id = NET_research_doctrine
+        y = 6
+		x = -1
+
+		completion_reward = {
+			add_stability = 0.05
+			army_experience = 10
+			air_experience = 10
+		}
+	}
+
+	focus = { 
+		id = NET_the_bleeding_earth
+		icon = GFX_focus_SWE_beneath_sticks_and_stone
+		cost = 5.2
+		prerequisite = { focus = NET_guldans_throne }
+		prerequisite = { focus = NET_demonology_studies }
+        relative_position_id = NET_research_doctrine
+        y = 6
+		x = 1
+
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_government = fel } }
+				add_popularity = {
+					ideology = fel
+					popularity = -0.05
+				}
+			}
+			country_event = nethergarde.8
+		}
+	}
+
+	focus = { 
+		id = NET_breakthrough_survey
+		icon = GFX_focus_SWE_SKF_ball_bearings
+		cost = 30
+		prerequisite = { focus = NET_guldans_throne }
+		prerequisite = { focus = NET_demonology_studies }
+        relative_position_id = NET_research_doctrine
+        y = 6
+		x = 3
+
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+
+		completion_reward = {
+			country_event = nethergarde.10
+		}
+	}
+
+	focus = { 
+		id = NET_demonology_studies
+		icon = focus_generic_doomguard
+		cost = 30
+		prerequisite = { focus = NET_the_tainted_land }
+        relative_position_id = NET_research_doctrine
+        y = 5
+		x = 2
+
+		available = {
+			NOT = {
+				OR = {
+					has_decision = GEN_demon_problem_379
+					has_decision = GEN_demon_problem_380
+				}
+			}
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.02
+			}
+			add_tech_bonus = {
+				name = spellcaster_technology
+				bonus = 0.5
+				uses = 1
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	### General Tree
+
+	focus = { 
+		id = NET_generals_fortification
+		icon = GFX_focus_NET_general_londenson
+		cost = 14
+		relative_position_id = NET_general_lordenson_com
+		x = 0
+		y = 8
+
+		available = {
+			OR = {
+				has_completed_focus = NET_quartermaster_lungertz_com
+				has_completed_focus = NET_archmage_thasranan_com
+			}
+			has_country_flag = alliance_alignment
+		}
+	
+		completion_reward = {
+			custom_effect_tooltip = NET_generals_fortification_tt
+			add_command_power = 50
+			hidden_effect = {
+				country_event = nethergarde.110
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_third_invasion_preperation
+		icon = GFX_focus_fel_dark_portal
+		cost = 30
+		prerequisite = { focus = NET_generals_fortification }
+		relative_position_id = NET_generals_fortification
+		x = -1
+		y = 1
+
+		available = { always = no }
+	
+		completion_reward = {
+			add_ideas = NET_generals_fortification
+			393 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2908
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_incursion_forces
+		icon = GFX_focus_alliance_footman
+		cost = 30
+		prerequisite = { focus = NET_generals_fortification }
+		relative_position_id = NET_generals_fortification
+		x = 1
+		y = 1
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_generals_fortification
+				add_idea = NET_generals_fortification_1
+			}
+			division_template = {
+				name = "Portal Shock Troopers"
+				priority = 1
+				regiments = {
+					footman = { x = 0 y = 0 }
+					footman = { x = 0 y = 1 }
+					footman = { x = 0 y = 2 }
+					footman = { x = 0 y = 3 }
+					pikeman = { x = 1 y = 0 }
+					pikeman = { x = 1 y = 1 }
+				}
+				support = {
+					mage_support = { x = 0 y = 0 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Portal Shock Troopers\" division_template = \"Portal Shock Troopers\" start_experience_factor = 0.5"
+					owner = NET
+				}
+				create_unit = {
+					division = "name = \"Portal Shock Troopers\" division_template = \"Portal Shock Troopers\" start_experience_factor = 0.5"
+					owner = NET
+				}
+				create_unit = {
+					division = "name = \"Portal Shock Troopers\" division_template = \"Portal Shock Troopers\" start_experience_factor = 0.5"
+					owner = NET
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_forward_command
+		icon = GFX_focus_NET_the_alliance_of_stormwind
+		cost = 30
+		prerequisite = { focus = NET_generals_fortification }
+		relative_position_id = NET_generals_fortification
+		x = 0
+		y = 2
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_generals_fortification_1
+				add_idea = NET_generals_fortification_2
+			}
+			26 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					province = 2878
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_warriors_vigilance
+		icon = GFX_focus_NET_sentinel_hill_guards
+		cost = 30
+		prerequisite = { focus = NET_forward_command }
+		relative_position_id = NET_generals_fortification
+		x = -1
+		y = 3
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_generals_fortification_2
+				add_idea = NET_generals_fortification_3
+			}
+			add_tech_bonus = {
+				name = footman_technology
+				bonus = 0.5
+				uses = 1
+				category = footman_technology
+				category = pikeman_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_heavy_plating
+		icon = GFX_focus_NET_dwarven_leadership
+		cost = 30
+		prerequisite = { focus = NET_forward_command }
+		relative_position_id = NET_generals_fortification
+		x = 1
+		y = 3
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_generals_fortification_3
+				add_idea = NET_generals_fortification_4
+			}
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.5
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_enemy_within
+		icon = GFX_focus_generic_secret_service_agency
+		cost = 30
+		prerequisite = { focus = NET_forward_command }
+		relative_position_id = NET_generals_fortification
+		x = 0
+		y = 4
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_generals_fortification_4
+				add_idea = NET_generals_fortification_5
+			}
+			add_tech_bonus = {
+				name = rogues_guild_technology
+				bonus = 0.25
+				uses = 2
+				category = rogues_guild_technology
+			}
+		}
+	}
+
+	### Archmage Tree
+
+	focus = { 
+		id = NET_archmages_studies
+		icon = GFX_focus_NET_archmage_thasranan
+		cost = 14
+		relative_position_id = NET_archmage_thasranan_com
+		x = 0
+		y = 8
+
+		available = {
+			OR = {
+				has_completed_focus = NET_quartermaster_lungertz_com
+				has_completed_focus = NET_general_lordenson_com
+			}
+			has_country_flag = alliance_alignment
+		}
+	
+		completion_reward = {
+			custom_effect_tooltip = NET_archmages_studies_tt
+			add_political_power = 50
+			hidden_effect = {
+				country_event = nethergarde.120
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_arcane_refinement
+		icon = GFX_focus_generic_license_production
+		cost = 30
+		prerequisite = { focus = NET_archmages_studies }
+		relative_position_id = NET_archmages_studies
+		x = -1
+		y = 1
+
+		available = { always = no }
+	
+		completion_reward = {
+			add_ideas = NET_archmages_studies
+			377 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_arcane_battery
+		icon = GFX_goal_continuous_research
+		cost = 30
+		prerequisite = { focus = NET_archmages_studies }
+		relative_position_id = NET_archmages_studies
+		x = 1
+		y = 1
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_archmages_studies
+				add_idea = NET_archmages_studies_1
+			}
+			393 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_lesser_arcane_guardians
+		icon = GFX_focus_ITA_guardia_nazionale_repubblicana
+		cost = 30
+		prerequisite = { focus = NET_archmages_studies }
+		relative_position_id = NET_archmages_studies
+		x = 0
+		y = 2
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_archmages_studies_1
+				add_idea = NET_archmages_studies_2
+			}
+			393 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_dynamic_stabilizers
+		icon = GFX_focus_HUN_reestablish_the_rongyos_garda
+		cost = 30
+		prerequisite = { focus = NET_lesser_arcane_guardians }
+		relative_position_id = NET_archmages_studies
+		x = -1
+		y = 3
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_archmages_studies_2
+				add_idea = NET_archmages_studies_3
+			}
+			377 = {
+				add_building_construction = {
+					type = nuclear_facility
+					level = 1
+					province = 2854
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_reinforced_constructs
+		icon = GFX_goal_generic_defence
+		cost = 30
+		prerequisite = { focus = NET_lesser_arcane_guardians }
+		relative_position_id = NET_archmages_studies
+		x = 1
+		y = 3
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_archmages_studies_3
+				add_idea = NET_archmages_studies_4
+			}
+			377 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_sustained_research
+		icon = GFX_focus_research2
+		cost = 30
+		prerequisite = { focus = NET_lesser_arcane_guardians }
+		relative_position_id = NET_archmages_studies
+		x = 0
+		y = 4
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_archmages_studies_4
+				add_idea = NET_archmages_studies_5
+			}
+			add_research_slot = 1
+			add_breakthrough_points = {
+                specialization = specialization_magic
+                value = 1
+            }
+		}
+	}
+
+	### Quartermaster Advisor Tree
+
+	focus = { 
+		id = NET_maintain_supplies
+		icon = GFX_focus_NET_quartermaster_lungertz
+		cost = 14
+		relative_position_id = NET_quartermaster_lungertz_com
+		x = 0
+		y = 8
+
+		available = {
+			OR = {
+				has_completed_focus = NET_archmage_thasranan_com
+				has_completed_focus = NET_general_lordenson_com
+			}
+			has_country_flag = alliance_alignment
+		}
+	
+		completion_reward = {
+			custom_effect_tooltip = NET_maintain_supplies_tt
+			add_political_power = 25
+			add_command_power = 25
+			hidden_effect = {
+				country_event = nethergarde.100
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_expand_the_forge_grounds
+		icon = GFX_focus_generic_mining_industry
+		cost = 30
+		prerequisite = { focus = NET_maintain_supplies }
+		relative_position_id = NET_maintain_supplies
+		x = -1
+		y = 1
+
+		available = { always = no }
+	
+		completion_reward = {
+			add_ideas = NET_the_quartermaster
+			394 = {
+				add_resource = {
+					type = ores
+					amount = 2
+				}
+				add_resource = {
+					type = gunpowder
+					amount = 2
+				}
+			}
+			394 = { add_dynamic_modifier = { modifier = industrial_zone_mines_mod } }
+		}
+	}
+
+	focus = { 
+		id = NET_optimize_grain_shipments
+		icon = GFX_focus_FIN_finnish_federation_of_trade_unions
+		cost = 30
+		prerequisite = { focus = NET_maintain_supplies }
+		relative_position_id = NET_maintain_supplies
+		x = 1
+		y = 1
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_the_quartermaster
+				add_idea = NET_the_quartermaster_1
+			}
+			42 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			296 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			309 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			393 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			394 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			395 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			405 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1603 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_workers_habitation
+		icon = GFX_focus_NOR_approach_kretsen
+		cost = 30
+		prerequisite = { focus = NET_maintain_supplies }
+		relative_position_id = NET_maintain_supplies
+		x = 0
+		y = 2
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_the_quartermaster_1
+				add_idea = NET_the_quartermaster_2
+			}
+			393 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 1500
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_parts_tools_provisions
+		icon = GFX_goal_continuous_repairments
+		cost = 30
+		prerequisite = { focus = NET_workers_habitation }
+		relative_position_id = NET_maintain_supplies
+		x = -1
+		y = 3
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_the_quartermaster_2
+				add_idea = NET_the_quartermaster_3
+			}
+			add_tech_bonus = {
+				name = peasant_tools_technology
+				bonus = 0.5
+				uses = 1
+				category = peasant_tools_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_war_ready_workshops
+		icon = GFX_goal_continuous_suppression
+		cost = 30
+		prerequisite = { focus = NET_workers_habitation }
+		relative_position_id = NET_maintain_supplies
+		x = 1
+		y = 3
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_the_quartermaster_3
+				add_idea = NET_the_quartermaster_4
+			}
+			393 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_quartermaster_corps
+		icon = GFX_focus_NET_refuguees
+		cost = 30
+		prerequisite = { focus = NET_workers_habitation }
+		relative_position_id = NET_maintain_supplies
+		x = 0
+		y = 4
+
+		available = { always = no }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_the_quartermaster_4
+				add_idea = NET_the_quartermaster_5
+			}
+		}
+	}
+
+	### ALLIANCE LINE
+
+	focus = { 
+		id = NET_the_bastion_agreement
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		x = 25
+		y = 3
+
+		available = { has_country_flag = alliance_alignment }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_council_autonomy_2
+				add_idea = NET_bastion_agreement
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_send_volunteers
+		icon = GFX_focus_focus_fra_revolution_utmost
+		prerequisite = { focus = NET_the_bastion_agreement }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = -1
+		y = 1
+
+		available = { has_manpower > 899 }
+
+		completion_reward = {
+			add_manpower = -900
+			add_ideas = NET_auxiliaries
+			LOR = {
+				hidden_effect = {
+					division_template = {
+						name = "Nethergarde Auxiliaries"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 0 y = 3 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+						is_locked = yes
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = LOR
+						}
+					}
+				}
+			}
+			HEA = {
+				hidden_effect = {
+					division_template = {
+						name = "Nethergarde Auxiliaries"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 0 y = 3 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+						is_locked = yes
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = HEA
+						}
+					}
+				}
+			}
+			STH = {
+				hidden_effect = {
+					division_template = {
+						name = "Nethergarde Auxiliaries"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 0 y = 3 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+						is_locked = yes
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = STH
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = { 
+		id = NET_screen_grain_shipments
+		icon = GFX_focus_NET_screen_grain_shipments
+		prerequisite = { focus = NET_send_volunteers }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = -1
+		y = 2
+
+		completion_reward = {
+			add_ideas = NET_grain_inspections
+			random_state = {
+				limit = {
+					is_owned_by = NET
+					is_core_of = NET
+					is_coastal = yes
+					impassable = no
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_lessons_from_bones
+		icon = GFX_focus_NET_lessons_from_bones
+		prerequisite = { focus = NET_the_bastion_agreement }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_popularity = {
+				ideology = death
+				popularity = 0.02
+			}
+			add_tech_bonus = {
+				name = priest_technology
+				bonus = 0.5
+				uses = 1
+				category = priest_technology
+			}
+			LOR = {
+				add_tech_bonus = {
+					name = priest_technology
+					bonus = 0.5
+					uses = 1
+					category = priest_technology
+				}
+			}
+			STH = {
+				add_tech_bonus = {
+					name = priest_technology
+					bonus = 0.5
+					uses = 1
+					category = priest_technology
+				}
+			}
+			HEA = {
+				add_tech_bonus = {
+					name = priest_technology
+					bonus = 0.5
+					uses = 1
+					category = priest_technology
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_forbidden_studies
+		icon = GFX_focus_NET_forbidden_studies
+		prerequisite = { focus = NET_lessons_from_bones }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 1
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = arcane_tower_technology
+				bonus = 0.25
+				uses = 1
+				category = arcane_tower_technology
+			}
+			add_popularity = {
+				ideology = death
+				popularity = 0.02
+			}
+			DAL = {
+				add_tech_bonus = {
+					name = arcane_tower_technology
+					bonus = 0.25
+					uses = 1
+					category = arcane_tower_technology
+				}
+				add_popularity = {
+					ideology = death
+					popularity = 0.02
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_refugee_support
+		icon = GFX_focus_NET_refuguees
+		prerequisite = { focus = NET_screen_grain_shipments }
+		prerequisite = { focus = NET_forbidden_studies }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 3
+
+		completion_reward = {
+			add_ideas = NET_human_refugees
+			add_ideas = NET_dwarven_refugees
+			capital_scope = {
+				add_manpower = 750
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_find_the_source
+		icon = GFX_focus_generic_secret_service_agency
+		prerequisite = { focus = NET_refugee_support }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_dwarven_leadership
+		icon = GFX_focus_NET_dwarven_leadership
+		prerequisite = { focus = NET_refugee_support }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 4
+
+		completion_reward = {
+			air_experience = 5
+			create_corps_commander = {
+				name = "Orin Thundercliff"
+				picture = "gfx/leaders/NET/orin_thundercliff.dds"
+				traits = { }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_sickness_containment
+		icon = GFX_focus_ITA_bend_the_bars
+		prerequisite = { focus = NET_refugee_support }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 4
+
+		completion_reward = {
+			add_stability = -0.05
+			add_tech_bonus = {
+				name = guard_technology
+				bonus = 0.5
+				uses = 1
+				category = guard_technology
+			}
+		}
+	}
+
+	
+	focus = { 
+		id = NET_workers_uprising
+		icon = GFX_focus_NET_workers_uprising
+		prerequisite = { focus = NET_find_the_source }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = -3
+		y = 5
+
+		available = { STO = { has_war_with = DFB } }
+
+		completion_reward = {
+			STO = {
+				hidden_effect = {
+					division_template = {
+						name = "Nethergarde Auxiliaries"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 0 y = 3 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+						is_locked = yes
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = STO
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_safeguard_the_north
+		icon = GFX_focus_ETH_northern_thrust
+		prerequisite = { focus = NET_workers_uprising }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = -3
+		y = 6
+
+		available = { 
+			STO = { has_war_with = DFB } 
+			395 = {	is_controlled_by = STO }
+			405 = {	is_controlled_by = STO }
+			406 = {	is_controlled_by = STO }
+		}
+
+		completion_reward = {
+			395 = { transfer_state_to = NET }
+			405 = { transfer_state_to = NET }
+			406 = { transfer_state_to = NET }
+		}
+	}
+
+	focus = { 
+		id = NET_new_apprentices
+		icon = GFX_focus_NOR_approach_kretsen
+		prerequisite = { focus = NET_sickness_containment }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 3
+		y = 5
+
+		completion_reward = {
+			division_template = {
+				name = "Dalaran Apprentices"
+				priority = 1
+				regiments = {
+					militia = { x = 0 y = 0 }
+					mage = { x = 0 y = 1 }
+					mage = { x = 0 y = 2 }
+					mage = { x = 0 y = 3 }
+					militia = { x = 1 y = 0 }
+					mage = { x = 1 y = 1 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Dalaran Apprentices\" division_template = \"Dalaran Apprentices\" start_experience_factor = 0.1"
+					owner = NET
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_harness_rift_energies
+		icon = GFX_goal_tfv_generic_tech_sharing
+		prerequisite = { focus = NET_new_apprentices }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 3
+		y = 6
+
+		available = {
+			378 = {	arcane_tower > 2 }
+		}
+
+		completion_reward = {
+			add_ideas = NET_unstable_research
+		}
+	}
+
+	focus = { 
+		id = NET_port_defenses
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = NET_find_the_source }
+		prerequisite = { focus = NET_dwarven_leadership}
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = -1
+		y = 5
+
+		completion_reward = {
+			if = {
+				limit = { 1565 = { is_controlled_by_ROOT_or_ally = yes } }
+				1565 = {
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 3026
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = { 122 = { is_controlled_by_ROOT_or_ally = yes } }
+				122 = {
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 3026
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = { 1531 = { is_controlled_by_ROOT_or_ally = yes } }
+				1531 = {
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 3026
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = { 151 = { is_controlled_by_ROOT_or_ally = yes } }
+				151 = {
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 3026
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = { 226 = { is_controlled_by_ROOT_or_ally = yes } }
+				226 = {
+					add_building_construction = {
+						type = bunker
+						level = 1
+						province = 3026
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_medical_research_center
+		icon = GFX_focus_GRE_hellenic_armed_forces
+		prerequisite = { focus = NET_port_defenses }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = -1
+		y = 6
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_grain_inspections
+				add_idea = NET_arrival_medical_care
+			}
+			391 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_resistance_campaign
+		icon = GFX_focus_generic_support_the_left_right
+		prerequisite = { focus = NET_sickness_containment }
+		prerequisite = { focus = NET_dwarven_leadership}
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 1
+		y = 5
+
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.02
+			custom_effect_tooltip = NET_resistance_tooltip
+			####UNLOCK DECISIONS TO PROVIDE SUPPORT TO WARING ALLIANCE OR EX NATIONS
+		}
+	}
+
+	focus = { 
+		id = NET_cult_countermeasures
+		icon = GFX_focus_generic_annex_country
+		prerequisite = { focus = NET_resistance_campaign }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 1
+		y = 6
+
+		completion_reward = {
+			army_experience = 15
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			} 
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.25
+            }
+			add_stability = 0.05
+			add_popularity = {
+				ideology = death
+				popularity = -0.05
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_safeguard_evacuations
+		icon = GFX_focus_ICE_modernizing_the_coast_guard
+		prerequisite = { focus = NET_medical_research_center }
+		prerequisite = { focus = NET_cult_countermeasures }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 7
+
+		available = {
+			has_manpower > 449
+		}
+
+		completion_reward = {
+			if = {
+				limit = { 
+					country_exists = LOR
+					NOT = { LOR = { has_government = death } }
+				}
+				add_manpower = -150
+				army_experience = 5
+				add_war_support = 0.05
+				LOR = {
+					add_units_to_division_template = {
+						template_name = "Nethergarde Auxiliaries"
+						regiments = {
+							pikeman = 1
+							pikeman = 1
+							archer = 1
+						}
+						support = {
+							captain = 0
+						}
+					}
+				}
+			}
+			if = {
+				limit = { 
+					country_exists = HEA
+					NOT = { HEA = { has_government = death } }
+				}
+				add_manpower = -150
+				army_experience = 5
+				add_war_support = 0.05
+				HEA = {
+					add_units_to_division_template = {
+						template_name = "Nethergarde Auxiliaries"
+						regiments = {
+							pikeman = 1
+							pikeman = 1
+							archer = 1
+						}
+						support = {
+							captain = 0
+						}
+					}
+				}
+			}
+			if = {
+				limit = { 
+					country_exists = STH
+					NOT = { STH = { has_government = death } }
+				}
+				add_manpower = -150
+				army_experience = 5
+				add_war_support = 0.05
+				STH = {
+					add_units_to_division_template = {
+						template_name = "Nethergarde Auxiliaries"
+						regiments = {
+							pikeman = 1
+							pikeman = 1
+							archer = 1
+						}
+						support = {
+							captain = 0
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = LOR
+					country_exists = HEA
+					country_exists = STH
+				}
+				swap_ideas = {
+					remove_idea = NET_auxiliaries
+					add_idea = NET_auxiliaries_2
+				}
+			}
+			swap_ideas = {
+				remove_idea = NET_human_refugees
+				add_idea = NET_human_refugees_2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_hillsbrad_fishermen
+		icon = GFX_goal_continuous_naval_production
+		prerequisite = { focus = NET_safeguard_evacuations }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 8
+
+		completion_reward = {
+			navy_experience = 15
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 30
+				producer = LOR
+			}
+			391 = { add_manpower = 900 }
+		}
+	}
+
+	focus = { 
+		id = NET_the_old_dockyards
+		icon = GFX_generic_focus_shipyard
+		prerequisite = { focus = NET_hillsbrad_fishermen }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 9
+
+		completion_reward = {
+			391 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = small_frame_technology
+				bonus = 0.5
+				uses = 1
+				category = small_frame_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_stromgarde_turmoil
+		icon = GFX_focus_NET_stromgarde_turmoil
+		prerequisite = { focus = NET_safeguard_evacuations }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 8
+
+		available = { 
+			STR = { 
+				OR = {
+					has_war_with = BFC 
+					has_war_with = SYN
+					has_war_with = DWK
+				}
+			} 
+		}
+
+		completion_reward = {
+			STR = {
+				division_template = {
+					name = "Nethergarde Auxiliaries"
+					priority = 1
+					regiments = {
+						footman = { x = 0 y = 0 }
+						footman = { x = 0 y = 1 }
+						footman = { x = 0 y = 2 }
+						footman = { x = 0 y = 3 }
+						pikeman = { x = 1 y = 0 }
+						pikeman = { x = 1 y = 1 }
+					}
+					support = {
+						mage_support = { x = 0 y = 0 }
+					}
+					is_locked = yes
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+						owner = STR
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_ogre_specialists
+		icon = GFX_focus_NET_ogre_resistance
+		prerequisite = { focus = NET_stromgarde_turmoil }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 9
+
+		available = { 
+			has_completed_focus = NET_ogre_resistance
+			NOT = { country_exists = DRM }
+		}
+
+		completion_reward = {
+			army_experience = 25
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			} 
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+			STR = {
+				army_experience = 25
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = land_doctrine
+				} 
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = 0.25
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_burn_the_plague
+		icon = GFX_goal_continuous_suppression
+		prerequisite = { focus = NET_safeguard_evacuations }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 8
+
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { NET = { has_tech = burning_oil } }
+					NOT = { NET = { has_tech = heavy_payload } }
+				}
+				NET = {	set_technology = { burning_oil = 1 } }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						NET = { has_tech = burning_oil }
+						NET = { has_tech = heavy_payload }
+					}
+				}
+				add_tech_bonus = {
+					name = catapult_technology
+					bonus = 0.5
+					uses = 1
+					category = catapult_technology
+				}
+			}
+			LOR = {
+				if = {
+					limit = {
+						NOT = { LOR = { has_tech = burning_oil } }
+						NOT = { LOR = { has_tech = heavy_payload } }
+					}
+					LOR = {	set_technology = { burning_oil = 1 } }
+				}
+				else_if = {
+					limit = {
+						OR = {
+							LOR = { has_tech = burning_oil }
+							LOR = { has_tech = heavy_payload }
+						}
+					}
+					add_tech_bonus = {
+						name = catapult_technology
+						bonus = 0.5
+						uses = 1
+						category = catapult_technology
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_lights_santuary
+		icon = GFX_focus_NET_lights_sanctuary
+		prerequisite = { focus = NET_burn_the_plague }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 9
+
+		completion_reward = {
+			STO = { 319 = { add_manpower = 2400 } }
+			add_to_variable = {
+				var = faith_points
+				value = 75
+				tooltip = add_faith_points_tt
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_wipe_out_the_cult
+		icon = GFX_focus_NET_wipe_out_the_cult
+		prerequisite = { focus = NET_lights_santuary }
+		cost = 42
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 10
+
+		cancelable = no
+
+		select_effect = {
+			add_ideas = NET_active_operation
+		}
+
+		completion_reward = {
+			add_manpower = -300
+			army_experience = 10
+			add_stability = 0.1
+			swap_ideas = {
+				remove_idea = NET_human_refugees_2
+				add_idea = NET_human_refugees_3
+			}
+			hidden_effect = {
+				remove_ideas = NET_active_operation
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_idle_no_longer
+		icon = GFX_goal_generic_territory_or_war
+		prerequisite = { focus = NET_wipe_out_the_cult }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 12
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_bastion_agreement
+				add_idea = NET_bastion_agreement_2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_offshore_dockyards
+		icon = GFX_generic_focus_shipyard
+		prerequisite = { focus = NET_idle_no_longer }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 0
+		y = 13
+
+		completion_reward = {
+			391 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 25
+				producer = NET
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_bolster_resolve
+		icon = GFX_focus_NET_alliance_victory
+		prerequisite = { focus = NET_offshore_dockyards }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = -1
+		y = 14
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = NET_heed_the_call
+				days = 240
+			}
+			division_template = {
+				name = "Oath Sworn Warriors"
+				priority = 1
+				regiments = {
+					paladin = { x = 0 y = 0 }
+					footman = { x = 0 y = 1 }
+					footman = { x = 0 y = 2 }
+					footman = { x = 0 y = 3 }
+					paladin = { x = 1 y = 0 }
+					footman = { x = 1 y = 1 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Oath Sworn Warriors\" division_template = \"Oath Sworn Warriors\" start_experience_factor = 0.4"
+					owner = NET
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_cleansing_light
+		icon = GFX_focus_LAT_latvia_for_latvians
+		prerequisite = { focus = NET_offshore_dockyards }
+		cost = 21
+		relative_position_id = NET_the_bastion_agreement
+		x = 1
+		y = 14
+
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = CAE
+					is_in_faction_with = SRG
+				}
+				random_state = {
+					limit = {
+						is_owned_by = CAE
+						impassable = no
+					}
+					add_dynamic_modifier = {
+						modifier = GEN_paladin_activity
+						days = 180
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = CAE
+						impassable = no
+					}
+					add_dynamic_modifier = {
+						modifier = GEN_paladin_activity
+						days = 180
+					}
+				}
+			}
+			else = {
+				random_state = {
+					limit = {
+						is_owned_by = SRG
+						impassable = no
+					}
+					add_dynamic_modifier = {
+						modifier = GEN_paladin_activity
+						days = 180
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SRG
+						impassable = no
+					}
+					add_dynamic_modifier = {
+						modifier = GEN_paladin_activity
+						days = 180
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_ogre_resistance
+		icon = GFX_focus_NET_ogre_resistance
+		prerequisite = { focus = NET_lights_santuary }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 10
+
+		will_lead_to_war_with = DRM
+
+		completion_reward = {
+			create_wargoal = { target = DRM	type = annex_everything	}
+		}
+	}
+
+	focus = { 
+		id = NET_murloc_relocation
+		icon = GFX_focus_NET_murloc_relocation
+		prerequisite = { focus = NET_lights_santuary }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 10
+
+		will_lead_to_war_with = RCP
+
+		completion_reward = {
+			create_wargoal = { target = RCP	type = annex_everything	}
+		}
+	}
+
+	focus = { 
+		id = NET_scourge_victory
+		icon = GFX_focus_NET_scourge_victory
+		prerequisite = { focus = NET_wipe_out_the_cult }
+		mutually_exclusive = { focus = NET_alliance_victory }
+		cost = 5
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 11
+
+		available = { 
+			NOT = {	country_exists = LOR }
+			#has_country_flag = scourge_victory 
+		}
+
+		completion_reward = {
+			add_stability = -0.20
+			add_war_support = 0.15
+			remove_ideas = NET_human_refugees_3
+			remove_ideas = NET_dwarven_refugees
+			hidden_effect = {
+				remove_ideas = NET_auxiliaries_2
+				remove_ideas = NET_auxiliaries
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_alliance_of_stormwind
+		icon = GFX_focus_NET_the_alliance_of_stormwind
+		prerequisite = { focus = NET_scourge_victory }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 12
+
+		completion_reward = {
+			STO = {	set_faction_leader = yes }
+			hidden_effect = {
+				STO = { add_to_faction = NET }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_sentinel_hill_guards
+		icon = GFX_focus_NET_sentinel_hill_guards
+		prerequisite = { focus = NET_the_survivors }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = -4
+		y = 13
+
+		completion_reward = {
+			if = {
+				limit = { is_controlled_by_ROOT_or_ally = yes }
+				146 = { add_dynamic_modifier = { modifier = 7th_nethergrade_pikes scope = STO } }
+				army_experience = 15
+			}
+
+			if = {
+				limit = {
+					395 = {	is_controlled_by = NET }
+					405 = {	is_controlled_by = NET }
+					406 = {	is_controlled_by = NET }
+				}
+				395 = { add_core_of = NET }
+				405 = { add_core_of = NET }
+				406 = { add_core_of = NET }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_survivors
+		icon = GFX_focus_focus_fra_revolution_utmost
+		prerequisite = { focus = NET_scourge_victory }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = -4
+		y = 12
+
+		completion_reward = {
+			add_war_support = 0.05
+			hidden_effect = {
+				LOR = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				HEA = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				STH = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				STO = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				STR = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+			}
+			NET = {
+				hidden_effect = {
+					division_template = {
+						name = "Nethergarde Auxiliaries"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 0 y = 3 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+							pikeman = { x = 1 y = 2 }
+							pikeman = { x = 1 y = 3 }
+							archer = { x = 2 y = 0 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+							captain = { x = 0 y = 1 }
+						}
+						is_locked = no
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75 start_equipment_factor = 0.4"
+							owner = NET
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_refugee_sanctuary
+		icon = GFX_focus_NET_refuguees
+		prerequisite = { focus = NET_the_alliance_of_stormwind }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = -2
+		y = 13
+
+		completion_reward = {
+			STO = {
+				add_timed_idea = {
+					idea = NET_nethergrade_refugees
+					days = 180
+				}
+			}
+			if = {
+				limit = { has_idea = NET_funding_0 }
+				swap_ideas = {
+					remove_idea = NET_funding_0
+					add_idea = NET_funding_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_1 }
+				swap_ideas = {
+					remove_idea = NET_funding_1
+					add_idea = NET_funding_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_2 }
+				remove_ideas = NET_funding_2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_eyes_to_the_north
+		icon = GFX_focus_NET_eyes_north
+		prerequisite = { focus = NET_a_heroes_welcome }
+		prerequisite = { focus = NET_internal_security }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 3
+		y = 14
+
+		completion_reward = {
+			1646 = {
+				transfer_state_to = NET
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			#custom_effect_tooltip = NET_go_north
+		}
+	}
+
+	focus = { 
+		id = NET_alliance_victory
+		icon = GFX_focus_NET_alliance_victory
+		prerequisite = { focus = NET_wipe_out_the_cult }
+		mutually_exclusive = { focus = NET_scourge_victory }
+		cost = 5
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 11
+
+		available = { 
+			OR = {
+				CAE = {	has_capitulated = yes }
+				NOT = {	country_exists = CAE }
+			}
+			#has_country_flag = alliance_victory 
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			hidden_effect = {
+				remove_ideas = {
+					NET_human_refugees_3
+					NET_dwarven_refugees
+					NET_auxiliaries
+					NET_auxiliaries_2
+				}	
+			}
+			add_timed_idea = {
+				idea = NET_human_refugees_4
+				days = 360
+			}
+			add_timed_idea = {
+				idea = NET_dwarven_refugees_2
+				days = 360
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_dire_maintence
+		icon = GFX_goal_continuous_repairments
+		prerequisite = { focus = NET_alliance_victory }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 12
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = NET_funding_0 }
+				swap_ideas = {
+					remove_idea = NET_funding_0
+					add_idea = NET_funding_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_1 }
+				swap_ideas = {
+					remove_idea = NET_funding_1
+					add_idea = NET_funding_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = NET_funding_2 }
+				remove_ideas = NET_funding_2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_seek_operations_approval
+		icon = GFX_focus_ARG_pan_american_cooperation
+		prerequisite = { focus = NET_alliance_victory }
+		cost = 14
+		relative_position_id = NET_the_bastion_agreement
+		x = 4
+		y = 12
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_bastion_agreement_2
+				add_idea = NET_bastion_agreement_3
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_a_heroes_welcome
+		icon = GFX_focus_SWI_establish_pro_helvetia
+		prerequisite = { focus = NET_dire_maintence }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 2
+		y = 13
+
+		completion_reward = {
+			add_stability = 0.05
+			custom_effect_tooltip = NET_a_heroes_welcome_tt
+			hidden_effect = {
+				LOR = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				HEA = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				STH = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				STO = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+				STR = {
+					delete_unit_template_and_units = {
+						division_template = "Nethergarde Auxiliaries"
+						disband = no
+					}
+				}
+			}
+			NET = {
+				hidden_effect = {
+					division_template = {
+						name = "Nethergarde Auxiliaries"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 0 y = 3 }
+							pikeman = { x = 1 y = 0 }
+							pikeman = { x = 1 y = 1 }
+							pikeman = { x = 1 y = 2 }
+							pikeman = { x = 1 y = 3 }
+							archer = { x = 2 y = 0 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+							captain = { x = 0 y = 1 }
+						}
+						is_locked = no
+					}
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = NET
+						}
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = NET
+						}
+						create_unit = {
+							division = "name = \"Nethergarde Auxiliaries\" division_template = \"Nethergarde Auxiliaries\" start_experience_factor = 0.75"
+							owner = NET
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_internal_security
+		icon = GFX_focus_eng_concessions_to_the_trade_unions
+		prerequisite = { focus = NET_seek_operations_approval }
+		cost = 30
+		relative_position_id = NET_the_bastion_agreement
+		x = 4
+		y = 13
+
+		completion_reward = {
+			add_stability = 0.05
+			add_tech_bonus = {
+				name = rogues_guild_technology
+				bonus = 0.5
+				uses = 1
+				category = rogues_guild_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_secure_the_swamp
+		icon = GFX_focus_NET_claim_the_swamp
+		prerequisite = { focus = NET_sentinel_hill_guards }
+		prerequisite = { focus = NET_refugee_sanctuary }
+		cost = 5
+		relative_position_id = NET_the_bastion_agreement
+		x = -3
+		y = 14
+
+		available = { always = no }
+
+		completion_reward = {
+			create_wargoal = {
+				target = TSW
+				type = annex_everything
+			}
+			custom_effect_tooltip = NET_stay_south
+		}
+	}
+
+	### ALLIANCE LINE
+
+	focus = { 
+		id = NET_the_grandmarshal
+		icon = GFX_focus_NET_grandmarshel_garithos
+		cost = 5
+		x = 37
+		y = 3
+
+		available = { has_completed_focus = NET_eyes_to_the_north }
+
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { 
+						LOR = { LOR_othmar_garithos = { is_country_leader = yes } } 
+					}
+				}
+				hidden_effect = {
+					#LOR = {
+					#	set_nationality = {
+					#		target_country = NET
+					#		character = LOR_othmar_garithos
+					#	}
+					#}	
+					set_country_flag = NET_garithos_leader #used to make Marshal Kayvan show up without using recruit_character (this way causes a bug)
+
+				}
+				#create_country_leader = {
+				#	name = "Grand Marshal Garithos"
+				#	picture = "gfx/leaders/NET/NET_othmar_garithos.dds"
+				#	expire = "1965.1.1"
+				#	ideology = alliance_type
+				#	traits = { xenophobic }
+				#}
+			}
+			else = {
+				promote_character = NET_marshal_kayvan
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_reinforce_the_landing
+		icon = GFX_goal_fortify_the_westwall
+		prerequisite = { focus = NET_the_grandmarshal }
+		cost = 14
+		relative_position_id = NET_the_grandmarshal
+		x = 1
+		y = 1
+
+		completion_reward = {
+			1646 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 8007
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 8034
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_an_unfit_holding
+		icon = GFX_focus_BUL_destroy_the_zveno
+		prerequisite = { focus = NET_the_grandmarshal }
+		cost = 14
+		relative_position_id = NET_the_grandmarshal
+		x = -1
+		y = 1
+
+		completion_reward = {
+			army_experience = 5
+			add_manpower = -300
+			add_war_support = -0.05
+			add_political_power = -50
+		}
+	}
+
+	focus = { 
+		id = NET_overrun
+		icon = GFX_focus_mex_triumph_over_the_cristeros
+		prerequisite = { focus = NET_an_unfit_holding }
+		prerequisite = { focus = NET_reinforce_the_landing }
+		cost = 14
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 2
+
+		completion_reward = {
+			army_experience = 5
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			} 
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.25
+            }
+			1646 = {
+				transfer_state_to = DFC
+				hidden_effect = {
+					remove_core_of = NET
+					add_claim_by = NET
+				}
+				remove_building = {
+					type = radar_station
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_return_twofold
+		icon = GFX_focus_alliance_footman
+		prerequisite = { focus = NET_overrun }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = -1
+		y = 3
+
+		completion_reward = {
+			1656 = {
+				transfer_state_to = NET
+				hidden_effect = {
+					add_core_of = NET
+					add_manpower = -7200
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_taste_the_blade
+		icon = GFX_focus_alliance_wartime_alliance
+		prerequisite = { focus = NET_overrun }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 1
+		y = 3
+
+		available = { has_completed_focus = NET_return_twofold }
+
+		completion_reward = {
+			1655 = {
+				transfer_state_to = NET
+				hidden_effect = {
+					add_core_of = NET
+					add_manpower = -5400
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_those_of_plagued_lands
+		icon = GFX_focus_raise_death_armies
+		prerequisite = { focus = NET_return_twofold }
+		prerequisite = { focus = NET_taste_the_blade }
+		cost = 21
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 4
+
+		completion_reward = {
+			1656 = {
+				add_manpower = 3600
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+			}
+			1655 = {
+				add_manpower = 2700
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = wheat
+					amount = 2
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_cobblers_and_ferriers
+		icon = GFX_generic_focus_workshop
+		prerequisite = { focus = NET_return_twofold }
+		prerequisite = { focus = NET_taste_the_blade }
+		cost = 21
+		relative_position_id = NET_the_grandmarshal
+		x = -2
+		y = 4
+
+		completion_reward = {
+			1656 = {
+				add_manpower = 720
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_disgruntled_paladins
+		icon = GFX_focus_SCC_generic
+		prerequisite = { focus = NET_return_twofold }
+		prerequisite = { focus = NET_taste_the_blade }
+		cost = 21
+		relative_position_id = NET_the_grandmarshal
+		x = 2
+		y = 4
+
+		completion_reward = {
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+			LOR = {
+				add_popularity = {
+					ideology = neutral
+					popularity = -0.05
+				}
+			}
+			1656 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 7356
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 16030
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 16031
+					instant_build = yes
+				}
+			}
+
+			hidden_effect = {
+				division_template = {
+					name = "Blackguards"
+					priority = 1
+					regiments = {
+						paladin = { x = 0 y = 0 }
+						mounted_footman = { x = 0 y = 1 }
+						mounted_footman = { x = 0 y = 2 }
+						paladin = { x = 1 y = 0 }
+						mounted_footman = { x = 1 y = 1 }
+					}
+				}
+			}
+			1656 = {
+				create_unit = {
+					division = "name = \"Blackguards\" division_template = \"Blackguards\" start_experience_factor = 0.3"
+					owner = NET
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_path_of_least_resistance
+		icon = GFX_focus_generic_attack_nordic_territory
+		prerequisite = { focus = NET_cobblers_and_ferriers }
+		prerequisite = { focus = NET_those_of_plagued_lands }
+		prerequisite = { focus = NET_disgruntled_paladins }
+		cost = 14
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 5
+
+		will_lead_to_war_with = HFD
+
+		completion_reward = {
+			declare_war_on = {
+				target = HFD
+				type = annex_everything
+			}
+			DFC = {
+				add_timed_idea = {
+					idea = NET_probing_attacks
+					days = 21
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_highland_breeds
+		icon = GFX_focus_generic_horse_studs
+		prerequisite = { focus = NET_path_of_least_resistance }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = -2
+		y = 6
+
+		available = {
+			1659 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			1659 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				1659 = {
+					transfer_state_to = NET
+					add_core_of = NET
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_steel_dwarves
+		icon = GFX_focus_generic_construction_green
+		prerequisite = { focus = NET_highland_breeds }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = -2
+		y = 7
+
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = IRO
+				modifier = SHC_common_understanding
+			}
+			reverse_add_opinion_modifier = {
+				target = IRO
+				modifier = SHC_common_understanding
+			}
+			custom_effect_tooltip = archeology_funding
+			GEN_upgrade_archeology = yes
+			if = {
+				limit = { has_idea = archeology_guild }
+				swap_ideas = {
+					remove_idea = archeology_guild
+					add_idea = archeology_guild_1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_lame_creatures
+		icon = GFX_goal_generic_wolf_pack
+		prerequisite = { focus = NET_steel_dwarves }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = -2
+		y = 8
+
+		available = {
+			1027 = { is_controlled_by_ROOT_or_ally = yes }
+			1661 = { is_controlled_by_ROOT_or_ally = yes }
+			2135 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_stability = -0.10
+			1027 = {
+				add_core_of = NET
+				add_manpower = -5000
+				hidden_effect = {
+					transfer_state_to = NET
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1659 = {
+				add_manpower = -3500
+				hidden_effect = {
+					transfer_state_to = NET
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1661 = {
+				add_core_of = NET
+				add_manpower = -7000
+				hidden_effect = {
+					transfer_state_to = NET
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			2135 = {
+				add_core_of = NET
+				add_manpower = -10500
+				hidden_effect = {
+					transfer_state_to = NET
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			### Improve Relations with Ironforge
+		}
+	}
+
+	focus = { 
+		id = NET_weapons_of_savages
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = NET_path_of_least_resistance }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 6
+
+		available = {
+			has_war_with = DFC
+		}
+
+		completion_reward = {
+			#set_technology = { vanguard_tech = 1 }
+			complete_special_project = sp:sp_vanguard
+		}
+	}
+
+	focus = { 
+		id = NET_rain_vengence
+		icon = GFX_focus_generic_air_defense
+		prerequisite = { focus = NET_weapons_of_savages }
+		cost = 21
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 7
+
+		available = {
+			1653 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = { DFC = { add_war_support = 0.1 } }
+			1645 = {
+				add_manpower = -7000
+				damage_building = {
+					type = arms_factory
+					damage = 2
+				}
+				damage_building = {
+					type = industrial_complex
+					damage = 2
+				}
+				damage_building = {
+					type = dockyard
+					damage = 1
+				}
+				damage_building = {
+					type = farm
+					damage = 1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_ancient_elevator
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = NET_rain_vengence }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 8
+
+		completion_reward = {
+			1652 = {
+				add_core_of = NET
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 7357
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_stone_and_steel_alike
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = NET_path_of_least_resistance }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 2
+		y = 6
+
+		available = {
+			has_war_with = WIC
+		}
+
+		bypass = {
+			NOT = {	country_exists = WIC }
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.5
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_enemies_designs
+		icon = GFX_focus_FIN_coastal_defense
+		prerequisite = { focus = NET_stone_and_steel_alike }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 2
+		y = 7
+
+		available = {
+			1657 = { is_controlled_by_ROOT_or_ally = yes }
+			has_completed_focus = NET_rain_vengence
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = guard_tower_technology
+				bonus = 0.5
+				uses = 1
+				category = guard_tower_technology
+			}
+			set_technology = {
+				vrykul_harpoon_gun_equipment_tech_2 = 1
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_burn_the_village
+		icon = GFX_goal_continuous_suppression
+		prerequisite = { focus = NET_the_enemies_designs }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 2
+		y = 8
+
+		available = {
+			1641 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			1641 = {
+				add_compliance = 45
+				remove_building = {
+					type = lumber_mill
+					level = 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_repurpose_towers
+		icon = GFX_focus_generic_the_giant_wakes
+		prerequisite = { focus = NET_lame_creatures }
+		prerequisite = { focus = NET_ancient_elevator }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = -1
+		y = 9
+
+		completion_reward = {
+			1641 = {
+				add_compliance = 10
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			1653 = {
+				add_compliance = 10
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_sack_the_keep
+		icon = GFX_focus_shendralar_ruined_city
+		prerequisite = { focus = NET_burn_the_village }
+		prerequisite = { focus = NET_ancient_elevator }
+		cost = 30
+		relative_position_id = NET_the_grandmarshal
+		x = 1
+		y = 9
+
+		completion_reward = {
+			1645 = {
+				add_compliance = 50
+				remove_building = {
+					type = industrial_complex
+					level = 2
+				}
+				remove_building = {
+					type = nesting_grounds
+					level = 1
+				}
+				remove_building = {
+					type = dockyard
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_those_within
+		icon = GFX_focus_NET_refuguees
+		prerequisite = { focus = NET_repurpose_towers }
+		prerequisite = { focus = NET_sack_the_keep }
+		cost = 21
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 10
+
+		completion_reward = {
+			country_event = nethergarde.50
+		}
+	}
+
+	focus = { 
+		id = NET_burn_the_beasts
+		icon = GFX_focus_NET_grandmarshel_garithos
+		prerequisite = { focus = NET_those_within }
+		mutually_exclusive = { focus = NET_let_sleeping_dogs_lie }
+		cost = 5
+		relative_position_id = NET_the_grandmarshal
+		x = 1
+		y = 11
+
+		available = { always = no }
+
+		completion_reward = {
+			add_stability = -0.05
+			1638 = {
+				add_core_of = NET
+				add_manpower = -18000
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			hidden_effect = {
+				1636 = { add_core_of = NET }
+				1637 = { add_core_of = NET }
+				random_state = {
+					limit = { 
+						check_variable = { var = race value = 136 }
+						impassable = no 
+						is_core_of = JOT
+					}
+					add_manpower = 3000
+				}
+				random_state = {
+					limit = { 
+						check_variable = { var = race value = 136 }
+						impassable = no 
+						is_core_of = JOT
+					}
+					add_manpower = 3000
+				}
+				random_state = {
+					limit = { 
+						check_variable = { var = race value = 136 }
+						impassable = no 
+						is_core_of = JOT
+					}
+					add_manpower = 3000
+				}
+				random_state = {
+					limit = { 
+						check_variable = { var = race value = 136 }
+						impassable = no 
+						is_core_of = JOT
+					}
+					add_manpower = 3000
+				}
+				random_state = {
+					limit = { 
+						check_variable = { var = race value = 136 }
+						impassable = no 
+						is_core_of = JOT
+					}
+					add_manpower = 3000
+				}
+			}
+			every_country = {
+				limit = { has_idea = vrykul_primary_race }
+				add_opinion_modifier = {
+					target = NET
+					modifier = SHC_beasts
+				}
+			}
+			### But much of the population flees to Jothunheim to join the Lich King
+		}
+	}
+
+	focus = { 
+		id = NET_formalize_appointment
+		icon = GFX_focus_alliance_paladin
+		prerequisite = { 
+			focus = NET_let_sleeping_dogs_lie
+			focus = NET_burn_the_beasts
+		}
+		cost = 21
+		relative_position_id = NET_the_grandmarshal
+		x = 0
+		y = 12
+
+		completion_reward = {
+			if = {
+				limit = { NET_archmage_thasranan = { is_country_leader = yes } }
+				NET_archmage_thasranan = {
+					add_country_leader_trait = arcane_strategist 
+				}
+			}
+			if = {
+				limit = { NET_general_lordenson = { is_country_leader = yes } }
+				NET_general_lordenson = {
+					add_country_leader_trait = iron_commander
+				}
+			}
+			if = {
+				limit = { NET_quartermaster_lungertz = { is_country_leader = yes } }
+				NET_quartermaster_lungertz = {
+					add_country_leader_trait = resourceful_steward
+				}
+			}
+			if = {
+				limit = { LOR_othmar_garithos = { is_country_leader = yes } }
+				LOR_othmar_garithos = {
+					add_country_leader_trait = unyielding_warlord
+				}
+			}
+			if = {
+				limit = { NET_marshal_kayvan = { is_country_leader = yes } }
+				NET_marshal_kayvan = {
+					add_country_leader_trait = guards_oath
+				}
+				custom_effect_tooltip = guards_oath_tt
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_enforcers_command
+		icon = GFX_goal_generic_wolf_pack
+		cost = 14
+		relative_position_id = NET_the_grandmarshal
+		x = 4
+		y = 11
+
+		available = {
+			has_completed_focus = NET_burn_the_beasts
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = NET_enforcers_command_tt
+			add_command_power = 50
+			hidden_effect = {
+				country_event = nethergarde.130
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_suppress_uprisings
+		icon = GFX_goal_continuous_suppression
+		cost = 30
+		prerequisite = { focus = NET_enforcers_command }
+		relative_position_id = NET_enforcers_command
+		x = -1
+		y = 1
+
+		available = { always = no }
+
+		completion_reward = {
+			add_ideas = NET_enforcers_command
+			every_state = {
+				limit = { is_core_of = DFC }
+				add_dynamic_modifier = { modifier = NET_suppressing_uprisings }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_labor_quotas
+		icon = GFX_focus_spr_class_war
+		cost = 30
+		prerequisite = { focus = NET_enforcers_command }
+		relative_position_id = NET_enforcers_command
+		x = 1
+		y = 1
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_enforcers_command
+				add_idea = NET_enforcers_command_1
+			}
+			hidden_effect = {
+				NET = {
+					set_nationality = {
+						target_country = HEA
+						character = NET_general_lordenson
+					}
+				}	
+			}
+			if = {
+				limit = { has_idea = NET_generals_fortification_5 }
+				remove_ideas = NET_generals_fortification_5
+			}
+			every_state = {
+				limit = { is_core_of = DFC }
+				add_compliance = 10
+			}
+			1644 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			1646 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_militarize_the_north
+		icon = GFX_focus_SOV_mobilization_plan
+		cost = 30
+		prerequisite = { focus = NET_enforcers_command }
+		relative_position_id = NET_enforcers_command
+		x = 0
+		y = 2
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_enforcers_command_1
+				add_idea = NET_enforcers_command_2
+			}
+			1028 = { add_core_of = NET }
+			1641 = { 
+				add_extra_state_shared_building_slots = 2
+				remove_building = {
+					type = industrial_complex
+					level = 2
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_core_of = NET 
+			}
+			1657 = { add_core_of = NET }
+		}
+	}
+
+	focus = { 
+		id = NET_undue_influence
+		icon = GFX_focus_mex_triumph_over_the_cristeros
+		cost = 30
+		prerequisite = { focus = NET_militarize_the_north }
+		relative_position_id = NET_enforcers_command
+		x = -1
+		y = 3
+
+		available = { always = no }
+
+		completion_reward = {
+			add_stability = -0.05
+			swap_ideas = {
+				remove_idea = NET_enforcers_command_2
+				add_idea = NET_enforcers_command_3
+			}
+			every_state = {
+				limit = {
+					is_core_of = DFC
+					NOT = { is_core_of = NET }
+					state_population_k < 11
+				}
+				add_core_of = NET
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_further_exploitation
+		icon = GFX_focus_generic_annex_country
+		cost = 30
+		prerequisite = { focus = NET_militarize_the_north }
+		relative_position_id = NET_enforcers_command
+		x = 1
+		y = 3
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_enforcers_command_3
+				add_idea = NET_enforcers_command_4
+			}
+			every_state = {
+				limit = {
+					is_core_of = DFC
+					OR = {
+						iron_mine > 0
+						sulfur_mine > 0
+						lumber_mill > 0
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_southern_holds
+		icon = GFX_focus_stormwind_bunker_i
+		cost = 30
+		prerequisite = { focus = NET_militarize_the_north }
+		relative_position_id = NET_enforcers_command
+		x = 0
+		y = 4
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_enforcers_command_4
+				add_idea = NET_enforcers_command_5
+			}
+			1643 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 7992
+					instant_build = yes
+				}
+			}
+			1647 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6398
+					instant_build = yes
+				}
+			}
+			1648 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 16022
+					instant_build = yes
+				}
+			}
+			1650 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3115
+					instant_build = yes
+				}
+			}
+			1651 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 97
+					instant_build = yes
+				}
+			}
+			1652 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1447
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_watchmaster
+		icon = GFX_focus_LIT_new_kind_of_iron_wolf
+		cost = 14
+		relative_position_id = NET_the_grandmarshal
+		x = -4
+		y = 11
+
+		available = {
+			has_completed_focus = NET_let_sleeping_dogs_lie
+		}
+
+		completion_reward = {
+			if = {
+				limit = {  LOR_othmar_garithos = { is_country_leader = yes } }
+				custom_effect_tooltip = NET_the_watchmaster_tt
+			}
+			else = { custom_effect_tooltip = NET_the_watchmaster_alt_tt }
+			add_political_power = 50
+			hidden_effect = {
+				country_event = nethergarde.137
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_assess_vrykul_threats
+		icon = GFX_focus_generic_treaty
+		cost = 14
+		prerequisite = { focus = NET_the_watchmaster }
+		relative_position_id = NET_the_watchmaster
+		x = -1
+		y = 1
+
+		available = { always = no }
+
+		completion_reward = {
+			add_ideas = NET_watchmaster
+			every_state = {
+				limit = { is_core_of = DFC }
+				add_compliance = 10
+				add_resistance = -2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_eastern_ridge_garrison
+		icon = GFX_focus_stormwind_bunker_i
+		cost = 30
+		prerequisite = { focus = NET_the_watchmaster }
+		relative_position_id = NET_the_watchmaster
+		x = 1
+		y = 1
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_watchmaster
+				add_idea = NET_watchmaster_1
+			}
+			hidden_effect = {
+				if = {
+					limit = { 
+						LOR_othmar_garithos = { is_country_leader = yes }
+					}
+					NET = {
+						set_nationality = {
+							target_country = LOR
+							character = LOR_othmar_garithos
+						}
+					}	
+				}
+			}
+			1650 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_compliance = 10
+			}
+			1652 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_compliance = 10
+			}
+			1653 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_compliance = 10
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_internment_camps
+		icon = GFX_goal_continuous_restrict_freedom
+		cost = 30
+		prerequisite = { focus = NET_the_watchmaster }
+		relative_position_id = NET_the_watchmaster
+		x = 0
+		y = 2
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_watchmaster_1
+				add_idea = NET_watchmaster_2
+			}
+			hidden_effect = {
+				puppet = GJA
+				puppet = WIC
+				1637 = { transfer_state_to = GJA }
+				1638 = { transfer_state_to = GJA }
+				1641 = { transfer_state_to = WIC }
+			}
+			1642 = {
+				add_core_of = NET
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 16029
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 8093
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 13354
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 7754
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 7796
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 8093
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 7796
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 7754
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_kirin_tor_outpost
+		icon = GFX_focus_DAL_generic
+		cost = 30
+		prerequisite = { focus = NET_internment_camps }
+		relative_position_id = NET_the_watchmaster
+		x = -1
+		y = 3
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_watchmaster_2
+				add_idea = NET_watchmaster_3
+			}
+			add_ideas = secondary_religion_arcane_studies
+			1027 = {
+				set_state_name = "Kirin Tor Outpost"
+				set_province_name = {
+					id = 7574
+					name = "Kirin Tor Outpost"
+				}
+				add_core_of = NET
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 3000
+				set_state_race_to_primary_race = yes
+				set_variable = { var = religion value = 12 }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_native_taskforce
+		icon = GFX_focus_CHL_departemento_de_las_tropas_nacistas_de_asalto
+		cost = 30
+		prerequisite = { focus = NET_internment_camps }
+		relative_position_id = NET_the_watchmaster
+		x = 1
+		y = 3
+
+		available = { always = no }
+
+		will_lead_to_war_with = HLT
+		will_lead_to_war_with = TTV
+		will_lead_to_war_with = GHS 
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_watchmaster_3
+				add_idea = NET_watchmaster_4
+			}
+			add_opinion_modifier = {
+				target = CWT
+				modifier = common_foe
+			}
+			reverse_add_opinion_modifier = {
+				target = CWT
+				modifier = common_foe
+			}
+			declare_war_on = {
+				target = HLT
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = TTV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GHS
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_by_hammer_or_shield
+		icon = GFX_focus_GRE_hellenic_armed_forces
+		cost = 30
+		prerequisite = { focus = NET_internment_camps }
+		relative_position_id = NET_the_watchmaster
+		x = 0
+		y = 4
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_watchmaster_4
+				add_idea = NET_watchmaster_5
+			}
+			custom_effect_tooltip = NET_by_hammer_or_shield_tt
+		}
+	}
+
+	focus = { 
+		id = NET_its_always_trolls
+		icon = GFX_focus_spr_crush_the_revolution
+		cost = 30
+		prerequisite = { 
+			focus = NET_southern_holds
+			focus = NET_by_hammer_or_shield 
+		}
+		relative_position_id = NET_enforcers_command
+		x = -4
+		y = 5
+
+		available = { always = no }
+
+		will_lead_to_war_with = DRA
+
+		completion_reward = {
+			DRA = {
+				declare_war_on = {
+					target = NET
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_let_sleeping_dogs_lie
+		icon = GFX_focus_NET_claim_the_swamp
+		prerequisite = { focus = NET_those_within }
+		mutually_exclusive = { focus = NET_burn_the_beasts }
+		cost = 5
+		relative_position_id = NET_the_grandmarshal
+		x = -1
+		y = 11
+
+		available = { always = no }
+
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+
+	### HORDE LINE
+
+	focus = { 
+		id = NET_shipwreck_coast
+		icon = GFX_focus_horde_support_the_horde
+		cost = 5
+		x = 3
+		y = 18
+
+		available = { has_country_flag = horde_alignment }
+
+		completion_reward = {
+			add_stability = -0.05
+			add_ideas = NET_roaming_orcs
+			391 = { 
+				add_manpower = 2000 
+				add_resource = {
+					type = wood
+					amount = 3
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_relocation_efforts
+		icon = GFX_focus_generic_population_growth
+		prerequisite = { focus = NET_shipwreck_coast }
+		cost = 30
+		relative_position_id = NET_shipwreck_coast
+		x = 1
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = {
+					392 = { has_dynamic_modifier = { modifier = GEN_orc_problem } }
+				}
+				add_popularity = {
+					ideology = fel
+					popularity = 0.02
+				}
+				392 = { add_manpower = 400 }
+				swap_ideas = {
+					remove_idea = NET_orc_workers_1
+					add_idea = NET_orc_workers_2
+				}
+			}
+			else = {
+				add_popularity = {
+					ideology = horde
+					popularity = 0.02
+				}
+				392 = { add_manpower = 400 }
+				swap_ideas = {
+					remove_idea = NET_orc_workers_1
+					add_idea = NET_orc_workers_2
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_quenched_fury
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		prerequisite = { focus = NET_relocation_efforts }
+		cost = 30
+		relative_position_id = NET_shipwreck_coast
+		x = 1
+		y = 2
+
+		completion_reward = {
+			add_stability = 0.02
+			add_popularity = {
+				ideology = horde
+				popularity = 0.02
+			}
+			add_ideas = NET_orc_construction
+		}
+	}
+
+	focus = { 
+		id = NET_camp_expansion
+		icon = GFX_focus_ITA_bend_the_bars
+		prerequisite = { focus = NET_shipwreck_coast }
+		cost = 30
+		relative_position_id = NET_shipwreck_coast
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = NET_camp_expansion_idea
+				days = 70
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_camp_farms
+		icon = GFX_focus_FIN_finnish_federation_of_trade_unions
+		prerequisite = { focus = NET_camp_expansion }
+		cost = 30
+		relative_position_id = NET_shipwreck_coast
+		x = -1
+		y = 2
+
+		available = { 
+			NOT = {	has_idea = NET_camp_expansion_idea }
+			has_completed_focus = NET_relocation_efforts
+		}
+
+		completion_reward = {
+			392 = {
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+			}
+			swap_ideas = {
+				remove_idea = NET_orc_workers_2
+				add_idea = NET_orc_workers_3
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_a_common_tongue
+		icon = GFX_focus_generic_diplomatic_treaty
+		prerequisite = { focus = NET_camp_farms }
+		prerequisite = { focus = NET_quenched_fury }
+		cost = 30
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 3
+
+		completion_reward = {
+			remove_ideas = NET_roaming_orcs
+			add_popularity = {
+				ideology = horde
+				popularity = 0.02
+			}
+		}
+	}
+
+	focus = { ###Dreadmaul try to free the Orcs
+		id = NET_dreadmaul_attack
+		icon = GFX_focus_smiling_buddha
+		prerequisite = { focus = NET_a_common_tongue }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 1
+		y = 4
+
+		completion_reward = {
+			army_experience = 5
+			add_war_support = 0.05
+			392 = {	add_manpower = -750	}
+			add_manpower = -200
+		}
+	}
+
+	focus = {
+		id = NET_army_dissent
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		prerequisite = { focus = NET_a_common_tongue }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = -1
+		y = 4
+
+		completion_reward = {
+			add_ideas = NET_army_dissent_idea_1
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.02
+			}
+			hidden_effect = {
+				set_temp_variable = { pop_to_kill = manpower }
+				divide_temp_variable = { pop_to_kill = 4 }
+				round_temp_variable = pop_to_kill
+				multiply_temp_variable = { pop_to_kill = -1 }
+				add_manpower = pop_to_kill
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_orc_matter
+		icon = GFX_focus_NET_ogre
+		prerequisite = { focus = NET_army_dissent }
+		prerequisite = { focus = NET_dreadmaul_attack }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 5
+
+		completion_reward = {
+			country_event = nethergarde.11
+		}
+	}
+
+	focus = { 
+		id = NET_the_gambit
+		icon = GFX_goal_generic_military_deal
+		prerequisite = { focus = NET_the_orc_matter }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = -1
+		y = 6
+
+		available = { has_country_flag = general_negotiations }
+
+		will_lead_to_war_with = DRM
+
+		completion_reward = {
+			country_event = nethergarde.13
+		}
+	}
+
+	focus = { 
+		id = NET_the_agreement
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = NET_the_orc_matter }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 1
+		y = 6
+
+		available = {
+			384 = { is_controlled_by_ROOT_or_ally = yes }
+			385 = { is_controlled_by_ROOT_or_ally = yes }
+			386 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_army_dissent_idea_1
+				add_idea = NET_army_dissent_idea_2
+			}
+			swap_ideas = {
+				remove_idea = NET_orc_workers_3
+				add_idea = NET_orc_workers_4
+			}
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_redwalker_treaty
+		icon = GFX_goal_generic_dangerous_deal
+		prerequisite = { focus = NET_the_gambit }
+		prerequisite = { focus = NET_the_agreement }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 7
+
+		completion_reward = {
+			random_other_country = {
+				limit = { 
+					is_subject_of = NET
+					has_idea = orc_primary_race 
+				}
+				add_ideas = NET_ritual_limitations
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_red_wastes_agreement
+		icon = GFX_focus_spr_class_war
+		prerequisite = { focus = NET_the_gambit }
+		prerequisite = { focus = NET_the_agreement }
+		cost = 5.1
+		relative_position_id = NET_shipwreck_coast
+		x = -2
+		y = 7
+
+		available = { has_completed_focus = NET_redwalker_treaty }
+
+		completion_reward = {
+			random_other_country = {
+				limit = { 
+					is_subject_of = NET
+					has_idea = orc_primary_race 
+				}
+				add_ideas = NET_redwastes_agreement
+				add_popularity = {
+					ideology = horde
+					popularity = 0.05
+				}
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_blade_limitations
+		icon = GFX_focus_DEN_limited_regulations
+		prerequisite = { focus = NET_the_gambit }
+		prerequisite = { focus = NET_the_agreement }
+		cost = 5.1
+		relative_position_id = NET_shipwreck_coast
+		x = 2
+		y = 7
+		available = { has_completed_focus = NET_redwalker_treaty }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_orc_construction
+				add_idea = NET_blade_limitations_humans
+			}
+			random_other_country = {
+				limit = { 
+					is_subject_of = NET
+					has_idea = orc_primary_race 
+				}
+				add_ideas = NET_blade_limitations_orcs
+				add_popularity = {
+					ideology = horde
+					popularity = 0.05
+				}
+				swap_ideas = {
+					remove_idea = preparing_for_war
+					add_idea = peacetime_economy
+				}
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_a_bloodied_hand
+		icon = GFX_focus_NET_equality
+		prerequisite = { focus = NET_red_wastes_agreement }
+		prerequisite = { focus = NET_redwalker_treaty }
+		prerequisite = { focus = NET_blade_limitations }
+		cost = 5
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 8
+
+		available = { always = no }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_army_dissent_idea_2
+				add_idea = NET_army_dissent_idea_3
+			}
+			384 = { set_demilitarized_zone = yes }
+			394 = { set_demilitarized_zone = yes }
+			hidden_effect = {
+				country_event = {
+					id = nethergarde.17
+					days = 21
+				}
+				set_temp_variable = { pop_to_kill = manpower }
+				divide_temp_variable = { pop_to_kill = 6 }
+				round_temp_variable = pop_to_kill
+				multiply_temp_variable = { pop_to_kill = -1 }
+				add_manpower = pop_to_kill
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_expel_those_that_remain
+		icon = GFX_focus_mex_arrest_general_cedillo
+		prerequisite = { focus = NET_a_bloodied_hand }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 9
+
+		available = { 
+			has_completed_focus = NET_red_wastes_agreement
+			has_completed_focus = NET_redwalker_treaty
+			has_completed_focus = NET_blade_limitations
+			384 = { is_demilitarized_zone = no }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				384 = { add_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+				394 = { add_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+				country_event = {
+					id = nethergarde.18
+					days = 21
+				}
+			}
+			add_timed_idea = {
+				idea = NET_crusader_expulsion
+				days = 70
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_burning_blade_cult
+		icon = focus_generic_blademaster
+		prerequisite = { focus = NET_expel_those_that_remain }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 10
+
+		available = {
+			has_country_flag = NET_uncertainty
+		}
+
+		completion_reward = {
+			RWC = {
+				add_stability = 0.05
+				army_experience = 10
+				add_popularity = {
+					ideology = fel
+					popularity = -0.02
+				}
+				add_ideas = NET_burning_blade_clan
+			}
+			army_experience = 10
+			add_popularity = {
+				ideology = fel
+				popularity = -0.02
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_bleeding_hollow
+		icon = focus_generic_kilrog_deadeye
+		prerequisite = { focus = NET_the_burning_blade_cult }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 11
+
+		completion_reward = {
+			RWC = {
+				add_stability = 0.05
+				add_tech_bonus = {
+					name = rogues_guild_technology
+					bonus = 0.5
+					uses = 1
+					category = rogues_guild_technology
+				}
+				add_ideas = NET_bleeding_hollow
+			}
+			390 = {	
+				transfer_state_to = NET
+				remove_core_of = RCP
+				add_claim_by = RCP	
+			}
+			add_tech_bonus = {
+				name = rogues_guild_technology
+				bonus = 0.5
+				uses = 1
+				category = rogues_guild_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_frostwolf_clan
+		icon = focus_generic_frostwolf_rider
+		prerequisite = { focus = NET_the_bleeding_hollow }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 12
+
+		available = { has_completed_focus = NET_a_stripped_hold }
+
+		completion_reward = {
+			RWC = {
+				add_stability = 0.05
+				add_tech_bonus = {
+					name = stable_technology
+					bonus = 0.5
+					uses = 1
+					category = stable_technology
+				}
+				384 = {
+					add_building_construction = {
+						type = stable
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_ideas = NET_frostwolf_clan
+			}
+			add_tech_bonus = {
+				name = stable_technology
+				bonus = 0.5
+				uses = 1
+				category = stable_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_a_stripped_hold
+		icon = GFX_focus_BUL_free_balkan_states
+		prerequisite = { focus = NET_a_bloodied_hand }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = -2
+		y = 9
+
+		available = { 
+			has_completed_focus = NET_red_wastes_agreement
+			has_completed_focus = NET_redwalker_treaty
+			has_completed_focus = NET_blade_limitations
+			has_completed_focus = NET_expel_those_that_remain
+			has_country_flag = NET_uncertainty
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			384 = { transfer_state_to = RWC }
+			hidden_effect = {
+				384 = {	add_core_of = RWC }
+				384 = { 
+					remove_core_of = NET 
+					remove_claim_by = NET
+				}
+				385 = { 
+					remove_core_of = NET
+					remove_claim_by = NET 
+				}
+				386 = { 
+					remove_core_of = NET
+					remove_claim_by = NET 
+				}
+				384 = {
+					set_variable = { var = race value = 96 }
+					set_variable = { var = religion value = 44 }
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_revise_the_treaty
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = NET_a_stripped_hold }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = -2
+		y = 10
+
+		completion_reward = {
+			hidden_effect = {
+				RWC = {
+					remove_ideas = NET_blade_limitations_orcs
+					remove_ideas = NET_ritual_limitations
+					remove_ideas = NET_redwastes_agreement
+				}
+			}
+			RWC = { add_ideas = NET_redwastes_agreement_2 }
+		}
+	}
+
+	focus = { 
+		id = NET_omriggor_ritual
+		icon = GFX_focus_NET_Shaman
+		prerequisite = { focus = NET_revise_the_treaty }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = -2
+		y = 11
+
+		completion_reward = {
+			RWC = {	
+				add_stability = 0.05
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.50
+					uses = 1
+					category = land_doctrine
+				} 
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = 0.50
+				}
+				create_corps_commander = {
+					name = "Throk Blacktusk"
+					picture = "gfx/leaders/NET/throk_blacktusk.dds"
+					traits = { infantry_leader }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 2
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+		}
+	}
+
+	focus = { 
+		id = NET_crawfish_cages
+		icon = GFX_focus_AST_squander_bug
+		prerequisite = { focus = NET_omriggor_ritual }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = -2
+		y = 12
+
+		completion_reward = {
+			RWC = { add_ideas = tailoring_guild }
+			add_stability = 0.05
+			391 = {
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+			}
+			386 = {
+				add_resource = {
+					type = wheat
+					amount = 2
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_unloyal_peasents
+		icon = GFX_focus_spr_the_anti_fascist_workers_revolution
+		prerequisite = { focus = NET_a_bloodied_hand }
+		cost = 14
+		relative_position_id = NET_shipwreck_coast
+		x = 2
+		y = 9
+
+		available = { 
+			has_completed_focus = NET_red_wastes_agreement
+			has_completed_focus = NET_redwalker_treaty
+			has_completed_focus = NET_blade_limitations
+			has_completed_focus = NET_expel_those_that_remain
+			has_country_flag = NET_uncertainty
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = NET_unloyal_workers
+				days = 70
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_operational_stability
+		icon = GFX_focus_hol_abandon_the_gold_standard
+		prerequisite = { focus = NET_unloyal_peasents }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = 2
+		y = 10
+
+		available = { 
+			NOT = { has_idea = NET_unloyal_workers }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_funding_0
+				add_idea = NET_funding_recover_1
+			}
+			swap_ideas = {
+				remove_idea = recruit_adventurers
+				add_idea = recruit_guards
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_parley_with_pirates
+		icon = GFX_focus_NET_parley_with_pirates
+		prerequisite = { focus = NET_operational_stability }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = 2
+		y = 11
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = BOO
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = BOO
+				modifier = alliance_loyalty
+			}
+			if = {
+				limit = {
+					NET = {	has_navy_size = { size > 8 } }
+				}
+				transfer_navy = { target = BOO }
+				add_timed_idea = {
+					idea = NET_goblin_trade_shares
+					days = 70
+				}
+			}
+			else_if = {
+				limit = {
+					NET = { has_navy_size = { size > 14 } }
+				}
+				add_political_power = 50
+				transfer_navy = { target = BOO }
+				add_timed_idea = {
+					idea = NET_goblin_trade_shares
+					days = 70
+				}
+			}
+			else_if = {
+				limit = {
+					NET = { has_navy_size = { size > 20	} }
+				}
+				add_political_power = 100
+				transfer_navy = { target = BOO }
+				add_timed_idea = {
+					idea = NET_goblin_trade_shares
+					days = 70
+				}
+			}
+			else = {
+				391 = {	
+					transfer_state_to = BOO	
+					add_core_of = BOO
+				}
+				hidden_effect = { 391 = { remove_core_of = NET } }
+				add_timed_idea = {
+					idea = NET_goblin_trade_shares
+					days = 70
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_disenfranchised_workers
+		icon = GFX_focus_NET_unloyal_workers
+		prerequisite = { focus = NET_parley_with_pirates }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = 2
+		y = 12
+
+		available = { DFB = { has_war = no } }
+
+		completion_reward = {
+			reverse_add_opinion_modifier = {
+				target = STO
+				modifier = unstable_relations
+			}
+			swap_ideas = {
+				remove_idea = NET_army_dissent_idea_6
+				add_idea = NET_army_dissent_idea_7
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_vanguard_pact
+		icon = GFX_focus_NET_fair_treatment
+		prerequisite = { focus = NET_crawfish_cages }
+		prerequisite = { focus = NET_disenfranchised_workers }
+		cost = 21
+		relative_position_id = NET_shipwreck_coast
+		x = 0
+		y = 13
+
+		completion_reward = {
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 0.05
+			}
+			hidden_effect = { remove_ideas = NET_orc_workers_4 }
+			swap_ideas = {
+				remove_idea = NET_blade_limitations_humans
+				add_idea = NET_vanguard_pact_idea
+			}
+			384 = { remove_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+			394 = { remove_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+		}
+	}
+
+	focus = { 
+		id = NET_council_arrangements
+		icon = GFX_focus_ETH_re-convene_the_parliament
+		prerequisite = { focus = NET_vanguard_pact }
+		mutually_exclusive = { focus = NET_the_new_horde }
+		cost = 5
+		relative_position_id = NET_shipwreck_coast
+		x = -1
+		y = 14
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = military_admin_res	}
+				swap_ideas = {
+					remove_idea = military_admin_res
+					add_idea = council
+				}
+			}
+			if = {
+				limit = { has_idea = military_admin	}
+				swap_ideas = {
+					remove_idea = military_admin
+					add_idea = council
+				}
+			}
+			if = {
+				limit = { has_idea = military_admin_mil	}
+				swap_ideas = {
+					remove_idea = military_admin_mil
+					add_idea = council
+				}
+			}
+			add_ideas = orc_secondary_race
+			set_temp_variable = { race_to_accept = 96 }
+			add_race_as_accepted_race = yes
+			add_ideas = secondary_religion_shamanism
+			set_temp_variable = { religion_to_accept = 44 }
+			add_religion_as_accepted_religion = yes
+			#create_faction = "The Vanguard Pact"
+		}
+	}
+
+	focus = { 
+		id = NET_the_new_horde
+		icon = GFX_focus_support_the_horde
+		prerequisite = { focus = NET_vanguard_pact }
+		mutually_exclusive = { focus = NET_council_arrangements }
+		cost = 5
+		relative_position_id = NET_shipwreck_coast
+		x = 1
+		y = 14
+
+		available = { always = no }
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = military_admin_res	}
+				swap_ideas = {
+					remove_idea = military_admin_res
+					add_idea = clan
+				}
+			}
+			if = {
+				limit = { has_idea = military_admin	}
+				swap_ideas = {
+					remove_idea = military_admin
+					add_idea = clan
+				}
+			}
+			if = {
+				limit = { has_idea = military_admin_mil	}
+				swap_ideas = {
+					remove_idea = military_admin_mil
+					add_idea = clan
+				}
+			}
+			add_ideas = orc_secondary_race
+			set_temp_variable = { race_to_accept = 96 }
+			add_race_as_accepted_race = yes
+		}
+	}
+
+	### Council Path
+
+	focus = { 
+		id = NET_clear_the_coast
+		icon = GFX_focus_generic_coastal_fort
+		cost = 14
+		x = 11
+		y = 18
+
+		available = { 
+			has_completed_focus = NET_council_arrangements
+		}
+
+		completion_reward = {
+			create_wargoal = { target = RCP	type = annex_everything	}
+		}
+	}
+
+	focus = { 
+		id = NET_cleanse_the_altar
+		icon = GFX_focus_generic_annex_country
+		cost = 30
+		prerequisite = { focus = NET_clear_the_coast }
+		relative_position_id = NET_clear_the_coast
+		x = -2
+		y = 1
+
+		completion_reward = {
+			378 = {
+				hidden_effect = { 
+					transfer_state_to = RWC
+					remove_core_of = NET 
+				}
+				add_core_of = RWC
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				74 = {
+					transfer_state_to = RWC
+					remove_core_of = NET 
+					add_core_of = RWC
+				}
+			}
+			add_tech_bonus = {
+				name = altar_technology
+				bonus = 1
+				uses = 1
+				category = altar_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_concerned_clansmen
+		icon = GFX_goal_generic_fortify_city
+		cost = 14
+		prerequisite = { focus = NET_cleanse_the_altar }
+		relative_position_id = NET_clear_the_coast
+		x = -2
+		y = 2
+
+		completion_reward = {
+			RWC = { add_war_support = 0.02 }
+			2160 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 5383
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 5380
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_watchful_eye
+		icon = GFX_goal_generic_radar
+		cost = 30
+		prerequisite = { focus = NET_ancient_fossils }
+		prerequisite = { focus = NET_concerned_clansmen }
+		relative_position_id = NET_clear_the_coast
+		x = -1
+		y = 3
+
+		completion_reward = {
+			383 = {
+				add_core_of = RWC
+				hidden_effect = {
+					transfer_state_to = RWC
+					remove_claim_by = NET
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_taken_in_the_night
+		icon = GFX_focus_ITA_moschettieri_del_duce
+		cost = 14
+		prerequisite = { focus = NET_the_watchful_eye }
+		relative_position_id = NET_clear_the_coast
+		x = -1
+		y = 4
+
+		completion_reward = {
+			RWC = {
+				add_stability = -0.05
+				add_manpower = -120
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_sea_deterrents
+		icon = GFX_focus_ICE_modernizing_the_coast_guard
+		cost = 30
+		prerequisite = { focus = NET_clear_the_coast }
+		relative_position_id = NET_clear_the_coast
+		x = 0
+		y = 1
+
+		available = {
+			owns_state = 388
+			owns_state = 387
+			owns_state = 382
+		}
+
+		completion_reward = {
+			388 = {
+				add_compliance = 30
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 2832
+				}
+			}
+			387 = {
+				add_compliance = 30
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 2808
+				}
+			}
+			382 = {
+				add_compliance = 30
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 2692
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_ancient_fossils
+		icon = GFX_goal_generic_construction2
+		cost = 14
+		prerequisite = { focus = NET_sea_deterrents }
+		relative_position_id = NET_clear_the_coast
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = IRO
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = IRO
+				modifier = alliance_loyalty
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_comb_the_depths
+		icon = GFX_goal_generic_wolf_pack
+		cost = 30
+		prerequisite = { focus = NET_clear_the_coast }
+		relative_position_id = NET_clear_the_coast
+		x = 2
+		y = 1
+
+		available = {
+			owns_state = 2158
+		}
+
+		completion_reward = {
+			388 = {
+				add_core_of = NET
+				hidden_effect = { 
+					transfer_state_to = NET 
+					remove_claim_by = NET
+					remove_core_of = THC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				add_manpower = -6000
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_treasures_of_the_first_war
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		cost = 14
+		prerequisite = { focus = NET_comb_the_depths }
+		relative_position_id = NET_clear_the_coast
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_political_power = 50
+			if = {
+				limit = { has_idea = NET_food_stores }
+				remove_ideas = NET_food_stores
+			}
+			add_opinion_modifier = {
+				target = STO
+				modifier = embargo
+			}
+			reverse_add_opinion_modifier = {
+				target = STO
+				modifier = embargo
+			}
+			add_opinion_modifier = {
+				target = STO
+				modifier = unstable_relations
+			}
+			reverse_add_opinion_modifier = {
+				target = STO
+				modifier = unstable_relations
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_improved_living_standards
+		icon = GFX_focus_hol_abandon_the_gold_standard
+		cost = 30
+		prerequisite = { focus = NET_ancient_fossils }
+		prerequisite = { focus = NET_treasures_of_the_first_war }
+		relative_position_id = NET_clear_the_coast
+		x = 1
+		y = 3
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NET_funding_recover_1
+				add_idea = NET_funding_recover_2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_mermaid_sightings
+		icon = GFX_goal_generic_air_naval_bomber
+		cost = 14
+		prerequisite = { focus = NET_improved_living_standards }
+		relative_position_id = NET_clear_the_coast
+		x = 1
+		y = 4
+
+		completion_reward = {
+			add_stability = -0.05
+			add_manpower = -60
+		}
+	}
+
+	focus = { 
+		id = NET_maintain_vigil
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		cost = 30
+		prerequisite = { focus = NET_taken_in_the_night }
+		prerequisite = { focus = NET_mermaid_sightings }
+		relative_position_id = NET_clear_the_coast
+		x = 0
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = guard_technology
+				bonus = 0.5
+				uses = 1
+				category = guard_technology
+			}
+			add_tech_bonus = {
+				name = nights_watch_technology
+				bonus = 0.5
+				uses = 1
+				category = nights_watch_technology
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_sieze_the_north
+		icon = GFX_focus_ICE_securing_the_north_sea_passage
+		cost = 30
+		prerequisite = { focus = NET_maintain_vigil }
+		relative_position_id = NET_clear_the_coast
+		x = 0
+		y = 6
+
+		completion_reward = {
+			395 = { transfer_state_to = NET }
+			405 = { transfer_state_to = NET }
+			406 = { transfer_state_to = NET }
+			
+			STO = { country_event = nethergarde.21 }
+
+			hidden_effect = {
+				2155 = { transfer_state_to = NET }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_prune_the_hedges
+		icon = GFX_focus_GRE_bedrock_of_balkan_stability
+		cost = 14
+		prerequisite = { focus = NET_sieze_the_north }
+		relative_position_id = NET_clear_the_coast
+		x = -1
+		y = 7
+
+		completion_reward = {
+			create_wargoal = { target = TSW	type = annex_everything	}
+		}
+	}
+
+	focus = { 
+		id = NET_history_repeats
+		icon = GFX_focus_renounce_the_treaty_of_trianon
+		cost = 14
+		prerequisite = { focus = NET_prune_the_hedges }
+		relative_position_id = NET_clear_the_coast
+		x = -1
+		y = 8
+
+		completion_reward = {
+			395 = {
+				add_core_of = NET
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+			}
+			405 = {
+				add_core_of = NET
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+			}
+			RWC = {
+				swap_ideas = {
+					remove_idea = NET_bleeding_hollow
+					add_idea = NET_bleeding_hollow_2
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_to_build_a_home
+		icon = GFX_focus_SWE_hygienic_housing
+		cost = 30
+		prerequisite = { focus = NET_history_repeats }
+		relative_position_id = NET_clear_the_coast
+		x = -1
+		y = 9
+
+		available = {
+			controls_state = 408
+			controls_state = 407
+		}
+
+		completion_reward = {
+			407 = {
+				add_core_of = NET
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+			408 = {
+				add_core_of = NET
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+			give_resource_rights = {
+				receiver = RWC
+				state = 407
+				resources = { wood }
+			}
+			give_resource_rights = {
+				receiver = RWC
+				state = 408
+				resources = { wood }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_forgotten_totems
+		icon = GFX_focus_BHC_generic
+		cost = 21
+		prerequisite = { focus = NET_to_build_a_home }
+		relative_position_id = NET_clear_the_coast
+		x = -2
+		y = 10
+
+		completion_reward = {
+			RWC = {	
+				add_stability = 0.05
+				add_war_support = 0.02 
+			}
+			add_political_power = 50
+		}
+	}
+
+	focus = { 
+		id = NET_the_marshtide
+		icon = GFX_focus_generic_coastal_fort
+		cost = 14
+		prerequisite = { focus = NET_sieze_the_north }
+		relative_position_id = NET_clear_the_coast
+		x = 1
+		y = 7
+		
+		available = {
+			OR = {
+				controls_state = 43
+				controls_state = 397
+				controls_state = 399
+			}
+		}
+
+		completion_reward = {
+			create_wargoal = { target = MTT	type = annex_everything	}
+		}
+	}
+
+	focus = { 
+		id = NET_pontoon_pathways
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 14
+		prerequisite = { focus = NET_the_marshtide }
+		relative_position_id = NET_clear_the_coast
+		x = 1
+		y = 8
+		
+		available = {
+			NOT = { country_exists = MTT }
+			controls_state = 402
+		}
+
+		completion_reward = {
+			402 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+			}
+			401 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+			}
+			400 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_variable = { race = 96 }
+				set_variable = { religion = 44 }
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_dragonmaw_envoy
+		icon = GFX_focus_DMC_generic
+		cost = 30
+		prerequisite = { focus = NET_pontoon_pathways }
+		relative_position_id = NET_clear_the_coast
+		x = 1
+		y = 9
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = DMC
+				modifier = horde_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = DMC
+				modifier = horde_loyalty
+			}
+			402 = { add_core_of = NET }
+			401 = { add_core_of = NET }
+			400 = { add_core_of = NET }
+		}
+	}
+
+	focus = { 
+		id = NET_dragonmaw_trading_post
+		icon = GFX_focus_DMC_generic
+		cost = 21
+		prerequisite = { focus = NET_dragonmaw_envoy }
+		relative_position_id = NET_clear_the_coast
+		x = 2
+		y = 10
+
+		completion_reward = {
+			add_ideas = NET_dragonmaw_trade_NET
+			DMC = { add_ideas = NET_dragonmaw_trade_DMC }
+			402 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_frostwolf_request
+		icon = focus_generic_frostwolf_rider
+		cost = 30
+		prerequisite = { focus = NET_to_build_a_home }
+		prerequisite = { focus = NET_dragonmaw_envoy }
+		relative_position_id = NET_clear_the_coast
+		x = 0
+		y = 10
+
+		completion_reward = {
+			2160 = {
+				add_core_of = RWC
+				hidden_effect = { transfer_state_to = RWC }
+			}
+			380 = {
+				add_core_of = RWC
+				hidden_effect = { transfer_state_to = RWC }
+			}
+			379 = {
+				add_core_of = RWC
+				hidden_effect = { transfer_state_to = RWC }
+			}
+			381 = {
+				add_core_of = RWC
+				hidden_effect = { transfer_state_to = RWC }
+			}
+			382 = {
+				add_core_of = RWC
+				hidden_effect = { transfer_state_to = RWC }
+			}
+			hidden_effect = {
+				784 = {
+					add_core_of = RWC
+					hidden_effect = { transfer_state_to = RWC }
+				}
+				785 = {
+					add_core_of = RWC
+					hidden_effect = { transfer_state_to = RWC }
+				}
+			}
+			RWC = {
+				swap_ideas = {
+					remove_idea = NET_frostwolf_clan
+					add_idea = NET_frostwolf_clan_2
+				}
+			}
+			swap_ideas = {
+				remove_idea = NET_vanguard_pact_idea
+				add_idea = NET_vanguard_pact_idea_2
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_a_new_invasion
+		icon = GFX_focus_NET_fel_elves
+		cost = 5
+		relative_position_id = NET_clear_the_coast
+		x = 0
+		y = 11
+
+		allow_branch = {
+			always = no
+		}
+
+		available = { always = no }
+	
+		completion_reward = {
+			add_stability = -0.02
+			add_war_support = 0.02
+		}
+	}
+
+	focus = { 
+		id = NET_restrictions_be_damned
+		icon = GFX_goal_continuous_boost_freedom
+		cost = 14
+		prerequisite = { focus = NET_a_new_invasion }
+		relative_position_id = NET_a_new_invasion
+		x = 0
+		y = 1
+	
+		completion_reward = {
+			RWC = { remove_ideas = NET_redwastes_agreement_2 }
+		}
+	}
+
+	focus = { 
+		id = NET_otherwordly_savagery
+		icon = focus_generic_kilrog_deadeye
+		cost = 21
+		prerequisite = { focus = NET_restrictions_be_damned }
+		relative_position_id = NET_a_new_invasion
+		x = -2
+		y = 2
+	
+		completion_reward = {
+			### To Add, Dire Orc Commander
+			custom_effect_tooltip = NET_otherwordly_savagery_tt
+			add_stability = -0.05
+			RWC = {
+				hidden_effect = {
+					set_technology = {
+						dire_orc_tech = 1
+						dire_orc_equipment_tech_1 = 1
+					}
+					division_template = {
+						name = "Bleeding Hollow Brutes"
+						priority = 1
+						regiments = {
+							dire_orc = { x = 0 y = 0 }
+							grunt = { x = 0 y = 1 }
+							grunt = { x = 0 y = 2 }
+							grunt = { x = 0 y = 3 }
+							dire_orc = { x = 1 y = 0 }
+							grunt = { x = 1 y = 1 }
+							grunt = { x = 1 y = 2 }
+							grunt = { x = 1 y = 3 }
+						}
+					}
+					random_owned_state = {
+						limit = { impassable = no }
+						create_unit = {
+							division = "name = \"Bleeding Hollow Brutes\" division_template = \"Bleeding Hollow Brutes\" start_experience_factor = 0.3 start_equipment_factor = 0.75"
+							owner = RWC
+						}
+					}
+					random_owned_state = {
+						limit = { impassable = no }
+						create_unit = {
+							division = "name = \"Bleeding Hollow Brutes\" division_template = \"Bleeding Hollow Brutes\" start_experience_factor = 0.3 start_equipment_factor = 0.75"
+							owner = RWC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_unshackle_the_blademasters
+		icon = focus_generic_blademaster
+		cost = 21
+		prerequisite = { focus = NET_restrictions_be_damned }
+		relative_position_id = NET_a_new_invasion
+		x = 2
+		y = 2
+	
+		completion_reward = {
+			### To Add, Blade Master Commander
+			custom_effect_tooltip = NET_unshackle_the_blademasters_tt
+			add_stability = -0.05
+			RWC = {
+				hidden_effect = {
+					set_technology = {
+						blade_master_tech = 1
+						blade_master_equipment_tech_1 = 1
+					}
+					division_template = {
+						name = "Disciplined Blademasters"
+						priority = 1
+						regiments = {
+							blade_master = { x = 0 y = 0 }
+							blade_master = { x = 0 y = 1 }
+							blade_master = { x = 0 y = 2 }
+							blade_master = { x = 1 y = 0 }
+							blade_master = { x = 1 y = 1 }
+							blade_master = { x = 1 y = 2 }
+						}
+					}
+					random_owned_state = {
+						limit = { impassable = no }
+						create_unit = {
+							division = "name = \"Disciplined Blademasters\" division_template = \"Disciplined Blademasters\" start_experience_factor = 0.3 start_equipment_factor = 0.75"
+							owner = RWC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_the_dogs_of_war
+		icon = focus_generic_frostwolf_rider
+		cost = 21
+		prerequisite = { focus = NET_restrictions_be_damned }
+		relative_position_id = NET_a_new_invasion
+		x = 0
+		y = 2
+	
+		completion_reward = {
+			### To Add, Dire Wolf Army Advisor
+			custom_effect_tooltip = NET_the_dogs_of_war_tt
+			RWC = {
+				hidden_effect = {
+					division_template = {
+						name = "Fledgling Dire Wolves"
+						priority = 1
+						regiments = {
+							dire_wolf = { x = 0 y = 0 }
+							dire_wolf = { x = 0 y = 1 }
+							dire_wolf = { x = 0 y = 2 }
+							dire_wolf = { x = 0 y = 3 }
+							dire_wolf = { x = 1 y = 0 }
+							dire_wolf = { x = 1 y = 1 }
+							dire_wolf = { x = 1 y = 2 }
+							dire_wolf = { x = 1 y = 3 }
+						}
+					}
+					random_owned_state = {
+						limit = { impassable = no }
+						create_unit = {
+							division = "name = \"Fledgling Dire Wolves\" division_template = \"Fledgling Dire Wolves\" start_experience_factor = 0.1"
+							owner = RWC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = NET_approach_the_mountain
+		icon = GFX_focus_blackrock_banner
+		cost = 21
+		prerequisite = { focus = NET_otherwordly_savagery }
+		prerequisite = { focus = NET_the_dogs_of_war }
+		relative_position_id = NET_a_new_invasion
+		x = -1
+		y = 3
+	
+		completion_reward = {
+			country_event = nethergarde.30
+		}
+	}
+
+	focus = { 
+		id = NET_dragonmaw_sellswords
+		icon = GFX_focus_DMC_generic
+		cost = 21
+		prerequisite = { focus = NET_unshackle_the_blademasters }
+		prerequisite = { focus = NET_the_dogs_of_war }
+		relative_position_id = NET_a_new_invasion
+		x = 1
+		y = 3
+	
+		completion_reward = {
+			custom_effect_tooltip = NET_dragonmaw_sellswords_tt
+			DMC = { add_ideas = NET_sellsword_contracts_rev }
+			add_ideas = NET_sellsword_contracts_1
+			hidden_effect = {
+				DMC = {
+					add_manpower = -300
+					add_war_support = 0.05
+					army_experience = 10
+				}
+			}
+			NET = {
+				hidden_effect = {
+					division_template = {
+						name = "Dragonmaw Settlers"
+						priority = 1
+						regiments = {
+							grunt = { x = 0 y = 0 }
+							grunt = { x = 0 y = 1 }
+							grunt = { x = 0 y = 2 }
+							grunt = { x = 1 y = 0 }
+							grunt = { x = 1 y = 1 }
+							grunt = { x = 1 y = 2 }
+						}
+						is_locked = yes
+					}
+					random_owned_state = {
+						limit = { 
+							impassable = no
+							is_coastal = yes 
+						}
+						create_unit = {
+							division = "name = \"Dragonmaw Settlers\" division_template = \"Dragonmaw Settlers\" start_experience_factor = 0.4"
+							owner = NET
+						}
+					}
+					random_owned_state = {
+						limit = { 
+							impassable = no
+							is_coastal = yes 
+						}
+						create_unit = {
+							division = "name = \"Dragonmaw Settlers\" division_template = \"Dragonmaw Settlers\" start_experience_factor = 0.4"
+							owner = NET
+						}
+					}
+				}
+			}
+			### Spawn a Grunt Division Under the Control of NET
+		}
+	}
+
+	focus = { 
+		id = NET_combined_arms_training
+		icon = GFX_
+		cost = 21
+		prerequisite = { 
+			focus = NET_approach_the_mountain
+			focus = NET_dragonmaw_sellswords
+		}
+		relative_position_id = NET_a_new_invasion
+		x = 0
+		y = 4
+	
+		completion_reward = {
+			#set_technology = { vanguard_tech = 1 }
+			complete_special_project = sp:sp_vanguard
+			### Give RWC "Ironshields" Defensive Orcs
+			### Give NET "Great Weapon Footmen" Offensive Footmen
+		}
+	}
+
+	#focus = { 
+	#	id = NET_order_of_valor
+	#	icon = GFX_
+	#	cost = 30
+	#	relative_position_id = NET_clear_the_coast
+	#	x = 0
+	#	y = 18
+
+	#	completion_reward = {
+		#	add_ideas = NET_order_of_valor
+		#	set_country_leader_portrait = {
+		#		ideology = horde
+		#		portrait = GFX_portrait_NET_tirion_fordring_paladin
+		#	}
+		#	add_country_leader_trait = {
+		#		ideology = horde
+		#		trait = warrior_of_the_light
+		#	}
+		#}
+	#}
+
+	#focus = { 
+	#	id = NET_the_schism
+	#	icon = GFX_
+	#	cost = 30
+	#	x = 18
+	#	y = 3
+
+	#	available = { has_country_flag = neutral_alignment }
+
+	#	completion_reward = {
+		
+	#	}
+	#}
+
+	#focus = { 
+	#	id = NET_death_start
+	#	icon = GFX_
+	#	cost = 30
+	#	x = 22
+	#	y = 3
+
+	#	available = { has_country_flag = death_alignment }
+
+	#	completion_reward = {
+		
+	#	}
+	#}
+
+	### FEL LINE
+
+	#focus = { 
+	#	id = NET_fel_start
+	#	icon = GFX_
+	#	cost = 30
+	#	x = 24
+	#	y = 3
+
+	#	available = { has_country_flag = fel_alignment }
+
+	#	completion_reward = {
+		
+	#	}
+	#}
+
+	#focus = { 
+	#	id = NET_feed_on_chaos
+	#	icon = GFX_focus_promise_of_power
+	#	cost = 30
+	#	x = 24
+	#	y = 5
+
+	#	available = { has_government = fel }
+
+	#	completion_reward = {
+	#		add_ideas = fel_blood_elves_secondary_race
+	#	}
+	#}
+
+	#focus = { 
+	#	id = NET_arsenal_expansion
+	#	icon = GFX_focus_SOV_the_defense_of_moscow
+	#	cost = 30
+	#	x = 3
+	#	y = 13
+
+	#	available = {
+	#		has_completed_focus = NET_recruitment_drive
+	#	}
+
+	#	completion_reward = {
+	#		random_core_state = {
+	#			limit = { impassable = no }
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = arms_factory
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		}
+	#	}
+	#}
+
+	#focus = { 
+	#	id = NET_arms_contacts
+	#	icon = GFX_focus_SOV_the_defense_of_moscow
+	#	cost = 30
+	#	prerequisite = { focus = NET_arsenal_expansion }
+	#	x = 3
+	#	y = 14
+
+	#	completion_reward = {
+	#		add_ideas = NET_arms_contacts_idea
+	#	}
+	#}
+
+}

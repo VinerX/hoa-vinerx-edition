@@ -1,0 +1,620 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	thorn_works = {
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = boar_carts_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = quilboar_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thorn_bolter_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			siege_works_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	boar_carts_tech = {
+
+		enable_subunits = {
+			supply_wagon
+		}
+
+		on_research_complete = {
+			set_technology = { quilboar_supply_wagon_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = boar_carts_tech_unit_details_tt
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = quilboar_supply_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	quilboar_supply_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			supply_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_boar_carts_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_boar_carts_1 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_boar_carts_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_boar_carts_2 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_boar_carts_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_boar_carts_3 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_boar_carts_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_boar_carts_4 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	quilboar_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = quilboar_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	quilboar_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		path = {
+			leads_to_tech = quilboar_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	quilboar_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	thorn_bolter_tech = {
+
+		enable_subunits = {
+			thorn_bolter
+			thorn_bolter_support
+		}
+
+		on_research_complete = {
+			set_technology = { thorn_bolter_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = thorn_bolter_tech_unit_details_tt
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = thorn_bolter_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	thorn_bolter_equipment_tech_1 = {
+
+		enable_equipments = {
+			thorn_bolter_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = oversized_thorns
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pully_cranks
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	oversized_thorns = {
+
+		thorn_bolter = {
+			air_attack = -0.2
+			ap_attack = 0.5
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { pully_cranks }
+
+		path = {
+			leads_to_tech = thorn_bolter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = pully_cranks
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = pully_cranks
+			}
+		}
+	}
+
+	pully_cranks = {
+
+		thorn_bolter = {
+			soft_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { oversized_thorns }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		path = {
+			leads_to_tech = thorn_bolter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = oversized_thorns
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = oversized_thorns
+			}
+		}
+	}
+
+	thorn_bolter_equipment_tech_2 = {
+
+		enable_equipments = {
+			thorn_bolter_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = thorned_planks
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = boar_swivel
+			research_cost_coeff = 1
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	thorned_planks = {
+
+		thorn_bolter = {
+			defense = 0.15
+			armor_value = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { boar_swivel }
+
+		path = {
+			leads_to_tech = thorn_bolter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		path = {
+			leads_to_tech = thorn_bolter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = boar_swivel
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = boar_swivel
+			}
+		}
+	}
+
+	boar_swivel = {
+
+		on_research_complete = {
+			#custom_effect_tooltip = thorn_bolter_boar_swivel_tt
+			increase_tech_count_quilboar = yes
+		}
+
+		thorn_bolter = {
+			breakthrough = 0.2
+		}
+		thorn_bolter_support = {
+			breakthrough = 0.2
+		}
+
+		xor = { thorned_planks }
+
+		path = {
+			leads_to_tech = thorn_bolter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = thorned_planks
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = thorned_planks
+			}
+		}
+	}
+
+	thorn_bolter_equipment_tech_3 = {
+
+		enable_equipments = {
+			thorn_bolter_equipment_3
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+}

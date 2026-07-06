@@ -1,0 +1,38 @@
+# Plans for silithid nations at game start.
+# No historical plans (not useful for now, Silithus silithids should follow the
+# historical old gods plan)
+
+generic_silithid_non_historical = {
+	name = "Silthid Non Historical"
+	desc = "Silthid Non Historical focus's"
+
+	enable = {
+        is_historical_focus_on = no
+		has_idea = silithid_primary_race
+	}
+
+    ai_national_focuses = {
+		the_path_forward
+		# No other focuses, we want them to quickly get access to the political paths
+		# but not force them on any particular path to promote non-historical outcomes
+	}
+
+    focus_factors = {
+		# Focuses "ai_will_do" blocks can give more depth to these choices, therefore the
+		# following isn't what entirely decides what paths the AI takes.
+		pick_a_side = 0 # No chance
+		stay_neutral = 1 # Normal chance
+		serving_higher_powers = 1 # Normal chance
+		whispers_of_the_old_gods = 1.5 # Higher chance
+		promise_of_power = 0.5 # Low chance
+		in_service_of_death = 0.5 # Low chance
+		path_of_the_titans = 0.1 # Very low chance
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}

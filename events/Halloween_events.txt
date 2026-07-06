@@ -1,0 +1,70 @@
+﻿###########################
+#Vault of Archavon
+###########################
+
+add_namespace = halloween_event
+
+country_event = {
+	id = halloween_event.1
+	title = halloween_event.1.t
+	desc = halloween_event.1.d
+	#picture = GFX_owb_vault_door_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	#trigger = {
+	#	date > 581.2.1
+	#	FROM = { owns_state = 215 }
+
+    #   has_game_rule = {
+    #        rule = halloween_2025_game_rule
+    #        option = ENABLED
+    #    }
+	#}
+
+	immediate = {
+		215 = {
+			transfer_state_to = HED
+			add_core_of = HED
+		}
+	}
+
+	option = { # play as horseman
+    	name = halloween_event.option.1
+		if = {
+			limit = { tag = SCC }
+			HED = { change_tag_from = SCC }
+		}
+		if = {
+			limit = { tag = LOR }
+			HED = { change_tag_from = LOR }
+		}
+		HED = {
+			hidden_effect = {
+				load_oob = HED_581
+				add_equipment_to_stockpile = {
+					type = undead_skeletal_warrior_equipment_1
+					amount = 5000
+					producer = HED
+				}
+				add_manpower = 10000
+			}
+		}
+	}
+    
+    option = { # remain player nation
+    	name = halloween_event.option.2
+		HED = {
+			hidden_effect = {
+				load_oob = HED_581
+				add_equipment_to_stockpile = {
+					type = undead_skeletal_warrior_equipment_1
+					amount = 5000
+					producer = HED
+				}
+				add_manpower = 10000
+			}
+		}
+	}
+}

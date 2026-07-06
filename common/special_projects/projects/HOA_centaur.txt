@@ -1,0 +1,173 @@
+### Speedy Basic Infantry - Lower Armour, better Terrain mods, more breakthrough
+sp_centaur_ironhoof = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = centaur_drudge_equipment_tech_1 }
+	}
+
+	visible = {
+		FROM = { has_tech = centaur_khans_tent_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 6
+			ores = 3
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			centaur_ironhoof
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 4
+					logistics_skill = 4
+				}
+			}
+			division_template = {
+				name = "Ironhoofs"
+				priority = 1
+				regiments = {
+					centaur_ironhoof = { x = 0 y = 0 }
+					centaur_ironhoof = { x = 0 y = 1 }
+					centaur_ironhoof = { x = 0 y = 2 }
+					centaur_ironhoof = { x = 0 y = 3 }
+					centaur_ironhoof = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Ironhoofs\" division_template = \"Ironhoofs\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### More Armour - Just Armour Buffer, they do more damage but lack breakthrough, they have more Hardness
+sp_centaur_ravagers = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = centaur_bloodcharger_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = centaur_khans_tent_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			ores = 12
+			wheat = 8
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			centaur_ravagers
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Ravagers"
+				priority = 1
+				regiments = {
+					centaur_ravagers = { x = 0 y = 0 }
+					centaur_ravagers = { x = 0 y = 1 }
+					centaur_ravagers = { x = 0 y = 2 }
+					centaur_ravagers = { x = 0 y = 3 }
+					centaur_ravagers = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Ravagers\" division_template = \"Ravagers\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}

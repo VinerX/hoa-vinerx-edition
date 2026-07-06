@@ -1,0 +1,237 @@
+alliance_of_lordaeron_decision = {
+
+	an_early_alliance = {
+
+		allowed = {
+			original_tag = LOR
+		}
+
+		available = {
+			NOT = { has_idea = LOR_courts_of_lordaeron_1 }
+			NOT = { has_country_flag = alliance_of_lordaeron_formed }
+			has_war_support > 0.20
+		}
+
+		visible = {
+			any_country = {
+				has_war_with = STO
+				is_major = yes
+			}
+			NOT = { has_idea = LOR_courts_of_lordaeron_1 }
+			NOT = {	has_country_flag = alliance_of_lordaeron_formed	}
+		}
+
+		fire_only_once = no
+
+		days_re_enable = 90
+
+		cost = 500
+
+		complete_effect = {
+			add_stability = -0.10
+			add_war_support = -0.20
+			create_faction = Alliance_of_Lordaeron
+			add_to_faction = STO
+			set_country_flag = alliance_of_lordaeron_formed
+		}
+	}
+
+	secure_the_frontier = {
+		#icon =
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			STR = { 
+				has_country_flag = attended_meeting_of_seven_kingdoms 
+				OR = {
+					alliance > 0.55
+					neutral > 0.55
+				}
+			}
+		}
+
+		complete_effect = {
+			STR = {
+				country_event = { id = stromgarde.2 hours = 1 }
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	formalize_our_alliance_with_STR = {
+		#icon =
+		cost = 0
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			STR = {
+				has_country_flag = attended_meeting_of_seven_kingdoms
+				has_country_flag = accepted_alliance
+			}
+		}
+
+		complete_effect = {
+			add_to_faction = STR
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	secure_the_seas = {
+		#icon =
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			KUL = {
+				has_country_flag = attended_meeting_of_seven_kingdoms
+				OR = {
+					alliance > 0.55
+					neutral > 0.55
+				}
+			}
+		}
+
+		complete_effect = {
+			KUL = {
+				country_event = { id = kultiras.2 hours = 1 }
+			}
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	formalize_our_alliance_with_KUL = {
+		#icon =
+		cost = 0
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			KUL = {
+				has_country_flag = attended_meeting_of_seven_kingdoms
+				has_country_flag = accepted_alliance
+			}
+		}
+
+		complete_effect = {
+			add_to_faction = KUL
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	formalize_our_alliance_with_GIL = {
+		#icon =
+		cost = 0
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			if = {
+				limit = {
+					LOR = { has_government = alliance }
+				}
+				GIL = {
+					has_country_flag = attended_meeting_of_seven_kingdoms
+					has_government = alliance
+				}
+			}
+			if = {
+				limit = {
+					LOR = { has_government = neutral }
+				}
+				GIL = {
+					has_country_flag = attended_meeting_of_seven_kingdoms
+					has_idea = LOR_church_visitations
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_faction = GIL
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	formalize_our_alliance_with_DAL = {
+		#icon =
+		cost = 0
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			DAL = {
+				has_country_flag = attended_meeting_of_seven_kingdoms
+				has_government = alliance
+			}
+		}
+
+		complete_effect = {
+			add_to_faction = DAL
+		}
+
+		ai_will_do = { base = 1 }
+	}
+
+	formalize_our_alliance_with_ALT = {
+		#icon =
+		cost = 0
+
+		fire_only_once = yes
+
+		allowed = {
+			#original_tag = LOR
+			always = no
+		}
+
+		available = {
+			ALT = {
+				has_country_flag = attended_meeting_of_seven_kingdoms
+				has_government = alliance
+			}
+		}
+
+		complete_effect = {
+			add_to_faction = ALT
+		}
+
+		ai_will_do = { base = 1 }
+	}
+}

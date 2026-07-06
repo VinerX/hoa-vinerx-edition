@@ -1,0 +1,150 @@
+cult_of_the_damned_decisions = {
+
+	CAE_into_the_realm_eternal_decision = {
+
+		allowed = {
+			original_tag = CAE
+		}
+
+		available = {
+			country_exists = QUE
+			is_neighbor_of = QUE
+			NOT = {
+				has_war_with = QUE
+				is_in_faction_with = QUE
+			}
+		}
+
+		visible = {
+			has_country_flag = CAE_quelthalas_flag
+			NOT = { has_country_flag = CAE_summoning_archimonde_flag }
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			declare_war_on = {
+                target = QUE
+                type = annex_everything
+            }
+		}
+
+		ai_will_do = { 
+			factor = 0
+			modifier = {
+				has_war_with_major = no
+				add = 1
+			}
+		}
+	}
+
+	CAE_resurrect_kel_thuzad_decision = {
+
+		allowed = {
+			original_tag = CAE
+		}
+
+		available = {
+			33 = { is_controlled_by_ROOT_or_ally = yes } ### They were activly being attacked while trying to resurrect him
+			#33 = { owned_and_controlled_by_ROOT_or_puppets_or_allies = yes }
+		}
+
+		visible = {
+			has_country_flag = CAE_quelthalas_flag
+			NOT = { has_country_flag = CAE_summoning_archimonde_flag }
+		}
+
+		highlight_states = {
+			highlight_state_targets = { state = 33 }
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			country_event = cult_of_the_damned.9
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	CAE_the_siege_of_dalaran_decision = {
+
+		allowed = {
+			original_tag = CAE
+		}
+
+		available = {
+			country_exists = DAL
+			is_neighbor_of = DAL
+			NOT = {
+				has_war_with = DAL
+				is_in_faction_with = DAL
+			}
+		}
+
+		visible = {
+			has_country_flag = CAE_summoning_archimonde_flag
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			declare_war_on = {
+                target = DAL
+                type = annex_everything
+            }
+		}
+
+		ai_will_do = { 
+			factor = 0
+			modifier = {
+				has_war_with_major = no
+				add = 1
+			}
+		}
+	}
+
+	CAE_summon_archimonde_decision = {
+
+		allowed = {
+			original_tag = CAE
+		}
+
+		available = {
+			14 = { owned_and_controlled_by_ROOT_or_puppets_or_allies = yes }
+		}
+
+		visible = {
+			has_country_flag = CAE_summoning_archimonde_flag
+		}
+
+		highlight_states = {
+			highlight_state_targets = { state = 14 }
+		}
+
+		fire_only_once = yes
+		days_remove = 7
+
+		cost = 50
+
+		remove_effect = {
+			country_event = cult_of_the_damned.12
+		}
+
+		cancel_trigger = {
+			NOT = { 14 = { owned_and_controlled_by_ROOT_or_puppets_or_allies = yes } }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+}

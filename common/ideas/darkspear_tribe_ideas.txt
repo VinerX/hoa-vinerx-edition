@@ -1,0 +1,333 @@
+ideas = {
+
+	country = {
+
+		DST_Stranglehorn_Troubles = {
+			picture = generic_race_jungle_troll
+            allowed = { original_tag = DST }
+            allowed_civil_war = { always = yes }
+
+			cancel = {
+				OR = {
+					GUR = { is_puppet_of = DST }
+					AND = {
+						NOT = {	country_exists = GUR }
+						283 = {	is_controlled_by_ROOT_or_ally = yes }
+					}
+				}
+			}
+
+            modifier = {
+				monthly_population = -0.15
+				stability_factor = -0.05
+			}
+		}
+
+		DST_Amani_Rivalry = {
+			picture = generic_race_forest_troll
+            allowed = { original_tag = DST }
+            allowed_civil_war = { always = yes }
+
+            targeted_modifier = {
+   				tag = AMA
+  				attack_bonus_against = 0.05
+			}
+		}
+
+		### First War Bleeding Hollow Related
+		DST_overpopulated_1 = {
+
+			allowed = { original_tag = DST }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			picture = generic_race_forest_troll
+
+			cancel = {
+				num_of_controlled_states > 3
+			}
+
+			on_remove = {
+				add_timed_idea = {
+					idea = DST_overpopulated_2
+					days = 365
+				}
+			}
+
+			modifier = {
+				consumer_goods_expected_value = 0.2
+				monthly_population = -0.60
+				stability_factor = -0.2
+			}
+		}
+
+		DST_overpopulated_2 = {
+
+			allowed = { original_tag = DST }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			picture = generic_race_forest_troll
+
+			on_remove = {
+				add_timed_idea = {
+					idea = DST_overpopulated_3
+					days = 365
+				}
+			}
+
+			modifier = {
+				consumer_goods_expected_value = 0.10
+				monthly_population = -0.40
+				stability_factor = -0.1
+			}
+		}
+
+		DST_overpopulated_3 = {
+
+			allowed = { original_tag = DST }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			picture = generic_race_forest_troll
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				monthly_population = -0.20
+				stability_factor = -0.05
+			}
+		}
+################################################################
+#Darkspear Classic
+################################################################
+	DST_zalazanes_betrayal = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			political_power_factor = -0.25
+		}
+	}
+
+	DST_supplies_from_orgrimmar = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			country_resource_ores = 5
+			country_resource_wood = 5
+			country_resource_eggs = 5
+			country_resource_wheat = 5
+			country_resource_mana = 5
+		}
+	}
+
+	DST_tormented_souls = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			country_faith_gain_factor = -0.75
+		}
+	}
+	DST_era_of_adventurers = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			conscription_factor = 0.05
+			experience_gain_army = 0.05
+		}
+	}
+	DST_blessing_of_bwonsamdi = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		targeted_modifier = { tag = ZAU attack_bonus_against = 0.25 }
+	}
+
+	DST_darkspear_envoys = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+	}
+
+	DST_vicious_war_raptors = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		equipment_bonus = {
+			combat_animals_equipment = {
+				build_cost_ic = -0.10
+				instant = yes
+			}
+			heavy_cavalry_equipment = {
+				build_cost_ic = -0.10
+				instant = yes
+			}
+		}
+	}
+	
+	DST_master_headhunters = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		equipment_bonus = {
+			throwing_weapons_equipment = {
+				soft_attack = 0.10
+				instant = yes
+			}
+		}
+	}
+
+	DST_fleet_preparation = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			industrial_capacity_dockyard = 0.5
+		}
+	}
+	DST_atal_mhuto = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			special_forces_cap = 0.15
+		}
+		equipment_bonus = {
+			heroic_caster_equipment = {
+				build_cost_ic = -0.25
+				instant = yes
+			}
+		}
+	}
+	DST_mastery_of_destroyers = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			industrial_capacity_dockyard = 0.05
+		}
+		equipment_bonus = {
+			destroyer_equipment = {
+				build_cost_ic = -0.15
+				instant = yes
+			}
+		}
+	}
+	DST_watchers_in_the_shadows = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			special_forces_cap = 0.15
+			army_attack_factor = 0.1
+			army_defence_factor = 0.1
+			political_power_factor = 0.1
+		}
+	}
+	DST_loas_gift = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_religion_loa_spirits
+
+		modifier = {
+			country_faith_gain_factor = 0.5
+			production_speed_buildings_factor = 0.25
+		}
+	}
+
+	DST_gurubashi_fury = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		modifier = {
+			naval_invasion_division_cap = 10 
+			#naval_invasion_capacity = 10
+			naval_invasion_penalty = 0.3
+			naval_invasion_prep_speed = 10
+		}
+	}
+
+	DST_godslayers = {
+
+		allowed = { original_tag = DST }
+		allowed_civil_war = { always = yes }
+		removal_cost = -1
+
+		picture = generic_race_forest_troll
+
+		targeted_modifier = { tag = GUR attack_bonus_against = 0.1 }
+	}
+
+
+
+
+
+
+
+
+
+
+
+	}
+} #End Bracket

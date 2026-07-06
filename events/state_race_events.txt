@@ -1,0 +1,2879 @@
+﻿###########################
+# Events triggered at the start of the game in 00_hoa_on_actions.txt to setup
+# the state race of each state.
+# Events ID number correspond to the associated start date.
+###########################
+# List of all race and their ID:
+# UNINHABITED 0 (never used)
+# ANCIENTS 1
+# ANKOAN 2
+# ARRAKOA 3
+# BLACK DRAGONS 4
+# BLOOD ELF 5
+# BLUE DRAGON 6
+# BOG BEAST 7
+# BOTANI 8
+# BROKEN 9
+# BRONZE DRAGON 10
+# CENTAUR 11
+# CHROMATIC DRAGON 12
+# COLOSSUS 13
+# CRYSTAL NYMPHS 14
+# CRYSTAL SATYR 15
+# DARK IRON DWARF 16
+# DARK TROLL 17
+# DEMONS 18
+# DRAENEI 19
+# DROGBAR 20
+# DRUST 21
+# DRYADS 22
+# DWARFS 23
+# EARTH ELEMENTALS 24
+# EARTHEN 25
+# ETHEREAL 26
+# ETTIN 27
+# FACELESS ONE 28
+# FAERIE DRAGON 29
+# FAL'DOREI 30
+# FEL ORC 31
+# FEL BLOOD ELVES 32
+# FELBORNE 33
+# FIRE ELEMENTAL 34
+# AQIR 35
+# TWILIGHT DRAGONS 36
+# FROST VRYKUL 37
+# FUNGAL GIANTS 39
+# FUNGAL MONSTER 40
+# FUNGARIANS 41
+# FURBOLG 42
+# GHOSTS 43
+# GILGOBLINS 44
+# GNOLL 45
+# GNOMES 46
+# GOBLIN 47
+# GOREN 48
+# GORLOCS 49
+# GREEN DRAGONS 50
+# GRELL 51
+# GRONN 52
+# GRUMMLE 53
+# HARPY 54
+# HIGH ELF 55
+# HIGHMOUNTAIN TAUREN 56
+# HIGHBORNE 57
+# HOBGOBLIN 58
+# HOZEN 59
+# HUMANS 60
+# ICE GIANTS 61
+# ICE TROLL 62
+# INFINITE DRAGON 63
+# IRON DWARF 64
+# IRON GIANT 65
+# IRON VRYKUL 66
+# JINYU 67
+# JUNGLE TROLL 68
+# JUNKER GNOME 69
+# KOBOLDS 70
+# KVALDIR 71
+# LASHERS 72
+# LEPER GNOME 73
+# LIGHTFORGE DRAENEI 74
+# LOBSTROK 75
+# LOST ONES 76
+# MAGHAR ORC 77
+# MAGNATAUR 78
+# MAKRURA 79
+# MANA SURGE 80
+# MANTID 81
+# MECHA GNOME 82
+# MIST LURKER 83
+# MOGU 84
+# MOK'NATHAL 85
+# MOUNTAIN GIANTS 86
+# MURLOC 87
+# NAGA 88
+# NERUBIANS 89
+# NETHERWING 90
+# NIGHT ELF 91
+# NIGHTBORNE 92
+# NIGHTFALLEN 93
+# NIGHTMARE DRAGON 94
+# OGRE 95
+# ORC 96
+# PALE ORC 97
+# PANDAREN 98
+# PYGMIES 99
+# QIRAJI 100
+# QUILBOAR 101
+# RANISHU 102
+# RED DRAGON 103
+# ROCK FLAYER 104
+# SABERON 105
+# SAN'LAYN 106
+# SAND GNOME 107
+# SAND TROLL 108
+# SATYR 109
+# SEA GIANTS 110
+# SETHRAK 111
+# SHA 112
+# SILITHID 113
+# SIREN 114
+# SNOBOLD 115
+# SPORELING 116
+# SPRITE 117
+# STONE GIANT 118
+# STONE TROGG 119
+# STORM DRAGON 120
+# STORM GIANT 121
+# TAUNKA 122
+# TAUREN 123
+# TITAN WATCHER 124
+# TOLVIR 125
+# TORTOLLAN 126
+# TROGG 127
+# TUSKARR 128
+# UNDEAD 129
+# VALARJAR 130
+# VALKYR 131
+# VARGUL 132
+# VIRMEN 133
+# VOID ELF 134
+# VOID WALKER 135
+# VRYKUL 136
+# VULPERA 137
+# WATER ELEMENTAL 138
+# WENDIGO 139
+# WILDKIN 140
+# WIND ELEMENTAL 141
+# WITHERED 142
+# WOLVAR 143
+# WORGEN 144
+# WRETCHED ELVES 145
+# YAUNGOL 146
+# YETI 147
+# ZANDALARI TROLLS 148
+# ANUBISATH 149
+# FROST GIANT 150
+# BLOOD TROLLS 151
+# GORILLAS 152
+# FOREST TROLLS 153
+# FROST NYMPH 154
+# HIGH ARRAKOA 156
+# JADE STATUE 157
+# SAUROK 158
+# STONE DRAGONS 159
+# OBSIDIAN STATUES 160
+# Vault Dwellers 161
+
+add_namespace = state_race_setup
+
+# Rise of the Horde (year 581) race setup
+country_event = {
+    id = state_race_setup.581
+	title = state_race_setup.581.t
+	desc = state_race_setup.581.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+        name = state_race_setup.581.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 321
+                        state = 432
+                        state = 473
+                        state = 780
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+    }
+}
+
+# First War (year 592) race setup
+country_event = {
+    id = state_race_setup.592
+	title = state_race_setup.592.t
+	desc = state_race_setup.592.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+        name = state_race_setup.592.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 43
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 321
+                        state = 379
+                        state = 380
+                        state = 385
+                        state = 386
+                        state = 387
+                        state = 388
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 473
+                        state = 780
+                        state = 784
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2158
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        406 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DEMONS 18
+        379 = { set_variable = { var = race value = 18 } }
+        380 = { set_variable = { var = race value = 18 } }
+        784 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # OGRE 95
+        43 = { set_variable = { var = race value = 95 } }
+        385 = { set_variable = { var = race value = 95 } }
+        386 = { set_variable = { var = race value = 95 } }
+        404 = { set_variable = { var = race value = 95 } }
+
+        # PALE ORC 97
+        387 = { set_variable = { var = race value = 97 } }
+        388 = { set_variable = { var = race value = 97 } }
+        2158 = { set_variable = { var = race value = 97 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+    }
+}
+
+# Second War (year 596) race setup
+country_event = {
+	id = state_race_setup.596
+	title = state_race_setup.596.t
+	desc = state_race_setup.596.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+ 	option = {
+ 		name = state_race_setup.596.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 43
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 379
+                        state = 380
+                        state = 385
+                        state = 386
+                        state = 387
+                        state = 388
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 780
+                        state = 784
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2158
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        406 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DEMONS 18
+        379 = { set_variable = { var = race value = 18 } }
+        380 = { set_variable = { var = race value = 18 } }
+        784 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # OGRE 95
+        43 = { set_variable = { var = race value = 95 } }
+        385 = { set_variable = { var = race value = 95 } }
+        386 = { set_variable = { var = race value = 95 } }
+        404 = { set_variable = { var = race value = 95 } }
+
+        # PALE ORC 97
+        387 = { set_variable = { var = race value = 97 } }
+        388 = { set_variable = { var = race value = 97 } }
+        2158 = { set_variable = { var = race value = 97 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# Invasion of Draenor (year 600) race setup
+country_event = {
+	id = state_race_setup.600
+	title = state_race_setup.600.t
+	desc = state_race_setup.600.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.600.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 43
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 321
+                        state = 379
+                        state = 380
+                        state = 385
+                        state = 386
+                        state = 387
+                        state = 388
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 473
+                        state = 780
+                        state = 784
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2158
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        406 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DEMONS 18
+        379 = { set_variable = { var = race value = 18 } }
+        380 = { set_variable = { var = race value = 18 } }
+        784 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # OGRE 95
+        43 = { set_variable = { var = race value = 95 } }
+        385 = { set_variable = { var = race value = 95 } }
+        386 = { set_variable = { var = race value = 95 } }
+        404 = { set_variable = { var = race value = 95 } }
+
+        # PALE ORC 97
+        387 = { set_variable = { var = race value = 97 } }
+        388 = { set_variable = { var = race value = 97 } }
+        2158 = { set_variable = { var = race value = 97 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# Third War (year 610) race setup
+country_event = {
+	id = state_race_setup.610
+	title = state_race_setup.610.t
+	desc = state_race_setup.610.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.610.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 43
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 321
+                        state = 379
+                        state = 380
+                        state = 385
+                        state = 386
+                        state = 387
+                        state = 388
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 473
+                        state = 780
+                        state = 784
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2158
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        406 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DEMONS 18
+        379 = { set_variable = { var = race value = 18 } }
+        380 = { set_variable = { var = race value = 18 } }
+        784 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # OGRE 95
+        43 = { set_variable = { var = race value = 95 } }
+        385 = { set_variable = { var = race value = 95 } }
+        386 = { set_variable = { var = race value = 95 } }
+        404 = { set_variable = { var = race value = 95 } }
+
+        # PALE ORC 97
+        387 = { set_variable = { var = race value = 97 } }
+        388 = { set_variable = { var = race value = 97 } }
+        2158 = { set_variable = { var = race value = 97 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# Frozen Throne (year 613) race setup
+country_event = {
+	id = state_race_setup.613
+	title = state_race_setup.613.t
+	desc = state_race_setup.613.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.613.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 43
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 321
+                        state = 379
+                        state = 380
+                        state = 385
+                        state = 386
+                        state = 387
+                        state = 388
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 473
+                        state = 780
+                        state = 784
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2158
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        406 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DEMONS 18
+        379 = { set_variable = { var = race value = 18 } }
+        380 = { set_variable = { var = race value = 18 } }
+        784 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # OGRE 95
+        43 = { set_variable = { var = race value = 95 } }
+        385 = { set_variable = { var = race value = 95 } }
+        386 = { set_variable = { var = race value = 95 } }
+        404 = { set_variable = { var = race value = 95 } }
+
+        # PALE ORC 97
+        387 = { set_variable = { var = race value = 97 } }
+        388 = { set_variable = { var = race value = 97 } }
+        2158 = { set_variable = { var = race value = 97 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# Old Hatred / Classic WoW (year 617) race setup
+country_event = {
+	id = state_race_setup.617
+	title = state_race_setup.617.t
+	desc = state_race_setup.617.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.617.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 77
+                        state = 112
+                        state = 133
+                        state = 135
+                        state = 203
+                        state = 280
+                        state = 321
+                        state = 364
+                        state = 368
+                        state = 371
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 443
+                        state = 460
+                        state = 465
+                        state = 473
+                        state = 480
+                        state = 526
+                        state = 527
+                        state = 535
+                        state = 579
+                        state = 720
+                        state = 780
+                        state = 822
+                        state = 864
+                        state = 998
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1172
+                        state = 1173
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1341
+                        state = 1342
+                        state = 1348
+                        state = 1350
+                        state = 1354
+                        state = 1358
+                        state = 1360
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1432
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1490
+                        state = 1503
+                        state = 1512
+                        state = 1537
+                        state = 1538
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2155
+                        state = 2165
+                        state = 2176
+                        state = 2224
+                        state = 2227
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+        371 = { set_variable = { var = race value = 4 } }
+        460 = { set_variable = { var = race value = 4 } }
+        526 = { set_variable = { var = race value = 4 } }
+        527 = { set_variable = { var = race value = 4 } }
+        535 = { set_variable = { var = race value = 4 } }
+        2176 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        404 = { set_variable = { var = race value = 7 } }
+        406 = { set_variable = { var = race value = 7 } }
+        1342 = { set_variable = { var = race value = 7 } }
+        #1358 = { set_variable = { var = race value = 7 } }
+        2155 = { set_variable = { var = race value = 7 } }
+        2165 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DARK IRON DWARVES 16
+	    2166 = { set_variable = { var = race value = 16 } }
+
+        # DEMONS 18
+        1341 = { set_variable = { var = race value = 18 } }
+        1503 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+        2173 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOLL 45
+        #127 = { set_variable = { var = race value = 45 } }
+        213 = { set_variable = { var = race value = 45 } }
+        362 = { set_variable = { var = race value = 45 } }
+        1036 = { set_variable = { var = race value = 45 } }
+        1172 = { set_variable = { var = race value = 45 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # HUMANS 60
+        2227 = { set_variable = { var = race value = 60 } }
+
+        # ICE TROLL 62
+        443 = { set_variable = { var = race value = 62 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # MURLOC 87
+        77 = { set_variable = { var = race value = 87 } }
+        864 = { set_variable = { var = race value = 87 } }
+        1537 = { set_variable = { var = race value = 87 } }
+        1538 = { set_variable = { var = race value = 87 } }
+        2224 = { set_variable = { var = race value = 87 } }
+
+        # NIGHT ELF 91
+        1173 = { set_variable = { var = race value = 91 } }
+        1354 = { set_variable = { var = race value = 91 } }
+        1360 = { set_variable = { var = race value = 91 } }
+        1432 = { set_variable = { var = race value = 91 } }
+
+        # OGRE 95
+        133 = { set_variable = { var = race value = 95 } }
+        280 = { set_variable = { var = race value = 95 } }
+        579 = { set_variable = { var = race value = 95 } }
+
+        # ORC 96
+        364 = { set_variable = { var = race value = 96 } }
+        368 = { set_variable = { var = race value = 96 } }
+        480 = { set_variable = { var = race value = 96 } }
+        1186 = { set_variable = { var = race value = 96 } }
+
+        # QUILBOAR 101
+        998 = { set_variable = { var = race value = 101 } }
+        1001 = { set_variable = { var = race value = 101 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        465 = { set_variable = { var = race value = 127 } }
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # UNDEAD 129
+        720 = { set_variable = { var = race value = 129 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        1259 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # WRETCHED ELF 145
+        174 = { set_variable = { var = race value = 145 } }
+        2104 = { set_variable = { var = race value = 145 } }
+        2105 = { set_variable = { var = race value = 145 } }
+        2106 = { set_variable = { var = race value = 145 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# The Burning Crusade (year 618) race setup
+country_event = {
+	id = state_race_setup.618
+	title = state_race_setup.618.t
+	desc = state_race_setup.618.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.618.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 77
+                        state = 112
+                        state = 133
+                        state = 135
+                        state = 203
+                        state = 280
+                        state = 321
+                        state = 364
+                        state = 368
+                        state = 371
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 443
+                        state = 460
+                        state = 465
+                        state = 473
+                        state = 480
+                        state = 526
+                        state = 527
+                        state = 535
+                        state = 579
+                        state = 720
+                        state = 780
+                        state = 822
+                        state = 864
+                        state = 998
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1172
+                        state = 1173
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1341
+                        state = 1342
+                        state = 1348
+                        state = 1350
+                        state = 1354
+                        state = 1358
+                        state = 1360
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1432
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1490
+                        state = 1503
+                        state = 1512
+                        state = 1537
+                        state = 1538
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2155
+                        state = 2165
+                        state = 2176
+                        state = 2224
+                        state = 2227
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+        371 = { set_variable = { var = race value = 4 } }
+        460 = { set_variable = { var = race value = 4 } }
+        526 = { set_variable = { var = race value = 4 } }
+        527 = { set_variable = { var = race value = 4 } }
+        535 = { set_variable = { var = race value = 4 } }
+        2176 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        404 = { set_variable = { var = race value = 7 } }
+        406 = { set_variable = { var = race value = 7 } }
+        1342 = { set_variable = { var = race value = 7 } }
+        #1358 = { set_variable = { var = race value = 7 } }
+        2155 = { set_variable = { var = race value = 7 } }
+        2165 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DARK IRON DWARVES 16
+	    2166 = { set_variable = { var = race value = 16 } }
+
+        # DEMONS 18
+        1341 = { set_variable = { var = race value = 18 } }
+        1503 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+        2173 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOLL 45
+        #127 = { set_variable = { var = race value = 45 } }
+        213 = { set_variable = { var = race value = 45 } }
+        362 = { set_variable = { var = race value = 45 } }
+        1036 = { set_variable = { var = race value = 45 } }
+        1172 = { set_variable = { var = race value = 45 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # HUMANS 60
+        2227 = { set_variable = { var = race value = 60 } }
+
+        # ICE TROLL 62
+        443 = { set_variable = { var = race value = 62 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # MURLOC 87
+        77 = { set_variable = { var = race value = 87 } }
+        864 = { set_variable = { var = race value = 87 } }
+        1537 = { set_variable = { var = race value = 87 } }
+        1538 = { set_variable = { var = race value = 87 } }
+        2224 = { set_variable = { var = race value = 87 } }
+
+        # NIGHT ELF 91
+        1173 = { set_variable = { var = race value = 91 } }
+        1354 = { set_variable = { var = race value = 91 } }
+        1360 = { set_variable = { var = race value = 91 } }
+        1432 = { set_variable = { var = race value = 91 } }
+
+        # OGRE 95
+        133 = { set_variable = { var = race value = 95 } }
+        280 = { set_variable = { var = race value = 95 } }
+        579 = { set_variable = { var = race value = 95 } }
+
+        # ORC 96
+        364 = { set_variable = { var = race value = 96 } }
+        368 = { set_variable = { var = race value = 96 } }
+        480 = { set_variable = { var = race value = 96 } }
+        1186 = { set_variable = { var = race value = 96 } }
+
+        # QUILBOAR 101
+        998 = { set_variable = { var = race value = 101 } }
+        1001 = { set_variable = { var = race value = 101 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        465 = { set_variable = { var = race value = 127 } }
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # UNDEAD 129
+        720 = { set_variable = { var = race value = 129 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        1259 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # WRETCHED ELF 145
+        174 = { set_variable = { var = race value = 145 } }
+        2104 = { set_variable = { var = race value = 145 } }
+        2105 = { set_variable = { var = race value = 145 } }
+        2106 = { set_variable = { var = race value = 145 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# Wrath of the Lich King (year 619) race setup
+country_event = {
+	id = state_race_setup.619
+	title = state_race_setup.619.t
+	desc = state_race_setup.619.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.619.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 77
+                        state = 112
+                        state = 133
+                        state = 135
+                        state = 203
+                        state = 280
+                        state = 321
+                        state = 364
+                        state = 368
+                        state = 371
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 443
+                        state = 460
+                        state = 465
+                        state = 473
+                        state = 480
+                        state = 526
+                        state = 527
+                        state = 535
+                        state = 579
+                        state = 720
+                        state = 780
+                        state = 822
+                        state = 864
+                        state = 998
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1172
+                        state = 1173
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1341
+                        state = 1342
+                        state = 1348
+                        state = 1350
+                        state = 1354
+                        state = 1358
+                        state = 1360
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1432
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1490
+                        state = 1503
+                        state = 1512
+                        state = 1537
+                        state = 1538
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2155
+                        state = 2165
+                        state = 2176
+                        state = 2224
+                        state = 2227
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+        371 = { set_variable = { var = race value = 4 } }
+        460 = { set_variable = { var = race value = 4 } }
+        526 = { set_variable = { var = race value = 4 } }
+        527 = { set_variable = { var = race value = 4 } }
+        535 = { set_variable = { var = race value = 4 } }
+        2176 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        404 = { set_variable = { var = race value = 7 } }
+        406 = { set_variable = { var = race value = 7 } }
+        1342 = { set_variable = { var = race value = 7 } }
+        #1358 = { set_variable = { var = race value = 7 } }
+        2155 = { set_variable = { var = race value = 7 } }
+        2165 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DARK IRON DWARVES 16
+	    2166 = { set_variable = { var = race value = 16 } }
+
+        # DEMONS 18
+        1341 = { set_variable = { var = race value = 18 } }
+        1503 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+        2173 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOLL 45
+        #127 = { set_variable = { var = race value = 45 } }
+        213 = { set_variable = { var = race value = 45 } }
+        362 = { set_variable = { var = race value = 45 } }
+        1036 = { set_variable = { var = race value = 45 } }
+        1172 = { set_variable = { var = race value = 45 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # HUMANS 60
+        2227 = { set_variable = { var = race value = 60 } }
+
+        # ICE TROLL 62
+        443 = { set_variable = { var = race value = 62 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # MURLOC 87
+        77 = { set_variable = { var = race value = 87 } }
+        864 = { set_variable = { var = race value = 87 } }
+        1537 = { set_variable = { var = race value = 87 } }
+        1538 = { set_variable = { var = race value = 87 } }
+        2224 = { set_variable = { var = race value = 87 } }
+
+        # NIGHT ELF 91
+        1173 = { set_variable = { var = race value = 91 } }
+        1354 = { set_variable = { var = race value = 91 } }
+        1360 = { set_variable = { var = race value = 91 } }
+        1432 = { set_variable = { var = race value = 91 } }
+
+        # OGRE 95
+        133 = { set_variable = { var = race value = 95 } }
+        280 = { set_variable = { var = race value = 95 } }
+        579 = { set_variable = { var = race value = 95 } }
+
+        # ORC 96
+        364 = { set_variable = { var = race value = 96 } }
+        368 = { set_variable = { var = race value = 96 } }
+        480 = { set_variable = { var = race value = 96 } }
+        1186 = { set_variable = { var = race value = 96 } }
+
+        # QUILBOAR 101
+        998 = { set_variable = { var = race value = 101 } }
+        1001 = { set_variable = { var = race value = 101 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        465 = { set_variable = { var = race value = 127 } }
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # UNDEAD 129
+        720 = { set_variable = { var = race value = 129 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        1259 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # WRETCHED ELF 145
+        174 = { set_variable = { var = race value = 145 } }
+        2104 = { set_variable = { var = race value = 145 } }
+        2105 = { set_variable = { var = race value = 145 } }
+        2106 = { set_variable = { var = race value = 145 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}
+
+# The Shattering / Cataclysm (year 620) race setup
+country_event = {
+	id = state_race_setup.620
+	title = state_race_setup.620.t
+	desc = state_race_setup.620.d
+	picture = GFX_report_event_german_parade_paris
+
+    is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+ 		name = state_race_setup.620.a
+
+        every_country = {
+            limit = {
+                NOT = { # Exclude non playable countries
+                    tag = ZZD
+                    tag = ZZO
+                    tag = ZZT
+                    tag = ZZW
+                }
+            }
+            every_owned_state = {
+                limit = {
+                    NOT = { # Excludes states that are not of the owner's primary race (see below)
+                        state = 43
+                        state = 112
+                        state = 135
+                        state = 203
+                        state = 321
+                        state = 379
+                        state = 380
+                        state = 385
+                        state = 386
+                        state = 387
+                        state = 388
+                        state = 404
+                        state = 406
+                        state = 432
+                        state = 473
+                        state = 780
+                        state = 784
+                        state = 822
+                        state = 1097
+                        state = 1099
+                        state = 1100
+                        state = 1101
+                        state = 1102
+                        state = 1215
+                        state = 1217
+                        state = 1218
+                        state = 1219
+                        state = 1220
+                        state = 1221
+                        state = 1222
+                        state = 1254
+                        state = 1260
+                        state = 1262
+                        state = 1263
+                        state = 1274
+                        state = 1276
+                        state = 1277
+                        state = 1278
+                        state = 1279
+                        state = 1280
+                        state = 1281
+                        state = 1282
+                        state = 1283
+                        state = 1284
+                        state = 1291
+                        state = 1297
+                        state = 1348
+                        state = 1350
+                        state = 1368
+                        state = 1385
+                        state = 1394
+                        state = 1435
+                        state = 1436
+                        state = 1445
+                        state = 1453
+                        state = 1490
+                        state = 1512
+                        state = 1577
+                        state = 1578
+                        state = 1579
+                        state = 1631
+                        state = 1726
+                        state = 1727
+                        state = 1731
+                        state = 1732
+                        state = 2018
+                        state = 2019
+                        state = 2020
+                        state = 2023
+                        state = 2024
+                        state = 2092
+                        state = 2158
+                        state = 2251
+                    }
+                }
+                meta_effect = { # Set state race to the owner's primary race
+        			text = {
+        				set_variable = { race = [MAIN_RACE] }
+        			}
+        			MAIN_RACE = "[PREV.GetMainRaceVariable]"
+        		}
+            }
+        }
+
+        # Setup the state race for the states that have been excluded (see above limit block)
+        # If modifying a state race, don't forget it to add it above in the exclude block! (it will still work otherwise, but it's better for optimization)
+        # Order by race ID and then state ID
+
+        # ANCIENTS 1
+        1631 = { set_variable = { var = race value = 1 } }
+
+        # BLACK DRAGONS 4
+        112 = { set_variable = { var = race value = 4 } }
+
+        # BLUE DRAGON 6
+        203 = { set_variable = { var = race value = 6 } }
+        1368 = { set_variable = { var = race value = 6 } }
+        1385 = { set_variable = { var = race value = 6 } }
+        1453 = { set_variable = { var = race value = 6 } }
+
+        # BOG BEAST 7
+        406 = { set_variable = { var = race value = 7 } }
+
+        # BRONZE DRAGON 10
+        1254 = { set_variable = { var = race value = 10 } }
+
+        # DEMONS 18
+        379 = { set_variable = { var = race value = 18 } }
+        380 = { set_variable = { var = race value = 18 } }
+        784 = { set_variable = { var = race value = 18 } }
+
+        # DRYADS 22
+        1350 = { set_variable = { var = race value = 22 } }
+        1435 = { set_variable = { var = race value = 22 } }
+        1436 = { set_variable = { var = race value = 22 } }
+
+        # DWARFS 23
+        321 = { set_variable = { var = race value = 23 } }
+
+        # EARTH ELEMENTALS 24
+        1215 = { set_variable = { var = race value = 25 } }
+        1218 = { set_variable = { var = race value = 25 } }
+        1219 = { set_variable = { var = race value = 25 } }
+
+        # EARTHEN 25
+        1577 = { set_variable = { var = race value = 25 } }
+        1579 = { set_variable = { var = race value = 25 } }
+
+        # FIRE ELEMENTAL 34
+        1220 = { set_variable = { var = race value = 34 } }
+
+        # FURBOLG 42
+        1348 = { set_variable = { var = race value = 42 } }
+        1394 = { set_variable = { var = race value = 42 } }
+        1512 = { set_variable = { var = race value = 42 } }
+
+        # GHOSTS 43
+        1445 = { set_variable = { var = race value = 43 } }
+
+        # GNOMES 46
+        432 = { set_variable = { var = race value = 46 } }
+
+        # HARPY 54
+        1490 = { set_variable = { var = race value = 54 } }
+
+        # HIGH ELF 55
+        135 = { set_variable = { var = race value = 55 } }
+        473 = { set_variable = { var = race value = 55 } }
+        2251 = { set_variable = { var = race value = 55 } }
+
+        # HOBGOBLIN 58
+        822 = { set_variable = { var = race value = 58 } }
+        1297 = { set_variable = { var = race value = 58 } }
+
+        # IRON DWARF 64
+        780 = { set_variable = { var = race value = 64 } }
+        1726 = { set_variable = { var = race value = 64 } }
+        1732 = { set_variable = { var = race value = 64 } }
+        2018 = { set_variable = { var = race value = 64 } }
+        2020 = { set_variable = { var = race value = 64 } }
+
+        # IRON GIANT 65
+        1727 = { set_variable = { var = race value = 65 } }
+
+        # IRON VRYKUL 66
+        2019 = { set_variable = { var = race value = 66 } }
+
+        # LASHERS 72
+        1222 = { set_variable = { var = race value = 72 } }
+        2023 = { set_variable = { var = race value = 72 } }
+
+        # MECHA GNOME 82
+        1731 = { set_variable = { var = race value = 82 } }
+        2024 = { set_variable = { var = race value = 82 } }
+
+        # OGRE 95
+        43 = { set_variable = { var = race value = 95 } }
+        385 = { set_variable = { var = race value = 95 } }
+        386 = { set_variable = { var = race value = 95 } }
+        404 = { set_variable = { var = race value = 95 } }
+
+        # PALE ORC 97
+        387 = { set_variable = { var = race value = 97 } }
+        388 = { set_variable = { var = race value = 97 } }
+        2158 = { set_variable = { var = race value = 97 } }
+
+        # SILITHID 113
+        1097 = { set_variable = { var = race value = 113 } }
+        1099 = { set_variable = { var = race value = 113 } }
+        1100 = { set_variable = { var = race value = 113 } }
+        1291 = { set_variable = { var = race value = 113 } }
+
+        # SNOBOLD 115
+        1260 = { set_variable = { var = race value = 115 } }
+        1262 = { set_variable = { var = race value = 115 } }
+        1263 = { set_variable = { var = race value = 115 } }
+        1274 = { set_variable = { var = race value = 115 } }
+        1276 = { set_variable = { var = race value = 115 } }
+        1277 = { set_variable = { var = race value = 115 } }
+        1278 = { set_variable = { var = race value = 115 } }
+        1279 = { set_variable = { var = race value = 115 } }
+        1280 = { set_variable = { var = race value = 115 } }
+        1281 = { set_variable = { var = race value = 115 } }
+        1282 = { set_variable = { var = race value = 115 } }
+        1283 = { set_variable = { var = race value = 115 } }
+        1284 = { set_variable = { var = race value = 115 } }
+
+        # TROGG 127
+        1578 = { set_variable = { var = race value = 127 } }
+
+        # WATER ELEMENTAL 138
+        1217 = { set_variable = { var = race value = 138 } }
+
+        # WIND ELEMENTAL 141
+        1221 = { set_variable = { var = race value = 141 } }
+        2092 = { set_variable = { var = race value = 141 } }
+
+        # WRETCHED ELF 145
+        174 = { set_variable = { var = race value = 145 } }
+        2104 = { set_variable = { var = race value = 145 } }
+        2105 = { set_variable = { var = race value = 145 } }
+        2106 = { set_variable = { var = race value = 145 } }
+
+        # ANUBISATH 149
+        1101 = { set_variable = { var = race value = 149 } }
+
+        # OBSIDIAN STATUES 160
+        1102 = { set_variable = { var = race value = 160 } }
+ 	}
+}

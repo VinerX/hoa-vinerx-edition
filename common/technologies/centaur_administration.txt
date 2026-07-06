@@ -1,0 +1,3796 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+    centaur_khans_tent_tech = {
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_great_khans_pavilion_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_worker_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	centaur_great_khans_pavilion_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			centaur_tier_2 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_2_tech = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_great_khans_stronghold_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 2 y = 8 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	centaur_great_khans_stronghold_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			centaur_tier_3 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_3_tech = 1
+			}
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 2 y = 12 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	centaur_worker_tech = {
+
+		enable_subunits = {
+			centaur_worker
+		}
+
+		on_research_complete = {
+			set_technology = { centaur_feathers_of_ohnahra_equipment_tech = 1 }
+			#custom_effect_tooltip = centaur_worker_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_feathers_of_ohnahra_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_beastcaller_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_forger_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_tanner_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_woodcarver_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 29 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	centaur_feathers_of_ohnahra_equipment_tech = {
+
+		enable_equipments = {
+			centaur_feathers_of_ohnahra_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_worker_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 29 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	centaur_worker_training_1 = {
+
+		centaur_worker = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_worker_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 29 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	centaur_worker_training_2 = {
+
+		centaur_worker = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_worker_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 29 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	centaur_worker_training_3 = {
+
+		centaur_worker = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_worker_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 29 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	centaur_worker_training_4 = {
+
+		centaur_worker = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 29 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	centaur_beastcaller_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_centaur = yes
+		}
+
+        path = {
+			leads_to_tech = centaur_animal_pens_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_pack_animals_equipment_tech #ox cart & hyenas
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_owl_nests_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_butcher_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 8 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+		}
+	}
+
+	centaur_pack_animals_equipment_tech = {
+
+		enable_equipments = {
+			centaur_pack_animals_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+			set_technology = { 
+				centaur_ox_carts_tech = 1 
+				centaur_hyena_tech = 1
+			}
+		}
+
+		path = {
+			leads_to_tech = centaur_hyena_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_ox_carts_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 5 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_worker_technology
+			support_technology
+		}
+	}
+
+	centaur_hyena_tech = {
+
+		enable_subunits = {
+			centaur_hyena
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = centaur_hyena_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_hyena_training_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 4 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			guard_technology
+		}
+	}
+
+	centaur_hyena_training_tech = {
+
+		centaur_hyena = {
+			entrenchment = 1
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_hyena_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_hyena_training_tech_2 = {
+
+		centaur_hyena = {
+			entrenchment = 1
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_hyena_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_hyena_training_tech_3 = {
+
+		centaur_hyena = {
+			entrenchment = 1
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_hyena_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_hyena_training_tech_4 = {
+
+		centaur_hyena = {
+			entrenchment = 1
+			suppression_factor = 0.05
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 4 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_ox_carts_tech = {
+
+		enable_subunits = {
+			centaur_ox_carts
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = centaur_tech_unit_details_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_improved_ox_cart_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 6 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_ox_cart_tech = {
+
+		centaur_ox_carts = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_improved_ox_cart_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 6 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_ox_cart_tech_2 = {
+
+		centaur_ox_carts = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_improved_ox_cart_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 6 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_ox_cart_tech_3 = {
+
+		centaur_ox_carts = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_improved_ox_cart_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 6 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_ox_cart_tech_4 = {
+
+		centaur_ox_carts = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 6 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_animal_pens_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_animal_pens_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 8 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_animal_pens_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_animal_pens_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 8 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_animal_pens_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_animal_pens_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 8 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_animal_pens_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 8 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_owl_nests_tech = {
+
+		enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { 
+				spy_tech_global = 1
+				nest_tech_global = 1 
+				popup = no 
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_owl_breeding_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_owl_scouting_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 10 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_owl_breeding_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_owl_breeding_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_owl_breeding_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+                    remove_idea = air_manufacturing_buff_1
+                    add_idea = air_manufacturing_buff_2
+                }
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_owl_breeding_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_owl_breeding_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+                    remove_idea = air_manufacturing_buff_2
+                    add_idea = air_manufacturing_buff_3
+                }
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_owl_breeding_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_owl_breeding_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+                    remove_idea = air_manufacturing_buff_3
+                    add_idea = air_manufacturing_buff_4
+                }
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 10 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_owl_scouting_tech = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_owl_scouting_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			rogues_guild_technology
+		}
+	}
+
+	centaur_owl_scouting_tech_2 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_owl_scouting_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			rogues_guild_technology
+		}
+	}
+
+	centaur_owl_scouting_tech_3 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_owl_scouting_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			rogues_guild_technology
+		}
+	}
+
+	centaur_owl_scouting_tech_4 = {
+
+		encryption = 1
+		decryption = 1
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 12 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			rogues_guild_technology
+		}
+	}
+
+	centaur_butcher_tech = {
+
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1	popup = no }
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_butcher_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = selective_breeding_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 14 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_butcher_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = centaur_butcher_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 14 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_butcher_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_butcher_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 14 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_butcher_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = centaur_butcher_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 14 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_butcher_tech_5 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 14 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_forger_tech = {
+
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_forged_weapons_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_shields_tech
+			research_cost_coeff = 1
+		}
+
+        path = {
+			leads_to_tech = centaur_improved_forges_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_blueprints_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_forged_tools_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 21 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+		}
+
+	}
+
+	centaur_improved_forges_tech = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_improved_forges_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 20 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_forges_tech_2 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_improved_forges_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_forges_tech_3 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_improved_forges_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_forges_tech_4 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_improved_forges_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_improved_forges_tech_5 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 20 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_forged_weapons_tech = {
+
+		centaur_drudge = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_outrunner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_bloodcharger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_khan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		centaur_ironhoof = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ravagers = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_forged_weapons_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			agriculture_technology
+		}
+	}
+
+	centaur_forged_weapons_tech_2 = {
+
+		centaur_drudge = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_outrunner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_bloodcharger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_khan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		centaur_ironhoof = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ravagers = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_forged_weapons_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+		}
+	}
+
+	centaur_forged_weapons_tech_3 = {
+
+		centaur_drudge = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_outrunner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_bloodcharger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_khan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		centaur_ironhoof = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ravagers = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_forged_weapons_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+		}
+	}
+
+	centaur_forged_weapons_tech_4 = {
+
+		centaur_drudge = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_outrunner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ballista_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_bloodcharger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_khan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		centaur_ironhoof = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_ravagers = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 16 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+
+		}
+	}
+
+	centaur_shields_tech = {
+
+		centaur_drudge = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_bloodcharger = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_khan = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		centaur_ironhoof = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		centaur_ravagers = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_shields_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+		}
+	}
+
+	centaur_shields_tech_2 = {
+
+		centaur_drudge = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_bloodcharger = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_khan = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		centaur_ironhoof = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		centaur_ravagers = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_shields_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+		}
+	}
+
+	centaur_shields_tech_3 = {
+
+		centaur_drudge = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_bloodcharger = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_khan = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		centaur_ironhoof = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		centaur_ravagers = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_shields_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+		}
+	}
+
+	centaur_shields_tech_4 = {
+
+		centaur_drudge = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_bloodcharger = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_khan = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		centaur_ironhoof = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		centaur_ravagers = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 18 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+		}
+	}
+
+	centaur_blueprints_tech = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		path = {
+			leads_to_tech = centaur_blueprints_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 22 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	centaur_blueprints_tech_2 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.3
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+
+		path = {
+			leads_to_tech = centaur_blueprints_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	centaur_blueprints_tech_3 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.3
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 22 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	centaur_forged_tools_tech = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_forged_tools_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = centaur_mines_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 24 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_forged_tools_technology
+		}
+	}
+	
+	centaur_forged_tools_tech_2 = {
+	
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_forged_tools_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 24 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_forged_tools_technology
+		}
+	}
+	
+	centaur_forged_tools_tech_3 = {
+	
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_forged_tools_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 24 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_forged_tools_technology
+		}
+	}
+	
+	centaur_forged_tools_tech_4 = {
+	
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+	
+		path = {
+			leads_to_tech = centaur_forged_tools_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 24 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_forged_tools_technology
+		}
+	}
+	
+	centaur_forged_tools_tech_5 = {
+	
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 24 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_forged_tools_technology
+		}
+	}
+	
+	centaur_mines_tech = {
+	
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				iron_mine_tech_global = 1
+				sulfur_mine_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_mines_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = selective_breeding_tech_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 26 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_mines_tech_2 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_mines_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 26 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_mines_tech_3 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_mines_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 26 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_mines_tech_4 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_mines_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 26 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_mines_tech_5 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 26 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_tanner_tech = {
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+        path = {
+			leads_to_tech = centaur_leather_armor_tech #defense for ranged units
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_hides_tech #cold/hot
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = centaur_war_banners_tech #org buff
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_larger_tents_tech #village expansion
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_shamans_tent_tech #mana & religion
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_shamans_tent_tech #mana & religion
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 36 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+		}
+
+	}
+
+	centaur_hides_tech = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_hides_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 34 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_hides_technology
+			climate_technology
+		}
+	}
+	
+	centaur_hides_tech_2 = {
+	
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_hides_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 34 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_hides_technology
+			climate_technology
+		}
+	}
+	
+	centaur_hides_tech_3 = {
+	
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 34 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_hides_technology
+			climate_technology
+		}
+	}
+	
+	centaur_leather_armor_tech = {
+
+		centaur_outrunner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_windchaser = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_stormseer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_leather_armor_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 32 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_leather_armor_technology
+			leather_armor_technology
+		}
+	}
+	
+	centaur_leather_armor_tech_2 = {
+	
+		centaur_outrunner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_windchaser = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_stormseer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_leather_armor_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 32 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_leather_armor_technology
+			leather_armor_technology
+		}
+	}
+	
+	centaur_leather_armor_tech_3 = {
+	
+		centaur_outrunner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_windchaser = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_stormseer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_leather_armor_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 32 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_leather_armor_technology
+			leather_armor_technology
+		}
+	}
+	
+	centaur_leather_armor_tech_4 = {
+	
+		centaur_outrunner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_windchaser = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		centaur_stormseer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 32 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_leather_armor_technology
+			leather_armor_technology
+		}
+	}
+
+	centaur_war_banners_tech = {
+
+		centaur_drudge = {
+			max_organisation = 2
+		}
+		centaur_outrunner = {
+			max_organisation = 2
+		}
+		centaur_windchaser = {
+			max_organisation = 2
+		}
+		centaur_bloodcharger = {
+			max_organisation = 2
+		}
+		centaur_khan = {
+			max_organisation = 2
+		}
+		centaur_stormseer = {
+			max_organisation = 2
+		}
+
+		centaur_ironhoof = {
+			max_organisation = 2
+		}
+		centaur_ravagers = {
+			max_organisation = 2
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_war_banners_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 36 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_war_banners_technology
+		}
+	}
+	
+	centaur_war_banners_tech_2 = {
+
+		centaur_drudge = {
+			max_organisation = 2
+		}
+		centaur_outrunner = {
+			max_organisation = 2
+		}
+		centaur_windchaser = {
+			max_organisation = 2
+		}
+		centaur_bloodcharger = {
+			max_organisation = 2
+		}
+		centaur_khan = {
+			max_organisation = 2
+		}
+		centaur_stormseer = {
+			max_organisation = 2
+		}
+
+		centaur_ironhoof = {
+			max_organisation = 2
+		}
+		centaur_ravagers = {
+			max_organisation = 2
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_war_banners_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 36 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_war_banners_technology
+		}
+	}
+	
+	centaur_war_banners_tech_3 = {
+
+		centaur_drudge = {
+			max_organisation = 2
+		}
+		centaur_outrunner = {
+			max_organisation = 2
+		}
+		centaur_windchaser = {
+			max_organisation = 2
+		}
+		centaur_bloodcharger = {
+			max_organisation = 2
+		}
+		centaur_khan = {
+			max_organisation = 2
+		}
+		centaur_stormseer = {
+			max_organisation = 2
+		}
+
+		centaur_ironhoof = {
+			max_organisation = 2
+		}
+		centaur_ravagers = {
+			max_organisation = 2
+		}
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 36 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_war_banners_technology
+		}
+	}
+
+	centaur_larger_tents_tech = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_larger_tents_tech_2
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 38 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_larger_tents_technology
+		}
+	}
+	
+	centaur_larger_tents_tech_2 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_larger_tents_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 38 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_larger_tents_technology
+		}
+	}
+	
+	centaur_larger_tents_tech_3 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_larger_tents_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 38 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_larger_tents_technology
+		}
+	}
+	
+	centaur_larger_tents_tech_4 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_larger_tents_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 38 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_larger_tents_technology
+		}
+	}
+	
+	centaur_larger_tents_tech_5 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 38 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			centaur_larger_tents_technology
+		}
+	}
+
+	centaur_shamans_tent_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { 
+				arcane_tower_tech_global = 1 
+				church_tech_global = 1
+				popup = no
+		 	}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_shamans_tent_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 40 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+			centaur_shamans_tent_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	centaur_shamans_tent_tech_2 = {
+	
+		centaur_windchaser = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_stormseer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_shamans_tent_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 40 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+			centaur_shamans_tent_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	centaur_shamans_tent_tech_3 = {
+	
+		centaur_windchaser = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_stormseer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_shamans_tent_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 40 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+			centaur_shamans_tent_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	centaur_shamans_tent_tech_4 = {
+	
+		centaur_windchaser = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_stormseer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_shamans_tent_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 40 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+			centaur_shamans_tent_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	centaur_shamans_tent_tech_5 = {
+	
+		centaur_windchaser = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		centaur_stormseer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 40 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+			centaur_shamans_tent_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	centaur_woodcarver_tech = {
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_centaur = yes
+		}
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+        path = {
+			leads_to_tech = centaur_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_woodcarver_training_tech #ranged damage increase
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_palisades_tech
+			research_cost_coeff = 1
+		}
+        path = {
+			leads_to_tech = centaur_watch_tower_tech
+			research_cost_coeff = 1
+		}
+
+
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 48 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+		}
+
+	}
+
+	centaur_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 43 y = 4 }
+		}
+	
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+	
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+	
+	centaur_caravan_equipment_tech_2 = {
+	
+		enable_equipments = {
+			caravan_equipment_2
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 43 y = 8 }
+		}
+	
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	centaur_caravan_equipment_tech_3 = {
+	
+		enable_equipments = {
+			caravan_equipment_3
+		}
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 43 y = 12 }
+		}
+	
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+
+	centaur_palisades_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+	
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_palisades_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 46 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_palisades_technology
+			fortification_technology
+		}
+	}
+	
+	centaur_palisades_tech_2 = {
+	
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_palisades_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 46 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_palisades_technology
+			fortification_technology
+		}
+	}
+	
+	centaur_palisades_tech_3 = {
+	
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_palisades_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 46 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_palisades_technology
+			fortification_technology
+		}
+	}
+	
+	centaur_palisades_tech_4 = {
+	
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_palisades_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 46 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_palisades_technology
+			fortification_technology
+		}
+	}
+	
+	centaur_palisades_tech_5 = {
+	
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 46 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_palisades_technology
+			fortification_technology
+		}
+	}
+
+	centaur_woodcarver_training_tech = {
+
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_woodcarver_training_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 48 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_woodcarver_training_tech_2 = {
+	
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_woodcarver_training_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 48 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_woodcarver_training_tech_3 = {
+	
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_woodcarver_training_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 48 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+	
+	centaur_woodcarver_training_tech_4 = {
+	
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 48 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_hunting_technology
+			resource_building_technology
+		}
+	}
+
+	centaur_watch_tower_tech = {
+
+		enable_building = {
+			building = radar_station
+			level = 1
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+		
+		on_research_complete = {
+			set_technology = {
+				scout_tower_tech_global = 1
+				guard_tower_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_watch_tower_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 50 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_watch_tower_technology
+			fortification_technology
+			guard_tower_technology
+		}
+	}
+	
+	centaur_watch_tower_tech_2 = {
+	
+		enable_building = {
+			building = radar_station
+			level = 2
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_watch_tower_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 50 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_watch_tower_technology
+			fortification_technology
+			guard_tower_technology
+		}
+	}
+	
+	centaur_watch_tower_tech_3 = {
+
+		enable_building = {
+			building = radar_station
+			level = 3
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		dependencies = { centaur_great_khans_pavilion_tech = 1 }
+	
+		path = {
+			leads_to_tech = centaur_watch_tower_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 50 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_watch_tower_technology
+			fortification_technology
+			guard_tower_technology
+		}
+	}
+	
+	centaur_watch_tower_tech_4 = {
+	
+		enable_building = {
+			building = radar_station
+			level = 4
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+	
+		on_research_complete = {
+			increase_tech_count_centaur = yes
+		}
+	
+		path = {
+			leads_to_tech = centaur_watch_tower_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 50 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_watch_tower_technology
+			fortification_technology
+			guard_tower_technology
+		}
+	}
+	
+	centaur_watch_tower_tech_5 = {
+	
+		enable_building = {
+			building = radar_station
+			level = 5
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+	
+		dependencies = { centaur_great_khans_stronghold_tech = 1 }
+	
+		research_cost = 1.25
+		
+		folder = {
+			name = centaur_administration_folder
+			position = { x = 50 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			centaur_watch_tower_technology
+			fortification_technology
+			guard_tower_technology
+		}
+	}
+}

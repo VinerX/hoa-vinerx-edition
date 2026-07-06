@@ -1,0 +1,771 @@
+guardian_of_tirisfal_decision = {
+
+#	send_for_medivh = {
+#
+#		allowed = {
+#			original_tag = STO
+#		}
+#
+#		available = {
+#
+#			country_exists = KAR
+#
+#			KAR = {
+#				has_country_flag = medivh_not_corrupted
+#			}
+#
+#		}
+#
+#		visible = {
+#			STO = {
+#				has_war = yes
+#			}
+#		}
+#
+#		fire_only_once = no
+#
+#		days_re_enable = 90
+#
+#		cost = 75
+#
+#		complete_effect = {
+#			KAR = { country_event = { id = medivh.1 } }
+#		}
+#	}
+
+}
+
+stormwind_si7_decision = {
+
+}
+
+stormwind_elwynn_militia = {
+
+###WESTFALL MILITIA
+
+STO_westfall_militia_1 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = yes
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		OR = {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	visible = {
+		NOT = {	has_country_flag = westfall_militia_1 }
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		OR = {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	highlight_states = {
+		highlight_state_targets = { state = 143 }
+	}
+
+	custom_cost_trigger = {
+		command_power > 19
+	}
+	custom_cost_text = decision_cost_command_20
+
+	complete_effect = {
+	add_stability = -0.05
+	set_country_flag = westfall_militia_1
+	custom_effect_tooltip = STO_westfall_mobilization_1_tt
+	hidden_effect = {
+		add_command_power = -20
+		division_template = {
+				name = "Westfall Militia"
+				priority = 1
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+					militia = { x = 0 y = 4 }
+					militia = { x = 1 y = 0 }
+				}
+				is_locked = yes
+			}
+			143 = {
+				create_unit = {
+					division = "name = \"Westfall Militia\" division_template = \"Westfall Militia\" start_experience_factor = 0.75 start_equipment_factor = 0.8"
+					owner = STO
+				}
+			}
+		}
+	}
+}
+
+STO_westfall_militia_2 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = yes
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		has_country_flag = westfall_militia_1
+		OR= {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	visible = {
+		has_country_flag = westfall_militia_1
+		NOT = {	has_country_flag = westfall_militia_2 }
+		OR = {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	highlight_states = {
+		highlight_state_targets = {	state = 143 }
+	}
+
+	custom_cost_trigger = {
+		command_power > 19
+	}
+	custom_cost_text = decision_cost_command_20
+
+	complete_effect = {
+	add_stability = -0.05
+	set_country_flag = westfall_militia_2
+	custom_effect_tooltip = STO_westfall_mobilization_2_tt
+		hidden_effect = {
+			add_command_power = -20
+			143 = {
+				create_unit = {
+					division = "name = \"Westfall Militia\" division_template = \"Westfall Militia\" start_experience_factor = 0.3 start_equipment_factor = 0.6"
+					owner = STO
+				}
+			}
+		}
+	}
+}
+
+STO_westfall_militia_3 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = yes
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		has_country_flag = westfall_militia_2
+		OR = {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	visible = {
+		has_country_flag = westfall_militia_2
+		NOT = {	has_country_flag = westfall_militia_3 }
+		OR = {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	highlight_states = {
+		highlight_state_targets = {	state = 143	}
+	}
+
+	custom_cost_trigger = {
+		command_power > 19
+	}
+	custom_cost_text = decision_cost_command_20
+
+	complete_effect = {
+	add_stability = -0.05
+	set_country_flag = westfall_militia_3
+	custom_effect_tooltip = STO_westfall_mobilization_3_tt
+		hidden_effect = {
+			add_command_power = -20
+			143 = {
+				create_unit = {
+				division = "name = \"Westfall Militia\" division_template = \"Westfall Militia\" start_experience_factor = 0.0 start_equipment_factor = 0.4"
+				owner = STO
+				}
+			}
+		}
+	}
+}
+
+STO_westfall_standdown_1 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = no
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		has_country_flag = westfall_militia_1
+		OR = {
+			STO = { controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	visible = {
+		has_country_flag = westfall_militia_1
+		NOT = {
+			OR = {
+				has_country_flag = westfall_militia_3
+				has_country_flag = westfall_militia_2
+			}
+		}
+	}
+
+	complete_effect = {
+	custom_effect_tooltip = STO_mobilization_standdown_tt
+	add_stability = 0.05
+	clr_country_flag = westfall_militia_1
+	delete_unit_template_and_units = {
+		division_template = "Westfall Militia"
+		}
+	}
+}
+
+STO_westfall_standdown_2 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = no
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		has_country_flag = westfall_militia_2
+		OR = {
+			STO = {	controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	visible = {
+		has_country_flag = westfall_militia_2
+		NOT = {	has_country_flag = westfall_militia_3 }
+	}
+
+	complete_effect = {
+		custom_effect_tooltip = STO_mobilization_standdown_tt
+		add_stability = 0.10
+		clr_country_flag = westfall_militia_1
+		clr_country_flag = westfall_militia_2
+		delete_unit_template_and_units = {
+			division_template = "Westfall Militia"
+		}
+	}
+}
+
+STO_westfall_standdown_3 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = no
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		has_country_flag = westfall_militia_3
+		OR = {
+			STO = {	controls_state = 143 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 143
+			}
+		}
+	}
+
+	visible = {
+		has_country_flag = westfall_militia_3
+	}
+
+	complete_effect = {
+	custom_effect_tooltip = STO_mobilization_standdown_tt
+	add_stability = 0.15
+	clr_country_flag = westfall_militia_1
+	clr_country_flag = westfall_militia_2
+	clr_country_flag = westfall_militia_3
+	delete_unit_template_and_units = {
+		division_template = "Westfall Militia"
+		}
+	}
+}
+
+###Elwynn Militia
+
+STO_elwynn_militia_1 = {
+
+	available = {
+		has_completed_focus = STO_elwynn_security
+		has_war = yes
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+		OR = {
+			STO = { controls_state = 325 }
+			any_country = {
+				is_puppet_of = STO
+				controls_state = 325
+			}	
+		}
+	}
+
+	visible = {
+		NOT = {	has_country_flag = elwynn_militia_1	}
+		has_start_date < 600.1.1
+		has_start_date > 581.1.1
+	}
+
+	highlight_states = {
+		highlight_state_targets = {	state = 325 }
+	}
+
+	custom_cost_trigger = {
+		command_power > 19
+	}
+	custom_cost_text = decision_cost_command_20
+
+	complete_effect = {
+	add_stability = -0.05
+	set_country_flag = elwynn_militia_1
+	custom_effect_tooltip = STO_westfall_mobilization_1_tt
+	hidden_effect = {
+		add_command_power = -20
+		division_template = {
+				name = "Elwynn Militia"
+				priority = 1
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+					militia = { x = 0 y = 4 }
+					militia = { x = 1 y = 0 }
+				}
+				is_locked = yes
+			}
+			325 = {
+				create_unit = {
+					division = "name = \"Elwynn Militia\" division_template = \"Elwynn Militia\" start_experience_factor = 0.75 start_equipment_factor = 0.8"
+					owner = STO
+				}
+			}
+		}
+	}
+}
+
+	STO_elwynn_militia_2 = {
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+			has_start_date < 600.1.1
+			has_start_date > 581.1.1
+			has_war = yes
+			has_country_flag = elwynn_militia_1
+			OR = {
+				STO = {	controls_state = 325 }
+				any_country = {
+					is_puppet_of = STO
+					controls_state = 325
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = elwynn_militia_1
+			NOT = {	has_country_flag = elwynn_militia_2	}
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 325	}
+		}
+
+		custom_cost_trigger = {
+			command_power > 19
+		}
+		custom_cost_text = decision_cost_command_20
+
+		complete_effect = {
+		add_stability = -0.05
+		set_country_flag = elwynn_militia_2
+		custom_effect_tooltip = STO_westfall_mobilization_2_tt
+			hidden_effect = {
+				add_command_power = -20
+				325 = {
+					create_unit = {
+						division = "name = \"Elwynn Militia\" division_template = \"Elwynn Militia\" start_experience_factor = 0.3 start_equipment_factor = 0.6"
+						owner = STO
+					}
+				}
+			}
+		}
+	}
+
+	STO_elwynn_militia_3 = {
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+			has_start_date < 600.1.1
+			has_start_date > 581.1.1
+			has_war = yes
+			has_country_flag = elwynn_militia_2
+			OR = {
+				STO = {	controls_state = 325 }
+				any_country = {
+					is_puppet_of = STO
+					controls_state = 325
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = elwynn_militia_2
+			NOT = {	has_country_flag = elwynn_militia_3 }
+		}
+
+		highlight_states = {
+			highlight_state_targets = {	state = 325	}
+		}
+
+		custom_cost_trigger = {
+			command_power > 19
+		}
+		custom_cost_text = decision_cost_command_20
+
+		complete_effect = {
+		add_stability = -0.05
+		set_country_flag = elwynn_militia_3
+		custom_effect_tooltip = STO_westfall_mobilization_3_tt
+			hidden_effect = {
+				add_command_power = -20
+				325 = {
+					create_unit = {
+						division = "name = \"Elwynn Militia\" division_template = \"Elwynn Militia\" start_experience_factor = 0.0 start_equipment_factor = 0.4"
+						owner = STO
+					}
+				}
+			}
+		}
+	}
+
+	STO_elwynn_standdown_1 = {
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+			has_war = no
+			has_country_flag = elwynn_militia_1
+			OR = {
+				STO = {	controls_state = 325 }
+				any_country = {
+					is_puppet_of = STO
+					controls_state = 325
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = elwynn_militia_1
+			NOT = {
+				has_country_flag = elwynn_militia_3
+				has_country_flag = elwynn_militia_2
+			}
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = STO_mobilization_standdown_tt
+			add_stability = 0.05
+			clr_country_flag = elwynn_militia_1
+			delete_unit_template_and_units = {
+				division_template = "Elwynn Militia"
+				disband = no #no refund
+			}
+		}
+	}
+
+	STO_elwynn_standdown_2 = {
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+			has_war = no
+			has_country_flag = elwynn_militia_2
+			OR = {
+				STO = {	controls_state = 325 }
+				any_country = {
+					is_puppet_of = STO
+					controls_state = 325
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = elwynn_militia_2
+			NOT = {	has_country_flag = elwynn_militia_3	}
+		}
+
+		complete_effect = {
+		custom_effect_tooltip = STO_mobilization_standdown_tt
+		add_stability = 0.10
+		clr_country_flag = elwynn_militia_1
+		clr_country_flag = elwynn_militia_2
+			delete_unit_template_and_units = {
+				division_template = "Elwynn Militia"
+				disband = no #no refund
+			}
+		}
+	}
+
+	STO_elwynn_standdown_3 = {
+
+		available = {
+			has_completed_focus = STO_elwynn_security
+			has_war = no
+			has_country_flag = elwynn_militia_3
+			OR = {
+				STO = {	controls_state = 325 }
+				any_country = {
+					is_puppet_of = STO
+					controls_state = 325
+				}
+			}
+		}
+
+		visible = {
+			has_country_flag = elwynn_militia_3
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = STO_mobilization_standdown_tt
+			add_stability = 0.15
+			clr_country_flag = elwynn_militia_1
+			clr_country_flag = elwynn_militia_2
+			clr_country_flag = elwynn_militia_3
+			delete_unit_template_and_units = {
+				division_template = "Elwynn Militia"
+				disband = no #no refund
+			}
+		}
+	}
+
+	###### 3rd War
+
+	STO_negotiation_breakdown = {
+		activation = {
+			always = no
+		}
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			always = no
+		}
+		is_good = yes
+		days_mission_timeout = 365
+		complete_effect = { }
+		timeout_effect = {
+			country_event = stormwind_third_war.3
+		}
+	}
+
+	STO_political_agitation = {
+
+		available = {
+			has_country_leader_with_trait = grieving_trait
+			STO_katrana_prestor = { is_hired_as_advisor = yes }
+		}
+
+		visible = {
+			has_country_leader_with_trait = grieving_trait
+		}
+
+		complete_effect = {	
+			add_stability = -0.01
+		}
+
+		days_remove = 30
+
+		cost = 25
+
+		modifier = { political_power_gain = -0.1 }
+
+		remove_effect = {
+			add_days_mission_timeout = {
+				mission = STO_negotiation_breakdown
+				days = -20
+			}
+    	}
+	}
+
+	STO_army_crackdown = {
+
+		available = {
+			has_country_leader_with_trait = grieving_trait
+		}
+
+		visible = {
+			has_country_leader_with_trait = grieving_trait
+		}
+
+		complete_effect = {	
+			add_command_power = -25
+		}
+
+		days_remove = 30
+
+		custom_cost_trigger = {
+			command_power > 24
+		}
+		custom_cost_text = decision_cost_command_25
+
+		modifier = { command_power_gain = -0.1 }
+
+		remove_effect = {
+			add_days_mission_timeout = {
+				mission = STO_negotiation_breakdown
+				days = -20
+			}
+    	}
+	}
+}
+
+economy_decisions = {
+
+	STO_pay_off_debts = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {
+			tag = STO
+			has_war = no
+			OR = {
+				has_idea = STO_massive_debt_1
+				has_idea = STO_massive_debt_2
+				has_idea = STO_massive_debt_3
+				has_idea = STO_massive_debt_4
+				has_idea = STO_massive_debt_5
+			}
+		}
+
+		available = {
+			tag = STO
+			has_war = no
+			OR = {
+				has_idea = STO_massive_debt_1
+				has_idea = STO_massive_debt_2
+				has_idea = STO_massive_debt_3
+				has_idea = STO_massive_debt_4
+				has_idea = STO_massive_debt_5
+			}
+			industrial_complex > 40
+		}
+
+		days_remove = 30
+
+		cost = 10
+
+		complete_effect = {
+			add_stability = -0.05
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+
+		remove_effect = {
+			if = {
+				limit = { has_idea = STO_massive_debt_1	}
+				swap_ideas = {
+					remove_idea = STO_massive_debt_1
+					add_idea = STO_massive_debt_2
+				}
+			}
+			if = {
+				limit = { has_idea = STO_massive_debt_2	}
+				swap_ideas = {
+					remove_idea = STO_massive_debt_2
+					add_idea = STO_massive_debt_3
+				}
+			}
+			if = {
+				limit = { has_idea = STO_massive_debt_3	}
+				swap_ideas = {
+					remove_idea = STO_massive_debt_3
+					add_idea = STO_massive_debt_4
+				}
+			}
+			if = {
+				limit = { has_idea = STO_massive_debt_4	}
+				swap_ideas = {
+					remove_idea = STO_massive_debt_4
+					add_idea = STO_massive_debt_5
+				}
+			}
+			if = {
+				limit = { has_idea = STO_massive_debt_5	}
+				remove_ideas = STO_massive_debt_5
+			}
+    	}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_political_power > 50 #Spend on other laws/other important stuff first
+			}
+		}
+	}
+
+}

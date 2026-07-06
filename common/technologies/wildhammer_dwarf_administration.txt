@@ -1,0 +1,3565 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	wildhammer_dwarf_mead_hall_tech = {
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_aerie_keep_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	wildhammer_dwarf_aerie_keep_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			wildhammer_dwarf_tier_2 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_2_tech = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_skyhold_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	wildhammer_dwarf_skyhold_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			wildhammer_dwarf_tier_3 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_3_tech = 1
+			}
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_homesteader
+		}
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+
+		on_research_complete = {
+			set_technology = { wildhammer_dwarf_skystones_equipment_tech = 1 }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_tools_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_gardens_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_aivary_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_quary_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_skystones_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_timber_yard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_village_development_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_smiths_shop_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 17 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_skystones_equipment_tech = {
+
+		enable_equipments = {
+			wildhammer_dwarf_skystones_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_skyspeakers_hovel_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 17 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_training_tech_1 = {
+
+		wildhammer_dwarf_homesteader = {
+			entrenchment = 1.5
+			fort = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 17 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_training_tech_2 = {
+
+		wildhammer_dwarf_homesteader = {
+			entrenchment = 1.5
+			river = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 17 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_training_tech_3 = {
+
+		wildhammer_dwarf_homesteader = {
+			entrenchment = 1.5
+			city = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 17 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_training_tech_4 = {
+
+		wildhammer_dwarf_homesteader = {
+			entrenchment = 1.5
+			gateway = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 17 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_skyspeakers_hovel_tech = {
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { 
+				church_tech_global = 1 
+				spy_tech_global = 1
+				popup = no 
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_far_sight_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_skyspeaking_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_weather_predictions_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 22 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+	}
+
+	wildhammer_dwarf_skyspeaking_tech_1 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_skyspeaking_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 22 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+	}
+
+	wildhammer_dwarf_skyspeaking_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_skyspeaking_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 22 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+	}
+
+	wildhammer_dwarf_skyspeaking_tech_3 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_skyspeaking_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+	}
+
+	wildhammer_dwarf_skyspeaking_tech_4 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 22 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+	}
+
+	wildhammer_dwarf_far_sight_tech = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_far_sight_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 20 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+		categories = {
+			administration_technology
+			encryption_technology
+			decryption_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_far_sight_tech_2 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_far_sight_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+		categories = {
+			administration_technology
+			encryption_technology
+			decryption_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_far_sight_tech_3 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_far_sight_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+		categories = {
+			administration_technology
+			encryption_technology
+			decryption_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_far_sight_tech_4 = {
+
+		encryption = 1
+		decryption = 1
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			encryption_technology
+			decryption_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_weather_predictions_tech = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_weather_predictions_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 24 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_weather_predictions_tech_2 = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_weather_predictions_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_weather_predictions_tech_3 = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_weather_predictions_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 24 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_weather_predictions_tech_4 = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.075
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_tools_tech = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_tools_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 4 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_tools_tech_2 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_tools_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 4 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_tools_tech_3 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_tools_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_tools_tech_4 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_homesteader_tools_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_homesteader_tools_tech_5 = {
+
+		local_resources_factor = 0.1
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_gardens_tech = {
+
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1	popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_gardens_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 6 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_gardens_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_gardens_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 6 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_gardens_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_gardens_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 6 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_gardens_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_gardens_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 6 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_gardens_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 6 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_aivary_tech = {
+
+		enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { nest_tech_global = 1  popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_breding_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_patrols_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 8 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_breding_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_breding_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 8 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_breding_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_2
+					remove_idea = air_manufacturing_buff_1
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_breding_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 8 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_breding_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_3
+					remove_idea = air_manufacturing_buff_2
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_breding_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 8 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_breding_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_4
+					remove_idea = air_manufacturing_buff_3
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 8 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_patrols_tech = {
+
+		enable_building = {
+			building = radar_station
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { scout_tower_tech_global = 1 popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_patrols_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_patrols_tech_2 = {
+
+		enable_building = {
+			building = radar_station
+			level = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_patrols_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_patrols_tech_3 = {
+
+		enable_building = {
+			building = radar_station
+			level = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_patrols_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_patrols_tech_4 = {
+
+		enable_building = {
+			building = radar_station
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_gryphon_patrols_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_gryphon_patrols_tech_5 = {
+
+		enable_building = {
+			building = radar_station
+			level = 5
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_quary_tech = {
+
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				iron_mine_tech_global = 1
+				sulfur_mine_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_quary_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_stone_walls_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 12 y = 2 }
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_quary_tech_1 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_quary_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 12 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_quary_tech_2 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_quary_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_quary_tech_3 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_expanded_quary_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_expanded_quary_tech_4 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_stone_walls_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_stone_walls_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 14 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_stone_walls_tech_2 = {
+
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_stone_walls_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 14 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_stone_walls_tech_3 = {
+
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_stone_walls_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 14 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_stone_walls_tech_4 = {
+
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_stone_walls_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 14 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_stone_walls_tech_5 = {
+
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 14 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_timber_yard_tech = {
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_wood_working_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_watch_tower_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 26 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_wood_working_tech_1 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_wood_working_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 26 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_wood_working_tech_2 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_wood_working_tech_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_wood_working_tech_3 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_wood_working_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_wood_working_tech_4 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	wildhammer_dwarf_watch_tower_tech = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			set_technology = { guard_tower_tech_global = 1 popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_watch_tower_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 28 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_watch_tower_tech_2 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_watch_tower_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 28 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_watch_tower_tech_3 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_watch_tower_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 28 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_watch_tower_tech_4 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_watch_tower_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 28 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_watch_tower_tech_5 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+		industry_air_damage_factor = -0.05
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 28 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	wildhammer_dwarf_village_development_tech = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_tavern_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_village_development_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_night_patrols_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 32 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	wildhammer_dwarf_village_development_tech_2 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_village_development_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 32 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	wildhammer_dwarf_village_development_tech_3 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech= 1 }
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_village_development_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 32 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	wildhammer_dwarf_village_development_tech_4 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_village_development_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 32 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	wildhammer_dwarf_village_development_tech_5 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 32 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	wildhammer_dwarf_tavern_tech = {
+
+		wildhammer_dwarf_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_slayer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mountaineer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_elementalist = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_stormram_riders = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_berserker = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_flame_binder = {
+			max_organisation = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_highlands_ale_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 30 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+		}
+	}
+
+	wildhammer_dwarf_highlands_ale_tech = {
+
+		wildhammer_dwarf_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_slayer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mountaineer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_elementalist = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_stormram_riders = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_berserker = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_flame_binder = {
+			max_organisation = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_highlands_ale_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 30 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+		}
+	}
+
+	wildhammer_dwarf_highlands_ale_tech_2 = {
+
+		wildhammer_dwarf_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_slayer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mountaineer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_elementalist = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_stormram_riders = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_berserker = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_flame_binder = {
+			max_organisation = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_highlands_ale_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 30 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+		}
+	}
+
+	wildhammer_dwarf_highlands_ale_tech_3 = {
+
+		wildhammer_dwarf_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_slayer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mountaineer = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_elementalist = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_stormram_riders = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_berserker = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			max_organisation = 1
+		}
+		wildhammer_dwarf_flame_binder = {
+			max_organisation = 1
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 30 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+		}
+	}
+
+	wildhammer_dwarf_night_patrols_tech = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_night_patrols_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 34 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	wildhammer_dwarf_night_patrols_tech_2 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech= 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_night_patrols_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 34 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	wildhammer_dwarf_night_patrols_tech_3 = {
+
+		land_night_attack = 0.1
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 34 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+
+	wildhammer_dwarf_smiths_shop_tech = {
+
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_forge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_weapons_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 41 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_smith
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clan_secrets_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_tools_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 38 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_training_tech_1 = {
+
+		wildhammer_dwarf_smith = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 38 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_training_tech_2 = {
+
+		wildhammer_dwarf_smith = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 38 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_training_tech_3 = {
+
+		wildhammer_dwarf_smith = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 38 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_training_tech_4 = {
+
+		wildhammer_dwarf_smith = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 38 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	wildhammer_dwarf_clan_secrets_tech = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clan_secrets_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 36 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			blueprint_technology
+		}
+	}
+
+	wildhammer_dwarf_clan_secrets_tech_2 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clan_secrets_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 36 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			blueprint_technology
+		}
+	}
+
+	wildhammer_dwarf_clan_secrets_tech_3 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 36 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			blueprint_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_tools_tech = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_tools_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 40 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_tools_tech_2 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_tools_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 40 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_tools_tech_3 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_tools_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 40 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_tools_tech_4 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_smith_tools_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 40 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_smith_tools_tech_5 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 40 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	wildhammer_dwarf_forge_tech = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_improved_forge_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 42 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	wildhammer_dwarf_improved_forge_tech_1 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_improved_forge_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 42 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	wildhammer_dwarf_improved_forge_tech_2 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_improved_forge_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 42 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	wildhammer_dwarf_improved_forge_tech_3 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_improved_forge_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 42 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	wildhammer_dwarf_improved_forge_tech_4 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 42 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_weapons_tech = {
+
+		wildhammer_dwarf_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_weapons_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 44 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_weapons_tech_2 = {
+
+		wildhammer_dwarf_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_weapons_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 44 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_weapons_tech_3 = {
+
+		wildhammer_dwarf_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_weapons_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 44 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_weapons_tech_4 = {
+
+		wildhammer_dwarf_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 44 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_armor_tech = {
+
+		wildhammer_dwarf_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_elementalist = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_armor_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 46 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_armor_tech_2 = {
+
+		wildhammer_dwarf_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_elementalist = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_armor_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 46 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_armor_tech_3 = {
+
+		wildhammer_dwarf_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_elementalist = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_runeforged_armor_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 46 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	wildhammer_dwarf_runeforged_armor_tech_4 = {
+
+		wildhammer_dwarf_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_slayer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mountaineer = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_elementalist = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_mounted_clansman = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_stormram_riders = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_berserker = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_lord_of_the_skies = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_administration_folder
+			position = { x = 46 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+}

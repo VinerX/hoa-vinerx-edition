@@ -1,0 +1,1072 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	altar_of_agamaggan_tech = {
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = might_of_agamaggan_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = battleguard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = raptor_knight_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = prophet_of_agamaggan_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	might_of_agamaggan_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = might_of_agamaggan_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	might_of_agamaggan_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = might_of_agamaggan_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	might_of_agamaggan_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = {
+			kraul_tech = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	battleguard_tech = {
+
+		enable_subunits = {
+			battleguard
+		}
+
+		on_research_complete = {
+			set_technology = {
+				battleguard_equipment_tech_1 = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = battleguard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battleguard_equipment_tech_1 = {
+
+		enable_equipments = {
+			battleguard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = battleguard_bloody_strike_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = battleguard_enrage_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battleguard_bloody_strike_tech = {
+
+		battleguard = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { battleguard_enrage_tech }
+
+		path = {
+			leads_to_tech = battleguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battleguard_enrage_tech = {
+
+		battleguard = {
+			defense = -0.10
+			breakthrough = 0.25
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { battleguard_bloody_strike_tech }
+
+		path = {
+			leads_to_tech = battleguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battleguard_equipment_tech_2 = {
+
+		enable_equipments = {
+			battleguard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = battleguard_razor_mane_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = battelguard_war_banner_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battleguard_razor_mane_tech = {
+
+		battleguard = {
+			defense = 0.1
+			armor_value = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { battelguard_war_banner_tech }
+
+		path = {
+			leads_to_tech = battleguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battelguard_war_banner_tech = {
+
+		battleguard = {
+			max_organisation = 5
+			default_morale = 0.33
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { battleguard_razor_mane_tech }
+
+		path = {
+			leads_to_tech = battleguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	battleguard_equipment_tech_3 = {
+
+		enable_equipments = {
+			battleguard_equipment_3
+		}
+
+		dependencies = {
+			kraul_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			battleguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_tech = {
+
+		enable_subunits = {
+			raptor_knight
+		}
+
+		on_research_complete = {
+			set_technology = { raptor_knight_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = raptor_knight_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_equipment_tech_1 = {
+
+		enable_equipments = {
+			raptor_knight_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = raptor_knight_wind_fury_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = raptor_knight_raptor_charge_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_wind_fury_tech = {
+
+		raptor_knight = {
+			soft_attack = 0.15
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { raptor_knight_raptor_charge_tech }
+
+		path = {
+			leads_to_tech = raptor_knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_raptor_charge_tech = {
+
+		raptor_knight = {
+			maximum_speed = 0.2
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { raptor_knight_wind_fury_tech }
+
+		path = {
+			leads_to_tech = raptor_knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_equipment_tech_2 = {
+
+		enable_equipments = {
+			raptor_knight_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = raptor_knight_barbed_bulwark_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = raptor_knight_blood_bond_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_barbed_bulwark_tech = {
+
+		raptor_knight = {
+			breakthrough = 0.15
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { raptor_knight_blood_bond_tech }
+
+		path = {
+			leads_to_tech = raptor_knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_blood_bond_tech = {
+
+		raptor_knight = {
+			max_organisation = 3
+			default_morale = 0.33
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { raptor_knight_barbed_bulwark_tech }
+
+		path = {
+			leads_to_tech = raptor_knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	raptor_knight_equipment_tech_3 = {
+
+		enable_equipments = {
+			raptor_knight_equipment_3
+		}
+
+		dependencies = {
+			kraul_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_tech = {
+
+		enable_subunits = {
+			prophet_of_agamaggan
+		}
+
+		on_research_complete = {
+			set_technology = {
+				prophet_of_agamaggan_equipment_tech_1 = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_equipment_tech_1 = {
+
+		enable_equipments = {
+			prophet_of_agamaggan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_venomous_discharge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = prophet_of_agamaggan_elemental_binding_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_venomous_discharge_tech = {
+
+		prophet_of_agamaggan = {
+			breakthrough = 0.15
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { prophet_of_agamaggan_elemental_binding_tech }
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_elemental_binding_tech = {
+
+		prophet_of_agamaggan = {
+			air_attack = 0.25
+			soft_attack = 0.1			
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { prophet_of_agamaggan_venomous_discharge_tech }
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_equipment_tech_2 = {
+
+		enable_equipments = {
+			prophet_of_agamaggan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_visions_of_agamaggan_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_spawn_of_agamaggan_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_visions_of_agamaggan_tech = {
+
+		prophet_of_agamaggan = {
+			recon = 0.2
+			max_organisation = 5
+			initiative = 0.02			
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { prophet_of_agamaggan_spawn_of_agamaggan_tech }
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_spawn_of_agamaggan_tech = {
+
+		prophet_of_agamaggan = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+			casualty_trickleback = 0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { prophet_of_agamaggan_visions_of_agamaggan_tech }
+
+		path = {
+			leads_to_tech = prophet_of_agamaggan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	prophet_of_agamaggan_equipment_tech_3 = {
+
+		enable_equipments = {
+			prophet_of_agamaggan_equipment_3
+		}
+
+		dependencies = {
+			kraul_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			quilboar_altar_technology
+			prophet_of_agamaggan_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+}

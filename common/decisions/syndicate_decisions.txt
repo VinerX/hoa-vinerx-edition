@@ -1,0 +1,34 @@
+foreign_politics = { 
+
+	SYN_defend_out_sovereignty = {
+
+        priority = 10
+
+        cost = 10
+
+        days_re_enable = 30
+
+        allowed = { original_tag = SYN }
+
+        visible = {
+			11 = { 
+				is_owned_by = SYN
+				has_dynamic_modifier = { modifier = LOR_martial_law }
+			}
+        }
+
+        available = {
+            has_war = yes
+			11 = { is_owned_by = SYN }
+        }
+
+        complete_effect = {
+			every_state = {
+				limit = { has_dynamic_modifier = { modifier = LOR_martial_law }	}
+				remove_dynamic_modifier = { modifier = LOR_martial_law }
+			}
+			remove_ideas = SYN_marshal_law
+		}
+    }
+
+}

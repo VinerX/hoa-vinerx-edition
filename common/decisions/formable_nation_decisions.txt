@@ -1,0 +1,3596 @@
+########################################
+# Formables nations decisions
+# To facilitate this, scripted effects are available in
+# common/scripted_effects/hoa_core_area_scripted_effects.txt
+# Scripted triggers can be found in
+# common/scripted_triggers/hoa_own_area_scripted_triggers.txt
+########################################
+
+#Generic formable nations for some flavor
+formable_category = {
+
+	form_new_empire = {
+		icon = generic_form_nation
+		allowed = {
+			OR = {
+				tag = SHT
+				tag = TWV
+			}
+		}
+
+		visible = {
+			num_of_controlled_states > 25
+			NOT = {	has_country_flag = FORMED_EMPIRE }
+		}
+
+		available = {
+			num_of_controlled_states > 50
+		}
+
+		complete_effect = {
+			add_political_power = 150
+			if = {
+				limit = { tag = SHT }
+				set_cosmetic_tag = SHT_EMPIRE
+				set_country_flag = FORMED_EMPIRE
+			}
+			else_if = {
+				limit = { tag = TWV }
+				set_cosmetic_tag = TWV_EMPIRE
+				set_country_flag = FORMED_EMPIRE
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kezan_category = {
+	formable_Kezan_Trade_Coalition = {
+
+		icon = generic_form_nation
+		allowed = {
+			OR = {
+				original_tag = STC
+				original_tag = TVC
+				original_tag = TIN
+				original_tag = BIL
+				original_tag = BOO
+			}
+		}
+
+		visible = {
+			NOT = {	has_global_flag = kezan_formed_global_flag }
+		}
+
+		available = {
+			is_subject = no
+			control_kezan_directly_or_puppets = yes
+		}
+
+		complete_effect = {
+			annex_kezan = yes
+			core_kezan = yes
+			set_cosmetic_tag = kezan_cosmetic_tag
+			set_global_flag = kezan_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_amani_empire_category = {
+	form_amani_empire = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			OR = {
+				original_tag = AMA
+				original_tag = FTT
+				original_tag = SMR
+				original_tag = SPT
+				original_tag = MFT
+				original_tag = VIL
+				original_tag = WBT
+			}
+		}
+
+		visible = {
+			NOT = {	has_global_flag = amani_empire_formed_global_flag }
+		}
+
+		available = {
+			is_subject = no
+			control_eversong_woods_directly_or_puppets = yes
+			control_ghostlands_directly_or_puppets = yes
+			control_zulaman_directly_or_puppets = yes
+			control_the_hinterlands_directly_or_puppets = yes
+		}
+	
+		complete_effect = {
+			annex_eversong_woods = yes
+			annex_ghostlands = yes
+			annex_zulaman = yes
+			annex_the_hinterlands = yes
+			core_eversong_woods = yes
+			core_ghostlands = yes
+			core_zulaman = yes
+			core_the_hinterlands = yes
+			set_cosmetic_tag = amani_empire_cosmetic_tag
+			set_global_flag = amani_empire_formed_global_flag
+
+			set_capital = { state = 18 }
+		}
+	}
+}
+
+# Form Empire of Arathor
+form_arathor_category = {
+	form_arathor = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = STR
+				original_tag = GIL
+				original_tag = ALT
+				original_tag = LOR
+				original_tag = DAL
+				original_tag = SYN
+			}
+		}
+
+		visible = {
+			NOT = {	has_global_flag = arathor_formed_global_flag }
+		}
+
+		available = {
+			is_subject = no
+			control_tirisfal_glades_directly_or_puppets = yes
+			control_silverpine_directly_or_puppets = yes
+			control_hillsbrad_directly_or_puppets = yes
+			control_alterac_directly_or_puppets = yes
+			control_arathi_directly_or_puppets = yes
+			control_gilneas_directly_or_puppets = yes
+		}
+
+		complete_effect = {
+			annex_tirisfal_glades = yes
+			annex_silverpine_forest = yes
+			annex_hillsbrad_foothills = yes
+			annex_alterac_mountains = yes
+			annex_gilneas = yes
+			annex_arathi_highlands = yes
+			core_tirisfal_glades = yes
+			core_silverpine_forest = yes
+			core_hillsbrad = yes
+			core_alterac_mountains = yes
+			core_gilneas = yes
+			core_arathi = yes
+
+			12 = {
+				set_state_name = "Strom"
+				set_province_name = {
+					id = 1729
+					name = "Strom"
+				}
+			}
+			set_capital = { state = 12 }
+
+			set_cosmetic_tag = arathor_cosmetic_tag
+			set_global_flag = arathor_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_union_of_three_hammers_category = {
+	form_union_of_three_hammers = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = IRO
+				original_tag = AER
+				original_tag = NRT
+				original_tag = DIC
+				original_tag = SPC
+				original_tag = THR
+			}
+		}
+
+		visible = {
+			NOT = { has_global_flag = union_of_three_hammers_formed_global_flag }
+		}
+
+		available = {
+			is_subject = no
+			control_the_hinterlands_directly_or_puppets = yes
+			control_the_wetlands_directly_or_puppets = yes
+			control_twilight_highlands_directly_or_puppets = yes
+			control_loch_modan_directly_or_puppets = yes
+			control_ironforge_directly_or_puppets = yes
+			control_dun_morogh_directly_or_puppets = yes
+			control_the_badlands_directly_or_puppets = yes
+			control_searing_gorge_directly_or_puppets = yes
+			control_blackrock_mountain_directly_or_puppets = yes
+			control_burning_steppes_directly_or_puppets = yes
+		}
+	
+		complete_effect = {
+			annex_the_hinterlands = yes
+			annex_wetlands = yes
+			annex_twilight_highlands = yes
+			annex_loch_modan = yes
+			annex_ironforge = yes
+			annex_dun_morogh = yes
+			annex_the_badlands = yes
+			annex_searing_gorge = yes
+			annex_blackrock_mountain = yes
+			annex_burning_steppes = yes
+			core_the_hinterlands = yes
+			core_the_wetlands = yes
+			core_twilight_highlands = yes
+			core_loch_modan = yes
+			core_ironforge = yes
+			core_dun_morogh = yes
+			core_the_badlands = yes
+			core_searing_gorge = yes
+			core_blackrock_mountain = yes
+			core_burning_steppes = yes
+			set_cosmetic_tag = union_of_three_hammers_cosmetic_tag
+			set_global_flag = union_of_three_hammers_formed_global_flag
+			set_country_flag = formed_union_of_three_hammers
+
+			set_capital = { state = 430 }
+
+			news_event = {
+				id = news.522
+				hours = 6
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_wildhammer_clan_category = {
+	form_wildhammer_clan = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = NRT
+				original_tag = AER
+			}
+		}
+
+		visible = {
+			NOT = {	has_global_flag = wildhammer_clan_formed_global_flag }
+		}
+
+		available = {
+			is_subject = no
+			control_the_hinterlands_directly_or_puppets = yes
+			control_twilight_highlands_directly_or_puppets = yes
+		}
+	
+		complete_effect = {
+			annex_the_hinterlands = yes
+			annex_twilight_highlands = yes
+			core_the_hinterlands = yes
+			core_twilight_highlands = yes
+			set_cosmetic_tag = wildhammer_clan_cosmetic_tag
+			set_global_flag = wildhammer_clan_formed_global_flag
+
+			set_capital = { state = 500 }
+
+			news_event = {
+				id = news.523
+				hours = 6
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_gurubashi_empire_category = {
+
+	form_gurubashi_empire = {
+
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = GUR
+				original_tag = SKU
+				original_tag = BLO
+				original_tag = LAP
+				original_tag = DST
+				original_tag = HAK
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			control_zulgurub_directly_or_puppets = yes
+			control_northern_stranglethorn_directly_or_puppets = yes
+			control_southern_stranglethorn_directly_or_puppets = yes
+			control_lapadis_directly_or_puppets = yes
+			control_gilijims_isle_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = { has_global_flag = form_gurubashi_empire_flag }
+		}
+
+		complete_effect = {
+			annex_zulgurub = yes
+			annex_northern_stranglethorn = yes
+			annex_southern_stranglethorn = yes
+			annex_isle_of_doctor_lapadis = yes
+			annex_gilijims_isle = yes
+			core_zulgurub = yes
+			core_northern_stranglethorn = yes
+			core_southern_stranglethorn = yes
+			core_lapadis_island = yes
+			core_gilims_isle = yes
+
+			set_cosmetic_tag = gurubashi_empire_cosmetic_tag
+			set_global_flag = form_gurubashi_empire_flag
+
+			set_capital = { state = 21 }
+		}
+
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 200
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+form_thunder_bluff_category = {
+	form_thunder_bluff = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = BHT
+				tag = DWN
+				tag = EAG
+				tag = FWP
+				tag = GRM
+				tag = GRR
+				tag = HWT
+				tag = SOP
+				tag = SPH
+				tag = SRR
+				tag = THB
+				tag = TMT
+				tag = WIL
+				tag = WIN
+			}
+		}
+
+		available = {
+			is_subject = no
+			has_full_control_of_mulgore = yes
+			NOT = {
+				country_exists = THB
+			}
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = thunder_bluff_formed_global_flag
+				country_exists = THB
+			}
+		}
+
+		complete_effect = {
+			core_mulgore = yes
+
+			ROOT = { set_capital = { state = 81 } }
+
+			set_cosmetic_tag = thunder_bluff_cosmetic_tag
+
+			set_global_flag = thunder_bluff_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_lordaeron_category = {
+	restore_lordaeron = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = SCC
+				original_tag = ARD
+				original_tag = HIB
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_tirisfal_glades_directly_or_puppets = yes
+			control_silverpine_directly_or_puppets = yes
+		}
+
+		visible = {
+			OR = {
+				NOT = {	country_exists = LOR }
+				NOT = {	has_global_flag = form_lordaeron_flag }
+			}
+		}
+
+		complete_effect = {
+			core_silverpine_forest = yes
+			core_tirisfal_glades = yes
+			set_cosmetic_tag = LOR
+			set_global_flag = form_lordaeron_flag 
+			set_country_flag = reformed_lordaeron
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+
+	restore_hearthglen = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = SCC
+				original_tag = ARD
+				original_tag = HIB
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_western_plaguelands_directly_or_puppets = yes
+			has_country_flag = reformed_lordaeron
+		}
+
+		visible = {
+			has_country_flag = reformed_lordaeron
+		}
+
+		complete_effect = {
+			core_western_plaguelands = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+
+	restore_eastweald = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = SCC
+				original_tag = ARD
+				original_tag = HIB
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_eastern_plaguelands_directly_or_puppets = yes
+		}
+
+		visible = {
+			has_country_flag = reformed_lordaeron
+		}
+
+		complete_effect = {
+			core_eastern_plaguelands = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_alterac_category = {
+	restore_alterac = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = SYN
+		}
+
+		available = {
+			is_subject = no
+			has_full_control_of_state = 11
+			has_full_control_of_state = 115
+			has_full_control_of_state = 116
+			has_full_control_of_state = 117
+			has_full_control_of_state = 118
+			has_full_control_of_state = 749
+			has_full_control_of_state = 1539
+			has_full_control_of_state = 2217
+		}
+
+		visible = {
+			NOT = { country_exists = ALT }
+			NOT = { has_global_flag = form_alterac_flag	}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = ALT
+			hidden_effect = {
+				set_global_flag = form_alterac_flag
+			}
+			11 = { 
+				add_core_of = SYN 
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			106 = { add_core_of = SYN }
+			113 = { add_core_of = SYN }
+			114 = { add_core_of = SYN }
+			115 = { add_core_of = SYN }
+			116 = { 
+				add_core_of = SYN 
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			117 = { 
+				add_core_of = SYN 
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			118 = { 
+				add_core_of = SYN 
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			160 = { add_core_of = SYN }
+			344 = { add_core_of = SYN }
+			722 = { add_core_of = SYN }
+			749 = { 
+				add_core_of = SYN 
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			758 = { add_core_of = SYN }
+			1539 = { 
+				add_core_of = SYN
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				} 
+			}
+			1582 = { add_core_of = SYN }
+			2216 = { add_core_of = SYN }
+			2217 = { 
+				add_core_of = SYN 
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+
+			hidden_effect = {
+				761 = { add_core_of = SYN }
+				762 = { add_core_of = SYN }
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_stromgarde_category = {
+	restore_stromgarde = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = LOA
+		}
+
+		available = {
+			is_subject = no
+			control_arathi_directly_or_puppets = yes
+		}
+
+		visible = {
+			OR = {
+				NOT = {	country_exists = STR }
+				NOT = {	has_global_flag = form_stromgarde_flag }
+			}
+		}
+
+		complete_effect = {
+			core_arathi = yes
+			set_cosmetic_tag = STR
+			set_global_flag = form_stromgarde_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_pandaren_empire_category = {
+	restore_pandaren_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = BLC
+				tag = CWO
+				tag = DOX
+				tag = NIS
+				tag = OCS
+				tag = SHP
+				tag = TGL
+				tag = TIL
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			control_jade_forest_directly_or_puppets = yes
+			control_krasarang_wilds_directly_or_puppets = yes
+			control_kunlai_summit_directly_or_puppets = yes
+			control_vale_of_eternal_blossoms_directly_or_puppets = yes
+			control_valley_of_the_four_winds_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = { has_global_flag = pandaren_empire_formed_global_flag }
+		}
+
+		complete_effect = {
+			annex_jade_forest = yes
+			annex_krasarang_wilds = yes
+			annex_kun_lai_summit = yes
+			annex_vale_of_eternal_blossoms = yes
+			annex_valley_of_the_four_winds = yes
+			core_jade_forest = yes
+			core_krasarang_wilds = yes
+			core_kun_lai_summit = yes
+			core_vale_of_eternal_blossoms = yes
+			core_valley_of_the_four_winds = yes
+
+			set_cosmetic_tag = PDE_UNIFIED
+			set_global_flag = pandaren_empire_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_empire_of_jade_category = {
+	form_empire_of_jade = {
+		icon = generic_form_nation
+
+		allowed = {
+			tag = ROJ
+		}
+
+		available = {
+			is_subject = no
+
+			control_jade_forest_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			core_jade_forest = yes
+
+			set_cosmetic_tag = ROJ_EMPIRE
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_jinyu_empire_category = {
+	restore_jinyu_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = FST
+				tag = INK
+				tag = PFJ
+				tag = POE
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			control_vale_of_eternal_blossoms_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = { has_global_flag = jinyu_empire_formed_global_flag }
+		}
+
+		complete_effect = {
+			core_vale_of_eternal_blossoms = yes
+
+			set_cosmetic_tag = JIN_EMPIRE
+			set_global_flag = jinyu_empire_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_hozen_empire_category = {
+	form_hozen_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = BKT
+				tag = GRO
+				tag = KTT
+				tag = KZT
+				tag = OOK
+				tag = OON
+				tag = SGT
+				tag = UGT
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_jade_forest_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {	has_global_flag = hozen_empire_formed_global_flag }
+		}
+
+		complete_effect = {
+			core_jade_forest = yes
+
+			set_cosmetic_tag = HOZ_EMPIRE
+			set_global_flag = hozen_empire_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_greater_mantid_empire_category = {
+	form_greater_mantid_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = KLX
+				tag = MAN
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			control_dread_wastes_directly_or_puppets = yes
+			control_krasarang_wilds_directly_or_puppets = yes
+			control_townlong_steppes_directly_or_puppets = yes
+			control_vale_of_eternal_blossoms_directly_or_puppets = yes
+			control_valley_of_the_four_winds_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			core_dread_wastes = yes
+			core_krasarang_wilds = yes
+			core_townlong_steppes = yes
+			core_vale_of_eternal_blossoms = yes
+			core_valley_of_the_four_winds = yes
+
+			set_cosmetic_tag = MAN_GREATER
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_empire_of_zul_category = {
+	form_empire_of_zul = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = ZAN
+				tag = DRA
+				tag = FAR
+				tag = GUR
+				tag = AMA
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			if = {
+				limit = { tag = ZAN }
+				OR = {
+					NOT = { country_exists = GUR }
+					GUR = {	is_subject_of = ZAN }
+				}
+				OR = {
+					NOT = { country_exists = AMA }
+					AMA = {	is_subject_of = ZAN }
+				}
+				OR = {
+					NOT = { country_exists = DRA }
+					DRA = {	is_subject_of = ZAN }
+				}
+				OR = {
+					NOT = { country_exists = FAR }
+					FAR = {	is_subject_of = ZAN }
+				}
+			}
+
+			if = {
+				limit = { tag = GUR }
+				OR = {
+					NOT = { country_exists = ZAN }
+					ZAN = {	is_subject_of = GUR }
+				}
+				OR = {
+					NOT = { country_exists = AMA }
+					AMA = {	is_subject_of = GUR }
+				}
+				OR = {
+					NOT = { country_exists = DRA }
+					DRA = {	is_subject_of = GUR }
+				}
+				OR = {
+					NOT = { country_exists = FAR }
+					FAR = {	is_subject_of = GUR }
+				}
+			}
+
+			if = {
+				limit = { tag = AMA }
+				OR = {
+					NOT = { country_exists = ZAN }
+					ZAN = {	is_subject_of = AMA }
+				}
+				OR = {
+					NOT = { country_exists = GUR }
+					GUR = {	is_subject_of = AMA }
+				}
+				OR = {
+					NOT = { country_exists = DRA }
+					DRA = {	is_subject_of = AMA }
+				}
+				OR = {
+					NOT = { country_exists = FAR }
+					FAR = {	is_subject_of = AMA }
+				}
+			}
+
+			if = {
+				limit = { tag = DRA }
+				OR = {
+					NOT = { country_exists = ZAN }
+					ZAN = {	is_subject_of = DRA }
+				}
+				OR = {
+					NOT = { country_exists = AMA }
+					AMA = {	is_subject_of = DRA }
+				}
+				OR = {
+					NOT = { country_exists = GUR }
+					GUR = {	is_subject_of = DRA }
+				}
+				OR = {
+					NOT = { country_exists = FAR }
+					FAR = {	is_subject_of = DRA }
+				}
+			}
+
+			if = {
+				limit = { tag = FAR }
+				OR = {
+					NOT = { country_exists = ZAN }
+					ZAN = {	is_subject_of = FAR }
+				}
+				OR = {
+					NOT = { country_exists = AMA }
+					AMA = {	is_subject_of = FAR }
+				}
+				OR = {
+					NOT = { country_exists = DRA }
+					DRA = {	is_subject_of = FAR }
+				}
+				OR = {
+					NOT = { country_exists = GUR }
+					GUR = {	is_subject_of = FAR }
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = EMPIRE_OF_ZUL
+
+			if = {
+				limit = { tag = ZAN }
+				every_state = {
+					limit = { is_core_of = FAR }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = AMA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = DRA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = GUR }
+					add_core_of = ROOT
+				}
+			}
+
+			if = {
+				limit = { tag = AMA }
+				every_state = {
+					limit = { is_core_of = ZAN }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = FAR }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = DRA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = GUR }
+					add_core_of = ROOT
+				}
+			}
+
+			if = {
+				limit = { tag = DRA }
+				every_state = {
+					limit = { is_core_of = ZAN }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = AMA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = FAR }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = GUR }
+					add_core_of = ROOT
+				}
+			}
+
+			if = {
+				limit = { tag = GUR }
+				every_state = {
+					limit = { is_core_of = ZAN }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = AMA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = DRA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = FAR }
+					add_core_of = ROOT
+				}
+			}
+
+			if = {
+				limit = { tag = FAR }
+				every_state = {
+					limit = { is_core_of = ZAN }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = AMA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = DRA }
+					add_core_of = ROOT
+				}
+				every_state = {
+					limit = { is_core_of = GUR }
+					add_core_of = ROOT
+				}
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_uldum_category = {
+	form_kingdom_of_uldum = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = ORS
+				tag = RKH
+				tag = NEF
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			#Check if other Tol'Vir nation exists or are puppets as ORS
+			if = {
+				limit = { NOT = { tag = ORS } }
+				ORS = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = RKH } }
+				RKH = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = NEF } }
+				NEF = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+
+			control_uldum_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = kingdom_of_uldum_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			#Annex other Tolvir nations (if they exist)
+			if = {
+				limit = { NOT = { tag = ORS } }
+				annex_country = {
+			    	target = ORS
+			    	transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = RKH } }
+				annex_country = {
+			    	target = RKH
+			    	transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = NEF } }
+				annex_country = {
+			   		target = NEF
+			    	transfer_troops = yes
+				}
+			}
+
+			annex_uldum = yes
+			core_uldum = yes
+
+			set_cosmetic_tag = kingdom_of_uldum_cosmetic_tag
+			set_global_flag = kingdom_of_uldum_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_centaur_khanate_category = {
+	form_centaur_khanate = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = GLC
+				tag = MGC
+				tag = KOL
+				tag = GAL
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			#Check if other Centaur nation exists or are puppets
+			if = {
+				limit = { NOT = { tag = GLC } }
+				GLC = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = MGC } }
+				MGC = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = MAU } }
+				MAU = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = KOL } }
+				KOL = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = GAL } }
+				GAL = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+
+			control_desolace_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = centaur_khanate_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			#Annex other Centaur nations (if they exist)
+			if = {
+				limit = { NOT = { tag = GLC } }
+				annex_country = {
+			    	target = GLC
+			    	transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = MGC } }
+				annex_country = {
+			    	target = MGC
+			    	transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = MAU } }
+				annex_country = {
+			    	target = MAU
+			    	transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = KOL } }
+				annex_country = {
+			    	target = KOL
+			    	transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = GAL } }
+				annex_country = {
+			    	target = GAL
+			    	transfer_troops = yes
+				}
+			}
+
+			#Annex and core every other states in Desolace (in case owned by other puppets)
+			annex_desolace = yes
+			core_desolace = yes
+
+			set_cosmetic_tag = centaur_khanate_cosmetic_tag
+			set_global_flag = centaur_khanate_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_agamaggan_category = {
+	form_kingdom_of_agamaggan = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = RZM
+				tag = BRI
+				tag = RZF
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			#Check if other Quilboar nation exists or are puppets
+			if = {
+				limit = { NOT = { tag = RZM } }
+				RZM = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = BRI } }
+				BRI = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = RZF } }
+				RZF = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+
+			control_orgrimmar_directly_or_puppets = yes
+			control_durotar_directly_or_puppets = yes
+			control_mulgore_directly_or_puppets = yes
+			control_northern_barrens_directly_or_puppets = yes
+			control_southern_barrens_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = kingdom_of_agamaggan_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			#Annex other Quilboar nations (if they still exist)
+			if = {
+				limit = { NOT = { tag = RZM } }
+				annex_country = {
+					target = RZM
+					transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = BRI } }
+				annex_country = {
+					target = BRI
+					transfer_troops = yes
+				}
+			}
+			if = {
+				limit = { NOT = { tag = RZF } }
+				annex_country = {
+					target = RZF
+					transfer_troops = yes
+				}
+			}
+
+			#Annex the remaining territories in case they are under control of other puppets
+			annex_orgrimmar = yes
+			annex_durotar = yes
+			annex_mulgore = yes
+			annex_northern_barrens = yes
+			annex_southern_barrens = yes
+
+			set_cosmetic_tag = kingdom_of_agamaggan_cosmetic_tag
+			set_global_flag = kingdom_of_agamaggan_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_bloodmyst_kingdom_category = {
+	form_bloodmyst_kingdom = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = AXS
+				tag = NZS
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			if = {
+				limit = { NOT = { tag = AXS } }
+				AXS = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { tag = NZS } }
+				NZS = {
+					OR = {
+						exists = no
+						is_puppet_of = PREV
+					}
+				}
+			}
+
+			control_bloodmyst_isle_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = bloodmyst_kingdom_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			annex_bloodmyst_isle = yes
+			core_bloodmyst = yes
+
+			swap_ideas = {
+				remove_idea = clan
+		    	add_idea = kingdom
+			}
+
+			set_cosmetic_tag = bloodmyst_kingdom_cosmetic_tag
+			set_global_flag = bloodmyst_kingdom_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_arkkoran_kingdom_category = {
+	form_arkkoran_kingdom = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = ARK
+		}
+
+		available = {
+			is_subject = no
+
+			control_azshara_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_azshara = yes
+			core_azshara = yes
+
+			set_cosmetic_tag = ARK_kingdom
+		}
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_shadowtooth_empire_category = {
+	form_shadowtooth_empire = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = STT
+		}
+
+		available = {
+			is_subject = no
+
+			control_hyjal_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_hyjal = yes
+			core_hyjal = yes
+
+			set_cosmetic_tag = STT_empire
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_shatterspear_empire_category = {
+	form_shatterspear_empire = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = STS
+		}
+
+		available = {
+			is_subject = no
+
+			control_darkshore_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_darkshore = yes
+			core_darkshore = yes
+
+			set_cosmetic_tag = STS_empire
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+#Suggested by Pelle on the Discord, sadly.
+form_pygmy_sultanate_category = {
+	form_pygmy_sultanate = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = SPY
+		}
+
+		available = {
+			is_subject = no
+
+			OR = {
+				control_tanaris_directly_or_puppets = yes
+				control_uldum_directly_or_puppets = yes
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = form_pygmy_sultanate_tt
+
+			if = {
+				limit = {
+					control_tanaris_directly_or_puppets = yes
+				}
+				annex_tanaris = yes
+				core_tanaris = yes
+			}
+
+			if = {
+				limit = {
+					control_uldum_directly_or_puppets = yes
+				}
+				annex_uldum = yes
+				core_uldum = yes
+			}
+
+			set_cosmetic_tag = SPY_sultanate
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+
+	form_greater_pygmy_sultanate = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = SPY
+		}
+
+		available = {
+			is_subject = no
+
+			control_tanaris_directly_or_puppets = yes
+			control_uldum_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_tanaris = yes
+			annex_uldum = yes
+
+			core_tanaris = yes
+			core_uldum = yes
+
+			set_cosmetic_tag = SPY_greater_sultanate
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_keepers_of_uldum_category = {
+	form_keepers_of_uldum = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = ULD
+		}
+
+		available = {
+			is_subject = no
+
+			control_uldum_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_uldum = yes
+			core_uldum = yes
+
+			set_cosmetic_tag = ULD_keepers_of_uldum
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_keepers_of_ungoro_category = {
+	form_keepers_of_ungoro = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = UNG
+		}
+
+		available = {
+			is_subject = no
+
+			control_ungoro_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_ungoro_crater = yes
+			core_ungoro_crater = yes
+
+			set_cosmetic_tag = UNG_keepers_of_ungoro
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_tar_tsardom_category = {
+	form_tar_tsardom_category= {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = TAR
+		}
+
+		available = {
+			is_subject = no
+
+			control_ungoro_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_ungoro_crater = yes
+			core_ungoro_crater = yes
+
+			set_cosmetic_tag = TAR_tar_tsardom
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_bloodpetal_kingdom_category = {
+	form_bloodpetal_kingdom = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = BPL
+		}
+
+		available = {
+			is_subject = no
+
+			control_ungoro_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_ungoro_crater = yes
+			core_ungoro_crater = yes
+
+			set_cosmetic_tag = BPL_bloodpetal_kingdom
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_hive_gorishi_category = {
+	form_hive_gorishi = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = GOI
+		}
+
+		available = {
+			is_subject = no
+
+			control_ungoro_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_ungoro_crater = yes
+			core_ungoro_crater = yes
+
+			set_cosmetic_tag = GOI_hive_gorishi
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_blazerunners_domain_category = {
+	form_blazerunners_domain = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = UFE
+		}
+
+		available = {
+			is_subject = no
+
+			control_ungoro_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_ungoro_crater = yes
+			core_ungoro_crater = yes
+
+			set_cosmetic_tag = UFE_blazerunners_domain
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_jadefire_kingdom_category = {
+	form_jadefire_kingdom = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			tag = JFT
+		}
+
+		available = {
+			is_subject = no
+
+			control_felwood_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_felwood = yes
+			core_felwood = yes
+
+			set_cosmetic_tag = JFT_jadefire_kingdom
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_satyrnaar_category = {
+	form_kingdom_of_satyrnaar = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = BHS
+				original_tag = FMC
+				original_tag = XAV
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			controls_state = 1352
+			controls_state = 1353
+			controls_state = 2131
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = kingdom_of_satyrnaar_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			1352 = { add_core_of = ROOT }
+			1353 = { add_core_of = ROOT }
+			2131 = { add_core_of = ROOT }
+
+			set_cosmetic_tag = kingdom_of_satyrnaar_cosmetic_tag
+			set_global_flag = kingdom_of_satyrnaar_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_azshara_category = {
+	form_kingdom_of_azshara = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = HDC
+				original_tag = LEG
+			}
+		}
+
+		available = {
+			is_subject = no
+
+			control_azshara_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = kingdom_of_azshara_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			annex_azshara = yes
+			core_azshara = yes
+
+			set_cosmetic_tag = kingdom_of_azshara_cosmetic_tag
+			set_global_flag = kingdom_of_azshara_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_bloodfury_matriarchy_category = {
+	form_bloodfury_matriarchy = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = BDT
+		}
+
+		available = {
+			is_subject = no
+
+			control_stonetalon_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_stonetalon = yes
+			core_stonetalon = yes
+
+			set_cosmetic_tag = BDT_bloodfury_matriarchy
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_windfury_matriarchy_category = {
+	form_windfury_matriarchy = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = WFT
+		}
+
+		available = {
+			is_subject = no
+
+			control_mulgore_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_mulgore = yes
+			core_mulgore = yes
+
+			set_cosmetic_tag = WFT_windfury_matriarchy
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_woodpaw_clan_category = {
+	form_woodpaw_clan = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = WPT
+		}
+
+		available = {
+			is_subject = no
+			controls_state = 1160
+			controls_state = 1161
+			controls_state = 1162
+			controls_state = 1163
+			controls_state = 1164
+			controls_state = 1165
+			controls_state = 1166
+			controls_state = 1169
+			controls_state = 1168
+			controls_state = 1170
+			controls_state = 1171
+			controls_state = 1172
+			controls_state = 1173
+			controls_state = 1174
+			controls_state = 1509
+
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = WPT_woodpaw_clan
+
+			custom_effect_tooltip = form_country_woodpaw_clan_coring_states_tt
+			hidden_effect = {
+				1160 = { add_core_of = ROOT }
+				1161 = { add_core_of = ROOT }
+				1162 = { add_core_of = ROOT }
+				1163 = { add_core_of = ROOT }
+				1164 = { add_core_of = ROOT }
+				1165 = { add_core_of = ROOT }
+				1166 = { add_core_of = ROOT }
+				1169 = { add_core_of = ROOT }
+				1168 = { add_core_of = ROOT }
+				1170 = { add_core_of = ROOT }
+				1171 = { add_core_of = ROOT }
+				1172 = { add_core_of = ROOT }
+				1173 = { add_core_of = ROOT }
+				1174 = { add_core_of = ROOT }
+				1509 = { add_core_of = ROOT }
+
+			}
+		}
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_hive_zukkash_category = {
+	form_hive_zukkash = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = ZUK
+		}
+
+		available = {
+			is_subject = no
+			controls_state = 1160
+			controls_state = 1161
+			controls_state = 1162
+			controls_state = 1163
+			controls_state = 1164
+			controls_state = 1165
+			controls_state = 1166
+			controls_state = 1169
+			controls_state = 1168
+			controls_state = 1170
+			controls_state = 1171
+			controls_state = 1172
+			controls_state = 1173
+			controls_state = 1174
+			controls_state = 1509
+
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = ZUK_hive_zukkash
+
+			custom_effect_tooltip = form_country_hive_zukkash_coring_states_tt
+			hidden_effect = {
+				1160 = { add_core_of = ROOT }
+				1161 = { add_core_of = ROOT }
+				1162 = { add_core_of = ROOT }
+				1163 = { add_core_of = ROOT }
+				1164 = { add_core_of = ROOT }
+				1165 = { add_core_of = ROOT }
+				1166 = { add_core_of = ROOT }
+				1169 = { add_core_of = ROOT }
+				1168 = { add_core_of = ROOT }
+				1170 = { add_core_of = ROOT }
+				1171 = { add_core_of = ROOT }
+				1172 = { add_core_of = ROOT }
+				1173 = { add_core_of = ROOT }
+				1174 = { add_core_of = ROOT }
+				1509 = { add_core_of = ROOT }
+			}
+		}
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_northspring_matriarchy_category = {
+	form_northspring_matriarchy = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = NST
+		}
+
+		available = {
+			is_subject = no
+			controls_state = 1150
+			controls_state = 1151
+			controls_state = 1152
+			controls_state = 1153
+			controls_state = 1154
+			controls_state = 1506
+			controls_state = 2125
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = NST_northspring_matriarchy
+
+			custom_effect_tooltip = form_country_northspring_matriarchy_coring_states_tt
+			hidden_effect = {
+				1150 = { add_core_of = ROOT }
+				1151 = { add_core_of = ROOT }
+				1152 = { add_core_of = ROOT }
+				1153 = { add_core_of = ROOT }
+				1154 = { add_core_of = ROOT }
+				1506 = { add_core_of = ROOT }
+				2125 = { add_core_of = ROOT }
+
+			}
+		}
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_farraki_empire_category = {
+	form_farraki_empire = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = FAR
+		}
+
+		available = {
+			is_subject = no
+
+			control_tanaris_directly_or_puppets = yes
+			control_zul_farrak_directly_or_puppets = yes
+			controls_state = 78
+			controls_state = 946
+			controls_state = 947
+			controls_state = 948
+			controls_state = 959
+			controls_state = 1504
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_tanaris = yes
+			annex_zul_farrak = yes
+			core_tanaris = yes
+			core_zul_farrak = yes
+			78 = { add_core_of = ROOT }
+			946 = { add_core_of = ROOT }
+			947 = { add_core_of = ROOT }
+			948 = { add_core_of = ROOT }
+			959 = { add_core_of = ROOT }
+			1504 = { add_core_of = ROOT }
+
+			set_cosmetic_tag = FAR_farraki_empire
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_hive_rustmaul_category = {
+	form_hive_rustmaul = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = RMH
+		}
+
+		available = {
+			is_subject = no
+			controls_state = 78
+			controls_state = 946
+			controls_state = 947
+			controls_state = 948
+			controls_state = 959
+			controls_state = 1504
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = RMH_hive_rustmaul
+
+			custom_effect_tooltip = form_country_hive_rustmaul_coring_states_tt
+			hidden_effect = {
+				78 = { add_core_of = ROOT }
+				946 = { add_core_of = ROOT }
+				947 = { add_core_of = ROOT }
+				948 = { add_core_of = ROOT }
+				959 = { add_core_of = ROOT }
+				1504 = { add_core_of = ROOT }
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_hive_fieldgiant_category = {
+	form_hive_fieldgiant = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = FGH
+		}
+
+		available = {
+			is_subject = no
+			controls_state = 962
+			controls_state = 963
+			controls_state = 964
+			controls_state = 965
+			controls_state = 966
+			controls_state = 967
+			controls_state = 972
+			controls_state = 973
+			controls_state = 974
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = FGH_hive_fieldgiant
+
+			custom_effect_tooltip = form_country_hive_rustmaul_coring_states_tt
+			hidden_effect = {
+				962 = { add_core_of = ROOT }
+				963 = { add_core_of = ROOT }
+				964 = { add_core_of = ROOT }
+				965 = { add_core_of = ROOT }
+				966 = { add_core_of = ROOT }
+				967 = { add_core_of = ROOT }
+				972 = { add_core_of = ROOT }
+				973 = { add_core_of = ROOT }
+				974 = { add_core_of = ROOT }
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_utgarde_category = {
+	form_kingdom_of_utgarde = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = DFC
+				original_tag = WIC
+				original_tag = GJA
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_mainland_howling_fjord_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = kingdom_of_utgarde_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = kingdom_of_utgarde_cosmetic_tag
+			annex_mainland_howling_fjord = yes
+			core_mainland_howling_fjord = yes
+			set_global_flag = kingdom_of_utgarde_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_realm_of_the_north_category = {
+	form_realm_of_the_north = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = SVB
+				original_tag = SLP
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_grizzly_hills_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = { has_global_flag = realm_of_the_north_formed_global_flag	}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = realm_of_the_north_cosmetic_tag
+
+			swap_ideas = {
+				remove_idea = city_state
+		    	add_idea = kingdom
+			}
+
+			annex_grizzly_hills = yes
+			core_grizzly_hills = yes
+
+			set_global_flag = realm_of_the_north_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_keepers_of_sholazar_category = {
+	form_keepers_of_sholazar = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = SLW
+		}
+
+		available = {
+			is_subject = no
+			control_sholazar_basin_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = SLW_sholazar_keeper
+
+			annex_sholazar_basin = yes
+			core_sholazar_basin = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_sholazar_tribe_category = {
+	form_sholazar_tribe = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = MWA
+				original_tag = RST
+				original_tag = MWH
+				original_tag = SKT
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_sholazar_basin_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = sholazar_tribe_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = sholazar_tribe_cosmetic_tag
+
+			annex_sholazar_basin = yes
+			core_sholazar_basin = yes
+			set_global_flag = sholazar_tribe_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_crystalsong_kingdom_category = {
+	form_crystalsong_kingdom = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = CSS
+				original_tag = TUB
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_crystalsong_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = crystalsong_kingdom_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = crystalsong_kingdom_cosmetic_tag
+
+			annex_crystalsong = yes
+			core_crystalsong = yes
+			set_global_flag = crystalsong_kingdom_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_blood_empire_category = {
+	form_blood_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = NZM
+				original_tag = NVT
+				original_tag = AKT
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_zuldazar_directly_or_puppets = yes
+			control_nazmir_directly_or_puppets = yes
+			control_voldun_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = { has_global_flag = blood_empire_formed_global_flag }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = blood_empire_cosmetic_tag
+
+			annex_zuldazar = yes
+			annex_nazmir = yes
+			annex_voldun = yes
+			core_zuldazar = yes
+			core_nazmir = yes
+			core_voldun = yes
+			set_capital = { state = 601 }
+
+			set_global_flag = blood_empire_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_sethraliss_empire_category = {
+	form_sethraliss_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = DEV
+				original_tag = FLE
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_voldun_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = sethraliss_empire_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = sethraliss_empire_cosmetic_tag
+
+			annex_voldun = yes
+			core_voldun = yes
+			set_global_flag = sethraliss_empire_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_sethrak_imperium_category = {
+	form_sethrak_imperium = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = DEV
+				original_tag = FLE
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_zuldazar_directly_or_puppets = yes
+			control_nazmir_directly_or_puppets = yes
+			control_voldun_directly_or_puppets = yes
+		}
+
+		visible = {
+			has_cosmetic_tag = sethraliss_empire_cosmetic_tag
+			NOT = {
+				has_global_flag = sethrak_imperium_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = sethrak_imperium_cosmetic_tag
+
+			annex_zuldazar = yes
+			annex_nazmir = yes
+			annex_voldun = yes
+			core_zuldazar = yes
+			core_nazmir = yes
+			core_voldun = yes
+			set_global_flag = sethrak_imperium_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_free_peoples_of_voldun_category = {
+	form_free_peoples_of_voldun = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = VOL
+				original_tag = ZNE
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_voldun_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = free_peoples_of_voldun_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = free_peoples_of_voldun_cosmetic_tag
+
+			annex_voldun = yes
+			core_voldun = yes
+			set_global_flag = free_peoples_of_voldun_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_zemlan_armada_category = {
+	form_zemlan_armada = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = ZLC
+		}
+
+		available = {
+			is_subject = no
+			control_voldun_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = ZLC_zemlan_armada
+
+			annex_voldun = yes
+			core_voldun = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_therazane_domain_category = {
+	form_therazane_domain = {
+		icon = generic_form_nation
+
+		# Adjust triggers if adding another tag here @Tran
+		allowed = {
+			original_tag = THZ
+		}
+
+		available = {
+			is_subject = no
+			control_deepholm_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = THZ_therazane_domain
+
+			annex_deepholm = yes
+			core_deepholm = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_frostmane_empire_category = {
+	form_frostmane_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = FRT
+		}
+
+		available = {
+			is_subject = no
+			control_dun_morogh_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = FRT_frostmane_empire
+
+			annex_dun_morogh = yes
+			core_dun_morogh = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_the_black_morass_category = {
+	form_the_black_morass = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = TSW
+		}
+
+		available = {
+			is_subject = no
+
+			control_swamp_of_sorrows_directly_or_puppets = yes
+			control_blasted_lands_directly_or_puppets = yes
+
+			if = {
+				limit = { has_completed_focus = TSW_tremors_in_the_roots }
+				has_completed_focus = TSW_terraform_the_dark_portal
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = BOG_empire
+
+			annex_swamp_of_sorrows = yes
+			core_swamp_of_sorrows = yes
+			annex_blasted_lands = yes
+			core_blasted_lands = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_azeroth_category = {
+	form_the_kingdom_of_azeroth = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = STO
+		}
+
+		available = {
+			is_subject = no
+			control_balor_directly_or_puppets = yes
+			control_stormwind_directly_or_puppets = yes
+			control_elwynn_forest_directly_or_puppets = yes
+			control_redridge_directly_or_puppets = yes
+			control_swamp_of_sorrows_directly_or_puppets = yes
+			control_blasted_lands_directly_or_puppets = yes
+			control_deadwind_pass_directly_or_puppets = yes
+			control_westfall_directly_or_puppets = yes
+			control_duskwood_directly_or_puppets = yes
+			control_zulgurub_directly_or_puppets = yes
+			control_northern_stranglethorn_directly_or_puppets = yes
+			control_southern_stranglethorn_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = STO_kingdom_of_azeroth
+
+			annex_balor = yes
+			core_balor = yes
+			annex_stormwind = yes
+			core_stormwind = yes
+			annex_elwynn_forest = yes
+			core_elwynn_forest = yes
+			annex_redridge_mountains = yes
+			core_redridge_mountains = yes
+			annex_swamp_of_sorrows = yes
+			core_swamp_of_sorrows = yes
+			annex_blasted_lands = yes
+			core_blasted_lands = yes
+			annex_deadwind_pass = yes
+			core_deadwind_pass = yes
+			annex_duskwood = yes
+			core_duskwood = yes
+			annex_zulgurub = yes
+			core_zulgurub = yes
+			annex_northern_stranglethorn = yes
+			core_northern_stranglethorn = yes
+			annex_southern_stranglethorn = yes
+			core_southern_stranglethorn = yes
+			annex_westfall = yes
+			core_westfall = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_frenzyheart_empire_category = {
+	form_frenzyheart_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = FHT
+		}
+
+		available = {
+			is_subject = no
+			control_sholazar_basin_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = FHT_empire
+
+			annex_sholazar_basin = yes
+			core_sholazar_basin = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_the_new_gorian_empire_category = {
+	form_the_new_gorian_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = AMC
+				tag = ANG
+				tag = BFC
+				tag = BMC
+				tag = BSC
+				tag = CRC
+				tag = DBC
+				tag = DRM
+				tag = DUC
+				tag = DWC
+				tag = FGC
+				tag = GOR
+				tag = HIM
+				tag = MOC
+				tag = MOG
+				tag = OGL
+				tag = SFC
+				tag = STM
+				tag = THC
+				tag = WMC
+			}
+		}
+
+		available = {
+			is_subject = no
+			has_full_control_of_state = 540
+			has_full_control_of_state = 567
+			has_full_control_of_state = 298
+			has_full_control_of_state = 277
+			has_full_control_of_state = 11
+			has_full_control_of_state = 304
+			has_full_control_of_state = 37
+			has_full_control_of_state = 384
+		}
+
+		visible = {
+			ROOT = { has_idea = ogre_primary_race }
+			OR = {
+				NOT = { has_global_flag = form_gorian_flag	}
+			}
+		}
+
+		complete_effect = {
+			if = {
+				limit = { tag = HIM }
+				remove_ideas = HIM_Gorian_Decline
+			}
+			set_cosmetic_tag = the_new_gorian_empire
+			hidden_effect = { set_global_flag = form_gorian_flag }
+			540 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			567 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			298 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			277 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			11 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			304 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			37 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			384 = { 
+				add_core_of = ROOT
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_yaungol_empire_category = {
+	form_yaungol_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				tag = GCT
+				tag = DDT
+				tag = YGQ
+				tag = ORD
+				tag = OLT
+				tag = PWT
+				tag = ODT
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_townlong_steppes_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = yaungol_empire
+
+			annex_townlong_steppes = yes
+			core_townlong_steppes = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_riverblade_empire_category = {
+	form_riverblade_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = RBT
+		}
+
+		available = {
+			is_subject = no
+			control_krasarang_wilds_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = RBT_empire
+
+			annex_krasarang_wilds = yes
+			core_krasarang_wilds = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_kros_category = {
+	form_kingdom_of_kros = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = SKB
+		}
+
+		available = {
+			is_subject = no
+			control_isle_of_thunder_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = SKB_kingdom_of_kros
+
+			annex_isle_of_thunder = yes
+			core_isle_of_thunder = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_bladespire_empire_category = {
+	form_bladespire_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = BSC
+		}
+
+		available = {
+			is_subject = no
+			control_frostfire_ridge_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = BSC_empire
+
+			annex_frostfire_ridge = yes
+			core_frostfire_ridge = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_apexis_empire_category = {
+	form_apexis_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = SKR
+		}
+
+		available = {
+			is_subject = no
+			control_spires_of_arak_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = SKR_apexis
+
+			annex_spires_of_arak = yes
+			core_spires_of_arak = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_bloodmane_kingdom_category = {
+	form_bloodmane_kingdom = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = BLM
+		}
+
+		available = {
+			is_subject = no
+			control_spires_of_arak_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = BLM_kingdom
+
+			annex_spires_of_arak = yes
+			core_spires_of_arak = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_anzus_kingdom_category = {
+	form_anzus_kingdom = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = SET
+		}
+
+		available = {
+			is_subject = no
+			control_spires_of_arak_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = SET_anzus_kingdom
+
+			annex_spires_of_arak = yes
+			core_spires_of_arak = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_the_evergrowth_category = {
+	restore_the_evergrowth = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = BOT
+		}
+
+		available = {
+			is_subject = no
+			control_farahlon_directly_or_puppets = yes
+			control_gorgrond_directly_or_puppets = yes
+			control_tanaan_jungle_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = BOT_evergrowth
+
+			annex_farahlon = yes
+			core_farahlon = yes
+			annex_gorgrond = yes
+			core_gorgrond = yes
+			annex_tanaan_jungle = yes
+			core_tanaan_jungle = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_the_breakers_category = {
+	restore_the_breakers = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = GRN
+		}
+
+		available = {
+			is_subject = no
+			control_gorgrond_directly_or_puppets = yes
+			control_frostfire_ridge_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = GRN_breakers
+
+			annex_gorgrond = yes
+			core_gorgrond = yes
+			annex_frostfire_ridge = yes
+			core_frostfire_ridge = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+restore_the_gorian_empire_category = {
+	restore_the_gorian_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = HIM
+		}
+
+		available = {
+			is_subject = no
+			control_nagrand_draenor_directly_or_puppets = yes
+			control_talador_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = HIM_gorian_empire
+			if = {
+				limit = { tag = HIM }
+				remove_ideas = HIM_Gorian_Decline
+			}
+			annex_nagrand_draenor = yes
+			core_nagrand_draenor = yes
+			annex_talador = yes
+			core_talador = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_the_candle_kingdom_of_stonetalon_category = {
+	form_the_candle_kingdom_of_stonetalon = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = WSH
+		}
+
+		available = {
+			is_subject = no
+			control_stonetalon_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = WSH_candle_kingdom
+			annex_stonetalon = yes
+			core_stonetalon = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_united_tortollan_tribes_category = {
+	form_united_tortollan_tribes = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = TTT
+		}
+
+		available = {
+			is_subject = no
+			control_zuldazar_directly_or_puppets = yes
+			control_nazmir_directly_or_puppets = yes
+			control_voldun_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = TTT_united_tortollan_tribes
+			annex_zuldazar = yes
+			annex_nazmir = yes
+			annex_voldun = yes
+			core_zuldazar = yes
+			core_nazmir = yes
+			core_voldun = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kril_mandar_domain_category = {
+	form_kril_mandar_domain = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = KRM
+		}
+
+		available = {
+			is_subject = no
+			control_krasarang_wilds_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = KRM_kril_mandars_domain
+
+			core_krasarang_wilds = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_mogu_empire_category = {
+	form_dojan_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = KOR
+				original_tag = DOJ
+				original_tag = KRA
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_krasarang_wilds_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = dojan_empire_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = dojan_empire
+
+			core_krasarang_wilds = yes
+
+			set_global_flag = dojan_empire_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+
+	form_greater_mogu_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = MGE
+		}
+
+		available = {
+			is_subject = no
+			control_dread_wastes_directly_or_puppets = yes
+			control_isle_of_giants_directly_or_puppets = yes
+			control_isle_of_thunder_directly_or_puppets = yes
+			control_jade_forest_directly_or_puppets = yes
+			control_krasarang_wilds_directly_or_puppets = yes
+			control_kunlai_summit_directly_or_puppets = yes
+			control_timeless_isle_directly_or_puppets = yes
+			control_townlong_steppes_directly_or_puppets = yes
+			control_vale_of_eternal_blossoms_directly_or_puppets = yes
+			control_valley_of_the_four_winds_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = MGE_greater_mogu_empire
+
+			core_dread_wastes = yes
+			core_isle_of_giants = yes
+			core_isle_of_thunder = yes
+			core_jade_forest = yes
+			core_krasarang_wilds = yes
+			core_kun_lai_summit = yes
+			core_timeless_isle = yes
+			core_townlong_steppes = yes
+			core_vale_of_eternal_blossoms = yes
+			core_valley_of_the_four_winds = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+
+	form_mogu_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = MGJ
+				original_tag = MGS
+				original_tag = SZC
+				original_tag = KRN
+				original_tag = KOR
+				original_tag = DOJ
+				original_tag = KRA
+				original_tag = STN
+				original_tag = GOM
+				original_tag = GUT
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_dread_wastes_directly_or_puppets = yes
+			control_isle_of_giants_directly_or_puppets = yes
+			control_isle_of_thunder_directly_or_puppets = yes
+			control_jade_forest_directly_or_puppets = yes
+			control_krasarang_wilds_directly_or_puppets = yes
+			control_kunlai_summit_directly_or_puppets = yes
+			control_timeless_isle_directly_or_puppets = yes
+			control_townlong_steppes_directly_or_puppets = yes
+			control_vale_of_eternal_blossoms_directly_or_puppets = yes
+			control_valley_of_the_four_winds_directly_or_puppets = yes
+			NOT = {
+				country_exists = MGE
+			}
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = mogu_empire_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = mogu_empire
+
+			set_global_flag = mogu_empire_formed_global_flag
+
+			core_dread_wastes = yes
+			core_isle_of_giants = yes
+			core_isle_of_thunder = yes
+			core_jade_forest = yes
+			core_krasarang_wilds = yes
+			core_kun_lai_summit = yes
+			core_timeless_isle = yes
+			core_townlong_steppes = yes
+			core_vale_of_eternal_blossoms = yes
+			core_valley_of_the_four_winds = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_hive_tanari_category = {
+	form_hive_tanari = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = HAZ
+				original_tag = CNT
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_tanaris_directly_or_puppets = yes
+		}
+
+		visible = {
+			NOT = {
+				has_global_flag = hive_tanari_formed_global_flag
+			}
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = hive_tanari
+
+			core_tanaris = yes
+
+			set_global_flag = hive_tanari_formed_global_flag
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_kingdom_of_thistles_and_shrubs_category = {
+	form_kingdom_of_thistles_and_shrubs = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = THI
+		}
+
+		available = {
+			is_subject = no
+			control_tanaris_directly_or_puppets = yes
+			control_uldum_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = THI_kingdom_of_thistles_and_shrubs
+
+			core_tanaris = yes
+			core_uldum = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_zangarmarsh_category = {
+	form_zangarmarsh = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = ZNG
+		}
+
+		available = {
+			is_subject = no
+			control_frostfire_ridge_directly_or_puppets = yes
+			control_nagrand_draenor_directly_or_puppets = yes
+			control_talador_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = ZNG_zangarmarsh
+
+			core_frostfire_ridge = yes
+			core_nagrand_draenor = yes
+			core_talador = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_skadir_empire_category = {
+	form_skadir_empire = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = SKA
+		}
+
+		available = {
+			is_subject = no
+			control_borean_tundra_directly_or_puppets = yes
+			control_darkspear_islands_directly_or_puppets = yes
+			control_kezan_directly_or_puppets = yes
+			control_the_lost_isle_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = SKA_skadir_empire
+
+			core_borean_tundra = yes
+			core_darkspear_islands = yes
+			core_kezan = yes
+			core_the_lost_isle = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_great_sea_freebooters_category = {
+	form_great_sea_freebooters = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = SFB
+		}
+
+		available = {
+			is_subject = no
+			control_kezan_directly_or_puppets = yes
+			control_tel_abim_directly_or_puppets = yes
+			control_the_lost_isle_directly_or_puppets = yes
+			control_darkspear_islands_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = SFB_great_sea_freebooters
+
+			core_kezan = yes
+			core_tel_abim = yes
+			core_the_lost_isle = yes
+			core_darkspear_islands = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_quelamya_category = {
+	form_quelamya = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = HIV
+				original_tag = QLL
+				original_tag = QUE
+			}
+		}
+
+		available = {
+			is_subject = no
+			control_isle_of_queldanas_directly_or_puppets = yes
+			control_eversong_woods_directly_or_puppets = yes
+			control_ghostlands_directly_or_puppets = yes
+			control_zulaman_directly_or_puppets = yes
+			control_eastern_plaguelands_directly_or_puppets = yes
+			control_northern_lordaeron_directly_or_puppets = yes
+			control_western_plaguelands_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = QUE_empire
+
+			core_isle_of_queldanas = yes
+			core_eversong_woods = yes
+			core_ghostlands = yes
+			core_zulaman = yes
+			core_eastern_plaguelands = yes
+			core_northern_lordaeron = yes
+			core_western_plaguelands = yes
+
+			if = {
+				limit = { 
+					OR = {
+						has_start_date > 616.1.1 
+						has_country_flag = high_elf_scourged
+					}
+				}
+				add_country_leader_trait = sin_dorah_trait
+			}
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_lights_bastion_category = {
+	form_lights_bastion = {
+		icon = generic_form_nation
+
+		allowed = {
+			original_tag = DRE
+		}
+
+		visible = {
+			has_country_flag = exodar_flag
+		}
+
+		available = {
+			is_subject = no
+
+			control_azuremyst_isle_directly_or_puppets = yes
+			control_bloodmyst_isle_directly_or_puppets = yes
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_cosmetic_tag = DRE_lights_bastion
+
+			core_bloodmyst = yes
+			core_azuremyst = yes
+		}
+
+		ai_will_do = { factor = 200 }
+	}
+}
+
+form_stormpaw_pack_category = {
+	form_stormpaw_pack = {
+
+        priority = 10
+
+        cost = 10
+
+        days_re_enable = 30
+
+        allowed = { 
+			OR = {
+				original_tag = RPP
+				original_tag = RRP 
+			}
+			
+		}
+
+        visible = {
+			OR = {
+				tag = RPP
+				tag = RRP
+			}
+        }
+
+        available = {
+			control_duskwood_directly_or_puppets = yes
+			control_westfall_directly_or_puppets = yes
+			control_redridge_directly_or_puppets = yes
+			control_elwynn_forest_directly_or_puppets = yes
+        }
+
+        complete_effect = {
+			if = {
+				limit = { has_idea = RPP_scattered_tribe }
+				remove_ideas = RPP_scattered_tribe
+			}
+			core_duskwood = yes
+			core_westfall = yes
+			core_redridge_mountains = yes
+			core_elwynn_forest = yes
+			set_cosmetic_tag = RPP_stormpaw
+			add_country_leader_trait = packlord
+		}
+    }
+}

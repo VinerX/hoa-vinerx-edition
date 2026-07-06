@@ -1,0 +1,5061 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = DIC_first_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = DIC
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 1650
+		y = 1800
+	}
+
+	focus = {
+		id = DIC_from_the_deep
+		icon = GFX_focus_dark_iron_emperor_dagran_thaurissan
+		cost = 5
+		x = 15
+		y = 0
+
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 75
+		}
+	}
+
+	focus = {
+		id = DIC_our_Isolation
+		icon = GFX_focus_dark_iron_emperor_dagran_thaurissan
+		cost = 5
+		prerequisite = { focus = DIC_from_the_deep }
+		relative_position_id = DIC_from_the_deep
+		x = 0
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = isolation
+				add_idea = DIC_deep_isolation
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_ritual_of_fire
+		icon = GFX_focus_ragnaros
+		cost = 5
+		prerequisite = { focus = DIC_our_Isolation }
+		relative_position_id = DIC_from_the_deep
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_ideas = fire_elemental_secondary_race
+			add_ideas = secondary_trait_embodiment_of_heat
+			set_country_flag = unlocked_other_branches
+			custom_effect_tooltip = unlocking_other_branches_tt
+			set_temp_variable = { race_to_accept = 34 }
+			add_race_as_accepted_race = yes
+		}
+	}
+
+	focus = {
+		id = DIC_dig_deeper
+		icon = GFX_focus_dark_iron_crane
+		cost = 30
+		prerequisite = { focus = DIC_ritual_of_fire }
+		relative_position_id = DIC_from_the_deep
+		x = -3
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = peasant_tools_technology
+				uses = 1
+				bonus = 0.5
+				category = peasant_tools_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_sulfur_mines
+		icon = GFX_focus_dark_iron_mold_foundry
+		cost = 30
+		prerequisite = { focus = DIC_dig_deeper }
+		relative_position_id = DIC_from_the_deep
+		x = -4
+		y = 4
+
+		completion_reward = {
+			2183 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_iron_mines
+		icon = GFX_focus_dark_iron_refining
+		cost = 30
+		prerequisite = { focus = DIC_dig_deeper }
+		relative_position_id = DIC_from_the_deep
+		x = -2
+		y = 4
+
+		completion_reward = {
+			2180 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_mining_guild
+		icon = GFX_focus_dark_iron_mining
+		cost = 30
+		prerequisite = { focus = DIC_iron_mines }
+		prerequisite = { focus = DIC_sulfur_mines }
+		search_filters = {
+			FOCUS_FILTER_TRADE_GUILD
+		}
+		relative_position_id = DIC_from_the_deep
+		x = -3
+		y = 5
+
+		available = {
+			if = {
+				limit = { is_ai = no }
+				has_idea = mining_guild
+			}
+			else = { always = yes }
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = mining_funding
+			GEN_upgrade_mining = yes
+			if = {
+				limit = { is_ai = yes }
+				add_ideas = mining_guild
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = mining_guild
+					add_idea = mining_guild_1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_smithing_district
+		icon = GFX_focus_dark_iron_the_black_anvil
+		cost = 30
+		prerequisite = { focus = DIC_ritual_of_fire }
+		relative_position_id = DIC_from_the_deep
+		x = 0
+		y = 3
+
+		completion_reward = {
+			2180 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_military_district
+		icon = GFX_focus_dark_iron_forgeing
+		cost = 30
+		prerequisite = { focus = DIC_the_smithing_district }
+		relative_position_id = DIC_from_the_deep
+		x = 0
+		y = 4
+
+		completion_reward = {
+			786 = { add_dynamic_modifier = { modifier = military_district_mod } }
+			786 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_living_iron
+		icon = GFX_focus_dark_iron_golem
+		cost = 30
+		prerequisite = { focus = DIC_the_military_district }
+		relative_position_id = DIC_from_the_deep
+		x = 0
+		y = 5
+
+		completion_reward = {
+			add_ideas = DIC_iron_golems
+		}
+	}
+
+	focus = {
+		id = DIC_reorganize_the_guildes
+		icon = GFX_focus_BUL_support_macedonian_organizations
+		cost = 30
+		prerequisite = { focus = DIC_ritual_of_fire }
+		relative_position_id = DIC_from_the_deep
+		x = 3
+		y = 3
+
+		completion_reward = {
+			remove_ideas = DIC_industrial_disagreements
+		}
+	}
+	
+	focus = {
+		id = DIC_the_ring_of_law
+		icon = GFX_focus_dark_iron_ring_of_law_challenge
+		cost = 30
+		prerequisite = { focus = DIC_reorganize_the_guildes }
+		relative_position_id = DIC_from_the_deep
+		x = 2
+		y = 4
+
+		completion_reward = {
+			1616 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_grease_the_gears
+		icon = GFX_goal_generic_oil_refinery
+		cost = 30
+		prerequisite = { focus = DIC_reorganize_the_guildes }
+		relative_position_id = DIC_from_the_deep
+		x = 4
+		y = 4
+
+		completion_reward = {
+			1615 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_prepare_for_the_worst
+		icon = GFX_focus_dark_iron_tower
+		cost = 30
+		prerequisite = { focus = DIC_the_ring_of_law }
+		prerequisite = { focus = DIC_grease_the_gears }
+		relative_position_id = DIC_from_the_deep
+		x = 3
+		y = 5
+
+		completion_reward = {
+			2183 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_dark_iron_bastion
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = DIC_prepare_for_the_worst }
+		prerequisite = { focus = DIC_mining_guild }
+		prerequisite = { focus = DIC_living_iron }
+		relative_position_id = DIC_from_the_deep
+		x = 0
+		y = 6
+
+		completion_reward = {
+			525 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6252
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6246
+				}
+			}
+			2183 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6354
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6193
+				}
+			}
+			2181 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 6244
+				}
+			}
+			1616 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6358
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6225
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6212
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 6210
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_isolation
+		icon = GFX_focus_dark_iron_blackrock_mountain
+		cost = 5
+		prerequisite = { focus = DIC_the_dark_iron_bastion }
+		mutually_exclusive = { focus = DIC_expansion }
+		relative_position_id = DIC_the_dark_iron_bastion
+		x = -4
+		y = 1
+
+		available = {
+			DIC = { has_country_flag = DIC_isolation }
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = DIC_to_bedrock
+		icon = GFX_focus_GRE_a_land_of_mountains
+		cost = 30
+		prerequisite = { focus = DIC_isolation }
+		relative_position_id = DIC_isolation
+		x = -1
+		y = 1
+
+		completion_reward = {
+			2182 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			2179 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			1620 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_repurpose_mole_machines
+		icon = GFX_focus_dark_iron_mole_machine
+		cost = 30
+		prerequisite = { focus = DIC_isolation }
+		relative_position_id = DIC_isolation
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_ideas = DIC_retooled_mole_machines
+		}
+	}
+
+	focus = {
+		id = DIC_cartel_trade_networks
+		icon = GFX_goal_generic_trade
+		cost = 30
+		prerequisite = { focus = DIC_to_bedrock }
+		prerequisite = { focus = DIC_repurpose_mole_machines }
+		relative_position_id = DIC_isolation
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_ideas = DIC_goblin_trade_network
+		}
+	}
+
+	focus = {
+		id = DIC_relics_of_the_makers
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = { focus = DIC_cartel_trade_networks }
+		relative_position_id = DIC_isolation
+		x = -2
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_miner_technology
+				bonus = 0.5
+				uses = 1
+				category = dwarf_miner_technology
+			}
+			### Add Tech Bonus to Archeology
+		}
+	}
+
+	focus = {
+		id = DIC_reclaim_equipment
+		icon = GFX_goal_generic_consumer_goods
+		cost = 30
+		prerequisite = { focus = DIC_cartel_trade_networks }
+		relative_position_id = DIC_isolation
+		x = 0
+		y = 3
+
+		bypass = {
+			NOT = { country_exists = BBC }
+		}
+
+		available = {
+			BBC = {
+				controls_state = 1615
+				controls_state = 2182
+			}
+		}
+
+		completion_reward = {
+			1615 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 6400
+			}
+			2182 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 7000
+			}
+			72 = {
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				add_manpower = -7000
+				remove_core_of = BBC
+			}
+			530 = {
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_manpower = -6400
+				remove_core_of = BBC
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_reward_the_guilds
+		icon = GFX_focus_POL_complete_april_constitution
+		cost = 30
+		prerequisite = { focus = DIC_cartel_trade_networks }
+		relative_position_id = DIC_isolation
+		x = 2
+		y = 3
+
+		completion_reward = {
+			add_ideas = DIC_investment_in_guilds
+		}
+	}
+
+	focus = {
+		id = DIC_safety_of_the_depths
+		icon = GFX_goal_generic_construction
+		cost = 30
+		prerequisite = { focus = DIC_relics_of_the_makers }
+		prerequisite = { focus = DIC_reclaim_equipment }
+		relative_position_id = DIC_isolation
+		x = -1
+		y = 4
+
+		completion_reward = {
+			add_ideas = DIC_underground_city
+		}
+	}
+
+	focus = {
+		id = DIC_advance_arcane_studies
+		icon = GFX_focus_book_3
+		cost = 30
+		prerequisite = { focus = DIC_reward_the_guilds }
+		prerequisite = { focus = DIC_reclaim_equipment }
+		relative_position_id = DIC_isolation
+		x = 1
+		y = 4
+
+		completion_reward = {
+			1614 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_internal_control
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = { focus = DIC_safety_of_the_depths }
+		prerequisite = { focus = DIC_advance_arcane_studies }
+		relative_position_id = DIC_isolation
+		x = 0
+		y = 5
+
+		completion_reward = {
+			add_ideas = DIC_internal_control_idea
+		}
+	}
+
+	focus = {
+		id = DIC_expansion
+		icon = GFX_goal_expand_the_luftwaffe
+		cost = 5
+		prerequisite = { focus = DIC_the_dark_iron_bastion }
+		mutually_exclusive = { focus = DIC_isolation }
+		relative_position_id = DIC_the_dark_iron_bastion
+		x = 4
+		y = 1
+
+		available = {
+			DIC = { has_country_flag = DIC_expansionist	}
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = DIC_project_franclorn
+		icon = GFX_focus_usa_build_the_pentagon
+		cost = 30
+		prerequisite = { focus = DIC_expansion }
+		relative_position_id = DIC_expansion
+		x = 0
+		y = 1
+
+		available = {
+			2183 = { is_controlled_by_ROOT_or_ally = yes }
+			524 = { is_controlled_by_ROOT_or_ally = yes }
+			807 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DIC_project_franclorn_idea
+				days = 360
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_infrastructure_plan
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 30
+		prerequisite = { focus = DIC_project_franclorn }
+		relative_position_id = DIC_expansion
+		x = -2
+		y = 2
+
+		completion_reward = {
+			random_controlled_state = {
+				limit = { impassable = no }
+				add_resource = {
+					type = mana
+					amount = 2
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = { impassable = no }
+				add_resource = {
+					type = ores
+					amount = 2
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = { impassable = no }
+				add_resource = {
+					type = gunpowder
+					amount = 2
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_roads_of_thaurissan
+		icon = GFX_focus_NOR_complete_the_sourthern_railway_network
+		cost = 30
+		prerequisite = { focus = DIC_infrastructure_plan }
+		relative_position_id = DIC_expansion
+		x = -2
+		y = 3
+
+		available = {
+			controls_state = 565
+			controls_state = 562
+			controls_state = 563
+			controls_state = 564
+			controls_state = 567
+			controls_state = 2166
+		}
+
+		completion_reward = {
+			DIC = { set_capital = { state = 565 } }
+			565 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			562 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			563 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			564 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			567 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			2166 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_our_borders
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = DIC_roads_of_thaurissan }
+		relative_position_id = DIC_expansion
+		x = -2
+		y = 4
+
+		completion_reward = {
+			563 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 6311
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4600
+					instant_build = yes
+				}
+			}
+			564 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4654
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 921
+					instant_build = yes
+				}
+			}
+			567 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4648
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4601
+					instant_build = yes
+				}
+			}
+			571 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4086
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4083
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_city_building
+		icon = GFX_goal_generic_construction
+		cost = 30
+		prerequisite = { focus = DIC_project_franclorn }
+		relative_position_id = DIC_expansion
+		x = 1
+		y = 2
+
+		completion_reward = {
+			add_ideas = DIC_underground_city
+		}
+	}
+
+	focus = {
+		id = DIC_city_of_war
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = DIC_city_building }
+		relative_position_id = DIC_expansion
+		x = 0
+		y = 3
+
+		completion_reward = {
+			565 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_city_of_pride
+		icon = GFX_focus_dark_iron_coren_direbrew
+		cost = 30
+		prerequisite = { focus = DIC_city_building }
+		relative_position_id = DIC_expansion
+		x = 2
+		y = 3
+
+		completion_reward = {
+			802 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_thaurissan_academy
+		icon = GFX_focus_POL_complete_april_constitution
+		cost = 30
+		prerequisite = { focus = DIC_city_of_pride }
+		prerequisite = { focus = DIC_city_of_war }
+		relative_position_id = DIC_expansion
+		x = 1
+		y = 4
+
+		completion_reward = {
+			add_ideas = DIC_investments_in_war
+		}
+	}
+
+	focus = {
+		id = DIC_refound_thaurissan
+		icon = GFX_focus_LAT_suspend_constitution_of_latvia
+		cost = 30
+		prerequisite = { focus = DIC_thaurissan_academy }
+		prerequisite = { focus = DIC_our_borders }
+		relative_position_id = DIC_expansion
+		x = 0
+		y = 5
+
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_province_name = {
+				id = 4621
+				name = "Thaurissan"
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Dark_Warfare
+		icon = GFX_focus_dark_iron_dwarf
+		cost = 30
+		x = 0
+		y = 0
+
+		available = { has_country_flag = unlocked_other_branches }
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 50
+					track = infantry
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = DIC_shadow_wings
+		icon = GFX_goal_generic_build_airforce
+		cost = 30
+		prerequisite = { focus = DIC_Dark_Warfare }
+		relative_position_id = DIC_Dark_Warfare
+		x = -3
+		y = 1
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.50
+			}
+			if = {
+				limit = {
+					ROOT = { has_any_grand_doctrine = air }
+				}
+				add_daily_mastery = {
+					name = doctrine_fighter
+					amount = 0.5
+					days = 50
+					track = fighter_aircraft
+				}
+			}
+			else = { air_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = DIC_gryphon_bombers
+		icon = GFX_goal_generic_air_bomber
+		cost = 30
+		prerequisite = { focus = DIC_shadow_wings }
+		relative_position_id = DIC_Dark_Warfare
+		x = -4
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_technology
+				bonus = 0.5
+				uses = 1
+				category = bomber_technology
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				add_building_construction = {
+					type = air_base
+					level = 1
+				}
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				add_building_construction = {
+					type = air_base
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_blackrock_gryphon_riders
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = DIC_shadow_wings }
+		relative_position_id = DIC_Dark_Warfare
+		x = -2
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_technology
+				bonus = 0.5
+				uses = 1
+				category = fighter_technology
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				add_building_construction = {
+					type = air_base
+					level = 1
+				}
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				add_building_construction = {
+					type = air_base
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_rule_the_skies
+		icon = GFX_goal_generic_air_fighter2
+		cost = 30
+		prerequisite = { focus = DIC_gryphon_bombers }
+		prerequisite = { focus = DIC_blackrock_gryphon_riders }
+		relative_position_id = DIC_Dark_Warfare
+		x = -3
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_armor_technology
+				bonus = 1
+				uses = 1
+				category = air_armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_dark_iron_tactics
+		icon = GFX_focus_chi_army_reform
+		cost = 30
+		prerequisite = { focus = DIC_Dark_Warfare }
+		relative_position_id = DIC_Dark_Warfare
+		x = 0
+		y = 2
+
+		completion_reward = {
+			army_experience = 15
+			add_manpower = 150
+		}
+	}
+
+	focus = {
+		id = DIC_Dark_iron_weapons
+		icon = GFX_goal_generic_major_war
+		cost = 30
+		prerequisite = { focus = DIC_Dark_Warfare }
+		relative_position_id = DIC_Dark_Warfare
+		x = 3
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = sword_technology
+				bonus = 0.75
+				uses = 1
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Iron_guard
+		icon = GFX_focus_dark_iron_anvil_guard
+		cost = 30
+		prerequisite = { focus = DIC_Dark_iron_weapons }
+		relative_position_id = DIC_Dark_Warfare
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = axeman_technology
+				bonus = 0.5
+				uses = 1
+				category = axeman_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_runes_of_old
+		icon = GFX_focus_dark_iron_high_justice_grimstone
+		cost = 30
+		prerequisite = { focus = DIC_Dark_iron_weapons }
+		relative_position_id = DIC_Dark_Warfare
+		x = 4
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spellcaster_technology
+				bonus = 0.5
+				uses = 1
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Hard_as_Dark_Iron
+		icon = GFX_goal_generic_defence
+		cost = 30
+		prerequisite = { focus = DIC_Iron_guard }
+		prerequisite = { focus = DIC_runes_of_old }
+		relative_position_id = DIC_Dark_Warfare
+		x = 3
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.5
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Dark_Warfare_II
+		icon = GFX_focus_secret_rearmament
+		cost = 30
+		prerequisite = { focus = DIC_dark_iron_tactics }
+		prerequisite = { focus = DIC_rule_the_skies }
+		prerequisite = { focus = DIC_Hard_as_Dark_Iron }
+		relative_position_id = DIC_Dark_Warfare
+		x = 0
+		y = 4
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 50
+					track = infantry
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = DIC_dark_iron_tactics_II
+		icon = GFX_focus_chi_army_reform
+		cost = 30
+		prerequisite = { focus = DIC_Dark_Warfare_II }
+		relative_position_id = DIC_Dark_Warfare
+		x = -1
+		y = 5
+
+		completion_reward = {
+			army_experience = 15
+			add_manpower = 150
+		}
+	}
+
+	focus = {
+		id = DIC_rain_lead
+		icon = GFX_focus_dark_iron_rifleman
+		cost = 30
+		prerequisite = { focus = DIC_dark_iron_tactics_II }
+		relative_position_id = DIC_Dark_Warfare
+		x = -1
+		y = 6
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_rifleman_technology
+				bonus = 0.5
+				uses = 1
+				category = dwarf_rifleman_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_confiscated_equipment
+		icon = GFX_focus_SOV_penal_battalions
+		cost = 30
+		prerequisite = { focus = DIC_rain_lead }
+		relative_position_id = DIC_Dark_Warfare
+		x = -2
+		y = 7
+
+		available = {
+			has_completed_focus = DIC_thorium_crackdown
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = dwarf_rifleman_equipment_1
+				amount = 600
+				producer = THR
+			}
+			add_equipment_to_stockpile = {
+				type = dwarf_axeman_equipment_1
+				amount = 300
+				producer = THR
+			}
+			add_equipment_to_stockpile = {
+				type = caravan_equipment_1
+				amount = 15
+				producer = THR
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Cold_as_Dark_iron
+		icon = GFX_goal_generic_defence
+		cost = 30
+		prerequisite = { focus = DIC_Dark_Warfare_II }
+		relative_position_id = DIC_Dark_Warfare
+		x = 1
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = heavy_armor_technology
+				bonus = 0.5
+				uses = 1
+				category = heavy_armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_rolling_mountain
+		icon = GFX_focus_dark_iron_siege_tank
+		cost = 30
+		prerequisite = { focus = DIC_Cold_as_Dark_iron }
+		relative_position_id = DIC_Dark_Warfare
+		x = 1
+		y = 6
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_steam_tank_technology
+				bonus = 0.5
+				uses = 1
+				category = dwarf_steam_tank_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_reuse_armor_plates
+		icon = GFX_focus_SOV_organize_wreckers
+		cost = 30
+		prerequisite = { focus = DIC_rolling_mountain }
+		relative_position_id = DIC_Dark_Warfare
+		x = 2
+		y = 7
+
+		available = {
+			has_completed_focus = DIC_thorium_crackdown
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DIC_stockpiled_supplies
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_thorium_crackdown
+		icon = GFX_goal_continuous_suppression
+		cost = 30
+		prerequisite = { focus = DIC_rain_lead }
+		prerequisite = { focus = DIC_rolling_mountain }
+		relative_position_id = DIC_Dark_Warfare
+		x = 0
+		y = 7
+
+		bypass = {
+			NOT = { country_exists = THC }
+		}
+
+		completion_reward = {
+			add_war_support = 0.02
+			add_popularity = {
+				ideology = old_gods
+				popularity = 0.05
+			}
+			2180 = { add_manpower = -200 }
+			add_tech_bonus = {
+				name = guard_technology
+				bonus = 0.5
+				uses = 1
+				category = guard_technology
+			}
+			remove_ideas = DIC_thorium_agitation
+		}
+	}
+
+	focus = {
+		id = DIC_foundry_fortifications
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = DIC_thorium_crackdown }
+		mutually_exclusive = { focus = DIC_from_under_the_mountain }
+		relative_position_id = DIC_Dark_Warfare
+		x = -3
+		y = 8
+
+		available = {
+			DIC = { has_country_flag = DIC_isolation }
+		}
+
+		completion_reward = {
+			1615 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 6199
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 6207
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 6192
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 6198
+					instant_build = yes
+				}
+			}
+			802 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6235
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6219
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_maintain_discipline
+		icon = GFX_focus_generic_support_the_left_right
+		cost = 30
+		prerequisite = { focus = DIC_foundry_fortifications }
+		relative_position_id = DIC_Dark_Warfare
+		x = -5
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = support_technology
+				bonus = 0.5
+				uses = 1
+				category = support_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_firelords_chosen
+		icon = GFX_goal_generic_army_artillery
+		cost = 30
+		prerequisite = { focus = DIC_foundry_fortifications }
+		relative_position_id = DIC_Dark_Warfare
+		x = -3
+		y = 9
+
+		completion_reward = {
+			set_technology = { DIC_firelords_chosen_tech = 1 }
+			custom_effect_tooltip = DIC_firelords_chosen_tech_tt
+		}
+	}
+
+	focus = {
+		id = DIC_rune_plate_forging
+		icon = GFX_goal_generic_defence
+		cost = 30
+		prerequisite = { focus = DIC_foundry_fortifications }
+		relative_position_id = DIC_Dark_Warfare
+		x = -1
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.75
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_stronghold_construction
+		icon = GFX_focus_usa_build_the_pentagon
+		cost = 30
+		prerequisite = { focus = DIC_maintain_discipline }
+		prerequisite = { focus = DIC_firelords_chosen }
+		relative_position_id = DIC_Dark_Warfare
+		x = -4
+		y = 10
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 0.5
+				uses = 1
+				category = fortification_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_vanguard_doctrine
+		icon = GFX_focus_secret_rearmament
+		cost = 30
+		prerequisite = { focus = DIC_rune_plate_forging }
+		prerequisite = { focus = DIC_firelords_chosen }
+		relative_position_id = DIC_Dark_Warfare
+		x = -2
+		y = 10
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 50
+					track = infantry
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = DIC_doomforge_defenders
+		icon = GFX_focus_dark_iron_dwarf
+		cost = 30
+		prerequisite = { focus = DIC_stronghold_construction }
+		prerequisite = { focus = DIC_vanguard_doctrine }
+		relative_position_id = DIC_Dark_Warfare
+		x = -3
+		y = 11
+
+		search_filters = {
+			FOCUS_FILTER_SPECIAL_PROJECT
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_dwarf_defender
+		}
+	}
+
+	focus = {
+		id = DIC_blades_in_the_dark
+		icon = GFX_focus_dark_iron_assassin
+		cost = 30
+		prerequisite = { focus = DIC_thorium_crackdown }
+		prerequisite = { 
+			focus = DIC_vanguard_doctrine 
+			focus = DIC_stone_lords 
+		}
+		relative_position_id = DIC_Dark_Warfare
+		x = 0
+		y = 11
+
+		search_filters = {
+			FOCUS_FILTER_SPECIAL_PROJECT
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_dark_iron_assassins
+		}
+	}
+
+	focus = {
+		id = DIC_improved_fragmentation_rounds
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = DIC_doomforge_defenders }
+		prerequisite = { focus = DIC_blades_in_the_dark }
+		mutually_exclusive = { focus = DIC_long_range_recon }
+		relative_position_id = DIC_Dark_Warfare
+		x = -1
+		y = 12
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = guard_tower_technology
+				bonus = 0.5
+				uses = 1
+				category = guard_tower_technology
+			}
+			add_tech_bonus = {
+				name = dwarf_mortar_team_technology
+				bonus = 0.5
+				uses = 1
+				category = dwarf_mortar_team_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_long_range_recon
+		icon = GFX_focus_dark_iron_tower
+		cost = 30
+		prerequisite = { focus = DIC_angerforge_guards }
+		prerequisite = { focus = DIC_blades_in_the_dark }
+		mutually_exclusive = { focus = DIC_improved_fragmentation_rounds }
+		relative_position_id = DIC_Dark_Warfare
+		x = 1
+		y = 12
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = scout_tower_technology
+				bonus = 0.5
+				uses = 1
+				category = scout_tower_technology
+			}
+			add_tech_bonus = {
+				name = scout_plane_technology
+				bonus = 0.5
+				uses = 1
+				category = scout_plane_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_from_under_the_mountain
+		icon = GFX_focus_secret_rearmament
+		cost = 30
+		prerequisite = { focus = DIC_thorium_crackdown }
+		mutually_exclusive = { focus = DIC_foundry_fortifications }
+		relative_position_id = DIC_Dark_Warfare
+		x = 3
+		y = 8
+
+		available = {
+			DIC = { has_country_flag = DIC_expansionist	}
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 0.5
+					days = 50
+					track = operations
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = DIC_the_first_and_last
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		cost = 30
+		prerequisite = { focus = DIC_from_under_the_mountain }
+		relative_position_id = DIC_Dark_Warfare
+		x = 1
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = axeman_technology
+				bonus = 0.5
+				uses = 1
+				category = axeman_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_fury_of_the_core
+		icon = GFX_goal_generic_major_war
+		cost = 30
+		prerequisite = { focus = DIC_from_under_the_mountain }
+		relative_position_id = DIC_Dark_Warfare
+		x = 3
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = sword_technology
+				bonus = 0.5
+				uses = 1
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_of_above_and_below
+		icon = GFX_focus_GRE_a_land_of_mountains
+		cost = 30
+		prerequisite = { focus = DIC_from_under_the_mountain }
+		relative_position_id = DIC_Dark_Warfare
+		x = 5
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_mountaineer_technology
+				bonus = 0.5
+				uses = 1
+				category = dwarf_mountaineer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_stone_lords
+		icon = GFX_focus_eng_special_air_service
+		cost = 30
+		prerequisite = { focus = DIC_the_first_and_last }
+		prerequisite = { focus = DIC_fury_of_the_core }
+		relative_position_id = DIC_Dark_Warfare
+		x = 2
+		y = 10
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dwarf_mountain_king_technology
+				bonus = 0.5
+				uses = 1
+				category = dwarf_mountain_king_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_hounds_of_the_firelands
+		icon = GFX_focus_dark_iron_core_hound
+		cost = 30
+		prerequisite = { focus = DIC_of_above_and_below }
+		prerequisite = { focus = DIC_fury_of_the_core }
+		relative_position_id = DIC_Dark_Warfare
+		x = 4
+		y = 10
+
+		search_filters = {
+			FOCUS_FILTER_SPECIAL_PROJECT
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_corehound_companions
+		}
+	}
+
+	focus = {
+		id = DIC_angerforge_guards
+		icon = GFX_focus_dark_iron_dwarf
+		cost = 30
+		prerequisite = { focus = DIC_stone_lords }
+		prerequisite = { focus = DIC_hounds_of_the_firelands }
+		relative_position_id = DIC_Dark_Warfare
+		x = 3
+		y = 11
+
+		search_filters = {
+			FOCUS_FILTER_SPECIAL_PROJECT
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_dwarf_slayer
+		}
+	}
+
+	focus = {
+		id = DIC_Blackrock_Mountain
+		icon = GFX_focus_dark_iron_blackrock_mountain
+		cost = 14
+		x = 28
+		y = 0
+
+		available = { has_country_flag = unlocked_other_branches }
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = DIC_The_Masters_Will
+		icon = GFX_focus_dark_iron_majordomo_executus
+		cost = 5
+		prerequisite = { focus = DIC_Blackrock_Mountain }
+		#mutually_exclusive = { focus = DIC_Redemption }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 0
+		y = 1
+
+		available = { threat > 0.15 }
+
+		bypass = {
+			BRC = { has_completed_focus = BRC_identity_crisis }
+		}
+
+		completion_reward = {
+			add_stability = -0.20
+		}
+	}
+
+	focus = {
+		id = DIC_the_agreement
+		icon = GFX_focus_generic_treaty
+		cost = 5
+		prerequisite = { focus = DIC_The_Masters_Will }
+		#prerequisite = { focus = DIC_Redemption }
+		mutually_exclusive = { focus = DIC_Awake_Ragnaros }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -3
+		y = 2
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_isolation_tt
+			set_country_flag = DIC_isolation
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.02
+			}
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = DIC_the_green_shield
+		icon = GFX_focus_SWE_refuge_from_war
+		cost = 30
+		prerequisite = { focus = DIC_the_agreement }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -3
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_technology
+				bonus = 0.5
+				uses = 1
+				category = infantry_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_ragnaros_bidding
+		icon = GFX_focus_dark_iron_flamewalker
+		cost = 30
+		prerequisite = { focus = DIC_the_green_shield }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -5
+		y = 4
+
+		completion_reward = {
+			add_political_power = 25
+			add_popularity = {
+				ideology = old_gods
+				popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_promise_of_peace
+		icon = GFX_focus_generic_treaty
+		cost = 30
+		prerequisite = { focus = DIC_ragnaros_bidding }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -5
+		y = 5
+
+		completion_reward = {
+			add_stability = 0.10
+		}
+	}
+
+	focus = {
+		id = DIC_Promise_of_Safety
+		icon = GFX_goal_continuous_boost_freedom
+		cost = 30
+		prerequisite = { focus = DIC_promise_of_peace }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -5
+		y = 6
+
+		completion_reward = {
+			add_stability = 0.10
+		}
+	}
+
+	focus = {
+		id = DIC_unnatural_powers
+		icon = GFX_focus_dark_iron_the_fledling_god
+		cost = 30
+		prerequisite = { focus = DIC_the_green_shield }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -3
+		y = 4
+
+		available = {
+			524 = { is_owned_by = TSC }
+		}
+
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = fel
+				popularity = 0.02
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_preperations
+		icon = GFX_focus_dark_iron_tower
+		cost = 30
+		prerequisite = { focus = DIC_unnatural_powers }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -3
+		y = 5
+
+		completion_reward = {
+			1614 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6229
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6360
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 0.5
+				uses = 1
+				category = fortification_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_might_of_the_mountain
+		icon = GFX_focus_dark_iron_blackrock_mountain
+		cost = 30
+		prerequisite = { focus = DIC_preperations }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -3
+		y = 6
+
+		completion_reward = {
+			division_template = {
+				name = "Vault Guards"
+				priority = 1
+				regiments = {
+					dwarf_mountain_king = { x = 0 y = 0 }
+					dwarf_mountain_king = { x = 0 y = 1 }
+					dwarf_mountain_king = { x = 0 y = 2 }
+					dwarf_mountain_king = { x = 0 y = 3 }
+					dwarf_mountain_king = { x = 1 y = 0 }
+					dwarf_mountain_king = { x = 1 y = 1 }
+				}
+				support = {
+					dwarf_enforcer = { x = 0 y = 1 }
+				}
+			}
+			2181 = {
+				create_unit = {
+					division = "name = \"Vault Guards\" division_template = \"Vault Guards\" start_experience_factor = 0.75"
+					owner = DIC
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_protection_money
+		icon = GFX_focus_ETH_invest_in_the_east
+		cost = 30
+		prerequisite = { focus = DIC_the_green_shield }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -1
+		y = 4
+
+		available = {
+			524 = { is_owned_by = BRC }
+		}
+
+		completion_reward = {
+			add_stability = 0.10
+			add_timed_idea = {
+				idea = DIC_protection_payments
+				days = 360
+			}
+			BRC = {
+				add_timed_idea = {
+					idea = DIC_protection_payments_BRC
+					days = 360
+				}	
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Mining_Pact
+		icon = GFX_focus_dark_iron
+		cost = 30
+		prerequisite = { focus = DIC_protection_money }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -1
+		y = 5
+
+		completion_reward = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			BRC = {
+				modify_building_resources = {
+					building = iron_mine
+					resource = ores
+					amount = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_blackrock_throne
+		icon = GFX_focus_generic_japanese_imperial_glory
+		cost = 30
+		prerequisite = { focus = DIC_Mining_Pact }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = -1
+		y = 6
+
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			BRC = {
+				capital_scope = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			MLC = {
+				capital_scope = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Awake_Ragnaros
+		icon = GFX_focus_dark_iron_will_of_ragnaros
+		cost = 5
+		prerequisite = { focus = DIC_The_Masters_Will }
+		mutually_exclusive = { focus = DIC_the_agreement }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 2
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_expansion_tt
+			set_country_flag = DIC_expansionist
+			add_popularity = {
+				ideology = old_gods
+				popularity = 0.02
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = DIC_the_Masters_Plan
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		cost = 30
+		prerequisite = { focus = DIC_Awake_Ragnaros }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 3
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DIC_deep_isolation
+				add_idea = preparing_for_war
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_green_menace
+		icon = GFX_focus_dark_iron_orc_threat
+		cost = 30
+		prerequisite = { focus = DIC_the_Masters_Plan }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 3
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_technology
+				bonus = 0.5
+				uses = 1
+				category = infantry_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Ultimatum
+		icon = GFX_focus_dark_iron_chogall
+		cost = 30
+		prerequisite = { focus = DIC_the_Masters_Plan }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 5
+		y = 4
+
+		completion_reward = {
+			THC = {
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.95
+				}
+				add_ideas = THC_a_higher_purpose
+			}
+			if = {
+				limit = { has_non_aggression_pact_with = TSC }
+				diplomatic_relation = {
+					country = TSC
+					relation = non_aggression_pact
+					active = no
+				}	
+			}
+			###Align The Twilight Hammer event
+		}
+	}
+
+	focus = {
+		id = DIC_the_high_road
+		icon = GFX_focus_scroll_3
+		cost = 14
+		prerequisite = { focus = DIC_warlocks_to_work }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 3
+		y = 10
+
+		bypass = {
+			NOT = { country_exists = STO }
+		}
+
+		available = {
+			BRC = { NOT = { controls_state = 365 } }
+			OR = {
+				country_exists = BRC
+				country_exists = TSC
+			}
+			has_war = no
+		}
+
+		completion_reward = {
+			give_guarantee = STO
+			365 = { 
+				transfer_state_to = DIC	
+				set_demilitarized_zone = no
+			}
+			hidden_effect = {
+				793 = { transfer_state_to = DIC }	
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_pact_against_the_horde
+		icon = GFX_focus_scroll_1
+		cost = 14
+		prerequisite = { focus = DIC_warlocks_to_work }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 5
+		y = 10
+
+		available = {
+			STO = {
+				OR = {
+					has_war_with = BRC
+					has_war_with = TSC
+				}
+				NOT = { has_war_with = DIC }
+			}
+			OR = {
+				has_war_with = BRC
+				has_war_with = TSC
+			}
+			563 = { is_controlled_by_ROOT_or_ally = yes }
+			571 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			diplomatic_relation = {
+				country = STO
+				relation = military_access
+				active = yes
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_unwelcome_guests
+		icon = GFX_focus_dark_iron_mole_machine
+		cost = 14
+		prerequisite = { 
+			focus = DIC_the_high_road 
+			focus = DIC_pact_against_the_horde
+		}
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 11
+
+		completion_reward = {
+			division_template = {
+				name = "Dwarven Sappers"
+				priority = 1
+				regiments = {
+					dwarf_axeman = { x = 0 y = 0 }
+					dwarf_axeman = { x = 0 y = 1 }
+					dwarf_axeman = { x = 0 y = 2 }
+					dwarf_axeman = { x = 0 y = 3 }
+					dwarf_axeman = { x = 1 y = 0 }
+					dwarf_axeman = { x = 1 y = 1 }
+					dwarf_axeman = { x = 1 y = 2 }
+					dwarf_axeman = { x = 1 y = 3 }
+				}
+				support = {
+					dwarf_mortar_team_support = {	x = 0 y = 0	}
+					dwarf_enforcer = { x = 0 y = 1 }
+				}
+			}
+			142 = {
+				transfer_state_to = DIC
+				create_unit = {
+					division = "name = \"Dwarven Sappers\" division_template = \"Dwarven Sappers\" start_experience_factor = 0.75"
+					owner = DIC
+					count = 3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_mountain_awakens
+		icon = GFX_focus_dark_iron_blackrock_mountain
+		cost = 30
+		prerequisite = { focus = DIC_the_green_menace }
+		prerequisite = { focus = DIC_Ultimatum }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 5
+
+		will_lead_to_war_with = TSC
+		will_lead_to_war_with = BRC
+
+		available = {
+			OR = {
+				BRC = {
+					OR = {
+						has_completed_focus = BRC_identity_crisis
+						has_completed_focus = BRC_blackhands_horde
+						has_completed_focus = BRC_doomhammers_horde
+						has_war_with = STO
+					}
+					524 = { is_controlled_by = BRC }
+				}
+				TSC = {
+					has_war_with = STO
+					524 = { is_controlled_by = TSC }
+				}
+			}
+		}
+
+		completion_reward = {
+			add_ideas = DIC_firelords_command
+			if = {
+				limit = { 524 = { is_controlled_by = TSC }	}
+				declare_war_on = {
+					target = TSC
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = { 524 = { is_controlled_by = BRC } }
+				declare_war_on = {
+					target = BRC
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = { 524 = { is_controlled_by = DIC } }
+				declare_war_on = {
+					target = BRC
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = TSC
+					type = annex_everything
+				}
+			}
+			MLC = {
+				create_faction = "Followers of the Firelord"
+				add_to_faction = THC
+			}
+			hidden_effect = {
+				THC = {
+					set_politics = {
+						ruling_party = old_gods
+						elections_allowed = no
+					}
+					white_peace = STO
+					remove_ideas = {
+						support_the_alliance_idea
+						support_the_horde_idea
+						generic_horde_blood_and_thunder_idea
+						stay_neutral_idea
+						promise_of_power_idea
+						in_service_of_death_idea
+						keep_their_creations_idea
+						horde_clan_respect_1_idea
+						horde_clan_respect_2_idea
+						horde_clan_respect_3_idea
+						horde_clan_respect_4_idea
+						horde_clan_respect_5_idea
+					}
+					uncomplete_national_focus = { focus = pick_a_side }
+					uncomplete_national_focus = { focus = generic_support_the_horde_focus }
+					uncomplete_national_focus = { focus = generic_horde_peacetime_preparations_focus }
+					uncomplete_national_focus = { focus = generic_prove_our_strength_focus }
+					uncomplete_national_focus = { focus = generic_horde_forging_a_new_nation_focus }
+					uncomplete_national_focus = { focus = generic_horde_wartime_fervour_focus }
+					uncomplete_national_focus = { focus = generic_horde_blood_and_thunder_focus }
+					complete_national_focus = serving_higher_powers
+					complete_national_focus = whispers_of_the_old_gods
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_For_the_firelord
+		icon = GFX_focus_dark_iron_will_of_ragnaros
+		cost = 5
+		prerequisite = { focus = DIC_the_mountain_awakens }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 6
+
+		completion_reward = {
+			add_autonomy_score = {
+				value = -250
+				localization = "FIRE LORD"
+			}
+			every_country = {
+				limit = { is_in_faction_with = DIC }
+				add_timed_idea = {
+					idea = DIC_for_the_firelord_idea
+					days = 120
+				}
+			}
+			add_timed_idea = {
+				idea = DIC_for_the_firelord_idea
+				days = 120
+			}
+			THC = {
+				hidden_effect = {
+					division_template = {
+						name = "Dwarven Sappers"
+						priority = 1
+						regiments = {
+							dwarf_mortar_team = { x = 0 y = 0 }
+							dwarf_axeman = { x = 0 y = 1 }
+							dwarf_axeman = { x = 0 y = 2 }
+							dwarf_axeman = { x = 0 y = 3 }
+							dwarf_mortar_team = { x = 1 y = 0 }
+							dwarf_axeman = { x = 1 y = 1 }
+							dwarf_axeman = { x = 1 y = 2 }
+							dwarf_axeman = { x = 1 y = 3 }
+						}
+						support = {
+							dwarf_enforcer = { x = 0 y = 0 }
+						}
+						is_locked = yes
+					}
+					random_owned_state = {
+						create_unit = {
+							division = "name = \"Dwarven Sappers\" division_template = \"Dwarven Sappers\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_owned_state = {
+						create_unit = {
+							division = "name = \"Dwarven Sappers\" division_template = \"Dwarven Sappers\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_owned_state = {
+						create_unit = {
+							division = "name = \"Dwarven Sappers\" division_template = \"Dwarven Sappers\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_owned_state = {
+						create_unit = {
+							division = "name = \"Dwarven Sappers\" division_template = \"Dwarven Sappers\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_owned_state = {
+						create_unit = {
+							division = "name = \"Dwarven Sappers\" division_template = \"Dwarven Sappers\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_a_stiring_from_within
+		icon = GFX_goal_continuous_restrict_freedom
+		cost = 5
+		prerequisite = { focus = DIC_the_mountain_awakens }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 6
+		y = 6
+
+		available = {
+			524 = { is_controlled_by_ROOT_or_ally = yes }
+			807 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			28 = { transfer_state_to = DIC }
+			523 = { transfer_state_to = DIC }
+			524 = { transfer_state_to = DIC }
+			807 = { transfer_state_to = DIC }
+			1617 = { transfer_state_to = DIC }
+			1618 = { transfer_state_to = DIC }
+			1619 = { transfer_state_to = DIC }
+			hidden_effect = {
+				MLC = {
+					if = {
+						limit = { NOT = { MLC = { has_tech = horse_equipment_tech } } }
+						set_technology = {
+							horse_equipment_tech = 1
+							mounted_footman_tech = 1
+						}
+					}
+				}
+			}
+			MLC = {
+				hidden_effect = {
+					division_template = {
+						name = "Core Hounds"
+						priority = 1
+						regiments = {
+							mounted_footman = { x = 0 y = 0 }
+							mounted_footman = { x = 0 y = 1 }
+							mounted_footman = { x = 0 y = 2 }
+							mounted_footman = { x = 0 y = 3 }
+							mounted_footman = { x = 1 y = 0 }
+							mounted_footman = { x = 1 y = 1 }
+							mounted_footman = { x = 1 y = 2 }
+							mounted_footman = { x = 1 y = 3 }
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by_ROOT_or_subject = yes
+							impassable = no
+						}
+						create_unit = {
+							division = "name = \"Core Hounds\" division_template = \"Core Hounds\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by_ROOT_or_subject = yes
+							impassable = no
+						}
+						create_unit = {
+							division = "name = \"Core Hounds\" division_template = \"Core Hounds\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by_ROOT_or_subject = yes
+							impassable = no
+						}
+						create_unit = {
+							division = "name = \"Core Hounds\" division_template = \"Core Hounds\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by_ROOT_or_subject = yes
+							impassable = no
+						}
+						create_unit = {
+							division = "name = \"Core Hounds\" division_template = \"Core Hounds\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+				}
+			}
+			#### Add Corehounds (Need to Make them Specifically For this)
+		}
+	}
+
+	focus = {
+		id = DIC_the_scorching_tide
+		icon = GFX_goal_continuous_suppression
+		cost = 5
+		prerequisite = { focus = DIC_the_mountain_awakens }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 2
+		y = 6
+
+		available = {
+			565 = { is_controlled_by_ROOT_or_ally = yes }
+			807 = { is_controlled_by_ROOT_or_ally = yes }
+			2169 = { is_controlled_by_ROOT_or_ally = yes }
+			OR = {
+				TSC = { has_capitulated = yes }
+				BRC = { has_capitulated = yes }
+			}
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_the_scorching_tide_tt
+			hidden_effect = {
+				transfer_state = 73
+				transfer_state = 542
+				transfer_state = 544
+				transfer_state = 546
+				transfer_state = 548
+				transfer_state = 551
+				transfer_state = 554
+				transfer_state = 657
+				transfer_state = 781
+				transfer_state = 804
+				transfer_state = 805
+				transfer_state = 1527
+				transfer_state = 2167
+				transfer_state = 2168
+				transfer_state = 2169
+				transfer_state = 2170
+				annex_burning_steppes = yes
+			}
+			MLC = {
+				hidden_effect = {
+					division_template = {
+						name = "Fire Elementals"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 1 y = 0 }
+							footman = { x = 1 y = 1 }
+							footman = { x = 1 y = 2 }
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Fire Elementals\" division_template = \"Fire Elementals\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Fire Elementals\" division_template = \"Fire Elementals\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Fire Elementals\" division_template = \"Fire Elementals\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Fire Elementals\" division_template = \"Fire Elementals\" start_experience_factor = 0.75"
+							owner = MLC
+						}
+					}
+				}
+			}
+			#### Add Fire Elementals
+		}
+	}
+
+	focus = {
+		id = DIC_embers_of_twilight
+		icon = GFX_focus_THC_generic
+		cost = 14
+		prerequisite = { focus = DIC_For_the_firelord }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 7
+
+		bypass = {
+			BRC = {
+				OR = {
+					is_in_faction_with = DIC
+					exists = no
+				}
+			}
+			TSC = {
+				OR = {
+					is_in_faction_with = DIC
+					exists = no
+				}
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = { 
+					NOT = { country_exists = THC }
+				}
+				THC = { become_exiled_in = { target = DIC legitimacy = 60 } }
+			}
+			if = {
+				limit = { THC = { NOT = { has_government = old_gods } } }
+				THC = {	set_politics = { ruling_party = old_gods elections_allowed = no } }
+			}
+			
+			hidden_effect = {
+				THC = {
+					division_template = {
+						name = "Exiled Grunts"
+						priority = 1
+						regiments = {
+							grunt = { x = 0 y = 0 }
+							grunt = { x = 0 y = 1 }
+							grunt = { x = 0 y = 2 }
+							grunt = { x = 1 y = 0 }
+							grunt = { x = 1 y = 1 }
+							grunt = { x = 1 y = 2 }
+						}
+					}
+					delete_unit_template_and_units = {
+						division_template = "Dwarven Sappers"
+						disband = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_a_promising_deal
+		icon = GFX_focus_dark_iron_a_promising_deal
+		cost = 14
+		prerequisite = { focus = DIC_embers_of_twilight }
+		mutually_exclusive = { focus = DIC_silence_the_puppet }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 3
+		y = 8
+
+		available = {
+			OR = {
+				TSC = { has_capitulated = yes }
+				NOT = {	country_exists = TSC }
+			}
+		}
+
+		completion_reward = {
+			TSC = { become_exiled_in = { target = DIC legitimacy = 60 } }
+			add_popularity = {
+				ideology = fel
+				popularity = 0.02
+			}
+			hidden_effect = {
+				TSC = { leave_faction = yes }
+				MLC = {	add_to_faction = TSC }
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_silence_the_puppet
+		icon = GFX_focus_SWE_neither_death_nor_dishonor
+		cost = 14
+		prerequisite = { focus = DIC_embers_of_twilight }
+		mutually_exclusive = { focus = DIC_a_promising_deal }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 5
+		y = 8
+
+		available = {
+			OR = {
+				TSC = { has_capitulated = yes }
+				NOT = {	country_exists = TSC }
+			}
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			add_popularity = {
+				ideology = old_gods
+				popularity = 0.02
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_warlocks_to_work
+		icon = GFX_focus_dark_iron_test_loyalty
+		cost = 14
+		prerequisite = { 
+			focus = DIC_a_promising_deal 
+			focus = DIC_silence_the_puppet
+		}
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 9
+
+		available = {
+			OR = {
+				552 = {	is_controlled_by = THC }
+				553 = {	is_controlled_by = THC }
+			}
+		}
+
+		completion_reward = {
+			552 = { 
+				add_core_of = THC 
+				add_manpower = -5000
+			}
+			553 = { 
+				add_core_of = THC 
+				add_manpower = -3000
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_twilight_exiles
+		icon = GFX_focus_dark_iron_overseer_oilfist
+		cost = 14
+		prerequisite = { focus = DIC_a_stiring_from_within }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 6
+		y = 7
+
+		available = {
+			THC = { has_capitulated = yes }
+			has_completed_focus = DIC_embers_of_twilight
+			546 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			THC = {
+				declare_war_on = {
+					target = THR
+					type = annex_everything
+				}
+			}
+			THC = {
+				hidden_effect = {
+					add_ideas = THC_exile_war
+				}
+				hidden_effect = { transfer_state = 552 }
+				hidden_effect = {
+					division_template = {
+						name = "Ogre Brutes"
+						priority = 1
+						regiments = {
+							ogre_brute = { x = 0 y = 0 }
+							ogre_brute = { x = 0 y = 1 }
+							ogre_brute = { x = 0 y = 2 }
+							ogre_brute = { x = 1 y = 0 }
+							ogre_brute = { x = 1 y = 1 }
+							ogre_brute = { x = 1 y = 2 }
+						}
+					}
+					552 = {
+						create_unit = {
+							division = "name = \"Ogre Brutes\" division_template = \"Ogre Brutes\" start_experience_factor = 0.75"
+							owner = THC
+							count = 3
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_primodial_flame
+		icon = GFX_focus_THC_generic
+		cost = 14
+		prerequisite = { focus = DIC_the_scorching_tide }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 2
+		y = 7
+
+		available = {
+			THC = { has_capitulated = yes }
+			has_completed_focus = DIC_embers_of_twilight
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_the_primodial_flame_tt
+			DIC = {
+				hidden_effect = {
+					division_template = {
+						name = "Dwarven Primalists"
+						priority = 1
+						regiments = {
+							dwarf_axeman = { x = 0 y = 0 }
+							dwarf_axeman = { x = 0 y = 1 }
+							dwarf_axeman = { x = 0 y = 2 }
+							dwarf_axeman = { x = 0 y = 3 }
+							dwarf_axeman = { x = 1 y = 0 }
+							dwarf_axeman = { x = 1 y = 1 }
+							dwarf_axeman = { x = 1 y = 2 }
+							dwarf_axeman = { x = 1 y = 3 }
+						}
+						support = {
+							dwarf_thane = { x = 0 y = 0 }
+							dwarf_rune_priest = { x = 0 y = 1 }
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Dwarven Primalists\" division_template = \"Dwarven Primalists\" start_experience_factor = 0.75"
+							owner = DIC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Dwarven Primalists\" division_template = \"Dwarven Primalists\" start_experience_factor = 0.75"
+							owner = DIC
+						}
+					}
+				}
+			}
+			THC = {
+				hidden_effect = {
+					division_template = {
+						name = "Ogre Primalists"
+						priority = 1
+						regiments = {
+							ogre_brute = { x = 0 y = 0 }
+							ogre_geomancer = { x = 0 y = 1 }
+							ogre_geomancer = { x = 0 y = 2 }
+							ogre_brute = { x = 1 y = 0 }
+							ogre_geomancer = { x = 1 y = 1 }
+							ogre_geomancer = { x = 1 y = 2 }
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Ogre Primalists\" division_template = \"Ogre Primalists\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Ogre Primalists\" division_template = \"Ogre Primalists\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Ogre Primalists\" division_template = \"Ogre Primalists\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+					random_state = {
+						limit = { 
+							is_controlled_by = DIC
+							impassable = no 
+						}
+						create_unit = {
+							division = "name = \"Ogre Primalists\" division_template = \"Ogre Primalists\" start_experience_factor = 0.75"
+							owner = THC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_convince_shadow_council
+		icon = GFX_focus_dark_iron_orc_warlock
+		cost = 30
+		prerequisite = { focus = DIC_a_promising_deal }
+		mutually_exclusive = { focus = DIC_the_orcish_question }
+		mutually_exclusive = { focus = DIC_twilight_hammer }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 2
+		y = 12
+
+		available = { always = no }
+
+		completion_reward = {
+			#### Puppet The Shadow Council
+		}
+	}
+
+	focus = {
+		id = DIC_the_fledgling_god
+		icon = GFX_focus_dark_iron_the_fledling_god
+		cost = 30
+		prerequisite = { focus = DIC_the_breadbasket }
+		prerequisite = { focus = DIC_convince_shadow_council }
+		mutually_exclusive = { focus = DIC_whispers_to_the_west }
+		mutually_exclusive = { focus = DIC_the_barren_world }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 1
+		y = 15
+
+		available = { always = no }
+
+		completion_reward = {
+			###Lead to War on the Broken Isle
+		}
+	}
+
+	#focus = {
+	#	id = DIC_dark_iron_reaver
+	#	icon = GFX_focus_dark_iron_fel_reaver
+	#	cost = 30
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 1
+	#	y = 18
+
+	#	completion_reward = {
+	#		set_technology = { dark_iron_reaver_tech = 1 }
+	#	}
+	#}
+
+	focus = {
+		id = DIC_twilight_hammer
+		icon = GFX_focus_dark_iron_reward_the_faithful
+		cost = 30
+		prerequisite = {  focus = DIC_unwelcome_guests }
+		mutually_exclusive = { focus = DIC_convince_shadow_council }
+		mutually_exclusive = { focus = DIC_the_orcish_question }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 12
+
+		available = {
+			BRC = {
+				OR = {
+					is_in_faction_with = DIC
+					exists = no
+				}
+			}
+			TSC = {
+				OR = {
+					is_in_faction_with = DIC
+					exists = no
+				}
+			}
+			has_war = no
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_twilight_hammer_tt
+			hidden_effect = {
+				every_state = {
+					limit = { is_core_of = BRC }
+					remove_core_of = BRC
+				}
+				every_state = {
+					limit = { is_core_of = BTG }
+					remove_core_of = BTG
+				}
+				every_state = {
+					limit = { is_core_of = BHC }
+					remove_core_of = BHC
+				}
+				every_state = {
+					limit = { is_core_of = BBC }
+					remove_core_of = BBC
+				}
+				every_state = {
+					limit = { is_core_of = DMC }
+					remove_core_of = DMC
+				}
+				every_state = {
+					limit = { 
+						is_core_of = FWC 
+						is_controlled_by_ROOT_or_ally = yes
+					}
+					remove_core_of = DMC
+				}
+				THC = {
+					annex_blasted_lands = yes
+					transfer_state = 43
+					transfer_state = 395
+					transfer_state = 396
+					transfer_state = 397
+					transfer_state = 398
+					transfer_state = 399
+					transfer_state = 400
+					transfer_state = 401
+					transfer_state = 402
+					transfer_state = 403
+					transfer_state = 404
+					transfer_state = 405
+					transfer_state = 406
+					transfer_state = 407
+					transfer_state = 408
+					transfer_state = 2154
+					transfer_state = 2155
+					transfer_state = 2156
+					transfer_state = 2165
+					delete_unit_template_and_units = {
+						division_template = "Dwarven Sappers"
+						disband = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_southern_kingdom
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 5
+		y = 13
+
+		bypass = {
+			NOT = {	country_exists = STO }
+		}
+
+		available = {
+			has_completed_focus = DIC_Awake_Ragnaros
+			NOT = { has_war_with = BRC }
+			NOT = { STO = { has_war_with = BRC } }
+			NOT = { STO = { is_in_faction_with = DIC } }
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = STO
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_pointless_fools
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 3
+		y = 13
+
+		bypass = {
+			NOT = {	country_exists = STO }
+		}
+
+		available = {
+			has_completed_focus = DIC_Awake_Ragnaros
+			country_exists = STO
+			NOT = { STO = { is_in_faction_with = DIC } }
+			STO = {
+				has_war_with = BRC
+				casualties > 24999
+			}
+			OR = {
+				has_completed_focus = DIC_pact_against_the_horde
+			}
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = STO
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_breadbasket
+		icon = GFX_focus_dark_iron_westfall
+		cost = 30
+		prerequisite = { 
+			focus = DIC_the_southern_kingdom 
+			focus = DIC_pointless_fools
+		}
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 2
+		y = 14
+
+		available = {
+			OR = {
+				is_puppet_of = MLC
+				is_puppet = no
+			}
+			NOT = {	country_exists = STO }
+			142 = { is_controlled_by_ROOT_or_ally = yes }
+			143 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_the_breadbasket_tt
+			BLG = {
+				give_resource_rights = {
+					receiver = DIC
+					state = 38
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = { NOT = { BLG = { is_puppet_of = DIC } } }
+					BLG = { 
+						DIC = { puppet = BLG } 
+						hidden_effect = {
+							add_popularity = {
+								ideology = old_gods
+								popularity = 1
+							}
+							set_capital = { state = 142 }
+							set_country_flag = dwarf_technology
+							set_country_flag = slave_traders
+							add_ideas = early_military_development
+							add_ideas = military_admin
+							add_ideas = slavers_guild
+							set_technology = { dwarf_enforcer_training_tech_1 = 1 }
+						}
+					}
+				}
+				BLG = {	annex_westfall = yes }
+				142 = { 
+					add_core_of = BLG
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				}
+				143 = { 
+					add_core_of = BLG
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes  
+				}
+				BLG = {
+					add_manpower = 250
+					add_equipment_to_stockpile = {
+						type = footman_equipment_1
+						amount = 200
+						producer = STO
+					}
+					add_equipment_to_stockpile = {
+						type = human_support_equipment_1
+						amount = 20
+						producer = STO
+					}
+					add_equipment_to_stockpile = {
+						type = archer_equipment_1
+						amount = 50
+						producer = STO
+					}
+					add_equipment_to_stockpile = {
+						type = convoy
+						amount = 15
+						producer = STO
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_rabble
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		cost = 30
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 14
+
+		prerequisite = { 
+			focus = DIC_the_southern_kingdom 
+			focus = DIC_pointless_fools
+		}
+
+		available = {
+			NOT = { is_puppet_of = STO }
+			NOT = {	country_exists = STO }
+			361 = { is_controlled_by_ROOT_or_ally = yes }
+			325 = { is_controlled_by_ROOT_or_ally = yes }
+			327 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = ELK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RPP
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RRP
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_hold_darkshire
+		icon = GFX_focus_stormwind_town_hall
+		cost = 30
+		prerequisite = { 
+			focus = DIC_the_southern_kingdom 
+			focus = DIC_pointless_fools
+		}
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 6
+		y = 14
+
+		available = {
+			OR = {
+				is_puppet_of = MLC
+				is_puppet = no
+			}
+			NOT = {	country_exists = STO }
+			304 = { is_controlled_by_ROOT_or_ally = yes }
+			309 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = DIC_hold_darkshire_tt
+			BLG = {
+				give_resource_rights = {
+					receiver = DIC
+					state = 307
+				}
+			}
+			hidden_effect = {
+				if = {
+					limit = { NOT = { BLG = { is_puppet_of = DIC } } }
+					BLG = { 
+						DIC = { puppet = BLG } 
+						hidden_effect = {
+							add_popularity = {
+								ideology = old_gods
+								popularity = 1
+							}
+							set_capital = { state = 142 }
+							set_country_flag = dwarf_technology
+							set_country_flag = slave_traders
+							add_ideas = early_military_development
+							add_ideas = military_admin
+							add_ideas = slavers_guild
+							set_technology = { dwarf_enforcer_training_tech_1 = 1 }
+						}
+					}
+				}
+			}
+			BLG = { 
+				hidden_effect = {
+					transfer_state = 1602
+					transfer_state = 310
+					transfer_state = 1603
+					transfer_state = 1601
+					transfer_state = 308
+					transfer_state = 1598
+					transfer_state = 366
+					transfer_state = 309
+					transfer_state = 40
+					transfer_state = 307
+					transfer_state = 306
+					transfer_state = 305
+					transfer_state = 302
+					transfer_state = 304
+					transfer_state = 782
+					transfer_state = 1600
+					transfer_state = 1599
+					transfer_state = 301
+					transfer_state = 303
+					transfer_state = 2150
+					transfer_state = 2151
+					transfer_state = 2152
+					304 = { 
+						add_core_of = BLG 
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes 
+					}
+					309 = { 
+						add_core_of = BLG 
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes 
+					}
+					add_manpower = 250
+					add_equipment_to_stockpile = {
+						type = footman_equipment_1
+						amount = 200
+						producer = STO
+					}
+					add_equipment_to_stockpile = {
+						type = human_support_equipment_1
+						amount = 20
+						producer = STO
+					}
+					add_equipment_to_stockpile = {
+						type = archer_equipment_1
+						amount = 50
+						producer = STO
+					}
+				} 
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_whispers_to_the_west
+		icon = GFX_focus_dark_iron_whispers_west
+		cost = 30
+		prerequisite = { 
+			focus = DIC_the_breadbasket 
+			focus = DIC_hold_darkshire 
+		}
+		mutually_exclusive = { focus = DIC_the_fledgling_god }
+		mutually_exclusive = { focus = DIC_the_barren_world }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 4
+		y = 15
+
+		available = {
+			always = no
+			has_completed_focus = DIC_twilight_hammer
+		}
+
+		completion_reward = {
+			### Will Lead to Kalimdor to contest the Old Gods
+		}
+	}
+
+	focus = {
+		id = DIC_the_orcish_question
+		icon = GFX_focus_blackrock_banner
+		cost = 30
+		prerequisite = { focus = DIC_silence_the_puppet }
+		mutually_exclusive = { focus = DIC_convince_shadow_council }
+		mutually_exclusive = { focus = DIC_twilight_hammer }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 6
+		y = 12
+
+		available = { always = no }
+
+		completion_reward = {
+			### Align some of the Orc Clans
+		}
+	}
+
+	focus = {
+		id = DIC_the_barren_world
+		icon = GFX_focus_dark_iron_the_barren_world
+		cost = 30
+		prerequisite = { focus = DIC_hold_darkshire }
+		prerequisite = { focus = DIC_the_orcish_question }
+		mutually_exclusive = { focus = DIC_the_fledgling_god }
+		mutually_exclusive = { focus = DIC_whispers_to_the_west }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 7
+		y = 15
+
+		available = { always = no }
+
+		completion_reward = {
+			###Conqour the Remaining Orc Clans on Dreanor
+		}
+	}
+
+	focus = {
+		id = DIC_blackhands_command
+		icon = GFX_focus_dark_iron_blackhand
+		cost = 30
+		prerequisite = { focus = DIC_make_an_example }
+		mutually_exclusive = { focus = DIC_kilrogg_loyalty }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 6
+		y = 17
+
+		available = { always = no }
+
+		completion_reward = {
+			###Blackhand will Serve us
+		}
+	}
+
+	focus = {
+		id = DIC_make_an_example
+		icon = GFX_focus_dark_iron_doomhammer
+		cost = 21
+		prerequisite = { focus = DIC_the_barren_world }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 7
+		y = 16
+
+		available = { always = no }
+
+		completion_reward = {
+			###Doomhammer Refuses to Take a Knee Murder Him
+			add_war_support = 0.05
+			add_political_power = 50
+			BRC = {
+				add_stability = -0.10
+				remove_ideas = BRC_orgrim_doomhammer
+			}
+			hidden_effect = {
+				BRC = { retire_character = BRC_orgrim_doomhammer }
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_kilrogg_loyalty
+		icon = focus_generic_kilrog_deadeye
+		cost = 30
+		prerequisite = { focus = DIC_make_an_example }
+		mutually_exclusive = { focus = DIC_blackhands_command }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 8
+		y = 17
+
+		available = { always = no }
+
+		completion_reward = {
+			###Kilrogg Will Serve Us
+		}
+	}
+
+	focus = {
+		id = DIC_Dwarves
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		cost = 5
+		prerequisite = { focus = DIC_Awake_Ragnaros }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 3
+
+		available = {
+			OR = {
+				has_completed_focus = DIC_convince_shadow_council
+				has_completed_focus = DIC_twilight_hammer
+				has_completed_focus = DIC_the_orcish_question
+			}
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = DIC_push_to_the_loch
+		icon = GFX_focus_ETH_amedeos_feast_of_maskal
+		cost = 30
+		prerequisite = { focus = DIC_Bronzebeards }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 13
+		y = 5
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DIC_tides_of_war
+				days = 70
+			}
+
+		}
+	}
+
+	focus = {
+		id = DIC_old_titan_hold
+		icon = GFX_goal_support_democracy
+		cost = 30
+		prerequisite = { focus = DIC_push_to_the_loch }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 13
+		y = 6
+
+		available = {
+			464 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = UDA
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_broken_discs
+		icon = GFX_goal_support_democracy
+		cost = 30
+		prerequisite = { focus = DIC_old_titan_hold }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 14
+		y = 7
+
+		available = {
+			1580 = { is_controlled_by_ROOT_or_ally = yes }
+			1579 = { is_controlled_by_ROOT_or_ally = yes }
+			1578 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				1580 = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				1579 = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				1578 = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes 
+				}
+				1577 = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			add_ideas = DIC_the_broken_discs
+			1580 = { add_core_of = DIC }
+			1579 = { add_core_of = DIC }
+			1578 = { add_core_of = DIC }
+			1577 = { add_core_of = DIC }
+		}
+	}
+
+	focus = {
+		id = DIC_true_indurium_ore
+		icon = GFX_focus_dark_iron
+		cost = 14
+		prerequisite = { focus = DIC_the_broken_discs }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 14
+		y = 8
+
+		available = {
+			1580 = { 
+				OR = {
+					iron_mine > 1
+					sulfur_mine > 1
+				}
+			}
+			1579 = { 
+				OR = {
+					iron_mine > 1
+					sulfur_mine > 1
+				}
+			}
+			1578 = { 
+				OR = {
+					iron_mine > 1
+					sulfur_mine > 1
+				}
+			}
+		}
+
+		completion_reward = {
+			1580 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			1579 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			1578 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = altar_technology
+				bonus = 2
+				uses = 1
+				category = altar_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Bronzebeards
+		icon = GFX_focus_dark_iron_bronzebeard_fall
+		cost = 14
+		prerequisite = { focus = DIC_Dwarves }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 4
+
+		completion_reward = {
+			declare_war_on = {
+				target = IRO
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_bloody_troggs
+		icon = GFX_focus_generic_japanese_imperial_glory
+		cost = 30
+		prerequisite = { focus = DIC_Bronzebeards }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 11
+		y = 5
+
+		available = {
+			462 = { is_controlled_by_ROOT_or_ally = yes }
+			474 = { is_controlled_by_ROOT_or_ally = yes }
+			465 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				462 = { transfer_state_to = DIC	}
+				474 = { transfer_state_to = DIC	}
+				465 = { transfer_state_to = DIC	}
+			}
+			army_experience = 20
+			462 = { add_compliance = 20 }
+			474 = { add_compliance = 20 }
+			465 = { add_compliance = 20 }
+		}
+	}
+
+	focus = {
+		id = DIC_eastern_resistance
+		icon = GFX_focus_POL_plan_east
+		cost = 30
+		prerequisite = { focus = DIC_bloody_troggs }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 11
+		y = 6
+
+		available = {
+			472 = { is_controlled_by_ROOT_or_ally = yes }
+			37 = { is_controlled_by_ROOT_or_ally = yes }
+			2187 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			DUC = {
+				DIC = { puppet = DUC }
+				hidden_effect = {
+					add_popularity = {
+						ideology = old_gods
+						popularity = 0.6
+					}
+					set_capital = { state = 37 }
+					set_country_flag = ogre_technology
+					add_ideas = primary_religion_the_hour_of_twilight
+				}
+			}
+			472 = {
+				transfer_state_to = DUC
+				add_core_of = DUC
+			}
+			37 = {
+				transfer_state_to = DUC
+				add_core_of = DUC
+			}
+			2187 = {
+				transfer_state_to = DUC
+				add_core_of = DUC
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_a_guiding_hand
+		icon = GFX_goal_generic_intelligence_exchange
+		cost = 30
+		prerequisite = { focus = DIC_eastern_resistance }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 10
+		y = 7
+
+		completion_reward = {
+			37 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3573
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3578
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 3565
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 1031
+				}
+			}
+		}
+	}
+
+		focus = {
+		id = DIC_gift_of_primordial_fire
+		icon = GFX_focus_generic_concessions
+		cost = 14
+		prerequisite = { focus = DIC_a_guiding_hand }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 10
+		y = 8
+
+		available = {
+			OR = {
+				is_in_faction_with = THC
+				is_in_faction_with = DUC
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					THC = { is_in_faction_with = MLC }
+				}
+				THC = {
+					swap_ideas = {
+						remove_idea = THC_dunemaul_clan
+						add_idea = THC_dunemaul_clan_2
+					}
+				}
+			}
+			if = {
+				limit = {
+					DUC = { is_in_faction_with = MLC }
+				}
+				DUC = {
+					swap_ideas = {
+						remove_idea = THC_dunemaul_clan
+						add_idea = THC_dunemaul_clan_2
+					}
+				}
+			}
+			add_ideas = DIC_ogre_shipwrights
+		}
+	}
+
+	focus = {
+		id = DIC_deface_heroes
+		icon = GFX_goal_continuous_suppression
+		cost = 30
+		prerequisite = { focus = DIC_eastern_resistance }
+		prerequisite = { focus = DIC_old_titan_hold }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 7
+
+		available = {
+			461 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				461 = { transfer_state_to = DIC }
+			}
+			461 = {
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_compliance = 20
+				set_province_name = {
+					id = 5874
+					name = "Ruins of Heroes"
+				}
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.05
+			AER = { add_stability = -0.05 }
+			NRT = { add_stability = -0.05 }
+			IRO = { add_stability = -0.05 }
+			SPC = { add_stability = -0.05 }
+			DUN = { add_stability = -0.05 }
+		}
+	}
+
+	focus = {
+		id = DIC_the_northern_front
+		icon = GFX_focus_dark_iron_wetlands
+		cost = 30
+		prerequisite = { focus = DIC_deface_heroes }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 8
+
+		completion_reward = {
+			hidden_effect = {
+				553 = { 
+					transfer_state_to = DIC 
+					add_core_of = DIC
+					remove_core_of = THR
+					remove_core_of = THC
+				}
+				552 = { 
+					transfer_state_to = DIC 
+					add_core_of = DIC
+					remove_core_of = THR
+					remove_core_of = THC
+				}
+			}
+			399 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			400 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			401 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			402 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			526 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_ironbrand_armory
+		icon = GFX_goal_generic_small_arms
+		cost = 21
+		prerequisite = { focus = DIC_the_northern_front }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 11
+		y = 9
+
+		available = {
+			2188 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				2188 = { 
+					transfer_state_to = DIC 
+					add_core_of = DIC
+				}
+			}
+			2188 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = dwarf_axeman_equipment_1
+				amount = 150
+				producer = IRO
+			}
+			add_equipment_to_stockpile = {
+				type = dwarf_rifleman_equipment_1
+				amount = 75
+				producer = IRO
+			}
+			add_equipment_to_stockpile = {
+				type = dwarf_ram_equipment_1
+				amount = 20
+				producer = IRO
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_frost_troll_remnants
+		icon = GFX_goal_generic_small_arms
+		cost = 21
+		prerequisite = { focus = DIC_the_northern_front }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 13
+		y = 9
+
+		available = {
+			452 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				452 = { 
+					transfer_state_to = DIC 
+					add_core_of = DIC
+				}
+			}
+			452 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = troll_axeman_equipment_1
+				amount = 350
+				producer = FRT
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_ironforge_gates
+		icon = GFX_focus_dark_iron_will_of_ragnaros
+		cost = 5
+		prerequisite = { focus = DIC_the_northern_front }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 10
+
+		available = { always = no }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DIC_deadlock_siege
+				days = 140
+			}
+			IRO = {
+				add_timed_idea = {
+					idea = DIC_rationing
+					days = 140
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_brimstone_reckoning
+		icon = GFX_focus_dark_iron_will_of_ragnaros
+		cost = 5
+		prerequisite = { focus = DIC_the_ironforge_gates }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 10
+		y = 11
+
+		available = { always = no }
+
+		completion_reward = {
+			country_event = darkiron.5
+			IRO = {
+				hidden_effect = { country_event = darkiron.6 }
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_great_forge
+		icon = GFX_focus_SWI_dissolve_the_federal_council
+		cost = 30
+		prerequisite = { focus = DIC_brimstone_reckoning }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 10
+		y = 12
+
+		available = {
+			430 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				430 = {
+					transfer_state_to = DIC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			add_stability = 0.10
+			add_war_support = 0.05
+			430 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_compliance = 50
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_deal_with_the_gnomes
+		icon = GFX_goal_generic_army_tanks
+		cost = 30
+		prerequisite = { focus = DIC_the_ironforge_gates }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 11
+
+		available = {
+			438 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				438 = {	transfer_state_to = DIC	}
+			}
+			add_timed_idea = {
+				idea = DIC_mechano_tank
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_Gnome_Slaves
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = DIC_deal_with_the_gnomes }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 12
+
+		available = {
+			422 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			annex_gnomeregan = yes
+			add_ideas = DIC_gnome_labour_idea
+		}
+	}
+
+	focus = {
+		id = DIC_wipe_out_the_trolls
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = DIC_the_ironforge_gates }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 14
+		y = 11
+
+		completion_reward = {
+			declare_war_on = {
+				target = FRT
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_frosty_hovel
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		cost = 30
+		prerequisite = { focus = DIC_wipe_out_the_trolls }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 14
+		y = 12
+
+		available = {
+			NOT = {	country_exists = FRT }
+			447 = { is_controlled_by_ROOT_or_ally = yes }
+			448 = { is_controlled_by_ROOT_or_ally = yes }
+			449 = { is_controlled_by_ROOT_or_ally = yes }
+			450 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			CRC = {
+				DIC = { puppet = CRC }
+				hidden_effect = {
+					add_popularity = {
+						ideology = old_gods
+						popularity = 0.6
+					}
+					set_capital = { state = 448 }
+					set_country_flag = ogre_technology
+					add_ideas = primary_religion_the_hour_of_twilight
+				}
+			}
+			447 = {	add_core_of = CRC }
+			448 = {	add_core_of = CRC }
+			449 = {	add_core_of = CRC }
+			450 = {	add_core_of = CRC }
+			hidden_effect = {
+				447 = { transfer_state_to = CRC	}
+				448 = {	transfer_state_to = CRC }
+				449 = {	transfer_state_to = CRC }
+				450 = {	transfer_state_to = CRC	}
+				838 = {	
+					transfer_state_to = CRC
+					add_core_of = CRC	
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_unexpected_assistance
+		icon = GFX_goal_continuous_restrict_freedom
+		cost = 30
+		prerequisite = { focus = DIC_Gnome_Slaves }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 13
+
+		available = {
+			2199 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			VMR = {
+				DIC = {
+					set_autonomy = {
+						target = VMR
+						autonomy_state = autonomy_enslaved
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_firelords_call
+		icon = GFX_focus_dark_iron_will_of_ragnaros
+		cost = 14
+		prerequisite = { focus = DIC_unexpected_assistance }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 11
+		y = 14
+
+		completion_reward = {
+			510 = { 
+				transfer_state_to = DIC
+				set_variable = { race = 34 }
+				set_variable = { religion = 46 }
+				hidden_effect = {
+					add_manpower = -600
+					add_compliance = 35
+				} 
+			}
+			MLC = {
+				hidden_effect = {
+					division_template = {
+						name = "Fire Elementals"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 0 y = 2 }
+							footman = { x = 1 y = 0 }
+							footman = { x = 1 y = 1 }
+							footman = { x = 1 y = 2 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+					}
+					510 = {
+						create_unit = {
+							division = "name = \"Fire Elementals\" division_template = \"Fire Elementals\" start_experience_factor = 0.75"
+							owner = MLC
+							count = 2
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_chogalls_advance
+		icon = GFX_focus_smiling_buddha
+		cost = 14
+		prerequisite = { focus = DIC_unexpected_assistance }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 13
+		y = 14
+
+		completion_reward = {
+			add_ideas = ogre_secondary_race
+			set_temp_variable = { race_to_accept = 95 }
+			add_race_as_accepted_race = yes
+			2210 = { 
+				transfer_state_to = DIC
+				set_variable = { race = 95 }
+				set_variable = { religion = 46 }
+				hidden_effect = {
+					add_compliance = 35
+				} 
+			}
+			THC = {
+				hidden_effect = {
+					division_template = {
+						name = "Ogre Brutes"
+						priority = 1
+						regiments = {
+							ogre_brute = { x = 0 y = 0 }
+							ogre_brute = { x = 0 y = 1 }
+							ogre_brute = { x = 0 y = 2 }
+							ogre_brute = { x = 1 y = 0 }
+							ogre_brute = { x = 1 y = 1 }
+							ogre_brute = { x = 1 y = 2 }
+						}
+					}
+					2210 = {
+						create_unit = {
+							division = "name = \"Ogre Brutes\" division_template = \"Ogre Brutes\" start_experience_factor = 0.75"
+							owner = THC
+							count = 2
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_our_deformed_breathren
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = { focus = DIC_the_firelords_call }
+		prerequisite = { focus = DIC_chogalls_advance }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 10
+		y = 15
+
+		available = {
+			500 = { is_controlled_by_ROOT_or_ally = yes }
+			2200 = { is_controlled_by_ROOT_or_ally = yes }
+			2201 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			500 = {
+				add_core_of = DIC
+				hidden_effect = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				remove_dynamic_modifier = { modifier = GEN_dark_whispers }
+				add_manpower = 3000
+			}
+			2200 = {
+				add_core_of = DIC
+				hidden_effect = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				remove_dynamic_modifier = { modifier = GEN_dark_whispers }
+				add_manpower = 3000
+			}
+			2201 = {
+				add_core_of = DIC
+				hidden_effect = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				remove_dynamic_modifier = { modifier = GEN_dark_whispers }
+				add_manpower = 3000
+			}
+			add_manpower = 1000
+		}
+	}
+
+	focus = {
+		id = DIC_the_crater
+		icon = GFX_focus_FIN_oy_alkoholiliike
+		cost = 30
+		prerequisite = { focus = DIC_the_firelords_call }
+		prerequisite = { focus = DIC_chogalls_advance }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 12
+		y = 15
+
+		available = {
+			507 = { is_controlled_by_ROOT_or_ally = yes }
+			OR ={
+				NOT = { has_war_with = NRT }
+				NRT = {	has_capitulated = yes }
+			}
+		}
+
+		completion_reward = {
+			507 = {
+				add_core_of = DIC
+				hidden_effect = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				add_manpower = -15000
+				add_extra_state_shared_building_slots = 6
+				remove_building = {
+					type = industrial_complex
+					level = 2
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = stable
+					level = 1
+				}
+				remove_building = {
+					type = farm
+					level = 1
+				}
+				add_resource = {
+					type = wheat
+					amount = -3
+				}
+				add_resource = {
+					type = eggs
+					amount = -2
+				}
+				add_resource = {
+					type = mounts
+					amount = -2
+				}
+				add_resource = {
+					type = gunpowder
+					amount = 4
+				}
+				add_resource = {
+					type = ores
+					amount = 2
+				}
+			}
+			if = {
+				limit = { country_exists = AER }
+				AER = {
+					add_stability = -0.15
+					add_war_support = -0.05
+				}
+			}
+			if = {
+				limit = { country_exists = NRT }
+				NRT = {
+					add_stability = -0.15
+					add_war_support = -0.05
+				}
+			}
+			set_province_name = {
+				id = 5039
+				name = "The Crater"
+			}
+			set_province_name = {
+				id = 5032
+				name = "The Craters Edge"
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_depths_call
+		icon = GFX_focus_generic_mining_industry
+		cost = 30
+		prerequisite = { focus = DIC_the_firelords_call }
+		prerequisite = { focus = DIC_chogalls_advance }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 14
+		y = 15
+
+		available = {
+			522 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			522 = {
+				add_core_of = DIC
+				hidden_effect = { 
+					transfer_state_to = DIC 
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_the_queens_throne
+		icon = GFX_focus_dark_iron_moria_bronzebeard
+		cost = 30
+		prerequisite = { focus = DIC_our_deformed_breathren }
+		prerequisite = { focus = DIC_the_crater }
+		prerequisite = { focus = DIC_the_depths_call }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 11
+		y = 16
+
+		completion_reward = {
+			IRO = { set_cosmetic_tag = DIC_ironforge }
+			hidden_effect = {
+				every_state = {
+					limit = { is_core_of = IRO }
+					remove_core_of = IRO
+					add_core_of = DUN
+				}
+			}
+			IRO = { 
+				DIC = {
+					set_autonomy = {
+						target = IRO
+						autonomy_state = autonomy_enslaved
+					}
+				}
+				annex_ironforge = yes
+				hidden_effect = {
+					load_focus_tree = generic_focus
+					every_character = { retire = yes } 
+					add_popularity = {
+						ideology = old_gods
+						popularity = 0.73
+					}
+					add_popularity = {
+						ideology = neutral
+						popularity = 0.20
+					}
+					add_popularity = {
+						ideology = alliance
+						popularity = 0.07
+					}
+					create_country_leader = {
+						name = "Queen Moira Thaurissan"
+						picture = "gfx/leaders/DIC/MoiraBronzebeard.dds"
+						expire = "1965.1.1"
+						ideology = old_gods_type
+					}
+				}
+			}
+			hidden_effect = {
+				IRO = {
+					add_manpower = 250
+					add_equipment_to_stockpile = {
+						type = dwarf_axeman_equipment_1
+						amount = 200
+						producer = IRO
+					}
+					add_equipment_to_stockpile = {
+						type = dwarf_tools_equipment_1
+						amount = 20
+						producer = IRO
+					}
+					add_equipment_to_stockpile = {
+						type = dwarf_rifleman_equipment_1
+						amount = 50
+						producer = IRO
+					}
+					add_equipment_to_stockpile = {
+						type = convoy
+						amount = 15
+						producer = STO
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_fund_balgaras_expedition
+		icon = GFX_focus_dark_iron_fund_balgaras_expedition
+		cost = 30
+		prerequisite = { focus = DIC_our_deformed_breathren }
+		prerequisite = { focus = DIC_the_crater }
+		prerequisite = { focus = DIC_the_depths_call }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 13
+		y = 16
+
+		completion_reward = {
+			BLG = { annex_wetlands = yes }
+			hidden_effect = {
+				BLG = {
+					add_manpower = 250
+					add_equipment_to_stockpile = {
+						type = dwarf_axeman_equipment_1
+						amount = 200
+						producer = IRO
+					}
+					add_equipment_to_stockpile = {
+						type = dwarf_tools_equipment_1
+						amount = 20
+						producer = IRO
+					}
+					add_equipment_to_stockpile = {
+						type = dwarf_rifleman_equipment_1
+						amount = 50
+						producer = IRO
+					}
+					add_equipment_to_stockpile = {
+						type = convoy
+						amount = 15
+						producer = STO
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DIC_northen_kingdoms
+		icon = GFX_focus_ETH_northern_thrust
+		cost = 30
+		prerequisite = { focus = DIC_Awake_Ragnaros }
+		relative_position_id = DIC_Blackrock_Mountain
+		x = 17
+		y = 3
+
+		available = {
+			always = no
+			OR = {
+				has_completed_focus = DIC_the_queens_throne
+				has_completed_focus = DIC_fund_balgaras_expedition
+			}
+		}
+
+		completion_reward = {
+			
+		}
+	}
+
+	#focus = {
+	#	id = DIC_Stromgarde
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_northen_kingdoms }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 19
+	#	y = 4
+
+	#}
+
+	#focus = {
+	#	id = DIC_Aerie_Peak
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Stromgarde }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 18
+	#	y = 5
+
+	#}
+
+	#focus = {
+	#	id = DIC_stormpike_clan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Aerie_Peak }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 18
+	#	y = 6
+
+	#}
+
+	#focus = {
+	#	id = DIC_Under_one_hammer
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Aerie_Peak }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 18
+	#	y = 7
+
+	#}
+
+	#focus = {
+	#	id = DIC_Kultiras
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Stromgarde }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 20
+	#	y = 5
+
+	#}
+
+	#focus = {
+	#	id = DIC_Gilneas
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Kultiras }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 20
+	#	y = 6
+
+	#}
+
+	#focus = {
+	#	id = DIC_Lordearon
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Gilneas }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 20
+	#	y = 7
+
+	#}
+
+	#focus = {
+	#	id = DIC_QuelThalas
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Lordearon }
+	#	prerequisite = { focus = DIC_Under_one_hammer }
+	#	relative_position_id = DIC_Blackrock_Mountain
+	#	x = 19
+	#	y = 8
+
+	#}
+
+	#focus = {
+	#	id = DIC_Redemption
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = { focus = DIC_Blackrock_Mountain }
+	#	mutually_exclusive = { focus = DIC_The_Masters_Will }
+	#	x = 44
+	#	y = 1
+	#}
+	
+	#focus = {
+	#	id = DIC_Bronzebeard_Rifleman
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Bronzebeards
+	#	}
+	#	x = 29
+	#	y = 4
+	#}
+	
+	#focus = {
+	#	id = DIC_deal_with_the_gnomes_2
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Bronzebeards
+	#	}
+	#	x = 30
+	#	y = 5
+	#}
+	
+	#focus = {
+	#	id = DIC_Gnome_Tanks
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_deal_with_the_gnomes_2
+	#	}
+	#	x = 28
+	#	y = 6
+	#}
+	
+	#focus = {
+	#	id = DIC_Northeron_2
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Bronzebeards
+	#	}
+	#	x = 34
+	#	y = 5
+	#}
+
+	#focus = {
+	#	id = DIC_Aerie_Peak_2
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Northeron_2
+	#	}
+	#	x = 34
+	#	y = 6
+	#}
+	
+	#focus = {
+	#	id = DIC_Slaves_No_More
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Aerie_Peak_2
+	#	}
+	#	prerequisite = {
+	#		focus = DIC_Bronzebeards
+	#	}
+	#	x = 32
+	#	y = 7
+	#}
+
+	#focus = {
+	#	id = DIC_KILL_ORCS
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Slaves_No_More
+	#	}
+	#	x = 32
+	#	y = 8
+	#}
+	
+	#focus = {
+	#	id = DIC_Gryphon_Riders
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Aerie_Peak
+	#	}
+	#	x = 36
+	#	y = 7
+	#}
+
+		#focus = {
+	#	id = DIC_Horde_Path
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_the_agreement
+	#	}
+	#	x = 42
+	#	y = 3
+	#}
+	
+	#focus = {
+	#	id = DIC_Black_Tooth_Grin_Clan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Horde_Path
+	#	}
+	#	x = 38
+	#	y = 4
+	#}
+	
+	#focus = {
+	#	id = DIC_Bleeding_Hollow_Clan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Horde_Path
+	#	}
+	#	x = 40
+	#	y = 4
+	#}
+	
+	#focus = {
+	#	id = DIC_Blackrock_Clan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Bleeding_Hollow_Clan
+	#	}
+	#	prerequisite = {
+	#		focus = DIC_Black_Tooth_Grin_Clan
+	#	}
+	#	mutually_exclusive = {
+	#		focus = DIC_Guldan
+	#	}
+	#	x = 39
+	#	y = 5
+	#}
+	
+	#focus = {
+	#	id = DIC_Bruning_Blade_Clan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Horde_Path
+	#	}
+	#	prerequisite = {
+	#		focus = DIC_Horde_Path
+	#	}
+	#	x = 44
+	#	y = 4
+	#}
+	
+	#focus = {
+	#	id = DIC_Twilight_Hammer_Clan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Horde_Path
+	#	}
+	#	x = 46
+	#	y = 4
+	#}
+	
+	#focus = {
+	#	id = DIC_Guldan
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Bruning_Blade_Clan
+	#	}
+	#	prerequisite = {
+	#		focus = DIC_Twilight_Hammer_Clan
+	#	}
+	#	mutually_exclusive = {
+	#		focus = DIC_Blackrock_Clan
+	#	}
+	#	x = 45
+	#	y = 5
+	#}
+
+	#focus = {
+	#	id = DIC_Kill_Ragnaros
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Blackrock_Clan
+	#	}
+	#	x = 39
+	#	y = 6
+	#}
+
+	#focus = {
+	#	id = DIC_Join_the_Horde
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Kill_Ragnaros
+	#	}
+	#	x = 39
+	#	y = 7
+	#}
+
+	#focus = {
+	#	id = DIC_enslave_Ragnaros
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_Guldan
+	#	}
+	#	x = 45
+	#	y = 6
+	#}
+	
+	#focus = {
+	#	id = DIC_Darkness_Incarnate
+	#	icon = GFX_
+	#	cost = 30
+	#	prerequisite = {
+	#		focus = DIC_enslave_Ragnaros
+	#	}
+	#	x = 45
+	#	y = 7
+	#}
+}

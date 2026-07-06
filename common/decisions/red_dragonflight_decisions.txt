@@ -1,0 +1,43 @@
+government_decisions = {
+
+	RDF_to_ash = {
+		icon = generic_civil_support
+
+		days_remove = 10
+
+        custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+    	allowed = { original_tag = RDF }
+
+		visible = {
+            has_idea = RDF_only_chared_remains
+		}
+
+		available = {
+            any_neighbor_country = { has_idea = orc_primary_race }
+		}
+
+        complete_effect = {
+            hidden_effect = { add_command_power = -50 }
+        }
+
+		remove_effect = {
+            random_neighbor_country = {
+                limit = {
+                    has_idea = orc_primary_race
+                    NOT = {
+                        is_puppet_of = RDF
+                        is_in_faction_with = RDF
+                    }
+                }
+                ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+            }
+		}
+    }
+}

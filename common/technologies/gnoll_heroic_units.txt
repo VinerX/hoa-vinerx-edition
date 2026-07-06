@@ -1,0 +1,1125 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	altar_of_mischief_tech = {
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_heroic_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = gnoll_brute_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = gnoll_warden_tech
+			research_cost_coeff = 1
+		}
+		path = { 
+			leads_to_tech = gnoll_bloodclaw_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_heroic_training_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_heroic_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 6 y = 4 }
+		}
+		
+		categories = {
+			altar_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_heroic_training_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = gnoll_heroic_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 6 y = 8 }
+		}
+		
+		categories = {
+			altar_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_heroic_training_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 6 y = 12 }
+		}
+		
+		categories = {
+			altar_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_brute_tech = {
+
+		enable_subunits = {
+			gnoll_brute
+		}
+
+		path = {
+			leads_to_tech = gnoll_brute_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { gnoll_brute_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 9 y = 2 }
+		}
+		
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	gnoll_brute_equipment_tech_1 = {
+
+		enable_equipments = {
+			gnoll_brute_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = invigorating_vitality
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = stunning_strikes
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	invigorating_vitality = {
+
+		gnoll_brute = {
+			max_strength = 0.25
+			hardness = 0.5
+		}
+		gnoll_blackpaw = {
+			max_strength = 0.25
+			hardness = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { stunning_strikes }
+
+		path = {
+			leads_to_tech = gnoll_brute_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = stunning_strikes
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = stunning_strikes
+			}	
+		}
+	}
+
+	stunning_strikes = {
+
+		gnoll_brute = {
+			soft_attack = 0.10
+			breakthrough = 0.10
+		}
+		gnoll_blackpaw = {
+			soft_attack = 0.10
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { invigorating_vitality }
+
+		path = {
+			leads_to_tech = gnoll_brute_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = invigorating_vitality
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = invigorating_vitality
+			}	
+		}
+	}
+
+	gnoll_brute_equipment_tech_2 = {
+
+		enable_equipments = {
+			gnoll_brute_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = warcry_rally
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = crushing_impacts
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	warcry_rally = {
+
+		gnoll_brute = {
+			default_morale = 0.05
+			max_organisation = 3
+		}
+		gnoll_blackpaw = {
+			default_morale = 0.05
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { crushing_impacts }
+
+		path = {
+			leads_to_tech = gnoll_brute_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = crushing_impacts
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = crushing_impacts
+			}	
+		}
+	}
+
+	crushing_impacts = {
+
+		gnoll_brute = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+		gnoll_blackpaw = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { warcry_rally }
+
+		path = {
+			leads_to_tech = gnoll_brute_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warcry_rally
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warcry_rally
+			}	
+		}
+	}
+
+	gnoll_brute_equipment_tech_3 = {
+
+		enable_equipments = {
+			gnoll_brute_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_brute_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	########## WARDEN
+
+	gnoll_warden_tech = {
+
+		enable_subunits = {
+			gnoll_warden
+		}
+
+		path = {
+			leads_to_tech = gnoll_warden_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { gnoll_warden_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 13 y = 2 }
+		}
+		
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	gnoll_warden_equipment_tech_1 = {
+
+		enable_equipments = {
+			gnoll_warden_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = warden_aegis
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = warden_purge
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	warden_aegis = {
+
+		gnoll_warden = {
+			defense = 0.10
+			hardness = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { warden_purge }
+
+		path = {
+			leads_to_tech = gnoll_warden_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_purge
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_purge
+			}	
+		}
+	}
+
+	warden_purge = {
+
+		gnoll_warden = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { warden_aegis }
+
+		path = {
+			leads_to_tech = gnoll_warden_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_aegis
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_aegis
+			}	
+		}
+	}
+
+	gnoll_warden_equipment_tech_2 = {
+
+		enable_equipments = {
+			gnoll_warden_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = warden_disruption
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = disarming_sweep
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	warden_disruption = {
+
+		gnoll_warden = {
+			soft_attack = 0.15
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { disarming_sweep }
+
+		path = {
+			leads_to_tech = gnoll_warden_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = disarming_sweep
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = disarming_sweep
+			}	
+		}
+	}
+
+	disarming_sweep = {
+
+		gnoll_warden = {
+			defense = 0.15
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { warden_disruption }
+
+		path = {
+			leads_to_tech = gnoll_warden_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_disruption
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_disruption
+			}	
+		}
+	}
+
+	gnoll_warden_equipment_tech_3 = {
+
+		enable_equipments = {
+			gnoll_warden_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	gnoll_bloodclaw_tech = {
+
+		enable_subunits = {
+			gnoll_bloodclaw
+		}
+
+		path = {
+			leads_to_tech = gnoll_bloodclaw_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { gnoll_bloodclaw_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 17 y = 2 }
+		}
+		
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	gnoll_bloodclaw_equipment_tech_1 = {
+
+		enable_equipments = {
+			gnoll_bloodclaw_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = feral_agility
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vicious_rend
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	feral_agility = {
+
+		gnoll_bloodclaw = {
+			defense = 0.10
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+		
+		xor = { vicious_rend }
+
+		path = {
+			leads_to_tech = gnoll_bloodclaw_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = vicious_rend
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = vicious_rend
+			}	
+		}
+	}
+
+	vicious_rend = {
+
+		gnoll_bloodclaw = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { feral_agility }
+
+		path = {
+			leads_to_tech = gnoll_bloodclaw_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = feral_agility
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = feral_agility
+			}	
+		}
+	}
+
+	gnoll_bloodclaw_equipment_tech_2 = {
+
+		enable_equipments = {
+			gnoll_bloodclaw_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = bloodlust_siphon
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = gnashing_jaw
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bloodlust_siphon = {
+
+		gnoll_bloodclaw = {
+			max_strength = 0.25
+			casualty_trickleback = 0.03
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { gnashing_jaw }
+
+		path = {
+			leads_to_tech = gnoll_bloodclaw_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = gnashing_jaw
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = gnashing_jaw
+			}	
+		}
+	}
+
+	gnashing_jaw = {
+
+		gnoll_bloodclaw = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { bloodlust_siphon }
+
+		path = {
+			leads_to_tech = gnoll_bloodclaw_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = bloodlust_siphon
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bloodlust_siphon
+			}	
+		}
+	}
+
+	gnoll_bloodclaw_equipment_tech_3 = {
+
+		enable_equipments = {
+			gnoll_bloodclaw_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_heroic_units_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			gnoll_bloodclaw_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

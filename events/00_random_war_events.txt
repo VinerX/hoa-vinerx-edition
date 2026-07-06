@@ -1,0 +1,2560 @@
+﻿#######################
+# War Creation Events #
+#######################
+# Originally scripted by Mechano - edited for HoA
+# These events exist for AI reasons, AI with claims will actually justify war and create conflict.
+add_namespace = war_creation
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.1" }
+	id = war_creation.1
+	title = war_creation.1.t
+	desc = war_creation.1.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 580.12.31
+		has_start_date < 581.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 582.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 583.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 584.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 585.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 586.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 587.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 588.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 589.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 590.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 591.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.1.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.1.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.1.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.1.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.1.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.2" }
+	id = war_creation.2
+	title = war_creation.2.t
+	desc = war_creation.2.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.2.option.1
+		#custom_effect_tooltip = war_creation.2.option.1_tt
+		FROM = { country_event = { days = 2 id = war_creation.3 } }
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.3" }
+	id = war_creation.3
+	title = war_creation.3.t
+	desc = war_creation.3.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.3.option.1
+		FROM = { country_event = { days = 28 id = war_creation.4 } }
+		FROM = {
+			random_owned_state = {
+				limit = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						OR = {
+							impassable = no
+							#is_valid_state_for_civilian_factory = yes
+							dockyard > 0
+							industrial_complex > 0
+							arms_factory > 0
+						}
+					}
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.4" }
+	id = war_creation.4
+	title = war_creation.4.t
+	desc = war_creation.4.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.4.option.1
+		random_neighbor_country = {
+			limit = { any_owned_state = { is_claimed_by = ROOT } }
+			ROOT = { create_wargoal = { target = PREV type = annex_everything } }
+		}
+	}
+}
+
+
+country_event = { #coastal chain
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.5" }
+	id = war_creation.5
+	title = war_creation.5.t
+	desc = war_creation.5.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.5.option.1
+		#custom_effect_tooltip = war_creation.2.option.1_tt
+		FROM = { country_event = { days = 2 id = war_creation.6 } }
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.6" }
+	id = war_creation.6
+	title = war_creation.6.t
+	desc = war_creation.6.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+
+	option = {
+		name = war_creation.6.option.1
+		FROM = { country_event = { days = 28 id = war_creation.7 } }
+		FROM = {
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+					impassable = no
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.7" }
+	id = war_creation.7
+	title = war_creation.7.t
+	desc = war_creation.7.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.7.option.1
+		random_country = {
+			limit = { any_owned_state = { is_claimed_by = ROOT } }
+			ROOT = { create_wargoal = { target = PREV type = annex_everything } }
+		}
+	}
+
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.8" }
+	id = war_creation.8
+	title = war_creation.8.t
+	desc = war_creation.8.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.8.option.1
+		#custom_effect_tooltip = war_creation.2.option.1_tt
+		FROM = { country_event = { days = 2 id = war_creation.9 } }
+        
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.9" }
+	id = war_creation.9
+	title = war_creation.9.t
+	desc = war_creation.9.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+
+	option = {
+		name = war_creation.9.option.1
+		FROM = { country_event = { days = 28 id = war_creation.10 } }
+		FROM = {
+			random_owned_state = {
+				limit = {
+					impassable = no
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.10" }
+	id = war_creation.10
+	title = war_creation.10.t
+	desc = war_creation.10.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.10.option.1
+		random_country = {
+			limit = { any_owned_state = { is_claimed_by = ROOT } }
+			ROOT = { create_wargoal = { target = PREV type = annex_everything } }
+		}
+	}
+
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.11" }
+	id = war_creation.11
+	title = war_creation.11.t
+	desc = war_creation.11.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.11.option.1
+		#custom_effect_tooltip = war_creation.2.option.1_tt
+		FROM = { country_event = { days = 2 id = war_creation.12 } }
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.12" }
+	id = war_creation.12
+	title = war_creation.12.t
+	desc = war_creation.12.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.12.option.1
+		FROM = { country_event = { days = 28 id = war_creation.13 } }
+		FROM = {
+			random_owned_state = {
+				limit = {
+					impassable = no
+					any_neighbor_state = {
+						OR = {
+							is_owned_by = ROOT
+							owner = { is_puppet_of = ROOT }
+						}
+						OR = {
+							impassable = no
+							#is_valid_state_for_civilian_factory = yes
+							dockyard > 0
+							industrial_complex > 0
+							arms_factory > 0
+						}
+					}
+				}
+				add_claim_by = ROOT
+			}
+		}
+	}
+}
+
+country_event = {
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.13" }
+	id = war_creation.13
+	title = war_creation.13.t
+	desc = war_creation.13.d
+	#picture = GFX_event_generic_raider_1
+	is_triggered_only = yes
+	option = {
+		name = war_creation.13.option.1
+		random_neighbor_country = {
+			limit = { any_owned_state = { is_claimed_by = ROOT } }
+			ROOT = { create_wargoal = { target = PREV type = annex_everything } }
+		}
+	}
+}
+
+country_event = { # 1st war war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.14" }
+	id = war_creation.14
+	title = war_creation.14.t
+	desc = war_creation.14.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 591.12.31
+		has_start_date < 592.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 593.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 594.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 595.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 596.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 597.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 598.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 599.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 600.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 601.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 602.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.14.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.14.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.14.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.14.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.14.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = { # 2nd war war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.15" }
+	id = war_creation.15
+	title = war_creation.15.t
+	desc = war_creation.15.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 595.12.31
+		has_start_date < 596.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 597.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 598.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 599.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 600.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 601.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 602.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 603.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 604.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 605.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 606.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.15.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.15.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.15.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.15.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.15.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = { # beyond the dark portal war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.16" }
+	id = war_creation.16
+	title = war_creation.16.t
+	desc = war_creation.16.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 599.12.31
+		has_start_date < 600.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 601.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 602.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 603.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 604.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 605.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 606.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 607.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 608.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 609.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 610.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.16.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.16.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.16.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.16.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.16.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = { # Third War war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.17" }
+	id = war_creation.17
+	title = war_creation.17.t
+	desc = war_creation.17.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 609.12.31
+		has_start_date < 610.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 601.1.1
+		}
+		modifier = {
+			add = -1000 #5000 days
+			date > 611.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 612.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 613.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 614.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 615.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 616.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 617.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 618.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 619.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 620.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.17.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.17.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.17.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.17.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.17.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = { # Frozen Throne war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.18" }
+	id = war_creation.18
+	title = war_creation.18.t
+	desc = war_creation.18.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 612.12.31
+		has_start_date < 613.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 614.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 615.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 616.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 617.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 618.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 619.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 620.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 621.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 622.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 623.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.18.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.18.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.18.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.18.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.18.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = { # Era of hatred war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.19" }
+	id = war_creation.19
+	title = war_creation.19.t
+	desc = war_creation.19.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 616.12.31
+		has_start_date < 617.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 618.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 619.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 620.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 621.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 622.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 623.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 624.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 625.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 626.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 627.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.19.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.19.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.19.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.19.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.19.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}
+
+country_event = { # The Shattering war creation
+	immediate = { log = "[GetDateText]: [Root.GetName]: event war_creation.20" }
+	id = war_creation.20
+	title = war_creation.20.t
+	desc = war_creation.20.d
+	#picture = GFX_event_generic_raider_1
+	trigger = {
+		# Triggers order matter for optimization, do not change unless you are sure
+		is_historical_focus_on = no
+		has_game_rule = {
+			rule = non_historical_wars
+			option = DEFAULT
+		}
+		is_ai = yes
+		has_start_date > 619.12.31
+		has_start_date < 620.01.02
+		is_puppet = no
+		NOT = {
+			manpower_per_military_factory <  50
+			AND = {
+				has_war = yes
+				enemies_strength_ratio > 0.5
+			}
+		}
+	}
+
+
+	mean_time_to_happen = {
+		days = 6000
+		modifier = {
+			add = -1000 #5000 days
+			date > 621.1.1
+		}
+		modifier = {
+			add = -1000 #4000 days
+			date > 622.1.1
+		}
+		modifier = {
+			add = -500 #3500 days
+			date > 623.1.1
+		}
+		modifier = {
+			add = -500 #3000 days
+			date > 624.1.1
+		}
+		modifier = {
+			add = -500 #2500 days
+			date > 625.1.1
+		}
+		modifier = {
+			add = -500 #2000 days
+			date > 626.1.1
+		}
+		modifier = {
+			add = -500 #1500 days
+			date > 627.1.1
+		}
+		modifier = {
+			add = -400 #1100 days
+			date > 628.1.1
+		}
+		modifier = {
+			add = -350 #750 days
+			date > 629.1.1
+		}
+		modifier = {
+			add = -300 #400 days
+			date > 630.1.1
+		}
+	}
+
+	option = {
+		name = war_creation.20.option.1
+		trigger = {
+			any_neighbor_country = {
+				NOT = { 
+                    is_ally_with = ROOT	
+					is_puppet_of = ROOT
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+						NOT = {
+							is_owned_by = ZZD
+							is_owned_by = ZZO
+							is_owned_by = ZZT
+							is_owned_by = ZZW
+						}
+					}
+				}
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = yes
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+                        NOT = {
+                            is_owned_by = ZZD
+                            is_owned_by = ZZO
+                            is_owned_by = ZZT
+                            is_owned_by = ZZW
+                        }
+					}
+				}
+			}
+			country_event = { days = 1 id = war_creation.2 }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+	option = { # naval conquests on azeroth
+		name = war_creation.20.option.2
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				OR = {
+					is_on_continent = lordaeron
+					is_on_continent = khaz_modan
+					is_on_continent = azeroth
+					is_on_continent = kalimdor
+					is_on_continent = pandaria
+					is_on_continent = northrend
+					is_on_continent = the_great_sea
+				}
+				NOT = {
+					is_on_continent = draenor
+					is_on_continent = argus
+					is_on_continent = outland
+				}
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					OR = {
+						is_on_continent = lordaeron
+						is_on_continent = khaz_modan
+						is_on_continent = azeroth
+						is_on_continent = kalimdor
+						is_on_continent = pandaria
+						is_on_continent = northrend
+						is_on_continent = the_great_sea
+					}
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+						is_on_continent = draenor
+						is_on_continent = argus
+						is_on_continent = outland
+                        #deepholm
+                        state = 1787
+                        state = 1788
+                        state = 1789
+                        state = 1790
+                        state = 1791
+                        state = 1792
+                        state = 1793
+                        state = 1794
+                        state = 1795
+                        state = 1796
+                        state = 1797
+                        #nazjatar
+                        state = 1832
+                        state = 2065
+                        state = 2066
+                        state = 2067
+                        state = 2068
+                        state = 2070
+                        state = 2071
+                        state = 2072
+                        state = 2074
+                        state = 2075
+                        state = 2077
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+	option = { #subjects target overlord
+		name = war_creation.20.option.3
+		trigger = {
+			any_neighbor_country = {
+                NOT = { is_ally_with = ROOT	}
+                is_subject = yes
+			}
+		}
+		random_neighbor_country = {
+			limit = {
+				NOT = { 
+                    is_ally_with = ROOT	
+                    is_subject = no
+                }
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			}
+			OVERLORD = { country_event = { days = 1 id = war_creation.8 } }
+		}
+        ai_chance = {
+			base = 40
+		}
+	}
+
+    option = { #neighbor of puppets
+        name = war_creation.20.option.4
+        trigger = {
+            any_country = { is_puppet_of = ROOT }
+        }
+        random_country = {
+            limit = {
+                NOT = { is_ally_with = ROOT    }
+                any_owned_state = {
+                    impassable = no
+                    any_neighbor_state = {
+                        OR = {
+                            is_owned_by = ROOT
+                            owner = { is_puppet_of = ROOT }
+                        }
+                        impassable = no
+                    }
+                }
+            }
+            country_event = { days = 1 id = war_creation.9 }
+        }
+        ai_chance = {
+			base = 40
+		}
+    }
+
+	option = { # naval conquests on draenor
+		name = war_creation.20.option.5
+		trigger = {
+            has_navy_size = {
+                size > 3
+            }
+			any_owned_state = {
+				is_on_continent = draenor
+			}
+		}
+		random_country = {
+			limit = {
+				NOT = { is_ally_with = ROOT	}
+				any_owned_state = {
+					is_on_continent = draenor
+					is_coastal = yes
+					impassable = no
+                    NOT = {
+                        is_owned_by = ZZD
+                        is_owned_by = ZZO
+                        is_owned_by = ZZT
+                        is_owned_by = ZZW
+                    }
+				}
+			}
+			country_event = { days = 1 id = war_creation.5 }
+		}
+        ai_chance = {
+			base = 10
+		}
+	}
+
+}

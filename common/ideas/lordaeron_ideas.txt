@@ -1,0 +1,1604 @@
+#############################################
+#events
+#############################################
+ideas = {
+
+	hidden_ideas = {
+		LOR_stromgarde_assistance = {
+			picture = alliance_idea
+
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				political_power_factor = 0.25
+			}
+		}
+	}
+
+	national_character = {
+		
+		LOR_the_lordaeron_admiralty = {
+			picture = SCC_generic_idea
+			available = { always = no } 
+
+			modifier = {
+				stability_factor = -0.05
+				consumer_goods_factor = 0.05
+				industrial_capacity_dockyard = 0.1
+				navy_org_factor = 0.05
+				experience_gain_navy = 0.02
+			}
+		}
+	}
+
+	country = {
+
+		LOR_DAL_scholars_or_truth = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				research_speed_factor = 0.05
+			}
+
+			equipment_bonus = {
+				caster_equipment = {
+					soft_attack = 0.1
+					hard_attack = 0.1
+					build_cost_ic = 0.05
+					instant = yes
+				}
+				heroic_caster_equipment = {
+					soft_attack = 0.1
+					hard_attack = 0.1
+					build_cost_ic = 0.05
+					instant = yes
+				}
+			}
+		}
+
+		LOR_arcane_instability = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				stability_factor = -0.05
+				research_speed_factor = -0.02
+				country_faith_gain_factor = -0.25
+			}
+
+			equipment_bonus = {
+				caster_equipment = {
+					build_cost_ic = 0.5
+					instant = yes
+				}
+				heroic_caster_equipment = {
+					build_cost_ic = 0.5
+					instant = yes
+				}
+			}
+		}
+
+		LOR_scholarly_exodus_1 = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				research_speed_factor = -0.10
+			}
+		}
+
+		LOR_scholarly_exodus_2 = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			on_remove = {
+				add_timed_idea = {
+					idea = LOR_scholarly_exodus_3
+					days = 60
+				}
+			}
+
+			modifier = {
+				research_speed_factor = -0.075
+				weekly_manpower = 2
+				political_power_gain = -0.1
+			}
+		}
+
+		LOR_scholarly_exodus_3 = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			on_remove = {
+				add_timed_idea = {
+					idea = LOR_scholarly_exodus_3
+					days = 60
+				}
+			}
+
+			modifier = {
+				research_speed_factor = -0.05
+				weekly_manpower = 2
+				political_power_gain = -0.1
+			}
+		}
+
+		LOR_scholarly_exodus_4 = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			on_remove = {
+				1536 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arcane_tower
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+
+			modifier = {
+				research_speed_factor = -0.025
+				weekly_manpower = 2
+			}
+		}
+
+		LOR_barred_free_passage = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				political_power_gain = -0.1
+				stability_factor = -0.05
+				monthly_population = -0.75
+				weekly_manpower = -1
+			}
+		}
+
+		LOR_western_takeover = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			on_remove = {
+				declare_war_on = {
+					target = QUE
+					type = annex_everything
+				}
+				222 = { transfer_state_to = LOR }
+			}
+
+			modifier = {
+				army_attack_factor = 0.1
+				army_defence_factor = 0.1
+				industrial_capacity_factory = -0.1
+			}
+		}
+
+		LOR_troll_incursion = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				stability_factor = -0.05
+				stability_weekly = -0.002
+				conscription_factor = -0.05
+			}
+		}
+
+		LOR_protect_the_sunwell = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				industrial_capacity_dockyard = 0.25
+				industrial_capacity_factory = -0.10
+				naval_speed_factor = 0.2
+				navy_org_factor = 0.15
+				army_defence_factor = -0.1
+			}
+		}
+
+		LOR_QUE_weakness = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			targeted_modifier = {
+				tag = QUE
+				breakthrough_bonus_against = 0.20
+			}
+		}
+		
+		LOR_light_scorched_stone = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			targeted_modifier = {
+				tag = SPC
+				breakthrough_bonus_against = 0.20
+			}
+		}
+
+		LOR_deal_with_pests = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			on_remove = {
+				ROOT = { 
+					country_event = lordaeron.11
+					add_ideas = LOR_stockade_issue
+				}
+				KUL = {
+					add_timed_idea = {
+						idea = LOR_siezed_our_islands
+						days = 30
+					}
+				}
+			}
+
+			modifier = {
+				consumer_goods_factor = 0.5
+			}
+		}
+
+		LOR_stockade_issue = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				political_power_gain = -0.15
+				conscription_factor = -0.10
+			}
+		}
+
+		LOR_siezed_our_islands = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			on_remove = {
+				ROOT = { country_event = lordaeron.12 }
+			}
+
+			modifier = {
+				weekly_manpower = 15
+				industrial_capacity_dockyard = 0.25
+				industrial_capacity_factory = 0.25
+			}
+		}
+
+		LOR_traitors_in_our_midst = {
+			picture = generic_spy_coup
+			allowed = {	always = yes }
+
+			on_remove = {
+				declare_war_on = {
+					target = LOR
+					type = annex_everything
+				}
+				hidden_effect = {
+					LOR = { remove_ideas = LOR_ALT_noble_informants }
+				}
+			}
+
+			modifier = {
+				political_power_gain = -0.2
+				war_support_weekly_factor = 0.05
+				decryption_factor = 1
+				encryption_factor = 1
+			}
+		}
+
+		LOR_ALT_noble_informants = {
+			picture = generic_spy_coup
+			allowed = {	always = yes }
+
+			modifier = {
+				political_power_gain = -0.2
+			}
+			targeted_modifier = {
+				tag = ALT
+				civilian_intel_factor = 0.25
+				army_intel_factor = 0.15
+			}
+		}
+
+		LOR_meeting_of_the_seven_kingdoms_alliance = {
+			picture = alliance_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				alliance_drift = 0.1
+				alliance_acceptance = 50
+			}
+		}
+
+		LOR_meeting_of_the_seven_kingdoms_neutral = {
+			picture = SCC_generic_idea
+			allowed = {	always = yes }
+
+			modifier = {
+				neutral_drift = 0.1
+				neutral_acceptance = 50
+			}
+		}
+
+		LOR_era_of_peace = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				war_support_factor = -0.25
+				conscription = -0.01
+				experience_gain_army_factor = -0.3
+				training_time_factor = 0.5
+				land_doctrine_cost_factor = 0.3
+				mobilization_laws_cost_factor = 5
+				industrial_capacity_factory = -0.25
+				production_factory_max_efficiency_factor = -0.20
+				production_speed_arms_factory_factor = -0.50
+				production_speed_bunker_factor = -0.50
+				production_speed_coastal_bunker_factor = -0.50
+			}
+
+			rule = { can_send_volunteers = no }
+		}
+
+		LOR_a_looming_threat_idea = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				war_support_factor = -0.20
+				conscription = -0.008
+				experience_gain_army_factor = -0.25
+				training_time_factor = 0.25
+				land_doctrine_cost_factor = 0.2
+				mobilization_laws_cost_factor = 3
+				industrial_capacity_factory = -0.10
+				production_factory_max_efficiency_factor = -0.15
+				production_speed_arms_factory_factor = -0.30
+				production_speed_bunker_factor = -0.30
+				production_speed_coastal_bunker_factor = -0.30
+			}
+
+			rule = { can_send_volunteers = no }
+		}
+
+		LOR_pacification_army_idea = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				war_support_factor = -0.15
+				conscription = -0.005
+				training_time_factor = 0.10
+				land_doctrine_cost_factor = 0.1
+				mobilization_laws_cost_factor = 1
+				production_factory_max_efficiency_factor = -0.10
+				production_speed_arms_factory_factor = -0.10
+				production_speed_bunker_factor = -0.10
+				production_speed_coastal_bunker_factor = -0.10
+			}
+		}
+
+		LOR_make_them_bleed = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				minimum_training_level = -0.1
+				training_time_army_factor = -0.1
+				stability_factor = -0.10
+				production_factory_max_efficiency_factor = -0.1
+				production_factory_efficiency_gain_factor = -0.3
+				industrial_capacity_dockyard = 0.1
+				industrial_capacity_factory = 0.1
+			}
+		}
+
+		LOR_workshop_decree_idea = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+			modifier = {
+				conversion_cost_civ_to_mil_factor = -0.25
+			}
+		}
+
+		LOR_forge_grants_idea = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				production_speed_arms_factory_factor = 0.30
+				production_factory_efficiency_gain_factor = -0.10
+			}
+		}
+
+		LOR_mothballed_fleet = {
+			picture = generic_the_london_naval_treaty
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			research_bonus = {
+				naval_technology = -0.25
+			}
+
+			modifier = {
+				production_speed_naval_base_factor = -0.25
+				production_speed_dockyard_factor = -0.25
+				industrial_capacity_dockyard = -0.25
+				naval_doctrine_cost_factor = 0.75
+			}
+		}
+
+		LOR_mothballed_fleet_2 = {
+			picture = generic_the_london_naval_treaty
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			research_bonus = {
+				naval_technology = -0.10
+			}
+
+			modifier = {
+				production_speed_naval_base_factor = -0.10
+				production_speed_dockyard_factor = -0.25
+				industrial_capacity_dockyard = -0.25
+				naval_doctrine_cost_factor = 0.50
+			}
+		}
+
+		LOR_mothballed_fleet_3 = {
+			picture = generic_the_london_naval_treaty
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				production_speed_naval_base_factor = -0.10
+				production_speed_dockyard_factor = -0.25
+				industrial_capacity_dockyard = -0.25
+			}
+		}
+
+		LOR_surplus_materials = {
+			picture = ast_all_in
+
+			allowed = { original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				production_speed_buildings_factor = 0.10
+			}
+		}
+
+		LOR_courts_of_lordaeron_1 = {
+			picture = generic_king_handled
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				stability_factor = -0.10
+				political_power_factor = -0.50
+				trade_laws_cost_factor = 5
+			}
+		}
+
+		LOR_courts_of_lordaeron_2 = {
+			picture = generic_king_handled
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				stability_factor = -0.05
+				political_power_factor = -0.30
+				trade_laws_cost_factor = 5
+			}
+		}
+
+		LOR_courts_of_lordaeron_3 = {
+			picture = generic_king_handled
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				political_power_factor = -0.15
+				trade_laws_cost_factor = 2
+			}
+		}
+
+		LOR_poor_administration_1 = {
+			picture = can_patriation
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.15
+				local_resources_factor = -0.25
+				political_advisor_cost_factor = 0.50
+				stability_factor = -0.15
+			}
+		}
+
+		LOR_poor_administration_2 = {
+			picture = can_patriation
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.10
+				local_resources_factor = -0.25
+				political_advisor_cost_factor = 0.25
+				stability_factor = -0.10
+			}
+		}
+
+		LOR_poor_administration_3 = {
+			picture = can_patriation
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				local_resources_factor = -0.15
+				stability_factor = -0.05
+			}
+		}
+
+		LOR_poor_administration_4 = {
+			picture = can_patriation
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		LOR_civil_guard_1 = {
+
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.10
+				political_power_gain = -0.2
+				conscription_factor = -0.15
+				resistance_growth_on_our_occupied_states = 0.3
+			}
+		}
+
+		LOR_civil_guard_2 = {
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				political_power_gain = -0.2
+				conscription_factor = -0.15
+				resistance_growth_on_our_occupied_states = 0.3
+			}
+		}
+
+		LOR_civil_guard_3 = {
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				political_power_gain = -0.10
+				conscription_factor = -0.10
+				resistance_growth_on_our_occupied_states = 0.2
+			}
+		}
+
+		LOR_civil_guard_4_1 = {
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+				political_power_gain = -0.10
+				experience_gain_army = 0.05
+				country_faith_gain_factor = 0.10
+			}
+		}
+
+		LOR_civil_guard_4_2 = {
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.025
+				political_power_gain = -0.10
+				conscription_factor = -0.05				
+				experience_gain_army = 0.15
+				stability_weekly = -0.001
+				resistance_growth_on_our_occupied_states = 0.1
+			}
+		}
+
+		LOR_new_training_regiment = {
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				experience_gain_army = 0.05
+				consumer_goods_expected_value = 0.025
+			}
+		}
+
+		LOR_church_tax_exemption = {
+			picture = tfv_can_conscription_crisis
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				weekly_manpower = 5
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		LOR_citizen_turmoil = {
+			picture = tfv_can_conscription_crisis
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				stability_weekly = -0.003
+				political_power_factor = -0.20
+			}
+		}
+
+		LOR_open_currency = {
+			picture = SPR_relocate_the_gold_reserves
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				trade_opinion_factor = 0.75
+			}
+		}
+
+		LOR_dwarven_breakout_idea = {
+			picture = can_patriation
+			allowed_civil_war = { always = yes }
+
+			targeted_modifier = {
+				tag = BHC
+				breakthrough_bonus_against = 0.25
+			}
+		}
+
+		LOR_order_of_the_silver_hand = {
+			picture = silverhand_idea
+
+			allowed = {
+				OR = {
+					original_tag = LOR
+					original_tag = ARD
+					original_tag = HEA
+					original_tag = STH
+					original_tag = STR
+				}
+			}
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription = 0.005
+				army_core_defence_factor = 0.05
+			}
+		}
+
+		LOR_order_of_the_silver_hand_2 = {
+			picture = silverhand_idea
+
+			allowed = {
+				OR = {
+					original_tag = LOR
+					original_tag = ARD
+					original_tag = HEA
+					original_tag = STH
+					original_tag = STR
+				}
+			}
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription = 0.01
+				army_core_defence_factor = 0.10
+				war_stability_factor = 0.20
+			}
+
+			equipment_bonus = {
+				heroic_heavy_cavalry_equipment = {
+					armor_value = 0.10
+					instant = yes
+				}
+			}
+		}
+
+		LOR_order_of_the_scarlet_crusade = {
+			picture = SCC_generic_idea
+
+			allowed = {
+				OR = {
+					original_tag = LOR
+					original_tag = SCC
+				}
+			}
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription = 0.005
+				army_core_attack_factor = 0.05
+				war_support_factor = 0.10
+			}
+		}
+
+		LOR_order_of_the_scarlet_crusade_2 = {
+			picture = SCC_generic_idea
+
+			allowed = {
+				OR = {
+					original_tag = LOR
+					original_tag = SCC
+				}
+			}
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription = 0.005
+				army_core_attack_factor = 0.10
+				war_support_factor = 0.20
+				offensive_war_stability_factor = 0.30
+			}
+		}
+
+		LOR_court_chaplain_1 = {
+			picture = SOV_crowning_jewel_of_russia
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				neutral_drift = 0.02
+				political_power_gain = -0.10
+			}
+		}
+
+		LOR_court_chaplain_2 = {
+			picture = SOV_crowning_jewel_of_russia
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				neutral_drift = 0.05
+				political_power_gain = -0.10
+				consumer_goods_factor = 0.025
+				weekly_manpower = 2
+			}
+		}
+
+		LOR_church_visitations = {
+			picture = SOV_crowning_jewel_of_russia
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = -0.05
+				neutral_drift = 0.01
+			}
+		}
+
+		LOR_noble_concerns_1 = {
+			picture = generic_spy_intel
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				stability_weekly = -0.001
+				political_power_gain = -0.25
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		LOR_noble_concerns_2 = {
+			picture = generic_spy_intel
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				political_power_gain = -0.25
+				consumer_goods_expected_value = 0.10
+			}
+		}
+
+		LOR_rotating_assignments_idea_1 = {
+			picture = BRA_air_force
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				alliance_drift = 0.02
+				political_power_gain = -0.10
+			}
+		}
+
+		LOR_rotating_assignments_idea_2 = {
+			picture = BRA_air_force
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				alliance_drift = 0.02
+				political_power_gain = -0.10
+				stability_weekly = 0.001
+				stability_factor = 0.05
+			}
+		}
+
+		LOR_noble_suspicions_1 = {
+			picture = generic_spy_intel
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				neutral_drift = 0.10
+				stability_weekly = -0.001
+				political_power_gain = -0.10
+			}
+		}
+
+		LOR_noble_suspicions_2 = {
+			picture = generic_spy_intel
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				neutral_drift = 0.05
+				stability_weekly = -0.001
+				political_power_gain = -0.10
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		LOR_noble_distractions = {
+			picture = BRA_air_force
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = -0.05
+				alliance_drift = 0.01
+			}
+		}
+
+		LOR_titles_revoked = {
+
+			picture = generic_spy_intel
+
+			allowed = { original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				political_power_gain = -0.25
+				consumer_goods_factor = 0.10
+				local_resources_factor = -0.1
+			}
+		}
+
+		LOR_damage_repayments = {
+			picture = ger_mefo_bills_payment
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		LOR_tax_exemption = {
+			picture = generic_agrarian_reform
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+			modifier = {
+				consumer_goods_expected_value = 0.025
+				political_power_gain = -0.1
+			}
+		}
+
+		LOR_naval_apprentices = {
+			picture = SOV_organize_wreckers
+			allowed_civil_war = { always = yes }
+
+			cancel = {
+				any_country = {
+					has_war_with = LOR
+					is_major = yes
+				}
+			}
+
+			modifier = {
+				production_speed_dockyard_factor = 0.05
+				production_speed_naval_base_factor = 0.10
+				industrial_capacity_dockyard = 0.10
+				conscription_factor = -0.05
+			}
+		}
+
+		LOR_land_purchases = {
+			picture = SPR_seize_the_gold_reserves
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				consumer_goods_expected_value = 0.05
+			}
+		}
+
+		LOR_land_purchases_brill = {
+			picture = SPR_seize_the_gold_reserves
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			on_remove = {
+				add_timed_idea = {
+					idea = LOR_land_purchases_southshore
+					days = 90
+				}
+				212 = { 
+					remove_dynamic_modifier = { modifier = LOR_private_holdings }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					} 
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_popularity = { ideology = neutral popularity = 0.02 }
+			}
+
+			modifier = {
+				consumer_goods_expected_value = 0.15
+			}
+		}
+
+		LOR_land_purchases_southshore = {
+			picture = SPR_seize_the_gold_reserves
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			on_remove = {
+				add_timed_idea = {
+					idea = LOR_land_purchases_tarren
+					days = 90
+				}
+				122 = { 
+					remove_dynamic_modifier = { modifier = LOR_private_holdings }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					} 
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					} 
+				}
+				add_popularity = { ideology = neutral popularity = 0.02 }
+			}
+
+			modifier = {
+				consumer_goods_expected_value = 0.15
+			}
+		}
+
+		LOR_land_purchases_tarren = {
+			picture = SPR_seize_the_gold_reserves
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			on_remove = {
+				123 = { 
+					remove_dynamic_modifier = { modifier = LOR_private_holdings } 
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					} 
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_popularity = { ideology = neutral popularity = 0.02 }
+			}
+
+			modifier = {
+				consumer_goods_expected_value = 0.15
+			}
+		}
+
+		LOR_outraged_citizens = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				stability_factor = -0.1
+				stability_weekly = -0.001
+			}
+		}
+
+		LOR_vengeful_commoners_idea = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription_factor = -0.02
+				stability_factor = -0.05
+				experience_gain_army = 0.05
+			}
+		}
+
+		LOR_within_our_borders_idea = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				stability_factor = 0.05
+				production_speed_bunker_factor = 0.2
+				production_speed_coastal_bunker_factor = 0.2
+			}
+
+			research_bonus = {
+				fortification_technology = 0.2
+			}
+		}
+
+		LOR_stormwind_aux_idea = {
+			picture = chi_army_corruption
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				weekly_manpower = 10
+				war_support_factor = 0.05
+			}
+		}
+		
+		LOR_GIL_training = {
+			picture = chi_army_corruption
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				training_time_army_factor = -0.1
+				experience_gain_army = 0.10
+				weekly_manpower = 12
+			}
+		}
+
+		LOR_burn_them_all_idea = {
+			picture = chi_army_corruption
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			targeted_modifier = {
+				tag = VIL
+				attack_bonus_against = 0.15
+			}
+			targeted_modifier = {
+				tag = WBT
+				attack_bonus_against = 0.15
+			}
+			targeted_modifier = {
+				tag = MFT
+				attack_bonus_against = 0.15
+			}	
+			targeted_modifier = {
+				tag = SPT
+				attack_bonus_against = 0.15
+			}
+			targeted_modifier = {
+				tag = AMA
+				attack_bonus_against = 0.15
+			}
+			targeted_modifier = {
+				tag = FTT
+				attack_bonus_against = 0.15
+			}
+			targeted_modifier = {
+				tag = SMR
+				attack_bonus_against = 0.15
+			}
+		}
+
+		### Unused - Need to Re-Add
+
+		LOR_Valad_Toreps = {
+			picture = generic_navy_bonus
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			removal_cost = -1
+
+			modifier = {
+				political_power_gain = -0.5
+			}
+		}
+
+		# THIRD WAR EXCLUSIVELY
+		# THIRD WAR EXCLUSIVELY
+		# THIRD WAR EXCLUSIVELY
+
+		LOR_army_restructure_1 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				army_org_factor = -0.05
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		LOR_army_restructure_2 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				army_org_factor = -0.05
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				ranged_weapons_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				anti_cavalry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes	
+				}
+			}
+		}
+
+		LOR_army_restructure_3 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				army_org_factor = 0.05
+				army_speed_factor = 0.05
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				ranged_weapons_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				anti_cavalry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes	
+				}
+			}
+		}
+
+		LOR_army_restructure_4 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				army_org_factor = 0.05
+				army_speed_factor = 0.05
+				industry_free_repair_factor = 0.1
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				ranged_weapons_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				anti_cavalry_equipment = {
+					build_cost_ic = -0.1
+					instant = yes	
+				}
+			}
+		}
+
+		LOR_industry_reform_1 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.1
+				production_speed_industrial_complex_factor = 0.05
+				country_resource_wheat = 2
+			}
+		}
+
+		LOR_industry_reform_2 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.1
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 2
+				consumer_goods_expected_value = -0.02
+			}
+		}
+
+		LOR_industry_reform_3 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.1
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 2
+				consumer_goods_expected_value = -0.02
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+			}
+		}
+
+		LOR_industry_reform_4 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.2
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 4
+				consumer_goods_expected_value = -0.02
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+			}
+		}
+
+		LOR_industry_reform_5 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.2
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 4
+				consumer_goods_expected_value = -0.02
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+				industrial_capacity_factory = 0.1
+			}
+		}
+
+		LOR_industry_reform_6 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.2
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 4
+				consumer_goods_expected_value = -0.05
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+				industrial_capacity_factory = 0.1
+			}
+		}
+
+		LOR_industry_reform_7 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.3
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 6
+				consumer_goods_expected_value = -0.05
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+				industrial_capacity_factory = 0.1
+			}
+		}
+
+		LOR_industry_reform_8 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				monthly_population = 0.3
+				production_speed_industrial_complex_factor = 0.1
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 8
+				consumer_goods_expected_value = -0.1
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+				industrial_capacity_factory = 0.1
+			}
+		}
+
+		LOR_industry_reform_9 = {
+			picture = ast_abandon_the_westminster_system
+			allowed = {	original_tag = LOR }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				research_speed_factor = 0.05
+				monthly_population = 0.3
+				production_speed_industrial_complex_factor = 0.1
+				production_speed_infrastructure_factor = 0.10
+				country_resource_wheat = 8
+				consumer_goods_expected_value = -0.1
+				country_resource_wood = 3
+				industrial_capacity_dockyard = 0.1
+				industrial_capacity_factory = 0.15
+			}
+		}
+
+		LOR_preparing_against_darkness_idea = {
+
+			allowed = {
+				OR = {
+					original_tag = LOR
+					original_tag = SCC
+				}
+			}
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				state_production_speed_bunker_factor = 0.15
+			}
+		}
+
+		LOR_roaming_orcs = {
+			picture = generic_race_orc
+			allowed = {
+				OR = {
+					original_tag = STR
+					original_tag = AER
+					original_tag = LOR
+					original_tag = HEA
+				} 
+			}
+			cancel = {
+				NOT = { any_neighbor_country = { has_idea = orc_primary_race } }
+			}
+			modifier = {
+				stability_factor = -0.10
+				stability_weekly = -0.002
+			}
+		}
+
+		LOR_court_backlog_1 = {
+			picture = generic_king_handled
+
+			modifier = {
+				political_power_gain = -0.50
+			}
+		}
+		LOR_court_backlog_2 = {
+			picture = generic_king_handled
+
+			modifier = {
+				political_power_gain = -0.35
+			}
+		}
+
+		LOR_silverhand_unrest_1 = {
+			picture = silverhand_idea
+
+			modifier = {
+				stability_factor = -0.05
+				neutral_drift = 0.01
+				conscription = -0.002
+			}
+		}
+
+		LOR_silverhand_unrest_2 = {
+			picture = silverhand_idea
+
+			modifier = {
+				neutral_drift = 0.01
+				conscription = -0.001
+			}
+		}
+
+		LOR_order_of_the_silver_hand_defiance = {
+			picture = silverhand_idea
+
+			allowed = { always = yes }
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				war_support_factor = -0.10
+				conscription_factor = -0.10
+			}
+
+			equipment_bonus = {
+				heroic_heavy_cavalry_equipment = {
+					build_cost_ic = 5
+					instant = yes
+				}
+			}
+		}
+
+		### Third War 3-way War
+		
+		LOR_order_of_light = {
+			picture = silverhand_idea
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription = 0.01
+				army_core_defence_factor = 0.10
+				army_core_attack_factor = 0.10
+				war_support_factor = 0.20
+				offensive_war_stability_factor = 0.30
+			}
+
+			equipment_bonus = {
+				heroic_heavy_cavalry_equipment = {
+					armor_value = 0.10
+					instant = yes
+				}
+			}
+		}
+
+		LOR_order_of_shadow = {
+			picture = LOR_order_of_shadow_idea
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				army_attack_factor = 0.1
+				offensive_war_stability_factor = 0.10
+				war_support_factor = 0.1
+			}
+
+			equipment_bonus = {
+				heroic_heavy_cavalry_equipment = {
+					soft_attack = 0.1
+					hard_attack = 0.1
+					breakthrough = 0.15
+					instant = yes
+				}
+			}
+
+			targeted_modifier = {
+				tag = SRG
+				attack_bonus_against = 0.1
+			}
+			targeted_modifier = {
+				tag = CAE
+				attack_bonus_against = 0.1
+			}
+		}
+
+		LOR_path_of_blood = {
+			picture = LOR_path_of_blood_idea
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				political_power_gain = 0.1
+				army_attack_factor = 0.05
+				army_morale_factor = 0.15
+				stability_factor = -0.05
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					soft_attack = 0.1
+					defense = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		LOR_path_of_deep = {
+			picture = LOR_path_of_deep_idea
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				research_speed_factor = 0.1
+				army_core_defence_factor = 0.10
+				stability_weekly = -0.001
+				experience_gain_army = 0.03
+				experience_gain_navy = 0.03
+				experience_gain_air = 0.03
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					armor_value = 0.15
+					defense = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		LOR_path_of_grave = {
+			picture = LOR_path_of_grave_idea
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				conscription_factor = 0.1
+				army_org_factor = 0.15
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				production_speed_buildings_factor = -0.1
+			}
+
+			equipment_bonus = {
+				infantry_equipment = {
+					hard_attack = 0.2
+					breakthrough = 0.2
+					instant = yes
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+sp_steam_warrior = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			OR = {
+				#has_tech = gnome_mecha_golem_equipment_tech_2
+				#has_tech = goblin_sky_golem_equipment_tech_2
+			}
+			
+		}
+	}
+
+	visible = {
+		FROM = { 
+			OR = {
+				#has_tech = gnome_station_tech
+				#has_tech = goblin_scrapheap_outpost_tech
+			}
+		}
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 3
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = { 
+			ores = 24
+			#oil = 12
+			gunpowder = 24
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			steam_warrior
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = { steam_warrior_trait }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Steam Warriors"
+				priority = 1
+				regiments = {
+					steam_warrior = { x = 0 y = 0 }
+					steam_warrior = { x = 0 y = 1 }
+					steam_warrior = { x = 0 y = 2 }
+					steam_warrior = { x = 0 y = 3 }
+					steam_warrior = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Steam Warriors\" division_template = \"Steam Warriors\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}

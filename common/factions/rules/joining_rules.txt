@@ -1,0 +1,335 @@
+##########################################################################################
+
+### ###  ###  ##  #    ##   ##  #   #     ###   ##   ## ### ###      ###  #  # #   ###  ## 
+ #  #  # #   #  # #   #  # #     # #      #  # #  # #   #   #  #     #  # #  # #   #   #   
+ #  #  # ##  #  # #   #  # # ##   #       ###  ####  #  ##  #  #     ###  #  # #   ##   #  
+ #  #  # #   #  # #   #  # #  #   #       #  # #  #   # #   #  #     #  # #  # #   #     # 
+### ###  ###  ##  ###  ##   ##    #       ###  #  # ##  ### ###      #  #  ##  ### ### ## 
+
+########################################################################################## 
+
+joining_rule_same_ideology = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	trigger = {
+		has_government = FROM
+	}
+}
+
+joining_rule_support_percentage = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = {
+
+	}
+	trigger = {
+		compare_ideology_with_faction = {
+			value > 0.3
+			leader = FROM
+		}
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+}
+
+joining_rule_puppets_only = {
+	type = joining_rules
+	can_remove = {
+		faction_manifest_fulfillment > 0.95
+	}
+	ai_will_do = {
+		base = 0
+	}
+	trigger = {
+		ROOT = { is_subject_of = FROM }
+		IF = {
+			limit = { NOT = { has_rule = can_join_opposite_factions } }
+			has_government = FROM
+		}
+	}
+	modifier= {
+		subjects_autonomy_gain = -0.05
+	}
+}
+
+#######################################################
+
+#   #  ##  ###      ###  ### #    ##  ### ###  ##  #  #     
+#   # #  # #  #     #  # #   #   #  #  #   #  #  # ## #     
+# # # #### ###      ###  ##  #   ####  #   #  #  # # ##     
+# # # #  # #  #     #  # #   #   #  #  #   #  #  # #  #     
+ # #  #  # #  #     #  # ### ### #  #  #  ###  ##  #  #
+
+ ######################################################     
+
+joining_rule_has_no_war = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 3
+			has_government = neutral
+			has_war = no 
+		}
+	}
+	trigger = {
+		has_war = no
+	}
+	modifier = {
+		improve_relations_maintain_cost_factor = -0.1
+	}
+}
+
+joining_rule_has_no_offensive_war = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 2
+			OR = {
+				has_government = titans
+				has_government = neutral
+			}
+		}
+	}
+	trigger = {
+		has_offensive_war = no
+	}
+	modifier = {
+		defensive_war_stability_factor = 0.15
+	}
+}
+
+########################################################
+
+ ##  ###  ##   ##  ###   ##  ###  #  # ###  ##   ##  #   
+#    #   #  # #    #  # #  # #  # #  #  #  #  # #  # #   
+# ## ##  #  # # ## ###  #### ###  ####  #  #    #### #   
+#  # #   #  # #  # #  # #  # #    #  #  #  #  # #  # #   
+ ##  ###  ##   ##  #  # #  # #    #  # ###  ##  #  # ###
+
+######################################################## 
+
+joining_rule_global_alliance = {
+	type = joining_rules
+	ai_will_do = {
+		base = -10
+
+	}
+	
+	trigger = {
+		any_neighbor_country = {
+			is_in_faction_with = FROM
+		}
+	}
+	modifier = {
+		enemy_justify_war_goal_time = 0.2
+	}
+}
+
+joining_rule_neighbors_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 1
+			has_war = no 
+		}
+	}
+	
+	trigger = {
+		any_neighbor_country = {
+			is_in_faction_with = FROM
+		}
+	}
+	modifier = {
+		enemy_justify_war_goal_time = 0.2
+	}
+}
+
+joining_rule_same_continent_only = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	can_remove = {
+		faction_manifest_fulfillment > 0.75
+	}
+	trigger = {
+		ROOT = { is_on_same_continent_as = FROM }
+	}
+	modifier = {
+		enemy_justify_war_goal_time = 0.1
+	}
+}
+
+########################################################
+#RACE
+######################################################## 
+
+
+joining_rule_same_race = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	trigger = {
+		ROOT = { 
+			NOT = {
+				has_opinion_modifier = different_race
+			}
+		}
+	}
+}
+
+### Temp Until issue Resolved
+#joining_rule_humanoids = {
+#	type = joining_rules
+#	ai_will_do = {
+#		base = 0
+#	}
+#	visible = { 
+#		is_humanoid_races = yes
+#	}
+#	trigger = {
+#		ROOT = {
+#			is_humanoid_races = yes
+#		}
+#	}
+#}
+
+joining_rule_aquatic_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_aquatic_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_aquatic_races = yes
+		}
+	}
+}
+
+joining_rule_draconic_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_draconic_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_draconic_races = yes
+		}
+	}
+}
+
+joining_rule_insect_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_insect_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_insect_races = yes
+		}
+	}
+}
+
+joining_rule_plant_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_plant_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_plant_races = yes
+		}
+	}
+}
+
+joining_rule_elemental_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_elemental_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_elemental_races = yes
+		}
+	}
+}
+
+joining_rule_dwarven_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_dwarven_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_dwarven_races = yes
+		}
+	}
+}
+
+joining_rule_elven_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_elven_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_elven_races = yes
+		}
+	}
+}
+
+joining_rule_troll_races = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	visible = { 
+		is_troll_races = yes
+	}
+	trigger = {
+		ROOT = {
+			is_troll_races = yes
+		}
+	}
+}
+
+joining_rule_multi_race = {
+	type = joining_rules
+	ai_will_do = {
+		base = 0
+	}
+	trigger = {
+		always = yes
+	}
+}

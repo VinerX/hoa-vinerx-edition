@@ -1,0 +1,345 @@
+### Increased Damage, slightly better Terrain Bonuses 
+sp_galehorn_nomads = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = draenei_talbuk_rider_equipment_tech_1 }
+	}
+
+	visible = {
+		FROM = { has_tech = draenei_spire_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mounts = 6
+			mana = 6
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			galehorn_nomads
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 4
+					logistics_skill = 4
+				}
+			}
+			division_template = {
+				name = "Nomads"
+				priority = 1
+				regiments = {
+					galehorn_nomads = { x = 0 y = 0 }
+					galehorn_nomads = { x = 0 y = 1 }
+					galehorn_nomads = { x = 0 y = 2 }
+					galehorn_nomads = { x = 0 y = 3 }
+					galehorn_nomads = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Nomads\" division_template = \"Nomads\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_1
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Spellcaster Mech, Trades Breakthrough and Soft Attack for more Hard Attack & Pierce
+### Also Now Counts as a Spellcaster 
+sp_auchenai_vigilant = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = draenei_vigilant_equipment_tech_2 
+			has_tech = draenei_soul_priest_training_2
+			OR = {
+				has_idea = religion_guild
+				has_idea = religion_guild_1
+				has_idea = religion_guild_2
+			}
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = draenei_spire_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mana = 32
+			ores = 20
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			auchenai_vigilant
+		}
+		country_effects = {
+			division_template = {
+				name = "Auchenai Vigilant"
+				priority = 1
+				regiments = {
+					auchenai_vigilant = { x = 0 y = 0 }
+					auchenai_vigilant = { x = 0 y = 1 }
+					auchenai_vigilant = { x = 0 y = 2 }
+					auchenai_vigilant = { x = 0 y = 3 }
+					auchenai_vigilant = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Auchenai Vigilant\" division_template = \"Auchenai Vigilant\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_1
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Shock Trooper Version of Vindicators
+sp_draenei_lightsworn = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = draenei_vindicator_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = draenei_spire_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 4
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			wheat = 14
+			ores = 28
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			draenei_lightsworn
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Lightsworn"
+				priority = 1
+				regiments = {
+					draenei_lightsworn = { x = 0 y = 0 }
+					draenei_lightsworn = { x = 0 y = 1 }
+					draenei_lightsworn = { x = 0 y = 2 }
+					draenei_lightsworn = { x = 0 y = 3 }
+					draenei_lightsworn = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Lightsworn\" division_template = \"Lightsworn\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+sp_narru_guidance = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = draenei_naaru_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = draenei_spire_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 4
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			mana = 42
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { narru_guidance = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Use the Radiated Crystals from the Crash
+sp_blightburn_weaponry = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = draenei_gem_infused_weapons_tech_3 
+			any_controlled_state = { has_dynamic_modifier = irradiated_crystals }
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = draenei_spire_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			mana = 60
+			ores = 30
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { bright_burn_weaponry = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}

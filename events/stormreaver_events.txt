@@ -1,0 +1,596 @@
+﻿###########################
+# stormreaver
+###########################
+
+add_namespace = stormreaver
+
+# Stormreaver given land (from blackrock.20)
+country_event = {
+	id = stormreaver.1
+	title = stormreaver.1.t
+	desc = stormreaver.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.1.option.1
+		custom_effect_tooltip = stormreaver.1.option.1.d
+
+		# SRC gets Stormwind, parts of eastern Elwynn and Westfall, if owned by BRC
+		# Array of the target states
+		# Stormwind
+		add_to_array = { SRC_target_states = 22 }
+		add_to_array = { SRC_target_states = 315 }
+		add_to_array = { SRC_target_states = 316 }
+		add_to_array = { SRC_target_states = 317 }
+		add_to_array = { SRC_target_states = 318 }
+		add_to_array = { SRC_target_states = 319 }
+		add_to_array = { SRC_target_states = 320 }
+		add_to_array = { SRC_target_states = 321 }
+		add_to_array = { SRC_target_states = 322 }
+		add_to_array = { SRC_target_states = 375 }
+		# Westfall
+		add_to_array = { SRC_target_states = 38 }
+	    add_to_array = { SRC_target_states = 142 }
+	    add_to_array = { SRC_target_states = 143 }
+	    add_to_array = { SRC_target_states = 144 }
+	    add_to_array = { SRC_target_states = 145 }
+	    add_to_array = { SRC_target_states = 146 }
+	    add_to_array = { SRC_target_states = 147 }
+	    add_to_array = { SRC_target_states = 148 }
+	    add_to_array = { SRC_target_states = 149 }
+	    add_to_array = { SRC_target_states = 374 }
+		add_to_array = { SRC_target_states = 1590 }
+	    add_to_array = { SRC_target_states = 1591 }
+	    add_to_array = { SRC_target_states = 1592 }
+	    add_to_array = { SRC_target_states = 1593 }
+	    add_to_array = { SRC_target_states = 1594 }
+	    add_to_array = { SRC_target_states = 1595 }
+	    add_to_array = { SRC_target_states = 1596 }
+	    add_to_array = { SRC_target_states = 1597 }
+	    add_to_array = { SRC_target_states = 2161 }
+	    add_to_array = { SRC_target_states = 2162 }
+	    add_to_array = { SRC_target_states = 2163 }
+	    add_to_array = { SRC_target_states = 2164 }
+		# Parts of Elwynn
+		add_to_array = { SRC_target_states = 311 }
+		add_to_array = { SRC_target_states = 312 }
+		add_to_array = { SRC_target_states = 325 }
+		add_to_array = { SRC_target_states = 326 }
+		add_to_array = { SRC_target_states = 350 }
+		add_to_array = { SRC_target_states = 351 }
+		add_to_array = { SRC_target_states = 352 }
+
+		# Give the states owned by BRC
+		for_each_scope_loop = {
+			array = SRC_target_states
+			if = {
+				limit = { is_owned_by = BRC }
+				add_core_of = SRC
+				transfer_state_to = SRC
+				remove_core_of = BRC
+			}
+		}
+		clear_array = SRC_target_states
+
+		hidden_effect = {
+			BRC = {	add_to_faction = SRC }
+			SRC = {
+				add_ideas = SRC_struggle_for_power
+				add_ideas = mage_guild
+				add_timed_idea = {
+					idea = SRC_command_not_compassion
+					days = 1460
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stormreaver.2
+	title = stormreaver.2.t
+	desc = stormreaver.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.2.option.1
+
+		add_ideas = SRC_keep_an_eye_of_guldan_idea
+	}
+}
+
+### Mini Focus Begin
+country_event = {
+	id = stormreaver.10
+	title = stormreaver.10.t
+	desc = stormreaver.10.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.10.option.1
+
+		add_ideas = SRC_call_of_the_deep
+		add_ideas = SRC_labor_shortage_1
+	}
+}
+
+country_event = {
+	id = stormreaver.11
+	title = stormreaver.11.t
+	desc = stormreaver.11.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.1
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.11.option.1
+		complete_national_focus = SRC_seek_the_tomb
+	}
+}
+
+country_event = {
+	id = stormreaver.12
+	title = stormreaver.12.t
+	desc = stormreaver.12.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.2
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.12.option.1
+		complete_national_focus = SRC_darktides
+	}
+}
+
+country_event = {
+	id = stormreaver.13
+	title = stormreaver.13.t
+	desc = stormreaver.13.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.25
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.13.option.1
+		complete_national_focus = SRC_returned_to_the_council
+	}
+}
+
+country_event = {
+	id = stormreaver.14
+	title = stormreaver.14.t
+	desc = stormreaver.14.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.3
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.14.option.1
+		complete_national_focus = SRC_warchiefs_blessing
+	}
+}
+
+country_event = {
+	id = stormreaver.15
+	title = stormreaver.15.t
+	desc = stormreaver.15.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.4
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.15.option.1
+		complete_national_focus = SRC_demonic_scouts
+	}
+}
+
+country_event = {
+	id = stormreaver.16
+	title = stormreaver.16.t
+	desc = stormreaver.16.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.45
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.16.option.1
+		complete_national_focus = SRC_the_clear_divide
+	}
+}
+
+country_event = {
+	id = stormreaver.17
+	title = stormreaver.17.t
+	desc = stormreaver.17.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.5
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.17.option.1
+		complete_national_focus = SRC_monument_to_out_power
+	}
+}
+
+country_event = {
+	id = stormreaver.18
+	title = stormreaver.18.t
+	desc = stormreaver.18.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.55
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.18.option.1
+		complete_national_focus = SRC_raise_the_isle
+	}
+}
+
+country_event = {
+	id = stormreaver.19
+	title = stormreaver.19.t
+	desc = stormreaver.19.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	hidden = yes
+
+	trigger = {
+		tag = SRC
+		OR = {
+			has_idea = SRC_struggle_for_power
+			has_idea = SRC_struggle_for_power_2
+			has_idea = SRC_struggle_for_power_3
+		}
+		fel > 0.6
+	}
+
+	mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = stormreaver.19.option.1
+		complete_national_focus = SRC_the_search_for_godhood
+		country_event = { id = stormreaver.20 days = 14 }
+	}
+}
+
+country_event = {
+	id = stormreaver.20
+	title = stormreaver.20.t
+	desc = stormreaver.20.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.20.option.1
+		country_event = { id = stormreaver.21 days = 14 }
+	}
+}
+
+country_event = {
+	id = stormreaver.21
+	title = stormreaver.21.t
+	desc = stormreaver.21.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.21.option.1
+		BRC = { country_event = stormreaver.23 }
+		country_event = { id = stormreaver.22 days = 14 }
+	}
+}
+
+country_event = {
+	id = stormreaver.22
+	title = stormreaver.22.t
+	desc = stormreaver.22.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.22.option.1
+		country_event = { id = stormreaver.24 days = 14 }
+	}
+}
+
+country_event = {
+	id = stormreaver.23
+	title = stormreaver.23.t
+	desc = stormreaver.23.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.23.option.1
+		SRC = { leave_faction = yes }
+		BTG = {
+			country_event = { id = stormreaver.25 days = 30 }
+			add_ideas = SRC_hunt_the_traitors
+			declare_war_on = {
+				target = SRC
+				type = annex_everything
+			}
+		}
+		BTG = { annex_westfall = yes }
+		hidden_effect = {
+			BTG = {
+				division_template = {
+					name = "Warlock Hunters"
+					priority = 1
+					regiments = {
+						grunt = { x = 0 y = 0 }
+						grunt = { x = 0 y = 1 }
+						grunt = { x = 0 y = 2 }
+						grunt = { x = 0 y = 3 }
+						grunt = { x = 1 y = 0 }
+						grunt = { x = 1 y = 1 }
+					}
+				}
+				random_state = {
+					limit = {
+						impassable = no
+						is_controlled_by = BTG
+						is_core_of = STO
+						is_coastal = yes
+					}
+					create_unit = {
+						division = "name = \"Warlock Hunters\" division_template = \"Warlock Hunters\" start_experience_factor = 0.3"
+						owner = BTG
+						count = 2
+					}
+				}
+				random_state = {
+					limit = {
+						impassable = no
+						is_controlled_by = BTG
+						is_core_of = STO
+						is_coastal = yes
+					}
+					create_unit = {
+						division = "name = \"Warlock Hunters\" division_template = \"Warlock Hunters\" start_experience_factor = 0.3"
+						owner = BTG
+						count = 2
+					}
+				}
+				random_state = {
+					limit = {
+						impassable = no
+						is_controlled_by = BTG
+						is_core_of = STO
+						is_coastal = yes
+					}
+					create_unit = {
+						division = "name = \"Warlock Hunters\" division_template = \"Warlock Hunters\" start_experience_factor = 0.3"
+						owner = BTG
+						count = 2
+					}
+				}
+				random_state = {
+					limit = {
+						impassable = no
+						is_controlled_by = BTG
+						is_core_of = STO
+						is_coastal = yes
+					}
+					create_unit = {
+						division = "name = \"Warlock Hunters\" division_template = \"Warlock Hunters\" start_experience_factor = 0.3"
+						owner = BTG
+						count = 2
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stormreaver.24
+	title = stormreaver.24.t
+	desc = stormreaver.24.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.24.option.1
+	}
+}
+
+country_event = {
+	id = stormreaver.25
+	title = stormreaver.25.t
+	desc = stormreaver.25.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.25.option.1
+		hidden_effect = {
+			country_event = { id = stormreaver.26 days = 7 }
+			BTG = { add_manpower = -12000 }
+			every_state = {
+				limit = {
+					is_owned_by = SRC
+					NOT = {
+						state = 750
+						state = 463
+						state = 659
+						state = 475
+						state = 451
+					}
+				}
+				transfer_state_to = BTG
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stormreaver.26
+	title = stormreaver.26.t
+	desc = stormreaver.26.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = stormreaver.26.option.1
+		hidden_effect = {
+			LOR = { complete_national_focus = LOR_bypass_the_blackrock }	
+		}
+	}
+}

@@ -1,0 +1,1750 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	pirates_crews_quarters_tech = {
+
+		path = {
+			leads_to_tech = pirates_swashbuckler_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_harpooner_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_musketeer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_tidecaller_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 14 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	pirates_swashbuckler_tech = {
+
+		enable_subunits = {
+			pirates_swashbuckler
+		}
+
+		on_research_complete = {
+			set_technology = { pirates_swashbuckler_equipment_tech_1 = 1 }
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_swashbuckler_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_officer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_overseer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 7 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_swashbuckler_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_swashbuckler_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_pistol_shot_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_blade_barrage_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_pistol_shot_tech = {
+
+		pirates_swashbuckler = {
+			ap_attack = 0.2
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_blade_barrage_tech }
+
+		path = {
+			leads_to_tech = pirates_swashbuckler_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_blade_barrage_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_blade_barrage_tech
+			}
+		}
+	}
+
+	pirates_blade_barrage_tech = {
+
+		pirates_swashbuckler = {
+			breakthrough = 0.15
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_pistol_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_swashbuckler_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_pistol_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_pistol_shot_tech
+			}
+		}
+	}
+
+	pirates_swashbuckler_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_swashbuckler_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_bottle_of_grog_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_poisoning_strike_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_bottle_of_grog_tech = {
+
+		pirates_swashbuckler = {
+			casualty_trickleback = 0.02
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_poisoning_strike_tech }
+
+		path = {
+			leads_to_tech = pirates_swashbuckler_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_poisoning_strike_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_poisoning_strike_tech
+			}
+		}
+	}
+
+	pirates_poisoning_strike_tech = {
+
+		pirates_swashbuckler = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_bottle_of_grog_tech }
+
+		path = {
+			leads_to_tech = pirates_swashbuckler_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_poisoning_strike_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_poisoning_strike_tech
+			}
+		}
+	}
+
+	pirates_swashbuckler_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_swashbuckler_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_swashbuckler_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_officer_tech = {
+
+		enable_subunits = {
+			pirates_officer
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_officer_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 4 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_officer_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_officer_training_tech_1 = {
+
+		pirates_officer = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_officer_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_officer_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_officer_training_tech_2 = {
+
+		pirates_officer = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_officer_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_officer_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_officer_training_tech_3 = {
+
+		pirates_officer = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_officer_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_officer_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_officer_training_tech_4 = {
+
+		pirates_officer = {
+			initiative = 0.09
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 4 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_officer_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_overseer_tech = {
+
+		enable_subunits = {
+			pirates_overseer
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_overseer_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_overseer_training_tech_1 = {
+
+		pirates_overseer = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_overseer_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_overseer_training_tech_2 = {
+
+		pirates_overseer = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_overseer_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_overseer_training_tech_3 = {
+
+		pirates_overseer = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_overseer_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_overseer_training_tech_4 = {
+
+		pirates_overseer = {
+			recon = 1.5
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_harpooner_tech = {
+
+		enable_subunits = {
+			pirates_harpooner
+		}
+
+		on_research_complete = {
+			set_technology = {
+				pirates_harpooner_equipment_tech_1 = 1
+			}
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_harpooner_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_harpooner_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_harpooner_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_harpoon_slice_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_harpoon_throw_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_harpoon_slice_tech = {
+
+		pirates_harpooner = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_harpoon_throw_tech }
+
+		path = {
+			leads_to_tech = pirates_harpooner_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_harpoon_throw_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_harpoon_throw_tech
+			}
+		}
+	}
+
+	pirates_harpoon_throw_tech = {
+
+		pirates_harpooner = {
+			ap_attack = 0.2
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_harpoon_slice_tech }
+
+		path = {
+			leads_to_tech = pirates_harpooner_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_harpoon_slice_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_harpoon_slice_tech
+			}
+		}
+	}
+
+	pirates_harpooner_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_harpooner_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_dragging_harpoon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_rope_attachment_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_dragging_harpoon_tech = {
+
+		pirates_harpooner = {
+			defense = 0.15
+			breakthrough = 0.15
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_rope_attachment_tech }
+
+		path = {
+			leads_to_tech = pirates_harpooner_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_rope_attachment_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_rope_attachment_tech
+			}
+		}
+	}
+
+	pirates_rope_attachment_tech = {
+
+		pirates_harpooner = {
+			soft_attack = 0.1
+			air_attack = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_dragging_harpoon_tech }
+
+		path = {
+			leads_to_tech = pirates_harpooner_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_dragging_harpoon_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_dragging_harpoon_tech
+			}
+		}
+	}
+
+	pirates_harpooner_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_harpooner_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_lookout_tech = {
+
+		enable_subunits = {
+			pirates_lookout
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_lookout_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 20 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_lookout_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_lookout_training_tech_1 = {
+
+		pirates_lookout = {
+			suppression_factor = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_lookout_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_lookout_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_lookout_training_tech_2 = {
+
+		pirates_lookout = {
+			suppression_factor = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_lookout_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_lookout_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_lookout_training_tech_3 = {
+
+		pirates_lookout = {
+			suppression_factor = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_lookout_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_lookout_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_lookout_training_tech_4 = {
+
+		pirates_lookout = {
+			suppression_factor = 0.10
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_lookout_technology
+			support_technology
+			guard_technology
+		}
+
+				ai_will_do = { factor = 1 }
+	}
+
+	pirates_musketeer_tech = {
+
+		enable_subunits = {
+			pirates_musketeer
+		}
+
+		on_research_complete = {
+			set_technology = {
+				pirates_musketeer_equipment_tech_1 = 1
+			}
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_musketeer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_lookout_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_musketeer_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_musketeer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_grape_shot_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_powder_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_grape_shot_tech = {
+
+		pirates_musketeer = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_powder_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_musketeer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_powder_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_powder_shot_tech
+			}
+		}
+	}
+
+	pirates_powder_shot_tech = {
+
+		pirates_musketeer = {
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_grape_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_musketeer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_grape_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_grape_shot_tech
+			}
+		}
+	}
+
+	pirates_musketeer_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_musketeer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_grenades_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_between_the_eyes_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_grenades_tech = {
+
+		pirates_musketeer = {
+			soft_attack = 0.2
+			breakthrough = 0.1
+			defense = 0.1
+			fort = { attack = 0.1 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_between_the_eyes_tech }
+
+		path = {
+			leads_to_tech = pirates_musketeer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_between_the_eyes_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_between_the_eyes_tech
+			}
+		}
+	}
+
+	pirates_between_the_eyes_tech = {
+
+		pirates_musketeer = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_grenades_tech }
+
+		path = {
+			leads_to_tech = pirates_musketeer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_grenades_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_grenades_tech
+			}
+		}
+	}
+
+	pirates_musketeer_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_musketeer_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_musketeer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_tidecaller_tech = {
+
+		enable_subunits = {
+			pirates_tidecaller
+			pirates_tidecaller_support
+		}
+
+		on_research_complete = {
+			set_technology = { pirates_tidecaller_equipment_tech_1 = 1 }
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_tidecaller_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_tidecaller_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_tidecaller_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_water_bolt_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_blinding_sleet_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_water_bolt_tech = {
+
+		pirates_tidecaller = {
+			soft_attack = 0.2
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_blinding_sleet_tech }
+
+		path = {
+			leads_to_tech = pirates_tidecaller_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_blinding_sleet_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_blinding_sleet_tech
+			}
+		}
+	}
+
+	pirates_blinding_sleet_tech = {
+
+		pirates_tidecaller = {
+			defense = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_water_bolt_tech }
+
+		path = {
+			leads_to_tech = pirates_tidecaller_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_water_bolt_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_water_bolt_tech
+			}
+		}
+	}
+
+	pirates_tidecaller_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_tidecaller_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_storms_winds_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_lightning_cloud_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 23 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_storms_winds_tech = {
+
+		pirates_tidecaller = {
+			breakthrough = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_lightning_cloud_tech }
+
+		path = {
+			leads_to_tech = pirates_tidecaller_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_lightning_cloud_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_lightning_cloud_tech
+			}
+		}
+	}
+
+	pirates_lightning_cloud_tech = {
+
+		pirates_tidecaller = {
+			ap_attack = 0.5
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_storms_winds_tech }
+
+		path = {
+			leads_to_tech = pirates_tidecaller_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_storms_winds_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_storms_winds_tech
+			}
+		}
+	}
+
+	pirates_tidecaller_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_tidecaller_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_infantry_folder
+			position = { x = 23 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			pirates_tidecaller_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

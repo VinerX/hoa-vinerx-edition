@@ -1,0 +1,1102 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	dragon_roost_air = {
+
+		enable_building = {
+            building = air_base
+            level = 10
+        }
+
+		dependencies = {
+			dragon_roost_administration = 1
+		}
+
+		on_research_complete = {
+			set_technology = { aviary_tech_global = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = fighter_drake_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bombardment_drake_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = siege_drake_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = scout_drake_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 8 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dragon_tier_technology
+		}
+	}
+
+	fighter_drake_tech = {
+
+		on_research_complete = {
+			set_technology = { fighter_drake_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = fighter_drake_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 2 y = 2 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	fighter_drake_equipment_tech_1 = {
+
+		enable_equipments = {
+			fighter_drake_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = drake_razor_claws
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drake_scaled_joints
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 2 y = 4 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_razor_claws = {
+
+		fighter = {
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_scaled_joints }
+
+		path = {
+			leads_to_tech = fighter_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 1 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_scaled_joints = {
+
+		fighter = {
+			air_agility = -0.1
+			air_defence = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_razor_claws }
+
+		path = {
+			leads_to_tech = fighter_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 3 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	fighter_drake_equipment_tech_2 = {
+
+		enable_equipments = {
+			fighter_drake_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = drake_flame_bursts
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drake_endurance_breeding
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 2 y = 8 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	drake_flame_bursts = {
+
+		fighter = {
+			air_superiority = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_endurance_breeding }
+
+		path = {
+			leads_to_tech = fighter_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 1 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_endurance_breeding = {
+
+		fighter = {
+			air_range = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_flame_bursts }
+
+		path = {
+			leads_to_tech = fighter_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 3 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	fighter_drake_equipment_tech_3 = {
+
+		enable_equipments = {
+			fighter_drake_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 2 y = 12 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	bombardment_drake_tech = {
+
+		on_research_complete = {
+			set_technology = { bombardment_drake_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = bombardment_drake_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 6 y = 2 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	bombardment_drake_equipment_tech_1 = {
+
+		enable_equipments = {
+			bombardment_drake_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = drake_siege_runs
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drake_strafing_runs
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 6 y = 4 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_siege_runs = {
+
+		bomber = {
+			air_bombing = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_strafing_runs }
+
+		path = {
+			leads_to_tech = bombardment_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 5 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_strafing_runs = {
+
+		bomber = {
+			air_agility = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_siege_runs }
+
+		path = {
+			leads_to_tech = bombardment_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bombardment_drake_equipment_tech_2 = {
+
+		enable_equipments = {
+			bombardment_drake_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = drake_fanned_flames
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drake_boil_the_seas
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	drake_fanned_flames = {
+
+		bomber = {
+			air_ground_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_boil_the_seas }
+
+		path = {
+			leads_to_tech = bombardment_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 5 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_boil_the_seas = {
+
+		bomber = {
+			naval_strike_attack = 0.15
+			naval_strike_targetting = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_fanned_flames }
+
+		path = {
+			leads_to_tech = bombardment_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bombardment_drake_equipment_tech_3 = {
+
+		enable_equipments = {
+			bombardment_drake_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 6 y = 12 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	siege_drake_tech = {
+
+		on_research_complete = {
+			set_technology = { siege_drake_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = siege_drake_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	siege_drake_equipment_tech_1 = {
+
+		enable_equipments = {
+			siege_drake_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = siege_sustained_breaths
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = siege_to_the_end
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	siege_sustained_breaths = {
+
+		strat_bomber = {
+			air_bombing = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { siege_to_the_end }
+
+		path = {
+			leads_to_tech = siege_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	siege_to_the_end = {
+
+		strat_bomber = {
+			air_defence = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { siege_sustained_breaths }
+
+		path = {
+			leads_to_tech = siege_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	siege_drake_equipment_tech_2 = {
+
+		enable_equipments = {
+			siege_drake_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = siege_the_open_skies
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = siege_wings_of_terror
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	siege_the_open_skies = {
+
+		strat_bomber = {
+			air_range = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { siege_wings_of_terror }
+
+		path = {
+			leads_to_tech = siege_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	siege_wings_of_terror = {
+
+		strat_bomber = {
+			air_bombing = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { siege_the_open_skies }
+
+		path = {
+			leads_to_tech = siege_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	siege_drake_equipment_tech_3 = {
+
+		enable_equipments = {
+			siege_drake_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			bomber_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	scout_drake_tech = {
+
+		on_research_complete = {
+			set_technology = { scout_drake_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = scout_drake_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 14 y = 2 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			fighter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	scout_drake_equipment_tech_1 = {
+
+		enable_equipments = {
+			scout_drake_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = drake_gliding_mastery
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drake_evasive_recon
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 14 y = 4 }
+		}
+	
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_gliding_mastery = {
+
+		scout_plane = {
+			air_range = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_evasive_recon }
+
+		path = {
+			leads_to_tech = scout_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_evasive_recon = {
+
+		scout_plane = {
+			air_agility = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_gliding_mastery }
+
+		path = {
+			leads_to_tech = scout_drake_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+	
+	scout_drake_equipment_tech_2 = {
+	
+		enable_equipments = {
+			scout_drake_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+	
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = drake_bursts_of_speed
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drake_barrel_roll
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 14 y = 8 }
+		}
+	
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+
+	drake_bursts_of_speed = {
+
+		scout_plane = {
+			maximum_speed = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_barrel_roll }
+
+		path = {
+			leads_to_tech = scout_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	drake_barrel_roll = {
+
+		scout_plane = {
+			air_defence = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { drake_bursts_of_speed }
+
+		path = {
+			leads_to_tech = scout_drake_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+	
+	scout_drake_equipment_tech_3 = {
+	
+		enable_equipments = {
+			scout_drake_equipment_3
+		}
+	
+		dependencies = { dragon_shrine = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = dragon_air_folder
+			position = { x = 14 y = 12 }
+		}
+	
+		categories = {
+			air_technology
+			organic_air_technology
+			scout_plane_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_air }
+	}
+}

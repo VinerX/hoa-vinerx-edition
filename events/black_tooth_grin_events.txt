@@ -1,0 +1,281 @@
+﻿###########################
+# Black Tooth Grin Clan
+###########################
+
+add_namespace = black_tooth_grin
+
+#identity crisis
+country_event = {
+	id = black_tooth_grin.1
+	title = black_tooth_grin.1.t
+	desc = black_tooth_grin.1.d
+	picture = GFX_blackhand_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = black_tooth_grin.1.option.1
+
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 1
+			}
+
+			declare_war_on = { target = TSC type = annex_everything }
+	}
+}
+
+# Blackrock asking for annexation
+country_event = {
+	id = black_tooth_grin.2
+	title = black_tooth_grin.2.t
+	desc = black_tooth_grin.2.d
+	picture = GFX_black_tooth_grin_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { #Accept
+        name = black_tooth_grin.2.option.1
+
+		BRC = {
+			BTG = {
+				every_unit_leader = {
+					set_nationality = BRC
+				}
+			}
+			annex_country = { target = BTG transfer_troops = yes }
+			every_state = {
+				limit = { is_core_of = BTG }
+				remove_core_of = BTG
+				add_core_of = BRC
+			}
+		}
+	}
+
+    option = { #Refuse
+        name = black_tooth_grin.2.option.2
+
+		BRC = { country_event = blackrock.12 }
+	}
+}
+# An offer from Doomhammer (from blackrock.54 event and BRC_deal_with_rend focus)
+country_event = {
+	id = black_tooth_grin.3
+	title = black_tooth_grin.3.t
+	picture = GFX_orgrim_doomhammer_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	desc = {
+		text = black_tooth_grin.3.d.1
+		trigger = {
+			has_country_flag = deal_with_rend_offer_1
+		}
+	}
+	desc = {
+		text = black_tooth_grin.3.d.2
+		trigger = {
+			has_country_flag = deal_with_rend_offer_2
+		}
+	}
+	desc = {
+		text = black_tooth_grin.3.d.3
+		trigger = {
+			has_country_flag = deal_with_rend_offer_3
+		}
+	}
+
+    option = { # Accept
+        name = black_tooth_grin.3.option.1
+
+		if = {
+			limit = {
+				has_country_flag = deal_with_rend_offer_1 # Just loyalty
+			}
+			add_stability = 0.05
+		}
+		else_if = {
+			limit = {
+				has_country_flag = deal_with_rend_offer_2 # Independance
+			}
+			BRC = { end_puppet = BTG }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = deal_with_rend_offer_3 # Annex
+			}
+			BRC = {
+				annex_country = {
+				    target = BTG
+				    transfer_troops = yes
+				}
+			}
+		}
+
+		BRC = {
+			set_country_flag = rends_loyalty
+
+			# Generic accepted offer event
+			country_event = generic_event.1
+		}
+
+		ai_chance = {
+			base = 90
+			modifier = {
+				factor = 110
+				BRC = {
+					OR = {
+						has_country_flag = deal_with_rend_offer_1
+						has_country_flag = deal_with_rend_offer_2
+					}
+				}
+				is_historical_focus_on = yes
+			}
+		}
+
+		# Can't be put in an immediate block, risk of breaking the event logic
+		clr_country_flag = deal_with_rend_offer_1
+		clr_country_flag = deal_with_rend_offer_2
+		clr_country_flag = deal_with_rend_offer_3
+	}
+
+    option = { # Refuse
+        name = black_tooth_grin.3.option.2
+
+		add_political_power = -25
+
+		add_opinion_modifier = {
+			target = BRC
+			modifier = small_decrease
+		}
+		reverse_add_opinion_modifier = {
+			target = BRC
+			modifier = small_decrease
+		}
+
+		BRC = {
+			# Generic refused offer event
+			country_event = generic_event.2
+		}
+
+		# Can't be put in an immediate block, risk of breaking the event logic
+		clr_country_flag = deal_with_rend_offer_1
+		clr_country_flag = deal_with_rend_offer_2
+		clr_country_flag = deal_with_rend_offer_3
+	}
+
+	option = { # Refuse and declare independance
+        name = black_tooth_grin.3.option.3
+		custom_effect_tooltip = black_tooth_grin.3.option.3.d
+
+		add_political_power = -50
+
+		add_opinion_modifier = {
+			target = BRC
+			modifier = medium_decrease
+		}
+		reverse_add_opinion_modifier = {
+			target = BRC
+			modifier = medium_decrease
+		}
+
+		BRC = {
+			end_puppet = BTG
+			if = {
+				limit = {
+					BTG = { has_country_flag = deal_with_rend_offer_3 }
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BTG
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = BTG
+				}
+			}
+
+			country_event = generic_event.2
+		}
+
+		# Can't be put in an immediate block, risk of breaking the event logic
+		clr_country_flag = deal_with_rend_offer_1
+		clr_country_flag = deal_with_rend_offer_2
+		clr_country_flag = deal_with_rend_offer_3
+	}
+
+	option = { # Refuse and declare war
+        name = black_tooth_grin.3.option.4
+		custom_effect_tooltip = black_tooth_grin.3.option.4.d
+
+		trigger = {
+			#i.e. Blackhand got killed during Mak'gora by Doomhammer
+			#NOT = { BRC = { has_character = BRC_blackhand_the_destroyer } }
+		}
+
+		add_political_power = -75
+		add_war_support = 0.1
+
+		leave_faction = yes
+		BRC = {
+			end_puppet = BTG
+		}
+		declare_war_on = {
+		    target = BRC
+		    type = annex_everything
+		}
+
+		BRC = {
+			# Generic refused offer event
+			country_event = generic_event.2
+		}
+
+		# Can't be put in an immediate block, risk of breaking the event logic
+		clr_country_flag = deal_with_rend_offer_1
+		clr_country_flag = deal_with_rend_offer_2
+		clr_country_flag = deal_with_rend_offer_3
+	}
+}
+
+country_event = {
+	id = black_tooth_grin.4
+	title = black_tooth_grin.4.t
+	desc = black_tooth_grin.4.d
+	picture = GFX_guldan_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = black_tooth_grin.4.option.1
+
+		379 = {
+			transfer_state_to = BTG
+			add_core_of = BTG
+			remove_core_of = TSC
+		}
+		380 = {
+			transfer_state_to = BTG
+			add_core_of = BTG
+			remove_core_of = TSC
+		}
+		2160 = {
+			transfer_state_to = BTG
+			add_core_of = BTG
+			remove_core_of = TSC
+		}
+	}
+}

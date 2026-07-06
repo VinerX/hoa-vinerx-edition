@@ -1,0 +1,1358 @@
+### Cheap Fodda Unit for Garrison
+sp_peon_pillager = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = grunt_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 4
+			wood = 4
+			ores = 4
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = {
+				peon_pillager_tech = 1
+				peon_pillager_equipment_tech_1 = 1
+			}
+			division_template = {
+				name = "Peon Pillagers"
+				priority = 1
+				regiments = {
+					peon_pillager = { x = 0 y = 0 }
+					peon_pillager = { x = 0 y = 1 }
+					peon_pillager = { x = 0 y = 2 }
+					peon_pillager = { x = 0 y = 3 }
+					peon_pillager = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Peon Pillagers\" division_template = \"Peon Pillagers\" start_experience_factor = 0.3"
+					owner = ROOT
+					count = 3
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Shield Grunts
+sp_bulwarks = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = grunt_equipment_tech_1 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 6
+			ores = 3
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			bulwark
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Bulwarks"
+				priority = 1
+				regiments = {
+					bulwark = { x = 0 y = 0 }
+					bulwark = { x = 0 y = 1 }
+					bulwark = { x = 0 y = 2 }
+					bulwark = { x = 0 y = 3 }
+					bulwark = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Bulwarks\" division_template = \"Bulwarks\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### 2-handed Only Grunts (Hellscream Related)
+sp_blood_axe = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = grunt_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 12
+			ores = 6
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			bloodaxe
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = { }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Bloodaxe"
+				priority = 1
+				regiments = {
+					bloodaxe = { x = 0 y = 0 }
+					bloodaxe = { x = 0 y = 1 }
+					bloodaxe = { x = 0 y = 2 }
+					bloodaxe = { x = 0 y = 3 }
+					bloodaxe = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Bloodaxe\" division_template = \"Bloodaxe\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Assassin Grunts
+sp_long_knives = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	special_project_parent = {
+		sp_jungle_defiance
+	}
+
+	available = {
+		FROM = { 
+			has_tech = grunt_equipment_tech_2
+			has_tech = thorium_weapons_tech
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 16
+			ores = 8
+			mana = 10
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			long_knives
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = { ambusher }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 4
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Long Knives"
+				priority = 1
+				regiments = {
+					long_knives = { x = 0 y = 0 }
+					long_knives = { x = 0 y = 1 }
+					long_knives = { x = 0 y = 2 }
+					long_knives = { x = 0 y = 3 }
+					long_knives = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Long Knives\" division_template = \"Long Knives\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+sp_orc_sailors = {
+	specialization = specialization_naval
+
+	project_tags = sp_tag_surface_ship
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = grunt_equipment_tech_2 
+			has_tech = generic_naval_naval_transport_2_tech
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_naval = 1
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 32
+			ores = 16
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { BRC_orc_sailor_tech = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+sp_angled_plates_tech = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = thorium_armor_tech 
+			OR = {
+				has_idea = dwarf_secondary_race
+				has_idea = gnome_secondary_race
+				has_idea = dark_iron_dwarf_secondary_race
+				any_allied_country = {
+					OR = {
+						has_idea = dwarf_secondary_race
+						has_idea = gnome_secondary_race
+						has_idea = dark_iron_dwarf_secondary_race
+					}
+				}
+			}
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 16
+			ores = 32
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { BHC_angled_plates_tech = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Heavy Spears
+sp_splitters = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = spearman_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 8
+			wood = 4
+			ores = 8
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			splitter
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Splitters"
+				priority = 1
+				regiments = {
+					splitter = { x = 0 y = 0 }
+					splitter = { x = 0 y = 1 }
+					splitter = { x = 0 y = 2 }
+					splitter = { x = 0 y = 3 }
+					splitter = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Splitters\" division_template = \"Splitters\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		#sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Siege Behemoths
+sp_siege_behemoths = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = dire_orc_equipment_tech_2
+			has_tech = orc_catapult_equipment_tech_2 
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 8
+			mana = 8
+			ores = 8
+			wood = 8
+			gunpowder = 4
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			siege_behemoths
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = { }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Behemoths"
+				priority = 1
+				regiments = {
+					siege_behemoths = { x = 0 y = 0 }
+					siege_behemoths = { x = 0 y = 1 }
+					siege_behemoths = { x = 0 y = 2 }
+					siege_behemoths = { x = 0 y = 3 }
+					siege_behemoths = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Behemoths\" division_template = \"Behemoths\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_siege_engine_tech_1
+		sp_land_generic_reward_siege_engine_tech_2
+		sp_land_generic_reward_siege_engine_tech_3
+		#sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Tier 4 Warlocks
+sp_doombringer = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		### Limit to be Implimented Later
+		# FROM = {
+		# 	has_tag = TSC
+		#	has_government = fel 
+		#}
+		FROM = { has_tech = warlock_equipment_tech_3 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+		specialization_magic = 4
+	}
+	
+	prototype_time = sp_time.prototype.long
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 16
+			mana = 32
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			doombringer
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					picture = "gfx/leaders/TSC/tscgeneric.dds"
+					traits = { }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 4
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Doombringers"
+				priority = 1
+				regiments = {
+					doombringer = { x = 0 y = 0 }
+					doombringer = { x = 0 y = 1 }
+					doombringer = { x = 0 y = 2 }
+					doombringer = { x = 0 y = 3 }
+					doombringer = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Doombringers\" division_template = \"Doombringers\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Tier 4 Shamans
+sp_earthspeakers = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = shaman_equipment_tech_3 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+		specialization_magic = 4
+	}
+	
+	prototype_time = sp_time.prototype.long
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 16
+			ores = 16
+			mana = 32
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			stone_speakers
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = { expert_improviser }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 4
+					logistics_skill = 4
+				}
+			}
+			division_template = {
+				name = "Stone Speakers"
+				priority = 1
+				regiments = {
+					stone_speakers = { x = 0 y = 0 }
+					stone_speakers = { x = 0 y = 1 }
+					stone_speakers = { x = 0 y = 2 }
+					stone_speakers = { x = 0 y = 3 }
+					stone_speakers = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Stone Speakers\" division_template = \"Stone Speakers\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Shaman Upgrades
+sp_ashspeaker = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = shaman_equipment_tech_2 
+			NOT = { is_special_project_completed = sp:sp_tempestborn }
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 16
+			mana = 32
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { shaman_ashspeaker = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+sp_tempestborn = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = shaman_equipment_tech_2 
+			NOT = { is_special_project_completed = sp:sp_ashspeaker }
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 16
+			mana = 32
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { shaman_tempestborn = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Aggressive Dire Wolf
+sp_warg = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = dire_wolf_equipment_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mounts = 8
+			wheat = 12
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			warg
+		}
+		country_effects = {
+			division_template = {
+				name = "Wargs"
+				priority = 1
+				regiments = {
+					warg = { x = 0 y = 0 }
+					warg = { x = 0 y = 1 }
+					warg = { x = 0 y = 2 }
+					warg = { x = 0 y = 3 }
+					warg = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Wargs\" division_template = \"Wargs\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_1
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Demolishers
+sp_orc_demolishers = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = catapult_equipment_tech_2 
+			has_tech = thorium_weapons_tech
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			ores = 15
+			wood = 15
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = {
+				demolisher_tech = 1
+				demolisher_equipment_tech_1 = 1
+			}
+			division_template = {
+				name = "Demolishers"
+				priority = 1
+				regiments = {
+					demolisher = { x = 0 y = 0 }
+					demolisher = { x = 0 y = 1 }
+					demolisher = { x = 0 y = 2 }
+					demolisher = { x = 0 y = 3 }
+					demolisher = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Demolishers\" division_template = \"Demolishers\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Powder Kegs
+sp_powder_keg_tech = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = orc_catapult_equipment_tech_2 
+			has_tech = orc_mine_cart_2
+			sulfur_mine > 4
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wood = 24
+			ores = 16
+			gunpowder = 32
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { BHC_powder_keg_tech = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Eye of Kilrogg
+sp_eye_of_kilrogg = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = arcane_tower_tech_global }
+	}
+
+	visible = {
+		FROM = {
+			OR = {
+				has_idea = orc_primary_race
+				has_idea = orc_secondary_race
+				has_idea = ogre_primary_race
+				has_idea = ogre_secondary_race
+			} 
+			NOT = { has_country_flag = dwarf_technology	}
+		}
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 1
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mana = 40
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			eye_of_kilrogg
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Old Gods
+sp_dark_shaman_equip = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_government = old_gods
+			OR = {
+				has_tech = shaman_equipment_tech_1 
+				has_tech = geomancer_equipment_tech_1
+			}
+		}
+	}
+
+	visible = {
+		FROM = { 
+			OR = {
+				has_tech = great_hall
+				has_tech = ogre_slave_pits
+			}
+		}
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wood = 40
+			mana = 40
+		}
+	}
+	
+	project_output = {
+		enable_equipments = {
+			dark_shaman_equipment_1
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Clan Unique - SHC + BWC (Story Reasons)
+sp_red_carvers = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_government = death
+			has_tech = blade_master_equipment_tech_2
+			has_tech = shaman_equipment_tech_2 
+		}
+	}
+
+	visible = {
+		FROM = { 
+			OR = {
+				tag = BWC
+				tag = SHC 
+				tag = GAR
+			}
+		}
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 20
+			ores = 20
+			mana = 20
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			red_carvers
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Red Carvers"
+				priority = 1
+				regiments = {
+					red_carvers = { x = 0 y = 0 }
+					red_carvers = { x = 0 y = 1 }
+					red_carvers = { x = 0 y = 2 }
+					red_carvers = { x = 0 y = 3 }
+					red_carvers = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Red Carvers\" division_template = \"Red Carvers\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Spiked Barricades from Warcraft 3 (Just more effective Walls)
+sp_spiked_barricades = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = orc_catapult_equipment_tech_2 
+			has_tech = orc_mine_cart_2
+			sulfur_mine > 4
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = great_hall }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wood = 40
+			ores = 32
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { spiked_barricades_tech = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}

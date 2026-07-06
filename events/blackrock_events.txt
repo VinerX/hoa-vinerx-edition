@@ -1,0 +1,4876 @@
+﻿###########################
+# Blackrock Clan events
+###########################
+add_namespace = blackrock
+#dragonmaw lost to marshtide tribe
+country_event = {
+	id = blackrock.1
+	title = blackrock.1.t
+	desc = blackrock.1.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.1.option.1
+	}
+}
+
+#bog beasts kill bleeding hollow
+country_event = {
+	id = blackrock.2
+	title = blackrock.2.t
+	desc = blackrock.2.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.2.option.1
+	}
+}
+
+# Founding Stonard (A Settlement in the North from BRC_found_stonard)
+country_event = {
+	id = blackrock.3
+	title = blackrock.3.t
+	desc = blackrock.3.d
+	picture = GFX_stonard_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.3.option.1
+		BRC = {
+			transfer_state = 395
+			transfer_state = 396
+			transfer_state = 397
+			transfer_state = 398
+			transfer_state = 399
+			395 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+
+				add_manpower = 27500
+
+				set_state_name = "Stonard"
+				set_province_name = { id = 2639 name = "Stonard" }
+
+				add_core_of = BRC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			396 = {
+				add_core_of = BRC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			397 = {
+				add_core_of = BRC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			398 = {
+				add_core_of = BRC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			399 = {
+				add_core_of = BRC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+
+			set_victory_points = {
+				province = 2639
+				value = 20
+			}
+		}
+	}
+}
+
+# repurpose this event
+country_event = {
+	id = blackrock.4
+	title = blackrock.4.t
+	desc = blackrock.4.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.4.option.1
+		BRC = {
+			white_peace = HAK
+			transfer_state = 43
+			transfer_state = 396
+			transfer_state = 398
+			transfer_state = 397
+			transfer_state = 399
+			43 = {
+				add_core_of = BRC
+			}
+			396 = {
+				add_core_of = BRC
+			}
+			398 = {
+				add_core_of = BRC
+			}
+			397 = {
+				add_core_of = BRC
+			}
+			399 = {
+				add_core_of = BRC
+			}
+			set_country_flag = hakkari_defeated
+		}
+		DMC = {
+			white_peace = HAK
+		}
+		BHC = {
+			white_peace = HAK
+		}
+		BBC = {
+			white_peace = HAK
+		}
+		TSC = {
+			white_peace = HAK
+		}
+		THC = {
+			white_peace = HAK
+		}
+		BTG = {
+			white_peace = HAK
+		}
+		FWC = {
+			white_peace = HAK
+		}
+	}
+}
+
+#hakkari tablets
+country_event = {
+	id = blackrock.5
+	title = blackrock.5.t
+	desc = blackrock.5.d
+	picture = GFX_sunken_temple_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.5.option.1
+
+		add_war_support = 0.025
+
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = blueprint_technology
+		}
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = decryption_technology
+		}
+	}
+}
+
+# Identity Crisis (Horde Civil War) (from BRC_identity_crisis)
+country_event = {
+	id = blackrock.6
+	title = blackrock.6.t
+	desc = blackrock.6.d
+	picture = GFX_guldan_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.6.option.1
+		TSC = {
+			country_event = {
+				id = shadow_council.1
+			}
+			create_faction = "Gul'dans Horde"
+		}
+		BRC = {
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 0.75
+			}
+			declare_war_on = {
+				target = TSC
+				type = annex_everything
+			}
+		}
+		BHC = {
+			country_event = {
+				id = blackrock.7
+			}
+		}
+		DMC = {
+			country_event = {
+				id = blackrock.7
+			}
+		}
+		BBC = {
+			country_event = {
+				id = blackrock.7
+			}
+		}
+		THC = {
+			country_event = {
+				id = blackrock.7
+			}
+		}
+		FWC = {
+			country_event = {
+				id = frostwolf.1
+			}
+		}
+		BTG = {
+			country_event = {
+				id = black_tooth_grin.1
+			}
+		}
+
+		set_global_flag = horde_civil_war_happened_flag
+	}
+}
+
+#join blackhand
+country_event = {
+	id = blackrock.7
+	title = blackrock.7.t
+	desc = blackrock.7.d
+	picture = GFX_guldan_event
+	is_triggered_only = yes
+	option = {
+		#side with blackhand
+		name = blackrock.7.option.1
+		set_politics = {
+			ruling_party = horde
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = horde
+			popularity = 0.75
+		}
+		declare_war_on = {
+			target = TSC
+			type = annex_everything
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 10
+				tag = BHC
+			}
+			modifier = {
+				factor = 10
+				tag = DMC
+			}
+		}
+	}
+	option = {
+		#side with guldan
+		name = blackrock.7.option.2
+		leave_faction = yes
+		TSC = {
+			add_to_faction = ROOT
+		}
+		declare_war_on = {
+			target = BRC
+			type = annex_everything
+		}
+		if = {
+			limit = { tag = THC }
+			load_oob = "THC_horde_civil_war"
+			add_manpower = 7000
+		}
+		if = {
+			limit = { tag = BBC }
+			load_oob = "BBC_horde_civil_war"
+			add_manpower = 7000
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 100
+				tag = BBC
+			}
+			modifier = {
+				factor = 100
+				tag = THC
+			}
+		}
+	}
+}
+
+# Victory in Civil War
+country_event = {
+	id = blackrock.8
+	title = blackrock.8.t
+	desc = blackrock.8.d
+	picture = GFX_guldan_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = BRC_blackrock_leadership }
+			}
+			unlock_national_focus = BRC_blackrock_leadership
+		}
+	}
+
+	option = { # Blackhand remains Warchief
+		name = blackrock.8.option.1
+
+		set_country_flag = blackhands_horde
+
+		complete_national_focus = BRC_blackhands_horde
+
+	}
+
+	option = { # Doomhammer becomes Warchief
+		name = blackrock.8.option.2
+
+		retire_country_leader = yes
+
+		remove_ideas = BRC_orgrim_doomhammer
+
+		set_country_flag = doomhammers_horde
+
+		complete_national_focus = BRC_doomhammers_horde
+
+	}
+}
+
+# Pillage Redridge
+country_event = {
+	id = blackrock.9
+	title = blackrock.9.t
+	desc = blackrock.9.d
+	picture = GFX_lakeshire_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.9.option.1
+
+		# List of all concerned_states in Redridge
+		add_to_temp_array = { concerned_states = 41 }
+		add_to_temp_array = { concerned_states = 360 }
+		add_to_temp_array = { concerned_states = 361 }
+		add_to_temp_array = { concerned_states = 362 }
+		add_to_temp_array = { concerned_states = 363 }
+		add_to_temp_array = { concerned_states = 364 }
+		add_to_temp_array = { concerned_states = 365 }
+		add_to_temp_array = { concerned_states = 367 }
+		add_to_temp_array = { concerned_states = 368 }
+		add_to_temp_array = { concerned_states = 370 }
+		add_to_temp_array = { concerned_states = 791 }
+		add_to_temp_array = { concerned_states = 792 }
+		add_to_temp_array = { concerned_states = 793 }
+		add_to_temp_array = { concerned_states = 1528 }
+		add_to_temp_array = { concerned_states = 1529 }
+		add_to_temp_array = { concerned_states = 1530 }
+
+		custom_effect_tooltip = BRC_pillage_redridge_tt
+		for_each_scope_loop = {
+			array = concerned_states
+			if = {
+				limit = {
+					is_controlled_by = BRC
+				}
+
+				# State 361 (Lakeshire)
+				if = {
+					limit = {
+						state = 361
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+					BRC = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 1
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+				}
+
+				# State 368 (Stonewatch)
+				if = {
+					limit = {
+						state = 368
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+					BRC = {
+						add_offsite_building = {
+							type = arms_factory
+							level = 1
+						}
+						add_offsite_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+				}
+
+				# State 370 (Alther's Mill)
+				if = {
+					limit = {
+						state = 370
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+					BRC = {
+						add_offsite_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+				}
+
+				# State 372 (Redridge Canyons)
+				if = {
+					limit = {
+						state = 372
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+					BRC = {
+						add_offsite_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+				}
+
+				add_core_of = BRC
+
+				# 25% chance to be settled (race and religion converted)
+				random = {
+					chance = 25
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+		clear_array = concerned_states
+
+
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						BRC = {
+							has_country_flag = blackhands_horde
+						}
+					}
+				}
+			}
+			FWC = {
+				# Event where Gul'dan tell the Frostwolf to leave the Horde
+				# For now is triggered here, but eventually should be part of the Shadow Council focus tree
+				country_event = frostwolf_fate.1
+			}
+		}
+	}
+}
+
+# Pillage Elwynn
+country_event = {
+	id = blackrock.10
+	title = blackrock.10.t
+	desc = blackrock.10.d
+	picture = GFX_goldshire_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.10.option.1
+
+		39 = {
+			add_core_of = BRC
+		}
+		312 = {
+			if = {
+				limit = {
+					is_controlled_by = BRC
+				}
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			BRC = {
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+		325 = {
+			if = {
+				limit = {
+					is_controlled_by = BRC
+				}
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			BRC = {
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+				add_offsite_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		327 = {
+			if = {
+				limit = {
+					is_controlled_by = BRC
+				}
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			BRC = {
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+		355 = {
+			add_core_of = BRC
+		}
+		356 = {
+			add_core_of = BRC
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		357 = {
+			add_core_of = BRC
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		358 = {
+			add_core_of = BRC
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		359 = {
+			add_core_of = BRC
+		}
+		1588 = {
+			add_core_of = BRC
+		}
+		1589 = {
+			add_core_of = BRC
+		}
+		add_offsite_building = {
+			type = industrial_complex
+			level = 3
+		}
+	}
+}
+
+#fall of stormwind
+country_event = {
+	id = blackrock.11
+	title = blackrock.11.t
+	desc = blackrock.11.d
+	picture = GFX_stormwind_keep_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.11.option.1
+	}
+}
+
+#black tooth grin refuses annex
+country_event = {
+	id = blackrock.12
+	title = blackrock.12.t
+	desc = blackrock.12.d
+	picture = GFX_black_tooth_grin_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Accept
+		name = blackrock.12.option.1
+	}
+
+	option = { # War
+		name = blackrock.12.option.2
+
+		end_puppet = BTG
+
+		remove_from_faction = BTG
+
+		declare_war_on = {
+		    target = BTG
+		    type = annex_everything
+		}
+	}
+}
+
+#Call Draenor Clans to war
+country_event = {
+	id = blackrock.13
+	title = blackrock.13.t
+	desc = blackrock.13.d
+	picture = GFX_draenor_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.13.option.1
+		random_owned_state = {
+			limit = {
+				is_core_of = BRC
+				impassable = no
+			}
+			add_manpower = 1400
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = BRC
+				impassable = no
+			}
+			add_manpower = 1600
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = BRC
+				impassable = no
+			}
+			add_manpower = 2000
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = BRC
+				impassable = no
+			}
+			add_manpower = 1000
+		}
+
+		BHC = {
+		random_state = {
+			limit = {
+				is_core_of = BHC
+				impassable = no
+			}
+			add_manpower = 800
+		}
+		random_state = {
+			limit = {
+				is_core_of = BHC
+				impassable = no
+			}
+			add_manpower = 200
+			}
+		}
+
+		IF = {
+			limit = {
+				FWC = {	is_in_faction_with = BRC }
+			}
+			FWC = {
+				random_state = {
+					limit = {
+						is_core_of = FWC
+						impassable = no
+					}
+					add_manpower = 500
+				}
+				random_state = {
+					limit = {
+						is_core_of = FWC
+						impassable = no
+					}
+					add_manpower = 500
+				}
+			}
+		}
+
+		DMC = {
+			random_state = {
+				limit = {
+					is_core_of = DMC
+					impassable = no
+				}
+				add_manpower = 700
+			}
+			random_state = {
+				limit = {
+					is_core_of = DMC
+					impassable = no
+				}
+				add_manpower = 300
+			}
+		}
+
+		BBC = {
+			random_state = {
+				limit = {
+					is_core_of = BBC
+					impassable = no
+				}
+				add_manpower = 300
+			}
+			random_state = {
+				limit = {
+					is_core_of = BBC
+					impassable = no
+				}
+				add_manpower = 700
+			}
+		}
+
+		if = {
+			limit = { is_in_faction_with = BRC }
+			THC = {
+				random_state = {
+					limit = {
+						is_core_of = THC
+						impassable = no
+					}
+					add_manpower = 500
+				}
+				random_state = {
+					limit = {
+						is_core_of = THC
+						impassable = no
+					}
+					add_manpower = 500
+				}
+			}
+		}
+
+		IF = {
+			limit = {
+				TSC = {	is_in_faction_with = BRC }
+			}
+			TSC = {
+				random_state = {
+					limit = {
+						is_core_of = TSC
+						impassable = no
+					}
+					add_manpower = 300
+				}
+				random_state = {
+					limit = {
+						is_core_of = TSC
+						impassable = no
+					}
+					add_manpower = 300
+				}
+				random_state = {
+					limit = {
+						is_core_of = TSC
+						impassable = no
+					}
+					add_manpower = 400
+				}
+			}
+		}
+
+		IF = {
+			limit = {
+				SRC = {	is_in_faction_with = BRC }
+			}
+			SRC = {
+				random_state = {
+					limit = {
+						is_core_of = SRC
+						impassable = no
+					}
+					add_manpower = 300
+				}
+				random_state = {
+					limit = {
+						is_core_of = SRC
+						impassable = no
+					}
+					add_manpower = 300
+				}
+				random_state = {
+					limit = {
+						is_core_of = SRC
+						impassable = no
+					}
+					add_manpower = 400
+				}
+			}
+		}
+
+		TSC = {
+			random_state = {
+			limit = {
+					is_core_of = TSC
+					impassable = no
+				}
+				add_manpower = 500
+			}
+			random_state = {
+				limit = {
+					is_core_of = TSC
+					impassable = no
+				}
+				add_manpower = 500
+				}
+			}
+	}
+}
+
+#draenor clans event
+country_event = {
+	id = blackrock.14
+	title = blackrock.14.t
+	desc = blackrock.14.d
+	picture = GFX_blackhand_event
+	is_triggered_only = yes
+	option = {
+		name = blackrock.14.option.1
+		BRC = {
+			add_to_faction = ROOT
+		}
+		if = {
+			limit = {
+				BRC = {
+					has_government = fel
+				}
+			}
+			set_politics = {
+				ruling_party = fel
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = fel
+				popularity = 1
+			}
+		}
+		if = {
+			limit = {
+				BRC = {
+					has_government = horde
+				}
+			}
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 1
+			}
+		}
+	}
+	option = {
+		name = blackrock.14.option.2
+	}
+}
+
+# Ban Fel Magic (Blackrock side event)
+country_event = {
+	id = blackrock.15
+	title = blackrock.15.t
+	desc = blackrock.15.d
+	picture = GFX_orgrim_doomhammer_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.15.option.1
+
+		remove_ideas = primary_religion_demonology
+		remove_ideas = secondary_religion_necrolytes
+		add_ideas = primary_religion_necrolytes
+		add_ideas = BRC_banned_fel_magic
+
+		# Remove Demonology (id 27) from accepted_religions array
+		# Should make scripted effects for that eventually
+		remove_from_array = {
+			array = accepted_religions
+			value = 27
+		}
+
+		custom_effect_tooltip = BRC_ban_fel_magic_states_tt
+		hidden_effect = {
+			capital_scope = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+
+			# Loop through owned states
+			for_each_scope_loop = {
+				array = owned_states
+				# 75% chance to be converted
+				if = {
+					limit = {
+						# If state is demonology
+						check_variable = { religion = 27 }
+					}
+					random = {
+						chance = 75
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+		}
+
+		custom_effect_tooltip = BRC_ban_fel_magic_allies_tt
+		hidden_effect = {
+			every_country = {
+				if = {
+					limit = {
+						is_in_faction_with = BRC
+						OR = {
+							has_idea = primary_religion_demonology
+							has_idea = secondary_religion_necrolytes
+						}
+					}
+					country_event = blackrock.16
+				}
+			}
+		}
+	}
+}
+
+# Ban Fel Magic (Blackrock allies side event)
+country_event = {
+	id = blackrock.16
+	title = blackrock.16.t
+	desc = blackrock.16.d
+	picture = GFX_orgrim_doomhammer_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.16.option.1
+		if = {
+			limit = {
+				OR = {
+					has_idea = primary_religion_demonology
+					has_idea = secondary_religion_necrolytes
+				}
+			}
+
+			remove_ideas = primary_religion_demonology
+			remove_ideas = secondary_religion_necrolytes
+			add_ideas = primary_religion_necrolytes
+			add_ideas = BRC_banned_fel_magic
+
+			# Remove Demonology (id 27) from accepted_religions array
+			# Should make scripted effects for that eventually
+			remove_from_array = {
+				array = accepted_religions
+				value = 27
+			}
+
+			custom_effect_tooltip = BRC_ban_fel_magic_states_tt
+			hidden_effect = {
+				capital_scope = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+
+				# Loop through owned states
+				for_each_scope_loop = {
+					array = owned_states
+					# 75% chance to be converted
+					if = {
+						limit = {
+							# If state is demonology
+							check_variable = { religion = 27 }
+						}
+						random = {
+							chance = 75
+							set_state_religion_to_primary_religion = yes
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = -100
+				tag = TSC
+			}
+			modifier = {
+				factor = -100
+				tag = THC
+			}
+		}
+	}
+	option = {
+		name = blackrock.16.option.2
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 100
+				tag = TSC
+			}
+			modifier = {
+				factor = 100
+				tag = THC
+			}
+		}
+	}
+}
+
+# Shadow Council gives land in Blasted Lands
+country_event = {
+	id = blackrock.17
+	title = blackrock.17.t
+	desc = blackrock.17.d
+	picture = GFX_guldan_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.17.option.1
+		378 = {
+			transfer_state_to = BRC
+			add_core_of = BRC
+			remove_core_of = TSC
+		}
+		hidden_effect = {
+			784 = {
+				transfer_state_to = BRC
+				add_core_of = BRC
+				remove_core_of = TSC
+			}
+		}
+	}
+}
+
+#Mak'gora after Gul'dan falls into coma (historical)
+country_event = {
+	id = blackrock.18
+	title = blackrock.18.t
+	desc = blackrock.18.d
+	picture = GFX_blackhand_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = BRC_blackrock_leadership }
+			}
+			unlock_national_focus = BRC_blackrock_leadership
+		}
+	}
+
+	option = { # Doomhammer wins (historical)
+		name = blackrock.18.option.1
+		custom_effect_tooltip = BRC_mak_gora_tt
+
+		hidden_effect = {
+			if = {
+				limit = { tag = BRC	}
+				country_event = blackrock.19
+			}
+		}
+
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes # Happens historically
+			}
+		}
+	}
+
+	option = { # Blackhand wins (non-historical)
+		name = blackrock.18.option.2
+		custom_effect_tooltip = BRC_mak_gora_tt
+
+		hidden_effect = {
+			if = {
+				limit = { tag = BRC }
+				country_event = blackrock.199 #weird number because so many events were already made
+			}
+		}
+
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes # if we are being historical, this shouldn't happen
+			}
+		}
+	}
+}
+
+#Doomhammer wins Mak'Gora (historical)
+country_event = {
+	id = blackrock.19
+	title = blackrock.19.t
+	desc = blackrock.19.d
+	picture = GFX_orgrim_doomhammer_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.19.option.1
+
+		kill_country_leader = yes
+
+		set_politics = {
+			ruling_party = horde
+			elections_allowed = no
+		}
+
+		add_popularity = {
+			ideology = horde
+			popularity = 0.9
+		}
+
+		remove_ideas = {
+			BRC_orgrim_doomhammer
+		}
+
+		set_country_flag = doomhammers_horde
+
+		complete_national_focus = BRC_doomhammers_horde
+
+		# Kick Shadow Council
+		TSC = {
+			leave_faction = yes
+			clr_country_flag = Invasion_Clan
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = pick_a_side
+						has_completed_focus = path_of_the_titans
+						has_completed_focus = serving_higher_powers
+					}
+
+				}
+				complete_national_focus = serving_higher_powers
+				complete_national_focus = promise_of_power
+			}
+		}
+
+		hidden_effect = {
+			BHC = {
+				country_event = {
+					id = bleeding_hollow.5
+					days = 3
+				}
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = BRC
+					NOT = { tag = BRC }
+					NOT = {	tag = THC }
+				}
+
+				set_politics = {
+					ruling_party = horde
+					elections_allowed = no
+				}
+
+				add_popularity = {
+					ideology = horde
+					popularity = 0.9
+				}
+				clr_country_flag = Invasion_Clan
+			}
+			
+			if = {
+				limit = { is_in_faction_with = BRC }
+				THC = {
+					set_politics = {
+						ruling_party = horde
+						elections_allowed = no
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.5
+					}
+				}
+				clr_country_flag = Invasion_Clan
+			}
+		}
+	}
+}
+
+#Blackhand wins Mak'Gora (non-historical)
+country_event = {
+	id = blackrock.199 #weird number because so many events were already made
+	title = blackrock.199.t
+	desc = blackrock.199.d
+	picture = GFX_blackhand_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.199.option.1
+
+		custom_effect_tooltip = BRC_doomhammer_death_tt
+		hidden_effect = {
+			BRC_orgrim_doomhammer = { retire = yes }
+		}
+
+		remove_ideas = {
+			BRC_orgrim_doomhammer
+		}
+
+		add_popularity = {
+			ideology = fel
+			popularity = 0.05
+		}
+
+		set_country_flag = blackhands_horde
+
+		complete_national_focus = BRC_blackhands_horde
+
+		every_country = {
+			limit = { is_in_faction_with = BRC }
+			clr_country_flag = Invasion_Clan
+		}
+	}
+}
+
+# The Stormreaver Clan
+country_event = {
+	id = blackrock.20
+	title = blackrock.20.t
+	desc = blackrock.20.d
+	picture = GFX_guldan_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Take Stormreaver (former Shadow Council lands) and give them Stormwind
+		name = blackrock.20.option.1
+
+		BRC = {
+			524 = {
+				transfer_state_to = BRC
+				remove_core_of = TSC
+			}
+			807 = {
+				transfer_state_to = BRC
+				remove_core_of = TSC
+			}
+			1617 = {
+				transfer_state_to = BRC
+				remove_core_of = TSC
+			}
+			1618 = {
+				transfer_state_to = BRC
+				remove_core_of = TSC
+			}
+			1619 = {
+				transfer_state_to = BRC
+				remove_core_of = TSC
+			}
+		}
+
+		#SRC = {
+		#	country_event = stormreaver.1
+		#}
+	}
+}
+
+# Deal with the Trade Prince
+country_event = {
+	id = blackrock.21
+	title = blackrock.21.t
+	desc = blackrock.21.d
+	picture = GFX_goblin_sappers_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.21.option.1
+		STC = {
+			country_event = steamwheedle.1
+		}
+	}
+}
+
+# Cho'gall meet with the Warchief (from BRC_alliance_with_the_dark_iron)
+country_event = {
+	id = blackrock.22
+	title = blackrock.22.t
+	desc = blackrock.22.d
+	picture = GFX_cho_gall_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Non-aggression pact
+		name = blackrock.22.option.1
+
+		custom_effect_tooltip = blackrock.22.option.1.d
+
+		set_country_flag = BRC_ask_DIC_for_non_aggression_flag
+
+		DIC = {
+			country_event = {
+				id = darkiron.2
+				days = 1
+			}
+		}
+	}
+
+	option = { # Mutual guarantee
+		name = blackrock.22.option.2
+
+		custom_effect_tooltip = blackrock.22.option.2.d
+
+		set_country_flag = BRC_ask_DIC_for_guarantee_flag
+
+		DIC = {
+			country_event = {
+				id = darkiron.2
+				days = 1
+			}
+		}
+	}
+
+	option = { # Leave them
+		name = blackrock.22.option.3
+
+		custom_effect_tooltip = blackrock.22.option.3.d
+	}
+}
+
+#dark iron rejects alliance
+country_event = {
+	id = blackrock.23
+	title = blackrock.23.t
+	desc = blackrock.23.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.23.option.1
+	}
+}
+
+# Frostmane accept to join the Horde
+country_event = {
+	id = blackrock.24
+	title = blackrock.24.t
+	desc = blackrock.24.d
+	picture = GFX_frost_troll_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.24.option.1
+		custom_effect_tooltip = blackrock.24.option.1.d
+
+		add_political_power = 25
+		add_war_support = 0.025
+	}
+}
+
+# Frostmane refuse to join the Horde
+country_event = {
+	id = blackrock.25
+	title = blackrock.25.t
+	desc = blackrock.25.d
+	picture = GFX_frost_troll_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.25.option.1
+	}
+
+	option = {
+		name = blackrock.25.option.2
+
+		trigger = {
+			has_completed_focus = BRC_blackhands_horde
+		}
+
+		declare_war_on = {
+		    target = FRT
+		    type = annex_everything
+		}
+	}
+}
+
+# Grant Ogres Autonomy (from BRC_grant_the_ogres_autonomy)
+country_event = {
+	id = blackrock.26
+	title = blackrock.26.t
+	desc = blackrock.26.d
+	picture = GFX_dreadmaul_rock_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.26.option.1
+		DRM = {
+			set_country_flag = ogre_technology
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 1
+			}
+			567 = {
+				add_core_of = DRM
+				transfer_state_to = DRM
+			}
+			543 = {
+				add_core_of = DRM
+				transfer_state_to = DRM
+			}
+
+			country_event = {
+				id = dreadmaul.1
+				days = 1
+			}
+		}
+		DRM = { # Effects are separated so it look good in the UI
+		load_oob = DRM_independence
+	}
+
+		BRC = {
+			puppet = DRM
+		}
+	}
+}
+
+# Distribute Lands (from BRC_distribute_lands)
+country_event = {
+	id = blackrock.27
+	title = blackrock.27.t
+	desc = blackrock.27.d
+	picture = GFX_eastern_kingdoms_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.27.option.1
+
+		# If BRC (current scope) owns lands surrounding the Storn Cairn Lake in Elwynn
+		if = {
+			limit = {
+				OR = {
+					owns_state = 39
+					owns_state = 327
+					owns_state = 347
+					owns_state = 349
+					owns_state = 353
+					owns_state = 354
+					owns_state = 355
+					owns_state = 356
+					owns_state = 357
+					owns_state = 358
+					owns_state = 359
+					owns_state = 557
+					owns_state = 666
+					owns_state = 1588
+					owns_state = 1589
+				}
+			}
+			# Setting up arrays for giving lands
+			add_to_array = { stone_cairn_states = 39 }
+			add_to_array = { stone_cairn_states = 327 }
+			add_to_array = { stone_cairn_states = 347 }
+			add_to_array = { stone_cairn_states = 349 }
+			add_to_array = { stone_cairn_states = 353 }
+			add_to_array = { stone_cairn_states = 354 }
+			add_to_array = { stone_cairn_states = 355 }
+			add_to_array = { stone_cairn_states = 356 }
+			add_to_array = { stone_cairn_states = 357 }
+			add_to_array = { stone_cairn_states = 358 }
+			add_to_array = { stone_cairn_states = 359 }
+			add_to_array = { stone_cairn_states = 557 }
+			add_to_array = { stone_cairn_states = 666 }
+			add_to_array = { stone_cairn_states = 1175 }
+			add_to_array = { stone_cairn_states = 1588 }
+			add_to_array = { stone_cairn_states = 1589 }
+
+			# If the Twilight's Hammer Clan (THC) is part of the Horde
+			if = {
+				limit = {
+					THC = { is_in_faction_with = BRC }
+				}
+				# Give THC the lands surrounding Stone Cairn lake in Elwynn
+				for_each_scope_loop = {
+					array = stone_cairn_states
+					if = {
+						limit = {
+							is_owned_by = BRC
+						}
+						add_core_of = THC
+						transfer_state_to = THC
+					}
+				}
+				clear_array = stone_cairn_states
+				custom_effect_tooltip = BRC_THC_given_stone_cairn_tt
+				hidden_effect = { THC = { set_capital = { state = 327 } } }
+
+				set_country_flag = BRC_THC_given_land_flag
+			}
+			# Else if the Frostwolves are part of the Horde, give them the states
+			else_if = {
+				limit = {
+					FWC = { is_in_faction_with = BRC }
+				}
+				# Give FWC the lands surrounding Storn Cairn lake in Elwynn
+				for_each_scope_loop = {
+					array = stone_cairn_states
+					if = {
+						limit = {
+							is_owned_by = BRC
+						}
+						add_core_of = FWC
+						transfer_state_to = FWC
+					}
+				}
+				clear_array = stone_cairn_states
+				custom_effect_tooltip = BRC_FWC_given_stone_cairn_tt
+				hidden_effect = { FWC = { set_capital = { state = 327 } } }
+
+				set_country_flag = BRC_FWC_given_land_flag
+			}
+		}
+
+		# If the Frostwolves are part of the Horde and still
+		# haven't been given any lands
+		if = {
+			limit = {
+				FWC = { is_in_faction_with = BRC }
+				NOT = { has_country_flag = BRC_FWC_given_land_flag }
+			}
+			# Setting up arrays for giving lands
+			add_to_array = { redridge_states = 41 }
+			add_to_array = { redridge_states = 360 }
+			add_to_array = { redridge_states = 361 }
+			add_to_array = { redridge_states = 362 }
+			add_to_array = { redridge_states = 363 }
+			add_to_array = { redridge_states = 364 }
+			add_to_array = { redridge_states = 370 }
+			add_to_array = { redridge_states = 372 }
+			add_to_array = { redridge_states = 791 }
+			add_to_array = { redridge_states = 1529 }
+			add_to_array = { redridge_states = 1530 }
+
+			# Give FWC the lands in Redridge
+			for_each_scope_loop = {
+				array = redridge_states
+				if = {
+					limit = {
+						is_owned_by = BRC
+					}
+					add_core_of = FWC
+					transfer_state_to = FWC
+				}
+			}
+			clear_array = redridge_states
+			custom_effect_tooltip = BRC_FWC_given_redridge_tt
+			hidden_effect = { FWC = { set_capital = { state = 361 } } }
+
+			set_country_flag = BRC_FWC_given_land_flag
+		}
+
+		# If BRC (current scope) owns lands in the Badlands
+		if = {
+			limit = {
+				OR = {
+					owns_state = 72
+					owns_state = 527
+					owns_state = 529
+					owns_state = 530
+					owns_state = 531
+					owns_state = 533
+					owns_state = 535
+					owns_state = 534
+					owns_state = 536
+					owns_state = 537
+					owns_state = 538
+					owns_state = 539
+					owns_state = 540
+					owns_state = 371
+					owns_state = 460
+					owns_state = 526
+					owns_state = 655
+					owns_state = 806
+					owns_state = 1526
+					owns_state = 1577
+					owns_state = 1578
+					owns_state = 1579
+					owns_state = 1580
+					owns_state = 2171
+					owns_state = 2172
+					owns_state = 2173
+					owns_state = 2174
+					owns_state = 2175
+					owns_state = 2176
+					owns_state = 2177
+					owns_state = 2178
+				}
+			}
+			# Setting up arrays for giving lands
+			add_to_array = { badlands_states = 72 }
+			add_to_array = { badlands_states = 527 }
+			add_to_array = { badlands_states = 529 }
+			add_to_array = { badlands_states = 530 }
+			add_to_array = { badlands_states = 531 }
+			add_to_array = { badlands_states = 533 }
+			add_to_array = { badlands_states = 535 }
+			add_to_array = { badlands_states = 534 }
+			add_to_array = { badlands_states = 536 }
+			add_to_array = { badlands_states = 537 }
+			add_to_array = { badlands_states = 538 }
+			add_to_array = { badlands_states = 539 }
+			add_to_array = { badlands_states = 540 }
+			add_to_array = { badlands_states = 371 }
+			add_to_array = { badlands_states = 460 }
+			add_to_array = { badlands_states = 526 }
+			add_to_array = { badlands_states = 655 }
+			add_to_array = { badlands_states = 806 }
+			add_to_array = { badlands_states = 1526 }
+			add_to_array = { badlands_states = 1577 }
+			add_to_array = { badlands_states = 1578 }
+			add_to_array = { badlands_states = 1579 }
+			add_to_array = { badlands_states = 1580 }
+			add_to_array = { badlands_states = 2171 }
+			add_to_array = { badlands_states = 2172 }
+			add_to_array = { badlands_states = 2173 }
+			add_to_array = { badlands_states = 2174 }
+			add_to_array = { badlands_states = 2175 }
+			add_to_array = { badlands_states = 2176 }
+			add_to_array = { badlands_states = 2177 }
+			add_to_array = { badlands_states = 2178 }
+
+			# If the Burning Blade Clan (BBC) is part of the Horde
+			if = {
+				limit = {
+					BBC = { is_in_faction_with = BRC }
+				}
+				# Give BBC the lands within the Badlands
+				for_each_scope_loop = {
+					array = badlands_states
+					if = {
+						limit = {
+							is_owned_by = BRC
+						}
+						add_core_of = BBC
+						transfer_state_to = BBC
+					}
+				}
+				clear_array = badlands_states
+				custom_effect_tooltip = BRC_BBC_given_badlands_tt
+				hidden_effect = { BBC = { set_capital = { state = 72 } } }
+
+				set_country_flag = BRC_BBC_given_land_flag
+			}
+		}
+
+		# Transfer lands in the Blasted Lands (between clans)
+		# Most goes to the Black Tooth Grin (BTG)
+		# Setting up arrays for giving lands
+		add_to_array = { blasted_lands_states = 26 }
+		add_to_array = { blasted_lands_states = 74 }
+		add_to_array = { blasted_lands_states = 377 }
+		add_to_array = { blasted_lands_states = 378 }
+		add_to_array = { blasted_lands_states = 379 }
+		add_to_array = { blasted_lands_states = 380 }
+		add_to_array = { blasted_lands_states = 381 }
+		add_to_array = { blasted_lands_states = 382 }
+		add_to_array = { blasted_lands_states = 383 }
+		add_to_array = { blasted_lands_states = 384 }
+		add_to_array = { blasted_lands_states = 385 }
+		add_to_array = { blasted_lands_states = 386 }
+		add_to_array = { blasted_lands_states = 387 }
+		add_to_array = { blasted_lands_states = 388 }
+		add_to_array = { blasted_lands_states = 390 }
+		add_to_array = { blasted_lands_states = 391 }
+		add_to_array = { blasted_lands_states = 392 }
+		add_to_array = { blasted_lands_states = 393 }
+		add_to_array = { blasted_lands_states = 394 }
+		add_to_array = { blasted_lands_states = 784 }
+		add_to_array = { blasted_lands_states = 785 }
+		add_to_array = { blasted_lands_states = 788 }
+		add_to_array = { blasted_lands_states = 2157 }
+		add_to_array = { blasted_lands_states = 2158 }
+		add_to_array = { blasted_lands_states = 2159 }
+		add_to_array = { blasted_lands_states = 2160 }
+
+		# If the Twilight's Hammer Clan is part of the Horde and has already been given land
+		if = {
+			limit = {
+				THC = { is_in_faction_with = BRC }
+				has_country_flag = BRC_THC_given_land_flag
+			}
+			# Transfer THC lands in the Blasted Lands
+			# No coring this time
+			for_each_scope_loop = {
+				array = blasted_lands_states
+				if = {
+					limit = {
+						is_owned_by = THC
+					}
+					# Give the states to Black Tooth Grin if they are part of the Horde
+					if = {
+						limit = {
+							BTG = { is_in_faction_with = BRC }
+						}
+						transfer_state_to = BTG
+					}
+					# Else, give the states to the Burning Blade Clan
+					# If they are part of the Horde and haven't been given land already
+					else_if = {
+						limit = {
+							BBC = { is_in_faction_with = BRC }
+							BRC = {	NOT = { has_country_flag = BRC_BBC_given_land_flag } }
+						}
+						transfer_state_to = BBC
+					}
+					else = {
+						transfer_state_to = BRC
+					}
+				}
+			}
+			clr_country_flag = BRC_THC_given_land_flag
+		}
+		# If the Burning Blade Clan is part of the Horde and has already been given land
+		if = {
+			limit = {
+				BBC = { is_in_faction_with = BRC }
+				has_country_flag = BRC_BBC_given_land_flag
+			}
+			# Transfer BBC lands in the Blasted Lands
+			# No coring this time
+			for_each_scope_loop = {
+				array = blasted_lands_states
+				if = {
+					limit = {
+						is_owned_by = BBC
+					}
+					# Give the states to Black Tooth Grin if they are part of the Horde
+					if = {
+						limit = {
+							BTG = { is_in_faction_with = BRC }
+						}
+						transfer_state_to = BTG
+					}
+					# Else, give the states to the Burning Blade Clan
+					# If they are part of the Horde and haven't been given land already
+					else_if = {
+						limit = {
+							BBC = { is_in_faction_with = BRC }
+							BRC = {	NOT = { has_country_flag = BRC_BBC_given_land_flag } }
+						}
+						transfer_state_to = BBC
+					}
+					else = {
+						transfer_state_to = BRC
+					}
+				}
+			}
+			clr_country_flag = BRC_BBC_given_land_flag
+		}
+		# If the Frostwolf Clan is part of the Horde and has already been given land
+		if = {
+			limit = {
+				FWC = { is_in_faction_with = BRC }
+				has_country_flag = BRC_FWC_given_land_flag
+			}
+			# Transfer BBC lands in the Blasted Lands
+			# No coring this time
+			for_each_scope_loop = {
+				array = blasted_lands_states
+				if = {
+					limit = {
+						is_owned_by = FWC
+					}
+					# Give the states to Black Tooth Grin if they are part of the Horde
+					if = {
+						limit = {
+							BTG = { is_in_faction_with = BRC }
+						}
+						transfer_state_to = BTG
+					}
+					# Else, give the states to the Burning Blade Clan
+					# If they are part of the Horde and haven't been given land already
+					else_if = {
+						limit = {
+							BBC = { is_in_faction_with = BRC }
+							NOT = { has_country_flag = BRC_BBC_given_land_flag }
+						}
+						transfer_state_to = BBC
+					}
+					else = {
+						transfer_state_to = BRC
+					}
+				}
+			}
+			clr_country_flag = BRC_FWC_given_land_flag
+		}
+		# Transfer the states owned by BRC in the Blasted Lands
+		for_each_scope_loop = {
+			array = blasted_lands_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				# Give these lands to BTG if part of the Horde
+				if = {
+					limit = {
+						BTG = { is_in_faction_with = BRC }
+					}
+					transfer_state_to = BTG
+				}
+				# Else give to BBC if part of Horde
+				else_if = {
+					limit = {
+						BBC = { is_in_faction_with = BRC }
+					}
+					transfer_state_to = BBC
+				}
+			}
+		}
+		custom_effect_tooltip = BRC_BTG_given_states_tt
+		hidden_effect = { BTG = { set_capital = { state = 384 } } } #Rockard
+
+		clear_array = blasted_lands_states
+	}
+}
+
+# Dreadmaul Juggernauts (from BRC_dreadmaul_juggernauts)
+country_event = {
+	id = blackrock.28
+	title = blackrock.28.t
+	desc = blackrock.28.d
+	picture = GFX_ogre_juggernaught_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.28.option.1
+		set_technology = {
+		    generic_naval_battleship_tech_1 = 1
+		}
+		custom_effect_tooltip = blackrock.28.option.1.d
+		hidden_effect = { load_oob = "BRC_dreadmaul_battleships" }
+	}
+}
+
+# Steamwheedle Battleships
+country_event = {
+	id = blackrock.29
+	title = blackrock.29.t
+	desc = blackrock.29.d
+	picture = GFX_pirate_ship_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.29.option.1
+		custom_effect_tooltip = blackrock.29.option.1.d
+
+		hidden_effect = { load_oob = "BRC_steamwheedle_battleships" }
+	}
+}
+
+# Frostmane Destroyers
+country_event = {
+	id = blackrock.30
+	title = blackrock.30.t
+	desc = blackrock.30.d
+	picture = GFX_orc_ship_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.30.option.1
+		load_oob = "BRC_frostmane_destroyers"
+	}
+}
+
+#A Home in the Spire (from BRC_a_home_in_the_spire)
+country_event = {
+	id = blackrock.31
+	title = blackrock.31.t
+	desc = blackrock.31.d
+	picture = GFX_blackrock_mountain_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.31.option.1
+
+		set_capital = { state = 524 }
+
+		core_eastern_blackrock_mountain = yes
+
+		custom_effect_tooltip = BRC_migrate_to_blackrock_mountain
+		hidden_effect = {
+			28 = {
+				add_manpower = 2500
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			523 = {
+				add_manpower = 17500
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			524 = {
+				add_manpower = 50000
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			807 = {
+				add_manpower = 5000
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			1617 = {
+				add_manpower = 27500
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			1618 = {
+				add_manpower = 30000
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			1619 = {
+				add_manpower = 30000
+
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			384 = {
+				add_manpower = -50000
+				remove_building = {
+				    type = industrial_complex
+				    level = 2
+				}
+				remove_building = {
+				    type = arms_factory
+				    level = 2
+				}
+			}
+			386 = {
+				add_manpower = -40000
+
+				remove_building = {
+				    type = industrial_complex
+				    level = 1
+				}
+				remove_building = {
+				    type = arms_factory
+				    level = 1
+				}
+			}
+			392 = {
+				add_manpower = -30000
+
+				remove_building = {
+				    type = industrial_complex
+				    level = 2
+				}
+			}
+			394 = {
+				add_manpower = -25000
+
+				remove_building = {
+				    type = arms_factory
+				    level = 2
+				}
+			}
+		}
+
+		524 = {
+			set_state_name = "Hordemar City"
+			set_province_name = { id = 6205 name = "Hordemar City" }
+		}
+		1618 = {
+			if = {
+				limit = {
+					BRC = {
+						has_completed_focus = BRC_blackhands_horde
+					}
+				}
+				set_state_name = "The Hall of Blackhand"
+				set_province_name = { id = 6190 name = "The Hall of Blackhand" }
+			}
+		}
+	}
+}
+
+#under a single banner
+country_event = {
+	id = blackrock.32
+	title = blackrock.32.t
+	desc = blackrock.32.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.32.option.1
+		set_cosmetic_tag = BRC_the_Horde
+		every_other_country = {
+			limit = {
+					is_in_faction_with = BRC
+					is_puppet = no
+			}
+			country_event = {
+				id = blackrock.42
+				days = 1
+			}
+		}
+	}
+}
+
+#deal_with_alterac
+country_event = {
+	id = blackrock.33
+	title = blackrock.33.t
+	desc = blackrock.33.d
+	picture = GFX_alterac_city_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.33.option.1
+		ALT = {
+			country_event = alterac.4
+		}
+	}
+}
+
+#tyrs hand revolt
+country_event = {
+	id = blackrock.34
+	title = blackrock.34.t
+	desc = blackrock.34.d
+	picture = GFX_tyrs_hand_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.34.option.1
+		LOR = {
+			country_event = lordaeron.4
+		}
+		TYR = {
+			30 = {
+				add_core_of = TYR
+				transfer_state_to = TYR
+			}
+			226 = {
+				add_core_of = TYR
+				transfer_state_to = TYR
+			}
+			227 = {
+				add_core_of = TYR
+				transfer_state_to = TYR
+			}
+			376 = {
+				add_core_of = TYR
+				transfer_state_to = TYR
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 1
+			}
+			set_politics = {
+				ruling_party = horde
+			}
+			load_oob = "TYR_tyrs_hand_revolt"
+			declare_war_on = {
+				target = LOR
+				type = annex_everything
+			}
+			add_ideas = preparing_for_war
+		}
+
+		LOR = { set_country_flag = TYR_tyrs_hand_revolt }
+
+		BRC = {
+			add_to_faction = TYR
+		}
+	}
+}
+
+# Alterac joins the Horde
+country_event = {
+	id = blackrock.35
+	title = blackrock.35.t
+	desc = blackrock.35.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.35.option.1
+
+		ALT = {
+			country_event = { id = alterac.3 }
+			leave_faction = yes
+			declare_war_on = {
+				target = LOR
+				type = annex_everything
+			}
+		}
+
+		# White peace all the Horde again just in case
+		every_enemy_country = {
+	      limit = {
+	        is_in_faction_with = BRC
+	      }
+	      white_peace = ALT
+	    }
+
+		BRC = {
+			add_to_faction = ALT
+		}
+
+	}
+}
+
+# Deal with the Amani
+country_event = {
+	id = blackrock.36
+	title = blackrock.36.t
+	desc = blackrock.36.d
+	picture = GFX_zul'jin_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.36.option.1
+		# Send event asking to join the Horde
+		AMA = { country_event = blackrock.43 }
+		VIL = { country_event = blackrock.43 }
+		WBT = { country_event = blackrock.43 }
+		FTT = { country_event = blackrock.43 }
+		SMR = { country_event = blackrock.43 }
+		SPT = { country_event = blackrock.43 }
+		MFT = { country_event = blackrock.43 }
+	}
+}
+
+# Amani Frigates
+country_event = {
+	id = blackrock.37
+	title = blackrock.37.t
+	desc = blackrock.37.d
+	picture = GFX_troll_ship_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.37.option.1
+		custom_effect_tooltip = blackrock.37.option.1.d
+		hidden_effect = { load_oob = "BRC_amani_frigates" }
+	}
+}
+
+# Tol'Barad Invasion
+country_event = {
+	id = blackrock.38
+	title = blackrock.38.t
+	desc = blackrock.38.d
+	picture = GFX_tol'barad_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.38.option.1
+		custom_effect_tooltip = blackrock.38.option.1.d
+		hidden_effect = { load_oob = "BRC_tol_barad_invasion" }
+	}
+}
+
+# Invasion of Hillsbrad
+country_event = {
+	id = blackrock.39
+	title = blackrock.39.t
+	desc = blackrock.39.d
+	picture = GFX_southshore_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.39.option.1
+		custom_effect_tooltip = blackrock.39.option.1.d
+		hidden_effect = { 
+			load_oob = "BRC_hillsbrad_invasion"
+			8 = { transfer_state_to = BRC }
+		}
+	}
+}
+
+#alterac accepts
+country_event = {
+	id = blackrock.40
+	title = blackrock.40.t
+	desc = blackrock.40.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.40.option.1
+		set_country_flag = alterac_will_join_horde
+	}
+}
+
+#alterac refuses
+country_event = {
+	id = blackrock.41
+	title = blackrock.41.t
+	desc = blackrock.41.d
+	picture = GFX_alterac_city_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = blackrock.41.option.1
+	}
+}
+
+#blackhands make united horde (sent to Horde members when blackrock.32 is triggered)
+country_event = {
+	id = blackrock.42
+	title = blackrock.42.t
+	desc = blackrock.42.d
+	picture = GFX_blackhand_event
+	is_triggered_only = yes
+	#accepts
+	option = {
+		name = blackrock.42.option.1
+		BRC = {
+			puppet = ROOT
+		}
+	}
+	#refuses
+	option = {
+		name = blackrock.42.option.2
+		leave_faction = yes
+		declare_war_on = {
+			target = BRC
+			type = annex_everything
+		}
+	}
+}
+
+# Deal with Amani (sent to AMA / VIL / WBT from blackrock.36)
+country_event = {
+	id = blackrock.43
+	title = blackrock.43.t
+	desc = blackrock.43.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+
+	option = { # Accepts
+		name = blackrock.43.option.1
+
+		trigger = { is_puppet = no }
+
+		leave_faction = yes
+
+		set_politics = {
+			ruling_party = horde
+		}
+		add_popularity = {
+			ideology = horde
+			popularity = 0.75
+		}
+
+		declare_war_on = {
+			target = LOR
+			type = annex_everything
+		}
+		if = {
+			limit = { NOT = { QUE = { is_in_faction_with = BRC } } }
+			declare_war_on = {
+				target = QUE
+				type = annex_everything
+			}
+		}
+
+		BRC = {
+			add_to_faction = ROOT
+		}
+
+		hidden_effect = {
+			if = {
+				limit = { QUE = { has_idea = isolation } }
+				QUE = {
+					swap_ideas = {
+						remove_idea = isolation
+						add_idea = early_military_development
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = { # Refuses
+		name = blackrock.43.option.2
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = -110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Shadow Council Located (from BRC_hunt_the_shadow_council)
+country_event = {
+	id = blackrock.44
+	title = blackrock.44.t
+	desc = blackrock.44.d
+	picture = GFX_blackrock_mountain_event
+	is_triggered_only = yes
+
+	option = { # Send raiding party
+		name = blackrock.44.option.1
+
+		add_political_power = -50
+		add_manpower = -1000
+
+		custom_effect_tooltip = blackrock.44.option.1.d
+		hidden_effect = {
+			# Raid success
+			country_event = { id = blackrock.45 days = 1 }
+			set_country_flag = BRC_raiding_party_flag
+		}
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = { # Small strike force
+		name = blackrock.44.option.2
+
+		add_political_power = -5
+		add_manpower = -25
+
+		custom_effect_tooltip = blackrock.44.option.2.d
+		hidden_effect = {
+			random_list = {
+				75 = { # Success
+					modifier = { # AIs will always success to keep the path secret
+						factor = 100
+						is_ai = yes
+					}
+					# Success like in blackrock.44.option.1
+					country_event = { id = blackrock.45 days = 1 }
+	   				set_country_flag = BRC_small_party_flag
+				}
+				25 = { # Failure (uh oh stinky) who the fuck wrote this -zolt
+					modifier = { # AIs will never fail to keep the path secret
+					   factor = 0
+					   is_ai = yes
+				   }
+				   # The raid is a failure, and the worst happen...
+				   country_event = { id = blackrock.46 days = 1 }
+				   TSC = { country_event = { id = shadow_council.6 days = 1 } }
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = -110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = { # Declare war
+		name = blackrock.44.option.3
+
+		declare_war_on = {
+		    target = TSC
+		    type = annex_everything
+		}
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = -110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Shadow Council neutralized (from blackrock.44.option.1 or blackrock.44.option.2)
+country_event = {
+	id = blackrock.45
+	title = blackrock.45.t
+	desc = blackrock.45.d
+	picture = GFX_orc_warlocks_event
+	is_triggered_only = yes
+
+	option = {
+		name = blackrock.45.option.1
+
+		# If we sent a raid
+		if = {
+			limit = {
+				has_country_flag = BRC_raiding_party_flag
+			}
+			# Gives back part of manpower
+			add_manpower = 950
+			clr_country_flag = BRC_raiding_party_flag
+		}
+		else_if = {
+			limit = {
+				has_country_flag = BRC_small_party_flag
+			}
+			# Gives back manpower
+			add_manpower = 25
+			clr_country_flag = BRC_small_party_flag
+		}
+
+		puppet = TSC
+		TSC = {
+			country_event = shadow_council.6
+			custom_effect_tooltip = blackrock.45.option.1.d
+			# Annex all lands of the Shadow Council except eastern Blackrock Mountains
+			every_owned_state = {
+				if = {
+					limit = {
+						NOT = {
+							state = 524
+							state = 807
+							state = 1617
+							state = 1618
+							state = 1619
+						}
+					}
+					add_core_of = BRC
+					transfer_state_to = BRC
+				}
+			}
+		}
+	}
+}
+
+# Raid on the Shadow Council is a failure (from blackrock.44.option.2)
+# Start of a super secret path (also the Warchief dies :c)
+country_event = {
+	id = blackrock.46
+	title = blackrock.46.t
+	desc = blackrock.46.d
+	picture = GFX_orc_warlocks_event
+	is_triggered_only = yes
+
+	immediate = {
+		clr_country_flag = doomhammers_horde
+	}
+
+	option = { # Attack Shadow Council
+		name = blackrock.46.option.1
+
+		kill_country_leader = yes
+
+		add_stability = -0.25
+		add_war_support = 0.1
+
+		declare_war_on = {
+		    target = TSC
+		    type = annex_everything
+		}
+
+		country_event = blackrock.47
+	}
+
+	option = { # We will come back for them
+		name = blackrock.46.option.2
+
+		kill_country_leader = yes
+
+		add_stability = -0.15
+		add_war_support = -0.05
+
+		country_event = blackrock.47
+	}
+}
+
+# Choosing a new Warchief (from blackrock.46)
+country_event = {
+	id = blackrock.47
+	title = blackrock.47.t
+	desc = blackrock.47.d
+	picture = GFX_horde_Flag_event
+	is_triggered_only = yes
+
+	option = { # Varok Saurfang
+		name = blackrock.47.option.1
+
+		add_stability = 0.05
+		add_war_support = 0.1
+
+		BRC_varok_saurfang = {
+			promote_character = horde_type
+		}
+	}
+
+	option = { # Eitrigg
+		name = blackrock.47.option.2
+
+		add_stability = 0.1
+		add_war_support = 0.05
+
+		BRC_eitrigg = {
+			promote_character = horde_type
+		}
+	}
+
+	option = { # Rend Blackhand
+		name = blackrock.47.option.3
+
+		BTG = {
+			annex_country = {
+			    target = BRC
+			    transfer_troops = yes
+			}
+
+			set_faction_leader = yes
+
+			change_tag_from = BRC
+		}
+	}
+}
+
+# Fate of LOR
+country_event = {
+	id = blackrock.48
+	title = blackrock.48.t
+	desc = blackrock.48.d
+	picture = GFX_capital_city_event
+	is_triggered_only = yes
+
+	option = { ### OCCUPY
+		name = blackrock.48.option.1
+		country_event = { id = blackrock.51 }
+	}
+
+	option = {
+		name = blackrock.48.option.2
+		BRC = {
+			puppet = LOR
+			reduce_horde_overextension = yes
+		}
+		custom_effect_tooltip = BRC_fate_of_lordaeron2_tt
+		LOR = {
+			set_cosmetic_tag = LOR_protectorate
+			load_focus_tree = generic_focus
+			hidden_effect = {
+				transfer_state = 783
+				transfer_state = 215
+				transfer_state = 218
+				transfer_state = 216
+				transfer_state = 214
+				transfer_state = 1531
+				transfer_state = 212
+				transfer_state = 213
+				transfer_state = 217
+				transfer_state = 219
+				transfer_state = 667
+				transfer_state = 760
+				transfer_state = 211
+				transfer_state = 209
+				transfer_state = 207
+				transfer_state = 208
+				transfer_state = 108
+				transfer_state = 206
+				transfer_state = 1532
+				transfer_state = 2226
+				transfer_state = 2227
+				transfer_state = 2228
+				transfer_state = 2229
+				transfer_state = 2230
+				transfer_state = 2231
+			}
+		}
+		if = {
+			limit = {
+				has_completed_focus = BRC_blackhands_horde
+			}
+			country_event = blackrock.49
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = BRC_doomhammers_horde
+			}
+			country_event = blackrock.50
+		}
+	}
+
+	option = {
+		name = blackrock.48.option.3
+		BRC = {
+			puppet = LOR
+			reduce_horde_overextension = yes
+		}
+		custom_effect_tooltip = BRC_fate_of_lordaeron3_tt
+		LOR = {
+			set_cosmetic_tag = LOR_protectorate
+			load_focus_tree = generic_focus
+			hidden_effect = {
+				annex_tirisfal_glades = yes
+			}
+		}
+		if = {
+			limit = {
+				has_completed_focus = BRC_blackhands_horde
+			}
+			country_event = blackrock.49
+
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = BRC_doomhammers_horde
+			}
+			country_event = blackrock.50
+		}
+	}
+}
+
+# LOR new Leader (Blackhand)
+country_event = {
+	id = blackrock.49
+	title = blackrock.49.t
+	desc = blackrock.49.d
+	picture = GFX_lordaeron_throne_event
+	is_triggered_only = yes
+
+	option = {
+		name = blackrock.49.option.1
+		LOR = {
+			hidden_effect = {
+				kill_country_leader = yes
+				create_country_leader = {
+					name = "Maim"
+					picture = "gfx/leaders/BTG/maim.dd"
+					expire = "1965.1.1"
+					ideology = horde_type
+					traits = { }
+				}
+				create_country_leader = {
+					name = "Maim"
+					picture = "gfx/leaders/BTG/maim.dd"
+					expire = "1965.1.1"
+					ideology = fel_type
+					traits = { }
+				}
+			}
+		}
+		country_event = { id = blackrock.51 }
+	}
+
+	option = {
+		name = blackrock.49.option.2
+		LOR = {
+			hidden_effect = {
+				kill_country_leader = yes
+				create_country_leader = {
+					name = "Dal'Rend"
+					desc = "POLITICS_DALREND_BLACKHAND_FIRST_WAR_DESC"
+					picture = "gfx/leaders/BTG/rend.dds"
+					expire = "1965.1.1"
+					ideology = horde_type
+					traits = { }
+				}
+				create_country_leader = {
+					name = "Dal'Rend"
+					desc = "POLITICS_DALREND_BLACKHAND_FIRST_WAR_DESC"
+					picture = "gfx/leaders/BTG/rend.dds"
+					expire = "1965.1.1"
+					ideology = fel_type
+					traits = { }
+				}
+			}
+		}
+		country_event = { id = blackrock.51 }
+	}
+}
+
+# LOR new Leader (Doomhammer)
+country_event = {
+	id = blackrock.50
+	title = blackrock.50.t
+	desc = blackrock.50.d
+	picture = GFX_lordaeron_throne_event
+	is_triggered_only = yes
+
+	option = {
+		name = blackrock.50.option.1
+		LOR = {
+			hidden_effect = {
+				kill_country_leader = yes
+				create_country_leader = {
+					name = "Eitrigg"
+					desc = "POLITICS_EITRIGG_DESC"
+					picture = "gfx/leaders/BRC/Eitrigg.dds"
+					expire = "1965.1.1"
+					ideology = horde_type
+					traits = { }
+				}
+				create_country_leader = {
+					name = "Eitrigg"
+					desc = "POLITICS_EITRIGG_DESC"
+					picture = "gfx/leaders/BRC/Eitrigg.dds"
+					expire = "1965.1.1"
+					ideology = fel_type
+					traits = { }
+				}
+			}
+		}
+		country_event = { id = blackrock.51 }
+	}
+
+	option = {
+		name = blackrock.50.option.2
+		LOR = {
+			hidden_effect = {
+				kill_country_leader = yes
+				create_country_leader = {
+					name = "Varok Saurfang"
+					desc = "POLITICS_SAURFANG_DESC"
+					picture = "gfx/leaders/BRC/saurfang.dds"
+					expire = "1965.1.1"
+					ideology = horde_type
+					traits = { }
+				}
+				create_country_leader = {
+					name = "Varok Saurfang"
+					desc = "POLITICS_SAURFANG_DESC"
+					picture = "gfx/leaders/BRC/saurfang.dds"
+					expire = "1965.1.1"
+					ideology = fel_type
+					traits = { }
+				}
+			}
+		}
+		country_event = { id = blackrock.51 }
+	}
+}
+
+# Rename the City
+country_event = {
+	id = blackrock.51
+	title = blackrock.51.t
+	desc = blackrock.51.d
+	picture = GFX_capital_city_event
+	is_triggered_only = yes
+
+	option = {
+		name = blackrock.51.option.1
+		if = {
+			limit = {
+				has_completed_focus = BRC_blackhands_horde
+			}
+			10 = {
+				set_state_name = "Blackhold"
+				set_province_name = { id = 7445 name = "Blackhold" }
+			}
+			add_war_support = 0.05
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = BRC_doomhammers_horde
+			}
+			10 = {
+				set_state_name = "Orgrimmar"
+				set_province_name = { id = 7445 name = "Orgrimmar" }
+			}
+			add_stability = 0.05
+		}
+	}
+
+	option = {
+		name = blackrock.51.option.2
+		10 = {
+			set_state_name = "New Blackrock City"
+			set_province_name = { id = 7445 name = "New Blackrock City" }
+		}
+		add_stability = 0.025
+		add_war_support = 0.025
+	}
+
+	option = {
+		name = blackrock.51.option.3
+	}
+}
+
+# Fate of Gul'dan (Blackrock Side, for Shadow Council, see shadow_council.8)
+country_event = {
+	id = blackrock.52
+	title = blackrock.52.t
+	desc = blackrock.52.d
+	picture = GFX_guldan_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Spare Gul'dan and accept his offer
+		name = blackrock.52.option.1
+
+		TSC = { country_event = shadow_council.8 }
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Kill him (he deserves it)
+		name = blackrock.52.option.2
+		TSC = { kill_country_leader = yes }
+
+		annex_country = {
+		    target = TSC
+		    transfer_troops = no
+		}
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+}
+
+# The Circles of Binding (from BRC_circles_of_binding)
+country_event = {
+	id = blackrock.53
+	title = blackrock.53.t
+	desc = blackrock.53.d
+	picture = GFX_circle_of_binding
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Siphon their power to empower our warlocks
+		trigger = {
+            OR = {
+				has_idea = primary_religion_demonology
+				has_idea = secondary_religion_demonology
+				has_idea = primary_religion_necrolytes
+				has_idea = secondary_religion_necrolytes
+			}
+        }
+
+		name = blackrock.53.option.1
+
+		add_manpower = -500
+
+		add_timed_idea = {
+			idea = BRC_circles_of_binding_fel_idea
+			days = 45
+		}
+	}
+
+	option = { # Shamans commune with the elements
+		trigger = {
+			OR = {
+				has_idea = primary_religion_shamanism
+				has_idea = secondary_religion_shamanism
+			}
+        }
+
+		name = blackrock.53.option.2
+
+		swap_ideas = {
+		    remove_idea = BRC_draenor_shamans_idea
+		    add_idea = BRC_circles_of_binding_shamanism_idea
+		}
+	}
+
+	option = { # Default
+		name = blackrock.53.option.3
+	}
+}
+
+# Deal with Rend (from BRC_deal_with_rend focus)
+country_event = {
+	id = blackrock.54
+	title = blackrock.54.t
+	desc = blackrock.54.d
+	picture = GFX_rend_blackhand_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Simply ask their loyalty
+		name = blackrock.54.option.1
+
+		add_political_power = -25
+
+		BTG = {
+			set_country_flag = deal_with_rend_offer_1
+
+			country_event = {
+				id = black_tooth_grin.3
+				days = 1
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Ask for loyalty in exchange for independance + promise land (more chance to succed)
+		name = blackrock.54.option.2
+
+		add_political_power = -10
+
+		BTG = {
+			set_country_flag = deal_with_rend_offer_2
+
+			country_event = {
+				id = black_tooth_grin.3
+				days = 1
+			}
+		}
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	option = { # Ask them to re-join the Blackrock Clan
+		name = blackrock.54.option.3
+
+		add_political_power = -50
+		add_stability = -0.05
+
+		BTG = {
+			set_country_flag = deal_with_rend_offer_3
+
+			country_event = {
+				id = black_tooth_grin.3
+				days = 1
+			}
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+}
+
+# Victory Over Humanity (from BRC_victory_over_humanity focus)
+country_event = {
+	id = blackrock.55
+	title = blackrock.55.t
+	desc = blackrock.55.d
+	picture = GFX_saurfang_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = blackrock.55.option.1
+		custom_effect_tooltip = blackrock.55.option.1.d
+
+		add_ideas = BRC_horde_overstretch_tier_5_idea
+
+		hidden_effect = {
+			# Add resistance in states (only if these states are owned by orcish nations + human pop)
+			# States are choosen manually to prevent RNG
+			add_to_array = { resistance_states = 4 }
+			add_to_array = { resistance_states = 6 }
+			add_to_array = { resistance_states = 9 }
+			add_to_array = { resistance_states = 11 }
+			add_to_array = { resistance_states = 12 }
+			add_to_array = { resistance_states = 13 }
+			add_to_array = { resistance_states = 30 }
+			add_to_array = { resistance_states = 32 }
+			add_to_array = { resistance_states = 35 }
+			add_to_array = { resistance_states = 99 }
+			add_to_array = { resistance_states = 103 }
+			add_to_array = { resistance_states = 106 }
+			add_to_array = { resistance_states = 109 }
+			add_to_array = { resistance_states = 113 }
+			add_to_array = { resistance_states = 115 }
+			add_to_array = { resistance_states = 119 }
+			add_to_array = { resistance_states = 120 }
+			add_to_array = { resistance_states = 122 }
+			add_to_array = { resistance_states = 128 }
+			add_to_array = { resistance_states = 152 }
+			add_to_array = { resistance_states = 153 }
+			add_to_array = { resistance_states = 159 }
+			add_to_array = { resistance_states = 163 }
+			add_to_array = { resistance_states = 165 }
+			add_to_array = { resistance_states = 201 }
+			add_to_array = { resistance_states = 206 }
+			add_to_array = { resistance_states = 211 }
+			add_to_array = { resistance_states = 212 }
+			add_to_array = { resistance_states = 218 }
+			add_to_array = { resistance_states = 219 }
+			add_to_array = { resistance_states = 220 }
+			add_to_array = { resistance_states = 226 }
+			add_to_array = { resistance_states = 228 }
+			add_to_array = { resistance_states = 229 }
+			add_to_array = { resistance_states = 230 }
+			add_to_array = { resistance_states = 239 }
+			add_to_array = { resistance_states = 243 }
+			add_to_array = { resistance_states = 247 }
+			add_to_array = { resistance_states = 331 }
+			add_to_array = { resistance_states = 416 }
+			add_to_array = { resistance_states = 418 }
+			add_to_array = { resistance_states = 419 }
+			add_to_array = { resistance_states = 578 }
+			add_to_array = { resistance_states = 614 }
+			add_to_array = { resistance_states = 616 }
+			add_to_array = { resistance_states = 630 }
+			add_to_array = { resistance_states = 631 }
+			add_to_array = { resistance_states = 634 }
+			add_to_array = { resistance_states = 635 }
+			add_to_array = { resistance_states = 640 }
+			add_to_array = { resistance_states = 646 }
+			add_to_array = { resistance_states = 671 }
+			add_to_array = { resistance_states = 718 }
+			add_to_array = { resistance_states = 1535 }
+			add_to_array = { resistance_states = 1568 }
+			add_to_array = { resistance_states = 2098 }
+			add_to_array = { resistance_states = 2227 }
+			add_to_array = { resistance_states = 2230 }
+			add_to_array = { resistance_states = 2232 }
+			add_to_array = { resistance_states = 2235 }
+			add_to_array = { resistance_states = 2237 }
+			add_to_array = { resistance_states = 2250 }
+
+			for_each_scope_loop = {
+				array = resistance_states
+				if = {
+					limit = {
+						owner = {
+							OR = {
+								has_idea = orc_primary_race # Any orcish nation (The Horde)
+								has_idea = forest_troll_primary_race # Any forest troll nation (Amani and stuff)
+							}
+						}
+					}
+					add_dynamic_modifier = {
+						modifier = BRC_human_resistance
+					}
+					if = {
+						limit = {
+							owner = { NOT = { has_country_flag = BRC_human_resistance_present_flag } }
+						}
+						owner = { set_country_flag = BRC_human_resistance_present_flag }
+					}
+				}
+			}
+			clear_array = resistance_states
+		}
+	}
+}
+
+# Dealing with the Resistance (from blackrock.55)
+country_event = {
+	id = blackrock.56
+	title = blackrock.56.t
+	desc = blackrock.56.d
+	picture = GFX_defias_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Interment camps
+		name = blackrock.56.option.1
+		custom_effect_tooltip = blackrock.56.option.1.d
+
+		swap_ideas = {
+		    remove_idea = BRC_harsh_occupation
+		    add_idea = BRC_internment_camps_idea
+		}
+
+		set_country_flag = BRC_human_resistance_internment_camps_flag
+	}
+
+	option = { # Increase Garrisons forces
+		name = blackrock.56.option.2
+		custom_effect_tooltip = blackrock.56.option.2.d
+
+		swap_ideas = {
+		    remove_idea = BRC_harsh_occupation
+		    add_idea = BRC_increased_garrison_forces_idea
+		}
+
+		set_country_flag = BRC_human_resistance_garrisons_forces_flag
+	}
+}
+
+# Fate of Arathi (from BRC_fate_of_arathi_decision)
+country_event = {
+	id = blackrock.57
+	title = blackrock.57.t
+	desc = blackrock.57.d
+	picture = GFX_arathi_highlands_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Arathi
+		add_to_array = { arathi_states = 12 }
+		add_to_array = { arathi_states = 121 }
+		add_to_array = { arathi_states = 127 }
+		add_to_array = { arathi_states = 128 }
+		add_to_array = { arathi_states = 129 }
+		add_to_array = { arathi_states = 130 }
+		add_to_array = { arathi_states = 131 }
+		add_to_array = { arathi_states = 132 }
+		add_to_array = { arathi_states = 133 }
+		add_to_array = { arathi_states = 574 }
+		add_to_array = { arathi_states = 575 }
+		add_to_array = { arathi_states = 576 }
+		add_to_array = { arathi_states = 577 }
+		add_to_array = { arathi_states = 578 }
+		add_to_array = { arathi_states = 579 }
+		add_to_array = { arathi_states = 580 }
+		add_to_array = { arathi_states = 581 }
+		add_to_array = { arathi_states = 691 }
+		add_to_array = { arathi_states = 698 }
+		add_to_array = { arathi_states = 1566 }
+		add_to_array = { arathi_states = 1567 }
+		add_to_array = { arathi_states = 1568 }
+		add_to_array = { arathi_states = 1569 }
+		add_to_array = { arathi_states = 1570 }
+		add_to_array = { arathi_states = 1571 }
+		add_to_array = { arathi_states = 1572 }
+		add_to_array = { arathi_states = 2211 }
+		add_to_array = { arathi_states = 2212 }
+	}
+
+	option = { # Give it to Witherbark
+		name = blackrock.57.option.1
+		custom_effect_tooltip = blackrock.57.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = WBT }
+		}
+
+		for_each_scope_loop = {
+			array = arathi_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = WBT
+				add_core_of = WBT
+			}
+		}
+		clear_array = arathi_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Warsong Clan
+		name = blackrock.57.option.2
+		custom_effect_tooltip = blackrock.57.option.2.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			WSC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			WSC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 12 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = WSC }
+			}
+			add_to_faction = WSC
+		}
+
+		for_each_scope_loop = {
+			array = arathi_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = WSC
+				
+			}
+		}
+		clear_array = arathi_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Redwalker Clan
+		name = blackrock.57.option.3
+		custom_effect_tooltip = blackrock.57.option.3.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			OR = {
+				has_idea = primary_religion_shamanism
+				has_idea = secondary_religion_shamanism
+			}
+			RWC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			RWC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 12 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = RWC }
+			}
+			add_to_faction = RWC
+		}
+
+		for_each_scope_loop = {
+			array = arathi_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = RWC
+				
+			}
+		}
+		clear_array = arathi_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.57.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Hillsbrad (from BRC_fate_of_hillsbrad_decision)
+country_event = {
+	id = blackrock.58
+	title = blackrock.58.t
+	desc = blackrock.58.d
+	picture = GFX_hillsbrad_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Hillsbrad
+        add_to_array = { hillsbrad_states = 15 }
+        add_to_array = { hillsbrad_states = 32 }
+        add_to_array = { hillsbrad_states = 35 }
+        add_to_array = { hillsbrad_states = 122 }
+        add_to_array = { hillsbrad_states = 123 }
+        add_to_array = { hillsbrad_states = 124 }
+        add_to_array = { hillsbrad_states = 638 }
+        add_to_array = { hillsbrad_states = 721 }
+        add_to_array = { hillsbrad_states = 722 }
+        add_to_array = { hillsbrad_states = 755 }
+        add_to_array = { hillsbrad_states = 1540 }
+        add_to_array = { hillsbrad_states = 1541 }
+        add_to_array = { hillsbrad_states = 1542 }
+        add_to_array = { hillsbrad_states = 1544 }
+        add_to_array = { hillsbrad_states = 2215 }
+	}
+
+	option = { # Give it to Alterac
+		name = blackrock.58.option.1
+		custom_effect_tooltip = blackrock.58.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = ALT }
+		}
+
+		for_each_scope_loop = {
+			array = hillsbrad_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = ALT
+				add_core_of = ALT
+			}
+		}
+		clear_array = hillsbrad_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Warsong Clan
+		name = blackrock.58.option.2
+		custom_effect_tooltip = blackrock.58.option.2.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			WSC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			WSC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 12 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = WSC }
+			}
+			add_to_faction = WSC
+		}
+
+		for_each_scope_loop = {
+			array = hillsbrad_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = WSC
+				
+			}
+		}
+		clear_array = hillsbrad_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Frostwolf Clan
+		name = blackrock.58.option.3
+		custom_effect_tooltip = blackrock.58.option.3.d
+
+		trigger = {
+			FWC = { is_in_faction_with = BRC }
+		}
+
+		for_each_scope_loop = {
+			array = hillsbrad_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = FWC
+				add_core_of = FWC
+			}
+		}
+		clear_array = hillsbrad_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.58.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Dalaran (from BRC_fate_of_dalaran_decision)
+country_event = {
+	id = blackrock.59
+	title = blackrock.59.t
+	desc = blackrock.59.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Dalaran
+		add_to_array = { dalaran_states = 14 }
+		add_to_array = { dalaran_states = 111 }
+		add_to_array = { dalaran_states = 766 }
+		add_to_array = { dalaran_states = 2218 }
+		add_to_array = { dalaran_states = 2250 }
+		add_to_array = { dalaran_states = 2251 }
+	}
+
+	option = { # Give it to Alterac
+		name = blackrock.59.option.1
+		custom_effect_tooltip = blackrock.59.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = ALT }
+		}
+
+		for_each_scope_loop = {
+			array = dalaran_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = ALT
+				add_core_of = ALT
+			}
+		}
+		clear_array = dalaran_states
+	}
+
+	option = { # Give it to the Twilight's Hammer Clan
+		name = blackrock.59.option.2
+		custom_effect_tooltip = blackrock.59.option.2.d
+
+		trigger = {
+			THC = { is_in_faction_with = BRC }
+		}
+
+		for_each_scope_loop = {
+			array = dalaran_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = THC
+				add_core_of = THC
+			}
+		}
+		clear_array = dalaran_states
+	}
+
+	option = { # Give it to the Frostwolf Clan
+		name = blackrock.59.option.3
+		custom_effect_tooltip = blackrock.59.option.3.d
+
+		trigger = {
+			FWC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		for_each_scope_loop = {
+			array = dalaran_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = FWC
+				add_core_of = FWC
+			}
+		}
+		clear_array = dalaran_states
+
+		# In case the Frostwolves disapeared for some reason, it allows to
+		# bring them back as our allies
+		hidden_effect = {
+			FWC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 12 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = FWC }
+			}
+			add_to_faction = FWC
+		}
+	}
+
+	option = { # Keep it
+		name = blackrock.59.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Hearthglen (from BRC_fate_of_hearthglen_decision)
+country_event = {
+	id = blackrock.60
+	title = blackrock.60.t
+	desc = blackrock.60.d
+	picture = GFX_hearthglen_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Western Plaguelands (Hearthglen)
+		add_to_array = { hearthglen_states = 29 }
+		add_to_array = { hearthglen_states = 103 }
+		add_to_array = { hearthglen_states = 106 }
+		add_to_array = { hearthglen_states = 151 }
+		add_to_array = { hearthglen_states = 152 }
+		add_to_array = { hearthglen_states = 153 }
+		add_to_array = { hearthglen_states = 154 }
+		add_to_array = { hearthglen_states = 155 }
+		add_to_array = { hearthglen_states = 156 }
+		add_to_array = { hearthglen_states = 157 }
+		add_to_array = { hearthglen_states = 158 }
+		add_to_array = { hearthglen_states = 159 }
+		add_to_array = { hearthglen_states = 160 }
+		add_to_array = { hearthglen_states = 240 }
+		add_to_array = { hearthglen_states = 344 }
+		add_to_array = { hearthglen_states = 636 }
+		add_to_array = { hearthglen_states = 637 }
+		add_to_array = { hearthglen_states = 762 }
+		add_to_array = { hearthglen_states = 1289 }
+		add_to_array = { hearthglen_states = 1290 }
+		add_to_array = { hearthglen_states = 2232 }
+	}
+
+	option = { # Give it to Alterac
+		name = blackrock.60.option.1
+		custom_effect_tooltip = blackrock.60.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = ALT }
+		}
+
+		for_each_scope_loop = {
+			array = hearthglen_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = ALT
+				add_core_of = ALT
+			}
+		}
+		clear_array = hearthglen_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the LOR protectorate
+		name = blackrock.60.option.2
+		custom_effect_tooltip = blackrock.60.option.2.d
+
+		trigger = {
+			LOR = { is_in_faction_with = BRC }
+		}
+
+		for_each_scope_loop = {
+			array = hearthglen_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LOR
+				add_core_of = LOR
+			}
+		}
+		clear_array = hearthglen_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Amani
+		name = blackrock.60.option.3
+		custom_effect_tooltip = blackrock.60.option.3.d
+
+		trigger = {
+			BRC = { is_in_faction_with = AMA }
+		}
+
+		for_each_scope_loop = {
+			array = hearthglen_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = AMA
+				add_core_of = AMA
+			}
+		}
+		clear_array = hearthglen_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.60.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Eastweald (from BRC_fate_of_eastweald_decision)
+country_event = {
+	id = blackrock.61
+	title = blackrock.61.t
+	desc = blackrock.61.d
+	picture = GFX_stratholme_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Eastern Plaguelands (Eastweald)
+		add_to_array = { eastweald_states = 30 }
+		add_to_array = { eastweald_states = 119 }
+		add_to_array = { eastweald_states = 201 }
+		add_to_array = { eastweald_states = 223 }
+		add_to_array = { eastweald_states = 224 }
+		add_to_array = { eastweald_states = 226 }
+		add_to_array = { eastweald_states = 227 }
+		add_to_array = { eastweald_states = 228 }
+		add_to_array = { eastweald_states = 229 }
+		add_to_array = { eastweald_states = 230 }
+		add_to_array = { eastweald_states = 231 }
+		add_to_array = { eastweald_states = 232 }
+		add_to_array = { eastweald_states = 234 }
+		add_to_array = { eastweald_states = 235 }
+		add_to_array = { eastweald_states = 236 }
+		add_to_array = { eastweald_states = 237 }
+		add_to_array = { eastweald_states = 238 }
+		add_to_array = { eastweald_states = 239 }
+		add_to_array = { eastweald_states = 241 }
+		add_to_array = { eastweald_states = 242 }
+		add_to_array = { eastweald_states = 243 }
+		add_to_array = { eastweald_states = 245 }
+		add_to_array = { eastweald_states = 246 }
+		add_to_array = { eastweald_states = 247 }
+		add_to_array = { eastweald_states = 248 }
+		add_to_array = { eastweald_states = 376 }
+		add_to_array = { eastweald_states = 665 }
+		add_to_array = { eastweald_states = 753 }
+		add_to_array = { eastweald_states = 770 }
+		add_to_array = { eastweald_states = 772 }
+		add_to_array = { eastweald_states = 800 }
+		add_to_array = { eastweald_states = 1543 }
+		add_to_array = { eastweald_states = 1583 }
+		add_to_array = { eastweald_states = 1584 }
+		add_to_array = { eastweald_states = 1585 }
+		add_to_array = { eastweald_states = 1586 }
+		add_to_array = { eastweald_states = 1587 }
+		add_to_array = { eastweald_states = 2233 }
+		add_to_array = { eastweald_states = 2234 }
+		add_to_array = { eastweald_states = 2235 }
+		add_to_array = { eastweald_states = 2236 }
+		add_to_array = { eastweald_states = 2237 }
+		add_to_array = { eastweald_states = 2238 }
+	}
+
+	option = { # Give it to LOR Protectorate
+		name = blackrock.61.option.1
+		custom_effect_tooltip = blackrock.61.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = LOR }
+		}
+
+		for_each_scope_loop = {
+			array = eastweald_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LOR
+				add_core_of = LOR
+			}
+		}
+		clear_array = eastweald_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Amani (AMA)
+		name = blackrock.61.option.2
+		custom_effect_tooltip = blackrock.61.option.2.d
+
+		trigger = {
+			AMA = { is_in_faction_with = BRC }
+		}
+
+		for_each_scope_loop = {
+			array = eastweald_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = AMA
+				add_core_of = AMA
+			}
+		}
+		clear_array = eastweald_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to Dragonmaw Clan
+		name = blackrock.61.option.3
+		custom_effect_tooltip = blackrock.61.option.3.d
+
+		trigger = {
+			BRC = { is_in_faction_with = DMC }
+		}
+
+		for_each_scope_loop = {
+			array = eastweald_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = DMC
+				add_core_of = DMC
+			}
+		}
+		clear_array = eastweald_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.61.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Northern Lordaeron (from BRC_fate_of_northern_lordaeron_decision)
+country_event = {
+	id = blackrock.62
+	title = blackrock.62.t
+	desc = blackrock.62.d
+	picture = GFX_hillsbrad_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Northern Lordaeron
+		add_to_array = { north_lordaeron_states = 120 }
+		add_to_array = { north_lordaeron_states = 220 }
+		add_to_array = { north_lordaeron_states = 221 }
+		add_to_array = { north_lordaeron_states = 222 }
+	}
+
+	option = { # Give it to LOR Protectorate
+		name = blackrock.62.option.1
+		custom_effect_tooltip = blackrock.62.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = LOR }
+		}
+
+		for_each_scope_loop = {
+			array = north_lordaeron_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LOR
+				add_core_of = LOR
+			}
+		}
+		clear_array = north_lordaeron_states
+	}
+
+	option = { # Give it to the Amani (AMA)
+		name = blackrock.62.option.2
+		custom_effect_tooltip = blackrock.62.option.2.d
+
+		trigger = {
+			AMA = { is_in_faction_with = BRC }
+		}
+
+		for_each_scope_loop = {
+			array = north_lordaeron_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = AMA
+				add_core_of = AMA
+			}
+		}
+		clear_array = north_lordaeron_states
+	}
+
+	option = { # Give it to Dragonmaw Clan
+		name = blackrock.62.option.3
+		custom_effect_tooltip = blackrock.62.option.3.d
+
+		trigger = {
+			BRC = { is_in_faction_with = DMC }
+		}
+
+		for_each_scope_loop = {
+			array = north_lordaeron_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = DMC
+				add_core_of = DMC
+			}
+		}
+		clear_array = north_lordaeron_states
+	}
+
+	option = { # Keep it
+		name = blackrock.62.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Silverpine Forest (from BRC_fate_of_silverpine_decision)
+country_event = {
+	id = blackrock.63
+	title = blackrock.63.t
+	desc = blackrock.63.d
+	picture = GFX_silverpine_forest_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Silverpine Forest
+		add_to_array = { silverpine_states = 31 }
+		add_to_array = { silverpine_states = 109 }
+		add_to_array = { silverpine_states = 110 }
+		add_to_array = { silverpine_states = 162 }
+		add_to_array = { silverpine_states = 163 }
+		add_to_array = { silverpine_states = 164 }
+		add_to_array = { silverpine_states = 165 }
+		add_to_array = { silverpine_states = 166 }
+		add_to_array = { silverpine_states = 167 }
+		add_to_array = { silverpine_states = 496 }
+		add_to_array = { silverpine_states = 708 }
+		add_to_array = { silverpine_states = 717 }
+		add_to_array = { silverpine_states = 718 }
+		add_to_array = { silverpine_states = 719 }
+		add_to_array = { silverpine_states = 720 }
+		add_to_array = { silverpine_states = 764 }
+		add_to_array = { silverpine_states = 765 }
+		add_to_array = { silverpine_states = 796 }
+		add_to_array = { silverpine_states = 1096 }
+		add_to_array = { silverpine_states = 1537 }
+		add_to_array = { silverpine_states = 1538 }
+		add_to_array = { silverpine_states = 2224 }
+		add_to_array = { silverpine_states = 2225 }
+	}
+
+	option = { # Give it to LOR Protectorate
+		name = blackrock.63.option.1
+		custom_effect_tooltip = blackrock.63.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = LOR }
+		}
+
+		for_each_scope_loop = {
+			array = silverpine_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LOR
+				add_core_of = LOR
+			}
+		}
+		clear_array = silverpine_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Thunderlord Clan (TLC)
+		name = blackrock.63.option.2
+		custom_effect_tooltip = blackrock.63.option.2.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			TLC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			TLC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 163 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = TLC }
+			}
+			add_to_faction = TLC
+		}
+
+		for_each_scope_loop = {
+			array = silverpine_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = TLC
+				
+			}
+		}
+		clear_array = silverpine_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to Lightning's Blade Clan (LBC)
+		name = blackrock.63.option.3
+		custom_effect_tooltip = blackrock.63.option.3.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			LBC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			LBC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 163 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = LBC }
+			}
+			add_to_faction = LBC
+		}
+
+		for_each_scope_loop = {
+			array = silverpine_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LBC
+				
+			}
+		}
+		clear_array = silverpine_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.63.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Gilneas (from BRC_fate_of_gilneas_decision)
+country_event = {
+	id = blackrock.64
+	title = blackrock.64.t
+	desc = blackrock.64.d
+	picture = GFX_gilneas_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Gilneas
+		add_to_array = { gilneas_states = 1 }
+		add_to_array = { gilneas_states = 2 }
+		add_to_array = { gilneas_states = 3 }
+		add_to_array = { gilneas_states = 4 }
+		add_to_array = { gilneas_states = 16 }
+		add_to_array = { gilneas_states = 98 }
+		add_to_array = { gilneas_states = 99 }
+		add_to_array = { gilneas_states = 161 }
+		add_to_array = { gilneas_states = 412 }
+		add_to_array = { gilneas_states = 413 }
+		add_to_array = { gilneas_states = 414 }
+		add_to_array = { gilneas_states = 415 }
+		add_to_array = { gilneas_states = 416 }
+		add_to_array = { gilneas_states = 417 }
+		add_to_array = { gilneas_states = 418 }
+		add_to_array = { gilneas_states = 419 }
+		add_to_array = { gilneas_states = 2093 }
+		add_to_array = { gilneas_states = 2094 }
+		add_to_array = { gilneas_states = 2095 }
+		add_to_array = { gilneas_states = 2096 }
+		add_to_array = { gilneas_states = 2097 }
+		add_to_array = { gilneas_states = 2098 }
+		add_to_array = { gilneas_states = 2099 }
+		add_to_array = { gilneas_states = 2219 }
+		add_to_array = { gilneas_states = 2220 }
+		add_to_array = { gilneas_states = 2221 }
+		add_to_array = { gilneas_states = 2222 }
+		add_to_array = { gilneas_states = 2223 }
+	}
+
+	option = { # Give it to the Stormreavers (SRC)
+		name = blackrock.64.option.1
+		custom_effect_tooltip = blackrock.64.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = SRC }
+		}
+
+		for_each_scope_loop = {
+			array = gilneas_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = SRC
+				add_core_of = SRC
+			}
+		}
+		clear_array = gilneas_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Thunderlord Clan (TLC)
+		name = blackrock.64.option.2
+		custom_effect_tooltip = blackrock.64.option.2.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			TLC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			TLC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 1 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = TLC }
+			}
+			add_to_faction = TLC
+		}
+
+		for_each_scope_loop = {
+			array = gilneas_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = TLC
+				
+			}
+		}
+		clear_array = gilneas_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to Lightning's Blade Clan (LBC)
+		name = blackrock.64.option.3
+		custom_effect_tooltip = blackrock.64.option.3.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			LBC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			LBC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 1 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = LBC }
+			}
+			add_to_faction = LBC
+		}
+
+		for_each_scope_loop = {
+			array = gilneas_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LBC
+				
+			}
+		}
+		clear_array = gilneas_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.64.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Kul'tiras (from BRC_fate_of_kul_tiras_decision)
+country_event = {
+	id = blackrock.65
+	title = blackrock.65.t
+	desc = blackrock.65.d
+	picture = GFX_boralus_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of all states in Kul'tiras (as a whole, minus minor islands)
+		add_to_array = { kultiras_states = 5 }
+		add_to_array = { kultiras_states = 100 }
+		add_to_array = { kultiras_states = 101 }
+		add_to_array = { kultiras_states = 102 }
+		add_to_array = { kultiras_states = 331 }
+		add_to_array = { kultiras_states = 614 }
+		add_to_array = { kultiras_states = 615 }
+		add_to_array = { kultiras_states = 616 }
+		add_to_array = { kultiras_states = 628 }
+		add_to_array = { kultiras_states = 630 }
+		add_to_array = { kultiras_states = 631 }
+		add_to_array = { kultiras_states = 632 }
+		add_to_array = { kultiras_states = 633 }
+		add_to_array = { kultiras_states = 634 }
+		add_to_array = { kultiras_states = 635 }
+		add_to_array = { kultiras_states = 640 }
+		add_to_array = { kultiras_states = 641 }
+		add_to_array = { kultiras_states = 642 }
+		add_to_array = { kultiras_states = 644 }
+		add_to_array = { kultiras_states = 645 }
+		add_to_array = { kultiras_states = 646 }
+		add_to_array = { kultiras_states = 647 }
+		add_to_array = { kultiras_states = 648 }
+		add_to_array = { kultiras_states = 649 }
+		add_to_array = { kultiras_states = 669 }
+		add_to_array = { kultiras_states = 670 }
+		add_to_array = { kultiras_states = 671 }
+		add_to_array = { kultiras_states = 672 }
+	}
+
+	option = { # Give it to the Stormreavers (SRC)
+		name = blackrock.65.option.1
+		custom_effect_tooltip = blackrock.65.option.1.d
+
+		trigger = {
+			BRC = { is_in_faction_with = SRC }
+		}
+
+		for_each_scope_loop = {
+			array = kultiras_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = SRC
+				add_core_of = SRC
+			}
+		}
+		clear_array = kultiras_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Thunderlord Clan (TLC)
+		name = blackrock.65.option.2
+		custom_effect_tooltip = blackrock.65.option.2.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			TLC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			TLC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 5 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = TLC }
+			}
+			add_to_faction = TLC
+		}
+
+		for_each_scope_loop = {
+			array = kultiras_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = TLC
+				
+			}
+		}
+		clear_array = kultiras_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to Lightning's Blade Clan (LBC)
+		name = blackrock.65.option.3
+		custom_effect_tooltip = blackrock.65.option.3.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			LBC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			LBC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 5 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = LBC }
+			}
+			add_to_faction = LBC
+		}
+
+		for_each_scope_loop = {
+			array = kultiras_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = LBC
+				
+			}
+		}
+		clear_array = kultiras_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.65.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Fate of Alterac (from BRC_fate_of_alterac_decision)
+country_event = {
+	id = blackrock.66
+	title = blackrock.66.t
+	desc = blackrock.66.d
+	picture = GFX_alterac_city_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		# List of states in the Alterac Mountains (minus Dalaran surroundings)
+	    add_to_array = { alterac_states = 11 }
+	    add_to_array = { alterac_states = 113 }
+	    add_to_array = { alterac_states = 114 }
+	    add_to_array = { alterac_states = 115 }
+	    add_to_array = { alterac_states = 116 }
+	    add_to_array = { alterac_states = 117 }
+	    add_to_array = { alterac_states = 118 }
+	    add_to_array = { alterac_states = 749 }
+	    add_to_array = { alterac_states = 758 }
+	    add_to_array = { alterac_states = 761 }
+	    add_to_array = { alterac_states = 1539 }
+	    add_to_array = { alterac_states = 1582 }
+	    add_to_array = { alterac_states = 2216 }
+	    add_to_array = { alterac_states = 2217 }
+	    add_to_array = { alterac_states = 2218 }
+	}
+
+	option = { # Give it to the Frostwolves (FWC)
+		name = blackrock.66.option.1
+		custom_effect_tooltip = blackrock.66.option.1.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			FWC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			FWC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 11 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = FWC }
+			}
+			add_to_faction = FWC
+		}
+
+		for_each_scope_loop = {
+			array = alterac_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = FWC
+				add_core_of = FWC
+			}
+		}
+		clear_array = alterac_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to the Warsong Clan (WSC)
+		name = blackrock.66.option.2
+		custom_effect_tooltip = blackrock.66.option.2.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			WSC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			WSC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 5 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = WSC }
+			}
+			add_to_faction = WSC
+		}
+
+		for_each_scope_loop = {
+			array = alterac_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = WSC
+				
+			}
+		}
+		clear_array = alterac_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Give it to Redwalker Clan (RWC)
+		name = blackrock.66.option.3
+		custom_effect_tooltip = blackrock.66.option.3.d
+
+		trigger = {
+			NOT = { has_completed_focus = BRC_under_a_single_banner }
+			OR = {
+				has_idea = primary_religion_shamanism
+				has_idea = secondary_religion_shamanism
+			}
+			RWC = {
+				OR = {
+					exists = no
+					is_in_faction_with = BRC
+				}
+			}
+		}
+
+		# Will need to be changed once Draenor is put back
+		# since the clan will actually exists already on Draenor
+		hidden_effect = {
+			RWC = {
+				if = {
+					limit = {
+						exists = no
+					}
+					set_capital = { state = 5 }
+
+					set_politics = {
+						ruling_party = horde
+					}
+					add_popularity = {
+						ideology = horde
+						popularity = 0.9
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOT = { is_in_faction_with = RWC }
+			}
+			add_to_faction = RWC
+		}
+
+		for_each_scope_loop = {
+			array = alterac_states
+			if = {
+				limit = {
+					is_owned_by = BRC
+				}
+				transfer_state_to = RWC
+				
+			}
+		}
+		clear_array = alterac_states
+
+		reduce_horde_overextension = yes
+	}
+
+	option = { # Keep it
+		name = blackrock.66.option.4
+
+		add_political_power = 50
+	}
+}
+
+# Masters of the Continent (from BRC_masters_of_the_continent)
+country_event = {
+	id = blackrock.67
+	title = blackrock.67.t
+	picture = GFX_eastern_kingdoms_event
+
+	desc = {
+	    text = blackrock.67.d.blackhand
+	    trigger = {
+	        has_completed_focus = BRC_blackhands_horde
+	    }
+	}
+
+	desc = {
+	    text = blackrock.67.d.doomhammer
+	    trigger = {
+	        has_completed_focus = BRC_doomhammers_horde
+	    }
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = blackrock.67.option.1
+		custom_effect_tooltip = blackrock.67.option.1.d
+
+		add_political_power = 250
+		add_ideas = BRC_masters_of_the_continent_idea
+		hidden_effect = {
+			if = {
+				limit = { has_completed_focus = BRC_blackhands_horde }
+				set_country_flag = BRC_blackhands_legacy_flag
+			}
+			else_if = {
+				limit = { has_completed_focus = BRC_doomhammers_horde }
+				set_country_flag = BRC_hammer_of_destiny_flag
+			}
+			SMC = {
+				country_event = {
+					id = shadowmoon_obedience.1
+					days = 21
+				}
+			}
+		}
+	}
+}
+
+
+###########################
+# Lordaeron Third War events
+###########################
+
+add_namespace = blackrock_third_war
+
+country_event = { #siege of durnholde reaction
+	id = blackrock_third_war.1
+	title = blackrock_third_war.1.t
+	desc = blackrock_third_war.1.d
+	picture = GFX_eastern_kingdoms_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #send events to BBC DMC / ogres to join fel horde now that alliance is weakened
+		name = blackrock_third_war.1.option.1
+
+	}
+}
+
+country_event = { #clans join
+	id = blackrock_third_war.2
+	title = blackrock_third_war.2.t
+	desc = blackrock_third_war.2.d
+	picture = GFX_eastern_kingdoms_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = blackrock_third_war.2.option.1
+		
+	}
+}
+
+country_event = { #clans join
+	id = blackrock_third_war.3
+	title = blackrock_third_war.3.t
+	desc = blackrock_third_war.3.d
+	picture = GFX_eastern_kingdoms_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = blackrock_third_war.3.option.1
+		
+	}
+}
+
+country_event = {
+	id = blackrock_third_war.4
+	title = blackrock_third_war.4.t
+	desc = blackrock_third_war.4.d
+	picture = GFX_eastern_kingdoms_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #attack alliance
+		name = blackrock_third_war.4.option.1
+		
+	}
+	option = { #the time isn't right
+		name = blackrock_third_war.4.option.2
+		
+	}
+}

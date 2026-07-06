@@ -1,0 +1,1294 @@
+### Made this to just Fix an issue where the AI will never attempt to recruit Scientists
+political_actions = {
+
+	ai_scientist_fix = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = AI_science }
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = AI_science }
+		}
+
+		complete_effect = {
+			set_country_flag = AI_science
+			if = {
+				limit = {
+					NOT = { has_scientist_specialization = specialization_land }
+				}
+				generate_scientist_character = {
+					gender = male
+					skills = { specialization_land = 1 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_scientist_specialization = specialization_magic }
+				}
+				generate_scientist_character = {
+					gender = male
+					skills = { specialization_magic = 1 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_scientist_specialization = specialization_air }
+				}
+				generate_scientist_character = {
+					gender = male
+					skills = { specialization_air = 1 }
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_scientist_specialization = specialization_naval }
+				}
+				generate_scientist_character = {
+					gender = male
+					skills = { specialization_naval = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_orc = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = orc_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = orc_technology
+			has_army_experience > 10
+			NOT = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = ENABLED
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Grunts"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					grunt = { x = 0 y = 1 }
+					grunt = { x = 0 y = 2 }
+					grunt = { x = 0 y = 3 }
+					grunt = { x = 1 y = 0 }
+					grunt = { x = 1 y = 1 }
+					grunt = { x = 1 y = 2 }
+					grunt = { x = 1 y = 3 }
+					grunt = { x = 2 y = 0 }
+					grunt = { x = 2 y = 1 }
+					grunt = { x = 2 y = 2 }
+					grunt = { x = 2 y = 3 }
+					spearman = { x = 3 y = 0 }
+					spearman = { x = 3 y = 1 }
+					spearman = { x = 3 y = 2 }
+				}
+				support = {
+					overseer = { x = 0 y = 0 }
+					peon = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_bandit = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = bandits_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = bandits_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Bandits"
+				priority = 1
+				regiments = {
+					bandits_bandit = { x = 0 y = 0 }
+					bandits_bandit = { x = 0 y = 1 }
+					bandits_bandit = { x = 0 y = 2 }
+					bandits_bandit = { x = 0 y = 3 }
+					bandits_bandit = { x = 1 y = 0 }
+					bandits_bandit = { x = 1 y = 1 }
+					bandits_bandit = { x = 1 y = 2 }
+					bandits_bandit = { x = 1 y = 3 }
+					bandits_bandit = { x = 2 y = 0 }
+					bandits_bandit = { x = 2 y = 1 }
+					bandits_bandit = { x = 2 y = 2 }
+					bandits_bandit = { x = 2 y = 3 }
+					bandits_brigand = { x = 3 y = 0 }
+					bandits_brigand = { x = 3 y = 1 }
+					bandits_brigand = { x = 3 y = 2 }
+				}
+				support = {
+					bandits_mason = { x = 0 y = 0 }
+					bandits_taskmaster = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_bog = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = bog_beast_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = bog_beast_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 570
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Ancient Bog Beasts"
+				priority = 1
+				regiments = {
+					bog_beast = { x = 0 y = 0 }
+					bog_beast = { x = 0 y = 1 }
+					bog_beast = { x = 0 y = 2 }
+					bog_beast = { x = 0 y = 3 }
+					bog_beast = { x = 1 y = 0 }
+					bog_beast = { x = 1 y = 1 }
+					bog_beast = { x = 1 y = 2 }
+					bog_beast = { x = 1 y = 3 }
+					bog_beast = { x = 2 y = 0 }
+					bog_beast = { x = 2 y = 1 }
+					bog_beast = { x = 2 y = 2 }
+					bog_beast = { x = 2 y = 3 }
+					raincaller = { x = 3 y = 0 }
+					raincaller = { x = 3 y = 1 }
+					raincaller = { x = 3 y = 2 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_centaur = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = centaur_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = centaur_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Centaurs"
+				priority = 1
+				regiments = {
+					centaur_drudge = { x = 0 y = 0 }
+					centaur_drudge = { x = 0 y = 1 }
+					centaur_drudge = { x = 0 y = 2 }
+					centaur_drudge = { x = 0 y = 3 }
+					centaur_drudge = { x = 1 y = 0 }
+					centaur_drudge = { x = 1 y = 1 }
+					centaur_drudge = { x = 1 y = 2 }
+					centaur_drudge = { x = 1 y = 3 }
+					centaur_drudge = { x = 2 y = 0 }
+					centaur_drudge = { x = 2 y = 1 }
+					centaur_drudge = { x = 2 y = 2 }
+					centaur_drudge = { x = 2 y = 3 }
+					centaur_outrunner = { x = 3 y = 0 }
+					centaur_outrunner = { x = 3 y = 1 }
+					centaur_outrunner = { x = 3 y = 2 }
+				}
+				support = {
+					centaur_worker = { x = 0 y = 0 }
+					centaur_scout = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_draenei = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = draenei_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = draenei_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Defenders"
+				priority = 1
+				regiments = {
+					draenei_defender = { x = 0 y = 0 }
+					draenei_defender = { x = 0 y = 1 }
+					draenei_defender = { x = 0 y = 2 }
+					draenei_defender = { x = 0 y = 3 }
+					draenei_defender = { x = 1 y = 0 }
+					draenei_defender = { x = 1 y = 1 }
+					draenei_defender = { x = 1 y = 2 }
+					draenei_defender = { x = 1 y = 3 }
+					draenei_defender = { x = 2 y = 0 }
+					draenei_defender = { x = 2 y = 1 }
+					draenei_defender = { x = 2 y = 2 }
+					draenei_defender = { x = 2 y = 3 }
+					draenei_rangari_ranger = { x = 3 y = 0 }
+					draenei_rangari_ranger = { x = 3 y = 1 }
+					draenei_rangari_ranger = { x = 3 y = 2 }
+				}
+				support = {
+					draenei_artificer = { x = 0 y = 0 }
+					draenei_commander = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_dragon = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = dragon_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = dragon_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 685
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Dragonspawn"
+				priority = 1
+				regiments = {
+					dragonspawn = { x = 0 y = 0 }
+					dragonspawn = { x = 0 y = 1 }
+					dragonspawn = { x = 0 y = 2 }
+					dragonspawn = { x = 0 y = 3 }
+					dragonspawn = { x = 1 y = 0 }
+					dragonspawn = { x = 1 y = 1 }
+					dragonspawn = { x = 1 y = 2 }
+					dragonspawn = { x = 1 y = 3 }
+					dragonspawn = { x = 2 y = 0 }
+					dragonspawn = { x = 2 y = 1 }
+					dragonspawn = { x = 2 y = 2 }
+					dragonspawn = { x = 2 y = 3 }
+					whelp = { x = 3 y = 0 }
+					whelp = { x = 3 y = 1 }
+					whelp = { x = 3 y = 2 }
+				}
+				support = {
+					dragonspawn_lieutenant = { x = 0 y = 0 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_dwarf = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = dwarf_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = dwarf_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Dragonspawn"
+				priority = 1
+				regiments = {
+					dwarf_axeman = { x = 0 y = 0 }
+					dwarf_axeman = { x = 0 y = 1 }
+					dwarf_axeman = { x = 0 y = 2 }
+					dwarf_axeman = { x = 0 y = 3 }
+					dwarf_axeman = { x = 1 y = 0 }
+					dwarf_axeman = { x = 1 y = 1 }
+					dwarf_axeman = { x = 1 y = 2 }
+					dwarf_axeman = { x = 1 y = 3 }
+					dwarf_axeman = { x = 2 y = 0 }
+					dwarf_axeman = { x = 2 y = 1 }
+					dwarf_axeman = { x = 2 y = 2 }
+					dwarf_rifleman = { x = 2 y = 3 }
+					dwarf_rifleman = { x = 3 y = 0 }
+					dwarf_rifleman = { x = 3 y = 1 }
+					dwarf_rifleman = { x = 3 y = 2 }
+				}
+				support = {
+					dwarf_engineer = { x = 0 y = 0 }
+					dwarf_mountaineer = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_gnoll = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = gnoll_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = gnoll_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Flailpaws"
+				priority = 1
+				regiments = {
+					flailpaw = { x = 0 y = 0 }
+					flailpaw = { x = 0 y = 1 }
+					flailpaw = { x = 0 y = 2 }
+					flailpaw = { x = 0 y = 3 }
+					flailpaw = { x = 1 y = 0 }
+					flailpaw = { x = 1 y = 1 }
+					flailpaw = { x = 1 y = 2 }
+					flailpaw = { x = 1 y = 3 }
+					flailpaw = { x = 2 y = 0 }
+					flailpaw = { x = 2 y = 1 }
+					flailpaw = { x = 2 y = 2 }
+					poacher = { x = 2 y = 3 }
+					poacher = { x = 3 y = 0 }
+					poacher = { x = 3 y = 1 }
+					poacher = { x = 3 y = 2 }
+				}
+				support = {
+					digger = { x = 0 y = 0 }
+					howlmaster = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_goblin = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = goblin_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = goblin_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Bruisers"
+				priority = 1
+				regiments = {
+					goblin_bruiser = { x = 0 y = 0 }
+					goblin_bruiser = { x = 0 y = 1 }
+					goblin_bruiser = { x = 0 y = 2 }
+					goblin_bruiser = { x = 0 y = 3 }
+					goblin_bruiser = { x = 1 y = 0 }
+					goblin_bruiser = { x = 1 y = 1 }
+					goblin_bruiser = { x = 1 y = 2 }
+					goblin_bruiser = { x = 1 y = 3 }
+					goblin_bruiser = { x = 2 y = 0 }
+					goblin_bruiser = { x = 2 y = 1 }
+					goblin_bruiser = { x = 2 y = 2 }
+					goblin_rocketeer = { x = 2 y = 3 }
+					goblin_rocketeer = { x = 3 y = 0 }
+					goblin_rocketeer = { x = 3 y = 1 }
+					goblin_rocketeer = { x = 3 y = 2 }
+				}
+				support = {
+					goblin_sapper = { x = 0 y = 0 }
+					goblin_alchemist = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_harpy = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = harpy_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = harpy_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Featherblades"
+				priority = 1
+				regiments = {
+					harpy_featherblade = { x = 0 y = 0 }
+					harpy_featherblade = { x = 0 y = 1 }
+					harpy_featherblade = { x = 0 y = 2 }
+					harpy_featherblade = { x = 0 y = 3 }
+					harpy_featherblade = { x = 1 y = 0 }
+					harpy_featherblade = { x = 1 y = 1 }
+					harpy_featherblade = { x = 1 y = 2 }
+					harpy_featherblade = { x = 1 y = 3 }
+					harpy_featherblade = { x = 2 y = 0 }
+					harpy_featherblade = { x = 2 y = 1 }
+					harpy_featherblade = { x = 2 y = 2 }
+					harpy_sorceress = { x = 2 y = 3 }
+					harpy_sorceress = { x = 3 y = 0 }
+					harpy_sorceress = { x = 3 y = 1 }
+					harpy_sorceress = { x = 3 y = 2 }
+				}
+				support = {
+					harpy_nester = { x = 0 y = 0 }
+					harpy_ravager = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_high_elf = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = high_elf_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = high_elf_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Swordsmen"
+				priority = 1
+				regiments = {
+					high_elf_swordsman = { x = 0 y = 0 }
+					high_elf_swordsman = { x = 0 y = 1 }
+					high_elf_swordsman = { x = 0 y = 2 }
+					high_elf_swordsman = { x = 0 y = 3 }
+					high_elf_swordsman = { x = 1 y = 0 }
+					high_elf_swordsman = { x = 1 y = 1 }
+					high_elf_swordsman = { x = 1 y = 2 }
+					high_elf_swordsman = { x = 1 y = 3 }
+					high_elf_swordsman = { x = 2 y = 0 }
+					high_elf_swordsman = { x = 2 y = 1 }
+					high_elf_swordsman = { x = 2 y = 2 }
+					high_elf_archer = { x = 2 y = 3 }
+					high_elf_archer = { x = 3 y = 0 }
+					high_elf_archer = { x = 3 y = 1 }
+					high_elf_archer = { x = 3 y = 2 }
+				}
+				support = {
+					high_elf_priest = { x = 0 y = 0 }
+					high_elf_engineer = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_human = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = human_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = human_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Footmen"
+				priority = 1
+				regiments = {
+					footman = { x = 0 y = 0 }
+					footman = { x = 0 y = 1 }
+					footman = { x = 0 y = 2 }
+					footman = { x = 0 y = 3 }
+					footman = { x = 1 y = 0 }
+					footman = { x = 1 y = 1 }
+					footman = { x = 1 y = 2 }
+					footman = { x = 1 y = 3 }
+					footman = { x = 2 y = 0 }
+					footman = { x = 2 y = 1 }
+					footman = { x = 2 y = 2 }
+					archer = { x = 2 y = 3 }
+					archer = { x = 3 y = 0 }
+					archer = { x = 3 y = 1 }
+					archer = { x = 3 y = 2 }
+				}
+				support = {
+					priest = { x = 0 y = 0 }
+					peasant = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_sentinel = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = night_elf_sentinel_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = night_elf_sentinel_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Sentries"
+				priority = 1
+				regiments = {
+					sentry = { x = 0 y = 0 }
+					sentry = { x = 0 y = 1 }
+					sentry = { x = 0 y = 2 }
+					sentry = { x = 0 y = 3 }
+					sentry = { x = 1 y = 0 }
+					sentry = { x = 1 y = 1 }
+					sentry = { x = 1 y = 2 }
+					sentry = { x = 1 y = 3 }
+					sentry = { x = 2 y = 0 }
+					sentry = { x = 2 y = 1 }
+					sentry = { x = 2 y = 2 }
+					night_elf_archer = { x = 2 y = 3 }
+					night_elf_archer = { x = 3 y = 0 }
+					night_elf_archer = { x = 3 y = 1 }
+					night_elf_archer = { x = 3 y = 2 }
+				}
+				support = {
+					artisan = { x = 0 y = 0 }
+					sentinel_ranger = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_druid = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = night_elf_druid_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = night_elf_druid_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Ancient Treants"
+				priority = 1
+				regiments = {
+					night_elf_druid_treant = { x = 0 y = 0 }
+					night_elf_druid_treant = { x = 0 y = 1 }
+					night_elf_druid_treant = { x = 0 y = 2 }
+					night_elf_druid_treant = { x = 0 y = 3 }
+					night_elf_druid_treant = { x = 1 y = 0 }
+					night_elf_druid_treant = { x = 1 y = 1 }
+					night_elf_druid_treant = { x = 1 y = 2 }
+					night_elf_druid_treant = { x = 1 y = 3 }
+					night_elf_druid_treant = { x = 2 y = 0 }
+					night_elf_druid_treant = { x = 2 y = 1 }
+					night_elf_druid_treant = { x = 2 y = 2 }
+					night_elf_druid_balance_druid = { x = 2 y = 3 }
+					night_elf_druid_balance_druid = { x = 3 y = 0 }
+					night_elf_druid_balance_druid = { x = 3 y = 1 }
+					night_elf_druid_balance_druid = { x = 3 y = 2 }
+				}
+				support = {
+					night_elf_druid_sapling = { x = 0 y = 0 }
+					night_elf_druid_druid_of_the_talon = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_ogre = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = ogre_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = ogre_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Brutes"
+				priority = 1
+				regiments = {
+					ogre_brute = { x = 0 y = 0 }
+					ogre_brute = { x = 0 y = 1 }
+					ogre_brute = { x = 0 y = 2 }
+					ogre_brute = { x = 0 y = 3 }
+					ogre_brute = { x = 1 y = 0 }
+					ogre_brute = { x = 1 y = 1 }
+					ogre_brute = { x = 1 y = 2 }
+					ogre_brute = { x = 1 y = 3 }
+					ogre_brute = { x = 2 y = 0 }
+					ogre_brute = { x = 2 y = 1 }
+					ogre_brute = { x = 2 y = 2 }
+					ogre_geomancer = { x = 2 y = 3 }
+					ogre_geomancer = { x = 3 y = 0 }
+					ogre_geomancer = { x = 3 y = 1 }
+					ogre_geomancer = { x = 3 y = 2 }
+				}
+				support = {
+					ogre_overseer = { x = 0 y = 0 }
+					ogre_slave = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_pirate = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = pirates_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = pirates_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Swashbucklers"
+				priority = 1
+				regiments = {
+					pirates_swashbuckler = { x = 0 y = 0 }
+					pirates_swashbuckler = { x = 0 y = 1 }
+					pirates_swashbuckler = { x = 0 y = 2 }
+					pirates_swashbuckler = { x = 0 y = 3 }
+					pirates_swashbuckler = { x = 1 y = 0 }
+					pirates_swashbuckler = { x = 1 y = 1 }
+					pirates_swashbuckler = { x = 1 y = 2 }
+					pirates_swashbuckler = { x = 1 y = 3 }
+					pirates_swashbuckler = { x = 2 y = 0 }
+					pirates_swashbuckler = { x = 2 y = 1 }
+					pirates_swashbuckler = { x = 2 y = 2 }
+					pirates_musketeer = { x = 2 y = 3 }
+					pirates_musketeer = { x = 3 y = 0 }
+					pirates_musketeer = { x = 3 y = 1 }
+					pirates_musketeer = { x = 3 y = 2 }
+				}
+				support = {
+					pirates_digger = { x = 0 y = 0 }
+					pirates_officer = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_quilboar = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = quilboar_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = quilboar_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Thornguard"
+				priority = 1
+				regiments = {
+					thornguard = { x = 0 y = 0 }
+					thornguard = { x = 0 y = 1 }
+					thornguard = { x = 0 y = 2 }
+					thornguard = { x = 0 y = 3 }
+					thornguard = { x = 1 y = 0 }
+					thornguard = { x = 1 y = 1 }
+					thornguard = { x = 1 y = 2 }
+					thornguard = { x = 1 y = 3 }
+					thornguard = { x = 2 y = 0 }
+					thornguard = { x = 2 y = 1 }
+					thornguard = { x = 2 y = 2 }
+					thornweaver = { x = 2 y = 3 }
+					thornweaver = { x = 3 y = 0 }
+					thornweaver = { x = 3 y = 1 }
+					thornweaver = { x = 3 y = 2 }
+				}
+				support = {
+					medicine_man = { x = 0 y = 0 }
+					quilboar_scout = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_saberon = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = saberon_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = saberon_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Saberons"
+				priority = 1
+				regiments = {
+					saberon_savage = { x = 0 y = 0 }
+					saberon_savage = { x = 0 y = 1 }
+					saberon_savage = { x = 0 y = 2 }
+					saberon_savage = { x = 0 y = 3 }
+					saberon_savage = { x = 1 y = 0 }
+					saberon_savage = { x = 1 y = 1 }
+					saberon_savage = { x = 1 y = 2 }
+					saberon_savage = { x = 1 y = 3 }
+					saberon_savage = { x = 2 y = 0 }
+					saberon_savage = { x = 2 y = 1 }
+					saberon_savage = { x = 2 y = 2 }
+					saberon_shaman = { x = 2 y = 3 }
+					saberon_shaman = { x = 3 y = 0 }
+					saberon_shaman = { x = 3 y = 1 }
+					saberon_shaman = { x = 3 y = 2 }
+				}
+				support = {
+					saberon_mystic = { x = 0 y = 0 }
+					saberon_prowler = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_saurok = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = saurok_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = saurok_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Guardians"
+				priority = 1
+				regiments = {
+					saurok_guardian = { x = 0 y = 0 }
+					saurok_guardian = { x = 0 y = 1 }
+					saurok_guardian = { x = 0 y = 2 }
+					saurok_guardian = { x = 0 y = 3 }
+					saurok_guardian = { x = 1 y = 0 }
+					saurok_guardian = { x = 1 y = 1 }
+					saurok_guardian = { x = 1 y = 2 }
+					saurok_guardian = { x = 1 y = 3 }
+					saurok_guardian = { x = 2 y = 0 }
+					saurok_guardian = { x = 2 y = 1 }
+					saurok_guardian = { x = 2 y = 2 }
+					saurok_dinomancer = { x = 2 y = 3 }
+					saurok_dinomancer = { x = 3 y = 0 }
+					saurok_dinomancer = { x = 3 y = 1 }
+					saurok_dinomancer = { x = 3 y = 2 }
+				}
+				support = {
+					saurok_tunneler = { x = 0 y = 0 }
+					saurok_oracle = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_troll = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = troll_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = troll_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 685
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Veteran Axemen"
+				priority = 1
+				regiments = {
+					troll_axeman = { x = 0 y = 0 }
+					troll_axeman = { x = 0 y = 1 }
+					troll_axeman = { x = 0 y = 2 }
+					troll_axeman = { x = 0 y = 3 }
+					troll_axeman = { x = 1 y = 0 }
+					troll_axeman = { x = 1 y = 1 }
+					troll_axeman = { x = 1 y = 2 }
+					troll_axeman = { x = 1 y = 3 }
+					troll_axeman = { x = 2 y = 0 }
+					troll_axeman = { x = 2 y = 1 }
+					troll_axeman = { x = 2 y = 2 }
+					head_hunter = { x = 2 y = 3 }
+					head_hunter = { x = 3 y = 0 }
+					head_hunter = { x = 3 y = 1 }
+					head_hunter = { x = 3 y = 2 }
+				}
+				support = {
+					labourer = { x = 0 y = 0 }
+				}
+			}
+		}
+	}
+
+	ai_infantry_template_fix_undead = {
+		icon = generic_civil_support
+		cost = 0
+
+		ai_will_do = { base = 1 }
+
+		visible = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = undead_technology
+		}
+
+		available = {
+			is_ai = yes
+			NOT = {	has_country_flag = template_cheat }
+			has_country_flag = undead_technology
+			has_army_experience > 10
+			not = {	has_idea = ai_template_counter }
+			has_game_rule = {
+				rule = ai_template_cheat_game_rule
+				option = enabled
+			}
+		}
+
+		complete_effect = {
+			army_experience = -5
+			add_timed_idea = {
+				idea = AI_division_debt
+				days = 800
+			}
+			set_country_flag = template_cheat
+			division_template = {
+				name = "Savage Ghouls"
+				priority = 1
+				regiments = {
+					undead_ghoul = { x = 0 y = 0 }
+					undead_ghoul = { x = 0 y = 1 }
+					undead_ghoul = { x = 0 y = 2 }
+					undead_ghoul = { x = 0 y = 3 }
+					undead_ghoul = { x = 1 y = 0 }
+					undead_ghoul = { x = 1 y = 1 }
+					undead_ghoul = { x = 1 y = 2 }
+					undead_ghoul = { x = 1 y = 3 }
+					undead_ghoul = { x = 2 y = 0 }
+					undead_ghoul = { x = 2 y = 1 }
+					undead_ghoul = { x = 2 y = 2 }
+					undead_ghoul = { x = 2 y = 3 }
+					undead_necromancer = { x = 3 y = 0 }
+					undead_necromancer = { x = 3 y = 1 }
+					undead_necromancer = { x = 3 y = 2 }
+				}
+				support = {
+					undead_boneweaver = { x = 0 y = 0 }
+					undead_zombie = { x = 0 y = 1 }
+				}
+			}
+		}
+	}
+
+}

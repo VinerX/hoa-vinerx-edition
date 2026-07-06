@@ -1,0 +1,103 @@
+﻿###########################
+#burning_blade
+###########################
+
+add_namespace = burning_blade
+
+country_event = { #discipline the burning base
+	id = burning_blade.1
+	title = burning_blade.1.t
+	desc = burning_blade.1.d
+	picture = GFX_samuro_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = burning_blade.1.option.1
+		add_ideas = BBC_discipline_the_burning_blade_idea
+	}
+}
+
+add_namespace = burning_blade_third_war
+
+country_event = { #the culling
+	id = burning_blade_third_war.1
+	title = burning_blade_third_war.1.t
+	desc = burning_blade_third_war.1.d
+	picture = GFX_samuro_event
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+    option = {
+        name = burning_blade_third_war.1.option.1
+		retire_country_leader = yes
+		add_popularity = {
+			ideology = horde
+			popularity = -0.10
+		}
+		72 = { add_manpower = -7650 }
+		530 = { add_manpower = -4800 }
+		526 = { add_manpower = -2950 }
+		swap_ideas = {
+			remove_idea = clan
+			add_idea = cult
+		}
+		hidden_effect = {
+			FWC = {
+				country_event = {
+					id = frostwolf_third_war.16
+					days = 14
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Head on over during the Demon Invasion
+	id = burning_blade_third_war.2
+	title = burning_blade_third_war.2.t
+	desc = burning_blade_third_war.2.d
+	picture = GFX_samuro_event
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+    option = { ### Legions Beck and Call
+        name = burning_blade_third_war.2.option.1
+		1195 = {
+			transfer_state_to = BBC
+			add_core_of = BBC
+		}
+		1196 = {
+			transfer_state_to = BBC
+			add_core_of = BBC
+		}
+		1197 = {
+			transfer_state_to = BBC
+			add_core_of = BBC
+		}
+		1198 = {
+			transfer_state_to = BBC
+			add_core_of = BBC
+		}
+		hidden_effect = {
+			1178 = {
+				transfer_state_to = BBC
+				add_core_of = BBC
+			}	
+		}
+	}
+
+	option = { ### Ignore the Call
+        name = burning_blade_third_war.2.option.2
+		add_stability = -0.1
+		add_war_support = -0.05
+		add_popularity = {
+			ideology = fel
+			popularity = -0.1
+		}
+	}
+}

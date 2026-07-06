@@ -1,0 +1,26 @@
+###########################################################
+# Scripted effects used by BHT (Bloodhoof Tribe)
+###########################################################
+
+# Set amount of tribesmember that are going to leave for the expedition and also how much
+# supply they will consume. To be used after setting "BHT_leaving_percentage" variable value.
+set_leaving_amount_and_supply_consumption = {
+	#Set amount of pop that is going to leave
+	set_variable = { BHT_expedition_pop = max_manpower_k }
+	multiply_variable = {
+		var = BHT_expedition_pop
+		value = BHT_leaving_percentage
+	}
+	#Set amount of supply consumed per week
+	set_variable = { BHT_weekly_supply_consume = BHT_expedition_pop }
+	divide_variable = {
+		var = BHT_weekly_supply_consume
+		value = 25 #Number of pop (in thousands) for 1 supply consumed (default 25)
+	}
+	#Round that value to the lowest (have to -0.5 first then round up)
+	subtract_from_variable = {
+	   var = BHT_weekly_supply_consume
+	   value = 0.5
+   	}
+	round_variable = BHT_weekly_supply_consume
+}

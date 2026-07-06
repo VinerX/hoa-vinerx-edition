@@ -1,0 +1,1167 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	demons_altar_of_sargeras_tech = {
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_trial_by_fel_fire_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_nathrezim_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_pit_lord_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_eredar_warlock_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_trial_by_fel_fire_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_trial_by_fel_fire_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_trial_by_fel_fire_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1	}
+
+		path = {
+			leads_to_tech = demons_trial_by_fel_fire_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_trial_by_fel_fire_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_nathrezim_tech = {
+
+		enable_subunits = {
+			demons_nathrezim
+		}
+
+		path = {
+			leads_to_tech = demons_nathrezim_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { demons_nathrezim_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_nathrezim_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_nathrezim_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_nathrezim_1_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_nathrezim_vampiric_aura_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_nathrezim_1_1 = {
+
+		demons_nathrezim = {
+			hard_attack = 0.1
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_nathrezim_vampiric_aura_tech }
+
+		path = {
+			leads_to_tech = demons_nathrezim_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_nathrezim_vampiric_aura_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_nathrezim_vampiric_aura_tech
+			}
+		}
+	}
+
+	demons_nathrezim_vampiric_aura_tech = {
+
+		demons_nathrezim = {
+			entrenchment = 0.05
+			defense = 0.15
+			armor_value = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_nathrezim_1_1 }
+
+		path = {
+			leads_to_tech = demons_nathrezim_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_nathrezim_1_1
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_nathrezim_1_1
+			}
+		}
+	}
+
+	demons_nathrezim_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_nathrezim_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1	}
+
+		path = {
+			leads_to_tech = demons_nathrezim_carrion_swarm_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_nathrezim_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_nathrezim_carrion_swarm_tech = {
+
+		demons_nathrezim = {
+			breakthrough = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_nathrezim_2_2 }
+
+		path = {
+			leads_to_tech = demons_nathrezim_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_nathrezim_2_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_nathrezim_2_2
+			}
+		}
+	}
+
+	demons_nathrezim_2_2 = {
+
+		demons_nathrezim = {
+			soft_attack = 0.15
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_nathrezim_carrion_swarm_tech }
+
+		path = {
+			leads_to_tech = demons_nathrezim_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_nathrezim_carrion_swarm_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_nathrezim_carrion_swarm_tech
+			}
+		}
+	}
+
+	demons_nathrezim_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_nathrezim_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			demons_nathrezim_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_pit_lord_tech = {
+
+		enable_subunits = {
+			demons_pit_lord
+		}
+
+		path = {
+			leads_to_tech = demons_pit_lord_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { demons_pit_lord_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_pit_lord_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_pit_lord_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_pit_lord_howl_of_terror_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_pit_lord_cleave_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_pit_lord_howl_of_terror_tech = {
+
+		demons_pit_lord = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_pit_lord_cleave_tech }
+
+		path = {
+			leads_to_tech = demons_pit_lord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_pit_lord_cleave_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_pit_lord_cleave_tech
+			}
+		}
+	}
+
+	demons_pit_lord_cleave_tech = {
+
+		demons_pit_lord = {
+			defense = 0.15
+			max_strength = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_pit_lord_howl_of_terror_tech }
+
+		path = {
+			leads_to_tech = demons_pit_lord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_pit_lord_howl_of_terror_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_pit_lord_howl_of_terror_tech
+			}
+		}
+	}
+
+	demons_pit_lord_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_pit_lord_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1	}
+
+		path = {
+			leads_to_tech = demons_pit_lord_2_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_pit_lord_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_pit_lord_2_1 = {
+
+		demons_pit_lord = {
+			maximum_speed = 0.15
+			breakthrough = 0.1
+			default_morale = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_pit_lord_2_2 }
+
+		path = {
+			leads_to_tech = demons_pit_lord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_pit_lord_2_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_pit_lord_2_2
+			}
+		}
+	}
+
+	demons_pit_lord_2_2 = {
+
+		demons_pit_lord = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_pit_lord_2_1 }
+
+		path = {
+			leads_to_tech = demons_pit_lord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_pit_lord_2_1
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_pit_lord_2_1
+			}
+		}
+	}
+
+	demons_pit_lord_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_pit_lord_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			demons_pit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_eredar_warlock_tech = {
+
+		enable_subunits = {
+			demons_eredar_warlock
+		}
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { demons_eredar_warlock_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	demons_eredar_warlock_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_eredar_warlock_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_1_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_eredar_warlock_1_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_eredar_warlock_1_1 = {
+
+		demons_eredar_warlock = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_eredar_warlock_1_2 }
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_eredar_warlock_1_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_eredar_warlock_1_2
+			}
+		}
+	}
+
+	demons_eredar_warlock_1_2 = {
+
+		demons_eredar_warlock = {
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_eredar_warlock_1_1 }
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_eredar_warlock_1_1
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_eredar_warlock_1_1
+			}
+		}
+	}
+
+	demons_eredar_warlock_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_eredar_warlock_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1	}
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_2_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_eredar_warlock_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	demons_eredar_warlock_2_1 = {
+
+		demons_eredar_warlock = {
+			breakthrough = 0.1
+			supply_consumption = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_eredar_warlock_2_2 }
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_eredar_warlock_2_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_eredar_warlock_2_2
+			}
+		}
+	}
+
+	demons_eredar_warlock_2_2 = {
+
+		demons_eredar_warlock = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demons_eredar_warlock_2_1 }
+
+		path = {
+			leads_to_tech = demons_eredar_warlock_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = demons_eredar_warlock_2_1
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demons_eredar_warlock_2_1
+			}
+		}
+	}
+
+	demons_eredar_warlock_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_eredar_warlock_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			demons_eredar_warlock_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

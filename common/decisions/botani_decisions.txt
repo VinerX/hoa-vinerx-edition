@@ -1,0 +1,162 @@
+foreign_politics = {
+    
+    BOT_the_primals_return = {
+
+        priority = 10
+
+        cost = 25
+
+        allowed = { original_tag = BOT }
+
+        visible = {
+			always = yes
+        }
+
+		fire_only_once = yes
+
+        available = {
+			NOT = {
+				any_country = {
+					OR = {
+						has_idea = orc_primary_race
+						has_idea = orc_secondary_race
+						has_idea = ogre_primary_race
+						has_idea = ogre_secondary_race
+						has_idea = pale_orc_primary_race
+						has_idea = pale_orc_secondary_race
+					}
+					NOT = { is_puppet_of = BOT }
+				}
+			}
+        }
+
+        complete_effect = {
+			remove_ideas = BOT_Hunted_Species
+		}
+    }
+
+	BOT_infest_the_survivors = {
+
+        priority = 10
+
+		custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+        allowed = { original_tag = BOT }
+
+        visible = {
+			any_controlled_state = {
+				NOT = { is_core_of = BOT }
+			}
+        }
+
+        available = {
+			any_controlled_state = {
+				NOT = { is_core_of = BOT }
+				compliance < 90
+				impassable = no
+			}
+        }
+
+		days_re_enable = 30
+
+        complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+			}
+			random_controlled_state = {
+				limit = {
+					NOT = { is_core_of = BOT }
+					impassable = no
+					compliance < 90
+				}
+				add_dynamic_modifier = {
+					modifier = BOT_forced_infestation
+					days = 180
+				}
+			}
+		}
+    }
+
+	BOT_harmony_at_last = {
+
+        priority = 10
+
+		custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+        allowed = { original_tag = BOT }
+
+        visible = {
+			any_controlled_state = {
+				NOT = { is_core_of = BOT }
+			}
+        }
+
+        available = {
+			any_controlled_state = {
+				NOT = { is_core_of = BOT }
+				compliance > 90
+				impassable = no
+			}
+        }
+
+		days_re_enable = 30
+
+        complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+			}
+			random_controlled_state = {
+				limit = {
+					NOT = { is_core_of = BOT }
+					impassable = no
+					compliance > 90
+				}
+				add_core_of = BOT
+			}
+		}
+    }
+
+	BOT_mountain_dwellers = {
+
+        priority = 10
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+
+        allowed = { original_tag = BOT }
+
+        visible = {
+			any_controlled_state = {
+				NOT = { is_core_of = BOT }
+				impassable = yes
+			}
+        }
+
+        available = {
+			any_controlled_state = {
+				NOT = { is_core_of = BOT }
+				compliance > 50
+				impassable = yes
+			}
+        }
+
+		days_re_enable = 30
+
+        complete_effect = {
+			hidden_effect = {
+				add_command_power = -25
+			}
+			random_controlled_state = {
+				limit = {
+					NOT = { is_core_of = BOT }
+					impassable = yes
+					compliance > 50
+				}
+				add_core_of = BOT
+			}
+		}
+    }
+
+}

@@ -1,0 +1,3232 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	vrykul_lodge_tech = {
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_long_house_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_runeworker_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	vrykul_long_house_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			vrykul_tier_2 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_2_tech = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_keep_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	vrykul_keep_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			vrykul_tier_3 = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				tier_3_tech = 1
+			}
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	vrykul_runeworker_tech = {
+
+		enable_subunits = {
+			vrykul_runeworker
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_rune_equipment_tech = 1 }
+			#custom_effect_tooltip = vrykul_tech_unit_details_tt
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_construction_tools_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_rune_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mines_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_runesmither_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	vrykul_rune_equipment_tech = {
+
+		enable_equipments = {
+			vrykul_runes_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_runeworker_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 9 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	vrykul_construction_tools_1 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_construction_tools_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harvesting_tools_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 6 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	vrykul_construction_tools_2 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_construction_tools_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 6 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	vrykul_construction_tools_3 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_construction_tools_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 6 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	vrykul_construction_tools_4 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+
+		path = {
+			leads_to_tech = vrykul_construction_tools_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 6 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	vrykul_construction_tools_5 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 6 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+		}
+	}
+
+	vrykul_harvesting_tools_1 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harvesting_tools_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 4 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	vrykul_harvesting_tools_2 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harvesting_tools_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 4 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	vrykul_harvesting_tools_3 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_harvesting_tools_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	vrykul_harvesting_tools_4 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harvesting_tools_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	vrykul_harvesting_tools_5 = {
+
+		local_resources_factor = 0.1
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	vrykul_runeworker_training_1 = {
+
+		vrykul_runeworker = {
+			entrenchment = 1.5
+			fort = {
+				defence = 0.10
+				attack = 0.10
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_runeworker_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 9 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	vrykul_runeworker_training_2 = {
+
+		vrykul_runeworker = {
+			entrenchment = 1.5
+			river = {
+				attack = 0.1
+				defence = 0.10
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_runeworker_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 9 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	vrykul_runeworker_training_3 = {
+
+		vrykul_runeworker = {
+			entrenchment = 1.5
+			city = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_runeworker_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 9 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	vrykul_runeworker_training_4 = {
+
+		vrykul_runeworker = {
+			entrenchment = 1.5
+			gateway = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 9 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	vrykul_mines_tech = {
+
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				iron_mine_tech_global = 1
+				sulfur_mine_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mine_cart_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 12 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mine_cart_1 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mine_cart_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 12 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mine_cart_2 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_mine_cart_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mine_cart_3 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mine_cart_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mine_cart_4 = {
+
+		local_resources_factor = 0.05
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_runesmither_tech = {
+
+		enable_subunits = {
+			vrykul_runesmither
+		}
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_dragons_furnace_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_runesmither_training_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_blueprints_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_timber_yard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 22 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			forge_technology
+		}
+	}
+
+	vrykul_runesmither_training_1 = {
+
+		vrykul_runesmither = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		path = {
+			leads_to_tech = vrykul_runesmither_training_2
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 22 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			support_technology
+		}
+	}
+
+	vrykul_runesmither_training_2 = {
+
+		vrykul_runesmither = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_runesmither_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 22 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			support_technology
+		}
+	}
+
+	vrykul_runesmither_training_3 = {
+
+		vrykul_runesmither = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		path = {
+			leads_to_tech = vrykul_runesmither_training_4
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			support_technology
+		}
+	}
+
+	vrykul_runesmither_training_4 = {
+
+		vrykul_runesmither = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 22 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			support_technology
+		}
+	}
+
+	vrykul_blueprints_tech_1 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_blueprints_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 24 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	vrykul_blueprints_tech_2 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.3
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_blueprints_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	vrykul_blueprints_tech_3 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.3
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	vrykul_dragons_furnace_1 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_weapons_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_saronite_forged_armor_1
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = vrykul_dragons_furnace_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpoon_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 18 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	vrykul_dragons_furnace_2 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_dragons_furnace_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 18 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	vrykul_dragons_furnace_3 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_dragons_furnace_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	vrykul_dragons_furnace_4 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_dragons_furnace_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	vrykul_dragons_furnace_5 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	vrykul_saronite_forged_weapons_1 = {
+
+		vrykul_marauder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpooner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_hunter = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		falconers = {
+			soft_attack = 0.05
+			hard_attack = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_weapons_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 14 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	vrykul_saronite_forged_weapons_2 = {
+
+		vrykul_marauder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpooner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_hunter = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		falconers = {
+			soft_attack = 0.05
+			hard_attack = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_weapons_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 14 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	vrykul_saronite_forged_weapons_3 = {
+
+		vrykul_marauder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpooner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_hunter = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		falconers = {
+			soft_attack = 0.05
+			hard_attack = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_weapons_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 14 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	vrykul_saronite_forged_weapons_4 = {
+
+		vrykul_marauder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpooner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_hunter = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_shield_maiden = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		falconers = {
+			soft_attack = 0.05
+			hard_attack = 0.05			
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 14 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	vrykul_saronite_forged_armor_1 = {
+
+		vrykul_marauder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpooner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_hunter = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		falconers = {
+			defense = 0.05
+			breakthrough = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_armor_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 16 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	vrykul_saronite_forged_armor_2 = {
+
+		vrykul_marauder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpooner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_hunter = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		falconers = {
+			defense = 0.05
+			breakthrough = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_armor_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	vrykul_saronite_forged_armor_3 = {
+
+		vrykul_marauder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpooner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_hunter = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		falconers = {
+			defense = 0.05
+			breakthrough = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_saronite_forged_armor_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	vrykul_saronite_forged_armor_4 = {
+
+		vrykul_marauder = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpooner = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_hunter = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		vrykul_shield_maiden = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		falconers = {
+			defense = 0.05
+			breakthrough = 0.05			
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	vrykul_harpoon_tech_1 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { guard_tower_tech_global = 1 popup = no }
+			increase_tech_count_vrykul = yes
+		}
+
+		industry_air_damage_factor = -0.05
+
+		path = {
+			leads_to_tech = vrykul_harpoon_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 20 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_harpoon_tech_2 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harpoon_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 20 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_harpoon_tech_3 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_harpoon_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_harpoon_tech_4 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harpoon_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_harpoon_tech_5 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+
+		industry_air_damage_factor = -0.05
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_timber_yard_tech = {
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_vrykul = yes
+		}
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+		path = {
+			leads_to_tech = vrykul_logging_camp_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mead_hall_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_fishing_lodge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_hall_of_the_ancestors_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_seers_hall_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_palisade_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_watch_tower_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 26 y = 0 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 100
+				tag = KUL
+			}
+		}
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_logging_camp_tech = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_logging_camp_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 26 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_logging_camp_2 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_logging_camp_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_logging_camp_3 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_logging_camp_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_logging_camp_4 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mead_hall_tech = {
+
+		industrial_capacity_factory = 0.15
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mead_hall_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 28 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mead_hall_tech_2 = {
+
+		industrial_capacity_factory = 0.15
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mead_hall_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 28 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mead_hall_tech_3 = {
+
+		industrial_capacity_factory = 0.15
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_mead_hall_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 28 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mead_hall_tech_4 = {
+
+		industrial_capacity_factory = 0.15
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_mead_hall_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 28 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_mead_hall_tech_5 = {
+
+		industrial_capacity_factory = 0.15
+		global_building_slots_factor = 0.16
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 28 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_fishing_lodge_tech = {
+
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		industrial_capacity_dockyard = 0.15
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1	popup = no }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_fishing_lodge_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 30 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_fishing_lodge_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		industrial_capacity_dockyard = 0.15
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = vrykul_fishing_lodge_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 30 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_fishing_lodge_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		industrial_capacity_dockyard = 0.15
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_fishing_lodge_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 30 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_fishing_lodge_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		industrial_capacity_dockyard = 0.15
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = vrykul_fishing_lodge_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 30 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_fishing_lodge_tech_5 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		industrial_capacity_dockyard = 0.15
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 30 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_hall_of_the_ancestors_tech = {
+
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				church_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_tales_of_the_ancestors_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 32 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_tales_of_the_ancestors_tech_1 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_tales_of_the_ancestors_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 32 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_tales_of_the_ancestors_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_tales_of_the_ancestors_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 32 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_tales_of_the_ancestors_tech_3 = {
+
+        country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_tales_of_the_ancestors_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 32 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_tales_of_the_ancestors_tech_4 = {
+
+        country_faith_gain_factor = 0.125
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 32 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_seers_hall_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { 
+				arcane_tower_tech_global = 1
+				spy_tech_global = 1 
+				popup = no 
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_far_sight_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 34 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_far_sight_tech_1 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_far_sight_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 34 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_far_sight_tech_2 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_far_sight_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 34 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_far_sight_tech_3 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_far_sight_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 34 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_far_sight_tech_4 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 34 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_palisade_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_palisade_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 36 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_palisade_tech_2 = {
+
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_palisade_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 36 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_palisade_tech_3 = {
+
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_palisade_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 36 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_palisade_tech_4 = {
+
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_palisade_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 36 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_palisade_tech_5 = {
+
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 36 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_watch_tower_tech = {
+
+		enable_building = {
+			building = radar_station
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { scout_tower_tech_global = 1 popup = no }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_watch_tower_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_proto_drake_roost_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 38 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_watch_tower_tech_2 = {
+
+		enable_building = {
+			building = radar_station
+			level = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_watch_tower_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 38 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_watch_tower_tech_3 = {
+
+		enable_building = {
+			building = radar_station
+			level = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_watch_tower_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 38 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_watch_tower_tech_4 = {
+
+		enable_building = {
+			building = radar_station
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_watch_tower_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 38 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_watch_tower_tech_5 = {
+
+		enable_building = {
+			building = radar_station
+			level = 5
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 38 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	vrykul_proto_drake_roost_tech = {
+
+		enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { nest_tech_global = 1 popup = no }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_proto_drake_breeding_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 40 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_proto_drake_breeding_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+			increase_tech_count_vrykul = yes
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		path = {
+			leads_to_tech = vrykul_proto_drake_breeding_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 40 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_proto_drake_breeding_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_2
+					remove_idea = air_manufacturing_buff_1
+				}
+			}
+			increase_tech_count_vrykul = yes
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_proto_drake_breeding_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 40 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_proto_drake_breeding_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_3
+					remove_idea = air_manufacturing_buff_2
+				}
+			}
+			increase_tech_count_vrykul = yes
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		path = {
+			leads_to_tech = vrykul_proto_drake_breeding_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 40 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_proto_drake_breeding_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_4
+					remove_idea = air_manufacturing_buff_3
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = vrykul_administration_folder
+			position = { x = 40 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+
+
+
+}

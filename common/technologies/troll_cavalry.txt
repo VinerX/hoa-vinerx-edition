@@ -1,0 +1,1483 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	troll_dino_pen_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = direhorn_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dino_breeding_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = raptor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+		}
+	}
+
+	direhorn_tech = {
+
+		enable_subunits = {
+			direhorn
+		}
+
+		on_research_complete = {
+			set_technology = { direhorn_equipment_tech_1 = 1 }
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = direhorn_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 4 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	direhorn_equipment_tech_1 = {
+
+		enable_equipments = {
+			direhorn_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = puncture
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spiked_frills
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 4 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	puncture = {
+
+		direhorn = {
+			ap_attack = 0.2
+			hard_attack = 0.1
+		}
+		rhunok_chosen = {
+			ap_attack = 0.2
+			hard_attack = 0.1		
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { spiked_frills }
+
+		path = {
+			leads_to_tech = direhorn_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = spiked_frills
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = spiked_frills
+			}
+		}
+	}
+
+	spiked_frills = {
+
+		direhorn = {
+			defense = 0.15
+			soft_attack = 0.1
+		}
+		rhunok_chosen = {
+			defense = 0.15
+			soft_attack = 0.1		
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { puncture }
+
+		path = {
+			leads_to_tech = direhorn_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = puncture
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = puncture
+			}
+		}
+	}
+
+	direhorn_equipment_tech_2 = {
+
+		enable_equipments = {
+			direhorn_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = battle_beast_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = unstoppable
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	battle_beast_tech = {
+
+		direhorn = {
+			max_organisation = 2
+			armor_value = 0.20
+			max_strength = 0.5
+		}
+		rhunok_chosen = {
+			max_organisation = 2
+			armor_value = 0.20
+			max_strength = 0.5		
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { unstoppable }
+
+		path = {
+			leads_to_tech = direhorn_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = unstoppable
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = unstoppable
+			}
+		}
+	}
+
+	unstoppable = {
+
+		direhorn = {
+			breakthrough = 0.15
+			hard_attack = 0.10
+		}
+		rhunok_chosen = {
+			breakthrough = 0.15
+			hard_attack = 0.10	
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { battle_beast_tech }
+
+		path = {
+			leads_to_tech = direhorn_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = battle_beast_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = battle_beast_tech
+			}
+		}
+	}
+
+	direhorn_equipment_tech_3 = {
+
+		enable_equipments = {
+			direhorn_equipment_3
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			direhorn_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dino_breeding_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_troll = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = dino_breeding_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dino_taming_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	dino_breeding_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_troll = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = dino_breeding_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	dino_breeding_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_troll = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = dino_breeding_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	dino_breeding_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	dino_taming_1 = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_dino_taming } 
+		}
+
+		category_cavalry = {
+			max_organisation = 2
+		}
+
+		path = {
+			leads_to_tech = dino_taming_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	dino_taming_2 = {
+
+		category_cavalry = {
+			max_organisation = 2
+		}
+
+		path = {
+			leads_to_tech = dino_taming_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	dino_taming_3 = {
+
+		category_cavalry = {
+			max_organisation = 2
+		}
+
+		research_cost = 1
+
+		dependencies = { troll_temple_tech = 1 }
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			horse_technology
+		}
+	}
+
+	raptor_tech = {
+
+		enable_subunits = {
+			raptor
+		}
+
+		on_research_complete = {
+			set_technology = { raptor_equipment_tech_1 = 1 }
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = raptor_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ravager_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = raptor_rider_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	raptor_equipment_tech_1 = {
+
+		enable_equipments = {
+			raptor_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = rending_talons
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sharpened_reflexes_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	rending_talons = {
+
+		raptor = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+		}
+
+		shadras_chosen = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { sharpened_reflexes_tech }
+
+		path = {
+			leads_to_tech = raptor_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 11 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = sharpened_reflexes_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = sharpened_reflexes_tech
+			}
+		}
+	}
+
+	sharpened_reflexes_tech = {
+
+		raptor = {
+			breakthrough = 0.10
+			defense = 0.10
+			maximum_speed = 0.05
+		}
+
+		shadras_chosen = {
+			breakthrough = 0.10
+			defense = 0.10
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { rending_talons }
+
+		path = {
+			leads_to_tech = raptor_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = rending_talons
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = rending_talons
+			}
+		}
+	}
+
+	raptor_equipment_tech_2 = {
+
+		enable_equipments = {
+			raptor_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = rushing_charge
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pack_hunting_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	rushing_charge = {
+
+		raptor = {
+			breakthrough = 0.15
+			forest = {
+				attack = 0.10
+				movement = 0.15
+			}
+			jungle = {
+				attack = 0.10
+				movement = 0.15
+			}
+			marsh = {
+				attack = 0.10
+				movement = 0.15
+			}
+		}
+
+		shadras_chosen = {
+			breakthrough = 0.15
+			forest = {
+				attack = 0.10
+				movement = 0.15
+			}
+			jungle = {
+				attack = 0.10
+				movement = 0.15
+			}
+			marsh = {
+				attack = 0.10
+				movement = 0.15
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { pack_hunting_tech }
+
+		path = {
+			leads_to_tech = raptor_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 11 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = pack_hunting_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pack_hunting_tech
+			}
+		}
+	}
+
+	pack_hunting_tech = {
+
+		raptor = {
+			max_organisation = 5
+			soft_attack = 0.10
+			hard_attack = 0.10
+			defense = 0.05
+		}
+
+		shadras_chosen = {
+			max_organisation = 5
+			soft_attack = 0.10
+			hard_attack = 0.10
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { rushing_charge }
+
+		path = {
+			leads_to_tech = raptor_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = rushing_charge
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = rushing_charge
+			}
+		}
+	}
+
+	raptor_equipment_tech_3 = {
+
+		enable_equipments = {
+			raptor_equipment_3
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ravager_tech = {
+
+		enable_subunits = {
+			ravager
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = {
+			raptor_tech = 1
+		}
+
+		path = {
+			leads_to_tech = improved_ravager_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			troll_ravager_technology
+			militia_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_ravager_1 = {
+
+		ravager = {
+			suppression_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ravager_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			troll_ravager_technology
+			militia_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_ravager_2 = {
+
+		ravager = {
+			suppression_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_ravager_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			troll_ravager_technology
+			militia_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_ravager_3 = {
+
+		ravager = {
+			suppression_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ravager_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			troll_ravager_technology
+			militia_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_ravager_4 = {
+
+		ravager = {
+			suppression_factor = 0.1
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_technology
+			troll_ravager_technology
+			militia_technology
+			troll_support_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	raptor_rider_tech = {
+
+		enable_subunits = {
+			raptor_rider
+		}
+
+		on_research_complete = {
+			set_technology = { raptor_rider_equipment_tech_1 = 1 }
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = raptor_rider_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 18 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	raptor_rider_equipment_tech_1 = {
+
+		enable_equipments = {
+			raptor_rider_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_spears
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = piercing_talons
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_spears = {
+
+		raptor_rider = {
+			soft_attack = 0.10
+			defense = 0.15
+		}
+		mamtoth_chosen = {
+			soft_attack = 0.10
+			defense = 0.15			
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { piercing_talons }
+
+		path = {
+			leads_to_tech = raptor_rider_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = piercing_talons
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = piercing_talons
+			}
+		}
+	}
+
+	piercing_talons = {
+
+		raptor_rider = {
+			hard_attack = 0.15
+			ap_attack = 0.15
+		}
+		mamtoth_chosen = {
+			hard_attack = 0.15
+			ap_attack = 0.15	
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { improved_spears }
+
+		path = {
+			leads_to_tech = raptor_rider_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 19 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = improved_spears
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = improved_spears
+			}
+		}
+	}
+
+	raptor_rider_equipment_tech_2 = {
+
+		enable_equipments = {
+			raptor_rider_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		dependencies = { troll_lodge_tech = 1 }
+
+		path = {
+			leads_to_tech = dismounted_hunt
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = hardened_raptors
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dismounted_hunt = {
+
+		raptor_rider = {
+			max_organisation = 5
+			forest = {
+				attack = 0.10
+				movement = 0.15
+			}
+			jungle = {
+				attack = 0.10
+				movement = 0.15
+			}
+			marsh = {
+				attack = 0.10
+				movement = 0.15
+			}
+		}
+		mamtoth_chosen = {
+			max_organisation = 5
+			forest = {
+				attack = 0.10
+				movement = 0.15
+			}
+			jungle = {
+				attack = 0.10
+				movement = 0.15
+			}
+			marsh = {
+				attack = 0.10
+				movement = 0.15
+			}	
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { hardened_raptors }
+
+		path = {
+			leads_to_tech = raptor_rider_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = hardened_raptors
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = hardened_raptors
+			}
+		}
+	}
+
+	hardened_raptors = {
+
+		raptor_rider = {
+			armor_value = 0.1
+			max_organisation = 5
+			max_strength = 0.5
+		}
+		mamtoth_chosen = {
+			armor_value = 0.1
+			max_organisation = 5
+			max_strength = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_troll = yes
+		}
+
+		xor = { dismounted_hunt }
+
+		path = {
+			leads_to_tech = raptor_rider_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 19 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = dismounted_hunt
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = dismounted_hunt
+			}
+		}
+	}
+
+	raptor_rider_equipment_tech_3 = {
+
+		enable_equipments = {
+			raptor_rider_equipment_3
+		}
+
+		dependencies = { troll_temple_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = troll_cavalry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			raptor_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

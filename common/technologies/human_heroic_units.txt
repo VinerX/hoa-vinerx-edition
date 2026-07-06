@@ -1,0 +1,1071 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	altar_of_kings_tech = {
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = heroic_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = royal_guard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = archmage_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = paladin_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	heroic_training_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = heroic_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 4 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	heroic_training_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = heroic_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	heroic_training_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 4 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	royal_guard_tech = {
+
+		enable_subunits = {
+			royal_guard
+		}
+
+		on_research_complete = {
+			set_technology = { royal_guard_equipment_tech_1 = 1	}
+			custom_effect_tooltip = royal_guard_tech_unit_details_tt
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = royal_guard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	royal_guard_equipment_tech_1 = {
+
+		enable_equipments = {
+			royal_guard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = overpower_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = intercept_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	overpower_tech = {
+
+		royal_guard = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+		mounted_royal_guard = {
+			soft_attack = 0.15
+			hard_attack = 0.15		
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { intercept_tech }
+
+		path = {
+			leads_to_tech = royal_guard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = intercept_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = intercept_tech
+			}
+		}
+	}
+
+	intercept_tech = {
+
+		royal_guard = {
+			maximum_speed = 0.2
+			initiative = 0.02
+		}
+		mounted_royal_guard = {
+			maximum_speed = 0.2
+			initiative = 0.02	
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { overpower_tech }
+
+		path = {
+			leads_to_tech = royal_guard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = overpower_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = overpower_tech
+			}
+		}
+	}
+
+	royal_guard_equipment_tech_2 = {
+
+		enable_equipments = {
+			royal_guard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = shield_wall_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = last_stand_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	last_stand_tech = {
+
+		royal_guard = {
+			max_organisation = 5
+			max_strength = 0.25
+			default_morale = 0.1
+		}
+		mounted_royal_guard = {
+			max_organisation = 5
+			max_strength = 0.25
+			default_morale = 0.1	
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { shield_wall_tech }
+
+		path = {
+			leads_to_tech = royal_guard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = shield_wall_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = shield_wall_tech
+			}
+		}
+	}
+
+	shield_wall_tech = {
+
+		royal_guard = {
+			defense = 0.15
+			breakthrough = 0.1
+		}
+		mounted_royal_guard = {
+			defense = 0.15
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { last_stand_tech }
+
+		path = {
+			leads_to_tech = royal_guard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = last_stand_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = last_stand_tech
+			}
+		}
+	}
+
+	royal_guard_equipment_tech_3 = {
+
+		enable_equipments = {
+			royal_guard_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			royal_guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	paladin_tech = {
+
+		enable_subunits = {
+			paladin
+		}
+
+		on_research_complete = {
+			set_technology = { paladin_equipment_tech_1 = 1 }
+			custom_effect_tooltip = paladin_tech_unit_details_tt
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = paladin_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	paladin_equipment_tech_1 = {
+
+		enable_equipments = {
+			paladin_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = divine_steeds_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = divine_shield_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	divine_steeds_tech = {
+
+		paladin = {
+			maximum_speed = 0.2
+			breakthrough = 0.05
+		}
+		templar = {
+			maximum_speed = 0.2
+			breakthrough = 0.05			
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { divine_shield_tech }
+
+		path = {
+			leads_to_tech = paladin_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = divine_shield_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = divine_shield_tech
+			}
+		}
+	}
+
+	divine_shield_tech = {
+
+		paladin = {
+			armor_value = 0.1
+			breakthrough = 0.15
+		}
+		templar = {
+			armor_value = 0.1
+			breakthrough = 0.15			
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { divine_steeds_tech }
+
+		path = {
+			leads_to_tech = paladin_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = divine_steeds_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = divine_steeds_tech
+			}
+		}
+	}
+
+	paladin_equipment_tech_2 = {
+
+		enable_equipments = {
+			paladin_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = blessing_of_kings_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = templars_verdict_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	blessing_of_kings_tech = {
+
+		paladin = {
+			max_strength = 0.15
+			max_organisation = 5
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		templar = {
+			max_strength = 0.15
+			max_organisation = 5
+			soft_attack = 0.05
+			hard_attack = 0.05		
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { templars_verdict_tech }
+
+		path = {
+			leads_to_tech = paladin_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = templars_verdict_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = templars_verdict_tech
+			}
+		}
+	}
+
+	templars_verdict_tech = {
+
+		paladin = {
+			ap_attack = 0.25
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+		templar = {
+			ap_attack = 0.25
+			soft_attack = 0.1
+			hard_attack = 0.1	
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { blessing_of_kings_tech }
+
+		path = {
+			leads_to_tech = paladin_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = blessing_of_kings_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = blessing_of_kings_tech
+			}
+		}
+	}
+
+	paladin_equipment_tech_3 = {
+
+		enable_equipments = {
+			paladin_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			paladin_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	archmage_tech = {
+
+		enable_subunits = {
+			archmage
+		}
+
+		on_research_complete = {
+			set_technology = { archmage_equipment_tech_1 = 1 }
+			custom_effect_tooltip = archmage_tech_unit_details_tt
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = archmage_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	archmage_equipment_tech_1 = {
+
+		enable_equipments = {
+			archmage_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		path = {
+			leads_to_tech = blizzard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = phoenixs_flames_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	blizzard_tech = {
+
+		archmage = {
+			ap_attack = 0.2
+			breakthrough = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { phoenixs_flames_tech }
+
+		path = {
+			leads_to_tech = archmage_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = phoenixs_flames_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = phoenixs_flames_tech
+			}
+		}
+	}
+
+	phoenixs_flames_tech = {
+
+		archmage = {
+			anti_air_attack = 0.2
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { blizzard_tech }
+
+		path = {
+			leads_to_tech = archmage_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = blizzard_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = blizzard_tech
+			}
+		}
+	}
+
+	archmage_equipment_tech_2 = {
+
+		enable_equipments = {
+			archmage_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = ice_block_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pyroblast_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ice_block_tech = {
+
+		archmage = {
+			defense = 0.2
+			max_organisation = 2.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { pyroblast_tech }
+
+		path = {
+			leads_to_tech = archmage_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = pyroblast_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = pyroblast_tech
+			}
+		}
+	}
+
+	pyroblast_tech = {
+
+		archmage = {
+			hard_attack = 0.1
+			fort = { attack = 0.33 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_human = yes
+		}
+
+		xor = { ice_block_tech }
+
+		path = {
+			leads_to_tech = archmage_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = ice_block_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = ice_block_tech
+			}
+		}
+	}
+
+	archmage_equipment_tech_3 = {
+
+		enable_equipments = {
+			archmage_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = human_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			archmage_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+}

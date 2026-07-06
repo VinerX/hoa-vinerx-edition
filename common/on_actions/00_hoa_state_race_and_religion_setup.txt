@@ -1,0 +1,127 @@
+on_actions = {
+	on_startup = { #race & religion resutp
+		effect = {
+			if = { # Rise of the Horde (year 581) setup
+				limit = {
+					has_start_date > 580.12.31
+					has_start_date < 581.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.581 }
+					country_event = { id = state_religion_setup.581 }
+				}
+			}
+			if = { # First War (year 592) setup
+				limit = {
+					has_start_date > 591.12.31
+					has_start_date < 592.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.592 }
+					country_event = { id = state_religion_setup.592 }
+				}
+			}
+			else_if = { # Second War (year 596) setup
+				limit = {
+					has_start_date > 595.12.31
+					has_start_date < 596.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.596 }
+					country_event = { id = state_religion_setup.596 }
+				}
+			}
+			else_if = { # Invasion of Draenor (year 600) setup
+				limit = {
+					has_start_date > 599.12.31
+					has_start_date < 600.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.600 }
+					country_event = { id = state_religion_setup.600 }
+				}
+			}
+			else_if = { # Third War (year 610) setup
+				limit = {
+					has_start_date > 609.12.31
+					has_start_date < 610.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.610 }
+					country_event = { id = state_religion_setup.610 }
+				}
+			}
+			else_if = { # Frozen Throne (year 613) setup
+				limit = {
+					has_start_date > 612.12.31
+					has_start_date < 613.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.613 }
+					country_event = { id = state_religion_setup.613 }
+				}
+			}
+			else_if = { # Old Hatred / Classic WoW (year 617) setup
+				limit = {
+					has_start_date > 616.12.31
+					has_start_date < 617.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.617 }
+					country_event = { id = state_religion_setup.617 }
+				}
+			}
+			else_if = { # The Shattering / Cataclysm (year 620) setup
+				limit = {
+					has_start_date > 619.12.31
+					has_start_date < 620.01.02
+				}
+				STO = {
+					country_event = { id = state_race_setup.620 }
+					country_event = { id = state_religion_setup.620 }
+				}
+			}
+		}
+	}
+
+	#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
+	#on_state_control_changed = {
+	#	effect = {
+	#		FROM.FROM = {
+	#			if = {
+	#				limit = {
+	#					NOT = { is_core_of = ROOT }
+	#				}
+	#				if = {
+	#					limit = {
+	#						NOT = { has_dynamic_modifier = { modifier = RACE_resistance_state } }
+	#						state_does_not_match_primary_or_secondary_race = no
+	#					}
+	#					add_dynamic_modifier = { modifier = RACE_resistance_state }
+	#				}
+	#				else_if = {
+	#					limit = {
+	#						has_dynamic_modifier = { modifier = RACE_resistance_state }
+	#						state_does_not_match_primary_or_secondary_race = yes
+	#					}
+	#					remove_dynamic_modifier = { modifier = RACE_resistance_state }
+	#				}
+	#				if = {
+	#					limit = {
+	#						NOT = { has_dynamic_modifier = { modifier = FAITH_resistance_state } }
+	#						state_does_not_match_primary_or_secondary_religion = no
+	#					}
+	#					add_dynamic_modifier = { modifier = FAITH_resistance_state }
+	#				}
+	#				else_if = {
+	#					limit = {
+	#						has_dynamic_modifier = { modifier = FAITH_resistance_state }
+	#						state_does_not_match_primary_or_secondary_religion = yes
+	#					}
+	#					remove_dynamic_modifier = { modifier = FAITH_resistance_state }
+	#				}
+	#			}
+	#		}
+	#	}
+	#}
+}

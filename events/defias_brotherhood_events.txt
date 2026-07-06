@@ -1,0 +1,533 @@
+add_namespace = defias
+
+# stone masons riot
+country_event = {
+    id = defias.1
+    title = defias.1.t
+    desc = defias.1.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = { # stormwind revolt
+        name = defias.1.option.1
+
+		DFB = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	
+			322 = {
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			312 = {
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			325 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+
+		hidden_effect = {
+			38 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			142 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			143 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			144 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			145 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			146 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			147 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			148 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			149 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			374 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1590 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1591 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1592 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1593 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1594 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1595 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1596 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			1597 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			2161 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			2162 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			2163 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+			2164 = { 
+				add_core_of = DFB 
+				remove_core_of = STO
+				add_claim_by = STO
+			}
+		}
+    }
+}
+
+country_event = {
+    id = defias.2
+    title = defias.2.t
+    desc = defias.2.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+
+	trigger = {
+		tag = DFB
+		22 = { is_controlled_by = FROM }
+	}
+
+	immediate = {
+		activate_shine_on_focus = DFB_undermanned_garrisons
+	}
+
+    option = { # 
+        name = defias.2.option.1
+		complete_national_focus = DFB_the_ripples_of_revolution
+		hidden_effect = { country_event = { id = defias.4 days = 35 } }
+    }
+}
+
+country_event = {
+    id = defias.3
+    title = defias.3.t
+    desc = defias.3.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+
+	trigger = {
+		tag = DFB
+		146 = { is_controlled_by = STO }
+		148 = { is_controlled_by = STO }
+		149 = { is_controlled_by = STO }
+		DFB = { surrender_progress > 0.79 }
+	}
+
+    option = { # 
+        name = defias.3.option.1
+		complete_national_focus = DFB_secure_our_foothold
+		white_peace = STO
+		if = {
+			limit = { STO = { is_ai = no } }
+			STO = {
+				create_wargoal = {
+					target = DFB
+					type = annex_everything
+				}
+			}
+		}
+		hidden_effect = {
+			38 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			144 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			145 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			146 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			148 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			149 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			1590 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			1591 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			1592 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			1594 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			1596 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			2161 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			2162 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+			2164 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+				transfer_state_to = STO
+			}
+
+			142 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			143 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			147 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			374 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			1593 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			1595 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			1597 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+			2163 = { 
+				remove_claim_by = STO
+				add_core_of = STO
+			}
+		}
+    }
+
+	option = { # 
+        name = defias.3.option.2
+		### Bitter End
+    }
+}
+
+country_event = {
+    id = defias.4
+    title = defias.4.t
+    desc = defias.4.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = DFB_there_are_consequences
+		deactivate_shine_on_focus = DFB_undermanned_garrisons
+	}
+
+    option = { # 
+        name = defias.4.option.1
+		complete_national_focus = DFB_undermanned_garrisons
+		hidden_effect = { country_event = { id = defias.5 days = 70 } }
+    }
+}
+
+country_event = {
+    id = defias.5
+    title = defias.5.t
+    desc = defias.5.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = DFB_long_overdue
+		deactivate_shine_on_focus = DFB_there_are_consequences
+	}
+
+    option = { # 
+        name = defias.5.option.1
+		complete_national_focus = DFB_there_are_consequences
+		hidden_effect = { country_event = { id = defias.6 days = 70 } }
+    }
+}
+
+country_event = {
+    id = defias.6
+    title = defias.6.t
+    desc = defias.6.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		deactivate_shine_on_focus = DFB_long_overdue
+	}
+
+    option = { # 
+        name = defias.6.option.1
+		complete_national_focus = DFB_long_overdue
+    }
+}
+
+country_event = {
+    id = defias.7
+    title = defias.7.t
+    desc = defias.7.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	hidden = yes
+	is_triggered_only = yes
+
+	trigger = {
+		tag = DFB
+		BOO = { has_capitulated = yes }
+		DFB = { has_war_with = STC }
+		46 = { is_controlled_by = DFB }
+	}
+
+	immediate = {
+		STC = { white_peace = DFB }
+	}
+
+    option = { # 
+        name = defias.6.option.1
+		complete_national_focus = DFB_long_overdue
+    }
+}
+
+country_event = {
+    id = defias.10
+    title = defias.10.t
+    desc = defias.10.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = { # ELM
+        name = defias.10.option.1
+		division_template = {
+			name = "Streamrunner"
+			priority = 1
+			regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 0 y = 2 }
+				militia = { x = 0 y = 3 }
+				militia = { x = 1 y = 0 }
+				militia = { x = 1 y = 1 }
+			}
+		}
+		random_owned_state = {
+			limit = { impassable = no }
+			create_unit = {
+				division = "name = \"Streamrunner\" division_template = \"Streamrunner\" start_experience_factor = 0.3"
+				owner = ELM
+				count = 2
+			}
+		}
+    }
+}
+
+country_event = {
+    id = defias.11
+    title = defias.11.t
+    desc = defias.11.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = { # ELK
+        name = defias.11.option.1
+		division_template = {
+			name = "Tunnelers"
+			priority = 1
+			regiments = {
+				militia = { x = 0 y = 0 }
+				militia = { x = 0 y = 1 }
+				militia = { x = 0 y = 2 }
+				militia = { x = 0 y = 3 }
+				militia = { x = 1 y = 0 }
+				militia = { x = 1 y = 1 }
+			}
+		}
+		random_owned_state = {
+			limit = { impassable = no }
+			create_unit = {
+				division = "name = \"Tunnelers\" division_template = \"Tunnelers\" start_experience_factor = 0.3"
+				owner = ELK
+				count = 2
+			}
+		}
+    }
+}
+
+country_event = {
+    id = defias.12
+    title = defias.12.t
+    desc = defias.12.d
+	picture = GFX_news_event_defias_brotherhood
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+    option = { # SFC
+        name = defias.12.option.1
+		division_template = {
+			name = "Splinter Fist Ogres"
+			priority = 1
+			regiments = {
+				ogre_brute = { x = 0 y = 0 }
+				ogre_brute = { x = 0 y = 1 }
+				ogre_brute = { x = 0 y = 2 }
+				ogre_brute = { x = 0 y = 3 }
+				ogre_brute = { x = 1 y = 0 }
+				ogre_brute = { x = 1 y = 1 }
+			}
+		}
+		random_owned_state = {
+			limit = { impassable = no }
+			create_unit = {
+				division = "name = \"Splinter Fist Ogres\" division_template = \"Splinter Fist Ogres\" start_experience_factor = 0.3"
+				owner = SFC
+				count = 3
+			}
+		}
+    }
+}

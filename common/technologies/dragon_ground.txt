@@ -1,0 +1,2337 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	dragon_roost_ground = {
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = whelp_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dragonspawn_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drakonid_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dragon_tech
+			research_cost_coeff = 1
+		}
+
+		dependencies = {
+			dragon_roost_administration = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dragon_tier_technology
+		}
+	}
+
+	whelp_tech = {
+
+		enable_subunits = {
+			whelp
+		}
+
+		on_research_complete = {
+			set_technology = { whelp_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = whelp_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 3 y = 2 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	whelp_equipment_tech_1 = {
+
+		enable_equipments = {
+			whelp_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = swarm_tactic_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wicked_claws_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	swarm_tactic_tech = {
+
+		whelp = {
+			max_organisation = 5
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { wicked_claws_tech }
+
+		path = {
+			leads_to_tech = whelp_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = wicked_claws_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = wicked_claws_tech
+			}
+		}
+	}
+
+	wicked_claws_tech = {
+
+		whelp = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { swarm_tactic_tech }
+
+		path = {
+			leads_to_tech = whelp_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = swarm_tactic_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = swarm_tactic_tech
+			}
+		}
+	}
+
+	whelp_equipment_tech_2 = {
+
+		enable_equipments = {
+			whelp_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = strong_wings_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = matured_whelps_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	strong_wings_tech = {
+
+		whelp = {
+			air_attack = 0.2
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { matured_whelps_tech }
+
+		path = {
+			leads_to_tech = whelp_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = matured_whelps_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = matured_whelps_tech
+			}
+		}
+	}
+
+	matured_whelps_tech = {
+
+		whelp = {
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { strong_wings_tech }
+
+		path = {
+			leads_to_tech = whelp_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = strong_wings_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = strong_wings_tech
+			}
+		}
+	}
+
+	whelp_equipment_tech_3 = {
+
+		enable_equipments = {
+			whelp_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 3 y = 12 }
+		}
+
+		categories = {
+			whelp_tech
+			militia_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dragonspawn_tech = {
+
+		enable_subunits = {
+			dragonspawn
+			dragonspawn_sorceress
+		}
+
+		on_research_complete = {
+			set_technology = {
+				dragonspawn_equipment_tech_1 = 1
+				dragonspawn_sorceress_equipment_tech_1 = 1
+			}
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = dragonspawn_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dragonspawn_lieutenant_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dragonspawn_sorceress_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	dragonspawn_equipment_tech_1 = {
+
+		enable_equipments = {
+			dragonspawn_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = primal_might_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = metal_armaments_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	primal_might_tech = {
+
+		dragonspawn = {
+			breakthrough = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.1
+		}
+		invader = {
+			breakthrough = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.1			
+		}
+		aggressor = {
+			breakthrough = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.1			
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { metal_armaments_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = metal_armaments_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = metal_armaments_tech
+			}
+		}
+	}
+
+	metal_armaments_tech = {
+
+		dragonspawn = {
+			armor_value = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.1
+		}
+		invader = {
+			armor_value = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.1		
+		}
+		aggressor = {
+			armor_value = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.1			
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { primal_might_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = primal_might_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = primal_might_tech
+			}
+		}
+	}
+
+	dragonspawn_equipment_tech_2 = {
+
+		enable_equipments = {
+			dragonspawn_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = wyrmkin_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = scalebane_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wyrmkin_tech = {
+
+		dragonspawn = {
+			defense = 0.1
+			experience_loss_factor = -0.02
+		}
+		invader = {
+			defense = 0.1
+			experience_loss_factor = -0.02	
+		}
+		aggressor = {
+			defense = 0.1
+			experience_loss_factor = -0.02		
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { scalebane_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = scalebane_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = scalebane_tech
+			}
+		}
+	}
+
+	scalebane_tech = {
+
+		dragonspawn = {
+			max_organisation = 5
+			breakthrough = 0.1
+		}
+		invader = {
+			max_organisation = 5
+			breakthrough = 0.1
+		}
+		aggressor = {
+			max_organisation = 5
+			breakthrough = 0.1	
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { wyrmkin_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = wyrmkin_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = wyrmkin_tech
+			}
+		}
+	}
+
+	dragonspawn_equipment_tech_3 = {
+
+		enable_equipments = {
+			dragonspawn_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dragonspawn_lieutenant_tech = {
+
+		enable_subunits = {
+			dragonspawn_lieutenant
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_dragonspawn_lieutenant
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_dragonspawn_lieutenant = {
+
+		dragonspawn_lieutenant = {
+			initiative = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_dragonspawn_lieutenant_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_dragonspawn_lieutenant_2 = {
+
+		dragonspawn_lieutenant = {
+			initiative = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = improved_dragonspawn_lieutenant_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_dragonspawn_lieutenant_3 = {
+
+		dragonspawn_lieutenant = {
+			initiative = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_dragonspawn_lieutenant_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_dragonspawn_lieutenant_4 = {
+
+		dragonspawn_lieutenant = {
+			initiative = 0.10
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dragonspawn_sorceress_equipment_tech_1 = {
+
+		enable_equipments = {
+			dragonspawn_sorceress_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = piercing_spells_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = quicken_casting_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	piercing_spells_tech = {
+
+		dragonspawn_sorceress = {
+			ap_attack = 0.25
+			hard_attack = 0.1
+		}
+		dragonspawn_invoker = {
+			ap_attack = 0.25
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { quicken_casting_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_sorceress_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = quicken_casting_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = quicken_casting_tech
+			}
+		}
+	}
+
+	quicken_casting_tech = {
+
+		dragonspawn_sorceress = {
+			breakthrough = 0.1
+			soft_attack = 0.25
+		}
+		dragonspawn_invoker = {
+			breakthrough = 0.1
+			soft_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { piercing_spells_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_sorceress_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = piercing_spells_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = piercing_spells_tech
+			}
+		}
+	}
+
+	dragonspawn_sorceress_equipment_tech_2 = {
+
+		enable_equipments = {
+			dragonspawn_sorceress_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = magical_armor_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = arcane_assault_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	magical_armor_tech = {
+
+		dragonspawn_sorceress = {
+			defense = 0.25
+		}
+		dragonspawn_invoker = {
+			defense = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { arcane_assault_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_sorceress_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = arcane_assault_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = arcane_assault_tech
+			}
+		}
+	}
+
+	arcane_assault_tech = {
+
+		dragonspawn_sorceress = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			defense = 0.1
+		}
+		dragonspawn_invoker = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { magical_armor_tech }
+
+		path = {
+			leads_to_tech = dragonspawn_sorceress_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = magical_armor_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = magical_armor_tech
+			}
+		}
+	}
+
+	dragonspawn_sorceress_equipment_tech_3 = {
+
+		enable_equipments = {
+			dragonspawn_sorceress_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			caster_dragonspawn_tech
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	drakonid_tech = {
+
+		enable_subunits = {
+			drakonid
+		}
+
+		on_research_complete = {
+			set_technology = { drakonid_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = drakonid_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = drakonid_warden_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	drakonid_equipment_tech_1 = {
+
+		enable_equipments = {
+			drakonid_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = sweeping_strikes_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = repelling_wave_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sweeping_strikes_tech = {
+
+		drakonid = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+		drakonaar = {
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { repelling_wave_tech }
+
+		path = {
+			leads_to_tech = drakonid_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = repelling_wave_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = repelling_wave_tech
+			}
+		}
+	}
+
+	repelling_wave_tech = {
+
+		drakonid = {
+			soft_attack = 0.1
+			defense = 0.1
+		}
+		drakonaar = {
+			soft_attack = 0.1
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { sweeping_strikes_tech }
+
+		path = {
+			leads_to_tech = drakonid_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = sweeping_strikes_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sweeping_strikes_tech
+			}
+		}
+	}
+
+	drakonid_equipment_tech_2 = {
+
+		enable_equipments = {
+			drakonid_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = steeled_advance_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sentinel_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	steeled_advance_tech = {
+
+		drakonid = {
+			breakthrough = 0.2
+			maximum_speed = 0.1
+		}
+		drakonaar = {
+			breakthrough = 0.2
+			maximum_speed = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { sentinel_tech }
+
+		path = {
+			leads_to_tech = drakonid_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = sentinel_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sentinel_tech
+			}
+		}
+	}
+
+	sentinel_tech = {
+
+		drakonid = {
+			armor_value = 0.1
+			defense = 0.5
+		}
+		drakonaar = {
+			armor_value = 0.1
+			defense = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { steeled_advance_tech }
+
+		path = {
+			leads_to_tech = drakonid_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = steeled_advance_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = steeled_advance_tech
+			}
+		}
+	}
+
+	drakonid_equipment_tech_3 = {
+
+		enable_equipments = {
+			drakonid_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			drakonid_technology
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	drakonid_warden_tech = {
+
+		enable_subunits = {
+			drakonid_warden
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_enforcement_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 20 y = 4 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_enforcement_tech_1 = {
+
+		drakonid_warden = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_enforcement_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_enforcement_tech_2 = {
+
+		drakonid_warden = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = improved_enforcement_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_enforcement_tech_3 = {
+
+		drakonid_warden = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_enforcement_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_enforcement_tech_4 = {
+
+		drakonid_warden = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 20 y = 12 }
+		}
+
+		categories = {
+			dragonspawn_tech
+			melee_dragonspawn_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dragon_tech = {
+
+		enable_subunits = {
+			dragon
+		}
+
+		on_research_complete = {
+			set_technology = { dragons_dragon_equipment_tech_1 = 1 }
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = broodmother_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dragons_dragon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dragons_dragon_equipment_tech_1 = {
+
+		enable_equipments = {
+			dragons_dragon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = concentrated_breath_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = lingering_breath_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	concentrated_breath_tech = {
+
+		dragon = {
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { lingering_breath_tech }
+
+		path = {
+			leads_to_tech = dragons_dragon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = {x = 22 y = 6 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = lingering_breath_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = lingering_breath_tech
+			}
+		}
+	}
+
+	lingering_breath_tech = {
+
+		dragon = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { concentrated_breath_tech }
+
+		path = {
+			leads_to_tech = dragons_dragon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = {x = 24 y = 6 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = concentrated_breath_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = concentrated_breath_tech
+			}
+		}
+	}
+
+	dragons_dragon_equipment_tech_2 = {
+
+		enable_equipments = {
+			dragons_dragon_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		path = {
+			leads_to_tech = death_from_above_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = brood_guardian_tech 
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = {x = 23 y = 8 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	death_from_above_tech = {
+
+		dragon = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { brood_guardian_tech }
+
+		path = {
+			leads_to_tech = dragons_dragon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = {x = 22 y = 10 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = brood_guardian_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = brood_guardian_tech
+			}
+		}
+	}
+
+	brood_guardian_tech = {
+
+		dragon = {
+			armor_value = 0.3
+			defense = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		xor = { death_from_above_tech }
+
+		path = {
+			leads_to_tech = dragons_dragon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = {x = 24 y = 10 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = death_from_above_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = death_from_above_tech
+			}
+		}
+	}
+
+	dragons_dragon_equipment_tech_3 = {
+
+		enable_equipments = {
+			dragons_dragon_equipment_3
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = {x = 23 y = 12 }
+		}
+
+		categories = {
+			dragon_tech
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	broodmother_tech = {
+
+		enable_subunits = {
+			dragon_broodmother
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_broodmother
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = chosen_of_the_brood_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 26 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_broodmother = {
+
+		dragon_broodmother = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_broodmother_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 26 y = 6 }
+		}
+	
+		categories = {
+			altar_technology
+			healer_technology
+		}
+	
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+	
+	improved_broodmother_2 = {
+
+		dragon_broodmother = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+	
+		path = {
+			leads_to_tech = improved_broodmother_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 26 y = 8 }
+		}
+	
+		categories = {
+			altar_technology
+			healer_technology
+		}
+	
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+	
+	improved_broodmother_3 = {
+
+		dragon_broodmother = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_broodmother_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 26 y = 10 }
+		}
+	
+		categories = {
+			altar_technology
+			healer_technology
+		}
+	
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+	
+	improved_broodmother_4 = {
+
+		dragon_broodmother = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { dragon_shrine = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 26 y = 12 }
+		}
+	
+		categories = {
+			altar_technology
+			healer_technology
+		}
+	
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	chosen_of_the_brood_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = chosen_of_the_brood_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 28 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	chosen_of_the_brood_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		path = {
+			leads_to_tech = chosen_of_the_brood_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { dragon_sanctum = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 28 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	chosen_of_the_brood_3 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_dragon = yes
+		}
+
+		dependencies = { dragon_shrine = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dragon_ground_folder
+			position = { x = 28 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+}

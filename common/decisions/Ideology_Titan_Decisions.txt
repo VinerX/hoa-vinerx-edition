@@ -1,0 +1,573 @@
+Titan_ordering = {
+
+	contain_sargeras_minions = {
+
+		available = {
+			has_completed_focus = aggramars_order
+			any_neighbor_country = { has_government = fel } 
+		}
+
+		visible = {
+			has_completed_focus = aggramars_order
+			any_neighbor_country = { has_government = fel } 
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 10
+
+		days_re_enable = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			random_neighbor_country = {
+				limit = { has_government = fel }
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	old_god_infestation = {
+
+		available = {
+			has_completed_focus = aggramars_order
+			any_neighbor_country = { has_government = old_gods } 
+		}
+
+		visible = {
+			has_completed_focus = aggramars_order
+			any_neighbor_country = { has_government = old_gods } 
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 10
+
+		days_re_enable = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			random_neighbor_country = {
+				limit = { has_government = old_gods }
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_giant_forged = {
+
+		available = {
+			has_completed_focus = khazgoroths_creation
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 65 }
+				}
+				OR = {
+					NOT = {
+						has_idea = iron_giant_primary_race
+						has_idea = iron_giant_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = khazgoroths_creation
+			NOT = {
+				has_idea = iron_giant_primary_race
+				has_idea = iron_giant_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { iron_giant_secondary_race }
+			set_temp_variable = { race_to_accept = 65 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_dwarf_forged = {
+
+		available = {
+			has_completed_focus = khazgoroths_creation
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 64 }
+				}
+				OR = {
+					NOT = {
+						has_idea = iron_dwarf_primary_race
+						has_idea = iron_dwarf_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = khazgoroths_creation
+			NOT = {
+				has_idea = iron_dwarf_primary_race
+				has_idea = iron_dwarf_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { iron_dwarf_secondary_race }
+			set_temp_variable = { race_to_accept = 64 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_vrykul_forged = {
+
+		available = {
+			has_completed_focus = khazgoroths_creation
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 66 }
+				}
+				OR = {
+					NOT = {
+						has_idea = iron_vrykul_primary_race
+						has_idea = iron_vrykul_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = khazgoroths_creation
+			NOT = {
+				has_idea = iron_vrykul_primary_race
+				has_idea = iron_vrykul_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { iron_vrykul_secondary_race }
+			set_temp_variable = { race_to_accept = 66 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_gnome_forged = {
+
+		available = {
+			has_completed_focus = khazgoroths_creation
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 82 }
+				}
+				OR = {
+					NOT = {
+						has_idea = mecha_gnome_primary_race
+						has_idea = mecha_gnome_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = khazgoroths_creation
+			NOT = {
+				has_idea = mecha_gnome_primary_race
+				has_idea = mecha_gnome_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { mecha_gnome_secondary_race }
+			set_temp_variable = { race_to_accept = 82 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	ascendance_protocol_support_decision = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = no
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = no
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_re_enable = 30
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					compliance < 85
+					impassable = no
+				}
+				add_compliance = 15
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	ascendance_protocol_assimilate_decision = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = no
+				compliance > 85
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = no
+				compliance > 50
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 30
+
+		complete_effect = {
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					compliance > 85
+					impassable = no
+				}
+				add_core_of = ROOT
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	ascendance_protocol_assimilate_hill_decision = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = yes
+				compliance > 50
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = yes
+			}
+		}
+
+		cost = 25
+		days_remove = 30
+
+		days_re_enable = 15
+
+		complete_effect = {
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					compliance > 50
+					impassable = yes
+				}
+				add_core_of = ROOT
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_blue_dragons = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 6 }
+				}
+				OR = {
+					NOT = {
+						has_idea = blue_dragon_primary_race
+						has_idea = blue_dragon_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			NOT = {
+				has_idea = blue_dragon_primary_race
+				has_idea = blue_dragon_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { blue_dragon_secondary_race }
+			set_temp_variable = { race_to_accept = 6 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_bronze_dragon = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 10 }
+				}
+				OR = {
+					NOT = {
+						has_idea = bronze_dragon_primary_race
+						has_idea = bronze_dragon_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			NOT = {
+				has_idea = bronze_dragon_primary_race
+				has_idea = bronze_dragon_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { bronze_dragon_secondary_race }
+			set_temp_variable = { race_to_accept = 10 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_green_dragon = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 50 }
+				}
+				OR = {
+					NOT = {
+						has_idea = green_dragon_primary_race
+						has_idea = green_dragon_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			NOT = {
+				has_idea = green_dragon_primary_race
+				has_idea = green_dragon_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { green_dragon_secondary_race }
+			set_temp_variable = { race_to_accept = 50 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	titan_red_dragon = {
+
+		available = {
+			has_completed_focus = ascendance_protocol
+			AND = {
+				any_owned_state = {
+					check_variable = { race = 103 }
+				}
+				OR = {
+					NOT = {
+						has_idea = red_dragon_primary_race
+						has_idea = red_dragon_secondary_race
+						check_variable = { accepted_races^num > 6 }
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_completed_focus = ascendance_protocol
+			NOT = {
+				has_idea = red_dragon_primary_race
+				has_idea = red_dragon_secondary_race
+			}
+		}
+
+		cost = 100
+		days_remove = 120
+
+		days_re_enable = 150
+
+		remove_effect = {
+			add_ideas = { red_dragon_secondary_race }
+			set_temp_variable = { race_to_accept = 103 }
+			add_race_as_accepted_race = yes
+			clr_country_flag = accepting_a_race
+		}
+
+		complete_effect = {
+			set_country_flag = accepting_a_race
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

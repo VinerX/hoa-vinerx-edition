@@ -1,0 +1,2150 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	high_elf_barracks_tech = {
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_swordsman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_spellbreaker_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_archer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+		}
+	}
+
+	high_elf_swordsman_tech = {
+
+		enable_subunits = {
+			high_elf_swordsman
+		}
+
+		on_research_complete = {
+			set_technology = { high_elf_swordsman_equipment_tech_1 = 1 }
+			increase_tech_count_high_elf = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 3 y = 2 }
+		}
+
+		path = {
+			leads_to_tech = high_elf_swordsman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	high_elf_swordsman_equipment_tech_1 = {
+
+		enable_equipments = {
+			high_elf_swordsman_equipment_1
+		}
+
+		path = {
+			leads_to_tech = high_elf_shield_expertise
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_ambidextrous_fighters
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_shield_expertise = {
+
+		high_elf_swordsman = {
+			defense = 0.15
+			armor_value = 0.1
+		}
+
+		xor = { high_elf_ambidextrous_fighters }
+
+		path = {
+			leads_to_tech = high_elf_swordsman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_ambidextrous_fighters = {
+
+		high_elf_swordsman = {
+			breakthrough = 0.10
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		xor = { high_elf_shield_expertise }
+
+		path = {
+			leads_to_tech = high_elf_swordsman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_swordsman_equipment_tech_2 = {
+
+		enable_equipments = {
+			high_elf_swordsman_equipment_2
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_piercing_strikes
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_closed_ranks
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_piercing_strikes = {
+
+		high_elf_swordsman = {
+			ap_attack = 0.3
+			hard_attack = 0.3
+		}
+
+		xor = { high_elf_closed_ranks }
+
+		path = {
+			leads_to_tech = high_elf_swordsman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_closed_ranks = {
+
+		high_elf_swordsman = {
+			max_organisation = 10
+		}
+
+		xor = { high_elf_piercing_strikes }
+
+		path = {
+			leads_to_tech = high_elf_swordsman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_swordsman_equipment_tech_3 = {
+
+		enable_equipments = {
+			high_elf_swordsman_equipment_3
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 3 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_swordsman_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+	}
+
+	high_elf_ranger_tech = {
+
+		enable_subunits = {
+			high_elf_ranger
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_ranger_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_ranger_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_ranger_training_1 = {
+
+		high_elf_ranger = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_ranger_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_ranger_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	high_elf_ranger_training_2 = {
+
+		high_elf_ranger = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_ranger_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_ranger_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	high_elf_ranger_training_3 = {
+
+		high_elf_ranger = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_ranger_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_ranger_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	high_elf_ranger_training_4 = {
+
+		high_elf_ranger = {
+			initiative = 0.09
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 16 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_ranger_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	high_elf_spellbreaker_tech = {
+
+		enable_subunits = {
+			high_elf_spellbreaker
+		}
+
+		on_research_complete = {
+			set_technology = { high_elf_spellbreaker_equipment_tech_1 = 1 }
+			increase_tech_count_high_elf = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 7 y = 2 }
+		}
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	high_elf_spellbreaker_equipment_tech_1 = {
+
+		enable_equipments = {
+			high_elf_spellbreaker_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_feedback_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_spellbreaker_spell_imunity_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_spellbreaker_feedback_tech = {
+
+		high_elf_spellbreaker = {
+			breakthrough = 0.15
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_spellbreaker_spell_imunity_tech }
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_spellbreaker_spell_imunity_tech = {
+
+		high_elf_spellbreaker = {
+			defense = 0.2
+			default_morale = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_spellbreaker_feedback_tech }
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_spellbreaker_equipment_tech_2 = {
+
+		enable_equipments = {
+			high_elf_spellbreaker_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_control_magic_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_spellbreaker_mana_blade_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_spellbreaker_control_magic_tech = {
+
+		high_elf_spellbreaker = {
+			defense = 0.1
+			breakthrough = 0.1
+			max_organisation = 2
+			max_strength = 0.1
+			armor_value = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_spellbreaker_mana_blade_tech }
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_spellbreaker_mana_blade_tech = {
+
+		high_elf_spellbreaker = {
+			hard_attack = 0.2
+			ap_attack = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_spellbreaker_control_magic_tech }
+
+		path = {
+			leads_to_tech = high_elf_spellbreaker_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_spellbreaker_equipment_tech_3 = {
+
+		enable_equipments = {
+			high_elf_spellbreaker_equipment_3
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_spellbreaker_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+	}
+
+	high_elf_scout_tech = {
+
+		enable_subunits = {
+			high_elf_scout
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_scout_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_scout_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_scout_training_1 = {
+
+		high_elf_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_scout_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+
+	high_elf_scout_training_2 = {
+
+		high_elf_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_scout_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+
+	high_elf_scout_training_3 = {
+
+		high_elf_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_scout_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+
+	high_elf_scout_training_4 = {
+
+		high_elf_scout = {
+			recon = 1.5
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+
+	high_elf_archer_tech = {
+
+		enable_subunits = {
+			high_elf_archer
+		}
+
+		on_research_complete = {
+			set_technology = { high_elf_archer_equipment_tech_1 = 1 }
+			increase_tech_count_high_elf = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		path = {
+			leads_to_tech = high_elf_archer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_ranger_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_scout_tech
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	high_elf_archer_equipment_tech_1 = {
+
+		enable_equipments = {
+			high_elf_archer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_archer_precise_shots_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = high_elf_archer_ambush_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_archer_precise_shots_tech = {
+
+		high_elf_archer = {
+			ap_attack = 0.3
+			air_attack = 0.2
+		}
+
+		falconers = {
+			ap_attack = 0.3
+			air_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_archer_ambush_tech }
+
+		path = {
+			leads_to_tech = high_elf_archer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_archer_ambush_tech = {
+
+		high_elf_archer = {
+			soft_attack = 0.15
+			defense = 0.10
+			recon = 0.1
+		}
+
+		falconers = {
+			soft_attack = 0.15
+			defense = 0.10
+			recon = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_archer_precise_shots_tech }
+
+		path = {
+			leads_to_tech = high_elf_archer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_archer_equipment_tech_2 = {
+
+		enable_equipments = {
+			high_elf_archer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_archer_arcane_shot_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_archer_rapid_fire
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_archer_arcane_shot_tech = {
+
+		high_elf_archer = {
+			soft_attack = 0.1
+			hard_attack = 0.4
+		}
+
+		falconers = {
+			soft_attack = 0.1
+			hard_attack = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_archer_rapid_fire }
+
+		path = {
+			leads_to_tech = high_elf_archer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_archer_rapid_fire = {
+
+		high_elf_archer = {
+			breakthrough = 0.25
+			air_attack = 0.3
+		}
+
+		falconers = {
+			breakthrough = 0.25
+			air_attack = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_archer_arcane_shot_tech }
+
+		path = {
+			leads_to_tech = high_elf_archer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_archer_equipment_tech_3 = {
+
+		enable_equipments = {
+			high_elf_archer_equipment_3
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_compound_bows
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_archer_technology
+			ranged_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+	}
+
+	high_elf_arcane_sanctum_tech = {
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_sorceress_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_priest_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 21 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			high_elf_arcane_sanctum_technology
+		}
+	}
+
+	high_elf_sorceress_tech = {
+
+		enable_subunits = {
+			high_elf_sorceress
+		}
+
+		path = {
+			leads_to_tech = high_elf_sorceress_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_guardian_mage_tech
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { high_elf_sorceress_equipment_tech_1 = 1 }
+			increase_tech_count_high_elf = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 21 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	high_elf_sorceress_equipment_tech_1 = {
+
+		enable_equipments = {
+			high_elf_sorceress_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_sorceress_arcane_blast_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = high_elf_sorceress_slow_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 21 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_sorceress_arcane_blast_tech = {
+
+		high_elf_sorceress = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_sorceress_slow_tech }
+
+		path = {
+			leads_to_tech = high_elf_sorceress_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_sorceress_slow_tech = {
+
+		high_elf_sorceress = {
+			hard_attack = 0.05
+			anti_air_attack = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_sorceress_arcane_blast_tech }
+
+		path = {
+			leads_to_tech = high_elf_sorceress_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_sorceress_equipment_tech_2 = {
+
+		enable_equipments = {
+			high_elf_sorceress_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_sorceress_polymorph_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = high_elf_sorceress_arcane_barrage_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 21 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_sorceress_polymorph_tech = {
+
+		high_elf_sorceress = {
+			defense = 0.15
+			breakthrough = 0.15
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_sorceress_arcane_barrage_tech }
+
+		path = {
+			leads_to_tech = high_elf_sorceress_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_sorceress_arcane_barrage_tech = {
+
+		high_elf_sorceress = {
+			soft_attack = 0.25
+			breakthrough = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		xor = { high_elf_sorceress_polymorph_tech }
+
+		path = {
+			leads_to_tech = high_elf_sorceress_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_sorceress_equipment_tech_3 = {
+
+		enable_equipments = {
+			high_elf_sorceress_equipment_3
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 21 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_sorceress_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	high_elf_guardian_mage_tech = {
+
+		enable_subunits = {
+			high_elf_guardian_mage
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_guardian_mage_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_guardian_mage_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	high_elf_guardian_mage_training_1 = {
+
+		high_elf_guardian_mage = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_guardian_mage_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_guardian_mage_technology
+			support_technology
+		}
+	}
+
+	high_elf_guardian_mage_training_2 = {
+
+		high_elf_guardian_mage = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_guardian_mage_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_guardian_mage_technology
+			support_technology
+		}
+	}
+
+	high_elf_guardian_mage_training_3 = {
+
+		high_elf_guardian_mage = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_guardian_mage_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_guardian_mage_technology
+			support_technology
+		}
+	}
+
+	high_elf_guardian_mage_training_4 = {
+
+		high_elf_guardian_mage = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_barracks_technology
+			high_elf_guardian_mage_technology
+			support_technology
+		}
+	}
+
+	high_elf_priest_tech = {
+
+		enable_subunits = {
+			high_elf_priest
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_priest_training_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = high_elf_inner_fire_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 24 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			high_elf_priest_technology
+			priest_technology
+			support_technology
+		}
+	}
+
+	high_elf_priest_training_1 = {
+
+		high_elf_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_priest_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	high_elf_priest_training_2 = {
+
+		high_elf_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_priest_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 24 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	high_elf_priest_training_3 = {
+
+		high_elf_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_priest_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	high_elf_priest_training_4 = {
+
+		high_elf_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 24 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			high_elf_arcane_sanctum_technology
+			priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	high_elf_inner_fire_tech = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		path = {
+			leads_to_tech = high_elf_inner_fire_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 26 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	high_elf_inner_fire_tech_2 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_high_elf = yes
+		}
+
+		dependencies = { high_elf_court_of_the_sun_tech = 1 }
+
+		path = {
+			leads_to_tech = high_elf_inner_fire_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	high_elf_inner_fire_tech_3 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		dependencies = { high_elf_sunfury_spire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = high_elf_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+}

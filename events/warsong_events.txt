@@ -1,0 +1,218 @@
+﻿###########################
+# Warsong Clan
+###########################
+
+add_namespace = warsong_rise_of_the_horde
+
+# siege of durnholde
+country_event = {
+    id = warsong_rise_of_the_horde.1
+    title = warsong_rise_of_the_horde.t
+    desc = warsong_rise_of_the_horde.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = warsong_rise_of_the_horde.option.1
+
+    }
+}
+
+###########################
+# Warsong Third War events
+###########################
+
+add_namespace = warsong_third_war
+
+# siege of durnholde
+country_event = {
+    id = warsong_third_war.1
+    title = warsong_third_war.1.t
+    desc = warsong_third_war.1.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # Siege of Durnholde Part 1
+        name = warsong_third_war.1.option.1
+
+		WSC = {
+			transfer_state = 984
+			transfer_state = 979
+			transfer_state = 985
+			transfer_state = 986
+			transfer_state = 596
+			transfer_state = 600
+			transfer_state = 608
+			set_capital = { state = 984 }
+			every_state = {
+				limit = {
+					impassable = no
+					owner = { NOT = { has_war_with = WSC } }
+				}
+				teleport_armies = {
+					to_state = 984
+					limit = { tag = WSC }
+				}
+			}
+			add_ideas = WSC_isolated
+		}
+
+		hidden_effect = {
+			124 = { set_demilitarized_zone = yes }
+			1542 = { set_demilitarized_zone = yes }
+			2215 = { set_demilitarized_zone = yes }
+		}
+		2215 = { add_manpower = -11000 }
+		985 = {	add_manpower = 11000 }
+		random_army_leader = {
+			gain_xp = 100
+			add_attack = 1
+		}
+		hidden_effect = {
+			WSC = {	country_event = { id = warsong_third_war.2 days = 7 } }
+		}
+    }
+}
+
+country_event = {
+    id = warsong_third_war.2
+    title = warsong_third_war.2.t
+    desc = warsong_third_war.2.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # Siege of Durnholde Part 2
+        name = warsong_third_war.2.option.1
+
+		124 = {	add_manpower = -45000 }
+		984 = {	add_manpower = 45000 }
+		DWT = {
+			declare_war_on = {
+				target = WSC
+				type = annex_everything
+			}
+		}
+		WWT = {
+			declare_war_on = {
+				target = WSC
+				type = annex_everything
+			}
+		}
+		random_army_leader = {
+			gain_xp = 100
+			add_defense = 1
+		}
+		hidden_effect = {
+			WSC = {	country_event = { id = warsong_third_war.3 days = 21 } }
+		}
+    }
+}
+
+country_event = {
+    id = warsong_third_war.3
+    title = warsong_third_war.3.t
+    desc = warsong_third_war.3.d
+	picture = GFX_durotar_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # Siege of Durnholde Part 3
+        name = warsong_third_war.3.option.1
+
+		hidden_effect = {
+			124 = { 
+				set_demilitarized_zone = no 
+				remove_core_of = WSC
+			}
+			1542 = { 
+				set_demilitarized_zone = no 
+				remove_core_of = WSC
+			}
+			2215 = { 
+				set_demilitarized_zone = no
+				remove_core_of = WSC 
+			}
+		}
+		LOR = { 
+			transfer_state = 124 
+			transfer_state = 1542 
+			transfer_state = 2215 
+		}
+		1542 = { add_manpower = -8000 }
+		986 = {	add_manpower = 8000	}
+		random_army_leader = {
+			gain_xp = 100
+		}
+		add_war_support = 0.05
+		DWT = {
+			white_peace = WSC
+			transfer_state = 596
+			transfer_state = 600
+			transfer_state = 608
+		}
+		WWT = { white_peace = WSC }
+		984 = {
+			add_core_of = WSC
+			hidden_effect = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes			
+			}
+		}
+		985 = {
+			add_core_of = WSC
+			hidden_effect = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes			
+			}
+		}
+		986 = {
+			add_core_of = WSC
+			hidden_effect = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes			
+			}
+		}
+		979 = {
+			add_core_of = WSC
+			hidden_effect = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes			
+			}
+		}
+    }
+}
+
+country_event = {
+    id = warsong_third_war.4
+    title = warsong_third_war.4.t
+    desc = warsong_third_war.4.d
+	picture = GFX_thrall_event
+
+	trigger = {
+		tag = WSC
+		has_idea = WSC_isolated
+		any_neighbor_country = {
+			tag = FWC
+		}
+		NOT = {	WSC = { controls_state = 124 } }
+	}
+
+	fire_only_once = yes
+
+    option = { # Little Brother
+        name = warsong_third_war.4.option.1
+		remove_ideas = WSC_isolated
+		add_stability = 0.05
+    }
+}

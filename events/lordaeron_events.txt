@@ -1,0 +1,2080 @@
+﻿###########################
+# lordaeron
+###########################
+
+add_namespace = lordaeron
+
+# Calling the meeting of the Seven Kingdoms
+country_event = {
+  id = lordaeron.3
+  title = lordaeron.3.t
+  desc = lordaeron.3.d
+
+  is_triggered_only = yes
+
+	fire_only_once = yes
+
+  option = {
+    name = lordaeron.3.option.1
+  }
+}
+
+#Tyr's Hand Revolt
+country_event = {
+  id = lordaeron.4
+  title = lordaeron.4.t
+  desc = lordaeron.4.d
+
+  is_triggered_only = yes
+
+	fire_only_once = yes
+
+  option = {
+    name = lordaeron.4.option.1
+
+  }
+}
+
+#Army Doctine
+country_event = {
+  id = lordaeron.6
+  title = lordaeron.6.t
+  desc = lordaeron.6.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.6.option.1
+    ###MOBILE
+    ##Add Horse Idea
+
+    add_doctrine_cost_reduction = {
+      name = mobile_warfare
+      cost_reduction = 0.50
+      uses = 1
+      category = mobile_warfare
+    }
+  }
+
+  option = {
+    name = lordaeron.6.option.2
+    #### FIREPOWER
+    ###Add Archer Idea
+
+    add_doctrine_cost_reduction = {
+      name = superior_firepower
+      cost_reduction = 0.50
+      uses = 1
+      category = superior_firepower
+    }
+  }
+
+  option = {
+    name = lordaeron.6.option.3
+    #### GRAND
+    ### Add Footman/Pikeman Idea
+
+    add_doctrine_cost_reduction = {
+      name = grand_battle_plan
+      cost_reduction = 0.50
+      uses = 1
+      category = grand_battle_plan
+    }
+  }
+
+  option = {
+    name = lordaeron.6.option.4
+    ###LARGE FRONT
+    ## Add more Manpower Idea
+
+    add_doctrine_cost_reduction = {
+      name = mass_assault
+      cost_reduction = 0.50
+      uses = 1
+      category = mass_assault
+    }
+  }
+
+}
+
+#Army Doctine
+country_event = {
+  id = lordaeron.7
+  title = lordaeron.7.t
+  desc = lordaeron.7.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.7.option.1
+    ###Trade Fleet
+
+    swap_ideas = {
+      remove_idea = LOR_mothballed_fleet
+      add_idea = LOR_mothballed_fleet_2
+    }
+
+    add_doctrine_cost_reduction = {
+      name = cat_trade_interdiction
+      cost_reduction = 0.50
+      uses = 1
+      category = cat_trade_interdiction
+    }
+  }
+
+  option = {
+    name = lordaeron.7.option.2
+    ####Frigate Fleet
+
+    swap_ideas = {
+      remove_idea = LOR_mothballed_fleet
+      add_idea = LOR_mothballed_fleet_2
+    }
+
+    add_doctrine_cost_reduction = {
+      name = cat_fleet_in_being
+      cost_reduction = 0.50
+      uses = 1
+      category = cat_fleet_in_being
+    }
+  }
+}
+
+# Tyr's Hand
+country_event = {
+  id = lordaeron.8
+  title = lordaeron.8.t
+  desc = lordaeron.8.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.8.option.1
+
+    226 = {
+      add_extra_state_shared_building_slots = 1
+      add_building_construction = {
+        type = industrial_complex
+        level = 1
+        instant_build = yes
+      }
+      add_building_construction = {
+        type = infrastructure
+        level = 1
+        instant_build = yes
+      }
+    }
+  }
+
+  option = {
+    name = lordaeron.8.option.2
+
+    226 = {
+      add_extra_state_shared_building_slots = 1
+      add_building_construction = {
+        type = arms_factory
+        level = 1
+        instant_build = yes
+      }
+      add_building_construction = {
+        type = infrastructure
+        level = 1
+        instant_build = yes
+      }
+    }
+  }
+}
+
+# Tyr's Hand
+country_event = {
+  id = lordaeron.9
+  title = lordaeron.9.t
+  desc = lordaeron.9.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.9.option.1
+
+    226 = { add_manpower = -12 }
+
+    30 = { damage_building = { type = infrastructure damage = 3 } }
+    226 = { damage_building = { type = infrastructure damage = 3 } }
+    227 = { damage_building = { type = infrastructure damage = 3 } }
+    376 = { damage_building = { type = infrastructure damage = 3 } }
+
+    226 = { add_dynamic_modifier = { modifier = LOR_tyr_major_unrest } }
+    30 = { add_dynamic_modifier = { modifier = LOR_tyr_major_unrest } }
+    227 = { add_dynamic_modifier = { modifier = LOR_tyr_major_unrest } }
+    376 = { add_dynamic_modifier = { modifier = LOR_tyr_major_unrest } }
+
+    hidden_effect = {
+      226 = { remove_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+      30 = { remove_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+      227 = { remove_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+      376 = { remove_dynamic_modifier = { modifier = LOR_tyr_slight_unrest } }
+    }
+  }
+}
+
+country_event = {
+  id = lordaeron.10
+  title = lordaeron.10.t
+  desc = lordaeron.10.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.10.option.1
+
+    LOR = { add_to_faction = ROOT }
+
+    ai_chance = { 
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+      modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+		}
+  }
+
+  option = {
+    name = lordaeron.10.option.2
+
+    add_war_support = 0.1
+
+    ai_chance = { 
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+		}
+  }
+}
+
+# Sieze Holdings
+country_event = {
+  id = lordaeron.11
+  title = lordaeron.11.t
+  desc = lordaeron.11.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.11.option.1
+
+    8 = { 
+      add_core_of = SFB 
+      add_building_construction = {
+        type = dockyard
+        level = 1
+        instant_build = yes
+      }
+      add_building_construction = {
+        type = arms_factory
+        level = 1
+        instant_build = yes
+      }
+    }
+    9 = { 
+      add_core_of = SFB
+      add_building_construction = {
+        type = dockyard
+        level = 1
+        instant_build = yes
+      }
+      add_building_construction = {
+        type = arms_factory
+        level = 1
+        instant_build = yes
+      } 
+    }
+
+    hidden_effect = {
+      division_template = {
+        name = "Swashbucklers"
+        priority = 1
+        regiments = {
+          footman = { x = 0 y = 0 }
+          footman = { x = 0 y = 1 }
+          footman = { x = 0 y = 2 }
+          footman = { x = 1 y = 0 }
+          footman = { x = 1 y = 1 }
+          footman = { x = 1 y = 2 }
+        }
+      }
+      8 = {
+        create_unit = {
+          division = "name = \"Swashbucklers\" division_template = \"Swashbucklers\" start_experience_factor = 0.2"
+          owner = SFB
+          count = 2
+        }
+      }
+      9 = {
+        create_unit = {
+          division = "name = \"Swashbucklers\" division_template = \"Swashbucklers\" start_experience_factor = 0.2"
+          owner = SFB
+          count = 2
+        }
+      }
+    }
+  }
+}
+
+# Sieze Holdings
+country_event = {
+  id = lordaeron.12
+  title = lordaeron.12.t
+  desc = lordaeron.12.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = lordaeron.12.option.1
+
+    declare_war_on = {
+      target = SFB
+      type = annex_everything
+    }
+  }
+}
+
+###########################
+# Lordaeron Third War events
+###########################
+
+add_namespace = lordaeron_third_war
+
+# Council Meeting
+country_event = {
+    id = lordaeron_third_war.1
+    title = lordaeron_third_war.1.t
+    desc = lordaeron_third_war.1.d
+	picture = GFX_medivh_crow_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # Quarantine the Villages
+        name = lordaeron_third_war.1.option.1
+
+        add_political_power = 50
+        add_stability = 0.05
+
+        country_event = lordaeron_third_war.2
+
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = -100
+				is_historical_focus_on = yes
+			}
+		}
+
+        #TODO: eventually should hinder the spreading of the plague of undead
+    }
+
+    option = { # Do nothing (historical)
+        name = lordaeron_third_war.1.option.2
+
+        add_stability = -0.05
+
+        country_event = lordaeron_third_war.2
+
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+
+    }
+}
+
+# The Prophet's Warning
+country_event = {
+    id = lordaeron_third_war.2
+    title = lordaeron_third_war.2.t
+    desc = lordaeron_third_war.2.d
+	picture = GFX_medivh_lordaeron_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    immediate = {
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.3
+                days = 30
+            }
+        }
+    }
+
+    option = { # Do nothing (historical)
+        name = lordaeron_third_war.2.option.1
+
+        custom_effect_tooltip = lordaeron_third_war.2.option.1.d
+
+        set_country_flag = ignored_prophets_warning
+        add_political_power = 50
+
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+    }
+
+    option = { # Dismiss him but prepare defense just in case
+        name = lordaeron_third_war.2.option.2
+
+        set_country_flag = heeded_prophets_warning
+        add_timed_idea = {
+            idea = LOR_preparing_against_darkness_idea
+            days = 90
+        }
+
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = -100
+				is_historical_focus_on = yes
+			}
+		}
+    }
+
+    option = { # Prepare to travel west
+        name = lordaeron_third_war.2.option.3
+
+        custom_effect_tooltip = future_content_tt
+        #TODO: eventually will lead to a chain of event allowing Lordaeron to
+        # travel to Kalimdor. For now does nothing.
+
+		ai_chance = { 
+			base = 0
+		}
+    }
+}
+
+# Arthas and Uther in Stahnbrad
+country_event = {
+    id = lordaeron_third_war.3
+    title = lordaeron_third_war.3.t
+    desc = lordaeron_third_war.3.d
+	picture = GFX_prince_arthas_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.3.option.1
+
+        if = {
+          limit = { 115 = { has_dynamic_modifier = { modifier = GEN_orc_problem } } }
+          115 = { remove_dynamic_modifier = { modifier = GEN_orc_problem } }
+          random_army_leader = {
+            limit = { is_character = LOR_uther }
+            gain_xp = 90
+          }
+        }
+
+        if = {
+          limit = { 123 = { has_dynamic_modifier = { modifier = GEN_black_dragon_problem } } }
+          123 = { remove_dynamic_modifier = { modifier = GEN_black_dragon_problem } }
+          random_army_leader = {
+            limit = { is_character = LOR_arthas_menethil }
+            gain_xp = 100
+            add_attack = 1
+          }
+        }
+
+        hidden_effect = {
+          SYN = { 
+            remove_ideas = SYN_bloodhill_bandits
+            retire_character = SYN_menag 
+          }
+        }
+    }
+}
+
+# Undead Spotted in northern Alterac
+country_event = {
+    id = lordaeron_third_war.4
+    title = lordaeron_third_war.4.t
+    desc = lordaeron_third_war.4.d
+	picture = GFX_plagued_grain_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.4.option.1
+
+        add_stability = -0.025
+        add_war_support = 0.025
+
+        custom_effect_tooltip = lordaeron_third_war.4.option.1.d
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.5
+                days = 15
+            }
+        }
+    }
+}
+
+# Andorhal
+country_event = {
+    id = lordaeron_third_war.5
+    title = lordaeron_third_war.5.t
+    desc = lordaeron_third_war.5.d
+	picture = GFX_kelthuzad_necromancer_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.5.option.1
+
+        country_event = lordaeron_third_war.6
+    }
+}
+
+# The Cult of the Damned - part 1
+country_event = {
+    id = lordaeron_third_war.6
+    title = lordaeron_third_war.6.t
+    desc = lordaeron_third_war.6.d
+	picture = GFX_kelthuzad_necromancer_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.6.option.1
+
+        country_event = lordaeron_third_war.7
+    }
+}
+
+# The Cult of the Damned - part 2
+country_event = {
+    id = lordaeron_third_war.7
+    title = lordaeron_third_war.7.t
+    desc = lordaeron_third_war.7.d
+	picture = GFX_kelthuzad_necromancer_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.7.option.1
+
+        custom_effect_tooltip = lordaeron_third_war.7.option.1.d
+
+        hidden_effect = {
+
+            NET = {
+              set_country_flag = northern_disturbance
+            }
+
+            CAE = {
+                set_cosmetic_tag = CAE_cult_of_the_damned
+
+                # Andorhal and surroundings
+                transfer_state = 106
+                transfer_state = 152
+                transfer_state = 153
+                transfer_state = 158
+                transfer_state = 344
+                transfer_state = 636
+                transfer_state = 762
+
+                country_event = cult_of_the_damned.1
+            }
+
+            SYN = {
+              transfer_state = 160 # Small border adjustement
+            }
+
+            LOR = {
+                remove_from_faction = CAE
+                diplomatic_relation = {
+                    country = CAE
+                    relation = puppet
+                    active = no
+                }
+
+                country_event = {
+                    id = lordaeron_third_war.8
+                    days = 1
+                }
+            }
+        }
+    }
+}
+
+# Andorhal has fallen
+country_event = {
+    id = lordaeron_third_war.8
+    title = lordaeron_third_war.8.t
+    desc = lordaeron_third_war.8.d
+	picture = GFX_andorhal_ruins_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.8.option.1
+
+        add_stability = -0.05
+        add_war_support = 0.05
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.9
+                days = 3
+            }
+
+            # Lordaeron request aid
+            GIL = {
+                country_event = {
+                    id = gilneas_third_war.5
+                    days = 1
+                }
+            }
+        }
+    }
+}
+
+# tirisfal glades spawn
+country_event = {
+    id = lordaeron_third_war.9
+    title = lordaeron_third_war.9.t
+    desc = lordaeron_third_war.9.d
+	picture = GFX_deathknell_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.9.option.1
+
+        add_stability = -0.025
+
+		if = {
+			limit = {
+				has_country_flag = CAE_infect_vandermar
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = CAE_infect_agamand_mills
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = CAE_infect_brill
+			}
+		}
+		if = {
+			limit = {
+
+				has_country_flag = CAE_infect_the_old_monastery
+			}
+		}
+
+        208 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        211 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        760 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        2226 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        2227 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+
+        hidden_effect = {
+            CAE = {
+                load_oob = CAE_vandermar
+            }
+
+            country_event = {
+                id = lordaeron_third_war.10
+                days = 3
+            }
+        }
+    }
+}
+
+# Darrowshire falls to the Undead
+country_event = {
+    id = lordaeron_third_war.10
+    title = lordaeron_third_war.10.t
+    desc = lordaeron_third_war.10.d
+	picture = GFX_darrowshire_ruins_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.10.option.1
+
+        add_stability = -0.025
+
+        236 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        239 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        2233 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+
+        hidden_effect = {
+            CAE = {
+                load_oob = CAE_darrowshire
+            }
+            665 = {
+              transfer_state_to = CAE
+              add_core_of = CAE
+              set_variable = { race = 129 } # Undead ID
+              set_variable = { religion = 29 } # Disciples of the Lich King ID
+          	}
+
+		  	if = {
+				limit = {
+				}
+				country_event = {
+					id = lordaeron_third_war.11
+					days = 3
+				}
+			}
+			if = {
+				limit = {
+				}
+				country_event = {
+					id = lordaeron_third_war.12
+					days = 3
+				}
+			}
+
+        }
+    }
+}
+
+# Northdale falls to the Undead
+country_event = {
+    id = lordaeron_third_war.11
+    title = lordaeron_third_war.11.t
+    desc = lordaeron_third_war.11.d
+	  picture = GFX_northdale_ruins_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.11.option.1
+
+        add_stability = -0.025
+
+        230 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        231 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        238 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        2238 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+
+        hidden_effect = {
+            CAE = {
+                load_oob = CAE_northdale
+            }
+
+            country_event = {
+                id = lordaeron_third_war.12
+                days = 3
+            }
+        }
+    }
+}
+
+# The Dead rise from the Sepulcher
+country_event = {
+    id = lordaeron_third_war.12
+    title = lordaeron_third_war.12.t
+    desc = lordaeron_third_war.12.d
+	picture = GFX_the_sepulcher_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.12.option.1
+
+        add_stability = -0.025
+
+        165 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        496 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        720 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+
+        hidden_effect = {
+            CAE = {
+                load_oob = CAE_sepulcher
+            }
+
+            country_event = {
+                id = lordaeron_third_war.13
+                days = 3
+            }
+        }
+    }
+}
+
+# Lost control over the Northern Regions
+country_event = {
+    id = lordaeron_third_war.13
+    title = lordaeron_third_war.13.t
+    desc = lordaeron_third_war.13.d
+	picture = GFX_plagued_forest_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.13.option.1
+
+        add_stability = -0.025
+
+        120 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        220 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        221 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        245 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+        2234 = {
+            transfer_state_to = CAE
+            add_core_of = CAE
+            set_variable = { race = 129 } # Undead ID
+            set_variable = { religion = 29 } # Disciples of the Lich King ID
+        }
+
+        hidden_effect = {
+            CAE = {
+                load_oob = CAE_northern_regions
+            }
+
+            country_event = {
+                id = lordaeron_third_war.14
+                days = 3
+            }
+        }
+    }
+}
+
+# The Undead are on the Move
+country_event = {
+    id = lordaeron_third_war.14
+    title = lordaeron_third_war.14.t
+    desc = lordaeron_third_war.14.d
+	  picture = GFX_scourge_event
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.14.option.1
+
+        add_stability = -0.05
+        add_war_support = 0.05
+
+        CAE = {
+            declare_war_on = {
+                target = LOR
+                type = annex_everything
+            }
+            declare_war_on = {
+                target = STH
+                type = annex_everything
+            }
+            declare_war_on = {
+                target = HEA
+                type = annex_everything
+            }
+
+            hidden_effect = {
+                add_timed_idea = {
+                  idea = CAE_rise_of_the_damned_idea
+                  days = 90
+                }
+                DAL = { add_ideas = DAL_anti_undead_measures }
+            }
+        }
+
+        LOR = {
+            add_timed_idea = {
+              idea = CAE_within_our_lines
+              days = 90
+            }
+        }
+        HEA = {
+            add_timed_idea = {
+              idea = CAE_within_our_lines
+              days = 90
+            }
+        }
+        STH = {
+            add_timed_idea = {
+              idea = CAE_within_our_lines
+              days = 90
+            }
+        }
+
+        hidden_effect = {
+            country_event = {
+              id = lordaeron_third_war.15
+              days = 14
+            }
+            country_event = {
+              id = stromgarde_third_war.2
+              days = 14
+            }
+            #country_event = {
+            #  id = blackrock_third_war.4
+            #  days = 7
+            #}
+            SRG = { add_to_faction = CAE }
+        }
+
+        hidden_effect = {
+            CAE = { 
+                remove_ideas = CAE_private_holdings_CAE 
+                remove_resource_rights = 212
+                remove_resource_rights = 123
+                remove_resource_rights = 122
+            }
+            remove_ideas = CAE_private_holdings
+            212 = {	remove_dynamic_modifier = { modifier = LOR_private_holdings_rec } }
+            123 = { remove_dynamic_modifier = { modifier = LOR_private_holdings_rec } }
+            122 = {	remove_dynamic_modifier = { modifier = LOR_private_holdings_rec } }
+            SYN = { remove_ideas = SYN_marshal_law }
+            KUL = {
+                country_event = {
+                    id = kultiras_third_war.1
+                    days = 30
+                }
+            }
+            news_event = { id = news_third_war.3 hours = 6 }
+        }
+    }
+}
+
+# Stratholme - Part 1
+country_event = {
+    id = lordaeron_third_war.15
+    title = lordaeron_third_war.15.t
+    desc = lordaeron_third_war.15.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    immediate = {
+      hidden_effect = {
+        CAE = {
+          transfer_state = 119
+          transfer_state = 1584
+        }
+      }
+    }
+
+    option = { # Purge (based)
+        name = lordaeron_third_war.15.option.1
+
+        country_event = lordaeron_third_war.16
+
+        add_stability = -0.025
+
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+    }
+
+    option = { # Save (cringe)
+        name = lordaeron_third_war.15.option.2
+
+        add_stability = 0.025
+
+        country_event = lordaeron_third_war.17
+
+		ai_chance = { 
+			base = 50
+			modifier = {
+				factor = -100
+				is_historical_focus_on = yes
+			}
+		}
+    }
+}
+
+# Stratholme - Part 2 (purge path)
+country_event = {
+    id = lordaeron_third_war.16
+    title = lordaeron_third_war.16.t
+    desc = lordaeron_third_war.16.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.16.option.1
+
+        custom_effect_tooltip = lordaeron_third_war.16.option.1.d
+        every_country = {
+          limit = { has_idea = LOR_order_of_the_silver_hand }
+          remove_ideas = LOR_order_of_the_silver_hand
+        }
+
+        country_event = {
+            id = lordaeron_third_war.18
+            days = 1
+        }
+    }
+}
+
+# Stratholme - Part 2 (save path)
+country_event = {
+    id = lordaeron_third_war.17
+    title = lordaeron_third_war.17.t
+    desc = lordaeron_third_war.17.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    immediate = {
+      hidden_effect = {
+        CAE = {
+          transfer_state = 1583
+          transfer_state = 1585
+          transfer_state = 1587
+        }
+      }
+    }
+
+    option = {
+        name = lordaeron_third_war.17.option.1
+
+        add_political_power = 25
+        add_stability = 0.025
+        add_manpower = 5000
+
+        country_event = {
+            id = lordaeron_third_war.19
+            days = 1
+        }
+    }
+}
+
+# The Culling
+country_event = {
+    id = lordaeron_third_war.18
+    title = lordaeron_third_war.18.t
+    desc = lordaeron_third_war.18.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    immediate = {
+      hidden_effect = { CAE = { transfer_state = 1583 } }
+    }
+
+    option = {
+        name = lordaeron_third_war.18.option.1
+
+        add_stability = -0.05
+
+        119 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+        201 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+        1583 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+        1584 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+        1585 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+        1586 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+        1587 = {
+          set_temp_variable = { pop_to_kill = state_population }
+          multiply_temp_variable = { pop_to_kill = -0.5 } # 50% of the pop
+			    add_manpower = pop_to_kill
+		    }
+
+        country_event = {
+            id = lordaeron_third_war.19
+            days = 1
+        }
+
+        hidden_effect = {
+          STR = {
+            country_event = {
+              id = lordaeron_third_war.19
+              days = 1
+          }
+          }
+        }
+    }
+}
+
+# Confronting Mal'Ganis
+country_event = {
+    id = lordaeron_third_war.19
+    title = lordaeron_third_war.19.t
+    desc = lordaeron_third_war.19.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.19.option.1
+
+        custom_effect_tooltip = lordaeron_third_war.19.option.1.d
+
+        #TODO: retire Arthas (so he stops commanding armies)
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.20
+                days = 3
+            }
+        }
+    }
+
+    #TODO: eventually have a second option that allows Arthas to stay in Lordaeron
+}
+
+# The Aftermath
+country_event = {
+    id = lordaeron_third_war.20
+    title = lordaeron_third_war.20.t
+    desc = lordaeron_third_war.20.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # Leave for Kalimdor
+        name = lordaeron_third_war.20.option.1
+
+        105 = {
+            transfer_state_to = TMI
+            add_core_of = TMI
+        }
+
+        TMI = { change_tag_from = LOR }
+
+        hidden_effect = {
+          105 = {
+            set_state_race_to_primary_race = yes
+            set_state_religion_to_primary_religion = yes
+            add_extra_state_shared_building_slots = 3
+				    add_building_construction = {
+					    type = air_base
+					    level = 1
+					    instant_build = yes
+				    }
+            add_building_construction = {
+					    type = arms_factory
+					    level = 2
+					    instant_build = yes
+				    }
+            add_building_construction = {
+					    type = dockyard
+					    level = 1
+					    instant_build = yes
+				    }
+          }
+          goto_state = 105
+          TMI = {
+            country_event = { id = theramore_third.1 days = 3 }
+
+            inherit_technology = LOR
+            load_oob = "TMI_610_naval"
+            load_oob = "TMI_610"
+
+            # Deleting AI spam templates they made since nation did not exist at game start.
+            delete_unit_template_and_units = { division_template = "Militia 610 A" }
+            delete_unit_template_and_units = { division_template = "Militia 610 B" }
+            delete_unit_template_and_units = { division_template = "Militia 610 C" }
+            delete_unit_template_and_units = { division_template = "Militia 610 D" }
+            delete_unit_template_and_units = { division_template = "Militia 610 E" }
+            delete_unit_template_and_units = { division_template = "Militia 610 F" }
+            delete_unit_template_and_units = { division_template = "Militia 610 G" }
+            delete_unit_template_and_units = { division_template = "Militia 610 H" }
+            delete_unit_template_and_units = { division_template = "Militia 611 A" }
+            delete_unit_template_and_units = { division_template = "Militia 611 B" }
+            delete_unit_template_and_units = { division_template = "Mirefin Murloc" }
+            delete_unit_template_and_units = { division_template = "Giant Crab Rider 611 A" }
+          }
+
+          country_event = {
+              id = lordaeron_third_war.21
+              days = 1
+          }
+        }
+    }
+
+    option = { # Do nothing
+        name = lordaeron_third_war.20.option.2
+        
+        105 = {
+            transfer_state_to = TMI
+            add_core_of = TMI
+        }
+
+        custom_effect_tooltip = lordaeron_third_war.20.option.2.d
+
+        hidden_effect = {
+          105 = {
+            set_state_race_to_primary_race = yes
+            set_state_religion_to_primary_religion = yes
+            add_extra_state_shared_building_slots = 3
+				    add_building_construction = {
+					    type = air_base
+					    level = 1
+					    instant_build = yes
+				    }
+            add_building_construction = {
+					    type = arms_factory
+					    level = 2
+					    instant_build = yes
+				    }
+            add_building_construction = {
+					    type = dockyard
+					    level = 1
+					    instant_build = yes
+				    }
+          }
+          TMI = {
+            country_event = { id = theramore_third.1 days = 3 }
+            
+            inherit_technology = LOR
+            load_oob = "TMI_610_naval"
+            load_oob = "TMI_610"
+
+            # Deleting AI spam templates they made since nation did not exist at game start.
+            delete_unit_template_and_units = { division_template = "Militia 610 A" }
+            delete_unit_template_and_units = { division_template = "Militia 610 B" }
+            delete_unit_template_and_units = { division_template = "Militia 610 C" }
+            delete_unit_template_and_units = { division_template = "Militia 610 D" }
+            delete_unit_template_and_units = { division_template = "Militia 610 E" }
+            delete_unit_template_and_units = { division_template = "Militia 610 F" }
+            delete_unit_template_and_units = { division_template = "Militia 610 G" }
+            delete_unit_template_and_units = { division_template = "Militia 610 H" }
+            delete_unit_template_and_units = { division_template = "Militia 611 A" }
+            delete_unit_template_and_units = { division_template = "Militia 611 B" }
+            delete_unit_template_and_units = { division_template = "Mirefin Murloc" }
+            delete_unit_template_and_units = { division_template = "Giant Crab Rider 611 A" }
+          }
+
+          country_event = {
+              id = lordaeron_third_war.21
+              days = 1
+          }
+        }
+    }
+}
+
+# Arthas has left for Northrend
+country_event = {
+    id = lordaeron_third_war.21
+    title = lordaeron_third_war.21.t
+    desc = lordaeron_third_war.21.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.21.option.1
+
+        add_political_power = -25
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.22
+                days = 30
+            }
+        }
+    }
+
+    #TODO: eventually have a second option that do not send an emissary
+}
+
+# Northrend
+country_event = {
+    id = lordaeron_third_war.22
+    title = lordaeron_third_war.22.t
+    desc = lordaeron_third_war.22.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.22.option.1
+
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.23
+                days = 7
+            }
+        }
+    }
+}
+
+# The Emissary
+country_event = {
+    id = lordaeron_third_war.23
+    title = lordaeron_third_war.23.t
+    desc = lordaeron_third_war.23.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.23.option.1
+
+        country_event = lordaeron_third_war.24
+    }
+
+    option = {
+        name = lordaeron_third_war.23.option.2
+
+        #Adds Arthas back as a troop leader
+    }
+}
+
+# Dissension
+country_event = {
+    id = lordaeron_third_war.24
+    title = lordaeron_third_war.24.t
+    desc = lordaeron_third_war.24.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.24.option.1
+
+        custom_effect_tooltip = lordaeron_third_war.24.option.1.d
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.25
+                days = 3
+            }
+        }
+    }
+}
+
+# Frostmourne - Part 1
+country_event = {
+    id = lordaeron_third_war.25
+    title = lordaeron_third_war.25.t
+    desc = lordaeron_third_war.25.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.25.option.1
+
+        country_event = lordaeron_third_war.26
+    }
+}
+
+# Frostmourne - Part 2
+country_event = {
+    id = lordaeron_third_war.26
+    title = lordaeron_third_war.26.t
+    desc = lordaeron_third_war.26.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.26.option.1
+
+        country_event = lordaeron_third_war.27
+    }
+}
+
+# Frostmourne - Part 3
+country_event = {
+    id = lordaeron_third_war.27
+    title = lordaeron_third_war.27.t
+    desc = lordaeron_third_war.27.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # Take the Blade (based)
+        name = lordaeron_third_war.27.option.1
+
+        country_event = lordaeron_third_war.28
+    }
+
+    # TODO: eventually have a set of event that allows Arthas to defeat
+    # Mal'ganis without the Blade
+    # option = { # destroy the blade (cringe af)
+    #     name = lordaeron_third_war.27.option.2
+    # }
+}
+
+# Frostmourne - Part 4
+country_event = {
+    id = lordaeron_third_war.28
+    title = lordaeron_third_war.28.t
+    desc = lordaeron_third_war.28.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.28.option.1
+
+        hidden_effect = {
+          set_country_flag = arthas_frostmorne
+            country_event = {
+                id = lordaeron_third_war.29
+                days = 1
+            }
+        }
+    }
+}
+
+# The Vengeance
+country_event = {
+    id = lordaeron_third_war.29
+    title = lordaeron_third_war.29.t
+    desc = lordaeron_third_war.29.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.29.option.1
+
+        custom_effect_tooltip = lordaeron_third_war.29.option.1.d
+
+        hidden_effect = {
+            country_event = {
+                id = lordaeron_third_war.30
+                days = 45
+            }
+        }
+    }
+}
+
+# Prince Arthas Returns - Part 1
+country_event = {
+    id = lordaeron_third_war.30
+    title = lordaeron_third_war.30.t
+    desc = lordaeron_third_war.30.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+      name = lordaeron_third_war.30.option.1
+
+      country_event = lordaeron_third_war.31
+    }
+}
+
+# Prince Arthas Returns - Part 2
+country_event = {
+    id = lordaeron_third_war.31
+    title = lordaeron_third_war.31.t
+    desc = lordaeron_third_war.31.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = lordaeron_third_war.31.option.1
+
+        #retire_character = LOR_king_terenas_menethil
+        retire_country_leader = yes
+        add_country_leader_role = {
+          character = LOR_uther
+          country_leader = {
+            ideology = alliance_type
+            expire="1965.1.1"
+          }
+          promote_leader = yes
+        }
+
+      country_event = lordaeron_third_war.32
+    }
+}
+
+# Prince Arthas Returns - Part 3
+country_event = {
+    id = lordaeron_third_war.32
+    title = lordaeron_third_war.32.t
+    desc = lordaeron_third_war.32.d
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # Switch to Cult of the Damned
+        name = lordaeron_third_war.32.option.1
+
+        trigger = {
+            CAE = { #wont fire if CAE is being played by a human being
+              is_ai = no 
+            }
+            LOR = { #wont fire unless LOR is being played by a human being
+              is_ai = no
+            }
+        }
+
+        CAE = { change_tag_from = LOR }
+        CAE = { country_event = { id = cult_of_the_damned.2 days = 3 } }
+
+    }
+
+    option = { # Keep playing as LOR
+        name = lordaeron_third_war.32.option.2
+
+        CAE = {
+          country_event = { id = cult_of_the_damned.2 days = 3 }
+        }
+        ai_chance = {
+          base = 10
+        }
+
+    }
+}
+
+### Alterac Decision
+country_event = {
+  id = lordaeron_third_war.33
+  title = lordaeron_third_war.33.t
+  desc = lordaeron_third_war.33.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = { # Martial Law
+    name = lordaeron_third_war.33.option.1
+    complete_national_focus = LOR_internal_affairs
+  }
+
+  option = { # Fill the Throne
+    name = lordaeron_third_war.33.option.2
+    complete_national_focus = LOR_the_alternative
+  }
+}
+
+#for later
+#add_country_leader_role = {
+#	character = LOR_arthas_menethil
+#	country_leader = {
+#	  ideology = alliance_type
+#	  expire="1965.1.1"
+#	}
+#	promote_leader = yes
+#}
+#LOR_arthas_menethil = {
+#	set_character_name = {
+#		name = LOR_king_arthas_menethil
+#	}
+#	set_portraits = {
+#		civilian = { large = "gfx/leaders/LOR/Arthas_Menethil.dds" }
+#	}
+#}
+
+### Lost to the Undead
+add_namespace = lordaeron_capitulation
+
+country_event = {
+  id = lordaeron_capitulation.1
+  title = lordaeron_capitulation.1.t
+  desc = lordaeron_capitulation.1.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  immediate = {
+    hidden_effect = {
+      ### Lordaeron Ruins
+      31 = { transfer_state_to = LOR }
+      165 = { transfer_state_to = LOR }
+      166 = { transfer_state_to = LOR }  
+      167 = { transfer_state_to = LOR }
+      496 = { transfer_state_to = LOR }
+      717 = { transfer_state_to = LOR }
+      718 = { transfer_state_to = LOR } 
+      719 = { transfer_state_to = LOR } 
+      720 = { transfer_state_to = LOR } 
+      1096 = { transfer_state_to = LOR }
+      2225 = { transfer_state_to = LOR } 
+      LOR = {
+        retire_character = LOR_arthas_menethil
+        retire_character = LOR_captain_falric
+        retire_character = LOR_captain_luc_valonworth
+        retire_character = LOR_captain_marwyn
+        retire_character = LOR_king_terenas_menethil
+        set_cosmetic_tag = LOR_ruin
+      }
+      ### Below effect Removes them, add in the Possibility of them
+      ### Beating Arthas and forcing him to retreat
+      hidden_effect = {
+        LOR = {
+          set_nationality = {
+            target_country = ARD
+            character = LOR_uther
+          }
+          set_nationality = {
+            target_country = ARD
+            character = LOR_ballador_the_bright
+          }
+          set_nationality = {
+            target_country = ARD
+            character = STO_gavinrad_the_dire
+          }
+        }
+      }
+      STH = { retire_character = STH_alexandros_mograine }
+      hidden_effect = {
+        if = {
+          limit = { LOR = { has_country_flag = arthas_frostmorne } }
+          1646 = {
+            transfer_state_to = FIL
+            add_core_of = FIL
+          }
+        }
+      }
+
+      ### Scarlet Crusade
+      SCC = {
+        set_cosmetic_tag = HEA_SILVER
+        set_popularities = {
+          alliance = 12
+          horde = 0
+          death = 0
+          fel = 0
+          old_gods = 0
+          titans = 0
+          neutral = 88
+        }
+        if = {
+          limit = { has_idea = LOR_order_of_the_silver_hand }
+          swap_ideas = {
+            remove_idea = LOR_order_of_the_silver_hand
+            add_idea = LOR_order_of_the_silver_hand_2
+          }
+        }
+      }
+      151 = { 
+        transfer_state_to = SCC
+        add_core_of = SCC
+      }
+      215 = { 
+        transfer_state_to = SCC
+        add_core_of = SCC
+      }
+      220 = { 
+        transfer_state_to = SCC
+        add_core_of = SCC
+      }  
+      783 = { 
+        transfer_state_to = SCC
+        add_core_of = SCC
+      }  
+
+      LOR = { country_event = { id = lordaeron_ruins.1 days = 2 } }
+      SCC = { country_event = { id = scarlet_third.1 days = 2 } }
+      FIL = { country_event = { id = scarlet_third.1 days = 2 } }
+
+      LOR = {
+        add_ideas = military_admin
+        add_ideas = limited_exports
+        add_ideas = limited_conscription
+      }
+
+      SCC = { inherit_technology = LOR }
+      ARD = { inherit_technology = LOR }
+    }
+  }
+
+  option = { # Ruins of Lordaeron
+    name = lordaeron_capitulation.1.option.1
+    goto_state = 165
+  }
+
+  option = { # The Scarlet Crusade
+    name = lordaeron_capitulation.1.option.2
+    SCC = { change_tag_from = LOR }
+    goto_state = 151
+  }
+
+  ### Make this Option Avaliable if Arthas did not take Frostmorne
+  ### As Arthas would not have killed the Paladins
+  #option = { # Champions of Peace
+  #  name = lordaeron_capitulation.1.option.3
+  #  ARD = { 
+  #    change_tag_from = LOR
+  #    country_event = { id = silverhand.1 days = 2 }  
+  #  }
+  #  goto_state = 153
+  #  hidden_effect = {
+      #ARD = {
+      #  hidden_effect = { retire_character = ARD_lord_maxwell_tyrosus }
+      #  set_capital = { state = 153 }
+      #  set_cosmetic_tag = ARD_PEACE
+      #  set_politics = {
+      #    ruling_party = alliance
+      #    last_election = "590.10.27"
+      #    election_frequency = 48
+      #    elections_allowed = no
+      #  }
+      #  set_popularities = {
+      #    alliance = 88
+      #    horde = 0
+      #    death = 0
+      #    fel = 0
+      #    old_gods = 0
+      #    titans = 0
+      #    neutral = 12
+      #  }
+      #  if = {
+      #    limit = { has_idea = LOR_order_of_the_silver_hand }
+      #    swap_ideas = {
+      #      remove_idea = LOR_order_of_the_silver_hand
+      #      add_idea = LOR_order_of_the_silver_hand_2
+      #    }
+      #  }
+      #}
+      #106 = { 
+      #  transfer_state_to = ARD 
+      #  add_core_of = ARD
+      #}
+      #152 = { 
+      #  transfer_state_to = ARD 
+      #  add_core_of = ARD
+      #}
+      #153 = { 
+      #  transfer_state_to = ARD 
+      #  add_core_of = ARD
+      #}
+      #160 = { 
+      #  transfer_state_to = ARD 
+      #  add_core_of = ARD
+      #}
+      #344 = { 
+      #  transfer_state_to = ARD 
+      #  add_core_of = ARD
+      #}
+  #}
+
+  option = { # 1st Legion Survivors
+    name = lordaeron_capitulation.1.option.5
+    trigger = { LOR = { has_country_flag = arthas_frostmorne } }
+    custom_effect_tooltip = first_legion_remnants_tt
+    FIL = { change_tag_from = LOR }
+    goto_state = 1646
+  }
+}
+
+add_namespace = lordaeron_FIL
+
+country_event = {
+  id = lordaeron_FIL.1
+  title = lordaeron_FIL.1.t
+  desc = lordaeron_FIL.1.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = {
+    name = lordaeron_FIL.1.option.1
+    hidden_effect = {
+      every_owned_state = {
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+      }
+    }
+    division_template = {
+      name = "1st Legion Footman"
+      priority = 1
+      regiments = {
+        footman = { x = 0 y = 0 }
+        footman = { x = 0 y = 1 }
+        footman = { x = 0 y = 2 }
+        footman = { x = 1 y = 0 }
+        footman = { x = 1 y = 1 }
+      }
+    }
+    capital_scope = {
+      create_unit = {
+        division = "name = \"1st Legion Footman\" division_template = \"1st Legion Footman\" start_experience_factor = 0.5"
+        owner = FIL
+      }
+    } 
+  }
+}
+
+### Ruins After the Fall to the Scourge
+
+add_namespace = lordaeron_ruins
+
+### Starting Event
+country_event = {
+  id = lordaeron_ruins.1
+  title = lordaeron_ruins.1.t
+  desc = lordaeron_ruins.1.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  immediate = {
+    add_country_leader_role = {
+      character = LOR_othmar_garithos
+      promote_leader = yes
+      country_leader = {
+          ideology = alliance_type
+          expire = "616.1.1.1"
+          traits = { }
+      }
+    }
+    add_country_leader_role = {
+      character = LOR_othmar_garithos
+      promote_leader = yes
+      country_leader = {
+          ideology = neutral_type
+          expire = "616.1.1.1"
+          traits = { }
+      }
+    }
+    promote_character = {
+      character = LOR_othmar_garithos
+      ideology = alliance
+    }
+  }
+
+  option = { # Martial Law
+    name = lordaeron_ruins.1.option.1
+    division_template = {
+      name = "Lordaeron Survivors"
+      priority = 1
+      regiments = {
+        militia = { x = 0 y = 0 }
+        militia = { x = 0 y = 1 }
+        militia = { x = 0 y = 2 }
+        militia = { x = 1 y = 0 }
+        militia = { x = 1 y = 1 }
+      }
+    }
+    division_template = {
+      name = "Loyal Footmen"
+      priority = 1
+      regiments = {
+        footman = { x = 0 y = 0 }
+        footman = { x = 0 y = 1 }
+        footman = { x = 0 y = 2 }
+        footman = { x = 1 y = 0 }
+        footman = { x = 1 y = 1 }
+      }
+    }
+    division_template = {
+      name = "Kassans Enforcers"
+      priority = 1
+      regiments = {
+        footman = { x = 0 y = 0 }
+        footman = { x = 0 y = 1 }
+        footman = { x = 0 y = 2 }
+        archer = { x = 0 y = 3 }
+        footman = { x = 1 y = 0 }
+        footman = { x = 1 y = 1 }
+        footman = { x = 1 y = 2 }
+        archer = { x = 1 y = 3 }
+      }
+      support = {
+        guard = { x = 0 y = 0 }
+      }
+    }
+    division_template = {
+      name = "Kirin Tor Mages"
+      priority = 1
+      regiments = {
+        footman = { x = 0 y = 0 }
+        mage = { x = 0 y = 1 }
+        mage = { x = 0 y = 2 }
+        footman = { x = 1 y = 0 }
+        mage = { x = 1 y = 1 }
+      }
+    }
+    capital_scope = {
+      create_unit = {
+        division = "name = \"Kassans Enforcers\" division_template = \"Kassans Enforcers\" start_experience_factor = 0.5"
+        owner = LOR
+      }
+    } 
+    random_owned_state = {
+			limit = { impassable = no }
+      create_unit = {
+        division = "name = \"Lordaeron Survivors\" division_template = \"Lordaeron Survivors\" start_experience_factor = 0.2"
+        owner = LOR
+      }
+    } 
+    random_owned_state = {
+			limit = { impassable = no }
+      create_unit = {
+        division = "name = \"Lordaeron Survivors\" division_template = \"Lordaeron Survivors\" start_experience_factor = 0.2"
+        owner = LOR
+      }
+    } 
+    random_owned_state = {
+			limit = { impassable = no }
+      create_unit = {
+        division = "name = \"Lordaeron Survivors\" division_template = \"Lordaeron Survivors\" start_experience_factor = 0.2"
+        owner = LOR
+      }
+    } 
+    random_owned_state = {
+			limit = { impassable = no }
+      create_unit = {
+        division = "name = \"Lordaeron Survivors\" division_template = \"Lordaeron Survivors\" start_experience_factor = 0.2"
+        owner = LOR
+      }
+    } 
+    random_owned_state = {
+			limit = { impassable = no }
+      create_unit = {
+        division = "name = \"Loyal Footmen\" division_template = \"Loyal Footmen\" start_experience_factor = 0.4"
+        owner = LOR
+      }
+    } 
+    random_owned_state = {
+			limit = { impassable = no }
+      create_unit = {
+        division = "name = \"Kirin Tor Mages\" division_template = \"Kirin Tor Mages\" start_experience_factor = 0.2"
+        owner = LOR
+      }
+    } 
+  }
+}

@@ -1,0 +1,1136 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	vrykul_animal_cages_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = yes }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_worg_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_reinforced_cages_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_bear_rider_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+		}
+	}
+
+	vrykul_worg_tech = {
+
+		enable_subunits = {
+			vrykul_worg
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_worg_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_worg_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 7 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_worg_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_worg_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_worg_iron_claws_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_worg_powerful_jaws_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 7 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_worg_iron_claws_tech = {
+
+		vrykul_worg = {
+			hard_attack = 0.25
+			ap_attack = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_worg_powerful_jaws_tech }
+
+		path = {
+			leads_to_tech = vrykul_worg_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 6 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_worg_powerful_jaws_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_worg_powerful_jaws_tech
+			}
+		}
+	}
+
+	vrykul_worg_powerful_jaws_tech = {
+
+		vrykul_worg = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_worg_iron_claws_tech }
+
+		path = {
+			leads_to_tech = vrykul_worg_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_worg_iron_claws_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_worg_iron_claws_tech
+			}
+		}
+	}
+
+	vrykul_worg_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_worg_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_worg_pack_leader_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_worg_dash_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_worg_pack_leader_tech = {
+
+		vrykul_worg = {
+			max_organisation = 5
+			defense = 0.05
+			max_strength = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_worg_dash_tech }
+
+		path = {
+			leads_to_tech = vrykul_worg_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_worg_dash_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_worg_dash_tech
+			}
+		}
+	}
+
+	vrykul_worg_dash_tech = {
+
+		vrykul_worg = {
+			maximum_speed = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_worg_pack_leader_tech }
+
+		path = {
+			leads_to_tech = vrykul_worg_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_worg_pack_leader_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_worg_pack_leader_tech
+			}
+		}
+	}
+
+	vrykul_worg_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_worg_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_worg_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_reinforced_cages_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = vrykul_reinforced_cages_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_savage_instincts_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mount_armor_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+
+	}
+
+	vrykul_reinforced_cages_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_reinforced_cages_3
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_savage_instincts_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mount_armor_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+
+	}
+
+	vrykul_reinforced_cages_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_vrykul = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = vrykul_reinforced_cages_4
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_savage_instincts_3
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mount_armor_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+	}
+
+	vrykul_reinforced_cages_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+		
+		path = {
+			leads_to_tech = vrykul_savage_instincts_4
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_mount_armor_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+	}
+
+	vrykul_savage_instincts_1 = {
+
+		vrykul_worg = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_mammoth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 10 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_savage_instincts_2 = {
+
+		vrykul_worg = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_mammoth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_savage_instincts_3 = {
+
+		vrykul_worg = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_mammoth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_savage_instincts_4 = {
+
+		vrykul_worg = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_bear_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		vrykul_mammoth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_mount_armor_1 = {
+
+		vrykul_worg = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_bear_rider = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_mammoth = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 14 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_mount_armor_2 = {
+
+		vrykul_worg = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_bear_rider = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_mammoth = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_mount_armor_3 = {
+
+		vrykul_worg = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_bear_rider = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_mammoth = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 14 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_mount_armor_4 = {
+
+		vrykul_worg = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_bear_rider = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		vrykul_mammoth = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		research_cost = 1.5
+
+		dependencies = { vrykul_keep_tech = 1 }
+		
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			beastiary_technology
+			armor_technology
+		}
+	}
+
+	vrykul_bear_rider_tech = {
+
+		enable_subunits = {
+			vrykul_bear_rider
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_bear_rider_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = huntress_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 17 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_bear_rider_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_bear_rider_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_charge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_bear_rider_reinforced_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_bear_rider_charge_tech = {
+
+		vrykul_bear_rider = {
+			breakthrough = 0.1
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_bear_rider_reinforced_armor_tech }
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_bear_rider_reinforced_armor_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_bear_rider_reinforced_armor_tech
+			}
+		}
+	}
+
+	vrykul_bear_rider_reinforced_armor_tech = {
+
+		vrykul_bear_rider = {
+			breakthrough = 0.1
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_bear_rider_charge_tech }
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 18 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_bear_rider_charge_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_bear_rider_charge_tech
+			}
+		}
+	}
+
+	vrykul_bear_rider_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_bear_rider_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_piercing_spikes_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_bear_rider_deafening_roar_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_bear_rider_piercing_spikes_tech = {
+
+		vrykul_bear_rider = {
+			ap_attack = 0.1
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_bear_rider_deafening_roar_tech }
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_bear_rider_deafening_roar_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_bear_rider_deafening_roar_tech
+			}
+		}
+	}
+
+	vrykul_bear_rider_deafening_roar_tech = {
+
+		vrykul_bear_rider = {
+			armor_value = 0.05
+			hardness = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_bear_rider_piercing_spikes_tech }
+
+		path = {
+			leads_to_tech = vrykul_bear_rider_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_bear_rider_piercing_spikes_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_bear_rider_piercing_spikes_tech
+			}
+		}
+	}
+
+	vrykul_bear_rider_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_bear_rider_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_cavalry_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			vrykul_bear_rider_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

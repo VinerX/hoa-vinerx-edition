@@ -1,0 +1,679 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	pirates_foundry_tech = {
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_supply_wagon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_cannon_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			siege_works_technology
+		}
+	}
+
+	pirates_supply_wagon_tech = {
+
+		enable_subunits = {
+			pirates_supply_wagon
+		}
+
+		on_research_complete = {
+			set_technology = {
+				pirates_supply_wagon_equipment_tech_1 = 1
+			}
+			#custom_effect_tooltip = stolen_supply_wagon_tech_unit_details_tt
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_supply_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_supply_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_supply_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = improved_pirates_supply_wagon_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_pirates_supply_wagon_1 = {
+
+		pirates_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = improved_pirates_supply_wagon_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_pirates_supply_wagon_2 = {
+
+		pirates_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_pirates_supply_wagon_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_pirates_supply_wagon_3 = {
+
+		pirates_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = improved_pirates_supply_wagon_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_pirates_supply_wagon_4 = {
+
+		pirates_supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	pirates_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_cannon_tech = {
+
+		enable_subunits = {
+			pirates_cannon
+			pirates_cannon_support
+		}
+
+		on_research_complete = {
+			set_technology = { pirates_cannon_equipment_tech_1 = 1 }
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_cannon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	pirates_cannon_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_cannon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_cannon_piercing_shot_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_cannon_bolas_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_cannon_piercing_shot_tech = {
+
+		pirates_cannon = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+		pirates_cannon_support = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_cannon_bolas_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_cannon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_cannon_bolas_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_cannon_bolas_shot_tech
+			}
+		}
+	}
+
+	pirates_cannon_bolas_shot_tech = {
+
+		pirates_cannon = {
+			soft_attack = 0.15
+		}
+		pirates_cannon_support = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_cannon_piercing_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_cannon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_cannon_piercing_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_cannon_piercing_shot_tech
+			}
+		}
+	}
+
+	pirates_cannon_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_cannon_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_cannon_reinforced_frame_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_cannon_mobile_frame_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	pirates_cannon_reinforced_frame_tech = {
+
+		pirates_cannon = {
+			armor_value = 0.15
+			reliability_factor = 0.05
+		}
+		pirates_cannon_support = {
+			armor_value = 0.15
+			reliability_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_cannon_mobile_frame_tech }
+
+		path = {
+			leads_to_tech = pirates_cannon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_cannon_mobile_frame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_cannon_mobile_frame_tech
+			}
+		}
+	}
+
+	pirates_cannon_mobile_frame_tech = {
+
+		pirates_cannon = {
+			breakthrough = 0.15
+			anti_air_attack = 2
+		}
+		pirates_cannon_support = {
+			breakthrough = 0.15
+			anti_air_attack = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_cannon_reinforced_frame_tech }
+
+		path = {
+			leads_to_tech = pirates_cannon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_cannon_reinforced_frame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_cannon_reinforced_frame_tech
+			}
+		}
+	}
+
+	pirates_cannon_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_cannon_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			pirates_cannon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

@@ -1,0 +1,53 @@
+horde_generic_historical = {
+	name = "Horde Clans Historical"
+	desc = "Historical generic AI Horde-focused strategy plan for 'horde' oriented nations (orcs, ogres, etc...)."
+
+	enable = {
+		is_historical_focus_on = yes
+
+		OR = {
+			tag = STC
+			tag = BOO
+			has_idea = orc_primary_race
+			has_idea = ogre_primary_race
+			has_idea = pale_orc_primary_race
+			has_idea = forest_troll_primary_race
+		}
+
+		NOT = {
+			tag = BRC # Has its own focus tree
+			tag = DMC # Has its own focus tree
+			tag = BHC # Has its own focus tree
+			tag = MOC # Retreats to Stranglethorn to be neutral
+			tag = THC # Really likes the Old Gods
+		}
+	}
+
+	ai_national_focuses = {
+		pick_a_side
+		generic_support_the_horde_focus
+		generic_horde_embrace_exiles
+		generic_horde_parley_with_mercenaries
+		generic_prove_our_strength_focus
+		generic_horde_demand_respect_focus
+		generic_horde_peacetime_preparations_focus
+		generic_prove_our_strength_focus
+		generic_horde_forging_a_new_nation_focus
+		generic_horde_blood_and_thunder_focus
+		generic_horde_wartime_fervour_focus
+	}
+
+	focus_factors = {
+		support_the_alliance = 0
+		stay_neutral = 0
+		serving_higher_powers = 0
+		path_of_the_titans = 0
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}

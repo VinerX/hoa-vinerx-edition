@@ -1,0 +1,69 @@
+﻿###########################
+# Bloodsail Buccaneers
+###########################
+
+add_namespace = bloodsail_buccaneers_third_war
+
+country_event = { #Landfall
+	id = bloodsail_buccaneers_third_war.1
+	title = bloodsail_buccaneers_third_war.1.t
+	desc = bloodsail_buccaneers_third_war.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = bloodsail_buccaneers_third_war.1.option.1
+		BFT = {
+			declare_war_on = {
+				target = BSB
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = { #Settling the isle
+	id = bloodsail_buccaneers_third_war.2
+	title = bloodsail_buccaneers_third_war.2.t
+	desc = bloodsail_buccaneers_third_war.2.d
+
+	trigger = {
+		tag = BSB
+		BSB = { controls_state = 2138 }
+		BSB = { controls_state = 411 }
+		BSB = { controls_state = 409 }
+		BSB = { controls_state = 410 }
+	}
+
+  fire_only_once = yes
+
+  	option = {
+    	name = bloodsail_buccaneers_third_war.2.option.1
+
+		2138 = {
+			transfer_state_to = BSB
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+			add_core_of = BSB
+		}
+		411 = {
+			transfer_state_to = BSB
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+			add_core_of = BSB
+		}
+		409 = {
+			transfer_state_to = BSB
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+			add_core_of = BSB
+		}
+		410 = {
+			transfer_state_to = BSB
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+			add_core_of = BSB
+		}
+  	}
+}

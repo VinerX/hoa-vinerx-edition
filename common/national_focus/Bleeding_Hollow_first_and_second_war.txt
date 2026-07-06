@@ -1,0 +1,4788 @@
+focus_tree = {
+	id = bleeding_hollow_clan
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = BHC
+		}
+	}
+
+	default = no
+	continuous_focus_position = { x = 1700 y = 1600 }
+
+	focus = {
+		id = BHC_warchiefs_orders
+		icon = GFX_goal_generic_secret_weapon
+		cost = 5
+		x = 10
+		y = 0
+
+		completion_reward = {
+			country_event = bleeding_hollow.1
+		}
+	}
+
+	focus = {
+		id = BHC_clear_out_the_swamp
+		icon = GFX_goal_generic_secret_weapon
+		cost = 14
+		prerequisite = { focus = BHC_warchiefs_orders }
+		relative_position_id = BHC_warchiefs_orders
+		x = -1
+		y = 1
+
+		completion_reward = {
+			403 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			406 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_forward_base_camp
+		icon = GFX_goal_generic_secret_weapon
+		cost = 14
+		prerequisite = { focus = BHC_warchiefs_orders }
+		relative_position_id = BHC_warchiefs_orders
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_manpower = 1000
+			405 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_horrors_below
+		icon = GFX_focus_AST_squander_bug
+		cost = 5
+		prerequisite = { focus = BHC_clear_out_the_swamp }
+		prerequisite = { focus = BHC_forward_base_camp }
+		relative_position_id = BHC_clear_out_the_swamp
+		x = 1
+		y = 1
+
+		will_lead_to_war_with = TSW
+
+		completion_reward = {
+			country_event = bleeding_hollow.16
+		}
+	}
+
+	focus = {
+		id = BHC_kilroggs_vision
+		icon = GFX_goal_generic_secret_weapon
+		cost = 21
+		prerequisite = { focus = BHC_the_horrors_below }
+		x = 18
+		y = 3
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = BHC_the_jungle_fortress
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 30
+		prerequisite = { focus = BHC_the_horrors_below }
+		x = 2
+		y = 3
+
+		completion_reward = {
+			405 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 948
+					instant_build = yes
+				}
+				add_manpower = 500
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_prepare_for_battle
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		cost = 30
+		prerequisite = { focus = BHC_the_horrors_below }
+		x = 7
+		y = 3
+
+		completion_reward = {
+			army_experience = 15
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_swamp_mines
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = { focus = BHC_the_jungle_fortress }
+		x = 0
+		y = 4
+
+		available = {
+			404 = { is_controlled_by_ROOT_or_ally = yes }
+			406 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			404 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			406 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_pig_farms
+		icon = GFX_focus_generic_industry_1
+		cost = 30
+		prerequisite = { focus = BHC_the_jungle_fortress }
+		x = 2
+		y = 4
+
+		available = {
+			407 = { is_controlled_by_ROOT_or_ally = yes }
+			408 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			407 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			408 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = agriculture_technology
+				uses = 1
+				bonus = 0.25
+				category = agriculture_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_harvest_the_jungle
+		icon = GFX_goal_generic_soviet_construction
+		cost = 30
+		prerequisite = { focus = BHC_the_jungle_fortress }
+		x = 4
+		y = 4
+
+		available = {
+			407 = { is_controlled_by_ROOT_or_ally = yes }
+			408 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			if = {
+				limit = { 407 = { NOT = { is_core_of = BHC } } }
+				407 = {	add_compliance = 10 }
+			}
+			407 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { 408 = { NOT = { is_core_of = BHC } } }
+				408 = {	add_compliance = 10 }
+			}
+			408 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_develope_the_jungle
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 21
+		prerequisite = { focus = BHC_swamp_mines }
+		prerequisite = { focus = BHC_pig_farms }
+		x = 1
+		y = 5
+
+		available = {
+			403 = { is_controlled_by_ROOT_or_ally = yes }
+			407 = { is_controlled_by_ROOT_or_ally = yes }
+			408 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			403 = {
+				add_manpower = 1000
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			407 = {
+				add_manpower = 1000
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			408 = {
+				add_manpower = 1000
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_debark_the_spring
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 21
+		prerequisite = { focus = BHC_harvest_the_jungle }
+		prerequisite = { focus = BHC_pig_farms }
+		x = 3
+		y = 5
+
+		available = { 406 = { is_controlled_by_ROOT_or_ally = yes } }
+
+		completion_reward = {
+			406 = {
+				add_manpower = 1500
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+				hidden_effect = {
+					set_state_religion_to_primary_religion = yes
+					set_state_race_to_primary_race = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_watch_towers
+		icon = GFX_goal_generic_radar
+		cost = 21
+		prerequisite = { focus = BHC_develope_the_jungle }
+		x = 1
+		y = 6
+
+		available = { 403 = { is_controlled_by_ROOT_or_ally = yes } }
+
+		completion_reward = {
+			403 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = guard_tower_technology
+				uses = 1
+				bonus = 0.25
+				category = guard_tower_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_hidden_no_longer
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		cost = 30
+		prerequisite = { focus = BHC_watch_towers }
+		prerequisite = { focus = BHC_bleeding_hollow_strongholds }
+		x = 1
+		y = 7
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			if = {
+				limit = { 408 = { is_controlled_by = BHC } }
+				408 = { 
+					add_core_of = BHC 
+					add_manpower = -4000
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			if = {
+				limit = { 407 = { is_controlled_by = BHC } }
+				407 = { 
+					add_core_of = BHC 
+					add_manpower = -6300
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			if = {
+				limit = { 395 = { is_controlled_by = BHC } }
+				395 = { 
+					add_core_of = BHC 
+					add_manpower = -2200
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			if = {
+				limit = { 398 = { is_controlled_by = BHC } }
+				398 = { 
+					add_core_of = BHC 
+					add_manpower = -2800
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			hidden_effect = {
+				2156 = { 
+					add_core_of = BHC 
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = nights_watch_technology
+				uses = 1
+				bonus = 0.50
+				category = nights_watch_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_bleeding_hollow_strongholds
+		icon = GFX_goal_generic_fortify_city
+		cost = 21
+		prerequisite = { focus = BHC_debark_the_spring }
+		x = 3
+		y = 6
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = BHC_moshogg_clan
+				add_idea = BHC_moshogg_clan_2
+			}
+			add_tech_bonus = {
+				name = fortification_technology
+				uses = 1
+				bonus = 0.25
+				category = fortification_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_living_bark
+		icon = GFX_focus_horde_forging_a_nation
+		cost = 21
+		prerequisite = { focus = BHC_watch_towers }
+		prerequisite = { focus = BHC_bleeding_hollow_strongholds }
+		x = 3
+		y = 7
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.05
+			add_tech_bonus = {
+				name = woodworking_technology
+				uses = 1
+				bonus = 0.50
+				category = woodworking_technology
+			}
+			hidden_effect = {
+				add_equipment_to_stockpile = {
+					type = bog_beast_equipment_1
+					amount = -500
+				}
+				add_equipment_to_stockpile = {
+					type = bog_lord_equipment_1
+					amount = -500
+				}
+				add_equipment_to_stockpile = {
+					type = raincaller_equipment_1
+					amount = -500
+				}
+				add_equipment_to_stockpile = {
+					type = spore_equipment
+					amount = -500
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_research_effort
+		icon = GFX_focus_research
+		cost = 30
+		prerequisite = { 
+			focus = BHC_hidden_no_longer 
+			focus = BHC_living_bark
+		}
+		x = 2
+		y = 8
+
+		completion_reward = {
+			add_ideas = BHC_wisdom_of_our_foes
+		}
+	}
+
+	focus = {
+		id = BHC_weapon_improvements
+		icon = GFX_focus_generic_combined_arms
+		cost = 24
+		prerequisite = { focus = BHC_prepare_for_battle	}
+		x = 6
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_technology
+				uses = 1
+				bonus = 0.5
+				category = infantry_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_war_axes
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		cost = 30
+		prerequisite = { focus = BHC_weapon_improvements }
+		prerequisite = { focus = BHC_harvest_the_jungle }
+		x = 5
+		y = 5
+
+		completion_reward = {
+			add_ideas = BHC_war_axes_focus
+		}
+	}
+
+	focus = {
+		id = BHC_improved_catapults
+		icon = GFX_goal_generic_army_artillery2
+		cost = 24
+		prerequisite = { focus = BHC_improved_spears }
+		x = 9
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = catapult_technology
+				bonus = 0.5
+				uses = 1
+				category = catapult_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_improved_spears
+		icon = GFX_focus_generic_air_defense
+		cost = 24
+		prerequisite = { focus = BHC_prepare_for_battle	}
+		x = 8
+		y = 4
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = spearman_technology
+				uses = 1
+				bonus = 0.75
+				category = spearman_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_jungle_hunters
+		icon = GFX_focus_prc_infiltration
+		cost = 24
+		prerequisite = { focus = BHC_improved_spears }
+		prerequisite = { focus = BHC_weapon_improvements }
+		x = 7
+		y = 5
+
+		completion_reward = {
+			hidden_effect = { load_oob = BHC_jungle_hunter }
+			custom_effect_tooltip = BHC_jungle_hunters_tooltip
+		}
+	}
+
+	focus = {
+		id = BHC_expand_west
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = BHC_war_axes
+			focus = BHC_improved_catapults
+		}
+		prerequisite = { focus = BHC_jungle_hunters }
+		x = 2
+		y = 1
+		relative_position_id = BHC_war_axes
+
+		bypass = {
+			OR = {
+				has_war_with = STO
+				BRC = {	has_completed_focus = BRC_send_scouts_north	}
+			}
+		}
+
+		# Prevent the AI from starting the First War most of the time (still letting it happen rarely for extra wackyness)
+		ai_will_do = {
+	        base = 0.1
+	        modifier = {
+	            factor = 2
+	            BRC = {	has_war_with = STO }
+	        }
+			modifier = {
+	            factor = 0
+	            is_historical_focus_on = yes
+	        }
+	    }
+
+		completion_reward = {
+			BHC = {
+				transfer_state = 789
+				transfer_state = 296
+				transfer_state = 42
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_duskwood_campaign
+		icon = GFX_focus_chi_one_china_policy
+		cost = 30
+		prerequisite = { focus = BHC_expand_west }
+		x = 5
+		y = 7
+
+		available = { has_war = no }
+
+		bypass = { has_war_with = STO }
+
+		will_lead_to_war_with = STO
+
+		completion_reward = {
+			365 = { set_demilitarized_zone = no }
+			BHC = { declare_war_on = { target = STO type = annex_everything } }
+		}
+		
+		ai_will_do = { base = 0 }
+	}
+
+	focus = {
+		id = BHC_reinforce_the_lines
+		icon = GFX_focus_horde_orc_warrior
+		cost = 21
+		prerequisite = { focus = BHC_expand_west }
+		x = 7
+		y = 8
+
+		available = { 
+			has_war_with_major = yes 
+			OR = {
+				BHC = {	casualties > 3000 }
+				has_manpower < 250
+			}
+		}
+
+		completion_reward = {
+			add_manpower = 1200
+			division_template = {
+				name = "Bladewind Reavers"
+				priority = 1
+				regiments = {
+					blade_master = { x = 0 y = 0 }
+					grunt = { x = 0 y = 1 }
+					grunt = { x = 0 y = 2 }
+					grunt = { x = 0 y = 3 }
+					blade_master = { x = 1 y = 0 }
+					grunt = { x = 1 y = 1 }
+				}
+			}
+			377 = {
+				create_unit = {
+					division = "name = \"Bladewind Reavers\" division_template = \"Bladewind Reavers\" start_experience_factor = 0.2"
+					owner = BHC
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_fresh_hides
+		icon = GFX_focus_generic_industry_1
+		cost = 24
+		prerequisite = { 
+			focus = BHC_raiders 
+			focus = BHC_counter_hexxers
+		}
+		x = 7
+		y = 11
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = climate_technology
+				uses = 1
+				bonus = 0.5
+				category = climate_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_sacred_rituals
+		icon = GFX_focus_AST_squander_bug
+		cost = 21
+		prerequisite = { focus = BHC_kilroggs_vision }
+		x = 12
+		y = 4
+
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+
+	focus = {
+		id = BHC_blood_soaked_blades
+		icon = GFX_goal_generic_CAS
+		cost = 21
+		prerequisite = { focus = BHC_sacred_rituals }
+		x = 13
+		y = 5
+
+		available = {
+			has_completed_focus = BHC_expand_west
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = BHC_war_axes_focus
+				add_idea = BHC_blood_soaked_blades
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_venoms_of_tanaan
+		icon = GFX_goal_generic_CAS
+		cost = 21
+		prerequisite = { focus = BHC_blood_soaked_blades }
+		x = 13
+		y = 6
+
+		available = {
+			has_completed_focus = BHC_demoralize_the_humans
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_venoms_of_tanaan
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_formalized_ritual_grounds
+		icon = GFX_focus_smiling_buddha
+		cost = 24
+		prerequisite = { 
+			focus = BHC_dire_orc_rituals
+			focus = BHC_venoms_of_tanaan 
+		}
+		x = 13
+		y = 7
+
+		available = {
+			has_idea = BHC_hollow_brutes
+			any_owned_state = {
+				arcane_tower > 2
+				is_core_of = BHC
+			}
+		}
+
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					arcane_tower > 2
+					is_core_of = BHC
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = BHC_hollow_brutes
+				add_idea = BHC_formalized_ritual_grounds
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_siege_behemoths
+		icon = GFX_focus_smiling_buddha
+		cost = 30
+		prerequisite = { focus = BHC_bleeding_hollow_tactics }
+		prerequisite = { focus = BHC_formalized_ritual_grounds }
+		x = 12
+		y = 8
+
+		available = {
+			has_completed_focus = BHC_besiege_stormwind
+			has_completed_focus = BHC_the_siege_of_gnomeregan
+			has_completed_focus = BHC_the_siege_of_ironforge
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_siege_behemoths
+		}
+	}
+
+	focus = {
+		id = BHC_bleeding_hollow_brutes
+		icon = GFX_goal_generic_CAS
+		cost = 24
+		prerequisite = { focus = BHC_sacred_rituals }
+		x = 11
+		y = 5
+
+		completion_reward = {
+			add_ideas = BHC_hollow_brutes
+		}
+	}
+
+	focus = {
+		id = BHC_dire_orc_rituals
+		icon = GFX_focus_smiling_buddha
+		cost = 24
+		prerequisite = { focus = BHC_bleeding_hollow_brutes }
+		x = 11
+		y = 6
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dire_orc_technology
+				uses = 1
+				bonus = 0.5
+				category = dire_orc_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_bleeding_hollow_tactics
+		icon = GFX_goal_demand_sudetenland
+		cost = 21
+		prerequisite = { 
+			focus = BHC_bleeding_hollow_brutes
+			focus = BHC_venoms_of_tanaan 
+		}
+		x = 11
+		y = 7
+
+		available = {
+			has_war = yes
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_jungles_of_stranglethorn
+		icon = GFX_focus_generic_army_tanks2
+		cost = 21
+		prerequisite = { focus = BHC_expand_west }
+		x = 9
+		y = 7
+
+		will_lead_to_war_with = GUR
+
+		available = {
+			NOT = { is_in_faction_with = GUR }
+			304 = { is_controlled_by_ROOT_or_ally = yes }
+			2152 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			BHC = { transfer_state = 272 }
+			GUR = {
+				country_event = { id = gurubashi.18 days = 5 }
+				hidden_effect = {
+					add_ideas = GUR_jungle_troll_war
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_stand_with_the_warchief
+		icon = GFX_focus_blackrock_banner
+		cost = 5
+		prerequisite = { focus = BHC_kilroggs_vision }
+		mutually_exclusive = { focus = BHC_ask_for_guldans_help }
+		relative_position_id = BHC_kilroggs_vision
+		x = -2
+		y = 1
+
+		completion_reward = {
+			set_country_flag = BHC_stand_with_the_warchief
+			add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+			BRC = {
+				add_opinion_modifier = {
+					target = BHC
+					modifier = horde_loyalty
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_frostwolf_riders
+		icon = focus_generic_frostwolf_rider
+		cost = 21
+		prerequisite = { focus = BHC_stand_with_the_warchief }
+		relative_position_id = BHC_kilroggs_vision
+		x = -3
+		y = 2
+
+		completion_reward = {
+			FWC = {
+				add_tech_bonus = {
+					name = raider_technology
+					uses = 1
+					bonus = 0.25
+					category = raider_technology
+				}
+			}
+			add_tech_bonus = {
+				name = raider_technology
+				uses = 1
+				bonus = 0.25
+				category = raider_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_black_tooth_grin_scouts
+		icon = GFX_horde_scouts
+		cost = 21
+		prerequisite = { focus = BHC_stand_with_the_warchief }
+		relative_position_id = BHC_kilroggs_vision
+		x = -1
+		y = 2
+
+		completion_reward = {
+			BTG = {
+				add_tech_bonus = {
+					name = dire_wolf_technology
+					bonus = 0.25
+					uses = 1
+					category = dire_wolf_technology
+				}
+			}
+			add_tech_bonus = {
+				name = dire_wolf_technology
+				bonus = 0.25
+				uses = 1
+				category = dire_wolf_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_jungle_warlords
+		icon = focus_generic_kilrog_deadeye
+		cost = 21
+		prerequisite = { focus = BHC_black_tooth_grin_scouts }
+		relative_position_id = BHC_kilroggs_vision
+		x = -1
+		y = 3
+
+		completion_reward = {
+			BRC = {
+				add_tech_bonus = {
+					name = warlord_technology
+					uses = 1
+					bonus = 0.25
+					category = warlord_technology
+				}
+			}
+			add_tech_bonus = {
+				name = warlord_technology
+				uses = 1
+				bonus = 0.25
+				category = warlord_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_dragonmaw_rylaks
+		icon = focus_generic_rylak
+		cost = 21
+		prerequisite = { focus = BHC_frostwolf_riders }
+		relative_position_id = BHC_kilroggs_vision
+		x = -3
+		y = 3
+
+		completion_reward = {
+			DMC = {
+				add_doctrine_cost_reduction = {
+					name = air_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = air_doctrine
+				}
+				add_breakthrough_progress = {
+					specialization = specialization_air
+					value = 0.25
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_blackrock_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 24
+		prerequisite = { focus = BHC_dragonmaw_rylaks }
+		prerequisite = { focus = BHC_jungle_warlords }
+		relative_position_id = BHC_kilroggs_vision
+		x = -2
+		y = 4
+
+		completion_reward = {
+			if = {
+				limit = { is_in_faction_with = FWC }
+				FWC = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = BTG }
+				BTG = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = DMC }
+				DMC = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = BRC }
+				BRC = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = forge_technology
+				bonus = 0.25
+				uses = 1
+				category = forge_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_ask_for_guldans_help
+		icon = GFX_goal_generic_attack_allies
+		cost = 5
+		prerequisite = { focus = BHC_kilroggs_vision }
+		mutually_exclusive = { focus = BHC_stand_with_the_warchief }
+		relative_position_id = BHC_kilroggs_vision
+		x = 2
+		y = 1
+
+		completion_reward = {
+			set_country_flag = BHC_ask_for_guldans_help
+			add_opinion_modifier = {
+				target = TSC
+				modifier = horde_loyalty
+			}
+			TSC = {
+				add_opinion_modifier = {
+					target = BHC
+					modifier = horde_loyalty
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_shadow_council_warlocks
+		icon = GFX_orc_warlock
+		cost = 24
+		prerequisite = { focus = BHC_twilight_brutes }
+		prerequisite = { focus = BHC_summon_felguards }
+		relative_position_id = BHC_kilroggs_vision
+		x = 2
+		y = 4
+
+		completion_reward = {
+			if = {
+				limit = { is_in_faction_with = BBC }
+				BBC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.25
+						category = warlock_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = TSC }
+				TSC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.25
+						category = warlock_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = THC }
+				THC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.25
+						category = warlock_technology
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				uses = 1
+				bonus = 0.25
+				category = warlock_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_summon_felguards
+		icon = GFX_focus_archimonde_1
+		cost = 21
+		prerequisite = { focus = BHC_burning_blade_masters }
+		relative_position_id = BHC_kilroggs_vision
+		x = 1
+		y = 3
+
+		completion_reward = {
+			add_ideas = BHC_summon_felguards
+		}
+	}
+
+	focus = {
+		id = BHC_burning_blade_masters
+		icon = focus_generic_blademaster
+		cost = 21
+		prerequisite = {focus = BHC_ask_for_guldans_help }
+		relative_position_id = BHC_kilroggs_vision
+		x = 1
+		y = 2
+
+		completion_reward = {
+			BBC = {
+				add_tech_bonus = {
+					name = blade_master_technology
+					uses = 1
+					bonus = 0.25
+					category = blade_master_technology
+				}	
+			}
+			add_tech_bonus = {
+				name = blade_master_technology
+				uses = 1
+				bonus = 0.25
+				category = blade_master_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_twilight_brutes
+		icon = GFX_focus_smiling_buddha
+		cost = 21
+		prerequisite = { focus = BHC_shadow_council_assassins }
+		relative_position_id = BHC_kilroggs_vision
+		x = 3
+		y = 3
+
+		completion_reward = {
+			THC = {
+				add_tech_bonus = {
+					name = dire_orc_technology
+					uses = 1
+					bonus = 0.25
+					category = dire_orc_technology
+				}
+			}
+			add_tech_bonus = {
+				name = dire_orc_technology
+				uses = 1
+				bonus = 0.25
+				category = dire_orc_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_shadow_council_assassins
+		icon = GFX_focus_hun_assassinate_horthy
+		cost = 21
+		prerequisite = { focus = BHC_ask_for_guldans_help }
+		relative_position_id = BHC_kilroggs_vision
+		x = 3
+		y = 2
+
+		completion_reward = {
+			TSC = {
+				add_tech_bonus = {
+					name = assassins_den_technology
+					uses = 1
+					bonus = 0.5
+					category = assassins_den_technology
+				}
+			}
+			add_tech_bonus = {
+				name = assassins_den_technology
+				uses = 1
+				bonus = 0.5
+				category = assassins_den_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_escalate_the_war
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 30
+		prerequisite = { focus = BHC_the_jungles_of_stranglethorn }
+		x = 9
+		y = 8
+
+		bypass = {
+			NOT = { country_exists = GUR }
+			NOT = { country_exists = BLO }
+			NOT = { country_exists = SKU }
+		}
+
+		available = {
+			OR = {
+				has_completed_focus = BHC_the_jungles_of_stranglethorn
+				has_completed_focus = BHC_second_jungle_war
+			}
+			controls_state = 272
+			OR = {
+				has_war_with = GUR
+				GUR = {	has_civil_war = yes	}
+			}
+		}
+
+		will_lead_to_war_with = BLO
+		will_lead_to_war_with = SKU
+
+		completion_reward = {
+			set_country_flag = BHC_ignore_blackhands_orders
+			IF = {
+				limit = { GUR = { has_civil_war = yes } }
+				create_wargoal = { target = GUR	type = annex_everything	}
+			}
+			declare_war_on = { target = BLO type = annex_everything }
+			declare_war_on = { target = SKU type = annex_everything }
+			swap_ideas = {
+				remove_idea = BHC_jungle_troll_war_1
+				add_idea = BHC_jungle_troll_war_2
+			}
+			BLO = { hidden_effect = { add_ideas = GUR_jungle_troll_war } }
+			SKU = {	hidden_effect = { add_ideas = GUR_jungle_troll_war } }
+		}
+	}
+
+	focus = {
+		id = BHC_troll_allies
+		icon = GFX_focus_generic_treaty
+		cost = 14
+		x = 9
+		y = 9
+
+		available = {
+			NOT = {	GUR = {	has_cosmetic_tag = GUR_SLAVE } }
+			is_in_faction_with = GUR
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			GUR = {	add_political_power = 50 }
+		}
+	}
+
+	focus = {
+		id = BHC_our_own_ambitions
+		icon = GFX_focus_ITA_corpo_volontari_della_liberta
+		cost = 30
+		prerequisite = { focus = BHC_escalate_the_war }
+		x = 13
+		y = 9
+
+		available = {
+			#has_country_flag = BHC_honour_our_agreement
+		}
+
+		completion_reward = {
+			IF = {
+				limit = { has_idea = BHC_jungle_troll_war_2 }
+				swap_ideas = {
+					remove_idea = BHC_jungle_troll_war_2
+					add_idea = BHC_jungle_troll_war_3
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_jungle_troll_war_1	}
+				swap_ideas = {
+					remove_idea = BHC_jungle_troll_war_1
+					add_idea = BHC_jungle_troll_war_2
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = BHC_make_examples
+		icon = GFX_focus_generic_conspiracy
+		cost = 30
+		prerequisite = { focus = BHC_our_own_ambitions }
+		mutually_exclusive = { focus = BHC_the_laughing_skull }
+		relative_position_id = BHC_our_own_ambitions
+		x = -1
+		y = 1
+
+		available = {
+			has_manpower > 999
+			44 = { is_controlled_by_ROOT_or_ally = yes }
+			273 = { is_controlled_by_ROOT_or_ally = yes }
+			1612 = { is_controlled_by_ROOT_or_ally = yes }
+			1613 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_manpower = -250
+			771 = { add_core_of = BHC }
+			44 = { add_compliance = 30 }
+			273 = {	add_compliance = 30	}
+			1612 = { add_compliance = 30 }
+			1613 = { add_compliance = 30 }
+		}
+	}
+
+	focus = {
+		id = BHC_stranglehold
+		icon = GFX_focus_SWI_gotthard_league
+		cost = 30
+		prerequisite = { focus = BHC_make_examples }
+		relative_position_id = BHC_our_own_ambitions
+		x = -1
+		y = 2
+
+		available = {
+			has_manpower > 999
+			271 = { is_controlled_by_ROOT_or_ally = yes }
+			272 = { is_controlled_by_ROOT_or_ally = yes }
+			274 = { is_controlled_by_ROOT_or_ally = yes }
+			275 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_manpower = -250
+			369 = { add_compliance = 100 }
+			271 = {	add_compliance = 30	}
+			272 = {	add_compliance = 30	}
+			274 = {	add_compliance = 30	}
+			275 = {	add_compliance = 30	}
+		}
+	}
+
+	focus = {
+		id = BHC_the_laughing_skull
+		icon = GFX_focus_generic_japanese_imperial_glory
+		cost = 30
+		prerequisite = { focus = BHC_our_own_ambitions }
+		mutually_exclusive = { focus = BHC_make_examples }
+		relative_position_id = BHC_our_own_ambitions
+		x = 1
+		y = 1
+
+		available = {
+			44 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_manpower = 1000
+			custom_effect_tooltip = puppet_sane_laughing_skull_tt
+			create_dynamic_country = {
+					original_tag = LSC
+					copy_tag = LSC
+					transfer_state = 44
+					hidden_effect = {
+					set_country_flag = orc_technology
+					set_country_flag = Invasion_Clan
+					set_country_flag = LSC_new_world
+					set_capital = { state = 44 }
+					add_manpower = 1000
+					add_ideas = clan
+					add_ideas = limited_conscription
+					add_ideas = preparing_for_war
+					add_ideas = orc_primary_race
+					add_ideas = primary_trait_hardness
+					add_ideas = primary_trait_bloodfury
+					add_ideas = primary_trait_axe_specialization
+					country_event = { id = bleeding_hollow.6 }
+					create_country_leader = {
+						name = "Kraga the Cackler"
+						picture = "gfx/leaders/LSC/obris.dds"
+						expire = "1965.1.1"
+						ideology = fel_type
+						traits = { enslaver }
+					}
+					create_country_leader = {
+						name = "Kraga the Cackler"
+						picture = "gfx/leaders/LSC/obris.dds"
+						expire = "1965.1.1"
+						ideology = horde_type
+						traits = { enslaver }
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_home_among_the_horde
+		icon = GFX_focus_generic_forest_brothers
+		cost = 30
+		prerequisite = { focus = BHC_the_laughing_skull }
+		relative_position_id = BHC_our_own_ambitions
+		x = 1
+		y = 2
+
+		available = {
+			44 = { is_controlled_by_ROOT_or_ally = yes }
+			273 = { is_controlled_by_ROOT_or_ally = yes }
+			279 = { is_controlled_by_ROOT_or_ally = yes }
+			280 = { is_controlled_by_ROOT_or_ally = yes }
+			281 = { is_controlled_by_ROOT_or_ally = yes }
+			1609 = { is_controlled_by_ROOT_or_ally = yes }
+			1610 = { is_controlled_by_ROOT_or_ally = yes }
+			1611 = { is_controlled_by_ROOT_or_ally = yes }
+			1612 = { is_controlled_by_ROOT_or_ally = yes }
+			1613 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = offer_the_LSC_a_home_tt
+		}
+	}
+
+	focus = {
+		id = BHC_pillage_duskwood
+		icon = GFX_goal_generic_war_with_comintern
+		cost = 21
+		prerequisite = { focus = BHC_forward_outpost }
+		x = 5
+		y = 9
+
+		available = {
+			40 = { is_controlled_by_ROOT_or_ally = yes }
+			305 = { is_controlled_by_ROOT_or_ally = yes }
+			306 = { is_controlled_by_ROOT_or_ally = yes }
+			307 = { is_controlled_by_ROOT_or_ally = yes }
+			308 = { is_controlled_by_ROOT_or_ally = yes }
+			309 = { is_controlled_by_ROOT_or_ally = yes }
+			310 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_pillage_duskwood
+				days = 120
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_forward_outpost
+		icon =  GFX_goal_generic_radar
+		cost = 24
+		prerequisite = { focus = BHC_the_duskwood_campaign }
+		x = 5
+		y = 8
+
+		available = {
+			1603 = { is_controlled_by_ROOT_or_ally = yes }
+			1601 = { is_controlled_by_ROOT_or_ally = yes }
+			310 = { is_controlled_by_ROOT_or_ally = yes }
+			309 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			309 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_zulhollow
+		icon = GFX_focus_man_claim_the_mandate_of_heaven
+		cost = 30
+		prerequisite = { focus = BHC_enslave_the_gurubashi }
+		relative_position_id = BHC_our_own_ambitions
+		x = 0
+		y = 4
+
+		available = {
+			21 = { is_controlled_by_ROOT_or_ally = yes }
+			267 = { is_controlled_by_ROOT_or_ally = yes }
+			268 = { is_controlled_by_ROOT_or_ally = yes }
+			269 = { is_controlled_by_ROOT_or_ally = yes }
+			1604 = { is_controlled_by_ROOT_or_ally = yes }
+			1605 = { is_controlled_by_ROOT_or_ally = yes }
+			1606 = { is_controlled_by_ROOT_or_ally = yes }
+			1607 = { is_controlled_by_ROOT_or_ally = yes }
+			1608 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			set_capital = { state = 21 }
+			21 = {
+				add_core_of = BHC
+				set_state_name = "Zul'Hollow"
+				set_province_name = { id = 399 name = "Zul'Hollow" }
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			267 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			268 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			269 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			271 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			272 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			274 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			275 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1604 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1605 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1606 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1607 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			1608 = {
+				add_core_of = BHC
+				hidden_effect = {
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			hidden_effect = {
+				369 = {
+					add_core_of = BHC
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}	
+				270 = {
+					add_core_of = BHC
+					transfer_state_to = BHC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				set_country_flag = zul_hollow_achievement
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_submit_or_die
+		icon = GFX_focus_genric_rend_blackhand
+		cost = 21
+		prerequisite = { focus = BHC_zulhollow }
+		relative_position_id = BHC_our_own_ambitions
+		x = 0
+		y = 5
+
+		completion_reward = {
+			DST = { country_event = bleeding_hollow.18 }
+		}
+	}
+
+	focus = {
+		id = BHC_bleeding_hollow_spearman
+		icon = GFX_focus_secret_rearmament
+		cost = 24
+		prerequisite = { focus = BHC_adapt_war_plan }
+		prerequisite = { focus = BHC_forward_outpost }
+		x = 4
+		y = 10
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spearman_technology
+				uses = 1
+				bonus = 0.5
+				category = spearman_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_adapt_war_plan
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = {
+			focus = BHC_escalate_the_war
+			focus = BHC_forward_outpost
+		}
+		x = 7
+		y = 9
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_raiders
+		icon = GFX_goal_generic_cavalry
+		cost = 24
+		prerequisite = { focus = BHC_adapt_war_plan }
+		prerequisite = { focus = BHC_forward_outpost }
+		x = 6
+		y = 10
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = raider_technology
+				uses = 1
+				bonus = 0.5
+				category = raider_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_besiege_stormwind
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		cost = 14
+		prerequisite = { focus = BHC_bleeding_hollow_spearman }
+		prerequisite = { focus = BHC_raiders }
+		x = 5
+		y = 11
+
+		available = { always = no }
+
+		bypass = {
+			NOT = { has_war_with = STO }
+		}
+
+		completion_reward = {
+			every_country = {
+				limit = { is_in_faction_with = BHC }
+				add_timed_idea = {
+					idea = BHC_besiege_stormwind
+					days = 120
+				}
+			}
+			STO = {
+				add_timed_idea = {
+					idea = BHC_enforced_rationing
+					days = 120
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_demoralize_the_humans
+		icon = GFX_goal_generic_propaganda
+		cost = 30
+		prerequisite = { focus = BHC_besiege_stormwind }
+		x = 5
+		y = 12
+
+		available = {
+			NOT = {	has_war_with = STO }
+			STO = {	has_country_flag = STO_REF }
+		}
+
+		completion_reward = {
+			309 = { add_compliance = 20 }
+			301 = {	add_compliance = 15	}
+			308 = {	add_compliance = 10	}
+			304 = {	add_compliance = 10	}
+			1600 = { add_compliance = 10 }
+			1603 = { add_compliance = 10 }
+			hidden_effect = {
+				every_controlled_state = {
+					limit = { 
+						impassable = yes 
+						is_core_of = STO
+					}
+					add_core_of = BHC
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_dismantle_equipment
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		cost = 30
+		prerequisite = { focus = BHC_demoralize_the_humans }
+		x = 6
+		y = 13
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = BHC_dismantle_equipment
+				uses = 3
+				bonus = 0.25
+				category = grunt_technology
+				category = spearman_technology
+				category = orc_catapult_technology
+				category = raider_technology
+				category = blade_master_technology
+				category = warlord_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_fel_fragments
+		icon = GFX_focus_promise_of_power
+		cost = 30
+		prerequisite = { focus = BHC_demoralize_the_humans }
+		x = 4
+		y = 13
+
+		available = {
+			25 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				uses = 1
+				bonus = 1
+				category = warlock_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+			if = {
+				limit = { 25 = { is_controlled_by = DWC } }
+				add_tech_bonus = {
+					name = spellcaster_technology
+					uses = 1
+					bonus = 0.5
+					category = spellcaster_technology
+				}
+			}
+			if = {
+				limit = { SRC = { is_in_faction_with = BHC} }
+				SRC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.50
+						category = warlock_technology
+					}
+				}
+			}
+			if = {
+				limit = { TSC = { is_in_faction_with = BHC } }
+				TSC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.50
+						category = warlock_technology
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_double_nights_watch
+		icon = GFX_goal_generic_special_forces
+		cost = 24
+		prerequisite = { focus = BHC_adapt_war_plan	}
+		prerequisite = {
+			focus = BHC_escalate_the_war
+			focus = BHC_troll_allies
+		}
+		x = 10
+		y = 10
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nights_watch_technology
+				uses = 1
+				bonus = 1
+				category = nights_watch_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_counter_hexxers
+		icon = GFX_focus_hol_the_foundations_of_defense
+		cost = 24
+		prerequisite = { focus = BHC_adapt_war_plan	}
+		prerequisite = {
+			focus = BHC_escalate_the_war
+			focus = BHC_troll_allies
+		}
+		x = 8
+		y = 10
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spellcaster_technology
+				uses = 1
+				bonus = 0.5
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_keep_the_jungle_at_bay
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		cost = 30
+		prerequisite = { focus = BHC_counter_hexxers }
+		prerequisite = { focus = BHC_double_nights_watch }
+		x = 9
+		y = 11
+
+		available = {
+			2152 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		bypass = {
+			OR = {
+				is_in_faction_with = GUR
+				NOT = { country_exists = GUR }
+			}
+			NOT = { country_exists = BLO }
+			NOT = { country_exists = SKU }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_hold_the_line
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_enslave_the_gurubashi
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = {
+			focus = BHC_home_among_the_horde
+			focus = BHC_stranglehold
+		}
+		relative_position_id = BHC_our_own_ambitions
+		x = 0
+		y = 3
+
+		available = {
+			GUR = {	
+				OR = {
+					exists = no	
+					is_puppet_of = BHC
+				}
+			}
+			276 = { is_controlled_by_ROOT_or_ally = yes }
+			277 = { is_controlled_by_ROOT_or_ally = yes }
+			278 = { is_controlled_by_ROOT_or_ally = yes }
+			282 = { is_controlled_by_ROOT_or_ally = yes }
+			283 = { is_controlled_by_ROOT_or_ally = yes }
+			290 = { is_controlled_by_ROOT_or_ally = yes }
+			754 = { is_controlled_by_ROOT_or_ally = yes }
+			795 = { is_controlled_by_ROOT_or_ally = yes }
+			2082 = { is_controlled_by_ROOT_or_ally = yes }
+			2146 = { is_controlled_by_ROOT_or_ally = yes }
+			2149 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			BHC = {
+				if = {
+					limit = { has_dlc = "Together for Victory" }
+					set_autonomy = {
+						target = GUR
+						autonomous_state = autonomy_enslaved
+						freedom_level = 0.20
+					}
+					else = { puppet = GUR }
+				}
+				hidden_effect = {
+					GUR = {
+						if = {
+							limit = { BHC = { has_government = horde } }
+							set_popularities = {
+								alliance = 0
+								horde = 60
+								death = 0
+								fel = 12
+								old_gods = 8
+								titans = 0
+								neutral = 20
+							}
+						}
+						if = {
+							limit = { BHC = { has_government = fel } }
+							set_popularities = {
+								alliance = 0
+								horde = 12
+								death = 0
+								fel = 60
+								old_gods = 8
+								titans = 0
+								neutral = 20
+							}
+						}
+					}
+				}
+			}
+			283 = {
+				set_state_name = "Shattered Arena"
+				set_province_name = { id = 5602 name = "Shattered Arena" }
+				add_core_of = GUR 
+				hidden_effect = { transfer_state_to = GUR }
+			}
+			GUR = {
+				set_capital = { state = 283 }
+				hidden_effect = {
+					transfer_state = 276
+					transfer_state = 277
+					transfer_state = 278
+					transfer_state = 282
+					transfer_state = 290
+					transfer_state = 754
+					transfer_state = 2082
+					389 = { 
+						add_core_of = GUR 
+						transfer_state_to = GUR
+					}
+					2149 = { 
+						add_core_of = GUR 
+						transfer_state_to = GUR
+					}
+				}
+				hidden_effect = {
+					clr_country_flag = troll_technology
+					remove_ideas = jungle_troll_primary_race
+					remove_ideas = primary_trait_regeneration
+					remove_ideas = primary_trait_honored_warriors
+					remove_ideas = primary_religion_loa_spirits
+					add_ideas = clan
+					add_ideas = limited_conscription
+					add_ideas = preparing_for_war
+					add_ideas = orc_primary_race
+					add_ideas = primary_trait_hardness
+					add_ideas = primary_trait_bloodfury
+					add_ideas = primary_trait_axe_specialization
+					add_ideas = primary_religion_demonology
+					add_ideas = slavers_guild
+					set_country_flag = orc_technology
+					inherit_technology = SHC
+					add_manpower = 1000
+					kill_country_leader = yes
+					set_cosmetic_tag = GUR_SLAVE
+					set_country_flag = slave_traders
+					create_country_leader = {
+						name = "Grom'ka Blackblade"
+						picture = "gfx/leaders/SHC/bagdoth_goredrinker.dds"
+						expire = "1965.1.1"
+						ideology = fel_type
+						traits = { enslaver }
+					}
+					create_country_leader = {
+						name = "Grom'ka Blackblade"
+						picture = "gfx/leaders/SHC/bagdoth_goredrinker.dds"
+						expire = "1965.1.1"
+						ideology = horde_type
+						traits = { enslaver }
+					}
+					add_opinion_modifier = {
+						target = SHC
+						modifier = clansmen
+					}
+					reverse_add_opinion_modifier = {
+						target = SHC
+						modifier = clansmen
+					}
+				}
+				hidden_effect = {
+					division_template = {
+						name = "Shattered Hand Overseers"
+						priority = 1
+						regiments = {
+							grunt = { x = 0 y = 0 }
+							grunt = { x = 0 y = 1 }
+							grunt = { x = 0 y = 2 }
+							grunt = { x = 0 y = 3 }
+							grunt = { x = 1 y = 0 }
+							grunt = { x = 1 y = 1 }
+						}
+						support = {
+							overseer = {x = 0 y = 0	}
+						}
+					}
+					276 = {
+						create_unit = {
+							division = "name = \"Shattered Hand Overseers\" division_template = \"Shattered Hand Overseers\" start_experience_factor = 0.2"
+							owner = GUR
+						}
+					}
+					277 = {
+						create_unit = {
+							division = "name = \"Shattered Hand Overseers\" division_template = \"Shattered Hand Overseers\" start_experience_factor = 0.2"
+							owner = GUR
+						}
+					}
+					278 = {
+						create_unit = {
+							division = "name = \"Shattered Hand Overseers\" division_template = \"Shattered Hand Overseers\" start_experience_factor = 0.2"
+							owner = GUR
+						}
+					}
+					283 = {
+						create_unit = {
+							division = "name = \"Shattered Hand Overseers\" division_template = \"Shattered Hand Overseers\" start_experience_factor = 0.2"
+							owner = GUR
+							count = 2
+						}
+					}
+				}
+			}
+			GUR = {
+				give_resource_rights = { receiver = BHC state = 276	}
+				give_resource_rights = { receiver = BHC state = 277	}
+				give_resource_rights = { receiver = BHC state = 278	}
+				give_resource_rights = { receiver = BHC state = 282	}
+				give_resource_rights = { receiver = BHC state = 2082 }
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_human_agriculture
+		icon = GFX_focus_generic_industry_1
+		cost = 24
+		prerequisite = { focus = BHC_forward_outpost }
+		prerequisite = { focus = BHC_research_effort }
+		x = 3
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = agriculture_technology
+				bonus = 1
+				uses = 1
+				category = agriculture_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_study_human_armor
+		icon = GFX_goal_generic_defence
+		cost = 24
+		prerequisite = { focus = BHC_forward_outpost }
+		prerequisite = { focus = BHC_research_effort }
+		x = 1
+		y = 9
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 1
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_a_daughters_betrayal
+		icon = GFX_focus_smiling_buddha
+		cost = 24
+		prerequisite = { focus = BHC_study_human_fortifications }
+		x = 1
+		y = 11
+
+		available = {
+			142 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = {
+				name = overseer_technology
+				uses = 1
+				bonus = 0.50
+				category = overseer_technology
+			}
+			142 = { add_compliance = 20	}
+			hidden_effect = {
+				BTG = {	retire_character = BTG_griselda_blackhand }
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_loyalty_rewarded
+		icon = GFX_focus_smiling_buddha
+		cost = 24
+		prerequisite = { focus = BHC_a_daughters_betrayal }
+		x = 1
+		y = 12
+
+		available = {
+			DWC = { controls_state = 25	}
+			SFC = { controls_state = 304 }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = BHC_deadwind_clan
+				add_idea = BHC_deadwind_clan_2
+			}
+			swap_ideas = {
+				remove_idea = BHC_splinter_fist_clan
+				add_idea = BHC_splinter_fist_clan_2
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_take_what_is_ours
+		icon = GFX_focus_shendralar_ruined_city
+		cost = 30
+		prerequisite = {
+			focus = BHC_loyalty_rewarded
+			focus = BHC_iron_tracks
+		}
+		x = 2
+		y = 13
+
+		available = {
+			STO = {	has_country_flag = STO_REF }
+			NOT = { controls_state = 143 }
+		}
+
+		completion_reward = {
+			1594 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+			}
+			38 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+			}
+			143 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+			}
+			309 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_study_human_fortifications
+		icon = GFX_goal_generic_radar
+		cost = 24
+		prerequisite = { focus = BHC_study_human_armor }
+		prerequisite = { focus = BHC_human_agriculture }
+		x = 2
+		y = 10
+
+		available = {
+			146 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = guard_tower_technology
+				uses = 1
+				bonus = 0.50
+				category = guard_tower_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_study_the_deepmines
+		icon = GFX_focus_generic_steel
+		cost = 24
+		prerequisite = { focus = BHC_study_human_fortifications }
+		x = 3
+		y = 11
+
+		available = {
+			142 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = mine_technology
+				bonus = 1
+				uses = 1
+				category = mine_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_iron_tracks
+		icon = GFX_focus_generic_steel
+		cost = 24
+		prerequisite = { focus = BHC_study_the_deepmines }
+		x = 3
+		y = 12
+
+		available = {
+			142 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_adapt_to_trolls
+		icon = GFX_goal_generic_army_doctrines
+		cost = 30
+		prerequisite = { focus = BHC_keep_the_jungle_at_bay }
+		x = 9
+		y = 12
+
+		available = {
+			OR = {
+				has_war_with = GUR
+				has_war_with = BLO
+				has_war_with = SKU
+				is_in_faction_with = GUR
+			}
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_jungle_warfare
+		icon = GFX_focus_LIT_new_kind_of_iron_wolf
+		cost = 30
+		prerequisite = { focus = BHC_adapt_to_trolls }
+		x = 8
+		y = 13
+
+		completion_reward = {
+			complete_special_project = sp:sp_jungle_defiance
+		}
+	}
+
+	focus = {
+		id = BHC_loa_gods
+		icon = GFX_focus_SOV_transcaucasian_republic
+		cost = 24
+		prerequisite = { focus = BHC_adapt_to_trolls }
+		x = 10
+		y = 13
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spellcaster_technology
+				uses = 1
+				bonus = 0.5
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_new_warchief
+		icon = GFX_focus_generic_strike_at_democracy1
+		cost = 21
+		prerequisite = {
+			focus = BHC_blackrock_forges
+			focus = BHC_shadow_council_warlocks
+		}
+		relative_position_id = BHC_kilroggs_vision
+		x = 0
+		y = 5
+
+		available = {
+			BRC = {
+				OR = {
+					has_completed_focus = BRC_blackhands_horde
+					has_completed_focus = BRC_doomhammers_horde
+				}
+			}
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_second_jungle_war
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 30
+		prerequisite = { focus = BHC_the_new_warchief }
+		relative_position_id = BHC_kilroggs_vision
+		x = -1
+		y = 6
+
+		will_lead_to_war_with = GUR
+
+		available = {
+			OR = {
+				LOR = {	is_puppet_of = BRC }
+				NOT = { country_exists = LOR }
+			}
+			NOT = { is_in_faction_with = GUR }
+			304 = { is_controlled_by_ROOT_or_ally = yes }
+			2152 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		bypass = {
+			OR = {
+				GUR = {	is_puppet_of = BHC }
+				NOT = { country_exists = GUR }
+			}
+		}
+
+		completion_reward = {
+			BHC = {
+				transfer_state = 272
+				add_ideas = BHC_jungle_troll_war_1
+				complete_national_focus = BHC_our_own_ambitions
+			}
+			GUR = {
+				country_event = { id = gurubashi.18 days = 5 }
+				add_ideas = GUR_jungle_troll_war
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_unexpected_ally
+		icon = GFX_focus_generic_strike_at_democracy1
+		cost = 24
+		prerequisite = { focus = BHC_the_new_warchief }
+		relative_position_id = BHC_kilroggs_vision
+		x = 1
+		y = 6
+
+		available = {
+			OR = {
+				is_in_faction_with = THC
+				is_in_faction_with = DMC
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = { is_in_faction_with = THC }
+				army_experience = 15
+				add_political_power = 50
+				THC = {
+					army_experience = 15
+					add_political_power = 50
+				}
+			}
+			else_if = {
+				limit = { is_in_faction_with = DMC }
+				army_experience = 15
+				add_political_power = 50
+				DMC = {
+					army_experience = 15
+					add_political_power = 50
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_learn_from_the_clans
+		icon = GFX_goal_generic_dangerous_deal
+		cost = 21
+		prerequisite = { focus = BHC_unexpected_ally }
+		relative_position_id = BHC_kilroggs_vision
+		x = 1
+		y = 7
+
+		available = {
+			OR = {
+				is_in_faction_with = THC
+				is_in_faction_with = DMC
+				is_in_faction_with = BRC
+				is_in_faction_with = TSC
+			}
+		}
+
+		completion_reward = {
+			country_event = bleeding_hollow.17
+		}
+	}
+
+	focus = {
+		id = BHC_ordered_north
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 14
+		x = 33
+		y = 3
+
+		available = {
+			has_completed_focus = BHC_the_new_warchief
+		}
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = BHC_battle_for_khaz_modan
+		icon = GFX_goal_demand_sudetenland
+		cost = 14
+		prerequisite = { focus = BHC_ordered_north }
+		x = 26
+		y = 4
+
+		available = { has_war_with = IRO }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = orc_weapon_technology
+				bonus = 0.5
+				uses = 1
+				category = orc_weapon_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_dwarven_tactics
+		icon = GFX_focus_secret_rearmament
+		cost = 21
+		prerequisite = { focus = BHC_battle_for_khaz_modan }
+		x = 24
+		y = 5
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_recovered_siege_equipment
+		icon = GFX_goal_generic_army_artillery
+		cost = 21
+		prerequisite = { focus = BHC_dwarven_tactics }
+		x = 23
+		y = 6
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = dwarf_mortar_team_equipment_1
+			    amount = 50
+			    producer = IRO
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_reverse_engineering
+		icon = GFX_focus_research
+		cost = 30
+		prerequisite = { focus = BHC_recovered_siege_equipment }
+		x = 23
+		y = 7
+
+		completion_reward = {
+			set_technology = { BHC_powder_keg_tech = 1 }
+			custom_effect_tooltip = BHC_powder_keg_tech_tt
+		}
+	}
+
+	focus = {
+		id = BHC_pillage_kharanos
+		icon = GFX_focus_generic_anti_fascist_diplomacy
+		cost = 30
+		prerequisite = { focus = BHC_dwarven_tactics }
+		x = 25
+		y = 6
+
+		available = {
+			445 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_pillaged_kharanos
+				days = 120
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_forced_labour
+		icon = GFX_focus_YUG_pan_slavic_congress
+		cost = 30
+		prerequisite = { focus = BHC_pillage_kharanos }
+		x = 25
+		y = 7
+
+		available = {
+			446 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			add_ideas = BHC_dwarven_labour
+		}
+	}
+
+	focus = {
+		id = BHC_the_siege_of_ironforge
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = BHC_reverse_engineering }
+		prerequisite = { focus = BHC_forced_labour }
+		x = 24
+		y = 8
+
+		available = { always = no }
+
+		bypass = {
+			NOT = { has_war_with = IRO }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_besiege_ironforge
+				days = 180
+			}
+			every_country = {
+				limit = { is_in_faction_with = BHC }
+				add_timed_idea = {
+					idea = BHC_besiege_ironforge
+					days = 180
+				}
+			}
+			IRO = {
+				add_timed_idea = {
+					idea = BHC_enforced_rationing
+					days = 180
+				}
+			}
+			activate_mission = BHC_siege_of_ironforge
+		}
+	}
+
+	focus = {
+		id = BHC_pillage_ironforge
+		icon = GFX_focus_shendralar_ruined_city
+		cost = 30
+		prerequisite = { focus = BHC_the_siege_of_ironforge }
+		x = 24
+		y = 9
+
+		available = {
+			430 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_pillage_ironforge_idea
+				days = 180
+			}
+
+			430 = {
+				remove_building = {
+					type = industrial_complex
+					level = 2
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 6
+				}
+			}
+
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_black_tooth_grin_scouts_second_war
+		icon = GFX_goal_generic_cavalry
+		cost = 24
+		prerequisite = { focus = BHC_battle_for_khaz_modan }
+		x = 28
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = outrider_technology
+				bonus = 0.50
+				uses = 1
+				category = outrider_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_ransack_airfield
+		icon = GFX_goal_generic_air_fighter2
+		cost = 21
+		prerequisite = { focus = BHC_black_tooth_grin_scouts_second_war }
+		x = 27
+		y = 6
+
+		available = {
+			438 = {	is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = fighter_equipment
+			    amount = 20
+			    producer = GNO
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_angled_plates
+		icon = GFX_goal_generic_defence
+		cost = 30
+		prerequisite = { focus = BHC_ransack_airfield }
+		x = 27
+		y = 7
+
+		completion_reward = {
+			set_technology = { BHC_angled_plates_tech = 1 }
+			custom_effect_tooltip = BHC_angled_plates_tech_tt
+		}
+	}
+
+	focus = {
+		id = BHC_flight_information
+		icon = GFX_goal_generic_army_artillery
+		cost = 30
+		prerequisite = { focus = BHC_black_tooth_grin_scouts_second_war }
+		x = 29
+		y = 6
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.25
+			}
+			if = {
+				limit = { DMC = { is_in_faction_with = BHC } }
+				DMC = {
+					add_doctrine_cost_reduction = {
+						name = air_doc_bonus
+						cost_reduction = 0.25
+						uses = 1
+						category = air_doctrine
+					}
+					add_breakthrough_progress = {
+						specialization = specialization_air
+						value = 0.25
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_gnome_labour
+		icon = GFX_focus_YUG_pan_slavic_congress
+		cost = 30
+		prerequisite = { focus = BHC_flight_information }
+		x = 29
+		y = 7
+
+		available = {
+			437 = { is_controlled_by_ROOT_or_ally = yes	}
+			438 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			add_ideas = BHC_gnome_labour_idea
+		}
+	}
+
+	focus = {
+		id = BHC_the_siege_of_gnomeregan
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = BHC_angled_plates }
+		prerequisite = { focus = BHC_gnome_labour }
+		x = 28
+		y = 8
+
+		available = { always = no }
+
+		bypass = {
+			NOT = { has_war_with = GNO }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_besiege_gnomeregan
+				days = 180
+			}
+			every_country = {
+				limit = { is_in_faction_with = BHC }
+				add_timed_idea = {
+					idea = BHC_besiege_gnomeregan
+					days = 180
+				}
+			}
+			GNO = {
+				add_timed_idea = {
+					idea = BHC_enforced_rationing
+					days = 180
+				}
+			}
+			activate_mission = BHC_siege_of_gnomeregan
+		}
+	}
+
+	focus = {
+		id = BHC_pillage_gnomeregan
+		icon = GFX_focus_shendralar_ruined_city
+		cost = 30
+		prerequisite = { focus = BHC_the_siege_of_gnomeregan }
+		x = 28
+		y = 9
+
+		available = {
+			422 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_pillage_gnomeregan_idea
+				days = 180
+			}
+
+			422 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 2
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 7
+				}
+			}
+
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+		}
+	}
+
+	focus = {
+		id = BHC_into_the_loch
+		icon = GFX_goal_demand_sudetenland
+		cost = 14
+		prerequisite = { focus = BHC_ordered_north }
+		x = 39
+		y = 4
+
+		available = { has_war_with = IRO }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = BHC_break_dwarf
+				days = 120
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_elven_lodge
+		icon = GFX_focus_generic_air_defense
+		cost = 24
+		prerequisite = { focus = BHC_into_the_loch }
+		x = 40
+		y = 5
+
+		available = {
+			473 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			set_technology = { BHC_huntsman_bow_tech = 1 }
+			custom_effect_tooltip = BHC_huntsman_bow_tech_tt
+		}
+	}
+
+	focus = {
+		id = BHC_gather_the_warriors
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = BHC_into_the_loch }
+		x = 38
+		y = 5
+
+		available = {
+			461 = {	is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_malformed_brutes
+		icon = GFX_goal_generic_secret_weapon
+		cost = 24
+		prerequisite = { 
+			focus = BHC_gather_the_warriors 
+			focus = BHC_elven_lodge
+		}
+		x = 40
+		y = 6
+
+		available = {
+			465 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			465 = {
+				transfer_state_to = BHC
+				add_claim_by = BHC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_ambush_the_north_gate
+		icon = GFX_goal_generic_fortify_city
+		cost = 24
+		prerequisite = { 
+			focus = BHC_gather_the_warriors 
+			focus = BHC_elven_lodge
+		}
+		x = 38
+		y = 6
+
+		available = {
+			OR = {
+				469 = { is_controlled_by_ROOT_or_ally = yes }
+				2186 = { is_controlled_by_ROOT_or_ally = yes }
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nights_watch_technology
+				bonus = 0.50
+				uses = 1
+				category = nights_watch_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_eastern_ruins
+		icon = GFX_goal_generic_dangerous_deal
+		cost = 21
+		prerequisite = { 
+			focus = BHC_ambush_the_north_gate 
+			focus = BHC_malformed_brutes
+		}
+		x = 40
+		y = 7
+
+		available = {
+			37 = { is_controlled_by_ROOT_or_ally = yes }
+			472 = { is_controlled_by_ROOT_or_ally = yes }
+			2187 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			BHC = { 
+				puppet = MOG
+				hidden_effect = {
+					MOG = {
+						if = {
+							limit = { BHC = { has_government = horde } }
+							set_popularities = {
+								alliance = 0
+								horde = 60
+								death = 0
+								fel = 12
+								old_gods = 0
+								titans = 0
+								neutral = 28
+							}
+						}
+						if = {
+							limit = { BHC = { has_government = fel } }
+							set_popularities = {
+								alliance = 0
+								horde = 12
+								death = 0
+								fel = 60
+								old_gods = 0
+								titans = 0
+								neutral = 28
+							}
+						}
+					}
+				} 
+			}
+			37 = {
+				transfer_state_to = MOG
+				add_core_of = MOG
+				hidden_effect = {
+					set_variable = { var = race value = 95 }
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			472 = { transfer_state_to = MOG }
+			2187 = { transfer_state_to = MOG }
+			hidden_effect = {
+				MOG = {
+					remove_ideas = MOG_Dwarf_Ambush
+					division_template = {
+						name = "Mo'grosh Ogres"
+						priority = 1
+						regiments = {
+							ogre_brute = { x = 0 y = 0 }
+							ogre_brute = { x = 0 y = 1 }
+							ogre_brute = { x = 0 y = 2 }
+							ogre_brute = { x = 0 y = 3 }
+							ogre_brute = { x = 1 y = 0 }
+							ogre_brute = { x = 1 y = 1 }
+						}
+					}
+					37 = {
+						create_unit = {
+							division = "name = \"Mo'grosh Ogres\" division_template = \"Mo'grosh Ogres\" start_experience_factor = 0.2"
+							owner = MOG
+						}
+						create_unit = {
+							division = "name = \"Mo'grosh Ogres\" division_template = \"Mo'grosh Ogres\" start_experience_factor = 0.2"
+							owner = MOG
+						}
+						create_unit = {
+							division = "name = \"Mo'grosh Ogres\" division_template = \"Mo'grosh Ogres\" start_experience_factor = 0.2"
+							owner = MOG
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_through_the_valleys
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+		cost = 24
+		prerequisite = { 
+			focus = BHC_ambush_the_north_gate 
+			focus = BHC_malformed_brutes
+		}
+		x = 38
+		y = 7
+
+		available = {
+			OR = {
+				458 = { is_controlled_by_ROOT_or_ally = yes }
+				459 = { is_controlled_by_ROOT_or_ally = yes }
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = horn_technology
+				bonus = 0.50
+				uses = 1
+				category = horn_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_restore_the_quarry
+		icon = GFX_focus_generic_steel
+		cost = 24
+		prerequisite = { 
+			focus = BHC_through_the_valleys 
+			focus = BHC_eastern_ruins
+		}
+		x = 40
+		y = 8
+
+		available = {
+			456 = { is_controlled_by_ROOT_or_ally = yes	}
+			IRO = { has_completed_focus = IRO_emptying_the_mine }
+		}
+
+		completion_reward = {
+			456 = {
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+				add_compliance = 30
+				hidden_effect = {
+					add_dynamic_modifier = { modifier = BHC_trogg_problem }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_shaman_landslides
+		icon = GFX_focus_GRE_a_land_of_mountains
+		cost = 24
+		prerequisite = { 
+			focus = BHC_through_the_valleys 
+			focus = BHC_eastern_ruins
+		}
+		x = 38
+		y = 8
+
+		available = {
+			OR = {
+				455 = { is_controlled_by_ROOT_or_ally = yes }
+				2190 = { is_controlled_by_ROOT_or_ally = yes }
+			}
+		}
+
+		completion_reward = {
+			436 = {
+				remove_building = {
+					type = air_base
+					level = 2
+				}
+				damage_building = {
+					type = air_base
+					damage = 2
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 3
+				}
+				damage_building = {
+					type = arms_factory
+					damage = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_fresh_supply_lines
+		icon = GFX_focus_ITA_grande_rivolta_rurale
+		cost = 24
+		prerequisite = { 
+			focus = BHC_shaman_landslides
+			focus = BHC_restore_the_quarry
+		}
+		x = 40
+		y = 9
+
+		available = {
+			445 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_equipment_to_stockpile = {
+			    type = caravan_equipment_1
+			    amount = 10
+			    producer = IRO
+			}
+			add_equipment_to_stockpile = {
+			    type = dwarf_steam_wagon_equipment_1
+			    amount = 25
+			    producer = IRO
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_warchiefs_command
+		icon = GFX_focus_TUR_taking_over_defense_of_the_gulf
+		cost = 24
+		prerequisite = { 
+			focus = BHC_shaman_landslides
+			focus = BHC_restore_the_quarry
+		}
+		x = 38
+		y = 9
+
+		completion_reward = {
+			country_event = bleeding_hollow.11
+		}
+	}
+
+	focus = {
+		id = BHC_human_occupation
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = { focus = BHC_ordered_north }
+		x = 33
+		y = 4
+
+		available = {
+			296 = { is_controlled_by_ROOT_or_ally = yes }
+			309 = { is_controlled_by_ROOT_or_ally = yes }
+			#445 = { is_controlled_by_ROOT_or_ally = yes }
+			#controls_state = 296
+			#controls_state = 309
+			#controls_state = 309
+		}
+
+		completion_reward = {
+			add_ideas = BHC_wartime_garrisons_3
+		}
+	}
+
+	focus = {
+		id = BHC_deadwind_pass
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = { focus = BHC_human_occupation }
+		x = 35
+		y = 5
+
+		available = {
+			296 = { is_controlled_by_ROOT_or_ally = yes }
+			298 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			country_event = { id = bleeding_hollow.7 }
+		}
+	}
+
+	focus = {
+		id = BHC_the_vice
+		icon = GFX_focus_usa_build_the_pentagon
+		cost = 30
+		prerequisite = { focus = BHC_deadwind_pass }
+		x = 35
+		y = 6
+
+		available = {
+			298 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			298 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				DWC = {	add_manpower = 1000 }
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_clear_debris
+		icon = GFX_goal_continuous_non_factory_construct
+		cost = 30
+		prerequisite = { focus = BHC_the_vice }
+		x = 35
+		y = 7
+
+		completion_reward = {
+			296 = {	add_extra_state_shared_building_slots = 1 }
+			42 = { add_extra_state_shared_building_slots = 1 }
+			298 = {	add_extra_state_shared_building_slots = 2 }
+			2153 = { add_extra_state_shared_building_slots = 2 }
+			25 = { add_extra_state_shared_building_slots = 2 }
+			DWC = {	country_event = bleeding_hollow.10 }
+		}
+	}
+
+	focus = {
+		id = BHC_west_duskwood
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = { focus = BHC_human_occupation }
+		x = 31
+		y = 5
+
+		available = { 
+			304 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			country_event = { id = bleeding_hollow.8 }
+		}
+	}
+
+	focus = {
+		id = BHC_vulgol_mound
+		icon = GFX_focus_usa_build_the_pentagon
+		cost = 30
+		prerequisite = { focus = BHC_west_duskwood }
+		x = 31
+		y = 6
+
+		available = {
+			304 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			304 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_name = "Vul'Gol Ogre Mound"
+				set_province_name = { id = 2067 name = "Vul'Gol Ogre Mound" }
+			}
+			hidden_effect = {
+				SFC = {	add_manpower = 1000 }
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_raven_hill_dead
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = { focus = BHC_vulgol_mound }
+		x = 31
+		y = 7
+
+		available = {
+			1600 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			1600 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_timed_idea = {
+				idea = BHC_raven_hill_dead_idea
+				days = 180
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_east_duskwood
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = { focus = BHC_human_occupation }
+		x = 33
+		y = 6
+
+		available = { 
+			309 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			country_event = { id = bleeding_hollow.9 }
+		}
+	}
+
+	focus = {
+		id = BHC_rolands_doom
+		icon = GFX_focus_generic_steel
+		cost = 30
+		prerequisite = { focus = BHC_east_duskwood }
+		x = 33
+		y = 7
+
+		completion_reward = {
+			1598 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_call_the_clan
+		icon = GFX_focus_generic_military_academy
+		cost = 30
+		prerequisite = { focus = BHC_rolands_doom }
+		x = 33
+		y = 8
+
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = BHC
+					infrastructure > 0
+					infrastructure < 2
+					impassable = no
+				}
+				add_manpower = 200
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = BHC
+					infrastructure > 1
+					infrastructure < 3
+					impassable = no
+				}
+				add_manpower = 400
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = BHC
+					infrastructure > 2
+					infrastructure < 4
+					impassable = no
+				}
+				add_manpower = 600
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = BHC
+					infrastructure > 3
+					infrastructure < 5
+					impassable = no
+				}
+				add_manpower = 800
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = BHC
+					infrastructure > 4
+					impassable = no
+				}
+				add_manpower = 1000
+			}
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = BHC }
+					infrastructure > 0
+					infrastructure < 2
+					impassable = no
+				}
+				add_manpower = 100
+			}
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = BHC }
+					infrastructure > 1
+					infrastructure < 3
+					impassable = no
+				}
+				add_manpower = 200
+			}
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = BHC }
+					infrastructure > 2
+					infrastructure < 4
+					impassable = no
+				}
+				add_manpower = 300
+			}
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = BHC }
+					infrastructure > 3
+					infrastructure < 5
+					impassable = no
+				}
+				add_manpower = 400
+			}
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = BHC }
+					infrastructure > 4
+					infrastructure < 6
+					impassable = no
+				}
+				add_manpower = 500
+			}
+			add_timed_idea = {
+				idea = BHC_new_home_idea
+				days = 365
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_dire_orc_forces
+		icon = GFX_focus_smiling_buddha
+		cost = 30
+		prerequisite = { focus = BHC_call_the_clan }
+		x = 33
+		y = 9
+
+		completion_reward = {
+			create_corps_commander = {
+				name = "Gurtogg Bloodboil"
+				picture = "gfx/leaders/STR/Portrait_STR_Generic_land_5.dds" ###NEED TO BE DIRE ORC
+				traits = { jungle_rat }
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			hidden_effect = { load_oob = BHC_dire_orc_forces }
+			custom_effect_tooltip = BHC_dire_orc_forces_tt
+		}
+	}
+
+	focus = {
+		id = BHC_desecrate_the_cemetery
+		icon = GFX_goal_generic_dangerous_deal
+		cost = 30
+		prerequisite = { focus = BHC_rolands_doom }
+		x = 35
+		y = 8
+
+		completion_reward = {
+			308 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				if = {
+					limit = { 308 = { church > 0 } }
+					remove_building = {
+						type = church
+						level = 1
+					}
+				}
+				set_state_religion_to_primary_religion = yes
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_gunpowder_mounds
+		icon = GFX_goal_generic_army_artillery
+		cost = 30
+		prerequisite = { focus = BHC_desecrate_the_cemetery }
+		x = 35
+		y = 9
+
+		completion_reward = {
+			304 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			IF = {
+				limit = { SFC = { controls_state = 304 } }
+				SFC = {
+					give_resource_rights = { receiver = BHC state = 304 resources = { Gunpowder } }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_bloody_approach
+		icon = GFX_focus_smiling_buddha
+		cost = 30
+		prerequisite = { focus = BHC_dire_orc_forces }
+		prerequisite = { focus = BHC_gunpowder_mounds }
+		x = 34
+		y = 10
+
+		completion_reward = {
+			division_template = {
+				name = "Dire Orc Overseers"
+				priority = 1
+				regiments = {
+					dire_orc = { x = 0 y = 0 }
+					dire_orc = { x = 0 y = 1 }
+					dire_orc = { x = 1 y = 0 }
+					dire_orc = { x = 1 y = 1 }
+				}
+				support = {
+					overseer = {x = 0 y = 0	}
+				}
+			}
+			random_owned_state = {
+				limit = {
+					NOT = {	is_core_of = BHC }
+					impassable = no
+				}
+				add_core_of = BHC
+				add_manpower = -750
+				create_unit = {
+					division = "name = \"Dire Orc Overseers\" division_template = \"Dire Orc Overseers\" start_experience_factor = 0.4"
+					owner = BHC
+				}
+			}
+			random_owned_state = {
+				limit = {
+					NOT = {	is_core_of = BHC }
+					impassable = no
+				}
+				add_core_of = BHC
+				add_manpower = -750
+				create_unit = {
+					division = "name = \"Dire Orc Overseers\" division_template = \"Dire Orc Overseers\" start_experience_factor = 0.4"
+					owner = BHC
+				}
+			}
+			random_owned_state = {
+				limit = {
+					NOT = {	is_core_of = BHC }
+					impassable = no
+				}
+				add_core_of = BHC
+				add_manpower = -750
+				create_unit = {
+					division = "name = \"Dire Orc Overseers\" division_template = \"Dire Orc Overseers\" start_experience_factor = 0.4"
+					owner = BHC
+				}
+			}
+			every_owned_state = {
+				limit = {
+					NOT = {	is_core_of = BHC }
+					impassable = yes
+				}
+				add_core_of = BHC
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_eye_on_lizards
+		icon = GFX_focus_generic_vatican_agents
+		cost = 30
+		prerequisite = { focus = BHC_rolands_doom }
+		x = 31
+		y = 8
+
+		completion_reward = {
+			2152 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 1991
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 2075
+				}
+			}
+			2151 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 1994
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_eyes_of_the_hollow
+		icon = GFX_focus_generic_secret_service_agency
+		cost = 30
+		prerequisite = { focus = BHC_eye_on_lizards }
+		x = 31
+		y = 9
+
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "La Resistance"	}
+				if = {
+					limit = { has_intelligence_agency = no }
+					create_intelligence_agency = {
+						name = "Hollow Scouts"
+						icon = GFX_intelligence_agency_logo_bel
+					}
+				}
+				create_operative_leader = {
+					name = "Ukos Bloodwhisper"
+					GFX = GFX_portrait_orc_generic_assassin_1
+					traits = { operative_infiltrator }
+					bypass_recruitment = no
+					available_to_spy_master = yes
+					nationalities = { BHC }
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = rogues_guild_technology
+					bonus = 0.25
+					uses = 2
+					category = rogues_guild_technology
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_long_wars_end
+		icon = GFX_goal_generic_dangerous_deal
+		cost = 24
+		prerequisite = { focus = BHC_eyes_of_the_hollow }
+		prerequisite = { focus = BHC_dire_orc_forces }
+		x = 32
+		y = 10
+
+		available = {
+			NOT = { has_war_with_major = yes }
+		}
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = BHC_wartime_garrisons_3 }
+				remove_ideas = BHC_wartime_garrisons_3
+				add_timed_idea = {
+					idea = BHC_wartime_garrisons_3
+					days = 540
+				}
+			}
+			else_if = {
+				limit = { has_idea = BHC_wartime_garrisons_2 }
+				remove_ideas = BHC_wartime_garrisons_2
+				add_timed_idea = {
+					idea = BHC_wartime_garrisons_2
+					days = 360
+				}
+			}
+			else_if = {
+				limit = { has_idea = BHC_wartime_garrisons_1 }
+				remove_ideas = BHC_wartime_garrisons_1
+				add_timed_idea = {
+					idea = BHC_wartime_garrisons_1
+					days = 180
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_so_many_pests
+		icon = GFX_focus_SOV_mobilization_plan
+		cost = 14
+		x = 33
+		y = 11
+
+		available = {
+			has_completed_focus = BHC_warchiefs_command
+		}
+
+		completion_reward = {
+			add_ideas = BHC_vermin_problems_1
+			462 = {	add_compliance = 10	}
+			467 = {	add_compliance = 10	}
+			474 = {	add_compliance = 10	}
+			2186 = { add_compliance = 10 }
+		}
+	}
+
+	focus = {
+		id = BHC_tunnel_outpost
+		icon = GFX_goal_generic_fortify_city
+		cost = 24
+		prerequisite = { focus = BHC_so_many_pests }
+		relative_position_id = BHC_so_many_pests
+		x = -4
+		y = 1
+
+		available = {
+			has_completed_focus = BHC_wolf_training_dens
+		}
+
+		completion_reward = {
+			2186 = { add_compliance = 10 }
+			2186 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3566
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_clan_trading_post
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 24
+		prerequisite = { focus = BHC_tunnel_outpost }
+		relative_position_id = BHC_so_many_pests
+		x = -4
+		y = 2
+
+		completion_reward = {
+			461 = { add_compliance = 10 }
+			461 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_gateway_watchtowers
+		icon = GFX_goal_generic_radar
+		cost = 24
+		prerequisite = { focus = BHC_clan_trading_post }
+		relative_position_id = BHC_so_many_pests
+		x = -4
+		y = 3
+
+		completion_reward = {
+			1574 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_gunpowder_stores
+		icon = GFX_goal_generic_army_artillery
+		cost = 21
+		prerequisite = { focus = BHC_so_many_pests }
+		relative_position_id = BHC_so_many_pests
+		x = -2
+		y = 1
+
+		completion_reward = {
+			474 = {
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+				add_compliance = 10
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_hunting_grounds
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 24
+		prerequisite = { focus = BHC_gunpowder_stores }
+		relative_position_id = BHC_so_many_pests
+		x = -2
+		y = 2
+
+		completion_reward = {
+			473 = {	add_compliance = 10 }
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_1 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_1
+					add_idea = BHC_vermin_problems_2
+				}
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_2 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_2
+					add_idea = BHC_vermin_problems_3
+				}
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_3 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_3
+					add_idea = BHC_vermin_problems_4
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_wolf_training_dens
+		icon = GFX_focus_worg
+		cost = 24
+		prerequisite = { focus = BHC_hunting_grounds }
+		relative_position_id = BHC_so_many_pests
+		x = -2
+		y = 3
+
+		completion_reward = {
+			2187 = { add_compliance = 10 }
+			add_tech_bonus = {
+				name = dire_wolf_technology
+				uses = 1
+				bonus = 0.50
+				category = dire_wolf_technology
+			}
+			hidden_effect = {
+				454 = { add_core_of = BHC }
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_forward_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 21
+		prerequisite = { focus = BHC_so_many_pests }
+		relative_position_id = BHC_so_many_pests
+		x = 0
+		y = 1
+
+		completion_reward = {
+			462 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_settle_more_clansmen
+		icon = GFX_focus_ETH_invite_italian_settlers
+		cost = 24
+		prerequisite = { focus = BHC_forward_forges }
+		relative_position_id = BHC_so_many_pests
+		x = 0
+		y = 2
+
+		completion_reward = {
+			462 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 300
+			}
+			464 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 300
+			}
+			467 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 300
+			}
+			470 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 300
+			}
+			473 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 300
+			}
+			474 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 300
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_1 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_1
+					add_idea = BHC_vermin_problems_2
+				}
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_2 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_2
+					add_idea = BHC_vermin_problems_3
+				}
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_3 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_3
+					add_idea = BHC_vermin_problems_4
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_reinforce_the_isles
+		icon = GFX_goal_generic_fortify_city
+		cost = 24
+		prerequisite = { focus = BHC_settle_more_clansmen }
+		relative_position_id = BHC_so_many_pests
+		x = 0
+		y = 3
+
+		completion_reward = {
+			465 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 3543
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 3564
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 391
+					instant_build = yes
+				}
+			}
+			471 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 3567
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 385
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_withdraw_from_the_highlands
+		icon = GFX_focus_horde_support_the_horde
+		cost = 24
+		prerequisite = { focus = BHC_reinforce_the_isles }
+		mutually_exclusive = { focus = BHC_reinforce_the_highlands }
+		relative_position_id = BHC_so_many_pests
+		x = -1
+		y = 4
+
+		available = {
+			controls_state = 2210
+			controls_state = 501
+			controls_state = 502
+		}
+
+		completion_reward = {
+			set_temp_variable = { 501state_pop = 501.state_population }
+			set_temp_variable = { 502state_pop = 502.state_population }
+			set_temp_variable = { 2210state_pop = 2210.state_population }
+			multiply_temp_variable = { 501state_pop = 0.20 }
+			multiply_temp_variable = { 502state_pop = 0.20 }
+			multiply_temp_variable = { 2210state_pop = 0.20 }
+			multiply_temp_variable = { 501state_pop = -1 }
+			multiply_temp_variable = { 502state_pop = -1 }
+			multiply_temp_variable = { 2210state_pop = -1 }
+			set_temp_variable = { hightotalpop = 501.state_population }
+			add_to_temp_variable = { hightotalpop = 502.state_population }
+			add_to_temp_variable = { hightotalpop = 2210.state_population }
+			multiply_temp_variable = { hightotalpop = 0.20 }
+
+			501 = {
+				transfer_state_to = DMC
+				add_core_of = DMC
+				hidden_effect = { set_state_race_to_primary_race = yes }
+				add_manpower = 501state_pop
+			}
+			502 = {
+				transfer_state_to = DMC
+				add_core_of = DMC
+				hidden_effect = { set_state_race_to_primary_race = yes }
+				add_manpower = 502state_pop
+			}
+			2210 = {
+				transfer_state_to = DMC
+				add_core_of = DMC
+				hidden_effect = { set_state_race_to_primary_race = yes }
+				add_manpower = 2210state_pop
+			}
+			capital_scope = {
+				add_manpower = hightotalpop
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_reinforce_the_highlands
+		icon = GFX_focus_horde_blood_and_thunder
+		cost = 24
+		prerequisite = { focus = BHC_reinforce_the_isles }
+		mutually_exclusive = { focus = BHC_withdraw_from_the_highlands }
+		relative_position_id = BHC_so_many_pests
+		x = 1
+		y = 4
+
+		available = {
+			controls_state = 2210
+			controls_state = 501
+			controls_state = 502
+		}
+
+		completion_reward = {
+			set_temp_variable = { 501state_pop = 501.state_population }
+			set_temp_variable = { 502state_pop = 502.state_population }
+			set_temp_variable = { 2210state_pop = 2210.state_population }
+			multiply_temp_variable = { 501state_pop = 0.4 }
+			multiply_temp_variable = { 502state_pop = 0.4 }
+			multiply_temp_variable = { 2210state_pop = 0.4 }
+
+			501 = {
+				add_core_of = BHC
+				hidden_effect = { 
+					set_state_race_to_primary_race = yes 
+					add_claim_by = DMC
+				}
+				add_manpower = 501state_pop
+			}
+			502 = {
+				add_core_of = BHC
+				hidden_effect = { 
+					set_state_race_to_primary_race = yes 
+					add_claim_by = DMC
+				}
+				add_manpower = 502state_pop
+			}
+			2210 = {
+				add_core_of = BHC
+				hidden_effect = { 
+					set_state_race_to_primary_race = yes 
+					add_claim_by = DMC
+				}
+				add_manpower = 2210state_pop
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_grizzlepaw_bears
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		cost = 21
+		prerequisite = { focus = BHC_so_many_pests }
+		relative_position_id = BHC_so_many_pests
+		x = 2
+		y = 1
+
+		completion_reward = {
+			1574 = {
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+				add_compliance = 10
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_1 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_1
+					add_idea = BHC_vermin_problems_2
+				}
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_2 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_2
+					add_idea = BHC_vermin_problems_3
+				}
+			}
+			if = {
+				limit = { has_idea = BHC_vermin_problems_3 }
+				swap_ideas = {
+					remove_idea = BHC_vermin_problems_3
+					add_idea = BHC_vermin_problems_4
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_lingering_power
+		icon = GFX_focus_wonderweapons
+		cost = 24
+		prerequisite = { focus = BHC_grizzlepaw_bears }
+		relative_position_id = BHC_so_many_pests
+		x = 2
+		y = 2
+
+		completion_reward = {
+			466 = {
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+				add_compliance = 10
+				set_state_religion_to_primary_religion = yes
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+			add_popularity = { ideology = titans popularity = 0.02 }
+		}
+	}
+
+	focus = {
+		id = BHC_silver_seams
+		icon = GFX_focus_ETH_invest_in_the_east
+		cost = 24
+		prerequisite = { focus = BHC_lingering_power }
+		relative_position_id = BHC_so_many_pests
+		x = 2
+		y = 3
+
+		completion_reward = {
+			469 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = mine_technology
+				uses = 1
+				bonus = 0.50
+				category = mine_technology
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_old_knowledge
+		icon = GFX_focus_book_3
+		cost = 24
+		prerequisite = { focus = BHC_so_many_pests }
+		relative_position_id = BHC_so_many_pests
+		x = 4
+		y = 1
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = BHC_wisdom_of_our_foes
+				add_idea = BHC_old_knowledge
+			}
+			add_popularity = { ideology = titans popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = BHC_the_burning_question
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 24
+		prerequisite = { focus = BHC_old_knowledge }
+		relative_position_id = BHC_so_many_pests
+		x = 4
+		y = 2
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			BBC = {
+				country_event = { id = bleeding_hollow.12 days = 2 }
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_force_the_gate
+		icon = GFX_goal_generic_air_naval_bomber
+		cost = 24
+		prerequisite = { focus = BHC_the_burning_question }
+		relative_position_id = BHC_so_many_pests
+		x = 4
+		y = 3
+
+		available = {
+			has_war = no
+			controls_state = 529
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 59
+			}
+		}
+
+		will_lead_to_war_with = UDA
+
+		completion_reward = {
+			declare_war_on = { target = UDA type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = BHC_elemental_forge
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = BHC_silver_seams }
+		prerequisite = { focus = BHC_force_the_gate }
+		relative_position_id = BHC_so_many_pests
+		x = 3
+		y = 4
+
+		available = {
+			has_war = no
+			controls_state = 1580
+		}
+
+		completion_reward = {
+			add_popularity = { ideology = titans popularity = 0.1 }
+			if = {
+				limit = { has_idea = BHC_blood_soaked_blades }
+				swap_ideas = {
+					remove_idea = BHC_blood_soaked_blades
+					add_idea = BHC_elemental_axes
+				}
+			}
+			else_if = {
+				limit = { has_idea = BHC_war_axes_focus }
+				swap_ideas = {
+					remove_idea = BHC_war_axes_focus
+					add_idea = BHC_elemental_axes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_frostbite_war
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 30
+		prerequisite = { focus = BHC_wolf_training_dens }
+		prerequisite = { focus = BHC_gateway_watchtowers }
+		relative_position_id = BHC_so_many_pests
+		x = -3
+		y = 4
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = IRO
+					NOT = { IRO = { is_in_faction_with = BHC } }
+				}
+				create_wargoal = {
+					target = IRO
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					country_exists = GNO
+					NOT = { GNO = { is_in_faction_with = BHC } }
+				}
+				create_wargoal = {
+					target = GNO
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					country_exists = FRT
+					NOT = { GNO = { is_in_faction_with = FRT } }
+				}
+				create_wargoal = {
+					target = FRT
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = BHC_the_second_ritual
+		icon = GFX_goal_generic_secret_weapon
+		cost = 30
+		prerequisite = {
+			focus = BHC_frostbite_war
+			focus = BHC_elemental_forge
+		}
+		relative_position_id = BHC_so_many_pests
+		x = 0
+		y = 5
+
+		completion_reward = {
+			add_country_leader_trait = {
+				ideology = horde
+				trait = wisdom_of_the_hollow
+			}
+		}
+	}
+
+	###TO BE UPDATED WHEN A OLD GOD GETS A FOCUS TREE, OR THC
+	focus = {
+		id = BHC_the_hour_of_twilight
+		icon = GFX_focus_BHC_chogall
+		cost = 30
+		prerequisite = { focus = BHC_the_second_ritual }
+		mutually_exclusive = { focus = BHC_eyes_towards_home }
+		relative_position_id = BHC_so_many_pests
+		x = 1
+		y = 6
+
+		available = { always = no }
+
+		completion_reward = {
+			add_popularity = {
+				ideology = titans
+				popularity = 0.05
+			}
+			set_country_flag = titan_alignment
+			###Leads to Dealing with Cho'ghall and other old gods 
+			###Deal With the Burning Blade to Get a Coast
+		}
+	}
+
+	###TO BE UPDATED WHEN DREANOR/OUTLAND IS IMPLEMENTED
+	focus = {
+		id = BHC_eyes_towards_home
+		icon = GFX_focus_guldan
+		cost = 30
+		prerequisite = { focus = BHC_the_second_ritual }
+		mutually_exclusive = { focus = BHC_the_hour_of_twilight	}
+		relative_position_id = BHC_so_many_pests
+		x = -1
+		y = 6
+
+		available = { always = no }
+
+		completion_reward = {
+			add_popularity = {
+				ideology = horde
+				popularity = 0.05
+			}
+			set_country_flag = horde_alignment
+			###Leads to Dealing with Nerzhul
+			###Deal with the Burning Blade First
+		}
+	}
+
+	### Hakari Neutral Tree Starts Here
+}

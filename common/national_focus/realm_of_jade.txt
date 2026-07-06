@@ -1,0 +1,1621 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = realm_of_jade
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ROJ
+		}
+	}
+
+	continuous_focus_position = {
+		x = 1150
+		y = 1
+	}
+
+	#Focus for focus_on_the_fangs
+	focus = {
+		id = ROJ_focus_on_the_fangs
+		icon = GFX_focus_usa_tank_destroyer_doctrine
+		x = 8
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_jade_refining }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_fangs_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_fangs_tech
+			}
+		}
+	}
+
+	#Focus for focus_on_the_skin
+	focus = {
+		id = ROJ_focus_on_the_skin
+		icon = GFX_focus_chi_whampoa_military_academy
+		x = 6
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_jade_refining }
+		ai_will_do = { factor = 1 }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_skin_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_skin_tech
+			}
+		}
+	}
+
+	#Focus for armed_defense
+	focus = {
+		id = ROJ_armed_defense
+		icon = GFX_goal_generic_military_sphere
+		x = 38
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_the_outside_world_is_scary }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_ideas = ROJ_armed_defense_idea
+		}
+	}
+
+	#Focus for the_jade_tigers
+	focus = {
+		id = ROJ_the_jade_tigers
+		icon = GFX_focus_hol_united_netherlands
+		x = 4
+		y = 3
+		cost = 30
+		prerequisite = { focus = ROJ_the_realm_of_jade }
+		ai_will_do = { factor = 1 }
+		
+		available = {
+			OR = {
+				has_completed_focus = ROJ_armed_defense
+				has_completed_focus = ROJ_manifest_destiny
+			}
+		}
+		
+		completion_reward = {
+			army_experience = 10
+		}
+	}
+
+	#Focus for the_realm_of_jade
+	focus = {
+		id = ROJ_the_realm_of_jade
+		icon = GFX_focus_jap_spiritual_mobilization
+		x = 24
+		y = 2
+		cost = 5
+		prerequisite = { focus = ROJ_legacy_of_master_greenpaw }
+		ai_will_do = { factor = 1 }
+
+		completion_reward = {
+			country_event = realm_of_jade.3
+		}
+	}
+
+	#Focus for outside_the_lair
+	focus = {
+		id = ROJ_outside_the_lair
+		icon = GFX_focus_eng_global_defense
+		x = 35
+		y = 3
+		cost = 5
+		prerequisite = { focus = ROJ_the_realm_of_jade }
+		ai_will_do = { factor = 1 }
+
+		completion_reward = {
+			country_event = realm_of_jade.4
+		}
+	}
+
+	#Focus for legacy_of_master_greenpaw
+	focus = {
+		id = ROJ_legacy_of_master_greenpaw
+		icon = GFX_focus_smiling_buddha
+		x = 24
+		y = 1
+		cost = 5
+		prerequisite = { focus = ROJ_the_jade_witch }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			country_event = realm_of_jade.2
+		}
+	}
+
+	#Focus for jade_walls
+	focus = {
+		id = ROJ_jade_walls
+		icon = GFX_goal_generic_fortify_city
+		x = 40
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_armed_defense }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 9186
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 14407
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 14364
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 14321
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 14354
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for manifest_destiny
+	focus = {
+		id = ROJ_manifest_destiny
+		icon = GFX_focus_eng_global_defense
+		x = 32
+		y = 4
+		cost = 5
+		prerequisite = { focus = ROJ_outside_the_lair }
+		mutually_exclusive = { focus = ROJ_the_outside_world_is_scary }
+		ai_will_do = { factor = 1 }
+		available = { always = no }
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	#Focus for the_outside_world_is_scary
+	focus = {
+		id = ROJ_the_outside_world_is_scary
+		icon = GFX_goal_generic_defence
+		x = 38
+		y = 4
+		cost = 5
+		prerequisite = { focus = ROJ_outside_the_lair }
+		mutually_exclusive = { focus = ROJ_manifest_destiny }
+		ai_will_do = { factor = 1 }
+		available = { always = no }
+		
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	#Focus for stay_unoticed
+	focus = {
+		id = ROJ_stay_unoticed
+		icon = GFX_focus_prc_infiltration
+		x = 36
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_armed_defense }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROJ_armed_defense_idea
+				add_idea = ROJ_stay_unoticed_idea
+			}
+		}
+	}
+
+	#Focus for build_workshop
+	focus = {
+		id = ROJ_build_workshop
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 18
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_developping_the_realm }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for developping_the_realm
+	focus = {
+		id = ROJ_developping_the_realm
+		icon = GFX_goal_generic_construction
+		x = 15
+		y = 3
+		cost = 21
+		prerequisite = { focus = ROJ_the_realm_of_jade }
+		ai_will_do = { factor = 1 }
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	#Focus for hanging_the_anglers
+	focus = {
+		id = ROJ_hanging_the_anglers
+		icon = GFX_goal_generic_amphibious_assault
+		x = 32
+		y = 8
+		cost = 21
+		prerequisite = { focus = ROJ_guerilla_warfare }
+		prerequisite = { focus = ROJ_masters_of_the_forest }
+		ai_will_do = { factor = 1 }
+
+		will_lead_to_war_with = AGL
+
+		available = { any_neighbor_country = { tag = AGL } }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_hanging_the_anglers_tt
+		}
+	}
+
+	#Focus for down_with_the_pirates
+	focus = {
+		id = ROJ_down_with_the_pirates
+		icon = GFX_goal_generic_navy_anti_submarine
+		x = 34
+		y = 8
+		cost = 21
+		prerequisite = { focus = ROJ_guerilla_warfare }
+		prerequisite = { focus = ROJ_masters_of_the_forest }
+		ai_will_do = { factor = 1 }
+
+		will_lead_to_war_with = OON
+
+		available = { any_neighbor_country = { tag = OON } }
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = OON
+			}
+		}
+	}
+
+	#Focus for aggressive_stance
+	focus = {
+		id = ROJ_aggressive_stance
+		icon = GFX_goal_generic_major_war
+		x = 32
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_manifest_destiny }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_ideas = ROJ_aggresive_stance_idea
+		}
+	}
+
+	#Focus for they_shall_not_ook
+	focus = {
+		id = ROJ_they_shall_not_ook
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		x = 32
+		y = 6
+		cost = 21
+		prerequisite = { focus = ROJ_aggressive_stance }
+		ai_will_do = { factor = 1 }
+
+		will_lead_to_war_with = GRO
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = GRO
+			}
+		}
+	}
+
+	#Focus for guerilla_warfare
+	focus = {
+		id = ROJ_guerilla_warfare
+		icon = GFX_focus_generic_manpower
+		x = 31
+		y = 7
+		cost = 21
+		prerequisite = { focus = ROJ_they_shall_not_ook }
+		ai_will_do = { factor = 1 }
+
+		available = {
+			NOT = { country_exists = GRO }
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = ROJ_guerilla_warfare_tt
+		}
+	}
+
+	focus = {
+		id = ROJ_masters_of_the_forest
+		icon = GFX_focus_generic_manpower
+		x = 33
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_they_shall_not_ook }
+		ai_will_do = { factor = 1 }
+
+		available = {
+			1941 = { is_controlled_by = ROOT }
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROJ_aggresive_stance_idea
+				add_idea = ROJ_masters_of_the_forest_idea
+			}
+		}
+	}
+
+	#Focus for turn_stone_into_jade
+	focus = {
+		id = ROJ_turn_stone_into_jade
+		icon = GFX_focus_spr_crush_the_revolution
+		x = 30
+		y = 8
+		cost = 21
+		prerequisite = { focus = ROJ_guerilla_warfare }
+		prerequisite = { focus = ROJ_masters_of_the_forest }
+		ai_will_do = { factor = 1 }
+
+		will_lead_to_war_with = SZC
+
+		available = { any_neighbor_country = { tag = SZC } }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_turn_stone_into_jade_tt
+		}
+	}
+
+	#Focus for end_the_disciples
+	focus = {
+		id = ROJ_end_the_disciples
+		icon = GFX_focus_usa_focus_on_asia
+		x = 32
+		y = 9
+		cost = 30
+		prerequisite = {
+			focus = ROJ_turn_stone_into_jade
+			focus = ROJ_down_with_the_pirates
+			focus = ROJ_hanging_the_anglers
+		}
+		ai_will_do = { factor = 1 }
+
+		will_lead_to_war_with = OCS
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = OCS
+			}
+		}
+	}
+
+	#Focus for subjugating_the_jade_dragon
+	focus = {
+		id = ROJ_subjugating_the_jade_dragon
+		icon = GFX_goal_continuous_restrict_freedom
+		x = 32
+		y = 10
+		cost = 30
+		prerequisite = { focus = ROJ_end_the_disciples }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			59 = { add_core_of = ROOT }
+			every_owned_state = {
+				limit = {
+					is_core_of = OCS
+					state_population_k < 12
+				}
+				add_core_of = ROOT
+			}
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						impassable = yes
+						NOT = { is_core_of = ROJ }
+					}
+					add_core_of = ROOT
+				}
+			}
+		}
+	}
+
+	#Focus for mastering_the_way_of_the_jade
+	focus = {
+		id = ROJ_mastering_the_way_of_the_jade
+		icon = GFX_goal_continuous_research
+		x = 24
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_improved_transmutation }
+		prerequisite = { focus = ROJ_jade_infusion }
+		prerequisite = { focus = ROJ_improved_conjuration }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			swap_ruler_traits = {
+				remove = experimented_jade_witch_trait
+				add = master_jade_witch_trait
+			}
+			swap_ideas = {
+				remove_idea = ROJ_experimenting_jade_magic_idea
+				add_idea = ROJ_mastering_jade_magic_idea
+			}
+			set_variable = {
+				var = ROJ_spell_tier
+				value = 3
+			}
+		#Also Allow better state conversion (more ore)
+		}
+	}
+
+	#Focus for keep_fortifying
+	focus = {
+		id = ROJ_keep_fortifying
+		icon = GFX_goal_generic_construct_military
+		x = 38
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_jade_walls }
+		prerequisite = { focus = ROJ_keeping_an_eye_on_them	}
+		prerequisite = { focus = ROJ_stay_unoticed }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROJ_stay_unoticed_idea
+				add_idea = ROJ_keep_fortifying_idea
+			}
+		}
+	}
+
+	#Focus for new_forges
+	focus = {
+		id = ROJ_new_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 12
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_developping_the_realm }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for strategy_training
+	focus = {
+		id = ROJ_strategy_training
+		icon = GFX_focus_hol_united_netherlands
+		x = 2
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_the_jade_tigers }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_tactics_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_tactics_tech
+			}
+		}
+	}
+
+	#Focus for teaching_cohesion
+	focus = {
+		id = ROJ_teaching_cohesion
+		icon = GFX_goal_generic_wolf_pack
+		x = 3
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_better_transmutation }
+		prerequisite = {
+			focus = ROJ_offensive_tactics
+			focus = ROJ_defensive_tactics
+		}
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_cohesion_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_cohesion_tech
+			}
+		}
+	}
+
+	#Focus for refining_claw
+	focus = {
+		id = ROJ_refining_claw
+		icon = GFX_focus_RAJ_indian_gurkhas
+		x = 4
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_the_jade_tigers }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_claw_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_claw_tech
+			}
+		}
+	}
+
+	#Focus for tiger_fitness
+	focus = {
+		id = ROJ_tiger_fitness
+		icon = GFX_focus_usa_tank_destroyer_doctrine
+		x = 5
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_better_transmutation }
+		prerequisite = {
+			focus = ROJ_focus_on_the_skin
+			focus = ROJ_focus_on_the_fangs
+		}
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_speed_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_speed_tech
+			}
+		}
+	}
+
+	#Focus for jade_refining
+	focus = {
+		id = ROJ_jade_refining
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		x = 6
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_the_jade_tigers }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_jade_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_jade_tech
+			}
+		}
+	}
+
+	#Focus for better_transmutation
+	focus = {
+		id = ROJ_better_transmutation
+		icon = GFX_focus_research2
+		x = 4
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_refining_claw }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_ideas = ROJ_better_transmutation_idea
+		}
+	}
+
+	#Focus for offensive_tactics
+	focus = {
+		id = ROJ_offensive_tactics
+		icon = GFX_goal_generic_occupy_start_war
+		x = 0
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_strategy_training }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_offensive_behaviour_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_offensive_behaviour_tech
+			}
+		}
+	}
+
+	#Focus for defensive_tactics
+	focus = {
+		id = ROJ_defensive_tactics
+		icon = GFX_goal_generic_defence
+		x = 2
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_strategy_training }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = jade_tiger_defensive_behaviour_tech
+				bonus = 1
+				uses = 1
+				category = jade_tiger_defensive_behaviour_tech
+			}
+		}
+	}
+
+	#Focus for we_are_prepared
+	focus = {
+		id = ROJ_we_are_prepared
+		icon = GFX_goal_generic_defence
+		x = 38
+		y = 8
+		cost = 30
+		prerequisite = { focus = ROJ_keep_fortifying }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROJ_keep_fortifying_idea
+				add_idea = ROJ_totally_undisturbed_idea
+			}
+
+			set_rule = {
+				can_create_factions = no
+				can_join_factions = no
+				can_not_declare_war = yes
+			}
+		}
+	}
+
+	#Focus for keeping_an_eye_on_them
+	focus = {
+		id = ROJ_keeping_an_eye_on_them
+		icon = GFX_focus_generic_black_sea_focus
+		x = 38
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_armed_defense }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = jade_scout_tower_1 }	}
+				set_technology = { jade_scout_tower_1 = 1	}
+			}
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 0.5
+				uses = 1
+				category = fortification_technology
+			}
+		}
+	}
+
+	### 
+	focus = {
+		id = ROJ_time_is_never_fleeting
+		icon = GFX_focus_scroll_3
+		x = 24
+		y = 9
+		cost = 30
+		prerequisite = { focus = ROJ_greater_conjuration }
+		prerequisite = { focus = ROJ_improved_infusion }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_time_is_never_fleeting_tt
+			add_to_variable = {
+				var = spell_duration
+				value = 30
+			}
+		}
+	}
+
+	#Focus for magical_haste
+	focus = {
+		id = ROJ_magical_haste
+		icon = GFX_focus_scroll_3
+		x = 26
+		y = 9
+		cost = 30
+		prerequisite = { focus = ROJ_greater_conjuration }
+		prerequisite = { focus = ROJ_improved_infusion }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_magical_haste_tt
+			subtract_from_variable = {
+				var = spell_cooldown
+				value = 15
+			}
+		}
+	}
+
+	#Focus for the_empire_of_jade
+	focus = {
+		id = ROJ_the_empire_of_jade
+		icon = GFX_focus_usa_tank_destroyer_doctrine
+		x = 32
+		y = 11
+		cost = 70
+		prerequisite = { focus = ROJ_subjugating_the_jade_dragon }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROJ_aggresive_stance_idea
+				add_idea = ROJ_masters_of_the_forest_idea
+			}
+			#Claim for the rest of the Jade Forest
+			custom_effect_tooltip = ROJ_claim_Jade_Forest_tt
+			hidden_effect = {
+				59 = { add_claim_by = ROOT }
+				1937 = { add_claim_by = ROOT }
+				1938 = { add_claim_by = ROOT }
+				1939 = { add_claim_by = ROOT }
+				1940 = { add_claim_by = ROOT }
+				1941 = { add_claim_by = ROOT }
+				1942 = { add_claim_by = ROOT }
+				1943 = { add_claim_by = ROOT }
+				1944 = { add_claim_by = ROOT }
+				1945 = { add_claim_by = ROOT }
+				1946 = { add_claim_by = ROOT }
+				1947 = { add_claim_by = ROOT }
+				1948 = { add_claim_by = ROOT }
+				1949 = { add_claim_by = ROOT }
+				1950 = { add_claim_by = ROOT }
+				1951 = { add_claim_by = ROOT }
+				1952 = { add_claim_by = ROOT }
+				1954 = { add_claim_by = ROOT }
+				1954 = { add_claim_by = ROOT }
+				1956 = { add_claim_by = ROOT }
+				1957 = { add_claim_by = ROOT }
+				1958 = { add_claim_by = ROOT }
+				1959 = { add_claim_by = ROOT }
+				1960 = { add_claim_by = ROOT }
+				1961 = { add_claim_by = ROOT }
+				1962 = { add_claim_by = ROOT }
+				1963 = { add_claim_by = ROOT }
+				1964 = { add_claim_by = ROOT }
+				1965 = { add_claim_by = ROOT }
+				1966 = { add_claim_by = ROOT }
+				1967 = { add_claim_by = ROOT }
+				1968 = { add_claim_by = ROOT }
+				1969 = { add_claim_by = ROOT }
+				1985 = { add_claim_by = ROOT }
+			}
+		}
+	}
+
+	#Focus for experimenting_jade_magic
+	focus = {
+		id = ROJ_experimenting_jade_magic
+		icon = GFX_focus_research2
+		x = 24
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_living_transmutation }
+		prerequisite = { focus = ROJ_jade_workers_conjuration }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			swap_ruler_traits = {
+				remove = jade_witch_trait
+				add = experimented_jade_witch_trait
+			}
+			swap_ideas = {
+				remove_idea = ROJ_studying_jade_magic_idea
+				add_idea = ROJ_experimenting_jade_magic_idea
+			}
+			set_variable = {
+				var = ROJ_spell_tier
+				value = 2
+			}
+		#Also Allow to convert state races into jade statues (which add ore to the state)
+		}
+	}
+
+	#Focus for studying_jade_magic
+	focus = {
+		id = ROJ_studying_jade_magic
+		icon = GFX_focus_research
+		x = 24
+		y = 3
+		cost = 21
+		prerequisite = { focus = ROJ_the_realm_of_jade }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_ideas = ROJ_studying_jade_magic_idea
+
+			#Also setup mana stuff so it's already done for the next focus
+			#Var name is different to not confuse with mana ressource
+			set_variable = {
+				var = spell_mana
+				value = 50
+			}
+			set_variable = {
+				var = max_mana
+				value = 100
+			}
+			set_variable = {
+				var = spell_mana_weekly
+				value = 5
+			}
+			set_variable = {
+				var = spell_duration
+				value = 30
+			}
+			set_variable = {
+				var = spell_cooldown
+				value = 90
+			}
+		}
+	}
+
+	#Focus for harvesting_natural_mana
+	focus = {
+		id = ROJ_harvesting_natural_mana
+		icon = GFX_focus_research
+		x = 15
+		y = 5
+		cost = 14
+		prerequisite = { focus = ROJ_pave_roads }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = jade_mage_tower_tech } }
+				set_technology = { jade_mage_tower_tech = 1	}
+			}
+			1953 = {
+				add_resource = { type = mana amount = 3 }
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	#Focus for improved_conjuration
+	focus = {
+		id = ROJ_improved_conjuration
+		icon = GFX_focus_book_2
+		x = 26
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_experimenting_jade_magic }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_upgrade_conjuration_tt
+			set_variable = {
+				var = ROJ_conjuration_tier
+				value = 2
+			}
+		}
+	}
+
+	#Focus for jade_workers_conjuration
+	focus = {
+		id = ROJ_jade_workers_conjuration
+		icon = GFX_focus_book_1
+		x = 25
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_studying_jade_magic }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_learn_conjuration_tt
+			set_variable = {
+				var = ROJ_conjuration_tier
+				value = 1
+			}
+		}
+	}
+
+	#Focus for the_jade_witch
+	focus = {
+		id = ROJ_the_jade_witch
+		icon = GFX_focus_hol_the_only_man_in_the_dutch_government
+		x = 24
+		y = 0
+		cost = 5
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			country_event = realm_of_jade.1
+		}
+	}
+
+	#Focus for mana_conservation
+	focus = {
+		id = ROJ_mana_conservation
+		icon = GFX_focus_scroll_2
+		x = 27
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_improved_conjuration }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_mana_conservation_tt
+			add_to_variable = {
+				var = max_mana
+				value = 25
+			}
+		}
+	}
+
+	#Focus for greater_conjuration
+	focus = {
+		id = ROJ_greater_conjuration
+		icon = GFX_focus_book_3
+		x = 26
+		y = 8
+		cost = 30
+		prerequisite = { focus = ROJ_mastering_the_way_of_the_jade }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_greater_conjuration_tt
+			set_variable = {
+				var = ROJ_conjuration_tier
+				value = 3
+			}
+		}
+	}
+
+	#Focus for magical_decryption
+	focus = {
+		id = ROJ_magical_decryption
+		icon = GFX_focus_scroll_1
+		x = 22
+		y = 5
+		cost = 30
+		prerequisite = {
+			focus = ROJ_jade_workers_conjuration
+			focus = ROJ_living_transmutation
+		}
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 1
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	#Focus for teaching_of_greenpaw
+	focus = {
+		id = ROJ_teaching_of_greenpaw
+		icon = GFX_focus_generic_military_academy
+		x = 15
+		y = 9
+		cost = 30
+		prerequisite = { focus = ROJ_the_temple_of_jade }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = religion_technology
+				bonus = 1
+				uses = 1
+				category = religion_technology
+			}
+		}
+	}
+
+	#Focus for the_temple_of_jade
+	focus = {
+		id = ROJ_the_temple_of_jade
+		icon = GFX_focus_usa_build_the_pentagon
+		x = 15
+		y = 8
+		cost = 30
+		prerequisite = { focus = ROJ_improve_jade_industry }
+		prerequisite = { focus = ROJ_combined_industries }
+		prerequisite = { focus = ROJ_improving_tools }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = jade_temple_tech }	}
+				set_technology = { jade_temple_tech = 1	}
+			}
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for building_fortifications
+	focus = {
+		id = ROJ_building_fortifications
+		icon = GFX_goal_generic_fortify_city
+		x = 11
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_new_forges }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 1
+				uses = 1
+				category = fortification_technology
+			}
+		}
+	}
+
+	#Focus for more_workshops
+	focus = {
+		id = ROJ_more_workshops
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 17
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_pave_roads }
+		prerequisite = { focus = ROJ_build_workshop }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for more_forges
+	focus = {
+		id = ROJ_more_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 13
+		y = 5
+		cost = 30
+		prerequisite = { focus = ROJ_new_forges }
+		prerequisite = { focus = ROJ_pave_roads }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for improving_tools
+	focus = {
+		id = ROJ_improving_tools
+		icon = GFX_goal_generic_air_production
+		x = 18
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_even_more_workshops }
+		prerequisite = { focus = ROJ_improved_excavation_tools }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = construction_tools_technology
+				bonus = 1
+				uses = 1
+				category = construction_tools_technology
+			}
+		}
+	}
+
+	#Focus for digging_jade_mines
+	focus = {
+		id = ROJ_digging_jade_mines
+		icon = GFX_focus_generic_steel
+		x = 19
+		y = 5
+		cost = 14
+		prerequisite = { focus = ROJ_build_workshop }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = jade_mines_tech } }
+				set_technology = { jade_mines_tech = 1 }
+			}
+			1953 = { add_resource = { type = ores amount = 3 } }
+		}
+	}
+
+	#Focus for improved_excavation_tools
+	focus = {
+		id = ROJ_improved_excavation_tools
+		icon = GFX_goal_generic_construction2
+		x = 19
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_digging_jade_mines }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = resource_tools_technology
+				bonus = 1
+				uses = 1
+				category = resource_tools_technology
+			}
+		}
+	}
+
+	#Focus for improved_leyline_efficiency
+	focus = {
+		id = ROJ_improved_leyline_efficiency
+		icon = GFX_focus_research2
+		x = 15
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_harvesting_natural_mana }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			add_tech_bonus = {
+				name = arcane_tower
+				bonus = 1
+				uses = 1
+				category = arcane_tower_technology
+			}
+		}
+	}
+
+	#Focus for magical_encryption
+	focus = {
+		id = ROJ_magical_encryption
+		icon = GFX_focus_scroll_1
+		x = 26
+		y = 5
+		cost = 30
+		prerequisite = {
+			focus = ROJ_jade_workers_conjuration
+			focus = ROJ_living_transmutation
+		}
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = encryption_technology
+				bonus = 1
+				uses = 1
+				category = encryption_technology
+			}
+		}
+	}
+
+	#Focus for improve_jade_industry
+	focus = {
+		id = ROJ_improve_jade_industry
+		icon = GFX_goal_generic_production2
+		x = 12
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_more_fortifications }
+		prerequisite = { focus = ROJ_even_more_forges }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = city_growth_technology
+				bonus = 1
+				uses = 1
+				category = city_growth_technology
+			}
+		}
+	}
+
+	#Focus for more_fortifications
+	focus = {
+		id = ROJ_more_fortifications
+		icon = GFX_focus_spa_the_spanish_miracle
+		x = 11
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_building_fortifications }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = tower_technology
+				bonus = 1
+				uses = 1
+				category = tower_technology
+			}
+		}
+	}
+
+	#Focus for living_transmutation
+	focus = {
+		id = ROJ_living_transmutation
+		icon = GFX_focus_book_1
+		x = 23
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_studying_jade_magic }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_learn_living_transmutation_tt
+			set_variable = {
+				var = ROJ_living_transmutation_tier
+				value = 1
+			}
+		}
+	}
+
+	#Focus for improved_transmutation
+	focus = {
+		id = ROJ_improved_transmutation
+		icon = GFX_focus_book_2
+		x = 22
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_experimenting_jade_magic }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_upgrade_living_transmutation_tt
+			set_variable = {
+				var = ROJ_living_transmutation_tier
+				value = 2
+			}
+		}
+	}
+
+	#Focus for pave_roads
+	focus = {
+		id = ROJ_pave_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 15
+		y = 4
+		cost = 30
+		prerequisite = { focus = ROJ_developping_the_realm }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for greater_living_transmutation
+	focus = {
+		id = ROJ_greater_living_transmutation
+		icon = GFX_focus_book_3
+		x = 22
+		y = 8
+		cost = 30
+		prerequisite = { focus = ROJ_mastering_the_way_of_the_jade }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_greater_living_transmutation_tt
+			set_variable = {
+				var = ROJ_living_transmutation_tier
+				value = 3
+			}
+		}
+	}
+
+	#Focus for jade_infusion
+	focus = {
+		id = ROJ_jade_infusion
+		icon = GFX_focus_book_1
+		x = 24
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_experimenting_jade_magic }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_learn_jade_infusion_tt
+			set_variable = {
+				var = ROJ_jade_infusion_tier
+				value = 1
+			}
+		}
+	}
+
+	#Focus for efficient_spellcasting
+	focus = {
+		id = ROJ_efficient_spellcasting
+		icon = GFX_focus_scroll_2
+		x = 21
+		y = 7
+		cost = 30
+		prerequisite = { focus = ROJ_improved_transmutation }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_efficient_spellcasting_tt
+		}
+	}
+
+	#Focus for increased_mana_generation
+	focus = {
+		id = ROJ_increased_mana_generation
+		icon = GFX_focus_scroll_3
+		x = 22
+		y = 9
+		cost = 30
+		prerequisite = { focus = ROJ_improved_infusion }
+		prerequisite = { focus = ROJ_greater_living_transmutation }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_increased_mana_generation_tt
+			add_to_variable = {
+				var = spell_mana_weekly
+				value = 2.5
+			}
+		}
+	}
+
+	#Focus for improved_infusion
+	focus = {
+		id = ROJ_improved_infusion
+		icon = GFX_focus_book_2
+		x = 24
+		y = 8
+		cost = 30
+		prerequisite = { focus = ROJ_mastering_the_way_of_the_jade }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_upgrade_jade_infusion_tt
+			set_variable = {
+				var = ROJ_jade_infusion_tier
+				value = 2
+			}
+		}
+	}
+
+	#Focus for even_more_forges
+	focus = {
+		id = ROJ_even_more_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 13
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_more_forges }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for even_more_workshops
+	focus = {
+		id = ROJ_even_more_workshops
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 17
+		y = 6
+		cost = 30
+		prerequisite = { focus = ROJ_more_workshops }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for combined_industries
+	focus = {
+		id = ROJ_combined_industries
+		icon = GFX_goal_generic_construction2
+		x = 15
+		y = 7
+		cost = 5
+		prerequisite = { focus = ROJ_even_more_forges }
+		prerequisite = { focus = ROJ_improved_leyline_efficiency }
+		prerequisite = { focus = ROJ_even_more_workshops }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			1953 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Focus for greater_infusion
+	focus = {
+		id = ROJ_greater_infusion
+		icon = GFX_focus_book_3
+		x = 24
+		y = 10
+		cost = 30
+		prerequisite = { focus = ROJ_magical_haste }
+		prerequisite = { focus = ROJ_increased_mana_generation }
+		prerequisite = { focus = ROJ_time_is_never_fleeting }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_greater_jade_infusion_tt
+			set_variable = {
+				var = ROJ_jade_infusion_tier
+				value = 3
+			}
+		}
+	}
+
+	#Focus for mass_transmutation
+	focus = {
+		id = ROJ_mass_transmutation
+		icon = GFX_focus_scroll_3
+		x = 20
+		y = 9
+		cost = 30
+		prerequisite = { focus = ROJ_greater_living_transmutation }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_mass_transmutation_tt
+			set_country_flag = unlocked_greater_living_transmutation_spell
+		}
+	}
+
+	#Focus for increased_mana_pool
+	focus = {
+		id = ROJ_increased_mana_pool
+		icon = GFX_focus_scroll_3
+		x = 28
+		y = 9
+		cost = 30
+		prerequisite = { focus = ROJ_greater_conjuration }
+		ai_will_do = { factor = 1 }
+		
+		completion_reward = {
+			custom_effect_tooltip = ROJ_mana_conservation_tt
+			add_to_variable = {
+				var = max_mana
+				value = 25
+			}
+		}
+	}
+}

@@ -1,0 +1,428 @@
+﻿###########################
+# dragonmaw
+###########################
+
+add_namespace = dragonmaw
+
+#declare war on marshtide tribe
+country_event = {
+	id = dragonmaw.1
+	title = dragonmaw.1.t
+	desc = dragonmaw.1.d
+	picture = GFX_blackhand_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.1.option.1
+		
+		DMC = {
+			declare_war_on = {
+				target = MTT
+				type = take_state_focus
+				generator = { 400 401 } 
+			}
+			add_ideas = DMC_marshtide_war
+		}
+		
+		MTT = {
+			country_event = { id = marshtide_tribe.1 }
+		}
+	}
+}
+
+country_event = {
+	id = dragonmaw.2
+	title = dragonmaw.2.t
+	desc = dragonmaw.2.d
+	picture = GFX_murlocs_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.2.option.1
+		
+		DMC = {
+			transfer_state = 401
+			transfer_state = 400
+			400 = {	add_core_of = DMC }
+			401 = {	add_core_of = DMC }
+			remove_ideas = DMC_marshtide_war
+		}
+	}
+}
+
+country_event = {
+	id = dragonmaw.3
+	title = dragonmaw.3.t
+	desc = dragonmaw.3.d
+	picture = GFX_red_dragon_slave_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.3.option.1
+		add_ideas = DMC_oversee_dragonmaw_breeding_idea
+	}
+}
+
+country_event = { ### Sunken Temple
+	id = dragonmaw.4
+	title = dragonmaw.4.t
+	desc = dragonmaw.4.d
+	picture = GFX_report_event_german_parade_paris
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+        name = dragonmaw.4.option.1
+		add_political_power = 25
+		add_popularity = {
+			ideology = old_gods
+			popularity = 0.02
+		}
+		army_experience = 10
+		air_experience = 10
+	}
+}
+	
+#dream of dragons
+country_event = {
+	id = dragonmaw.5
+	title = dragonmaw.5.t
+	desc = dragonmaw.5.d
+	picture = GFX_dragons_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.5.option.1
+		DMC = {	add_ideas = DMC_dream_of_dragons }
+    }
+}
+
+country_event = {
+	id = dragonmaw.6
+	title = dragonmaw.6.t
+	desc = dragonmaw.6.d
+	picture = GFX_redridge_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.6.option.1
+		hidden_effect = {
+			country_event = { 
+				id = dragonmaw.7
+				days = 3 
+			}
+		}
+    }
+
+}
+
+#blackrock orc(deathwing) tells us of dragon in redridge
+country_event = {
+	id = dragonmaw.7
+	title = dragonmaw.7.t
+	desc = dragonmaw.7.d
+	picture = GFX_grunt_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.7.option.1
+		DMC = {	complete_national_focus = DMC_the_search_for_orastrasz }
+    }
+}
+
+country_event = { #unused event id
+	id = dragonmaw.8
+	title = dragonmaw.8.t
+	desc = dragonmaw.8.d
+	picture = GFX_report_event_german_parade_paris
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+        name = dragonmaw.8.option.1
+		
+	}
+}
+
+country_event = { #unused event id
+	id = dragonmaw.9
+	title = dragonmaw.9.t
+	desc = dragonmaw.9.d
+	picture = GFX_report_event_german_parade_paris
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.9.option.1
+
+    }
+}
+
+#Failure to Take over QUE before timer
+country_event = {
+	id = dragonmaw.10
+	title = dragonmaw.10.t
+	desc = dragonmaw.10.d
+	picture = GFX_report_event_german_parade_paris
+	
+	trigger = {
+		tag = DMC
+		DMC = { has_completed_focus = DMC_silvermoon_siege }
+		QUE = {
+			NOT = { has_idea = DMC_siege_silvermoon_dragon }
+			NOT = { has_idea = DMC_siege_silvermoon_rylak }
+		}
+		country_exists = QUE
+	}
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.10.option.1
+		set_country_flag = DMC_failures_punished
+		add_ideas = DMC_pending_punishment 
+		### Will Use Timed Later for Deathwing Path (Old Gods)
+		#add_timed_idea = {
+		#	idea = DMC_pending_punishment
+		#	days = 70
+		#}
+		add_war_support = -0.10
+		add_stability = -0.20
+		add_manpower = -750
+		capital_scope = {
+			add_manpower = -1500
+		}
+    }
+}
+
+#Following Orders
+country_event = {
+	id = dragonmaw.11
+	title = dragonmaw.11.t
+	desc = dragonmaw.11.d
+	picture = GFX_guldan_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.11.option.1
+		remove_ideas = DMC_pending_punishment
+		add_war_support = 0.10
+		add_stability = 0.10
+		SRC = { kill_country_leader = yes }
+		hidden_effect = {
+			SRC = {
+				set_nationality = {
+					target_country = SRC
+					character = BTG_maim_blackhand
+				}
+			}	
+		}
+		SRC = {
+			create_country_leader = {
+				name = "Warchief Maim"
+				picture = "gfx/leaders/BTG/maim.dds"
+				expire = "1965.1.1"
+				ideology = horde_type
+				traits = { }
+			}
+		}
+    }
+}
+
+#A Dark Pact
+country_event = {
+	id = dragonmaw.12
+	title = dragonmaw.12.t
+	desc = dragonmaw.12.d
+	picture = GFX_teron_gorefiend_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.12.option.1
+		remove_ideas = DMC_pending_punishment
+		add_war_support = 0.10
+		set_country_flag = fel_alignment
+		clr_country_flag = horde_alignment
+		hidden_effect = {
+			if = {
+				limit = { DMC = { NOT = { has_tech = orc_death_knight_tech } } }
+				set_technology = {
+					orc_death_knight_tech = 1
+					orc_death_knight_equipment_tech_1 = 1
+				}
+			}
+			division_template = {
+				name = "Pact Knights"
+				priority = 1
+				regiments = {
+					orc_death_knight = { x = 0 y = 0 }
+					orc_death_knight = { x = 0 y = 1 }
+					orc_death_knight = { x = 0 y = 2 }
+					orc_death_knight = { x = 0 y = 3 }
+					orc_death_knight = { x = 0 y = 4 }
+				}
+				support = {
+					necrolyte = { x = 0 y = 0 }
+				}
+			}
+
+			random_state = {
+				limit = {
+					is_core_of = DMC
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Pact Knights\" division_template = \"Pact Knights\" start_experience_factor = 0.5"
+					owner = DMC
+					count = 2
+				}
+			}
+		}
+    }
+}
+
+#Double Efforts
+country_event = {
+	id = dragonmaw.13
+	title = dragonmaw.13.t
+	desc = dragonmaw.13.d
+	picture = GFX_horde_flag_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.13.option.1
+		remove_ideas = DMC_pending_punishment
+		add_war_support = 0.05
+		add_stability = 0.05
+		transfer_units_fraction = {
+			target = BRC
+			size = 0.2
+			stockpile_ratio = 0.2
+			army_ratio = 0.2
+			air_ratio = 0.1
+		}
+    }
+}
+
+### Adding this in for Later
+country_event = { #unused event id
+	id = dragonmaw.14
+	title = dragonmaw.14.t
+	desc = dragonmaw.14.d
+	picture = GFX_report_event_german_parade_paris
+	
+	trigger = {
+		tag = DMC
+		always = no
+		DMC = {	
+			is_ai = no
+			has_completed_focus = DMC_silvermoon_siege
+			NOT = { has_idea = DMC_pending_punishment }	
+			OR = {
+				NOT = {	has_completed_focus = DMC_warchiefs_orders }
+				NOT = {	has_completed_focus = DMC_double_efforts }
+				NOT = {	has_completed_focus = DMC_a_dark_pact }
+			}
+		}
+		country_exists = QUE
+	}
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.14.option.1
+		DMC = { leave_faction = yes }
+		BRC = {
+			declare_war_on = {
+				target = DMC
+				type = puppet_wargoal_focus
+			}
+		}
+    }
+
+	option = {
+        name = dragonmaw.14.option.2
+		kill_country_leader = yes
+		add_stability = -0.10
+		add_war_support = -0.05
+		BRC = {
+			if = {
+				limit = { has_dlc = "Together for Victory" }
+				set_autonomy = {
+					target = DWC
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.2
+				}
+				else = { puppet = DWC }
+			}
+		}
+    }
+}
+
+country_event = {
+	id = dragonmaw.15
+	title = dragonmaw.15.t
+	desc = dragonmaw.15.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = dragonmaw.15.option.1
+		complete_national_focus = DMC_unexpected_relation
+		set_country_flag = horde_alignment
+		add_stability = 0.05
+		add_popularity = {
+			ideology = horde
+			popularity = 0.05
+		}
+    }
+
+	option = {
+        name = dragonmaw.15.option.2
+		complete_national_focus = DMC_forced_compliance
+		set_country_flag = old_alignment
+		kill_country_leader = yes
+		add_popularity = {
+			ideology = old_gods
+			popularity = 0.10
+		}
+    }
+}

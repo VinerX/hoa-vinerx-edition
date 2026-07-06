@@ -1,0 +1,40 @@
+foreign_politics = {
+    # Ask nations to join Coalition of Khaz modan
+    IRO_invitation_to_coalition_of_khaz_modan_decision = {
+
+        priority = 10
+
+        cost = 150
+
+        fire_only_once = no
+
+        targets = { AER SPC }
+
+        allowed = {
+      	    tag = IRO
+      	}
+
+        visible = {
+            is_faction_leader = yes
+            has_country_flag = IRO_coalition_of_khaz_modan_cf
+        }
+
+        available = {
+            FROM = {
+                has_war = no
+            }
+            has_opinion = {
+                target = FROM
+                value > 24
+            }
+            NOT = { is_in_faction_with = AER }
+            NOT = { is_in_faction_with = SPC }
+        }
+
+        complete_effect = {
+            FROM = {
+                country_event = ironforge.12
+            }
+		}
+    }
+}

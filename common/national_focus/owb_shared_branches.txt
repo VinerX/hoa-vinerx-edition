@@ -1,0 +1,352 @@
+#!gfx:interface\hoa_focus.gfx
+
+## Industry Sub-Tree ##
+shared_focus = {
+	id = owb_technology_of_the_future
+	icon = GFX_focus_scroll_1
+	cost = 30
+	x = 4
+	y = 5
+	available = {
+		has_country_flag = emerging_from_the_vault
+	}
+	completion_reward = {
+		add_ideas = owb_technology_of_the_future_idea
+	}
+}
+
+shared_focus = {
+	id = owb_prospect_for_resources
+	icon = GFX_goal_generic_construction2
+	cost = 30
+	prerequisite = {
+		focus = owb_technology_of_the_future
+	}
+	relative_position_id = owb_technology_of_the_future
+	x = -1
+	y = 1
+
+	completion_reward = {
+		capital_scope = {
+			add_resource = {
+				type = wheat
+				amount = 15
+			}
+			add_resource = {
+				type = ores
+				amount = 15
+			}
+			add_resource = {
+				type = gunpowder
+				amount = 15
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_air_effort
+	icon = GFX_focus_gryphons
+	cost = 30
+	prerequisite = {
+		focus = owb_technology_of_the_future
+	}
+	relative_position_id = owb_technology_of_the_future
+	x = 1
+	y = 1
+
+	completion_reward = {
+		capital_scope = {
+			add_building_construction = {
+				type = air_base
+				level = 5
+				instant_build = yes
+			}	
+		}
+		set_technology = {
+			aviary_tech = 1
+			mechanical_flight = 1
+			small_air_frames = 1
+			fighter_air_frames_1 = 1
+			cas_air_frames_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = mechanical_fighter_equipment_1
+			amount = 200
+		}
+		add_equipment_to_stockpile = {
+			type = mechanical_cas_equipment_1
+			amount = 100
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_expanding_the_vault
+	icon = GFX_generic_focus_workshop
+	cost = 30
+	prerequisite = {
+		focus = owb_prospect_for_resources
+	}
+	relative_position_id = owb_prospect_for_resources
+	x = -1
+	y = 1
+	
+	completion_reward = {
+		capital_scope = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 3
+				instant_build = yes
+			}	
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_across_the_seas
+	icon = GFX_generic_focus_shipyard
+	cost = 30
+	prerequisite = {
+		focus = owb_prospect_for_resources
+		focus = owb_air_effort
+	}
+	relative_position_id = owb_prospect_for_resources
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		set_technology = {
+			generic_naval_naval_facilities_tech = 1
+			generic_naval_small_frames_tech = 1
+			generic_naval_convoy_tech_1 = 1
+			generic_naval_destroyer_tech_1 = 1
+		}
+		random_owned_controlled_state = {
+			limit = {
+				free_building_slots = {
+					building = dockyard
+					size > 0
+					include_locked = yes
+				}
+				impassable = no
+				OR = {
+					is_in_home_area = yes
+					NOT = {
+						owner = {
+							any_owned_state = {
+								free_building_slots = {
+									building = dockyard
+									size > 0
+									include_locked = yes
+								}
+							is_in_home_area = yes
+							}
+						}
+					}
+				}
+			}
+			add_extra_state_shared_building_slots = 5
+			add_building_construction = {
+				type = dockyard
+				level = 5
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_expand_the_armory
+	icon = GFX_generic_focus_blacksmith
+	cost = 30
+	prerequisite = {
+		focus = owb_air_effort
+	}
+	relative_position_id = owb_air_effort
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		capital_scope = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = arms_factory
+				level = 3
+				instant_build = yes
+			}	
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_knowledge_from_the_past
+	icon = GFX_focus_book_1
+	cost = 60
+	prerequisite = {
+		focus = owb_expanding_the_vault
+	}
+	prerequisite = {
+		focus = owb_across_the_seas
+	}
+	prerequisite = {
+		focus = owb_expand_the_armory
+	}
+	relative_position_id = owb_across_the_seas
+	x = 0
+	y = 1
+	
+	completion_reward = {
+		set_country_flag = owb_knowledge_from_the_past
+		add_research_slot = 1
+	}
+}
+
+shared_focus = {
+	id = owb_modern_weapons
+	icon = GFX_goal_generic_military_sphere
+	cost = 30
+	x = 16
+	y = 5
+	available = {
+		has_country_flag = emerging_from_the_vault
+	}
+	completion_reward = {
+		add_ideas = owb_modern_weapons_idea
+	}
+}
+
+shared_focus = {
+	id = owb_weapon_production
+	icon = GFX_goal_generic_small_arms
+	cost = 30
+	prerequisite = {
+		focus = owb_modern_weapons
+	}
+	relative_position_id = owb_modern_weapons
+	x = -1
+	y = 1
+	
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = owb_vault_dweller_equipment_1
+			amount = 10000
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_study_historical_battles
+	icon = GFX_goal_generic_position_armies
+	cost = 30
+	prerequisite = {
+		focus = owb_modern_weapons
+	}
+	relative_position_id = owb_modern_weapons
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 4
+			category = land_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = land }
+			}
+			add_daily_mastery = {
+				name = doctrine_infantry
+				amount = 1
+				days = 50
+				track = infantry
+			}
+			add_daily_mastery = {
+				name = doctrine_combat_support
+				amount = 1
+				days = 50
+				track = combat_support
+			}
+			add_daily_mastery = {
+				name = doctrine_armor
+				amount = 1
+				days = 50
+				track = armor
+			}
+			add_daily_mastery = {
+				name = doctrine_operations
+				amount = 1
+				days = 50
+				track = operations
+			}
+		}
+		else = { army_experience = 50 }
+	}
+}
+
+shared_focus = {
+	id = owb_power_armor_production
+	icon = GFX_goal_generic_construct_mil_factory
+	cost = 30
+	prerequisite = {
+		focus = owb_weapon_production
+	}
+	relative_position_id = owb_weapon_production
+	x = 0
+	y = 1
+	
+	completion_reward = {
+		capital_scope = {
+			add_resource = {
+				type = oil
+				amount = 15
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = owb_vault_dweller_equipment_1
+			amount = 3000
+		}
+	}
+}
+
+shared_focus = {
+	id = owb_training_exercises
+	icon = GFX_goal_generic_major_war
+	cost = 30
+	prerequisite = {
+		focus = owb_study_historical_battles
+	}
+	relative_position_id = owb_study_historical_battles
+	x = 0
+	y = 1
+	
+	completion_reward = {
+		army_experience = 200
+	}
+
+}
+
+shared_focus = {
+	id = owb_a_professional_army
+	icon = GFX_focus_generic_little_entente
+	cost = 30
+	prerequisite = {
+		focus = owb_power_armor_production
+	}
+	prerequisite = {
+		focus = owb_training_exercises
+	}
+	x = -1
+	y = 1
+	relative_position_id = owb_training_exercises
+	completion_reward = {
+		set_country_flag = owb_a_professional_army
+		swap_ideas = {
+			remove_idea = owb_modern_weapons_idea
+			add_idea = owb_a_professional_army_idea
+		}
+	}
+}

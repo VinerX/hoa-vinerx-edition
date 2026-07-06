@@ -1,0 +1,1724 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	dwarf_mustering_hall_tech = {
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_axeman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_rifleman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 8 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+		}
+	}
+
+	dwarf_axeman_tech = {
+
+		enable_subunits = {
+			dwarf_axeman
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_axeman_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_enforcer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_axeman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_axeman_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_axeman_equipment_1
+		}
+
+		path = {
+			leads_to_tech = dwarf_axeman_iron_constitution_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_axeman_brutal_blows_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_enforcer_tech = {
+
+		enable_subunits = {
+			dwarf_enforcer
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_enforcer_training_tech_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			militia_technology
+			guard_technology
+		}
+	}
+	
+	dwarf_enforcer_training_tech_1 = {
+	
+		dwarf_enforcer = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_enforcer_training_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			militia_technology
+			guard_technology
+		}
+	}
+	
+	dwarf_enforcer_training_tech_2 = {
+	
+		dwarf_enforcer = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		dependencies = { dwarf_hold_tech = 1 }
+	
+		path = {
+			leads_to_tech = dwarf_enforcer_training_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			militia_technology
+			guard_technology 
+		}
+	}
+	
+	dwarf_enforcer_training_tech_3 = {
+	
+		dwarf_enforcer = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_enforcer_training_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			militia_technology
+			guard_technology
+		}
+	}
+	
+	dwarf_enforcer_training_tech_4 = {
+	
+		dwarf_enforcer = {
+			suppression_factor = 0.075
+		}
+	
+		dependencies = { dwarf_great_hall_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			militia_technology
+			guard_technology
+		}
+	}
+
+	dwarf_axeman_iron_constitution_tech = {
+
+		dwarf_axeman = {
+			defense = 0.10
+			max_strength = 0.15
+		}
+		dwarf_slayer = {
+			defense = 0.10
+			max_strength = 0.15
+		}
+		dwarf_defender = {
+			defense = 0.10
+			max_strength = 0.15
+		}
+		dwarf_enforcer = {
+			max_strength = 0.15
+		}
+
+		xor = { dwarf_axeman_brutal_blows_tech }
+
+		path = {
+			leads_to_tech = dwarf_axeman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_axeman_brutal_blows_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_axeman_brutal_blows_tech
+			}
+		}
+	}
+
+	dwarf_axeman_brutal_blows_tech = {
+		
+		dwarf_axeman = {
+			soft_attack = 0.10
+			ap_attack = 0.10
+		}
+		dwarf_slayer = {
+			soft_attack = 0.10
+			ap_attack = 0.10
+		}
+		dwarf_defender = {
+			soft_attack = 0.10
+			ap_attack = 0.10
+		}
+
+		xor = { dwarf_axeman_iron_constitution_tech }
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_axeman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_axeman_iron_constitution_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_axeman_iron_constitution_tech
+			}
+		}
+	}
+
+	dwarf_axeman_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_axeman_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_axeman_close_combat_experts_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_axeman_uproar_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_axeman_close_combat_experts_tech = {
+
+		dwarf_axeman = {
+			defense = 0.10
+			city = {
+				defence = 0.10
+				attack = 0.10
+			}
+			subterranean_city = {
+				defence = 0.10
+				attack = 0.10
+			}
+			subterranean = {
+				defence = 0.10
+				attack = 0.10
+			}
+			mountain_pass = {
+				defence = 0.10
+				attack = 0.10
+			}
+		}
+		
+		dwarf_slayer = {
+			defense = 0.10
+			city = {
+				defence = 0.10
+				attack = 0.10
+			}
+			subterranean_city = {
+				defence = 0.10
+				attack = 0.10
+			}
+			subterranean = {
+				defence = 0.10
+				attack = 0.10
+			}
+			mountain_pass = {
+				defence = 0.10
+				attack = 0.10
+			}
+		}
+		dwarf_defender = {
+			defense = 0.10
+			city = {
+				defence = 0.10
+				attack = 0.10
+			}
+			subterranean_city = {
+				defence = 0.10
+				attack = 0.10
+			}
+			subterranean = {
+				defence = 0.10
+				attack = 0.10
+			}
+			mountain_pass = {
+				defence = 0.10
+				attack = 0.10
+			}
+		}
+		dwarf_enforcer = {
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_axeman_uproar_tech }
+
+		path = {
+			leads_to_tech = dwarf_axeman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_axeman_uproar_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_axeman_uproar_tech
+			}
+		}
+	}
+
+	dwarf_axeman_uproar_tech = {
+
+		dwarf_axeman = {
+			max_organisation = 5
+			breakthrough = 0.10
+		}
+		dwarf_slayer = {
+			max_organisation = 5
+			breakthrough = 0.10
+		}
+		dwarf_defender = {
+			max_organisation = 5
+			breakthrough = 0.10
+		}
+
+		xor = { dwarf_axeman_close_combat_experts_tech }
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_axeman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_axeman_close_combat_experts_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_axeman_close_combat_experts_tech
+			}
+		}
+	}
+
+	dwarf_axeman_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_axeman_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			axeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_rifleman_tech = {
+
+		enable_subunits = {
+			dwarf_rifleman
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_rifleman_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_mountaineer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_rifleman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_engineer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 11 y = 2 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mountaineer_tech = {
+
+		enable_subunits = {
+			dwarf_mountaineer
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_mountaineer_training_tech_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 8 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			dwarf_mountaineer_technology
+		}
+	}
+	
+	dwarf_mountaineer_training_tech_1 = {
+	
+		dwarf_mountaineer = {
+			recon = 1.7
+		}
+		dark_iron_assassin = {
+			recon = 1.7
+		}
+	
+		path = {
+			leads_to_tech = dwarf_mountaineer_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			dwarf_mountaineer_technology
+		}
+	}
+	
+	dwarf_mountaineer_training_tech_2 = {
+	
+		dwarf_mountaineer = {
+			recon = 1.7
+		}
+		dark_iron_assassin = {
+			recon = 1.7
+		}
+	
+		dependencies = { dwarf_hold_tech = 1 }
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_mountaineer_training_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 8 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			dwarf_mountaineer_technology
+		}
+	}
+	
+	dwarf_mountaineer_training_tech_3 = {
+	
+		dwarf_mountaineer = {
+			recon = 1.7
+		}
+		dark_iron_assassin = {
+			recon = 1.7
+		}
+	
+		path = {
+			leads_to_tech = dwarf_mountaineer_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			dwarf_mountaineer_technology
+		}
+	}
+	
+	dwarf_mountaineer_training_tech_4 = {
+	
+		dwarf_mountaineer = {
+			recon = 1.7
+		}
+		dark_iron_assassin = {
+			recon = 1.7
+		}
+	
+		dependencies = { dwarf_great_hall_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 8 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			dwarf_mountaineer_technology
+		}
+	}
+
+	dwarf_rifleman_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_rifleman_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_rifleman_solid_core_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_rifleman_scatter_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 11 y = 4 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_rifleman_solid_core_tech = {
+
+		dwarf_rifleman = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+		dwarf_mountaineer = {
+			hard_attack = 0.15
+		}
+		dwarf_marksman = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_rifleman_scatter_shot_tech }
+
+		path = {
+			leads_to_tech = dwarf_rifleman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_rifleman_scatter_shot_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_rifleman_scatter_shot_tech
+			}
+		}
+	}
+
+	dwarf_rifleman_scatter_shot_tech = {
+
+		dwarf_rifleman = {
+			soft_attack = 0.15
+			air_attack = 0.25
+		}
+		dwarf_engineer = {
+			soft_attack = 0.15
+		}
+		dwarf_marksman = {
+			soft_attack = 0.15
+			air_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_rifleman_solid_core_tech }
+
+		path = {
+			leads_to_tech = dwarf_rifleman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_rifleman_solid_core_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_rifleman_solid_core_tech
+			}
+		}
+	}
+
+	dwarf_rifleman_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_rifleman_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_rifleman_open_field_tactics_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_rifleman_mountain_tactics_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 11 y = 8 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_rifleman_open_field_tactics_tech = {
+
+		dwarf_rifleman = {
+			max_organisation = 3
+			plains = {
+				defence = 0.10
+				attack = 0.10
+			}
+			desert = {
+				defence = 0.10
+				attack = 0.10
+			}
+			badlands = {
+				defence = 0.05
+				attack = 0.05
+			}
+			snow = {
+				defence = 0.05
+				attack = 0.05
+			}
+		}
+		dwarf_mountaineer = {
+			max_organisation = 3
+		}
+		dwarf_marksman = {
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_rifleman_mountain_tactics_tech }
+
+		path = {
+			leads_to_tech = dwarf_rifleman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_rifleman_mountain_tactics_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_rifleman_mountain_tactics_tech
+			}
+		}
+	}
+
+	dwarf_rifleman_mountain_tactics_tech = {
+
+		dwarf_rifleman = {
+			max_organisation = 3
+			mountain = {
+				defence = 0.10
+				attack = 0.10
+			}
+			hills = {
+				defence = 0.10
+				attack = 0.10
+			}
+			snow_mountain = {
+				defence = 0.05
+				attack = 0.05
+			}
+			snow_hills = {
+				defence = 0.05
+				attack = 0.05
+			}
+		}
+		dwarf_engineer = {
+			max_organisation = 3
+		}
+		dwarf_marksman = {
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_rifleman_open_field_tactics_tech }
+
+		path = {
+			leads_to_tech = dwarf_rifleman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_rifleman_open_field_tactics_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_rifleman_open_field_tactics_tech
+			}
+		}
+	}
+
+	dwarf_rifleman_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_rifleman_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 11 y = 12 }
+		}
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			dwarf_rifleman_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_engineer_tech = {
+
+		enable_subunits = {
+			dwarf_engineer
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_engineer_training_tech_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 14 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			ranged_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_engineer_training_tech_1 = {
+	
+		dwarf_engineer = {
+			reliability_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_engineer_training_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			ranged_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_engineer_training_tech_2 = {
+	
+		dwarf_engineer = {
+			reliability_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		dependencies = { dwarf_hold_tech = 1 }
+	
+		path = {
+			leads_to_tech = dwarf_engineer_training_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 14 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			ranged_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_engineer_training_tech_3 = {
+	
+		dwarf_engineer = {
+			reliability_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_engineer_training_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			ranged_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_engineer_training_tech_4 = {
+	
+		dwarf_engineer = {
+			reliability_factor = 0.075
+		}
+	
+		dependencies = { dwarf_great_hall_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 14 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			ranged_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+
+	dwarf_runecarvers_sanctum_tech = {
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+			set_technology = { dwarf_runes_equipment_tech = 1 }
+		}
+
+		path = {
+			leads_to_tech = dwarf_rune_priest_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_thane_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 18 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			dwarf_mustering_hall_technology
+			spellcaster_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	dwarf_rune_priest_tech = {
+
+		enable_subunits = {
+			dwarf_rune_priest
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_rune_priest_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_runes_equipment_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 16 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			spellcaster_technology
+		}
+	}
+
+	dwarf_rune_priest_training_tech_1 = {
+
+		dwarf_rune_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_rune_priest_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			spellcaster_technology
+			healer_technology
+		}
+	}
+
+	dwarf_rune_priest_training_tech_2 = {
+
+		dwarf_rune_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_rune_priest_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			spellcaster_technology
+			healer_technology
+		}
+	}
+
+	dwarf_rune_priest_training_tech_3 = {
+
+		dwarf_rune_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_rune_priest_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			spellcaster_technology
+			healer_technology
+		}
+	}
+
+	dwarf_rune_priest_training_tech_4 = {
+
+		dwarf_rune_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 16 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+			spellcaster_technology
+			healer_technology
+		}
+	}
+
+	dwarf_runes_equipment_tech = {
+
+		enable_equipments = {
+			dwarf_runes_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 18 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			support_technology
+			spellcaster_technology
+		}
+	}
+
+	dwarf_thane_tech = {
+
+		enable_subunits = {
+			dwarf_thane
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_thane_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_runes_equipment_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 20 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			melee_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_thane_training_tech_1 = {
+	
+		dwarf_thane = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_thane_training_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			melee_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_thane_training_tech_2 = {
+	
+		dwarf_thane = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		dependencies = { dwarf_hold_tech = 1 }
+	
+		path = {
+			leads_to_tech = dwarf_thane_training_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			melee_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_thane_training_tech_3 = {
+	
+		dwarf_thane = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+	
+		path = {
+			leads_to_tech = dwarf_thane_training_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			melee_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+	
+	dwarf_thane_training_tech_4 = {
+	
+		dwarf_thane = {
+			initiative = 0.1
+		}
+	
+		dependencies = { dwarf_great_hall_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			melee_infantry_technology
+			dwarf_infantry_technology
+			infantry_technology
+			support_technology
+		}
+	}
+}

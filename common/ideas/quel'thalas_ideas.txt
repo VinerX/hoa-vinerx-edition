@@ -1,0 +1,572 @@
+ideas = {
+
+	country = {
+
+		QUE_hearthglen_envoy = {
+			picture = generic_race_human
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				alliance_drift = 0.05
+			}
+		}
+
+		QUE_respect_for_nature = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				production_speed_buildings_factor = -0.075
+				global_building_slots_factor = -0.1
+				stability_factor = 0.1
+				political_power_gain = 0.05
+			}
+		}
+
+		QUE_deep_scars_1 = {
+			picture = generic_race_blood_elf
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				conscription_factor = -0.3
+				war_support_factor = 0.1
+				army_core_defence_factor = 0.1
+				special_forces_cap = 0.20
+			}
+		}
+
+		QUE_deep_scars_2 = {
+			picture = generic_race_blood_elf
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				conscription_factor = -0.15
+				war_support_factor = 0.15
+				army_core_attack_factor = 0.1
+				special_forces_cap = 0.2
+				special_forces_attack_factor = 0.1
+			}
+		}
+
+		QUE_secluded_lives = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				drift_defence_factor = 0.5
+				foreign_subversive_activites = -0.75
+				join_faction_tension = 1
+				guarantee_tension = 1
+				send_volunteers_tension = 0.5
+				ai_get_ally_desire_factor = -100
+				trade_opinion_factor = -0.5
+			}
+		}
+
+		QUE_convocation_of_silvermoon = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				stability_factor = 0.1
+				political_power_cost = 1
+				political_advisor_cost_factor = 0.5
+				justify_war_goal_time = 0.5
+				conscription_factor = -0.5
+				local_resources_factor = -0.25
+				consumer_goods_expected_value = 0.35
+				industrial_capacity_factory = -0.25
+				industrial_capacity_dockyard = -0.25
+				production_speed_industrial_complex_factor = -0.2
+				production_speed_arms_factory_factor = -0.2
+				production_speed_dockyard_factor = -0.2
+			}
+		}
+
+		QUE_convocation_of_silvermoon_2 = {
+			name = QUE_convocation_of_silvermoon
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				stability_factor = 0.1
+				political_power_cost = 0.75
+				political_advisor_cost_factor = 0.5
+				justify_war_goal_time = 0.5
+				conscription_factor = -0.35
+				local_resources_factor = -0.25
+				consumer_goods_expected_value = 0.25
+				industrial_capacity_factory = -0.25
+				industrial_capacity_dockyard = -0.25
+				production_speed_industrial_complex_factor = -0.15
+				production_speed_arms_factory_factor = -0.15
+				production_speed_dockyard_factor = -0.15
+			}
+		}
+
+		QUE_remembrance_of_troll_wars = {		# TODO: Diplomatic opinion of Amani factions: -100, Diplomatic opinion of Arathor: +25, AI Modifier: +200 to antagonize Zul’Aman factions
+			picture = generic_race_forest_troll
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				war_support_factor = -0.4
+				land_doctrine_cost_factor = -0.15
+			}
+		}
+
+		QUE_the_sunwell = {
+			picture = generic_religion_sunwell
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				army_attack_factor = 0.1
+				army_defence_factor = 0.1
+				army_org_factor = 0.05
+				out_of_supply_factor = 1	# Intentionally very large
+			}
+		}
+
+		QUE_dalaran_concord = {		# TODO: Diplomatic opinion of Dalaran: +40
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				research_speed_factor = 0.05
+				political_power_cost = 0.15
+			}
+		}
+
+		QUE_gnoll_trouble = {
+			picture = generic_race_gnoll
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				stability_weekly = -0.001
+				weekly_manpower = -1
+			}
+		}
+
+		QUE_queldanas_imports_less = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				local_resources_factor = -0.05
+			}
+		}
+
+		QUE_murloc_pirates = {
+			picture = generic_race_murloc
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				naval_accidents_chance = 0.5
+				repair_speed_factor = -0.25
+				naval_speed_factor = -0.15
+				production_lack_of_resource_penalty_factor = 0.3
+			}
+		}
+
+		QUE_defenders_of_quelthalas = {		# Added when in defensive war via focus
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				mobilization_laws_cost_factor = -0.25
+				conscription_factor = 0.25
+				surrender_limit = 0.15
+				max_surrender_limit_offset = 0.05
+				army_core_attack_factor = 0.1
+				army_core_defence_factor = 0.1
+				custom_modifier_tooltip = QUE_defenders_of_quelthalas_tt	# TODO: Explains cancellation
+			}
+
+			cancel = {
+				has_defensive_war = yes	# TODO: Figure out different trigger implementation
+			}
+		}
+
+		#QUE_farstriders = {
+		#	picture = generic_race_high_elves
+		#	allowed = {	original_tag = QUE }
+
+		#	research_bonus = {
+		#		altar_technology = 0.15
+		#	}
+		#	modifier = {
+		#		modifier_army_sub_unit_royal_guard_attack_factor = 0.05
+		#		modifier_army_sub_unit_royal_guard_speed_factor = 0.1
+		#	}
+		#}
+
+		### Temp change for if you come back Tran
+		QUE_farstriders = {
+			picture = QUE_windrunner
+			allowed = {	original_tag = QUE }
+
+			research_bonus = {
+				ranged_infantry_technology = 0.15
+				#high_elf_ranger_technology = 0.15
+			}
+			modifier = {
+				recon_factor = 0.2
+				decryption_factor = 0.2
+				army_core_defence_factor = 0.05
+			}
+		}
+
+		QUE_high_elven_rangers = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			equipment_bonus = {
+				ranged_weapons_equipment = {
+					soft_attack = 0.1
+					build_cost_ic = -0.05
+					instant = yes
+				}
+			}
+		}
+
+		QUE_silvermoon_guardians = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				modifier_army_sub_unit_footman_defence_factor = 0.075
+				modifier_army_sub_unit_pikeman_defence_factor = 0.075
+				modifier_army_sub_unit_royal_guard_defence_factor = 0.075
+			}
+		}
+
+		QUE_magisters = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			equipment_bonus = {
+				caster_equipment = {
+					hard_attack = 0.1
+					reliability = 0.05
+					instant = yes
+				}
+			}
+		}
+
+		QUE_darkspine_trouble = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				political_power_cost = 0.1
+				stability_weekly = -0.002
+				weekly_manpower = -10
+			}
+		}
+
+		QUE_turning_towards_the_world_stage = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				army_advisor_cost_factor = -0.25
+				economy_cost_factor = -0.25
+				war_support_factor = 0.05
+				command_power_gain_mult = 0.15
+			}
+		}
+
+		QUE_noble_troubles = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				political_power_factor = -0.1
+				stability_factor = 0.1
+				offensive_war_stability_factor = -0.2
+				command_power_gain = -0.05
+			}
+		}
+
+		QUE_uncontested_sovereignty = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				stability_factor = 0.15
+				political_power_factor = 0.2
+			}
+		}
+
+		QUE_the_silvermoon_project = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {	# Net +0% to Military Factories and Dockyards; +10% to Infrastructure; +15% to Farms, Lumber Mills and Stables; +5% to everything else
+				production_speed_buildings_factor = 0.05
+				production_speed_arms_factory_factor = -0.05
+				production_speed_dockyard_factor = -0.05
+				production_speed_infrastructure_factor = 0.05
+				production_speed_farm_factor = 0.1
+				production_speed_lumber_mill_factor = 0.1
+				production_speed_stable_factor = 0.1
+			}
+		}
+
+		QUE_flagships_of_quelthalas = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				navy_capital_ship_attack_factor = 0.05
+				navy_capital_ship_defence_factor = 0.05
+				positioning = 0.1
+				naval_critical_effect_factor = -0.1
+			}
+		}
+
+		QUE_dispersed_fleet = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				navy_submarine_attack_factor = 0.075
+				navy_screen_defence_factor = 0.075
+				naval_morale_factor = 0.1
+				naval_coordination = 0.1
+			}
+		}
+
+		QUE_silvermoon_admiralty = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				naval_doctrine_cost_factor = -0.2
+				experience_gain_navy_factor = 0.1
+			}
+		}
+
+		QUE_ship_design_contracts = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			equipment_bonus = {
+				destroyer_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				light_frigate_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				heavy_frigate_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				juggernaught_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				battleship_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				dreadnaught_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				carrier_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+				submarine_equipment = {
+					build_cost_ic = -0.075
+					instant = yes
+				}
+			}
+		}
+
+		QUE_swift_destroyers = {
+			picture = generic_race_high_elves
+			allowed = {	original_tag = QUE }
+
+			equipment_bonus = {
+				destroyer_equipment = {
+					maximum_speed = 0.2
+					surface_detection = 0.1
+					sub_detection = 0.1
+					instant = yes
+				}
+			}
+		}
+
+		##########
+		### Special Project Related
+		##########
+
+		high_elf_feed_the_thirst = {
+			picture = generic_race_high_elves
+			allowed = {	always = yes }
+
+			modifier = {
+				stability_factor = -0.05
+				country_resource_mana = -60
+			}
+		}
+
+		high_elf_unnatural_thirst = {
+			picture = generic_race_high_elves
+			allowed = {	always = yes }
+
+			modifier = {
+				war_support_factor = 0.1
+				stability_factor = -0.1
+				country_resource_mana = -90
+			}
+		}
+
+		##########
+		### 3rd War Capitulation
+		##########
+
+		QUE_tainted_sunwell = {
+			picture = generic_religion_sunwell
+			allowed = {	original_tag = QUE }
+
+			on_remove = {
+				country_event = quelthalas_capitulation.3
+			}
+
+			modifier = {
+				stability_factor = -0.1
+				stability_weekly = -0.003
+				country_faith_gain_factor = -0.5
+			}
+		}
+
+		QUE_devastated_army = {
+			picture = generic_religion_lich_king
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				war_support_factor = -0.1
+				conscription_factor = -0.4
+				training_time_army_factor = 0.5
+			}
+		}
+
+		QUE_those_who_serve_1 = {
+			picture = generic_race_blood_elf
+			allowed = {	original_tag = QUE }
+
+			on_remove = {
+				add_ideas = QUE_those_who_serve_2
+				add_ideas = QUE_blood_knights
+				add_timed_idea = {
+					idea = QUE_faction_friction
+					years = 1
+				}
+			}
+
+			modifier = {
+				conscription_factor = -0.5
+				war_support_factor = 0.1
+				army_core_defence_factor = 0.1
+				special_forces_cap = 0.2
+				command_power_gain_mult = -0.8
+			}
+		}
+
+		QUE_those_who_serve_2 = {
+			picture = generic_race_blood_elf
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				conscription_factor = -0.3
+				war_support_factor = 0.15
+				army_core_attack_factor = 0.1
+				army_core_defence_factor = 0.1
+				special_forces_cap = 0.2
+				special_forces_attack_factor = 0.1
+			}
+		}
+
+		QUE_farstriders_rebuild = {
+			picture = QUE_windrunner
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				recon_factor = 0.1
+				decryption_factor = 0.1
+				army_core_attack_factor = 0.05
+				special_forces_cap = 0.1
+			}
+		}
+
+		QUE_blood_knights = {
+			picture = generic_religion_blood_knights
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				land_doctrine_cost_factor = -0.05
+				army_defence_factor = 0.05
+				country_faith_gain_factor = 0.1
+			}
+		}
+
+		QUE_faction_friction = {
+			picture = generic_religion_blood_knights
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				stability_factor = -0.05
+				experience_gain_army = 0.02
+			}
+		}
+
+		QUE_withdrawl_1 = {
+			picture = generic_religion_sunwell
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				stability_factor = -0.025
+				monthly_population = -0.1
+			}
+		}
+
+		QUE_withdrawl_2 = {
+			picture = generic_religion_sunwell
+			allowed = {	original_tag = QUE }
+
+			cancel = {
+				QUE = {
+					has_resources_in_country = {
+						resource = mana
+						amount > 299
+						extracted = yes
+					}
+				}
+			}
+
+			modifier = {
+				stability_factor = -0.1
+				monthly_population = -0.4
+			}
+		}
+
+		QUE_withdrawl_15 = {
+			picture = generic_religion_sunwell
+			allowed = {	original_tag = QUE }
+
+			modifier = {
+				political_power_gain = -0.3
+				industrial_capacity_dockyard = -0.75
+				industrial_capacity_factory = -0.75
+				stability_factor = -0.3
+				monthly_population = -2
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,2165 @@
+add_namespace = nethergarde
+
+# Revoke Research Funding
+country_event = {
+	id = nethergarde.1
+	title = nethergarde.1.t
+	desc = nethergarde.1.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.1.option.1
+	}
+}
+
+# Revoke Funding
+country_event = {
+	id = nethergarde.2
+	title = nethergarde.2.t
+	desc = nethergarde.2.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.2.option.1
+		if = {
+			limit = { has_idea = NET_funding_5 }
+			swap_ideas = {
+				remove_idea = NET_funding_5
+				add_idea = NET_funding_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = NET_funding_4 }
+			swap_ideas = {
+				remove_idea = NET_funding_4
+				add_idea = NET_funding_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = NET_funding_3 }
+			swap_ideas = {
+				remove_idea = NET_funding_3
+				add_idea = NET_funding_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = NET_funding_2 }
+			swap_ideas = {
+				remove_idea = NET_funding_2
+				add_idea = NET_funding_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = NET_funding_1 }
+			swap_ideas = {
+				remove_idea = NET_funding_1
+				add_idea = NET_funding_0
+			}
+		}
+	}
+}
+
+# Rockpool Tribe
+country_event = {
+	id = nethergarde.3
+	title = nethergarde.3.t
+	desc = nethergarde.3.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.3.option.1
+		390 = {
+			add_core_of = RCP
+			transfer_state_to = RCP
+			remove_core_of = NET
+			add_claim_by = NET
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_manpower = -8000
+			hidden_effect = { remove_dynamic_modifier = { modifier = LOR_murloc_problem } }
+		}
+		26 = {
+			add_manpower = 3000
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		393 = { add_manpower = 5000 }
+		hidden_effect = {
+			2157 = {
+				add_core_of = RCP
+				transfer_state_to = RCP
+				remove_core_of = NET
+				add_claim_by = NET
+			}	
+		}
+	}
+}
+
+# Ogre Resugence
+country_event = {
+	id = nethergarde.4
+	title = nethergarde.4.t
+	desc = nethergarde.4.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.4.option.1
+		385 = {
+			add_core_of = DRM
+			transfer_state_to = DRM
+			remove_core_of = NET
+			add_claim_by = NET
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_manpower = -8000
+			hidden_effect = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+		26 = {
+			add_manpower = 3000
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+
+		386 = {
+			add_core_of = DRM
+			transfer_state_to = DRM
+			remove_core_of = NET
+			add_claim_by = NET
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_manpower = -22000
+			hidden_effect = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+		}
+
+		384 = {
+			add_manpower = 4000
+		}
+		392 = {
+			add_manpower = 4000
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		394 = {
+			add_manpower = 4000
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		393 = {
+			add_manpower = 15000
+		}
+	}
+}
+
+# Ogre Invasion
+country_event = {
+	id = nethergarde.5
+	title = nethergarde.5.t
+	desc = nethergarde.5.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.5.option.1
+		384 = {
+			add_core_of = DRM
+			transfer_state_to = DRM
+			remove_core_of = NET
+			add_claim_by = NET
+			remove_building = {
+				type = industrial_complex
+				level = 2
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_manpower = -13800
+			hidden_effect = {
+				set_state_name = "Dreadmaul Hold"
+				set_province_name = {
+					id = 2671
+					name = "Dreadmaul Hold"
+				}
+			}
+		}
+		394 = {
+			add_manpower = 3800
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		393 = {
+			add_manpower = 10000
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.6
+	title = nethergarde.6.t
+	desc = nethergarde.6.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.6.option.1
+		add_ideas = NET_bog_walkers
+		add_popularity = {
+			ideology = old_gods
+			popularity = 0.02
+		}
+	}
+
+	option = {
+		name = nethergarde.6.option.2
+		add_ideas = NET_wyrmlings
+	}
+
+	option = {
+		name = nethergarde.6.option.3
+		add_ideas = NET_arcane_constructs
+	}
+}
+
+country_event = {
+	id = nethergarde.7
+	title = nethergarde.7.t
+	desc = nethergarde.7.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.7.option.1
+		add_political_power = 50
+		add_stability = 0.05
+		add_equipment_to_stockpile = {
+			type = human_support_equipment_1
+			amount = 50
+		}
+		set_country_flag = alliance_alignment
+	}
+
+	#option = {
+	#	name = nethergarde.7.option.2
+	#	add_ideas = in_service_of_death_idea
+	#	set_country_flag = death_alignment
+	#}
+
+	#option = {
+	#	name = nethergarde.7.option.3
+	#	add_ideas = promise_of_power_idea
+	#	set_country_flag = fel_alignment
+	#}
+}
+
+country_event = {
+	id = nethergarde.8
+	title = nethergarde.8.t
+	desc = nethergarde.8.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.8.option.1
+		if = {
+			limit = { 384 = { is_controlled_by = ROOT } }
+			384 = {	add_resource = { type = wheat amount = 3 } }
+		}
+		if = {
+			limit = { 394 = { is_controlled_by = ROOT } }
+			394 = {	add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 393 = { is_controlled_by = ROOT } }
+			393 = {	add_resource = { type = wheat amount = 3 } }
+		}
+		if = {
+			limit = { 378 = { is_controlled_by = ROOT } }
+			378 = {	add_resource = { type = wheat amount = 2 } }
+		}
+		if = {
+			limit = { 386 = { is_controlled_by = ROOT } }
+			386 = {	add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 392 = { is_controlled_by = ROOT } }
+			392 = {	add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 385 = { is_controlled_by = ROOT } }
+			385 = {	add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 390 = { is_controlled_by = ROOT } }
+			390 = {	add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 2158 = { is_controlled_by = ROOT } }
+			2158 = { add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 383 = { is_controlled_by = ROOT } }
+			383 = { add_resource = { type = wheat amount = 1 } }
+		}
+		if = {
+			limit = { 382 = { is_controlled_by = ROOT } }
+			382 = { add_resource = { type = wheat amount = 2 } }
+		}	
+	}
+}
+
+country_event = {
+	id = nethergarde.9
+	title = nethergarde.9.t
+	desc = nethergarde.9.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.9.option.1
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.50
+			uses = 1
+			category = land_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = land }
+			}
+			add_daily_mastery = {
+				name = doctrine_armor
+				amount = 0.5
+				days = 50
+				track = armor
+			}
+		}
+		else = { army_experience = 15 }
+		add_breakthrough_progress = {
+			specialization = specialization_land
+			value = 0.50
+		}
+	}
+
+	option = {
+		name = nethergarde.9.option.2
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.50
+			uses = 1
+			category = land_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = land }
+			}
+			add_daily_mastery = {
+				name = doctrine_combat_support
+				amount = 0.5
+				days = 50
+				track = combat_support
+			}
+		}
+		else = { army_experience = 15 }
+		add_breakthrough_progress = {
+			specialization = specialization_land
+			value = 0.50
+		}
+	}
+
+	option = {
+		name = nethergarde.9.option.3
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.50
+			uses = 1
+			category = land_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = land }
+			}
+			add_daily_mastery = {
+				name = doctrine_operations
+				amount = 0.5
+				days = 50
+				track = operations
+			}
+		}
+		else = { army_experience = 15 }
+		add_breakthrough_progress = {
+			specialization = specialization_land
+			value = 0.50
+		}
+	}
+
+	option = {
+		name = nethergarde.9.option.4
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.50
+			uses = 1
+			category = land_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = land }
+			}
+			add_daily_mastery = {
+				name = doctrine_infantry
+				amount = 0.5
+				days = 50
+				track = infantry
+			}
+		}
+		else = { army_experience = 15 }
+		add_breakthrough_progress = {
+			specialization = specialization_land
+			value = 0.50
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.10
+	title = nethergarde.10.t
+	desc = nethergarde.10.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { ### Blacksmith
+		name = nethergarde.10.option.1
+		if = {
+			limit = { is_ai = yes }
+			add_political_power = 50
+		}
+		set_country_flag = upgrade_blacksmith_1
+		custom_effect_tooltip = blacksmith_funding
+		add_political_power = -50
+	}
+
+	option = { ### Leatherworkers
+	name = nethergarde.10.option.2
+	if = {
+		limit = { is_ai = yes }
+		add_political_power = 50
+	}
+		set_country_flag = upgrade_leatherworking_1
+		custom_effect_tooltip = leatherworking_funding
+		add_political_power = -50
+	}
+
+	option = { ### Jewelers
+	name = nethergarde.10.option.3
+		if = {
+			limit = { is_ai = yes }
+			add_political_power = 50
+		}
+		set_country_flag = upgrade_jewelcrafting_1
+		custom_effect_tooltip = jeweler_funding
+		add_political_power = -50
+	}
+}
+
+country_event = {
+	id = nethergarde.11
+	title = nethergarde.11.t
+	desc = nethergarde.11.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.11.option.1
+		hidden_effect = {
+			country_event = {
+				id = nethergarde.12
+				days = 21
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.12
+	title = nethergarde.12.t
+	desc = nethergarde.12.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.12.option.1
+		add_political_power = -250
+		set_country_flag = general_negotiations
+	}
+}
+
+country_event = {
+	id = nethergarde.13
+	title = nethergarde.13.t
+	desc = nethergarde.13.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	option = {
+		name = nethergarde.13.option.1
+		hidden_effect = {
+			DRM = {
+				country_event = {
+					id = nethergarde.15
+					days = 5
+				}
+			}
+		}
+		custom_effect_tooltip = orc_containment_tt
+		puppet = RWC
+		386 = {
+			transfer_state_to = RWC
+			add_core_of = RWC
+		}
+		hidden_effect = {
+			386 = {
+				remove_building = {
+					type = infrastructure
+					level = 2
+				}
+			}
+		}
+		RWC = {
+			country_event = { id = nethergarde.14 }
+			hidden_effect = {
+				load_focus_tree = NET_redwalker
+				add_equipment_to_stockpile = {
+					type = footman_equipment_1
+					amount = 500
+					producer = NET
+				}
+				set_capital = { state = 386 }
+				retire_character = RWC_chieftan_redwalker
+				retire_character = RWC_redwalker_warlord
+				set_technology = {
+					great_hall = 1
+					peon_tech = 1
+					peon_equipment_tech = 1
+					pig_farm_tech = 1
+					war_mill_tech = 1
+					war_forges_tech = 1
+					orc_lumber_mill_tech = 1
+			
+					orc_barracks_tech = 1
+					grunt_tech = 1
+					grunt_equipment_tech_1 = 1
+					overseer_tech = 1
+					orc_spirit_lodge_tech = 1
+					shaman_tech = 1
+					shaman_equipment_tech_1 = 1
+			
+					orc_beastiary_tech = 1
+			
+					orc_siege_works = 1
+				}	
+				386 = {	add_manpower = 2400 }
+				add_ideas = clan
+				add_ideas = recruit_guards
+				add_ideas = preparing_for_war
+				add_ideas = primary_religion_shamanism
+				set_country_flag = orc_technology
+				delete_unit_template_and_units = { 
+					division_template = "Nethergarde Militia"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Nethergarde Footmen"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Nethergarde Archers"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Nethergarde Pikemen"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Nethergarde Mages"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Nethergarde Mounted Footmen"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Stromic Knights"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Dalaran Mages"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Quel'dorei Mages"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Quel'dorei Rangers"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Gilnean Footmen"
+				}
+				delete_unit_template_and_units = {
+					division_template = "Lordaeron Pikemen"
+				}
+			}
+		}
+	}
+}
+
+# Puppet Orc Clone
+country_event = {
+	id= nethergarde.14
+	title = nethergarde.14.t
+	desc = nethergarde.14.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+
+    option = {
+        name = nethergarde.14.option.1
+		#NET = { puppet = PREV }
+		386 = { add_core_of = PREV }
+		add_popularity = {
+			ideology = death
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = titans
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = old_gods
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = neutral
+			popularity = -0.10
+		}
+		add_popularity = {
+			ideology = alliance
+			popularity = -0.20
+		}
+		add_popularity = {
+			ideology = fel
+			popularity = -0.20
+		}
+		add_popularity = {
+			ideology = horde
+			popularity = 0.40
+		}
+		set_politics = {
+			ruling_party = horde
+			elections_allowed = no
+		}
+		hidden_effect = {
+			load_oob = NET_orc_puppet
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.15
+	title = nethergarde.15.t
+	desc = nethergarde.15.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.15.option.1
+		RWC = {
+			declare_war_on = { 
+				target = DRM	
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.16
+	title = nethergarde.16.t
+	desc = nethergarde.16.d
+	#picture = GFX_maraudon_event
+
+	trigger = {
+		horde > 0.20
+		has_completed_focus = NET_redwalker_treaty
+	}
+
+	mean_time_to_happen = {
+        days = 3
+    }
+
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.16.option.1
+		complete_national_focus = NET_a_bloodied_hand
+		hidden_effect = {
+			384 = { 
+				add_core_of = NET
+				remove_claim_by = NET 
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.17
+	title = nethergarde.17.t
+	desc = nethergarde.17.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.17.option.1
+		NET = { add_ideas = NET_lights_abandoment }
+		hidden_effect = {
+			add_popularity = {
+				ideology = neutral
+				popularity = -0.4
+			}	
+			add_manpower = -2400
+		}
+		
+		start_civil_war = {
+			ruling_party = alliance
+			ideology = neutral
+			size = 0.4
+			capital = 384
+			states = { 384 394 74 }
+
+			set_cosmetic_tag = NET_nethergrade_crusade
+
+			keep_all_characters = yes
+
+			PREV = { NET_general_lordenson = { set_nationality = PREV.PREV } }
+
+			promote_character = {
+				character = NET_general_lordenson
+				ideology = neutral_type
+			}
+
+			hidden_effect = {
+				set_popularities = {
+					alliance = 40
+					horde = 0
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 60
+				}
+
+				add_ideas = {
+					military_admin_mil
+					recruit_adventurers
+					preparing_for_war
+					limited_exports
+	
+					human_primary_race
+					primary_trait_diplomatic
+					primary_trait_human_spirit
+					primary_trait_perception
+	
+					primary_religion_scarlet_church
+	
+					LOR_order_of_the_scarlet_crusade
+					NET_frontline_captains
+				}
+
+				remove_ideas = {
+					NET_orc_workers_1
+					NET_orc_workers_2
+					NET_orc_workers_3
+					NET_orc_workers_4
+					NET_army_dissent_idea_1
+					NET_army_dissent_idea_2
+					NET_army_dissent_idea_3
+					NET_research_wards
+					NET_council_autonomy_2
+				}
+	
+				set_country_flag = human_technology
+				inherit_technology = NET
+				declare_war_on = { 
+					target = RWC	
+					type = annex_everything
+				}
+			}
+		}
+		swap_ideas = {
+			remove_idea = NET_army_dissent_idea_3
+			add_idea = NET_army_dissent_idea_4
+		}
+		remove_ideas = NET_council_autonomy_2
+		if = {
+			limit = { NET = { has_idea = NET_magic_research_2 }	}
+			remove_ideas = NET_magic_research_2
+		}
+		if = {
+			limit = { NET = { has_idea = NET_magic_research_1 }	}
+			remove_ideas = NET_magic_research_1
+		}
+		hidden_effect = {
+			delete_unit_template_and_units = {
+				division_template = "Stromic Knights"
+			}
+			delete_unit_template_and_units = {
+				division_template = "Dalaran Mages"
+			}
+			delete_unit_template_and_units = {
+				division_template = "Quel'dorei Mages"
+			}
+			delete_unit_template_and_units = {
+				division_template = "Quel'dorei Rangers"
+			}
+			delete_unit_template_and_units = {
+				division_template = "Gilnean Footmen"
+			}
+			delete_unit_template_and_units = {
+				division_template = "Lordaeron Pikemen"
+			}
+			384 = { set_demilitarized_zone = no }
+			394 = { set_demilitarized_zone = no }
+			NET = { leave_faction = yes }
+		}
+	}
+}
+
+### Group of Human Refugees
+country_event = {
+	id = nethergarde.18
+	title = nethergarde.18.t
+	desc = nethergarde.18.d
+	#picture = GFX_maraudon_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.18.option.1
+		capital_scope = {
+			add_manpower = 250
+		}
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.02
+		}
+		add_equipment_to_stockpile = {
+			type = footman_equipment_1
+			amount = 30
+			producer = HEA
+		}
+		add_equipment_to_stockpile = {
+			type = militia_equipment_1
+			amount = 20
+			producer = HEA
+		}
+		hidden_effect = {
+			country_event = {
+				id = nethergarde.19
+				days = 21
+			}
+		}
+	}
+}
+
+### Crusade Kills Leader
+country_event = {
+	id = nethergarde.19
+	title = nethergarde.19.t
+	desc = nethergarde.19.d
+	#picture = GFX_maraudon_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.19.option.1
+		capital_scope = {
+			add_manpower = -80
+		}
+		RWC = { add_stability = -0.05 }
+		add_stability = -0.10
+		kill_country_leader = yes
+		add_equipment_to_stockpile = {
+			type = paladin_equipment_1
+			amount = 15
+			producer = LOR
+		}
+		create_country_leader = {
+			name = "Vacant Chambers"
+			picture = "gfx/leaders/generic/generic_no_leader.dds"
+			expire = "1965.1.1"
+			ideology = alliance_type
+			traits = { lack_of_leadership }
+		}
+		hidden_effect = {
+			create_country_leader = {
+				name = "Vacant Chambers"
+				picture = "gfx/leaders/generic/generic_no_leader.dds"
+				expire = "1965.1.1"
+				ideology = horde_type
+				traits = { lack_of_leadership }
+			}	
+		}
+		hidden_effect = {
+			country_event = {
+				id = nethergarde.20
+				days = 30
+			}
+		}
+	}
+}
+
+### New Leader
+country_event = {
+	id = nethergarde.20
+	title = nethergarde.20.t
+	desc = nethergarde.20.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = tirion_leader
+	}
+
+	option = {
+		name = nethergarde.20.option.1
+		hidden_effect = {
+			retire_country_leader = yes
+			#create_corps_commander = {
+			#	name = "Tirion Fordring"
+			#	picture = "NET_tirion_fordring.dds"
+			#	traits = { }
+			#	skill = 3
+			#	attack_skill = 2
+			#	defense_skill = 3
+			#	planning_skill = 2
+			#	logistics_skill = 2
+			#}
+		}
+		RWC = { add_stability = 0.05 }
+		add_stability = 0.05
+		#create_country_leader = {
+		#	name = "Tirion Fordring"
+		#	picture = "gfx/leaders/NET/NET_tirion_fordring.dds"
+		#	expire = "1965.1.1"
+		#	ideology = alliance_type
+		#}
+		#hidden_effect = {
+		#	create_country_leader = {
+		#		name = "Tirion Fordring"
+		#		picture = "gfx/leaders/NET/NET_tirion_fordring.dds"
+		#		expire = "1965.1.1"
+		#		ideology = horde_type
+		#	}
+		#}
+		set_country_flag = NET_uncertainty
+	}
+}
+
+### Take the Swamps
+country_event = {
+	id = nethergarde.21
+	title = nethergarde.21.t
+	desc = nethergarde.21.d
+	#picture = GFX_maraudon_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.21.option.1
+
+		395 = {
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_manpower = -2200
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = STO
+				impassable = no
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_manpower = 2200
+		}
+
+		405 = {
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_manpower = -3800
+		}
+		random_owned_state = {
+			limit = {
+				is_core_of = STO
+				impassable = no
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_manpower = 3800
+		}
+	}
+}
+
+### Horde Exodus
+country_event = {
+	id = nethergarde.22
+	title = nethergarde.22.t
+	desc = nethergarde.22.d
+	#picture = GFX_maraudon_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.22.option.1
+		###Concerning News
+		NET = { set_country_flag = horde_exodus }
+	}
+}
+
+### Horde - Elf Refugees
+country_event = {
+	id = nethergarde.23
+	title = nethergarde.23.t
+	desc = nethergarde.23.d
+	#picture = GFX_maraudon_event
+
+	trigger = {
+		tag = NET
+		has_completed_focus = NET_shipwreck_coast
+		QUE = {
+			surrender_progress > 0.34
+		}
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = nethergarde.23.option.1
+		add_ideas = NET_elven_refugees
+	}
+}
+
+### New Invasion
+country_event = {
+	id = nethergarde.24
+	title = nethergarde.24.t
+	desc = nethergarde.24.d
+	#picture = GFX_maraudon_event
+
+	trigger = {
+		tag = NET
+		NET = {	has_completed_focus = NET_the_frostwolf_request }
+	}
+
+	mean_time_to_happen = {
+		days = 21
+	}
+
+	immediate = {
+		set_country_flag = a_new_invasion
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.24.option.1
+		NET = {
+			add_ideas = NET_high_elf_containment
+			hidden_effect = { retire_character = NET_archmage_thasranan }
+			complete_national_focus = NET_a_new_invasion
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = fel
+				popularity = -0.4
+			}
+		KZL = {	
+			add_manpower = -2320
+				create_field_marshal = {
+					name = "Soulbinder Thasranan"
+					picture = "fel_archmage_thasranan.dds"
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 2
+					traits = { infantry_expert infantry_leader archmage_trait }
+				}
+				add_ideas = war_economy
+				add_ideas = closed_economy
+				add_ideas = fel_blood_elves_secondary_race
+				add_ideas = secondary_trait_arcane_affinity
+				add_ideas = secondary_trait_fel_blood
+			}
+		}
+
+		379 = {
+			transfer_state_to = KZL
+			add_core_of = KZL
+		}
+		380 = {
+			transfer_state_to = KZL
+			add_core_of = KZL
+		}
+		381 = {
+			transfer_state_to = KZL
+			add_core_of = KZL
+		}
+		hidden_effect = {
+			784 = {
+				transfer_state_to = KZL
+				add_core_of = KZL
+			}
+			785 = {
+				transfer_state_to = KZL
+				add_core_of = KZL
+			}
+			if = {
+				limit = { 379 = { has_dynamic_modifier = { modifier = GEN_demon_problem } } }
+				379 = { remove_dynamic_modifier = {	modifier = GEN_demon_problem } }
+				KZL = {	add_manpower = 1440 }
+				KZL = {
+					set_technology = {
+						royal_guard_tech = 1
+						royal_guard_equipment_tech_1 = 1
+					}
+					division_template = {
+						name = "Felguard"
+						priority = 1
+						regiments = {
+							royal_guard = { x = 0 y = 0 }
+							royal_guard = { x = 0 y = 1 }
+							royal_guard = { x = 0 y = 2 }
+							royal_guard = { x = 0 y = 3 }
+							royal_guard = { x = 1 y = 0 }
+							royal_guard = { x = 1 y = 1 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+					}
+					379 = {
+						create_unit = {
+							division = "name = \"Felguard\" division_template = \"Felguard\" start_experience_factor = 0.75"
+							owner = KZL
+						}
+					}
+				}
+			}
+			if = {
+				limit = { 380 = { has_dynamic_modifier = { modifier = GEN_demon_problem } }	}
+				380 = { remove_dynamic_modifier = {	modifier = GEN_demon_problem } }
+				KZL = {	add_manpower = 1000 }
+				KZL = {
+					set_technology = {
+						royal_guard_tech = 1
+						royal_guard_equipment_tech_1 = 1
+					}
+					division_template = {
+						name = "Felguard"
+						priority = 1
+						regiments = {
+							royal_guard = { x = 0 y = 0 }
+							royal_guard = { x = 0 y = 1 }
+							royal_guard = { x = 0 y = 2 }
+							royal_guard = { x = 0 y = 3 }
+							royal_guard = { x = 1 y = 0 }
+							royal_guard = { x = 1 y = 1 }
+						}
+						support = {
+							mage_support = { x = 0 y = 0 }
+						}
+					}
+					380 = {
+						create_unit = {
+							division = "name = \"Felguard\" division_template = \"Felguard\" start_experience_factor = 0.75"
+							owner = KZL
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.30
+	title = nethergarde.30.t
+	desc = nethergarde.30.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.30.option.1
+
+		hidden_effect = {
+			country_event = {
+				id = nethergarde.31
+				days = 14
+			}
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.31
+	title = nethergarde.30.t
+	desc = nethergarde.30.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.31.option.1
+		add_equipment_to_stockpile = {
+			type = footman_equipment_1
+			amount = 150
+			producer = STO
+		}
+		add_equipment_to_stockpile = {
+			type = pikeman_equipment_1
+			amount = 150
+			producer = STO
+		}
+		add_equipment_to_stockpile = {
+			type = archer_equipment_1
+			amount = 150
+			producer = STO
+		}
+		add_equipment_to_stockpile = {
+			type = paladin_equipment_1
+			amount = 50
+			producer = STO
+		}
+	}
+}
+
+##### ALLIANCE START
+
+country_event = {
+	id = nethergarde.50
+	title = nethergarde.50.t
+	desc = nethergarde.50.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nethergarde.50.option.1
+		complete_national_focus = NET_let_sleeping_dogs_lie
+	}
+
+	option = {
+		name = nethergarde.50.option.2
+		complete_national_focus = NET_burn_the_beasts
+	}
+}
+
+### Neutral Start
+country_event = {
+	id = nethergarde.70
+	title = nethergarde.70.t
+	desc = nethergarde.70.d
+	#picture = GFX_maraudon_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		retire_character = NET_quartermaster_lungertz
+		392 = {	remove_dynamic_modifier = { modifier = GEN_orc_problem } }
+	}
+
+	option = {
+		name = nethergarde.70.option.1
+		add_stability = -0.02
+		add_war_support = 0.05
+		add_equipment_to_stockpile = {
+			type = tools_support_equipment
+			amount = 120
+		}
+	}
+}
+
+### Advisor Economy Tree
+
+country_event = {
+	id = nethergarde.100
+	title = nethergarde.100.t
+	desc = nethergarde.100.d
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_expand_the_forge_grounds
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.100.option.1
+
+		country_event = {
+			id = nethergarde.101
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.101
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_optimize_grain_shipments
+		deactivate_shine_on_focus = NET_expand_the_forge_grounds
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.101.option.1
+
+		complete_national_focus = NET_expand_the_forge_grounds
+		country_event = {
+			id = nethergarde.102
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.102
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_workers_habitation
+		deactivate_shine_on_focus = NET_optimize_grain_shipments
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.102.option.1
+
+		complete_national_focus = NET_optimize_grain_shipments
+		country_event = {
+			id = nethergarde.103
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.103
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_parts_tools_provisions
+		deactivate_shine_on_focus = NET_workers_habitation
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.103.option.1
+
+		complete_national_focus = NET_workers_habitation
+		country_event = {
+			id = nethergarde.104
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.104
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_war_ready_workshops
+		deactivate_shine_on_focus = NET_parts_tools_provisions
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.104.option.1
+
+		complete_national_focus = NET_parts_tools_provisions
+		country_event = {
+			id = nethergarde.105
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.105
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_quartermaster_corps
+		deactivate_shine_on_focus = NET_war_ready_workshops
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.105.option.1
+
+		complete_national_focus = NET_war_ready_workshops
+		country_event = {
+			id = nethergarde.106
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.106
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		deactivate_shine_on_focus = NET_quartermaster_corps
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.106.option.1
+
+		complete_national_focus = NET_quartermaster_corps
+	}
+}
+
+country_event = {
+	id = nethergarde.110
+	title = nethergarde.110.t
+	desc = nethergarde.110.d
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_third_invasion_preperation
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.110.option.1
+
+		country_event = {
+			id = nethergarde.111
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.111
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_incursion_forces
+		deactivate_shine_on_focus = NET_third_invasion_preperation
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.111.option.1
+
+		complete_national_focus = NET_third_invasion_preperation
+		country_event = {
+			id = nethergarde.112
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.112
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_forward_command
+		deactivate_shine_on_focus = NET_incursion_forces
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.112.option.1
+
+		complete_national_focus = NET_incursion_forces
+		country_event = {
+			id = nethergarde.113
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.113
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_warriors_vigilance
+		deactivate_shine_on_focus = NET_forward_command
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.113.option.1
+
+		complete_national_focus = NET_forward_command
+		country_event = {
+			id = nethergarde.114
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.114
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_heavy_plating
+		deactivate_shine_on_focus = NET_warriors_vigilance
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.114.option.1
+
+		complete_national_focus = NET_warriors_vigilance
+		country_event = {
+			id = nethergarde.115
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.115
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_enemy_within
+		deactivate_shine_on_focus = NET_heavy_plating
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.115.option.1
+
+		complete_national_focus = NET_heavy_plating
+		country_event = {
+			id = nethergarde.116
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.116
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		deactivate_shine_on_focus = NET_enemy_within
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.116.option.1
+
+		complete_national_focus = NET_enemy_within
+	}
+}
+
+country_event = {
+	id = nethergarde.120
+	title = nethergarde.120.t
+	desc = nethergarde.120.d
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_arcane_refinement
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.120.option.1
+
+		country_event = {
+			id = nethergarde.121
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.121
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_arcane_battery
+		deactivate_shine_on_focus = NET_arcane_refinement
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.121.option.1
+
+		complete_national_focus = NET_arcane_refinement
+		country_event = {
+			id = nethergarde.122
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.122
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_lesser_arcane_guardians
+		deactivate_shine_on_focus = NET_arcane_battery
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.122.option.1
+
+		complete_national_focus = NET_arcane_battery
+		country_event = {
+			id = nethergarde.123
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.123
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_dynamic_stabilizers
+		deactivate_shine_on_focus = NET_lesser_arcane_guardians
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.123.option.1
+
+		complete_national_focus = NET_lesser_arcane_guardians
+		country_event = {
+			id = nethergarde.124
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.124
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_reinforced_constructs
+		deactivate_shine_on_focus = NET_dynamic_stabilizers
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.124.option.1
+
+		complete_national_focus = NET_dynamic_stabilizers
+		country_event = {
+			id = nethergarde.125
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.125
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_sustained_research
+		deactivate_shine_on_focus = NET_reinforced_constructs
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.125.option.1
+
+		complete_national_focus = NET_reinforced_constructs
+		country_event = {
+			id = nethergarde.126
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.126
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		deactivate_shine_on_focus = NET_sustained_research
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.126.option.1
+
+		complete_national_focus = NET_sustained_research
+	}
+}
+
+country_event = {
+	id = nethergarde.130
+	title = nethergarde.130.t
+	desc = nethergarde.130.d
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_suppress_uprisings
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.130.option.1
+
+		country_event = {
+			id = nethergarde.131
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.131
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_labor_quotas
+		deactivate_shine_on_focus = NET_suppress_uprisings
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.131.option.1
+
+		complete_national_focus = NET_suppress_uprisings
+		country_event = {
+			id = nethergarde.132
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.132
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_militarize_the_north
+		deactivate_shine_on_focus = NET_labor_quotas
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.132.option.1
+
+		complete_national_focus = NET_labor_quotas
+		country_event = {
+			id = nethergarde.133
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.133
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_undue_influence
+		deactivate_shine_on_focus = NET_militarize_the_north
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.133.option.1
+
+		complete_national_focus = NET_militarize_the_north
+		country_event = {
+			id = nethergarde.134
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.134
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_further_exploitation
+		deactivate_shine_on_focus = NET_undue_influence
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.134.option.1
+
+		complete_national_focus = NET_undue_influence
+		country_event = {
+			id = nethergarde.135
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.135
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_southern_holds
+		deactivate_shine_on_focus = NET_further_exploitation
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.135.option.1
+
+		complete_national_focus = NET_further_exploitation
+		country_event = {
+			id = nethergarde.136
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.136
+	hidden = yes
+	is_triggered_only = yes
+
+	hidden = yes
+
+	immediate = {
+		deactivate_shine_on_focus = NET_southern_holds
+	}
+
+	option = {
+		name = nethergarde.136.option.1
+
+		complete_national_focus = NET_southern_holds
+		country_event = {
+			id = nethergarde.144
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.137
+	title = nethergarde.137.t
+	desc = nethergarde.137.d
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_assess_vrykul_threats
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.137.option.1
+
+		country_event = {
+			id = nethergarde.138
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.138
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_eastern_ridge_garrison
+		deactivate_shine_on_focus = NET_assess_vrykul_threats
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.138.option.1
+
+		complete_national_focus = NET_assess_vrykul_threats
+		country_event = {
+			id = nethergarde.139
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.139
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_internment_camps
+		deactivate_shine_on_focus = NET_eastern_ridge_garrison
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.139.option.1
+
+		complete_national_focus = NET_eastern_ridge_garrison
+		country_event = {
+			id = nethergarde.140
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.140
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_kirin_tor_outpost
+		deactivate_shine_on_focus = NET_internment_camps
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.140.option.1
+
+		complete_national_focus = NET_internment_camps
+		country_event = {
+			id = nethergarde.141
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.141
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_native_taskforce
+		deactivate_shine_on_focus = NET_kirin_tor_outpost
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.141.option.1
+
+		complete_national_focus = NET_kirin_tor_outpost
+		country_event = {
+			id = nethergarde.142
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.142
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_by_hammer_or_shield
+		deactivate_shine_on_focus = NET_native_taskforce
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.142.option.1
+
+		complete_national_focus = NET_native_taskforce
+		country_event = {
+			id = nethergarde.143
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.143
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		activate_shine_on_focus = NET_its_always_trolls
+		deactivate_shine_on_focus = NET_by_hammer_or_shield
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.143.option.1
+
+		complete_national_focus = NET_by_hammer_or_shield
+		country_event = {
+			id = nethergarde.144
+			days = 30
+		}
+	}
+}
+
+country_event = {
+	id = nethergarde.144
+	hidden = yes
+	is_triggered_only = yes
+
+	immediate = {
+		deactivate_shine_on_focus = NET_its_always_trolls
+	}
+	hidden = yes
+
+	option = {
+		name = nethergarde.144.option.1
+
+		complete_national_focus = NET_its_always_trolls
+	}
+}

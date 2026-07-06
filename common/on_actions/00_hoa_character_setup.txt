@@ -1,0 +1,69 @@
+on_actions = {
+	on_startup = { #use earliest start dates
+		effect = {
+#			#if = {
+#				limit = { #Tides of Darkness
+#					has_start_date > 595.12.31
+#				}
+#
+#			}
+			if = {
+				limit = { #Beyond the Dark Portal
+					has_start_date > 599.12.31
+				}
+				LOR = {
+					LOR_uther = {
+						promote_leader = yes
+						set_character_name = {
+							name = LOR_uther_the_lightbringer
+						}
+						add_unit_leader_trait = retribution_trait
+						remove_unit_leader_trait = arms_trait
+					}
+				}
+			}
+			if = {
+				limit = { #Reign of Chaos
+					has_start_date > 609.12.31
+				}
+				LOR = {
+					LOR_othmar_garithos = {
+						promote_leader = yes
+					}
+				}
+				SCC = {
+					SCC_grand_crusader_saidan_dathrohan = {
+						set_character_name = {
+							name = "Crusader Saidan Dathrohan"
+						}
+					}
+				}
+			}
+			if = {
+				limit = { #The Frozen Throne
+					has_start_date < 612.12.31
+				}
+				LOR = {
+					LOR_othmar_garithos = {
+						set_character_name = {
+							name = LOR_highlord_othmar_garithos
+						}
+					}
+				}
+			}
+			if = { #Classic
+				limit = {
+					has_start_date < 616.12.31
+				}
+				SCC = {
+					SCC_grand_crusader_saidan_dathrohan = {
+						add_country_leader_trait = {
+							ideology = neutral_type
+							trait = religious_dogmatic 
+						}
+					}
+				}
+			}
+		}
+	}
+}

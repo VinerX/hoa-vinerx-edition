@@ -1,0 +1,1027 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	saurok_altar_of_kros_tech = {
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_spirit_of_kros_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_scale_lord_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_saur_priest_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_son_of_kros_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_spirit_of_kros_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_spirit_of_kros_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_spirit_of_kros_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_spirit_of_kros_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_spirit_of_kros_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_scale_lord_tech = {
+
+		enable_subunits = {
+			saurok_scale_lord
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_scale_lord_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_scale_lord_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_scale_lord_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_scale_lord_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_shockwave_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_call_lightning_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_shockwave_tech = {
+
+		saurok_scale_lord = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_call_lightning_tech }
+
+		path = {
+			leads_to_tech = saurok_scale_lord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			melee_infantry_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_call_lightning_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_call_lightning_tech
+			}
+		}
+	}
+
+	saurok_call_lightning_tech = {
+
+		saurok_scale_lord = {
+			hard_attack = 0.15
+			soft_attack = 0.05
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_shockwave_tech }
+
+		path = {
+			leads_to_tech = saurok_scale_lord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			melee_infantry_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_shockwave_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_shockwave_tech
+			}
+		}
+	}
+
+	saurok_scale_lord_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_scale_lord_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_frenzied_assault_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_rallying_roar_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_frenzied_assault_tech = {
+
+		saurok_scale_lord = {
+			maximum_speed = 0.1
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_rallying_roar_tech }
+
+		path = {
+			leads_to_tech = saurok_scale_lord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			melee_infantry_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_rallying_roar_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_rallying_roar_tech
+			}
+		}
+	}
+
+	saurok_rallying_roar_tech = {
+
+		saurok_scale_lord = {
+			max_organisation = 5
+			default_morale = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_frenzied_assault_tech }
+
+		path = {
+			leads_to_tech = saurok_scale_lord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			melee_infantry_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_frenzied_assault_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_frenzied_assault_tech
+			}
+		}
+	}
+
+	saurok_scale_lord_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_scale_lord_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_scale_lord_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_saur_priest_tech = {
+
+		enable_subunits = {
+			saurok_saur_priest
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_saur_priest_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_saur_priest_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_saur_priest_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_saur_priest_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saur_blast_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = devouring_plague_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saur_blast_tech = {
+
+		saurok_saur_priest = {
+			soft_attack = 0.05
+			hard_attack = 0.1
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { devouring_plague_tech }
+
+		path = {
+			leads_to_tech = saurok_saur_priest_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = devouring_plague_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = devouring_plague_tech
+			}
+		}
+	}
+
+	devouring_plague_tech = {
+
+		saurok_saur_priest = {
+			soft_attack = 0.1
+			hard_attack = 0.05
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saur_blast_tech }
+
+		path = {
+			leads_to_tech = saurok_saur_priest_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saur_blast_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saur_blast_tech
+			}
+		}
+	}
+
+	saurok_saur_priest_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_saur_priest_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = power_word_dinosaur
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = flurry_of_teeth_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	power_word_dinosaur = {
+
+		saurok_saur_priest = {
+			max_organisation = 5
+			default_morale = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { flurry_of_teeth_tech }
+
+		path = {
+			leads_to_tech = saurok_saur_priest_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = flurry_of_teeth_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = flurry_of_teeth_tech
+			}
+		}
+	}
+
+	flurry_of_teeth_tech = {
+
+		saurok_saur_priest = {
+			breakthrough = 0.2
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { power_word_dinosaur }
+
+		path = {
+			leads_to_tech = saurok_saur_priest_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = power_word_dinosaur
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = power_word_dinosaur
+			}
+		}
+	}
+
+	saurok_saur_priest_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_saur_priest_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_saur_priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_son_of_kros_tech = {
+
+		enable_subunits = {
+			saurok_son_of_kros
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_son_of_kros_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_son_of_kros_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_son_of_kros_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_son_of_kros_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_thunderous_roar_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_stormrage_assault_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_thunderous_roar_tech = {
+
+		saurok_son_of_kros = {
+			soft_attack = 0.1
+			hard_attack = 0.05
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_stormrage_assault_tech }
+
+		path = {
+			leads_to_tech = saurok_son_of_kros_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_stormrage_assault_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_stormrage_assault_tech
+			}
+		}
+	}
+
+	saurok_stormrage_assault_tech = {
+
+		saurok_son_of_kros = {
+			soft_attack = 0.1
+			hard_attack = 0.05
+			maximum_speed = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_thunderous_roar_tech }
+
+		path = {
+			leads_to_tech = saurok_son_of_kros_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_thunderous_roar_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_thunderous_roar_tech
+			}
+		}
+	}
+
+	saurok_son_of_kros_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_son_of_kros_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_thunderous_resilience_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_volt_bite_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_thunderous_resilience_tech = {
+
+		saurok_son_of_kros = {
+			defense = 0.10
+			armor_value = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_volt_bite_tech}
+
+		path = {
+			leads_to_tech = saurok_son_of_kros_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_volt_bite_tech = {
+
+		saurok_son_of_kros = {
+			soft_attack = 0.05
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_thunderous_resilience_tech }
+
+		path = {
+			leads_to_tech = saurok_son_of_kros_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_son_of_kros_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_son_of_kros_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			saurok_son_of_kros_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

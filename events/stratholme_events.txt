@@ -1,0 +1,101 @@
+﻿###########################
+# stratholme
+###########################
+
+add_namespace = stratholme
+
+# attending meeting of the seven kingdoms
+country_event = {
+	id = stratholme.1
+	title = stratholme.1.t
+	desc = stratholme.1.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = stratholme.1.option.1
+	add_popularity = { ideology = alliance popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_alliance
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance > 49
+			}
+		}
+  	}
+
+	option = {
+    name = stratholme.1.option.2
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance < 50
+			}
+		}
+  	}
+}
+
+country_event = {
+	id = stratholme.2
+	title = stratholme.2.t
+	desc = stratholme.2.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = stratholme.2.option.1
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_neutral
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 1
+		}
+  	}
+
+	option = {
+    name = stratholme.2.option.2
+		ai_chance = {
+			base = 0
+		}
+  	}
+}

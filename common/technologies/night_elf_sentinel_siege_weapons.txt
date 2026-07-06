@@ -1,0 +1,646 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	woodshapers_hall_tech = {
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = sentinel_supply_wagon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sentinel_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = glaive_thrower_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			siege_works_technology
+		}
+	}
+
+	sentinel_supply_wagon_tech = {
+
+		enable_subunits = {
+			supply_wagon
+		}
+
+		on_research_complete = {
+			set_technology = {
+				sentinel_supply_wagon_equipment_tech_1 = 1
+			}
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = sentinel_supply_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentinel_supply_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			supply_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_supply_wagon_1
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_sentinel_supply_wagon_1 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_supply_wagon_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_sentinel_supply_wagon_2 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = {
+			night_elf_sentinel_outpost_tech = 1
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_supply_wagon_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_sentinel_supply_wagon_3 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_supply_wagon_4
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_sentinel_supply_wagon_4 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = {
+			night_elf_sentinel_enclave_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentinel_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		path = {
+			leads_to_tech = sentinel_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	sentinel_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = {
+			night_elf_sentinel_outpost_tech = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		path = {
+			leads_to_tech = sentinel_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentinel_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = {
+			night_elf_sentinel_enclave_tech = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	glaive_thrower_tech = {
+
+		enable_subunits = {
+			glaive_thrower
+			glaive_thrower_support
+		}
+	
+		path = {
+			leads_to_tech = glaive_thrower_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		
+		on_research_complete = {
+			set_technology = { glaive_thrower_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+	
+	glaive_thrower_equipment_tech_1 = {
+	
+		enable_equipments = {
+			glaive_thrower_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+	
+		path = {
+			leads_to_tech = searing_blades_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = moon_touched_blades_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	searing_blades_tech = {
+
+		glaive_thrower = {
+			hard_attack = 0.1
+		}
+		glaive_thrower_support = {
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+	
+		xor = { moon_touched_blades_tech } 
+	
+		path = {
+			leads_to_tech = glaive_thrower_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = moon_touched_blades_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = moon_touched_blades_tech
+			}	
+		}
+	}
+	
+	moon_touched_blades_tech = {
+
+		glaive_thrower = {
+			soft_attack = 0.1
+		}
+		glaive_thrower_support = {
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { searing_blades_tech } 
+	
+		path = {
+			leads_to_tech = glaive_thrower_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = searing_blades_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = searing_blades_tech
+			}	
+		}
+	}
+	
+	glaive_thrower_equipment_tech_2 = {
+	
+		enable_equipments = {
+			glaive_thrower_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+	
+		dependencies = {
+			night_elf_sentinel_outpost_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = enchanted_frames_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vorpal_blades_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+	
+	enchanted_frames_tech = {
+
+		glaive_thrower = {
+			armor_value = 0.05
+			reliability_factor = 0.05	
+		}
+		glaive_thrower_support = {
+			armor_value = 0.05
+			reliability_factor = 0.05	
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+	
+		xor = { vorpal_blades_tech } 
+	
+		path = {
+			leads_to_tech = glaive_thrower_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = vorpal_blades_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = vorpal_blades_tech
+			}	
+		}
+	}
+	
+	vorpal_blades_tech = {
+
+		glaive_thrower = {
+			ap_attack = 0.1
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		glaive_thrower_support = {
+			ap_attack = 0.1
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+	
+		xor = { enchanted_frames_tech } 
+	
+		path = {
+			leads_to_tech = glaive_thrower_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = enchanted_frames_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = enchanted_frames_tech
+			}	
+		}
+	}
+	
+	glaive_thrower_equipment_tech_3 = {
+	
+		enable_equipments = {
+			glaive_thrower_equipment_3
+		}
+	
+		dependencies = {
+			night_elf_sentinel_enclave_tech = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}		
+		
+		categories = {
+			siege_works_technology
+			glaive_thrower_technology
+			catapult_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

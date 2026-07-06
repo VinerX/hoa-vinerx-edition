@@ -1,0 +1,1169 @@
+####################################################################
+# Events for the generic human focus tree (default focus tree)
+####################################################################
+
+add_namespace = generic_human
+
+country_event = { # our_nation focus
+  id = generic_human.1
+  title = generic_human.1.t
+  desc = generic_human.1.d
+
+  is_triggered_only = yes
+
+  #Add workshop in capital
+  option = {
+    name = generic_human.1.option.1
+
+    capital_scope = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+  }
+
+  #Add blacksmith in capital
+  option = {
+    name = generic_human.1.option.2
+
+    capital_scope = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+  }
+
+  #Add infrastructure in capital and a random state
+  option = {
+    name = generic_human.1.option.3
+    capital_scope = {
+      add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+    }
+    random_owned_controlled_state = {
+	limit = {impassable = no}
+      add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+    }
+  }
+}
+
+country_event = { # our_people focus
+  id = generic_human.2
+  title = generic_human.2.t
+  desc = generic_human.2.d
+
+  is_triggered_only = yes
+
+  #Add idea giving political power bonus
+  option = {
+    name = generic_human.2.option.1
+    add_ideas = generic_eloquent_diplomats_idea
+  }
+
+  #Add idea giving construction speed bonus
+  option = {
+    name = generic_human.2.option.2
+    add_ideas = generic_great_builders_idea
+  }
+
+  #Add idea giving production bonus
+  option = {
+    name = generic_human.2.option.3
+    add_ideas = generic_expert_craftsmen_idea
+  }
+}
+
+country_event = { # how_we_fight focus
+  id = generic_human.3
+  title = generic_human.3.t
+  desc = generic_human.3.d
+
+  is_triggered_only = yes
+
+  #Add idea giving +5% attack bonus
+  option = {
+    name = generic_human.3.option.1
+    add_ideas = generic_focus_on_attack_idea
+  }
+
+  #Add idea giving +5% defence bonus
+  option = {
+    name = generic_human.3.option.2
+    add_ideas = generic_focus_on_defence_idea
+  }
+}
+
+country_event = { # beyond_the_veil focus (choose death religion)
+  id = generic_human.4
+  title = generic_human.4.t
+  desc = generic_human.4.d
+
+  is_triggered_only = yes
+
+  #Set Lich King primary religion
+  option = {
+    name = generic_human.4.option.1
+    trigger = {
+      date > 610.01.01
+      #NOT = { has_idea = primary_religion_disciples_of_the_lich_king }
+    }
+
+    if = {
+      limit = {
+        has_idea = primary_religion_disciples_of_the_lich_king
+      }
+      custom_effect_tooltip = convert_to_disciples_of_the_lich_king_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_disciples_of_the_lich_king
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = {
+            add_ideas = [TARGET_RELIGION_AS_SECONDARY]
+          }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_disciples_of_the_lich_king
+      }
+    }
+    else = {
+      add_to_variable = {
+				var = faith_points
+				value = 100
+        tooltip = add_faith_points_tt
+			} 
+    }
+  }
+
+  #Set Necromancy primary religion
+  option = {
+    name = generic_human.4.option.2
+    #trigger = { NOT = { has_idea = primary_religion_necromancy } }
+
+    if = {
+      limit = {
+        has_idea = primary_religion_necromancy
+      }
+      custom_effect_tooltip = convert_to_necromancy_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_necromancy
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = {
+            add_ideas = [TARGET_RELIGION_AS_SECONDARY]
+          }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_necromancy
+      }
+    }
+    else = {
+      add_to_variable = {
+				var = faith_points
+				value = 100
+        tooltip = add_faith_points_tt
+			} 
+    }
+  }
+
+  #Set Helya primary religion
+  option = {
+    name = generic_human.4.option.3
+    trigger = {
+      OR = {
+        has_idea = vrykul_primary_race
+        has_idea = kvaldir_primary_race
+        has_idea = frost_vrykul_primary_race
+      }
+      #NOT = { has_idea = primary_religion_followers_of_helya }
+    }
+
+    if = {
+      limit = {
+        has_idea = primary_religion_followers_of_helya
+      }
+      custom_effect_tooltip = convert_to_followers_of_helya_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_followers_of_helya
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = {
+            add_ideas = [TARGET_RELIGION_AS_SECONDARY]
+          }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_followers_of_helya
+      }
+    }
+    else = {
+      add_to_variable = {
+				var = faith_points
+				value = 100
+        tooltip = add_faith_points_tt
+			} 
+    }
+  }
+}
+
+country_event = { # we_serve_the_legion focus (choose fel religion)
+  id = generic_human.5
+  title = generic_human.5.t
+  desc = generic_human.5.d
+
+  is_triggered_only = yes
+
+  #Set Fel primary religion
+  option = {
+    name = generic_human.5.option.1
+
+    custom_effect_tooltip = convert_to_the_fel_tt
+    hidden_effect = {
+      remove_ideas = secondary_religion_the_fel
+      meta_effect = {
+        text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+        MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+      }
+      meta_effect = {
+        text = {
+          add_ideas = [TARGET_RELIGION_AS_SECONDARY]
+        }
+        TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+      }
+      add_ideas = primary_religion_the_fel
+    }
+  }
+
+  #Set Demonology primary religion
+  option = {
+    name = generic_human.5.option.2
+
+    custom_effect_tooltip = convert_to_demonology_tt
+    hidden_effect = {
+      remove_ideas = secondary_religion_demonology
+      meta_effect = {
+        text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+        MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+      }
+      meta_effect = {
+        text = {
+          add_ideas = [TARGET_RELIGION_AS_SECONDARY]
+        }
+        TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+      }
+      add_ideas = primary_religion_demonology
+    }
+  }
+}
+
+country_event = { # zealots_of_the_old_god focus (choose old_gods religion)
+  id = generic_human.6
+  title = generic_human.6.t
+  desc = generic_human.6.d
+
+  is_triggered_only = yes
+
+  #Set another event to choose between the Old Gods
+  option = {
+    name = generic_human.6.option.1
+    country_event = { id = generic_human.7 }
+    ai_chance = {
+			base = 2
+		}
+  }
+
+  #Set Hour of Twilight primary religion
+  option = {
+    name = generic_human.6.option.2
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_the_hour_of_twilight } }
+      }
+      custom_effect_tooltip = convert_to_the_hour_of_twilight_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_the_hour_of_twilight
+        meta_effect = {
+        text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+        MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_the_hour_of_twilight
+        if = {
+          limit = {
+            NOT = {
+			  			has_idea = pale_orc_primary_race
+			  			has_idea = pale_orc_secondary_race
+			  			check_variable = { accepted_races^num > 6 }
+			  		}
+          }
+          add_ideas = pale_orc_secondary_race
+          set_temp_variable = { race_to_accept = 97 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 36 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_pale
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+				var = faith_points
+				value = 100
+        tooltip = add_faith_points_tt
+			}
+      set_country_flag = old_gods_pale
+    }
+
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_the_hour_of_twilight
+			}
+		}
+  }
+
+  #Set The Void primary religion
+  option = {
+    name = generic_human.6.option.3
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_the_void } }
+      }
+      custom_effect_tooltip = convert_to_the_void_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_the_void
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_the_void
+        if = {
+          limit = {
+            NOT = {
+              has_idea = void_walker_primary_race
+              has_idea = void_walker_secondary_race
+              check_variable = { accepted_races^num > 6 }
+            }
+          }
+          add_ideas = void_walker_secondary_race
+          set_temp_variable = { race_to_accept = 135 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 11 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_void
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+        var = faith_points
+        value = 100
+        tooltip = add_faith_points_tt
+      }
+      set_country_flag = old_gods_void
+    }
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_the_void
+			}
+		}
+  }
+
+  #Set Followers of G'huun primary religion
+  option = {
+    name = generic_human.6.option.4
+
+    trigger = {
+      OR = {
+        has_idea = zandalari_troll_primary_race
+        has_idea = blood_troll_primary_race
+        has_idea = tortollan_primary_race
+        has_idea = vulpera_primary_race
+        has_idea = sethrak_primary_race
+        has_idea = ranishu_primary_race
+      }
+    }
+
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_followers_of_ghuun } }
+      }
+      custom_effect_tooltip = convert_to_followers_of_ghuun_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_followers_of_ghuun
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_followers_of_ghuun
+        if = {
+          limit = {
+            NOT = {
+              has_idea = blood_troll_primary_race
+              has_idea = blood_troll_secondary_race
+              check_variable = { accepted_races^num > 6 }
+            }
+          }
+          add_ideas = blood_troll_secondary_race
+          set_temp_variable = { race_to_accept = 151 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 38 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_blood_troll
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+        var = faith_points
+        value = 100
+        tooltip = add_faith_points_tt
+      }
+      set_country_flag = old_gods_blood_troll
+    }
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_followers_of_ghuun
+			}
+		}
+  }
+}
+
+country_event = { # zealots_of_the_old_god focus (choose old_gods religion, second event after choosing first option in last one)
+  id = generic_human.7
+  title = generic_human.7.t
+  desc = generic_human.7.d
+
+  is_triggered_only = yes
+
+  #Set Followers of Y'shaarj primary religion
+  option = {
+    name = generic_human.7.option.1
+
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_followers_of_yshaarj } }
+      }
+      custom_effect_tooltip = convert_to_followers_of_yshaarj_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_followers_of_yshaarj
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_followers_of_yshaarj
+        if = {
+          limit = {
+            NOT = {
+              has_idea = sha_primary_race
+              has_idea = sha_secondary_race
+              check_variable = { accepted_races^num > 6 }
+            }
+          }
+          add_ideas = sha_secondary_race
+          set_temp_variable = { race_to_accept = 112 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 32 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_sha
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+        var = faith_points
+        value = 100
+        tooltip = add_faith_points_tt
+      }
+      set_country_flag = old_gods_sha
+    }
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_followers_of_yshaarj
+			}
+		}
+  }
+
+  #Set Followers of N'zoth primary religion
+  option = {
+    name = generic_human.7.option.2
+
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_followers_of_nzoth } }
+      }
+      custom_effect_tooltip = convert_to_followers_of_nzoth_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_followers_of_nzoth
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_followers_of_nzoth
+        if = {
+          limit = {
+            NOT = {
+              has_idea = naga_primary_race
+              has_idea = naga_secondary_race
+              check_variable = { accepted_races^num > 6 }
+            }
+          }
+          add_ideas = naga_secondary_race
+          set_temp_variable = { race_to_accept = 88 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 33 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_naga
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+        var = faith_points
+        value = 100
+        tooltip = add_faith_points_tt
+      }
+      set_country_flag = old_gods_naga
+    }
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_followers_of_nzoth
+			}
+		}
+  }
+
+  #Set Followers of Yogg'Saron primary religion
+  option = {
+    name = generic_human.7.option.3
+
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_followers_of_yogg_saron } }
+      }
+      custom_effect_tooltip = convert_to_followers_of_yogg_saron_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_followers_of_yogg_saron
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_followers_of_yogg_saron
+        if = {
+          limit = {
+            NOT = {
+              has_idea = faceless_one_primary_race
+              has_idea = faceless_one_secondary_race
+              check_variable = { accepted_races^num > 6 }
+            }
+          }
+          add_ideas = faceless_one_secondary_race
+          set_temp_variable = { race_to_accept = 28 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 34 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_faceless
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+        var = faith_points
+        value = 100
+        tooltip = add_faith_points_tt
+      }
+      set_country_flag = old_gods_faceless
+    }
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_followers_of_yogg_saron
+			}
+		}
+  }
+
+  #Set Followers of C'thun primary religion
+  option = {
+    name = generic_human.7.option.4
+
+    if = {
+      limit = {
+        ROOT = { NOT = { has_idea = primary_religion_followers_of_cthun } }
+      }
+      custom_effect_tooltip = convert_to_followers_of_cthun_tt
+      hidden_effect = {
+        remove_ideas = secondary_religion_followers_of_cthun
+        meta_effect = {
+          text = { set_variable = { main_religion = [MAIN_RELIGION] } }
+          MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+        }
+        meta_effect = {
+          text = { add_ideas = [TARGET_RELIGION_AS_SECONDARY] }
+          TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+        }
+        add_ideas = primary_religion_followers_of_cthun
+        if = {
+          limit = {
+            NOT = {
+              has_idea = silithid_primary_race
+              has_idea = silithid_secondary_race
+              check_variable = { accepted_races^num > 6 }
+            }
+          }
+          add_ideas = silithid_secondary_race
+          set_temp_variable = { race_to_accept = 113 }
+          add_race_as_accepted_race = yes
+          set_temp_variable = { religion_to_accept = 35 }
+          add_religion_as_accepted_religion = yes
+          set_country_flag = old_gods_silithid
+        }
+      }
+    }
+    else = {
+      add_to_variable = {
+        var = faith_points
+        value = 100
+        tooltip = add_faith_points_tt
+      }
+      set_country_flag = old_gods_silithid
+    }
+    ai_chance = {
+			base = 1
+			modifier = {
+				factor = 100
+				has_idea = primary_religion_followers_of_cthun
+			}
+		}
+  }
+}
+
+country_event = { # Orc Change to Clan Idea
+  id = generic_human.8
+  title = generic_human.8.t
+  desc = generic_human.8.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.8.option.1
+    add_ideas = clan
+  }
+
+  option = {
+    name = generic_human.8.option.2
+  }
+}
+
+country_event = { # Old Gods Missons Refresh
+  id = generic_human.9
+  title = generic_human.9.t
+  desc = generic_human.9.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.9.option.1
+
+    mark_focus_tree_layout_dirty = yes
+  }
+}
+
+country_event = { # Old Gods Missons Refresh
+  id = generic_human.10
+  title = generic_human.10.t
+  desc = generic_human.10.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.10.option.1
+    add_to_faction = GHU
+    swap_ideas = {
+			remove_idea = mark_of_ghuun
+			add_idea = mark_of_ghuun_3
+		}
+    hidden_effect = {
+      GHU = { 
+        if = {
+          limit = { NOT = { is_in_faction_with = DRT } }
+          declare_war_on = {
+            target = DRT
+            type = annex_everything
+          }
+          2049 = { add_core_of = GHU }
+        }
+
+        division_template = {
+					name = "Bloodborn C'Thrax"
+					priority = 1
+					regiments = {
+						faceless_cthrax = { x = 0 y = 0 }
+						faceless_cthrax = { x = 0 y = 1 }
+						faceless_cthrax = { x = 0 y = 2 }
+						faceless_cthrax = { x = 1 y = 0 }
+						faceless_cthrax = { x = 1 y = 1 }
+					}
+				}
+        division_template = {
+					name = "Bloodborn Horror"
+					priority = 1
+					regiments = {
+						faceless_horror = { x = 0 y = 0 }
+						faceless_horror = { x = 0 y = 1 }
+						faceless_horror = { x = 0 y = 2 }
+						faceless_horror = { x = 1 y = 0 }
+						faceless_horror = { x = 1 y = 1 }
+					}
+				}
+        division_template = {
+					name = "Bloodborn Weavers"
+					priority = 1
+					regiments = {
+						faceless_horror = { x = 0 y = 0 }
+						faceless_shadow_weaver = { x = 0 y = 1 }
+						faceless_shadow_weaver = { x = 0 y = 2 }
+						faceless_horror = { x = 1 y = 0 }
+						faceless_shadow_weaver = { x = 1 y = 1 }
+					}
+				}
+        2050 = {
+          create_unit = {
+						division = "name = \"Bloodborn Horror\" division_template = \"Bloodborn Horror\" start_experience_factor = 0.2"
+						owner = GHU
+					}
+				}
+        2056 = {
+          create_unit = {
+						division = "name = \"Bloodborn Weavers\" division_template = \"Bloodborn Weavers\" start_experience_factor = 0.2"
+						owner = GHU
+					}
+				}
+        2057 = {
+          create_unit = {
+						division = "name = \"Bloodborn Weavers\" division_template = \"Bloodborn Weavers\" start_experience_factor = 0.2"
+						owner = GHU
+					}
+				}
+        2058 = {
+          create_unit = {
+						division = "name = \"Bloodborn Horror\" division_template = \"Bloodborn Horror\" start_experience_factor = 0.2"
+						owner = GHU
+					}
+				}
+				2059 = {
+					create_unit = {
+						division = "name = \"Bloodborn C'Thrax\" division_template = \"Bloodborn C'Thrax\" start_experience_factor = 0.2"
+						owner = GHU
+					}
+				}
+        2060 = {
+          create_unit = {
+						division = "name = \"Bloodborn Horror\" division_template = \"Bloodborn Horror\" start_experience_factor = 0.2"
+						owner = GHU
+					}
+				}
+      }
+    }
+  }
+}
+
+country_event = { # Alliance Bearers Of Light
+  id = generic_human.11
+  title = generic_human.11.t
+  desc = generic_human.11.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.11.option.1
+    add_ideas = secondary_religion_the_church_of_the_holy_light
+		add_to_array = {
+			array = accepted_religions
+			value = 1
+		}
+  }
+
+  option = {
+    name = generic_human.11.option.2
+    add_ideas = secondary_religion_the_sun_well
+		add_to_array = {
+			array = accepted_religions
+			value = 13
+		}
+  }
+
+  option = {
+    name = generic_human.11.option.3
+    add_ideas = secondary_religion_the_naaru
+		add_to_array = {
+			array = accepted_religions
+			value = 2
+		}
+  }
+}
+
+country_event = { # Alliance Past & Future
+  id = generic_human.12
+  title = generic_human.12.t
+  desc = generic_human.12.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.12.option.1
+    add_ideas = secondary_religion_mystery_of_the_makers
+		add_to_array = {
+			array = accepted_religions
+			value = 39
+		}
+  }
+
+  option = {
+    name = generic_human.12.option.2
+    add_ideas = secondary_religion_irreligious
+		add_to_array = {
+			array = accepted_religions
+			value = 76
+		}
+  }
+}
+
+country_event = { # Alliance Natures Harmony
+  id = generic_human.13
+  title = generic_human.13.t
+  desc = generic_human.13.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.13.option.1
+    add_ideas = secondary_religion_druidism
+		add_to_array = {
+			array = accepted_religions
+			value = 15
+		}
+  }
+
+  option = {
+    trigger = { has_government = horde }
+
+    name = generic_human.13.option.2
+    add_ideas = secondary_religion_tauren_mythology
+		add_to_array = {
+			array = accepted_religions
+			value = 57
+		}
+  }
+}
+
+country_event = { # Knowledge of Millennium
+  id = generic_human.14
+  title = generic_human.14.t
+  desc = generic_human.14.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.14.option.1
+    generate_scientist_character = {
+			portrait_tag_override = QUE
+			gender = male
+			skills = {
+			  specialization_land = 2
+			}
+		}
+  }
+
+  option = {
+    name = generic_human.14.option.2
+		generate_scientist_character = {
+			portrait_tag_override = QUE
+			gender = male
+			skills = {
+			  specialization_air = 2
+			}
+		}
+  }
+
+  option = {
+    name = generic_human.14.option.3
+		generate_scientist_character = {
+			portrait_tag_override = QUE
+			gender = male
+			skills = {
+				specialization_naval = 2
+			}
+		}
+  }
+
+  option = {
+    name = generic_human.14.option.4
+		generate_scientist_character = {
+			portrait_tag_override = QUE
+			gender = male
+			skills = {
+			  specialization_magic = 2
+			}
+		}
+  }
+}
+
+country_event = { # Horde Return to Tradition
+  id = generic_human.15
+  title = generic_human.15.t
+  desc = generic_human.15.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.15.option.1
+    add_ideas = secondary_religion_shamanism
+		add_to_array = {
+			array = accepted_religions
+			value = 44
+		}
+  }
+
+  option = {
+    name = generic_human.15.option.2
+    add_ideas = secondary_religion_the_elemental_furies
+		add_to_array = {
+			array = accepted_religions
+			value = 43
+		}
+  }
+
+  option = {
+    name = generic_human.15.option.3
+    add_ideas = secondary_religion_loa_spirits
+		add_to_array = {
+			array = accepted_religions
+			value = 25
+		}
+  }
+}
+
+country_event = { # Horde Other Way to Power
+  id = generic_human.16
+  title = generic_human.16.t
+  desc = generic_human.16.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.16.option.1
+    add_ideas = secondary_religion_the_voodoo
+		add_to_array = {
+			array = accepted_religions
+			value = 8
+		}
+  }
+
+  option = {
+    name = generic_human.16.option.2
+    add_ideas = secondary_religion_irreligious
+		add_to_array = {
+			array = accepted_religions
+			value = 76
+		}
+  }
+
+  option = {
+    name = generic_human.16.option.3
+    add_ideas = secondary_religion_necrolytes
+		add_to_array = {
+			array = accepted_religions
+			value = 7
+		}
+  }
+}
+
+country_event = { # Dragon Wrangling
+  id = generic_human.17
+  title = generic_human.17.t
+  desc = generic_human.17.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.17.option.1
+    set_country_flag = GEN_dragon_wranglers
+    custom_effect_tooltip = dragon_wranglers_tt
+  }
+
+  option = {
+    name = generic_human.17.option.2
+    set_country_flag = GEN_kill_a_monster
+    custom_effect_tooltip = to_kill_a_monster_tt
+  }
+}
+
+country_event = { # Blue Dragon Nexus Tree
+  id = generic_human.18
+  title = generic_human.18.t
+  desc = generic_human.18.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.18.option.1
+  }
+
+  option = {
+    name = generic_human.18.option.2
+    #load_focus_tree = nexus_war_alt
+    set_country_flag = nexus_war_flag
+    mark_focus_tree_layout_dirty = yes
+  }
+}
+
+country_event = { # Blue Dragon Nuke Tree
+  id = generic_human.19
+  title = generic_human.19.t
+  desc = generic_human.19.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.19.option.1
+    mark_focus_tree_layout_dirty = yes
+  }
+}
+
+#### Neutral Tree
+country_event = { # Economic Dominance
+  id = generic_human.30
+  title = generic_human.30.t
+  desc = generic_human.30.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_human.30.option.1
+    add_ideas = criminal_enterprise
+    add_ideas = GEN_bandits_and_burglars
+    random_core_state = {
+      limit = { impassable = no }
+      add_building_construction = {
+        type = arms_factory
+        level = 1
+        instant_build = yes
+      }
+    }
+    random_core_state = {
+      limit = { impassable = no }
+      add_building_construction = {
+        type = arms_factory
+        level = 1
+        instant_build = yes
+      }
+    }
+  }
+
+  option = {
+    name = generic_human.30.option.2
+    add_ideas = criminal_enterprise
+    add_ideas = GEN_pirate_nation  
+    random_core_state = {
+      limit = {
+        is_coastal = yes
+        impassable = no
+      }
+      add_building_construction = {
+        type = dockyard
+        level = 1
+        instant_build = yes
+      }
+    }
+    random_core_state = {
+      limit = {
+        is_coastal = yes
+        impassable = no
+      }
+      add_building_construction = {
+        type = dockyard
+        level = 1
+        instant_build = yes
+      }
+    }
+  }
+
+  option = {
+    name = generic_human.30.option.3
+    if = {
+      limit = { NOT = { has_idea = trade_company } }
+      add_ideas = trade_company
+    }
+    random_core_state = {
+      limit = { impassable = no }
+      add_building_construction = {
+        type = arms_factory
+        level = 1
+        instant_build = yes
+      }
+    }
+    random_core_state = {
+      limit = {
+        is_coastal = yes
+        impassable = no
+      }
+      add_building_construction = {
+        type = dockyard
+        level = 1
+        instant_build = yes
+      }
+    }    
+  }
+}

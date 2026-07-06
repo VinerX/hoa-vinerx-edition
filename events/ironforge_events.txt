@@ -1,0 +1,519 @@
+﻿###########
+#ironforge
+###########
+
+add_namespace = ironforge
+
+country_event = {
+	id = ironforge.1
+	title = ironforge.1.t
+	desc = ironforge.1.d
+	picture = GFX_madoran_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = ironforge.1.option.1
+		add_ideas = IRO_madorans_legacy
+
+	}
+}
+
+country_event = {
+	id = ironforge.2
+	title = ironforge.2.t
+	desc = ironforge.2.d
+	picture = GFX_halls_of_ironforge_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = ironforge.2.option.1
+
+		ai_chance = { factor = 34 }
+
+		435 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+    option = {
+        name = ironforge.2.option.2
+
+		ai_chance = { factor = 33 }
+
+		433 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+    option = {
+        name = ironforge.2.option.3
+
+		ai_chance = { factor = 33 }
+
+		431 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = ironforge.3
+	title = ironforge.3.t
+	desc = ironforge.3.d
+	picture = GFX_kharanos_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = ironforge.3.option.1
+
+		ai_chance = { factor = 50 }
+
+		445 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_war_support = 0.05
+	}
+    option = {
+        name = ironforge.3.option.2
+
+		ai_chance = { factor = 50 }
+
+		445 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = farm
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_stability = 0.05
+	}
+}
+country_event = {
+	id = ironforge.4
+	title = ironforge.4.t
+	desc = ironforge.4.d
+	picture = GFX_cathedral_of_light_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = ironforge.4.option.1
+
+		ai_chance = { factor = 80 }
+
+		445 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_manpower = 1000
+	}
+    option = {
+        name = ironforge.4.option.2
+
+		ai_chance = { factor = 10 }
+
+		490 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_manpower = 1000
+	}
+    option = {
+        name = ironforge.4.option.3
+
+		ai_chance = { factor = 10 }
+
+		507 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_manpower = 1000
+	}
+}
+
+# Create Coalition of Khaz Modan
+country_event = {
+	id = ironforge.5
+	title = ironforge.5.t
+	desc = ironforge.5.d
+	picture = GFX_magni_bronzebeard_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = ironforge.5.option.1
+		create_faction = "coalition_of_khaz_modan"
+
+		set_country_flag = IRO_coalition_of_khaz_modan_cf
+
+		# Send request to join Coalition
+		GNO = {
+			if = {
+				limit = {
+					NOT = { has_war_with = IRO }
+				}
+				country_event = ironforge.12
+			}
+		}
+		NRT = {
+			if = {
+				limit = {
+					NOT = { has_war_with = IRO }
+				}
+				country_event = ironforge.12
+			}
+		}
+
+		hidden_effect = {
+			news_event = { hours = 1 id = news.518 }
+		}
+	}
+}
+
+country_event = {
+	id = ironforge.6
+	title = ironforge.6.t
+	desc = ironforge.6.d
+	picture = GFX_kharanos_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = ironforge.6.option.1
+	}
+}
+
+country_event = {
+	id = ironforge.7
+	title = ironforge.7.t
+	desc = ironforge.7.d
+	picture = GFX_ironforge_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = ironforge.7.option.1
+	}
+}
+
+country_event = {
+	id = ironforge.8
+	title = ironforge.8.t
+	desc = ironforge.8.d
+	picture = GFX_dwarf_ram_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = ironforge.8.option.1
+		add_timed_idea = { idea = IRO_push_them_back days = 365 }
+		swap_ideas = {
+			remove_idea = IRO_in_defense_of_khaz_modan_1
+			add_idea = IRO_in_defense_of_khaz_modan_2
+		}
+	}
+}
+
+country_event = {
+	id = ironforge.9
+	title = ironforge.9.t
+	desc = ironforge.9.d
+	picture = GFX_dwarf_rifleman_event
+
+	fire_only_once = yes
+	trigger = {
+		tag = IRO
+		OR = {
+			any_other_country = {
+				controls_state = 458
+				has_idea = orc_primary_race
+				has_war_with = IRO
+			}
+			any_other_country = {
+				controls_state = 458
+				has_idea = dark_iron_dwarf_primary_race
+				has_war_with = IRO
+			}
+		}
+	}
+	option = {
+		name = ironforge.9.option.1
+			hidden_effect = {
+				load_oob = "IRO_valley_guard"
+			}
+	}
+}
+
+country_event = {
+	id = ironforge.10
+	title = ironforge.10.t
+	desc = ironforge.10.d
+	picture = GFX_dwarf_rifleman_event
+
+	fire_only_once = yes
+	trigger = {
+		tag = IRO
+		OR = {
+			any_other_country = {
+				controls_state = 456
+				has_idea = orc_primary_race
+				has_war_with = IRO
+			}
+			any_other_country = {
+				controls_state = 456
+				has_idea = dark_iron_dwarf_primary_race
+				has_war_with = IRO
+			}
+		}
+	}
+	option = {
+		name = ironforge.10.option.1
+			hidden_effect = {
+				load_oob = "IRO_kharanos_village_guard"
+			}
+	}
+}
+
+### Orcs at the Gates
+country_event = {
+	id = ironforge.11
+	title = ironforge.11.t
+	desc = ironforge.11.d
+	picture = GFX_ironforge_event
+
+	fire_only_once = yes
+	trigger = {
+		tag = IRO
+		OR = {
+			any_other_country = {
+				controls_state = 446
+				has_idea = orc_primary_race
+				has_war_with = IRO
+			}
+		}
+	}
+	option = {
+		name = ironforge.11.option.1
+		BHC = {
+			complete_national_focus = BHC_the_siege_of_ironforge
+		}
+	}
+}
+
+# Offer to join Coalition of Khaz Modan (sent from ironforge.5 to GNO and NRT)
+country_event = {
+	id = ironforge.12
+	title = ironforge.12.t
+	desc = ironforge.12.d
+	picture = GFX_magni_bronzebeard_event
+
+	is_triggered_only = yes
+
+	option = { # Accept
+		name = ironforge.12.option.1
+
+		IRO = {
+			add_to_faction = THIS.PREV
+		}
+
+		# Make peace with other members of the alliance (just in case GNO and NRT are at war for exemple)
+		for_each_scope_loop = {
+			array = allies
+			white_peace = ROOT
+		}
+
+		ai_chance = {
+			factor = 75
+			modifier = {
+				factor = 100
+				OR = {
+					tag = GNO
+					tag = NRT
+				}
+				is_historical_focus_on = yes # Happens historically
+			}
+		}
+	}
+
+	option = { # Refuse
+		name = ironforge.12.option.2
+
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				OR = {
+					tag = GNO
+					tag = NRT
+				}
+				is_historical_focus_on = yes # Never happen historically
+			}
+		}
+	}
+}
+
+# Dwarf Orc War, Cut off Wetlands
+country_event = {
+	id = ironforge.13
+	title = ironforge.13.t
+	desc = ironforge.13.d
+	picture = GFX_wetlands_event
+
+	trigger = {
+		any_other_country = {
+			controls_state = 468
+			has_idea = orc_primary_race
+			has_war_with = IRO
+		}
+		is_historical_focus_on = yes
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Accept
+		name = ironforge.13.option.1
+
+		set_autonomy = {
+			target = DUN
+			autonomy_state = autonomy_colonial_state
+			freedom_level = 0.5
+		}
+
+		DUN = {
+			set_country_flag = dwarf_technology
+			add_ideas = war_economy
+			add_ideas = limited_exports
+			#country_event = ironforge.15
+			annex_wetlands = yes
+		}
+
+		hidden_effect = {
+			675 = { add_core_of = DUN }
+			483 = { add_core_of = DUN }
+			485 = { add_core_of = DUN }
+			47 = { add_core_of = DUN }
+			36 = { add_core_of = DUN }
+			1573 = { add_core_of = DUN }
+			486 = { add_core_of = DUN }
+			488 = { add_core_of = DUN }
+			677 = { add_core_of = DUN }
+			676 = { add_core_of = DUN }
+			490 = { add_core_of = DUN }
+			489 = { add_core_of = DUN }
+			491 = { add_core_of = DUN }
+			492 = { add_core_of = DUN }
+			494 = { add_core_of = DUN }
+			493 = { add_core_of = DUN }
+			495 = { add_core_of = DUN }
+			478 = { add_core_of = DUN }
+			479 = { add_core_of = DUN }
+			477 = { add_core_of = DUN }
+			480 = { add_core_of = DUN }
+			482 = { add_core_of = DUN }
+			481 = { add_core_of = DUN }
+			476 = { add_core_of = DUN }
+			487 = { add_core_of = DUN }
+			484 = { add_core_of = DUN }
+			2248 = { add_core_of = DUN }
+			2195 = { add_core_of = DUN }
+			2196 = { add_core_of = DUN }
+			2197 = { add_core_of = DUN }
+			2198 = { add_core_of = DUN }
+			2199 = { add_core_of = DUN }
+		}
+
+		ai_chance = {
+			factor = 75
+		}
+	}
+
+	option = {
+		name = ironforge.13.option.2
+
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+
+### IRO_minds_or_might
+country_event = {
+	id = ironforge.14
+	title = ironforge.14.t
+	desc = ironforge.14.d
+	picture = GFX_ironforge_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ironforge.14.option.1
+		431 = {
+			add_building_construction = {
+				type = land_facility
+				level = 1
+				province = 3770
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = ironforge.14.option.2
+		436 = {
+			add_building_construction = {
+				type = air_facility
+				level = 1
+				province = 3809
+				instant_build = yes
+			}
+		}
+	}
+}

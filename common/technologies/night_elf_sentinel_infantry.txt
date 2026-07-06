@@ -1,0 +1,1612 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	war_hall_tech = {
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = sentry_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = night_elf_archer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 7 y = 0 }
+		}
+
+		categories = {
+			barracks_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentry_tech = {
+
+		enable_subunits = {
+			sentry
+		}
+
+		on_research_complete = {
+			set_technology = { sentry_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = watcher_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sentry_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	sentry_equipment_tech_1 = {
+
+		enable_equipments = {
+			sentry_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = sentry_blade_ward
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sentry_forest_stride
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentry_blade_ward = {
+
+		sentry = {
+			soft_attack = 0.10
+			defense = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { sentry_forest_stride }
+
+		path = {
+			leads_to_tech = sentry_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			melee_infantry_technology
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = sentry_forest_stride
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sentry_forest_stride
+			}	
+		}
+	}
+
+	sentry_forest_stride = {
+
+		sentry = {
+			forest = {
+				attack = 0.10
+				movement = 0.10
+			}
+			dense_forest = {
+				attack = 0.10
+				movement = 0.10
+			}
+			snow_forest = {
+				attack = 0.10
+				movement = 0.10
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { sentry_blade_ward }
+
+		path = {
+			leads_to_tech = sentry_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			melee_infantry_technology
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = sentry_blade_ward
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sentry_blade_ward
+			}	
+		}
+	}
+
+	sentry_equipment_tech_2 = {
+
+		enable_equipments = {
+			sentry_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = sentry_moonlight_blades
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sentry_natures_embrace
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	sentry_moonlight_blades = {
+
+		sentry = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { sentry_natures_embrace }
+
+		path = {
+			leads_to_tech = sentry_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			melee_infantry_technology
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = sentry_natures_embrace
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sentry_natures_embrace
+			}	
+		}
+	}
+
+	sentry_natures_embrace = {
+
+		sentry = {
+			max_strength = 0.25
+			max_organisation = 3
+			default_morale = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { sentry_moonlight_blades }
+
+		path = {
+			leads_to_tech = sentry_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			melee_infantry_technology
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = sentry_moonlight_blades
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = sentry_moonlight_blades
+			}	
+		}
+	}
+
+	sentry_equipment_tech_3 = {
+
+		enable_equipments = {
+			sentry_equipment_3
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	watcher_tech = {
+
+		enable_subunits = {
+			watcher
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = watcher_tech_unit_details_tt
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_watcher_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			militia_technology
+		}
+	}
+
+	improved_watcher_1 = {
+
+		watcher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_watcher_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			militia_technology
+		}
+	}
+
+	improved_watcher_2 = {
+
+		watcher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_watcher_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			militia_technology
+		}
+	}
+
+	improved_watcher_3 = {
+
+		watcher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_watcher_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			militia_technology
+		}
+	}
+
+	improved_watcher_4 = {
+
+		watcher = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			militia_technology
+		}
+	}
+
+	night_elf_archer_tech = {
+
+		enable_subunits = {
+			night_elf_archer
+		}
+
+		on_research_complete = {
+			set_technology = { night_elf_archer_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_archer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = sentinel_ranger_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	night_elf_archer_equipment_tech_1 = {
+
+		enable_equipments = {
+			night_elf_archer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = archer_improved_bows
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = archer_camouflage
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	archer_improved_bows = {
+
+		night_elf_archer = {
+			soft_attack = 0.05
+			ap_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { archer_camouflage }
+
+		path = {
+			leads_to_tech = night_elf_archer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = archer_camouflage
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = archer_camouflage
+			}	
+		}
+	}
+
+	archer_camouflage = {
+
+		night_elf_archer = {
+			soft_attack = 0.05
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { archer_improved_bows }
+
+		path = {
+			leads_to_tech = night_elf_archer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = archer_improved_bows
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = archer_improved_bows
+			}	
+		}
+	}
+
+	night_elf_archer_equipment_tech_2 = {
+
+		enable_equipments = {
+			night_elf_archer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = archer_marksmanship
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = archer_hippogryph_companion
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	archer_marksmanship = {
+
+		night_elf_archer = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { archer_hippogryph_companion }
+
+		path = {
+			leads_to_tech = night_elf_archer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = archer_hippogryph_companion
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = archer_hippogryph_companion
+			}	
+		}
+	}
+
+	archer_hippogryph_companion = {
+
+		night_elf_archer = {
+			breakthrough = 0.15
+			air_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { archer_marksmanship }
+
+		path = {
+			leads_to_tech = night_elf_archer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = archer_marksmanship
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = archer_marksmanship
+			}	
+		}
+	}
+
+	night_elf_archer_equipment_tech_3 = {
+
+		enable_equipments = {
+			night_elf_archer_equipment_3
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	sentinel_ranger_tech = {
+
+		enable_subunits = {
+			sentinel_ranger
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = sentinel_ranger_tech_unit_details_tt
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_ranger_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 12 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+	}
+
+	improved_sentinel_ranger_1 = {
+
+		sentinel_ranger = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_ranger_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+	}
+
+	improved_sentinel_ranger_2 = {
+
+		sentinel_ranger = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_sentinel_ranger_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+	}
+
+	improved_sentinel_ranger_3 = {
+
+		sentinel_ranger = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_sentinel_ranger_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+	}
+
+	improved_sentinel_ranger_4 = {
+
+		sentinel_ranger = {
+			initiative = 0.09
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 12 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+	}
+
+	temple_of_elune_tech = {
+
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { church_tech_global = 1 popup = no }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = starcaller_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = faith_in_elune_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 18 y = 0 }
+		}
+
+		categories = {
+			barracks_technology
+			religion_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	starcaller_tech = {
+
+		enable_subunits = {
+			starcaller
+		}
+
+		on_research_complete = {
+			set_technology = { starcaller_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = starcaller_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = priestess_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	starcaller_equipment_tech_1 = {
+
+		enable_equipments = {
+			starcaller_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = starcaller_astral_ward
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = starcaller_luna_blast
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	starcaller_astral_ward = {
+
+		starcaller = {
+			defense = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { starcaller_luna_blast }
+
+		path = {
+			leads_to_tech = starcaller_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = starcaller_luna_blast
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = starcaller_luna_blast
+			}	
+		}
+	}
+
+	starcaller_luna_blast = {
+
+		starcaller = {
+			hard_attack = 0.15
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { starcaller_astral_ward }
+
+		path = {
+			leads_to_tech = starcaller_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = starcaller_astral_ward
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = starcaller_astral_ward
+			}	
+		}
+	}
+
+	starcaller_equipment_tech_2 = {
+
+		enable_equipments = {
+			starcaller_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = starcaller_cloak_of_the_night
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = starcaller_nova_of_the_cosmos
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	starcaller_cloak_of_the_night = {
+
+		starcaller = {
+			defense = 0.10
+			max_organisation = 2
+			default_morale = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { starcaller_nova_of_the_cosmos }
+
+		path = {
+			leads_to_tech = starcaller_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = starcaller_nova_of_the_cosmos
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = starcaller_nova_of_the_cosmos
+			}	
+		}
+	}
+
+	starcaller_nova_of_the_cosmos = {
+
+		starcaller = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { starcaller_cloak_of_the_night }
+
+		path = {
+			leads_to_tech = starcaller_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = starcaller_cloak_of_the_night
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = starcaller_cloak_of_the_night
+			}	
+		}
+	}
+
+	starcaller_equipment_tech_3 = {
+
+		enable_equipments = {
+			starcaller_equipment_3
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			night_elf_sentinel_infantry_technology
+			infantry_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	priestess_tech = {
+
+		enable_subunits = {
+			priestess
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = priestess_tech_unit_details_tt
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_priestess_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+		}
+	}
+
+	improved_priestess_1 = {
+
+		priestess = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_priestess_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_priestess_2 = {
+
+		priestess = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_priestess_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_priestess_3 = {
+
+		priestess = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = improved_priestess_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_priestess_4 = {
+
+		priestess = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	faith_in_elune_tech = {
+
+		country_faith_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = faith_in_elune_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	faith_in_elune_tech_2 = {
+
+		country_faith_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = faith_in_elune_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	faith_in_elune_tech_3 = {
+
+		country_faith_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = faith_in_elune_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	faith_in_elune_tech_4 = {
+
+		country_faith_gain_factor = 0.1
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

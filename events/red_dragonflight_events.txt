@@ -1,0 +1,96 @@
+﻿###########################
+#reddragonflight - 1st/2nd
+###########################
+
+add_namespace = reddragonflight
+
+#ysera has fallen to corruption
+country_event = {
+	id = reddragonflight.1
+	title = reddragonflight.1.t
+	desc = reddragonflight.1.d
+	picture = GFX_nightmare_dragonflight_1_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = { 
+        name = reddragonflight.1.option.1
+		declare_war_on = {
+			target = NDF
+			type = annex_everything
+		}
+		hidden_effect = {
+			GDF = {
+				country_event = { id = greendragonflight.10 days = 1 }
+			}
+		}
+	} 
+}
+
+country_event = { #Dragonmaw Enslaved
+	id = reddragonflight.2
+	title = reddragonflight.2.t
+	desc = reddragonflight.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	picture = GFX_red_dragon_slave_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = { #accept
+        name = reddragonflight.2.option.1
+		
+		hidden_effect = {
+			VMR = {
+				retire_country_leader = yes
+				if = {
+					limit = {
+						DMC = { has_government = fel }
+					}
+					add_country_leader_role = {
+						character = VMR_alexstraza
+						promote_leader = yes
+						country_leader = {
+							ideology = fel_type
+						}
+					}
+				}
+				if = {
+					limit = {
+						DMC = {	has_government = horde }
+					}
+					add_country_leader_role = {
+						character = VMR_alexstraza
+						promote_leader = yes
+						country_leader = {
+							ideology = horde_type
+						}
+					}
+				}
+			}
+		}
+	} 
+}
+
+country_event = { ### Murder Hobo Dragons
+	id = reddragonflight.3
+	title = reddragonflight.3.t
+	desc = reddragonflight.3.d
+	picture = GFX_red_dragon_slave_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = reddragonflight.3.option.1
+		add_ideas = RDF_only_chared_remains
+		hidden_effect = {
+			add_ideas = RDF_orc_attack_bonus
+		}
+	} 
+}

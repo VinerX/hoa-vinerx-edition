@@ -1,0 +1,1414 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	dwarf_siege_workshop_tech = {
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_steam_wagon_tech
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			siege_works_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_mortar_team_tech = {
+
+		enable_subunits = {
+			dwarf_mortar_team
+			dwarf_mortar_team_support
+		}
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_mortar_team_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 4 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mortar_team_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_mortar_team_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_siegebreaker_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mortar_team_plate_carrier_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 4 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dwarf_mortar_team_siegebreaker_tech = {
+
+		dwarf_mortar_team = {
+			hard_attack = 0.10
+			fort = {
+				attack = 0.10
+			}
+		}
+		dwarf_mortar_team_support = {
+			hard_attack = 0.10
+			fort = {
+				attack = 0.10
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mortar_team_plate_carrier_tech }
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 3 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mortar_team_plate_carrier_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mortar_team_plate_carrier_tech
+			}
+		}
+	}
+
+	dwarf_mortar_team_plate_carrier_tech = {
+
+		dwarf_mortar_team = {
+			defense = 0.15
+			breakthrough = 0.10
+		}
+		dwarf_mortar_team_support = {
+			defense = 0.15
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mortar_team_siegebreaker_tech }
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 5 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mortar_team_siegebreaker_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mortar_team_siegebreaker_tech
+			}
+		}
+	}
+
+	dwarf_mortar_team_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_mortar_team_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_flamestrike_cannon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mortar_team_dwarven_stout_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mortar_team_flamestrike_cannon_tech = {
+
+		dwarf_mortar_team = {
+			soft_attack = 0.10
+			breakthrough = 0.15
+		}
+		dwarf_mortar_team_support = {
+			soft_attack = 0.10
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mortar_team_dwarven_stout_tech }
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 3 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mortar_team_dwarven_stout_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mortar_team_dwarven_stout_tech
+			}
+		}
+	}
+
+	dwarf_mortar_team_dwarven_stout_tech = {
+
+		dwarf_mortar_team = {
+			max_strength = 0.25
+			max_organisation = 2
+		}
+		dwarf_mortar_team_support = {
+			max_strength = 0.25
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mortar_team_flamestrike_cannon_tech }
+
+		path = {
+			leads_to_tech = dwarf_mortar_team_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 5 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mortar_team_flamestrike_cannon_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mortar_team_flamestrike_cannon_tech
+			}
+		}
+	}
+
+	dwarf_mortar_team_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_mortar_team_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 4 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_mortar_team_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	dwarf_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1
+		
+
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_wagon_tech = {
+
+		enable_subunits = {
+			dwarf_steam_wagon
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_steam_wagon_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = dwarf_steam_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_tech
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_steam_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_steam_wagon_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_wagon_training_tech_1 = {
+
+		dwarf_steam_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_steam_wagon_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_wagon_training_tech_2 = {
+
+		dwarf_steam_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_steam_wagon_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_wagon_training_tech_3 = {
+
+		dwarf_steam_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_steam_wagon_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_wagon_training_tech_4 = {
+
+		dwarf_steam_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_steam_tank_tech = {
+
+		enable_subunits = {
+			dwarf_steam_tank
+		}
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_steam_tank_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_steam_tank_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_steam_tank_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}		
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_thunder_mortar_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_steam_tank_reinforced_plating_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dwarf_steam_tank_thunder_mortar_tech = {
+
+		dwarf_steam_tank = {
+			soft_attack = 0.10
+			breakthrough = 0.15
+		}
+		dwarf_golemcrusher = {
+			soft_attack = 0.10
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_steam_tank_reinforced_plating_tech }
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_steam_tank_reinforced_plating_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_steam_tank_reinforced_plating_tech
+			}
+		}
+	}
+
+	dwarf_steam_tank_reinforced_plating_tech = {
+
+		dwarf_steam_tank = {
+			armor_value = 0.20
+			defense = 0.10
+		}
+		dwarf_golemcrusher = {
+			armor_value = 0.20
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_steam_tank_thunder_mortar_tech }
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_steam_tank_thunder_mortar_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_steam_tank_thunder_mortar_tech
+			}
+		}
+	}
+
+	dwarf_steam_tank_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_steam_tank_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_rune_cannonballs_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_steam_tank_rune_shields_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_steam_tank_rune_cannonballs_tech = {
+
+		dwarf_steam_tank = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+		dwarf_golemcrusher = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_steam_tank_rune_shields_tech }
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_steam_tank_rune_shields_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_steam_tank_rune_shields_tech
+			}
+		}
+	}
+
+	dwarf_steam_tank_rune_shields_tech = {
+
+		dwarf_steam_tank = {
+			defense = 0.15
+			hardness = 0.05
+		}
+		dwarf_golemcrusher = {
+			defense = 0.15
+			hardness = 0.05
+		}
+
+		on_research_complete = {
+			hidden_effect = {
+				add_ideas = dwarf_steam_tank_rune_shields_idea
+			}
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_steam_tank_rune_cannonballs_tech }
+
+		path = {
+			leads_to_tech = dwarf_steam_tank_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_steam_tank_rune_cannonballs_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_steam_tank_rune_cannonballs_tech
+			}
+		}
+	}
+
+	dwarf_steam_tank_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_steam_tank_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_steam_tank_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	sp_thorium_core_shells_tech = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_thorium_core_shells } 
+		}
+
+		dwarf_steam_tank = {
+			hard_attack = 0.15
+			ap_attack = 0.10
+		}
+		dwarf_golemcrusher = {
+			hard_attack = 0.20
+			ap_attack = 0.50
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 12 y = 14 }
+		}
+	}
+
+	dwarf_siege_engine_tech = {
+
+		enable_subunits = {
+			dwarf_siege_engine
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_siege_engine_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 20 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_siege_engine_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_siege_engine_equipment_1
+		}
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_crushing_ram_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_siege_engine_heavy_plating_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 20 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dwarf_siege_engine_crushing_ram_tech = {
+		
+		dwarf_siege_engine = {
+			hard_attack = 0.10
+			fort = {
+				attack = 0.10
+				movement = 0.10
+			}
+			forest = {
+				attack = 0.10
+				movement = 0.10
+			}
+			jungle = {
+				attack = 0.10
+				movement = 0.10
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_engine_heavy_plating_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 19 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_engine_heavy_plating_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_engine_heavy_plating_tech
+			}
+		}
+	}
+
+	dwarf_siege_engine_heavy_plating_tech = {
+
+		dwarf_siege_engine = {
+			defense = 0.20
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_engine_crushing_ram_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 21 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_engine_crushing_ram_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_engine_crushing_ram_tech
+			}
+		}
+	}
+
+	dwarf_siege_engine_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_siege_engine_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_explosive_cannonade_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_siege_engine_onboard_engineers_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_siege_engine_explosive_cannonade_tech = {
+
+		dwarf_siege_engine = {
+			soft_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_engine_onboard_engineers_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 19 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_engine_onboard_engineers_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_engine_onboard_engineers_tech
+			}
+		}
+	}
+
+	dwarf_siege_engine_onboard_engineers_tech = {
+
+		dwarf_siege_engine = {
+			reliability = 0.05
+			max_strength = 0.25
+			defense = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_engine_explosive_cannonade_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_engine_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 21 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_engine_explosive_cannonade_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_engine_explosive_cannonade_tech
+			}
+		}
+	}
+
+	dwarf_siege_engine_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_siege_engine_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_siege_weapons_folder
+			position = { x = 20 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			dwarf_siege_engine_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

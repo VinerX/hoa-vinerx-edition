@@ -1,0 +1,360 @@
+﻿################################################################################
+# Bunch of Second War events, including capitulation, scripted peace, news
+# events about cities getting captured, etc...
+################################################################################
+
+add_namespace = second_war
+
+# COUNTRY EVENTS (1 - 49)
+
+# Lordaeron Capitulation (scripted peace)
+# Should be triggered at peace conference (i.e. the Alliance of Lordaeron is defeated)
+country_event = {
+	id = second_war.1
+	title = second_war.1.t
+	desc = second_war.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+    option = {
+		# If Alterac (ALT) is part of the Horde
+		if = {
+			limit = {
+				ALT = { is_in_faction_with = BRC }
+			}
+			# Give ALT Caer Darrow and Andorhal + Lordaemer islands + Dalaran Outskirts
+			ALT = {
+				transfer_state = 103
+				transfer_state = 109
+				transfer_state = 152
+				transfer_state = 153
+				transfer_state = 636
+				transfer_state = 1538
+				transfer_state = 2224
+			}
+		}
+		# Else if ALT is allied with LOR
+		else_if = {
+			limit = {
+				ALT = { is_in_faction_with = LOR }
+			}
+			# If Frostwolf (FWC) is part of the Horde
+			if = {
+				limit = {
+					FWC = { is_in_faction_with = BRC }
+				}
+				FWC = {
+					annex_country = {
+					    target = ALT
+					    transfer_troops = no
+					}
+				}
+			}
+			# Else just transfer to BRC
+			else = {
+				BRC = {
+					annex_country = {
+					    target = ALT
+					    transfer_troops = no
+					}
+				}
+			}
+		}
+
+		# If Tol'barad (TOL) is allied with LOR (via STR)
+		# AND Stormreavers (SRC) are part of the Horde
+		if = {
+			limit = {
+				TOL = { is_in_faction_with = LOR }
+				SRC = { is_in_faction_with = BRC }
+			}
+			# Stormreavers (SRC) annex Tol'Barad
+			SRC = {
+				annex_country = {
+				    target = TOL
+				    transfer_troops = no
+				}
+			}
+			# Else just transfer to BRC
+			# Stromreavers can betray the Horde now
+			else = {
+				BRC = {
+					annex_country = {
+					    target = TOL
+					    transfer_troops = no
+					}
+				}
+			}
+		}
+
+		# If Stromgarde (STR) is allied with LOR
+		if = {
+			limit = {
+				STR = { is_in_faction_with = LOR }
+			}
+			# BRC annex STR
+			annex_country = {
+			    target = STR
+			    transfer_troops = no
+			}
+			# If Witherbark (WBT) are part of the Horde
+			if = {
+				limit = {
+					BRC = {
+						is_faction_leader = yes
+						is_in_faction_with = WBT
+					}
+				}
+				# Give WBT eastern Arathi lands
+				WBT = {
+					transfer_state = 121
+					transfer_state = 127
+					transfer_state = 132
+					transfer_state = 574
+					transfer_state = 575
+					transfer_state = 576
+					transfer_state = 577
+					transfer_state = 578
+					transfer_state = 581
+					transfer_state = 1571
+					transfer_state = 1572
+				}
+			}
+		}
+
+		# If Dalaran (DAL) is allied with LOR
+		if = {
+			limit = {
+				DAL = { is_in_faction_with = LOR }
+			}
+			# BRC annex DAL
+			annex_country = {
+			    target = DAL
+			    transfer_troops = no
+			}
+			# If Alterac is part of the Horde
+			if = {
+				limit = {
+					ALT = { is_in_faction_with = BRC }
+				}
+				# Transfer Dalaran outskirt to ALT
+				ALT = { transfer_state = 2218 }
+			}
+		}
+
+		# If Stormwind Refugees (STO) is allied with LOR
+		if = {
+			limit = {
+				STO = { is_in_faction_with = LOR }
+			}
+			# BRC annex STO
+			annex_country = {
+			    target = STO
+			    transfer_troops = no
+			}
+			# If Stormreavers (SRC) are part of the Horde
+			if = {
+				limit = {
+					SRC = { is_in_faction_with = BRC }
+				}
+				# Transfer Newman's Landing
+				SRC = { transfer_state = 1576 }
+			}
+		}
+
+		# If Gilneas (GIL) is allied with LOR
+		if = {
+			limit = {
+				GIL = { is_in_faction_with = LOR }
+			}
+			# BRC annex GIL
+			annex_country = {
+			    target = GIL
+			    transfer_troops = no
+			}
+			# If Stormreavers (SRC) are part of the Horde
+			if = {
+				limit = {
+					SRC = { is_in_faction_with = BRC }
+				}
+				# Transfer The Bite islands
+				SRC = { transfer_state = 2093 }
+			}
+		}
+
+		# If Kul'tiras (KUL) is allied with LOR
+		if = {
+			limit = {
+				KUL = { is_in_faction_with = LOR }
+			}
+			# If Stormreavers (SRC) are part of the Horde
+			if = {
+				limit = {
+					SRC = { is_in_faction_with = BRC }
+				}
+				# SRC annex KUL
+				SRC = {
+					annex_country = {
+					    target = KUL
+					    transfer_troops = no
+					}
+				}
+			}
+			else = {
+				# BRC annex KUL
+				SRC = {
+					annex_country = {
+					    target = KUL
+					    transfer_troops = no
+					}
+				}
+			}
+		}
+
+		# BRC annex all of Lordaeron
+		# Has to be done here (order of annexations matters)
+		BRC = {
+			annex_country = {
+				target = LOR
+				transfer_troops = no
+			}
+		}
+
+		# If Amani (AMA) is part of the Horde
+		if = {
+			limit = {
+				AMA = { is_in_faction_with = BRC }
+			}
+			# Give AMA eastern part of Lordaeron (minus Quel'lithien and Mossflayer lands)
+			AMA = {
+				transfer_state = 30
+				transfer_state = 119
+				transfer_state = 120
+				transfer_state = 157
+				transfer_state = 201
+				transfer_state = 220
+				transfer_state = 221
+				transfer_state = 226
+				transfer_state = 227
+				transfer_state = 228
+				transfer_state = 229
+				transfer_state = 230
+				transfer_state = 231
+				transfer_state = 232
+				transfer_state = 234
+				transfer_state = 235
+				transfer_state = 236
+				transfer_state = 237
+				transfer_state = 238
+				transfer_state = 239
+				transfer_state = 241
+				transfer_state = 242
+				transfer_state = 243
+				transfer_state = 245
+				transfer_state = 246
+				transfer_state = 247
+				transfer_state = 248
+				transfer_state = 253
+				transfer_state = 376
+				transfer_state = 665
+				transfer_state = 753
+				transfer_state = 770
+				transfer_state = 800
+				transfer_state = 1290
+				transfer_state = 1543
+				transfer_state = 1583
+				transfer_state = 1584
+				transfer_state = 1585
+				transfer_state = 1586
+				transfer_state = 1587
+				transfer_state = 2232
+				transfer_state = 2233
+				transfer_state = 2234
+				transfer_state = 2235
+				transfer_state = 2236
+				transfer_state = 2237
+				transfer_state = 2238
+			}
+		}
+		# Else if Dragonmaw (DMC) is part of the Horde
+		else_if = {
+			limit = {
+				DMC = { is_in_faction_with = BRC }
+			}
+			# Give DMC the east coast of Lordaeron (Tyr's Hand, Hasic, etc...)
+			DMC = {
+				transfer_state = 30
+				transfer_state = 226
+				transfer_state = 227
+				transfer_state = 228
+				transfer_state = 229
+				transfer_state = 234
+				transfer_state = 235
+				transfer_state = 376
+				transfer_state = 665
+				transfer_state = 770
+				transfer_state = 1543
+				transfer_state = 2235
+				transfer_state = 2236
+			}
+		}
+
+		# If Tyr's Hand (TYR) is part of the Horde AND NOT Blackrock Warchief AND they have not capitulated
+		if = {
+			limit = {
+				BRC = {
+					is_faction_leader = yes
+					is_in_faction_with = TYR
+					has_completed_focus = BRC_doomhammers_horde
+					TYR = { has_capitulated = no }
+				}
+			}
+			# Give Tyr's Hand + Light's Hope Chapel surrounding
+			TYR = {
+				transfer_state = 30
+				transfer_state = 226
+				transfer_state = 227
+				transfer_state = 228
+				transfer_state = 229
+				transfer_state = 235
+				transfer_state = 376
+				transfer_state = 1543
+			}
+		}
+
+		# End of Second War news event
+		news_event = second_war.50
+	}
+}
+
+# NEWS EVENTS (50+)
+# End of Second War (Alliance of Lordaeron Defeated)
+news_event = {
+	id = second_war.50
+	title = second_war.50.t
+	desc = second_war.50.d
+	picture = GFX_news_event_fall_of_lordaeron_city
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes # Trigger for everyone
+
+	option = { # Horde option
+		name = second_war.50.option.1
+
+		trigger = {
+			has_government = horde
+		}
+	}
+
+	option = { # Alliance option (for anyone that did not join the war and / or is left alive)
+		name = second_war.50.option.2
+
+		trigger = {
+			has_government = alliance
+		}
+	}
+}

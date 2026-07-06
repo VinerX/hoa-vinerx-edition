@@ -1,0 +1,64 @@
+﻿###########################
+#Vault of Archavon
+###########################
+
+add_namespace = owb_vault_of_archavon
+
+country_event = {
+	id = owb_vault_of_archavon.1
+	title = owb_vault_of_archavon.1.t
+	desc = owb_vault_of_archavon.1.d
+	picture = GFX_owb_vault_door_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = ACC
+        has_start_date > 580.12.31
+		has_start_date < 581.01.02
+        date > 581.01.07
+        has_game_rule = {
+            rule = owb_april_fools_2025_game_rule
+            option = ENABLED
+        }
+	}
+
+	option = { # play as vault
+    	name = owb_vault_of_archavon.1.option.1
+		OVA = {
+			transfer_state = 55
+			55 = {
+				add_core_of = OVA
+			}
+			hidden_effect = {
+				load_oob = OVA_581
+				add_equipment_to_stockpile = {
+					type = owb_vault_dweller_equipment_1
+					amount = 5000
+					producer = OVA
+				}
+				add_manpower = 10000
+			}
+			change_tag_from = ACC
+		}
+	}
+    
+    option = { # remain player nation
+    	name = owb_vault_of_archavon.1.option.2
+		OVA = {
+			transfer_state = 55
+			55 = {
+				add_core_of = OVA
+			}
+			hidden_effect = {
+				load_oob = OVA_581
+				add_equipment_to_stockpile = {
+					type = owb_vault_dweller_equipment_1
+					amount = 5000
+					producer = OVA
+				}
+				add_manpower = 10000
+			}
+		}
+	}
+}

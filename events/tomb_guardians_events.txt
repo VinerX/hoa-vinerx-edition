@@ -1,0 +1,330 @@
+###########################
+#tomb guardians
+###########################
+
+add_namespace = tomb_guardians
+
+#reaction to opening of the dark portal
+country_event = {
+	id = tomb_guardians.1
+	title = tomb_guardians.1.t
+	desc = tomb_guardians.1.d
+	picture = GFX_medivh_dark_portal_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tomb_guardians.1.option.1
+		add_war_support = 0.05
+
+	}
+}
+
+#seek allies to confront medivh
+country_event = {
+	id = tomb_guardians.2
+	title = tomb_guardians.2.t
+	picture = GFX_aegwynn_event
+
+	desc = { #default event
+        text = tomb_guardians.2.d.1
+        trigger = {
+			NOT = {
+				has_country_flag = TMB_asked_stormwind_for_help
+				has_country_flag = TMB_asked_council_for_help	
+			}
+        }
+    }
+	desc = { #stormwind says no
+        text = tomb_guardians.2.d.2
+        trigger = {
+			has_country_flag = TMB_asked_stormwind_for_help
+			NOT = {
+				has_country_flag = TMB_asked_council_for_help
+			}
+        }
+    }
+	desc = { #council of tirisfal says no
+        text = tomb_guardians.2.d.3
+        trigger = {
+			has_country_flag = TMB_asked_council_for_help
+			NOT = {
+				has_country_flag = TMB_asked_stormwind_for_help
+			}
+        }
+    }
+	desc = { #arcanagos only option left
+        text = tomb_guardians.2.d.4
+        trigger = {
+			AND = {
+				has_country_flag = TMB_asked_stormwind_for_help
+				has_country_flag = TMB_asked_council_for_help
+			}
+        }
+    }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #ask arcanagos for help
+		name = tomb_guardians.2.option.1
+		BDF = {
+			country_event = tomb_guardians.3
+		}
+	}
+	option = { #ask stormwind for help
+		name = tomb_guardians.2.option.2
+		#will push medivh closer to sargeras/ make him join horde
+		trigger = {
+			NOT = {
+				has_country_flag = TMB_asked_stormwind_for_help
+			}
+		}
+		set_country_flag = TMB_asked_stormwind_for_help
+		STO = {
+			country_event = tomb_guardians.5
+		}
+	}
+	option = { #ask council of tirisfal for help
+		name = tomb_guardians.2.option.3
+		#will push medivh closer to sargeras/ guarentee transformation/summon legion
+		trigger = {
+			NOT = {
+				has_country_flag = TMB_asked_council_for_help
+			}
+		}
+		set_country_flag = TMB_asked_council_for_help
+		DAL = {
+			country_event = tomb_guardians.7
+		}
+	}
+}
+
+#event sent to bluedragonflight requesting arcanagos' help
+country_event = { 
+	id = tomb_guardians.3
+	title = tomb_guardians.3.t
+	desc = tomb_guardians.3.d
+	picture = GFX_aegwynn_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tomb_guardians.3.option.1
+		add_stability = 0.05
+		TMB = {
+			country_event = tomb_guardians.4
+			set_country_flag = TMB_a_old_friend
+		}
+	}
+
+}
+
+#event confirming arcanagos has come to your aid
+country_event = {
+	id = tomb_guardians.4
+	title = tomb_guardians.4.t
+	desc = tomb_guardians.4.d
+	picture = GFX_arcanagos_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tomb_guardians.4.option.1
+		add_war_support = 0.05
+	}
+
+}
+
+#event sent to stormwind requesting help against medivh
+country_event = { 
+	id = tomb_guardians.5
+	title = tomb_guardians.5.t
+	desc = tomb_guardians.5.d
+	picture = GFX_aegwynn_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = tomb_guardians.5.option.1
+		TMB = {
+			country_event = tomb_guardians.6
+			set_country_flag = TMB_those_who_care_for_him_the_most
+		}
+	}
+
+	option = { #reject
+		name = tomb_guardians.5.option.2
+		TMB = {
+			country_event = tomb_guardians.2
+		}
+	}
+
+}
+
+#event confirming stormwind has come to your aid
+country_event = {
+	id = tomb_guardians.6
+	title = tomb_guardians.6.t
+	desc = tomb_guardians.6.d
+	picture = GFX_anduin_lothar_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tomb_guardians.6.option.1
+		add_war_support = 0.05
+	}
+
+}
+
+
+#event sent to dalaran requesting help against medivh
+country_event = { 
+	id = tomb_guardians.7
+	title = tomb_guardians.7.t
+	desc = tomb_guardians.7.d
+	picture = GFX_aegwynn_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #accept
+		name = tomb_guardians.7.option.1
+		TMB = {
+			country_event = tomb_guardians.8
+			set_country_flag = TMB_reconvene_with_the_council
+		}
+	}
+
+	option = { #reject
+		name = tomb_guardians.7.option.2
+		TMB = {
+			country_event = tomb_guardians.2
+		}
+
+	}
+
+}
+
+#event confirming dalaran has come to your aid
+country_event = {
+	id = tomb_guardians.8
+	title = tomb_guardians.8.t
+	desc = tomb_guardians.8.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tomb_guardians.8.option.1
+		add_war_support = 0.05
+	}
+
+}
+
+#battle medivh event
+country_event = {
+	id = tomb_guardians.9
+	title = tomb_guardians.9.t
+	picture = GFX_medivh_evil_event
+
+	desc = { #cannon battle
+        text = tomb_guardians.9.d.1
+        trigger = {
+			has_country_flag = TMB_a_old_friend
+        }
+    }
+	desc = { #stormwind helps
+        text = tomb_guardians.9.d.2
+        trigger = {
+			has_country_flag = TMB_those_who_care_for_him_the_most
+        }
+    }
+	desc = { #council of tirisfal helps
+        text = tomb_guardians.9.d.3
+        trigger = {
+			has_country_flag = TMB_reconvene_with_the_council
+        }
+    }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tomb_guardians.9.option.1
+		#arcanagos dies
+		#aegwynn is drained of 95% of her magic and is very weak
+		#confirm sargeras is in control but stay human
+		trigger = {
+			has_country_flag = TMB_a_old_friend
+		}
+		STO = {
+			country_event = tomb_guardians.10
+		}
+	}
+
+	option = {
+		name = tomb_guardians.9.option.2
+		#confess you have an army of orcs
+		#lothar dies but aegwynn remains strong
+		#lame to have another nation determine what you do so it will still be possible to be good but will throw you to 60% sargeras control and allow you to interact with the horde instantly
+		trigger = {
+			has_country_flag = TMB_those_who_care_for_him_the_most
+		}
+	}
+
+	option = {
+		name = tomb_guardians.9.option.2
+		#transform into sargeras during the fight
+		#useless councilmembers die (the ones that die cannonically in this timeline anyways)
+		#lame to have another nation determine what you do so it will still be possible to be good but will throw you to 90% sargeras control allowing you to become evil instantly
+		trigger = {
+			has_country_flag = TMB_reconvene_with_the_council
+		}
+	}
+}
+
+#warn stormwind cannon
+country_event = {
+	id = tomb_guardians.10
+	title = tomb_guardians.10.t
+	desc = tomb_guardians.10.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #battle leaves you transformed/old they assume you are mad
+		name = tomb_guardians.10.option.1
+		set_country_flag = STO_rumours_in_the_east
+		TMB = {
+			country_event = tomb_guardians.11
+		}
+			
+	}
+}
+
+#aftermath
+country_event = {
+	id = tomb_guardians.11
+	title = tomb_guardians.11.t
+	desc = tomb_guardians.11.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #flee to kalimdor
+		name = tomb_guardians.11.option.1
+			set_country_flag = TMB_flee_to_kalimdor
+	}
+	option = { #return to the tomb
+		name = tomb_guardians.11.option.1
+			set_country_flag = tMB_return_to_the_tomb
+	}
+}

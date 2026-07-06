@@ -1,0 +1,653 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	draenei_wood_works = {
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_supply_wagon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_ballistae_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			draenei_siege_works_technology
+		}
+	}
+
+	draenei_supply_wagon_tech = {
+
+		enable_subunits = {
+			supply_wagon
+		}
+
+		on_research_complete = {
+			set_technology = {
+				draenei_supply_wagon_equipment_tech_1 = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_supply_wagon_technology
+			supply_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = draenei_supply_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_supply_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			supply_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_supply_wagon_technology
+			supply_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = improved_draenei_supply_wagon_1
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_draenei_supply_wagon_1 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = improved_draenei_supply_wagon_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_supply_wagon_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_draenei_supply_wagon_2 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_draenei_supply_wagon_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_supply_wagon_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_draenei_supply_wagon_3 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_supply_wagon_technology
+			supply_wagon_technology
+		}
+
+		path = {
+			leads_to_tech = improved_draenei_supply_wagon_4
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_draenei_supply_wagon_4 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_supply_wagon_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_caravan_technology
+		}
+
+		path = {
+			leads_to_tech = draenei_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	draenei_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		research_cost = 1
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_caravan_technology
+		}
+
+		path = {
+			leads_to_tech = draenei_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_ballistae_tech = {
+
+		enable_subunits = {
+			draenei_ballistae
+			draenei_ballistae_support
+		}
+
+		on_research_complete = {
+			set_technology = {
+				draenei_ballistae_equipment_tech_1 = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+		path = {
+			leads_to_tech = draenei_ballistae_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_ballistae_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_ballista_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_explosive_rounds_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_hardened_crystals_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_explosive_rounds_tech = {
+
+		draenei_ballistae = {
+			hard_attack = 0.1
+			ap_attack = 0.25
+			fort = { attack = 0.2 }
+		}
+		draenei_ballistae_support = {
+			hard_attack = 0.1
+			ap_attack = 0.25
+			fort = { attack = 0.2 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_hardened_crystals_tech }
+
+		path = {
+			leads_to_tech = draenei_ballistae_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_hardened_crystals_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_hardened_crystals_tech
+			}
+		}
+	}
+
+	draenei_hardened_crystals_tech = {
+
+		draenei_ballistae = {
+			soft_attack = 0.2
+			hard_attack = 0.2
+			air_attack = 0.25
+		}
+		draenei_ballistae_support = {
+			soft_attack = 0.2
+			hard_attack = 0.2
+			air_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_explosive_rounds_tech }
+
+		path = {
+			leads_to_tech = draenei_ballistae_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_explosive_rounds_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_explosive_rounds_tech
+			}
+		}
+	}
+
+	draenei_ballistae_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_ballista_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_sky_shredder_crystals_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_blessed_frames_tech
+
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_sky_shredder_crystals_tech = {
+
+		draenei_ballistae = {
+			breakthrough = 0.25
+			anti_air_attack = 0.25
+		}
+		draenei_ballistae_support = {
+			breakthrough = 0.25
+			anti_air_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_blessed_frames_tech }
+
+		path = {
+			leads_to_tech = draenei_ballistae_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_blessed_frames_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_blessed_frames_tech
+			}
+		}
+	}
+
+	draenei_blessed_frames_tech = {
+
+		draenei_ballistae = {
+			defense = 0.25
+			max_strength = 0.50
+		}
+		draenei_ballistae_support = {
+			defense = 0.25
+			max_strength = 0.50
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_sky_shredder_crystals_tech }
+
+		path = {
+			leads_to_tech = draenei_ballistae_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_sky_shredder_crystals_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_sky_shredder_crystals_tech
+			}
+		}
+	}
+
+	draenei_ballistae_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_ballista_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = draenei_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			draenei_siege_works_technology
+			draenei_ballistae_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

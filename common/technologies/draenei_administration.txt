@@ -1,0 +1,3748 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	draenei_spire_tech = {
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_bastion_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_artificer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	draenei_bastion_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			draenei_tier_2 = 1
+		}
+
+		on_research_complete = {
+			set_technology = { tier_2_tech = 1 }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_nexus_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	draenei_nexus_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		dependencies = {
+			draenei_tier_3 = 1
+		}
+
+		on_research_complete = {
+			set_technology = { tier_3_tech = 1 }
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 2 y = 10}
+		}
+
+		ai_will_do = {
+			factor = 10000
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	draenei_artificer_tech = {
+
+		enable_subunits = {
+			draenei_artificer
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_gemstones_equipment_tech = 1 }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_crystal_heart_mines_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_gem_crafting_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_gemstones_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_air_defense_crystal_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_gem_forge_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	draenei_gemstones_equipment_tech = {
+
+		enable_equipments = {
+			draenei_gemstones_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_artificer_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 9 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	draenei_artificer_training_tech_1 = {
+
+		draenei_artificer = {
+			entrenchment = 1.5
+			fort = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_artificer_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 9 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	draenei_artificer_training_tech_2 = {
+
+		draenei_artificer = {
+			entrenchment = 1.5
+			river = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_artificer_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 9 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	draenei_artificer_training_tech_3 = {
+
+		draenei_artificer = {
+			entrenchment = 1.5
+			city = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_artificer_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 9 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	draenei_artificer_training_tech_4 = {
+
+		draenei_artificer = {
+			entrenchment = 1.5
+			gateway = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 9 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			worker_technology
+			support_technology
+		}
+	}
+
+	draenei_crystal_heart_mines_tech = {
+
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				iron_mine_tech_global = 1
+				sulfur_mine_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_improved_crystal_heart_mines_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_prospecting_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 6 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_improved_crystal_heart_mines_tech = {
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_improved_crystal_heart_mines_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 6 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_improved_crystal_heart_mines_tech_2 = {
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_improved_crystal_heart_mines_tech_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 6 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_improved_crystal_heart_mines_tech_3 = {
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_improved_crystal_heart_mines_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 6 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_improved_crystal_heart_mines_tech_4 = {
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 6 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_prospecting_tech_1 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_prospecting_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 4 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_prospecting_tech_2 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_prospecting_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 4 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_prospecting_tech_3 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_prospecting_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_prospecting_tech_4 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_prospecting_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_prospecting_tech_5 = {
+
+		local_resources_factor = 0.1
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_gem_crafting_tech_1 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_crafting_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 12 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	draenei_gem_crafting_tech_2 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_crafting_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 12 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	draenei_gem_crafting_tech_3 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_gem_crafting_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	draenei_gem_crafting_tech_4 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_crafting_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	draenei_gem_crafting_tech_5 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.20
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			forge_technology
+		}
+	}
+
+	draenei_air_defense_crystal_tech_1 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { guard_tower_tech_global = 1 popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		industry_air_damage_factor = -0.05
+
+		path = {
+			leads_to_tech = draenei_air_defense_crystal_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 14 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	draenei_air_defense_crystal_tech_2 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_air_defense_crystal_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 14 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	draenei_air_defense_crystal_tech_3 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_air_defense_crystal_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	draenei_air_defense_crystal_tech_4 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_air_defense_crystal_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 14 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	draenei_air_defense_crystal_tech_5 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+
+		industry_air_damage_factor = -0.05
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			tower_technology
+			fortification_technology
+		}
+	}
+
+	draenei_gem_forge_tech = {
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+		path = {
+			leads_to_tech = draenei_forgemaster_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_grand_architecture_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_azure_pastures_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_fae_dragon_nests_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_lumber_mill_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_sanctum_of_the_light_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_rangari_refugee_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 22 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_gem_forge_technology
+		}
+	}
+
+	draenei_forgemaster_tech = {
+
+		enable_subunits = {
+			draenei_forgemaster
+		}
+
+		on_research_complete = {
+			###custom_effect_tooltip = draenei_forgemaster_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_tools_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_gem_infused_armor_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_forgemaster_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_gem_infused_weapons_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_blueprints_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 20 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			draenei_forgemaster_technology
+			support_technology
+		}
+	}
+
+	draenei_gem_infused_tools_tech = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_tools_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 16 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_gem_infused_tools_tech_2 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_tools_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 16 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_gem_infused_tools_tech_3 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_gem_infused_tools_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_gem_infused_tools_tech_4 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_tools_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_gem_infused_tools_tech_5 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			resource_tools_technology
+		}
+	}
+
+	draenei_gem_infused_armor_tech = {
+
+		draenei_defender = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_commander = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_peacekeeper = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_ballistae = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vindicator = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		draenei_lightsworn = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_elekk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_exarch = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		galehorn_nomads = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		auchenai_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_armor_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 18 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	draenei_gem_infused_armor_tech_2 = {
+
+		draenei_defender = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_commander = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_peacekeeper = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_ballistae = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vindicator = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		draenei_lightsworn = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_elekk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_exarch = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		galehorn_nomads = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		auchenai_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_gem_infused_armor_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	draenei_gem_infused_armor_tech_3 = {
+
+		draenei_defender = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_commander = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_peacekeeper = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_ballistae = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vindicator = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		draenei_lightsworn = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_elekk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_exarch = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		galehorn_nomads = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		auchenai_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_armor_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	draenei_gem_infused_armor_tech_4 = {
+
+		draenei_defender = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_commander = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_peacekeeper = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_ballistae = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_vindicator = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		draenei_lightsworn = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_elekk_rider = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		draenei_exarch = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		galehorn_nomads = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		auchenai_vigilant = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			plate_armor_technology
+			armor_technology
+		}
+	}
+
+	draenei_forgemaster_training_tech_1 = {
+
+		draenei_forgemaster = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		path = {
+			leads_to_tech = draenei_forgemaster_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 20 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			draenei_forgemaster_technology
+			support_technology
+		}
+	}
+
+	draenei_forgemaster_training_tech_2 = {
+
+		draenei_forgemaster = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_forgemaster_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			draenei_forgemaster_technology
+			support_technology
+		}
+	}
+
+	draenei_forgemaster_training_tech_3 = {
+
+		draenei_forgemaster = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		path = {
+			leads_to_tech = draenei_forgemaster_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			draenei_forgemaster_technology
+			support_technology
+		}
+	}
+
+	draenei_forgemaster_training_tech_4 = {
+
+		draenei_forgemaster = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			draenei_forgemaster_technology
+			support_technology
+		}
+	}
+
+	draenei_gem_infused_weapons_tech = {
+
+		draenei_defender = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_commander = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_peacekeeper = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_rangari_ranger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_ballistae = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vindicator = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		draenei_lightsworn = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_elekk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_exarch = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		galehorn_nomads = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		auchenai_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_weapons_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 22 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	draenei_gem_infused_weapons_tech_2 = {
+
+		draenei_defender = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_commander = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_peacekeeper = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_rangari_ranger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_ballistae = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vindicator = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		draenei_lightsworn = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_elekk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_exarch = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		galehorn_nomads = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		auchenai_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_gem_infused_weapons_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 22 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	draenei_gem_infused_weapons_tech_3 = {
+
+		draenei_defender = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_commander = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_peacekeeper = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_rangari_ranger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_ballistae = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vindicator = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		draenei_lightsworn = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_elekk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_exarch = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		galehorn_nomads = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		auchenai_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_gem_infused_weapons_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	draenei_gem_infused_weapons_tech_4 = {
+
+		draenei_defender = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_commander = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_peacekeeper = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_rangari_ranger = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_ballistae = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_vindicator = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		draenei_lightsworn = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		### To Move Later
+		draenei_talbuk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_elekk_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_exarch = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		galehorn_nomads = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		auchenai_vigilant = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 22 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	bright_burn_weaponry = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_blightburn_weaponry } 
+		}
+
+		draenei_defender = {
+			soft_attack = 0.15
+			ap_attack = 0.25
+			reliability_factor = -0.02
+			defense = -0.1
+			max_strength = -0.2
+			casualty_trickleback = -0.01
+		}
+
+		draenei_vigilant = {
+			hard_attack = 0.2
+			armor_value = 0.15
+			breakthrough = 0.15
+			reliability_factor = -0.02
+		}
+		auchenai_vigilant = {
+			hard_attack = 0.2
+			armor_value = 0.15
+			breakthrough = 0.15
+			reliability_factor = -0.02
+		}
+
+		draenei_vindicator = {
+			soft_attack = 0.25
+			ap_attack = 0.25
+			breakthrough = 0.2
+			defense = -0.1
+			max_strength = -0.2
+			casualty_trickleback = -0.01
+		}
+		draenei_lightsworn = {
+			soft_attack = 0.25
+			ap_attack = 0.25
+			breakthrough = 0.2
+			defense = -0.1
+			max_strength = -0.2
+			casualty_trickleback = -0.01
+		}
+
+		draenei_ballistae = {
+			soft_attack = 0.25
+			hard_attack = 0.25
+			ap_attack = 0.2
+			max_strength = -0.2
+			casualty_trickleback = -0.01
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 22 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			sword_technology
+		}
+	}
+
+	draenei_blueprints_tech = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_blueprints_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 24 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	draenei_blueprints_tech_2 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.3
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_blueprints_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	draenei_blueprints_tech_3 = {
+
+		line_change_production_efficiency_factor = 0.05
+		production_factory_start_efficiency_factor = 0.03
+		equipment_conversion_speed = 0.3
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			blacksmith_technology
+			blueprint_technology
+		}
+	}
+
+	draenei_grand_architecture_tech = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_fortifications_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_pylon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_grand_architecture_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 28 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	draenei_grand_architecture_tech_2 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_grand_architecture_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 28 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	draenei_grand_architecture_tech_3 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_grand_architecture_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 28 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	draenei_grand_architecture_tech_4 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_grand_architecture_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 28 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	draenei_grand_architecture_tech_5 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 28 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	draenei_fortifications_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_fortifications_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 26 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	draenei_fortifications_tech_2 = {
+
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_fortifications_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 26 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	draenei_fortifications_tech_3 = {
+
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_fortifications_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	draenei_fortifications_tech_4 = {
+
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_fortifications_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	draenei_fortifications_tech_5 = {
+
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			wall_technology
+			fortification_technology
+		}
+	}
+
+	draenei_pylon_tech = {
+
+		enable_building = {
+			building = radar_station
+			level = 1
+		}
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				scout_tower_tech_global = 1
+				arcane_tower_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_pylon_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = guard_tower_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = arcane_tower_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 30 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_pylon_tech_2 = {
+
+		enable_building = {
+			building = radar_station
+			level = 2
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_pylon_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 30 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_pylon_tech_3 = {
+
+		enable_building = {
+			building = radar_station
+			level = 3
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_pylon_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 30 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_pylon_tech_4 = {
+
+		enable_building = {
+			building = radar_station
+			level = 4
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_pylon_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 30 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_pylon_tech_5 = {
+
+		enable_building = {
+			building = radar_station
+			level = 5
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 30 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_azure_pastures_tech = {
+
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1	popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_azure_pastures_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 32 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_azure_pastures_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = draenei_azure_pastures_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 32 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_azure_pastures_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_azure_pastures_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 32 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_azure_pastures_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		path = {
+			leads_to_tech = draenei_azure_pastures_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 32 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_azure_pastures_tech_5 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 32 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			agriculture_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_fae_dragon_nests_tech = {
+
+		enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { nest_tech_global = 1 popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_fae_dragon_nests_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 34 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_fae_dragon_nests_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+			increase_tech_count_draenei = yes
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		path = {
+			leads_to_tech = draenei_fae_dragon_nests_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 34 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_fae_dragon_nests_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_2
+					remove_idea = air_manufacturing_buff_1
+				}
+			}
+			increase_tech_count_draenei = yes
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_fae_dragon_nests_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 34 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_fae_dragon_nests_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_3
+					remove_idea = air_manufacturing_buff_2
+				}
+			}
+			increase_tech_count_draenei = yes
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		path = {
+			leads_to_tech = draenei_fae_dragon_nests_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 34 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_fae_dragon_nests_tech_5 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_4
+					remove_idea = air_manufacturing_buff_3
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 34 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_lumber_mill_tech = {
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+		path = {
+			leads_to_tech = draenei_wood_working_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 36 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_wood_working_1 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_wood_working_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 36 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_wood_working_2 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_wood_working_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 36 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_wood_working_3 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_wood_working_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 36 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_wood_working_4 = {
+
+		production_speed_buildings_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 36 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			woodworking_technology
+			resource_building_technology
+		}
+	}
+
+	draenei_sanctum_of_the_light_tech = {
+
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { church_tech_global = 1 popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_devotion_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_blessing_of_the_naaru_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_lights_justice_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 40 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_devotion_tech_1 = {
+
+		draenei_arcanist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_naaru = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+		}
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_devotion_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 40 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_devotion_tech_2 = {
+
+		draenei_arcanist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_naaru = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+		}
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_devotion_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 40 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_devotion_tech_3 = {
+
+		draenei_arcanist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_naaru = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+		}
+
+        country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_devotion_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 40 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_devotion_tech_4 = {
+
+		draenei_arcanist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		draenei_naaru = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+		}
+
+        country_faith_gain_factor = 0.125
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 40 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_blessing_of_the_naaru_tech_1 = {
+
+		category_infantry = {
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_blessing_of_the_naaru_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 38 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_blessing_of_the_naaru_tech_2 = {
+
+		category_infantry = {
+			max_organisation = 2
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 38 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_lights_justice_tech_1 = {
+
+		land_night_attack = 0.1
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_lights_justice_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 42 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_lights_justice_tech_2 = {
+
+		land_night_attack = 0.1
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_lights_justice_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 42 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_lights_justice_tech_3 = {
+
+		land_night_attack = 0.1
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 42 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_rangari_refugee_tech = {
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { spy_tech_global = 1 popup = no }
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_furs_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_tracking_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 45 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+		}
+	}
+
+	draenei_furs_tech_1 = {
+
+		acclimatization_cold_climate_gain_factor = 0.2
+		acclimatization_hot_climate_gain_factor = 0.05
+
+		draenei_arcanist = {
+			defense = 0.10
+			breakthrough = 0.10
+		}
+		draenei_rangari_ranger = {
+			defense = 0.10
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_furs_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 44 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_furs_tech_2 = {
+
+		acclimatization_cold_climate_gain_factor = 0.2
+		acclimatization_hot_climate_gain_factor = 0.05
+
+		draenei_arcanist = {
+			defense = 0.10
+			breakthrough = 0.10
+		}
+		draenei_rangari_ranger = {
+			defense = 0.10
+			breakthrough = 0.10
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 44 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_furs_technology
+		}
+	}
+
+	draenei_tracking_tech = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_tracking_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 46 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_tracking_technology
+			decryption_technology
+			encryption_technology
+		}
+	}
+
+	draenei_tracking_tech_2 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_tracking_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 46 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_tracking_technology
+			decryption_technology
+			encryption_technology
+		}
+	}
+
+	draenei_tracking_tech_3 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_tracking_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 46 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_tracking_technology
+			decryption_technology
+			encryption_technology
+		}
+	}
+
+	draenei_tracking_tech_4 = {
+
+		encryption = 1
+		decryption = 1
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_administration_folder
+			position = { x = 46 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			draenei_rangari_refugee_technology
+			draenei_tracking_technology
+			decryption_technology
+			encryption_technology
+		}
+	}
+}

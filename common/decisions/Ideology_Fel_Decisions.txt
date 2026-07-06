@@ -1,0 +1,182 @@
+Fel_agents_of_kiljaden = {
+
+	subjugate_the_weak = {
+
+		available = {
+			has_completed_focus = agents_of_kiljaden
+			any_neighbor_country = {
+				num_of_controlled_states < 4
+				NOT = { has_government = fel }
+			} 
+		}
+
+		visible = {
+			has_completed_focus = agents_of_kiljaden
+			any_neighbor_country = {
+				num_of_controlled_states < 4
+				NOT = { has_government = fel }
+			} 
+		}
+
+		cost = 50
+
+		days_remove = 5
+
+		days_re_enable = 60
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					num_of_controlled_states < 4
+					NOT = {
+						has_government = fel
+						is_in_faction_with = ROOT 
+						is_subject_of = ROOT
+					}
+				}
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}
+
+Fel_heralds_of_archimonde = {
+
+	strike_heralds_of_archimonde = {
+
+		available = {
+			is_major = yes
+			NOT = { has_government = fel }
+			any_neighbor_country = {
+				has_completed_focus = heralds_of_archimonde
+				any_owned_state = {
+					impassable = no
+					any_neighbor_state = {
+						is_owned_by = ROOT
+						impassable = no
+					}
+				}
+			} 
+		}
+
+		visible = {
+			is_major = yes
+			NOT = { has_government = fel }
+			any_neighbor_country = {
+				has_completed_focus = heralds_of_archimonde
+			} 
+		}
+
+		cost = 50
+
+		days_remove = 10
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = { has_completed_focus = heralds_of_archimonde }
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	crush_the_weak = {
+
+		available = {
+			has_completed_focus = heralds_of_archimonde
+			any_controlled_state = {
+				NOT = { is_core_of = ROOT }
+				state_population < 10000
+				impassable = no
+			}
+		}
+
+		visible = {
+			has_completed_focus = heralds_of_archimonde
+			any_controlled_state = {
+				NOT = { is_core_of = ROOT }
+				state_population < 10000
+				impassable = no
+			}
+		}
+
+		cost = 50
+
+		days_remove = 10
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_controlled_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					impassable = no
+					state_population < 10000
+				}
+				add_manpower = -1000
+				add_core_of = ROOT
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	expunge_their_existence = {
+
+		available = {
+			has_completed_focus = heralds_of_archimonde
+			any_controlled_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = yes
+				compliance > 30
+			}
+		}
+
+		visible = {
+			has_completed_focus = heralds_of_archimonde
+			any_controlled_state = {
+				NOT = { is_core_of = ROOT }
+				impassable = yes
+				compliance > 30
+			}
+		}
+
+		cost = 20
+
+		days_remove = 10
+
+		days_re_enable = 40
+
+		complete_effect = {
+			random_controlled_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					impassable = yes
+					compliance > 30
+				}
+				add_core_of = ROOT
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

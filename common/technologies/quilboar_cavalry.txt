@@ -1,0 +1,876 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	quilboar_kennel_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = boar_breeding_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = battle_boar_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 8 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_cavalry_technology
+			boar_breeding_technology
+		}
+	}
+
+	boar_breeding_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}		
+
+		path = {
+			leads_to_tech = boar_breeding_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			quilboar_cavalry_technology
+			boar_breeding_technology
+			horse_technology
+		}
+	}
+
+	boar_breeding_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		path = {
+			leads_to_tech = boar_breeding_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			quilboar_cavalry_technology
+			boar_breeding_technology
+			horse_technology
+		}
+	}
+
+	boar_breeding_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = boar_breeding_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			quilboar_cavalry_technology
+			boar_breeding_technology
+			horse_technology
+		}
+	}
+
+	boar_breeding_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 2.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			quilboar_cavalry_technology
+			boar_breeding_technology
+			horse_technology
+		}
+	}
+
+	battle_boar_tech = {
+
+		enable_subunits = {
+			battle_boar
+		}
+
+		on_research_complete = {
+			set_technology = { battle_boar_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = thistle_boar_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = battle_boar_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = armored_battle_boar_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	thistle_boar_tech = {
+
+		enable_subunits = {
+			thistle_boar
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_thistle_boar_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			thistle_boar_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_thistle_boar_1 = {
+
+		thistle_boar = {
+			suppression_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_thistle_boar_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			thistle_boar_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_thistle_boar_2 = {
+
+		thistle_boar = {
+			suppression_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_thistle_boar_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			thistle_boar_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_thistle_boar_3 = {
+
+		thistle_boar = {
+			suppression_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_thistle_boar_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			thistle_boar_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_thistle_boar_4 = {
+
+		thistle_boar = {
+			suppression_factor = 0.1
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			cavalry_technology
+			thistle_boar_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	battle_boar_equipment_tech_1 = {
+
+		enable_equipments = {
+			battle_boar_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = tusk_fury
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = savage_gore
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	tusk_fury = {
+
+		battle_boar = {
+			soft_attack = 0.15
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { savage_gore }
+
+		path = {
+			leads_to_tech = battle_boar_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	savage_gore = {
+
+		battle_boar = {
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { tusk_fury }
+
+		path = {
+			leads_to_tech = battle_boar_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	battle_boar_equipment_tech_2 = {
+
+		enable_equipments = {
+			battle_boar_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		path = {
+			leads_to_tech = rage_beasts
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = metal_blinders
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	rage_beasts = {
+
+		battle_boar = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+			max_strength = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { metal_blinders }
+
+		path = {
+			leads_to_tech = battle_boar_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	metal_blinders = {
+
+		battle_boar = {
+			defense = 0.25
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { rage_beasts }
+
+		path = {
+			leads_to_tech = battle_boar_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	battle_boar_equipment_tech_3 = {
+
+		enable_equipments = {
+			battle_boar_equipment_3
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			cavalry_technology
+			battle_boar_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	armored_battle_boar_tech = {
+
+		enable_subunits = {
+			armored_battle_boar
+		}
+
+		on_research_complete = {
+			set_technology = { armored_battle_boar_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = armored_battle_boar_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	armored_battle_boar_equipment_tech_1 = {
+
+		enable_equipments = {
+			armored_battle_boar_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = bloodstone_plates
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = war_drums_mount
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bloodstone_plates = {
+
+		armored_battle_boar = {
+			max_strength = 0.25
+			armor_value = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { war_drums_mount }
+
+		path = {
+			leads_to_tech = armored_battle_boar_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	war_drums_mount = {
+
+		armored_battle_boar = {
+			max_organisation = 5
+			default_morale = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { bloodstone_plates }
+
+		path = {
+			leads_to_tech = armored_battle_boar_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	armored_battle_boar_equipment_tech_2 = {
+
+		enable_equipments = {
+			armored_battle_boar_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = { thorn_ravine_tech = 1 }
+
+		path = {
+			leads_to_tech = spiked_tusks
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = agamaggans_blessed
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	spiked_tusks = {
+
+		armored_battle_boar = {
+			soft_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { agamaggans_blessed }
+
+		path = {
+			leads_to_tech = armored_battle_boar_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	agamaggans_blessed = {
+
+		armored_battle_boar = {
+			breakthrough = 0.25
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { spiked_tusks }
+
+		path = {
+			leads_to_tech = armored_battle_boar_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	armored_battle_boar_equipment_tech_3 = {
+
+		enable_equipments = {
+			armored_battle_boar_equipment_3
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_cavalry_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			cavalry_technology
+			armored_battle_boar_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+}

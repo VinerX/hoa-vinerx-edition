@@ -1,0 +1,47 @@
+government_decisions = {
+
+	RWC_survival_at_all_costs = {
+        activation = {
+            has_idea = RWC_predation_and_infighting
+        }
+        available = {
+            tag = RWC
+            farm > 5
+            count_triggers = {
+                amount = 3
+                any_state = {
+                    is_owned_by = RWC
+                    NOT = {
+                        has_dynamic_modifier = { modifier = GEN_dying_world }
+                    }
+                }
+            }
+        }
+        #cancel_trigger = {
+        #    has_war = no
+        #}
+        is_good = no
+        days_mission_timeout = 365
+        selectable_mission = no
+        fire_only_once = no
+        complete_effect = {
+            if = {
+                limit = { has_country_flag = RWC_complications_2 }
+                country_event = red_walker.3
+            }
+            if = {
+                limit = {
+                    OR = {
+                        NOT = { has_country_flag = RWC_complications_1 }
+                        has_country_flag = RWC_complications_1
+                    }
+                }
+                country_event = red_walker.1
+            }
+        }
+        timeout_effect = {
+            country_event = red_walker.2
+        }
+    }
+
+}

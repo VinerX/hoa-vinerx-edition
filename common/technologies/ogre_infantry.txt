@@ -1,0 +1,1563 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	ogre_mound_tech = {
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = brute_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_mauler_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_geomancer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	brute_tech = {
+
+		enable_subunits = {
+			ogre_brute
+		}
+
+		on_research_complete = {
+			set_technology = { brute_equipment_tech_1 = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = brute_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_overseer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 3 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	brute_equipment_tech_1 = {
+
+		enable_equipments = {
+			ogre_brute_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = reinforced_mauls
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tactical_endurance
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			ogre_mound_technology
+			infantry_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	reinforced_mauls = {
+
+		ogre_brute = {
+			soft_attack = 0.1
+			reliability_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { tactical_endurance }
+
+		path = {
+			leads_to_tech = brute_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	tactical_endurance = {
+
+		ogre_brute = {
+			max_strength = 0.15
+			default_morale = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { reinforced_mauls }
+
+		path = {
+			leads_to_tech = brute_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	brute_equipment_tech_2 = {
+
+		enable_equipments = {
+			ogre_brute_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = brutal_charge
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = layered_hide_armor
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	brutal_charge = {
+
+		ogre_brute = {
+			hard_attack = 0.15
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { layered_hide_armor }
+
+		path = {
+			leads_to_tech = brute_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	layered_hide_armor = {
+
+		ogre_brute = {
+			armor_value = 0.15
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { brutal_charge }
+
+		path = {
+			leads_to_tech = brute_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	brute_equipment_tech_3 = {
+
+		enable_equipments = {
+			ogre_brute_equipment_3
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 3 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			brute_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_overseer_tech = {
+
+		enable_subunits = {
+			ogre_overseer
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ogre_overseer_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 6 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_support_technology
+			support_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_overseer_1 = {
+
+		ogre_overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ogre_overseer_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_support_technology
+			support_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_overseer_2 = {
+
+		ogre_overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_ogre_overseer_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_support_technology
+			support_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_overseer_3 = {
+
+		ogre_overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ogre_overseer_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_support_technology
+			support_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_overseer_4 = {
+
+		ogre_overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 6 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_support_technology
+			support_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_mauler_tech = {
+
+		enable_subunits = {
+			ogre_mauler
+		}
+
+		on_research_complete = {
+			set_technology = { ogre_mauler_equipment_tech_1 = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_mauler_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_mauler_equipment_tech_1 = {
+
+		enable_equipments = {
+			ogre_mauler_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = barbed_chains
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = piercing_strikes
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	barbed_chains = {
+
+		ogre_mauler = {
+			soft_attack = 0.15
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { piercing_strikes }
+
+		path = {
+			leads_to_tech = ogre_mauler_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	piercing_strikes = {
+
+		ogre_mauler = {
+			hard_attack = 0.1
+			ap_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { barbed_chains }
+
+		path = {
+			leads_to_tech = ogre_mauler_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_mauler_equipment_tech_2 = {
+
+		enable_equipments = {
+			ogre_mauler_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = trample_tactics
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = attritional_warfare
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	trample_tactics = {
+
+		ogre_mauler = {
+			breakthrough = 0.1
+			plains = {
+				attack = 0.1
+				movement = 0.1
+			}
+			desert = {
+				attack = 0.1
+				movement = 0.1
+			}
+			savanna = {
+				attack = 0.1
+				movement = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { attritional_warfare }
+
+		path = {
+			leads_to_tech = ogre_mauler_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	attritional_warfare = {
+
+		ogre_mauler = {
+			experience_loss_factor = 0.01
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { trample_tactics }
+
+		path = {
+			leads_to_tech = ogre_mauler_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	ogre_mauler_equipment_tech_3 = {
+
+		enable_equipments = {
+			ogre_mauler_equipment_3
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			ogre_mauler_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	ogre_geomancer_tech = {
+
+		enable_subunits = {
+			ogre_geomancer
+		}
+
+		on_research_complete = {
+			set_technology = { geomancer_equipment_tech_1 = 1 }
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_scryer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = geomancer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ogre_healer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	geomancer_equipment_tech_1 = {
+
+		enable_equipments = {
+			ogre_geomancer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = earthshapers_embrace
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = seismic_surge
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	earthshapers_embrace = {
+
+		ogre_geomancer = {
+			hardness = 0.2
+			hills = {
+				defence = 0.15
+			}
+			mountain = {
+				defence = 0.15
+			}
+			volcanic_rock_hills = {
+				defence = 0.15
+			}
+			snow_mountain = {
+				defence = 0.15
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { seismic_surge }
+
+		path = {
+			leads_to_tech = geomancer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	seismic_surge = {
+
+		ogre_geomancer = {
+			soft_attack = 0.2
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { earthshapers_embrace }
+
+		path = {
+			leads_to_tech = geomancer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	geomancer_equipment_tech_2 = {
+
+		enable_equipments = {
+			ogre_geomancer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = stonebound_mastery
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = shrapnel_storm
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	stonebound_mastery = {
+
+		ogre_geomancer = {
+			defense = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { shrapnel_storm }
+
+		path = {
+			leads_to_tech = geomancer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	shrapnel_storm = {
+
+		ogre_geomancer = {
+			soft_attack = 0.1
+			anti_air_attack = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		xor = { stonebound_mastery }
+
+		path = {
+			leads_to_tech = geomancer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	geomancer_equipment_tech_3 = {
+
+		enable_equipments = {
+			ogre_geomancer_equipment_3
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			geomancer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	ogre_scryer_tech = {
+
+		enable_subunits = {
+			ogre_scryer
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_scryer_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 12 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			support_technology
+		}
+	}
+
+	ogre_scryer_training_tech_1 = {
+
+		ogre_scryer = {
+			recon = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_scryer_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			support_technology
+		}
+	}
+
+	ogre_scryer_training_tech_2 = {
+
+		ogre_scryer = {
+			recon = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = ogre_scryer_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			support_technology
+		}
+	}
+
+	ogre_scryer_training_tech_3 = {
+
+		ogre_scryer = {
+			recon = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = ogre_scryer_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			support_technology
+		}
+	}
+
+	ogre_scryer_training_tech_4 = {
+
+		ogre_scryer = {
+			recon = 2
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 12 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			ogre_mound_technology
+			support_technology
+		}
+	}
+
+	ogre_healer_tech = {
+
+		enable_subunits = {
+			ogre_healer
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ogre_healer_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			ogre_support_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_healer_1 = {
+
+		ogre_healer = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ogre_healer_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_healer_2 = {
+
+		ogre_healer = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		dependencies = { ogre_stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_ogre_healer_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_healer_3 = {
+
+		ogre_healer = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_ogre = yes
+		}
+
+		path = {
+			leads_to_tech = improved_ogre_healer_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_ogre_healer_4 = {
+
+		ogre_healer = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { ogre_citadel_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = ogre_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+}

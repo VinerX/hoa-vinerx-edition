@@ -1,0 +1,30 @@
+add_namespace = moltencore
+
+# Summon Ragnaros
+country_event = {
+	id = moltencore.1
+	title = moltencore.1.t
+	desc = moltencore.1.d
+	picture = GFX_focus_ragnaros
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = moltencore.1.option.1
+        #Ragnaros Awaken Flag
+		set_global_flag = MLC_Rag_Awaken
+        MLC = {
+            kill_country_leader = yes
+            create_country_leader = {
+                name = "Fire Lord Ragnaros"
+                desc = POLITICS_RAGNAROS_DESC
+                picture = "gfx/leaders/MLC/ragnaros.dd"
+                ideology = old_gods_type
+                traits = {MLC_Fire_Lord}
+            }
+        }
+        news_event = news_ragnaros.1
+	}
+}

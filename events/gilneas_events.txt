@@ -1,0 +1,1104 @@
+﻿###########################
+# Gilneas
+###########################
+
+add_namespace = gilneas
+
+# attending meeting of the seven kingdoms
+country_event = {
+	id = gilneas.1
+	title = gilneas.1.t
+	desc = gilneas.1.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = gilneas.1.option.1
+	add_popularity = { ideology = alliance popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_alliance
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance > 49
+			}
+		}
+  	}
+
+	option = {
+    name = gilneas.1.option.2
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance < 50
+			}
+		}
+  	}
+}
+
+country_event = {
+	id = gilneas.2
+	title = gilneas.2.t
+	desc = gilneas.2.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = gilneas.2.option.1
+	add_popularity = { ideology = neutral popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_neutral
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 1
+		}
+  	}
+
+	option = {
+    name = gilneas.1.option.2
+		set_country_flag = LOR_denied_an_alliance
+		ai_chance = {
+			base = 0
+		}
+  	}
+}
+
+###########################
+# Gilneas Third War
+###########################
+
+add_namespace = gilneas_third_war
+
+# Starting situation
+country_event = {
+	id = gilneas_third_war.1
+	title = gilneas_third_war.1.t
+	desc = gilneas_third_war.1.d
+	picture = GFX_gilneas_city_event
+
+	fire_only_once = yes
+
+	trigger = {
+        tag = GIL
+        has_start_date > 609.12.31
+		has_start_date < 610.01.02
+        date > 610.01.01
+    }
+
+	option = {
+    	name = gilneas_third_war.1.option.1
+
+		add_political_power = 25
+	}
+}
+
+# Gilneas and the Alliance
+country_event = {
+	id = gilneas_third_war.2
+	title = gilneas_third_war.2.t
+	desc = gilneas_third_war.2.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Leave the Alliance (historical)
+    	name = gilneas_third_war.2.option.1
+
+		leave_faction = yes
+
+		add_stability = 0.05
+
+		add_popularity = {
+		    ideology = alliance
+		    popularity = -0.05
+		}
+
+		# If the country hasn't changed to another ideology yet
+		if = {
+			limit = {
+				has_government = alliance
+			}
+			set_politics = {
+				ruling_party = var:GIL.highest_party_ideology
+			    elections_allowed = no
+			}
+		}
+
+		hidden_effect = {
+			set_country_flag = GIL_leave_the_alliance
+			country_event = {
+				id = gilneas_third_war.3
+				days = 7
+			}
+			LOR = {
+				country_event = gilneas_third_war.13
+			}
+			HEA = {
+				country_event = gilneas_third_war.13
+			}
+			STH = {
+				country_event = gilneas_third_war.13
+			}
+			QUE = {
+				country_event = gilneas_third_war.13
+			}
+			DAL= {
+				country_event = gilneas_third_war.13
+			}
+			AER= {
+				country_event = gilneas_third_war.13
+			}
+			STR= {
+				country_event = gilneas_third_war.13
+			}
+			SPC= {
+				country_event = gilneas_third_war.13
+			}
+			IRO= {
+				country_event = gilneas_third_war.13
+			}
+			GNO= {
+				country_event = gilneas_third_war.13
+			}
+			KUL= {
+				country_event = gilneas_third_war.13
+			}
+			TOL= {
+				country_event = gilneas_third_war.13
+			}
+			STO= {
+				country_event = gilneas_third_war.13
+			}
+			NET= {
+				country_event = gilneas_third_war.13
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Stay in the Alliance
+    	name = gilneas_third_war.2.option.2
+
+		add_political_power = -50
+
+		add_popularity = {
+		    ideology = alliance
+		    popularity = 0.05
+		}
+
+		hidden_effect = {
+			set_country_flag = GIL_stay_in_alliance
+			LOR = {
+				country_event = gilneas_third_war.13
+			}
+			HEA = {
+				country_event = gilneas_third_war.13
+			}
+			STH = {
+				country_event = gilneas_third_war.13
+			}
+			QUE = {
+				country_event = gilneas_third_war.13
+			}
+			DAL= {
+				country_event = gilneas_third_war.13
+			}
+			AER= {
+				country_event = gilneas_third_war.13
+			}
+			STR= {
+				country_event = gilneas_third_war.13
+			}
+			SPC= {
+				country_event = gilneas_third_war.13
+			}
+			IRO= {
+				country_event = gilneas_third_war.13
+			}
+			GNO= {
+				country_event = gilneas_third_war.13
+			}
+			KUL= {
+				country_event = gilneas_third_war.13
+			}
+			TOL= {
+				country_event = gilneas_third_war.13
+			}
+			STO= {
+				country_event = gilneas_third_war.13
+			}
+			NET= {
+				country_event = gilneas_third_war.13
+			}
+		}
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Way Forward
+country_event = {
+	id = gilneas_third_war.3
+	title = gilneas_third_war.3.t
+	desc = gilneas_third_war.3.d
+	picture = GFX_gilneas_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Pursue isolation and build the wall (historical)
+    	name = gilneas_third_war.3.option.1
+
+		custom_effect_tooltip = gilneas_third_war.3.option.1.d
+
+		add_popularity = {
+		    ideology = neutral
+		    popularity = 0.05
+		}
+
+		add_ideas = isolation
+		add_ideas = closed_economy
+
+		hidden_effect = {
+			set_country_flag = GIL_pursued_isolation_flag
+
+			country_event = {
+				id = gilneas_third_war.4
+				days = 365
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Remain open to the world
+    	name = gilneas_third_war.3.option.2
+
+		add_political_power = 25
+
+		add_popularity = {
+		    ideology = alliance
+		    popularity = 0.05
+		}
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Wall
+country_event = {
+	id = gilneas_third_war.4
+	title = gilneas_third_war.4.t
+	desc = gilneas_third_war.4.d
+	picture = GFX_greymane_wall_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+    	name = gilneas_third_war.4.option.1
+
+		add_political_power = 100
+		add_stability = 0.05
+
+		set_technology = {
+			wall_tech_1 = 1
+		}
+
+		add_tech_bonus = {
+			name = gilneas_third_war.4
+		    bonus = 0.75
+		    uses = 2
+		    category = wall_technology
+		}
+
+		110 = { set_demilitarized_zone = yes }
+		162 = { set_demilitarized_zone = yes }
+		163 = { set_demilitarized_zone = yes }
+		164 = { set_demilitarized_zone = yes }
+
+		2095 = {
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1425
+			}
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1429
+			}
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1433
+			}
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1434
+			}
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1435
+			}
+		}
+		2219 = {
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1414
+			}
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1426
+			}
+			set_building_level = {
+			    type = bunker
+			    level = 5
+			    instant_build = yes
+			    province = 1427
+			}
+		}
+	}
+}
+
+# Lordaeron ReGILsts Aid (from lordaeron_third_war.8)
+country_event = {
+	id = gilneas_third_war.5
+	title = gilneas_third_war.5.t
+	desc = gilneas_third_war.5.d
+	picture = GFX_andorhal_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Ignore them (historical)
+    	name = gilneas_third_war.5.option.1
+
+		add_stability = -0.025
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Send help
+    	name = gilneas_third_war.5.option.2
+
+		add_political_power = 25
+		add_stability = 0.025
+
+		add_equipment_to_stockpile = {
+			type = footman_equipment_1
+			amount = -500
+		}
+		add_equipment_to_stockpile = {
+			type = pikeman_equipment_1
+			amount = -500
+		}
+
+		LOR = {
+			add_equipment_to_stockpile = {
+			    type = footman_equipment_1
+			    amount = 500
+			}
+			add_equipment_to_stockpile = {
+			    type = pikeman_equipment_1
+			    amount = 500
+			}
+		}
+
+		set_country_flag = GIL_has_helped_LOR_flag
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Undead at our borders!
+country_event = {
+	id = gilneas_third_war.6
+	title = gilneas_third_war.6.t
+	desc = gilneas_third_war.6.d
+	picture = GFX_the_sepulcher_event
+
+	fire_only_once = yes
+
+	trigger = {
+        tag = GIL
+        has_start_date > 609.12.31
+		has_start_date < 610.01.02
+		has_country_flag = GIL_pursued_isolation_flag
+		OR = {
+			is_neighbor_of = CAE
+			is_neighbor_of = SRG
+		}
+    }
+
+	option = { # Send in troops (historical)
+    	name = gilneas_third_war.6.option.1
+		custom_effect_tooltip = gilneas_third_war.6.option.1.d
+
+		add_war_support = 0.05
+
+		hidden_effect = {
+			country_event = {
+				id = gilneas_third_war.7
+				days = 1
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Abandon the lands behind the wall
+    	name = gilneas_third_war.6.option.2
+		custom_effect_tooltip = gilneas_third_war.6.option.2.d
+
+		add_stability = -0.25
+
+		110 = {
+			transfer_state_to = 720.owner
+			set_demilitarized_zone = no
+		}
+		162 = {
+			transfer_state_to = 720.owner
+			set_demilitarized_zone = no
+		}
+		163 = {
+			transfer_state_to = 720.owner
+			set_demilitarized_zone = no
+		}
+		164 = {
+			transfer_state_to = 720.owner
+			set_demilitarized_zone = no
+		}
+		764 = { transfer_state_to = 720.owner }
+		765 = { transfer_state_to = 720.owner }
+		796 = { transfer_state_to = 720.owner }
+
+		hidden_effect = {
+			country_event = {
+				id = gilneas_third_war.11
+				days = 14
+			}
+		}
+
+		#TODO: eventually could become independant under the rule of Baron
+		# Silverlaine of Shadowfang Keep
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Crushing Defeat
+country_event = {
+	id = gilneas_third_war.7
+	title = gilneas_third_war.7.t
+	desc = gilneas_third_war.7.d
+	picture = GFX_the_sepulcher_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+    	name = gilneas_third_war.7.option.1
+
+		add_stability = -0.075
+		add_war_support = -0.075
+
+		add_manpower = -5000
+
+		hidden_effect = {
+			country_event = {
+				id = gilneas_third_war.8
+				days = 3
+			}
+
+			if = {
+				limit = {
+					NOT = { has_country_flag = GIL_has_helped_LOR_flag }
+				}
+				country_event = {
+					id = gilneas_third_war.10
+					days = 14
+				}
+			}
+		}
+	}
+}
+
+# Arugal's proposal
+country_event = {
+	id = gilneas_third_war.8
+	title = gilneas_third_war.8.t
+	desc = gilneas_third_war.8.d
+	picture = GFX_worgen_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Accept (historical)
+    	name = gilneas_third_war.8.option.1
+		custom_effect_tooltip = gilneas_third_war.8.option.1.d
+
+		add_stability = -0.025
+		add_war_support = 0.025
+
+		hidden_effect = {
+			set_country_flag = GIL_accepted_arugal_proposal_flag
+
+			country_event = {
+				id = gilneas_third_war.9
+				days = 1
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Refuse
+    	name = gilneas_third_war.8.option.2
+
+		add_stability = 0.025
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# A Disaster
+country_event = {
+	id = gilneas_third_war.9
+	title = gilneas_third_war.9.t
+	desc = gilneas_third_war.9.d
+	picture = GFX_worgen_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+    	name = gilneas_third_war.9.option.1
+
+		add_stability = -0.1
+
+		110 = {
+			set_temp_variable = { removed_pop = state_population }
+			multiply_temp_variable = { removed_pop = -0.25 }
+			add_manpower = removed_pop
+		}
+		162 = {
+			set_temp_variable = { removed_pop = state_population }
+			multiply_temp_variable = { removed_pop = -0.25 }
+			add_manpower = removed_pop
+		}
+		163 = {
+			set_temp_variable = { removed_pop = state_population }
+			multiply_temp_variable = { removed_pop = -0.25 }
+			add_manpower = removed_pop
+		}
+		164 = {
+			set_temp_variable = { removed_pop = state_population }
+			multiply_temp_variable = { removed_pop = -0.25 }
+			add_manpower = removed_pop
+		}
+	}
+}
+
+# Lord Darius Crowley
+country_event = {
+	id = gilneas_third_war.10
+	title = gilneas_third_war.10.t
+	desc = gilneas_third_war.10.d
+	picture = GFX_darius_crowley_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Crowley storms out the castle (historical)
+    	name = gilneas_third_war.10.option.1
+
+		add_stability = -0.05
+		add_political_power = -50
+
+		hidden_effect = {
+			country_event = {
+				id = gilneas_third_war.11
+				days = 7
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # The King convince Crowley
+    	name = gilneas_third_war.10.option.2
+
+		add_stability = 0.1
+		add_political_power = 50
+
+		add_popularity = {
+		    ideology = neutral
+		    popularity = 0.05
+		}
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Northgate Rebellion
+country_event = {
+	id = gilneas_third_war.11
+	title = gilneas_third_war.11.t
+	desc = gilneas_third_war.11.d
+	picture = GFX_darius_crowley_event
+
+	# Even thought this event is triggered, it will only happen if the conditions are met
+	trigger = {
+		has_stability < 0.5
+		NOT = { has_government = alliance }
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Keep playing as loyalist
+    	name = gilneas_third_war.11.option.1
+		custom_effect_tooltip = gilneas_third_war.11.option.1.d
+
+		hidden_effect = {
+			start_civil_war = {
+			    ideology = alliance
+			    size = 0.4
+				capital = 2
+			    states = {
+			        2 3 110 162 163 164 417 418 419 764 765 796 2093 2095 2099 2219
+			    }
+
+				set_cosmetic_tag = GIL_northgate_rebellion
+
+				set_popularities = {
+					alliance = 60
+					horde = 0
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 40
+				}
+
+			    PREV = {  # Original country
+			        GIL_lord_darius_crowley = { # Character
+			            set_nationality = PREV.PREV # Transfers to breakaway
+			        }
+			    }
+			    promote_character = GIL_lord_darius_crowley
+
+				add_ideas = {
+					GIL_militant_defiance
+
+					kingdom
+					recruit_guards
+					isolation
+					limited_exports
+
+					human_primary_race
+					primary_trait_diplomatic
+					primary_trait_human_spirit
+					primary_trait_perception
+
+					primary_religion_the_church_of_the_holy_light
+				}
+
+				set_country_flag = human_technology
+				set_technology = {
+					town_hall_tech = 1
+					peasants_tech = 1
+					support_equipment_tech = 1
+					scout_tower_1 = 1
+					scout_tower_tech_global = 1 #Global Tech
+					workshop_tech = 1
+					blacksmith_tech = 1
+					lumber_mill_tech = 1
+					militia_tech = 1
+					militia_equipment_tech_1 = 1
+
+					barracks_tech = 1
+					footman_tech = 1
+					footman_equipment_tech_1 = 1
+					pikeman_tech = 1
+					pikeman_equipment_tech_1 = 1
+					archer_tech = 1
+					archer_equipment_tech_1 = 1
+
+					altar_of_kings_tech = 1
+					royal_guard_tech = 1
+					royal_guard_equipment_tech_1 = 1
+
+					stable_tech_1 = 1
+					horse_equipment_tech = 1
+					mounted_footman_tech = 1
+					knight_tech = 1
+					knight_equipment_tech = 1
+
+					siege_works = 1
+					catapult_tech = 1
+					catapult_equipment_tech_1 = 1
+
+					generic_naval_naval_facilities_tech = 1
+					generic_naval_small_frames_tech = 1
+					generic_naval_convoy_tech_1 = 1
+					generic_naval_destroyer_tech_1 = 1
+					generic_naval_light_frigate_tech_1 = 1
+					generic_naval_naval_transport_1_tech = 1
+					generic_naval_large_frames_tech = 1
+					generic_naval_battleship_tech_1 = 1
+				}
+			}
+
+			if = {
+				limit = {
+					has_country_flag = GIL_accepted_arugal_proposal_flag
+				}
+				country_event = {
+					id = gilneas_third_war.12
+					days = 1
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Play as Crowley
+    	name = gilneas_third_war.11.option.2
+		custom_effect_tooltip = gilneas_third_war.11.option.2.d
+
+		hidden_effect = {
+			start_civil_war = {
+			    ideology = alliance
+			    size = 0.4
+				capital = 2
+			    states = {
+			        2 3 110 162 163 164 417 418 419 764 765 796 2093 2095 2099 2219
+			    }
+
+				set_cosmetic_tag = GIL_northgate_rebellion
+
+				set_popularities = {
+					alliance = 60
+					horde = 0
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 40
+				}
+
+			    PREV = {  # Original country
+			        GIL_lord_darius_crowley = { # Character
+			            set_nationality = PREV.PREV # Transfers to breakaway
+			        }
+			    }
+			    promote_character = GIL_lord_darius_crowley
+
+				add_ideas = {
+					GIL_militant_defiance
+
+					kingdom
+					recruit_guards
+					isolation
+					limited_exports
+
+					human_primary_race
+					primary_trait_diplomatic
+					primary_trait_human_spirit
+					primary_trait_perception
+
+					primary_religion_the_church_of_the_holy_light
+				}
+
+				set_country_flag = human_technology
+				set_technology = {
+					town_hall_tech = 1
+					peasants_tech = 1
+					support_equipment_tech = 1
+					scout_tower_1 = 1
+					scout_tower_tech_global = 1 #Global Tech
+					workshop_tech = 1
+					blacksmith_tech = 1
+					lumber_mill_tech = 1
+					militia_tech = 1
+					militia_equipment_tech_1 = 1
+
+					barracks_tech = 1
+					footman_tech = 1
+					footman_equipment_tech_1 = 1
+					pikeman_tech = 1
+					pikeman_equipment_tech_1 = 1
+					archer_tech = 1
+					archer_equipment_tech_1 = 1
+
+					altar_of_kings_tech = 1
+					royal_guard_tech = 1
+					royal_guard_equipment_tech_1 = 1
+
+					stable_tech_1 = 1
+					horse_equipment_tech = 1
+					mounted_footman_tech = 1
+					knight_tech = 1
+					knight_equipment_tech = 1
+
+					siege_works = 1
+					catapult_tech = 1
+					catapult_equipment_tech_1 = 1
+
+					generic_naval_naval_facilities_tech = 1
+					generic_naval_small_frames_tech = 1
+					generic_naval_convoy_tech_1 = 1
+					generic_naval_destroyer_tech_1 = 1
+					generic_naval_light_frigate_tech_1 = 1
+					generic_naval_naval_transport_1_tech = 1
+					generic_naval_large_frames_tech = 1
+					generic_naval_battleship_tech_1 = 1
+				}
+
+				change_tag_from = PREV
+			}
+		}
+
+		ai_chance = {
+			base = 0 #AI never does it
+		}
+	}
+}
+
+# Arugal take over Shadowfang Keep
+country_event = {
+	id = gilneas_third_war.12
+	title = gilneas_third_war.12.t
+	desc = gilneas_third_war.12.d
+	picture = GFX_arugal_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			110 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+			162 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+			163 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+			164 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+			764 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+			765 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+			796 = {
+				transfer_state_to = MRP
+				add_core_of = MRP
+			}
+
+			MRP = {
+				# Retire current leader to make place for Arugal
+				retire_country_leader = yes
+				set_cosmetic_tag = MRP_sons_of_arugal
+				set_country_flag = human_technology
+				load_oob = "MRP_610"
+			}
+		}
+	}
+
+	option = { # Acknowledge
+    	name = gilneas_third_war.12.option.1
+
+		add_war_support = 0.025
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Play as Arugal
+    	name = gilneas_third_war.12.option.2
+
+		MRP = {
+			change_tag_from = GIL
+		}
+
+		ai_chance = {
+			base = 0 # AI will never choose that
+		}
+	}
+}
+
+country_event = {
+    id = gilneas_third_war.13
+	picture = GFX_gilneas_city_event
+    title = { #Gilneas stays in alliance
+        text = gilneas_third_war.13.t.1
+        trigger = {
+			GIL = {
+				has_country_flag = GIL_stay_in_alliance
+			}
+        }
+    }
+
+    title = { #Gilneas leaves alliance
+        text = gilneas_third_war.13.t.2
+        trigger = {
+			GIL = {
+				has_country_flag = GIL_leave_the_alliance
+			}
+        }
+    }
+	desc = { #Gilneas leaves alliance
+        text = gilneas_third_war.13.d.1
+        trigger = {
+			GIL = {
+				has_country_flag = GIL_stay_in_alliance
+			}
+        }
+    }
+	desc = { #GILl'thalas stays
+        text = gilneas_third_war.13.d.2
+        trigger = {
+			GIL = {
+				has_country_flag = GIL_leave_the_alliance
+			}
+        }
+    }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # GILl'thalas stays
+        name = gilneas_third_war.13.option.1
+        trigger = {
+			GIL = {
+				has_country_flag = GIL_stay_in_alliance
+			}
+        }
+    }
+
+    option = { # Gilneas leaves
+        name = gilneas_third_war.13.option.2
+        trigger = {
+			GIL = {
+				has_country_flag = GIL_leave_the_alliance
+			}
+        }
+    }
+}

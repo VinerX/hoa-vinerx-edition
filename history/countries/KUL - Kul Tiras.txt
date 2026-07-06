@@ -1,0 +1,236 @@
+﻿capital = 5
+
+oob = "KUL_581"
+set_naval_oob = "KUL_581_naval"
+
+set_convoys = 250
+
+set_research_slots = 3
+
+set_stability = 0.65
+set_war_support = 0.1
+
+add_ideas = {
+	KUL_proudmoore_fleet
+
+	kingdom
+	recruit_guards
+	isolation
+	export_focus
+
+	human_primary_race
+	primary_trait_diplomatic
+	primary_trait_human_spirit
+	primary_trait_perception
+
+	primary_religion_the_church_of_the_holy_light
+}
+
+KUL = {
+	if = {
+		limit = { has_dlc = "No Step Back" }
+		add_ideas = inclimate_weather_experience_spirit
+	}
+}
+
+set_technology = {
+	town_hall_tech = 1
+	peasants_tech = 1
+	support_equipment_tech = 1
+	scout_tower_1 = 1
+	scout_tower_2 = 1
+	workshop_tech = 1
+	blacksmith_tech = 1
+	lumber_mill_tech = 1
+	militia_tech = 1
+	militia_equipment_tech_1 = 1
+	farm_tech = 1
+	mines_tech = 1
+
+	barracks_tech = 1
+	footman_tech = 1
+	footman_equipment_tech_1 = 1
+	pikeman_tech = 1
+	pikeman_equipment_tech_1 = 1
+	archer_tech = 1
+	archer_equipment_tech_1 = 1
+
+	stable_tech_1 = 1
+	horse_equipment_tech = 1
+	mounted_footman_tech = 1
+	knight_tech = 1
+	knight_equipment_tech = 1
+
+	altar_of_kings_tech = 1
+	royal_guard_tech = 1
+	royal_guard_equipment_tech_1 = 1
+
+	siege_works = 1
+	catapult_tech = 1
+	catapult_equipment_tech_1 = 1
+
+	generic_naval_naval_facilities_tech = 1
+	generic_naval_small_frames_tech = 1
+	generic_naval_convoy_tech_1 = 1
+	generic_naval_destroyer_tech_1 = 1
+	generic_naval_destroyer_tech_2 = 1
+	generic_naval_light_frigate_tech_1 = 1
+	generic_naval_light_frigate_tech_2 = 1
+	generic_naval_naval_transport_1_tech = 1
+	generic_naval_large_frames_tech = 1
+	generic_naval_battleship_tech_1 = 1
+	generic_naval_battleship_tech_2 = 1
+	generic_naval_carrier_tech_1 = 1
+	generic_naval_naval_academy_tech = 1
+	generic_naval_foundry_tech = 1
+
+	aviary_tech = 1
+	organic_flight = 1
+	support_breeds = 1
+	scouting_breeds_1 = 1
+}
+
+set_grand_doctrine = new_fleet_in_being
+
+recruit_character = KUL_lord_admiral_daelin_proudmoore
+recruit_character = KUL_derek_proudmoore
+recruit_character = KUL_lady_katherine_proudmoore
+
+### Advisors
+recruit_character = KUL_arthur_waycrest
+recruit_character = KUL_james_ashvane
+
+set_politics = {
+	ruling_party = neutral
+	last_election = "590.10.27"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+    alliance = 20
+    horde = 0
+    death = 0
+    fel = 0
+    old_gods = 0
+    titans = 0
+    neutral = 80
+}
+
+596.1.1 = {
+
+	set_stability = 0.70
+	set_war_support = 0.4
+
+	add_ideas = {
+		limited_conscription
+		early_military_development
+	}
+
+	set_politics = {
+		ruling_party = alliance
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+		alliance = 100
+		horde = 0
+		death = 0
+		fel = 0
+		old_gods = 0
+		titans = 0
+		neutral = 0
+	}
+}
+
+600.1.1 = {
+	add_ideas = {
+		NET_funding_keep
+	}
+
+	set_popularities = {
+		alliance = 90
+		horde = 0
+		death = 0
+		fel = 0
+		old_gods = 0
+		titans = 0
+		neutral = 10
+	}
+}
+
+610.1.1 = {
+	add_ideas = {
+		recruit_guards
+		peacetime_economy
+	}
+
+	add_timed_idea = {
+		idea = the_ones_we_lost_3
+		days = 365
+	}
+	add_timed_idea = {
+		idea = those_who_returned_3
+		days = 365
+	}
+
+	KUL = {
+		every_country = {
+			limit = { has_idea = orc_primary_race }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = SHC_beasts
+			}
+		}
+	}
+
+	set_popularities = {
+		alliance = 78
+		horde = 0
+		death = 0
+		fel = 0
+		old_gods = 2
+		titans = 0
+		neutral = 20
+	}
+}
+
+613.1.1 = {
+	retire_character = KUL_lord_admiral_daelin_proudmoore # He Dead...Super Dead
+	### Advisors
+	retire_character = KUL_arthur_waycrest # Died and Raised as Undead, Unsure when BFA related
+	retire_character = KUL_james_ashvane # Died Along Side Daelin during the Invasion of Durotar (Assumed)
+}
+
+617.1.1 = {
+	# Maybe move to earlier start date
+
+	remove_ideas = {
+		NET_funding_keep
+		those_who_returned_3
+		those_who_returned_2
+		those_who_returned_1
+		the_ones_we_lost_3
+		the_ones_we_lost_2
+		the_ones_we_lost_1
+	}
+
+	set_politics = {
+		ruling_party = neutral
+		last_election = "616.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+		alliance = 12
+		horde = 0
+		death = 0
+		fel = 0
+		old_gods = 8
+		titans = 0
+		neutral = 80
+	}
+}

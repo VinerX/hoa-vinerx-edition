@@ -1,0 +1,91 @@
+﻿###########################
+#aggramars vault
+###########################
+
+add_namespace = owb_mogushan_vault
+
+country_event = {
+	id = owb_mogushan_vault.1
+	title = owb_mogushan_vault.1.t
+	desc = owb_mogushan_vault.1.d
+	picture = GFX_owb_vault_door_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = MGS
+        has_start_date > 580.12.31
+		has_start_date < 581.01.02
+        date > 581.01.07
+        has_game_rule = {
+            rule = owb_april_fools_2025_game_rule
+            option = ENABLED
+        }
+	}
+
+	option = { # play as vault
+    	name = owb_mogushan_vault.1.option.1
+		OMV = {
+			transfer_state = 1838
+			1838 = {
+				add_core_of = OMV
+			}
+			hidden_effect = {
+				load_oob = OMV_581
+				add_equipment_to_stockpile = {
+					type = owb_vault_dweller_equipment_1
+					amount = 5000
+					producer = OMV
+				}
+				add_manpower = 10000
+			}
+			change_tag_from = MGS
+		}
+	}
+    
+    option = { # remain player nation
+    	name = owb_mogushan_vault.1.option.2
+		OMV = {
+			transfer_state = 1838
+			1580 = {
+				add_core_of = OMV
+			}
+			hidden_effect = {
+				load_oob = OMV_581
+				add_equipment_to_stockpile = {
+					type = owb_vault_dweller_equipment_1
+					amount = 5000
+					producer = OMV
+				}
+				add_manpower = 10000
+			}
+		}
+	}
+}
+
+country_event = {
+	id = owb_mogushan_vault.2
+	title = owb_mogushan_vault.2.t
+	desc = owb_mogushan_vault.2.d
+	picture = GFX_owb_vault_door_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+    	name = owb_mogushan_vault.2.option.1
+		OMV = {
+			every_owned_state = {
+				limit = {
+					NOT = {
+					is_core_of = ROOT
+					}
+				}
+				add_core_of = Root
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+	}
+    
+}

@@ -1,0 +1,614 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	owb_armory_tech = {
+
+		path = {
+			leads_to_tech = owb_vault_dweller_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = owb_power_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	owb_vault_dweller_tech = {
+
+		enable_subunits = {
+			owb_vault_dweller
+		}
+
+		on_research_complete = {
+			set_technology = { owb_vault_dweller_equipment_tech_1 = 1 }
+			
+		}
+
+		path = {
+			leads_to_tech = owb_vault_dweller_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	owb_vault_dweller_equipment_tech_1 = {
+
+		enable_equipments = {
+			owb_vault_dweller_equipment_1
+		}
+
+		path = {
+			leads_to_tech = owb_vault_dweller_armor_piercing_bullets_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = owb_vault_dweller_heavy_frame_receiver_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	owb_vault_dweller_armor_piercing_bullets_tech = {
+
+		owb_vault_dweller = {
+			ap_attack = 1
+			soft_attack = 0.5
+			breakthrough = 0.5
+		}
+
+		xor = { owb_vault_dweller_heavy_frame_receiver_tech }
+
+		path = {
+			leads_to_tech = owb_vault_dweller_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_vault_dweller_heavy_frame_receiver_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_vault_dweller_heavy_frame_receiver_tech
+			}
+		}
+	}
+
+	owb_vault_dweller_heavy_frame_receiver_tech = {
+
+		owb_vault_dweller = {
+			soft_attack = 1
+			hard_attack = 1
+			breakthrough = 0.5
+		}
+
+		xor = { owb_vault_dweller_armor_piercing_bullets_tech }
+
+		path = {
+			leads_to_tech = owb_vault_dweller_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_vault_dweller_armor_piercing_bullets_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_vault_dweller_armor_piercing_bullets_tech
+			}
+		}
+	}
+
+	owb_vault_dweller_equipment_tech_2 = {
+
+		enable_equipments = {
+			owb_vault_dweller_equipment_2
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = owb_vault_dweller_great_war_tactics_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = owb_vault_dweller_combat_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	owb_vault_dweller_great_war_tactics_tech = {
+
+		owb_vault_dweller = {
+			entrenchment = 1
+			soft_attack = 0.5
+		}
+
+		xor = { owb_vault_dweller_combat_armor_tech }
+
+		path = {
+			leads_to_tech = owb_vault_dweller_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_vault_dweller_combat_armor_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_vault_dweller_combat_armor_tech
+			}
+		}
+	}
+
+	owb_vault_dweller_combat_armor_tech = {
+
+		owb_vault_dweller = {
+			armor_value = 1
+			max_organisation = 10
+		}
+
+		xor = { owb_vault_dweller_great_war_tactics_tech }
+
+		path = {
+			leads_to_tech = owb_vault_dweller_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_vault_dweller_great_war_tactics_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_vault_dweller_great_war_tactics_tech
+			}
+		}
+	}
+
+	owb_vault_dweller_equipment_tech_3 = {
+
+		enable_equipments = {
+			owb_vault_dweller_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	owb_power_armor_tech = {
+
+		enable_subunits = {
+			owb_power_armor
+		}
+
+		on_research_complete = {
+			set_technology = { owb_power_armor_equipment_tech_1 = 1 }
+			
+		}
+
+		path = {
+			leads_to_tech = owb_power_armor_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 14 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	owb_power_armor_equipment_tech_1 = {
+
+		enable_equipments = {
+			owb_power_armor_equipment_1
+		}
+
+		path = {
+			leads_to_tech = owb_power_armor_titanium_plate_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = owb_power_armor_explosive_shielding_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 14 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	owb_power_armor_titanium_plate_tech = {
+
+		owb_power_armor = {
+			max_organisation = 10
+			defense = 0.5
+			breakthrough = 0.5
+			armor_value = 0.5
+		}
+
+		xor = { owb_power_armor_explosive_shielding_tech }
+
+		path = {
+			leads_to_tech = owb_power_armor_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_power_armor_explosive_shielding_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_power_armor_explosive_shielding_tech
+			}
+		}
+	}
+
+	owb_power_armor_explosive_shielding_tech = {
+
+		owb_power_armor = {
+			max_organisation = 10
+			defense = 1
+			breakthrough = 1
+		}
+
+		xor = { owb_power_armor_titanium_plate_tech }
+
+		path = {
+			leads_to_tech = owb_power_armor_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_power_armor_titanium_plate_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_power_armor_titanium_plate_tech
+			}
+		}
+	}
+
+	owb_power_armor_equipment_tech_2 = {
+
+		enable_equipments = {
+			owb_power_armor_equipment_2
+		}
+
+		dependencies = { keep_tech = 1 }
+
+		path = {
+			leads_to_tech = owb_power_armor_unstoppable_assault_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = owb_power_armor_emergency_protocols_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 14 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	owb_power_armor_unstoppable_assault_tech = {
+
+		owb_power_armor = {
+			maximum_speed = 1
+			soft_attack = 0.5
+		}
+
+		xor = { owb_power_armor_emergency_protocols_tech }
+
+		path = {
+			leads_to_tech = owb_power_armor_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_power_armor_emergency_protocols_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_power_armor_emergency_protocols_tech
+			}
+		}
+	}
+
+	owb_power_armor_emergency_protocols_tech = {
+
+		owb_power_armor = {
+			soft_attack = 0.5
+			hard_attack = 0.5
+			air_attack = 0.5
+		}
+
+		xor = { owb_power_armor_unstoppable_assault_tech }
+
+		path = {
+			leads_to_tech = owb_power_armor_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = owb_power_armor_unstoppable_assault_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = owb_power_armor_unstoppable_assault_tech
+			}
+		}
+	}
+
+	owb_power_armor_equipment_tech_3 = {
+
+		enable_equipments = {
+			owb_power_armor_equipment_3
+		}
+
+		dependencies = { castle_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = owb_infantry_folder
+			position = { x = 14 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

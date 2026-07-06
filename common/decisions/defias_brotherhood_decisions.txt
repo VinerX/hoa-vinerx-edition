@@ -1,0 +1,896 @@
+war_measures = {
+
+	DFB_train_the_people_1 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {	has_idea = DFB_lack_training_1 }
+
+		available = { has_idea = DFB_lack_training_1 }
+
+		days_remove = 30
+
+		custom_cost_trigger = { has_army_experience > 25 }
+		custom_cost_text = decision_cost_army_25
+
+		complete_effect = {	
+			army_experience = -25
+		}
+
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = DFB_lack_training_1
+				add_idea = DFB_lack_training_2
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_train_the_people_2 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {	has_idea = DFB_lack_training_2 }
+
+		available = { has_idea = DFB_lack_training_2 }
+
+		days_remove = 30
+
+		custom_cost_trigger = { has_army_experience > 25 }
+		custom_cost_text = decision_cost_army_25
+
+		complete_effect = {	
+			army_experience = -25
+		}
+
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = DFB_lack_training_2
+				add_idea = DFB_lack_training_3
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_train_the_people_3 = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		visible = {	has_idea = DFB_lack_training_3 }
+
+		available = { has_idea = DFB_lack_training_3 }
+
+		days_remove = 30
+
+		custom_cost_trigger = { has_army_experience > 25 }
+		custom_cost_text = decision_cost_army_25
+
+		complete_effect = {	
+			army_experience = -25
+		}
+
+		remove_effect = {
+			remove_ideas = DFB_lack_training_3
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_ferriers_cobblers_tanners_1 = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_ferriers_cobblers_tanners }
+		available = { 
+			has_completed_focus = DFB_ferriers_cobblers_tanners
+			has_war_with = STO 
+		}
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+
+		complete_effect = {	
+			hidden_effect = { add_command_power = -25 }
+			random_list = {
+				25 = {
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							industrial_complex > 0
+						}
+						damage_building = {	type = industrial_complex damage = 1 }
+					}
+				}
+				25 = {
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							arms_factory > 0
+						}
+						damage_building = {	type = arms_factory damage = 1 }
+					}
+				}
+				25 = {
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							arms_factory > 0
+							industrial_complex > 0
+						}
+						damage_building = {	type = arms_factory damage = 1 }
+						damage_building = {	type = industrial_complex damage = 1 }
+					}
+				}
+				25 = {
+					random_list = {
+						50 = {
+							random_state = {
+								limit = { 
+									is_controlled_by = STO 
+									stable > 0
+								}
+								damage_building = {	type = stable damage = 1 }
+							}
+						}
+						50 = {
+							random_state = {
+								limit = { 
+									is_controlled_by = STO 
+									farm > 0
+								}
+								damage_building = {	type = farm damage = 1 }
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_ferriers_cobblers_tanners_2 = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_ferriers_cobblers_tanners }
+		available = { 
+			has_completed_focus = DFB_ferriers_cobblers_tanners 
+			has_war_with = STO
+		}
+
+		custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			hidden_effect = { add_command_power = -50 }
+			random_list = {
+				25 = {
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							industrial_complex > 1
+						}
+						damage_building = {	type = industrial_complex damage = 2 }
+
+					}
+					if = {
+						limit = { NOT = { has_idea = DFB_stolen_goods } }
+						add_timed_idea = {
+							idea = DFB_stolen_goods
+							days = 60
+						}
+					}
+					if = {
+						limit = { has_idea = DFB_stolen_goods }
+						modify_timed_idea = {
+							idea = DFB_stolen_goods
+							days = 30
+						}
+					}
+				}
+				25 = {
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							arms_factory > 1
+						}
+						damage_building = {	type = arms_factory damage = 2 }
+					}
+					if = {
+						limit = { NOT = { has_idea = DFB_plates_blade_maces } }
+						add_timed_idea = {
+							idea = DFB_plates_blade_maces
+							days = 60
+						}
+					}
+					if = {
+						limit = { has_idea = DFB_plates_blade_maces }
+						modify_timed_idea = {
+							idea = DFB_plates_blade_maces
+							days = 30
+						}
+					}
+				}
+				25 = {
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							arms_factory > 1
+							industrial_complex > 1
+						}
+						damage_building = {	type = arms_factory damage = 2 }
+						damage_building = {	type = industrial_complex damage = 2 }
+					}
+					if = {
+						limit = { NOT = { has_idea = DFB_stolen_goods } }
+						add_timed_idea = {
+							idea = DFB_stolen_goods
+							days = 60
+						}
+					}
+					if = {
+						limit = { has_idea = DFB_stolen_goods }
+						modify_timed_idea = {
+							idea = DFB_stolen_goods
+							days = 30
+						}
+					}
+					if = {
+						limit = { NOT = { has_idea = DFB_plates_blade_maces } }
+						add_timed_idea = {
+							idea = DFB_plates_blade_maces
+							days = 60
+						}
+					}
+					if = {
+						limit = { has_idea = DFB_plates_blade_maces }
+						modify_timed_idea = {
+							idea = DFB_plates_blade_maces
+							days = 30
+						}
+					}
+				}
+				25 = {
+					random_list = {
+						50 = {
+							random_state = {
+								limit = { 
+									is_controlled_by = STO 
+									stable > 1
+								}
+								damage_building = {	type = stable damage = 2 }
+							}
+							if = {
+								limit = { NOT = { has_idea = DFB_beasts_of_burden } }
+								add_timed_idea = {
+									idea = DFB_beasts_of_burden
+									days = 60
+								}
+							}
+							if = {
+								limit = { has_idea = DFB_beasts_of_burden }
+								modify_timed_idea = {
+									idea = DFB_beasts_of_burden
+									days = 30
+								}
+							}
+						}
+						50 = {
+							random_state = {
+								limit = { 
+									is_controlled_by = STO 
+									farm > 1
+								}
+								damage_building = {	type = farm damage = 2 }
+							}
+							if = {
+								limit = { NOT = { has_idea = DFB_bushells_of_grain } }
+								add_timed_idea = {
+									idea = DFB_bushells_of_grain
+									days = 60
+								}
+							}
+							if = {
+								limit = { has_idea = DFB_bushells_of_grain }
+								modify_timed_idea = {
+									idea = DFB_bushells_of_grain
+									days = 30
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_men_women_children_1 = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_men_women_children }
+		available = { 
+			has_completed_focus = DFB_men_women_children 
+			has_war_with = STO
+		}
+
+		custom_cost_trigger = { command_power > 25 }
+		custom_cost_text = decision_cost_command_25
+
+		complete_effect = {	
+			hidden_effect = { add_command_power = -25 }
+			random_list = {
+				50 = { ### Teenages
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							state_population > 350
+						}
+						add_manpower = -300
+					}
+					STO = { 
+						add_stability = -0.01
+						add_war_support = -0.01
+					}
+					random_controlled_state = {
+						limit = { impassable = no }
+						add_manpower = 300
+					}
+				}
+				35 = { ### Women
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							state_population > 700
+						}
+						add_manpower = -600
+					}
+					STO = { add_stability = -0.02 }
+					random_controlled_state = {
+						limit = { impassable = no }
+						add_manpower = 600
+					}
+				}
+				15 = { ### MEN
+					random_state = {
+						limit = { 
+							is_controlled_by = STO 
+							state_population > 900
+						}
+						add_manpower = -800
+					}
+					STO = { add_war_support = -0.02 }
+					random_controlled_state = {
+						limit = { impassable = no }
+						add_manpower = 800
+					}
+					army_experience = 10
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_men_women_children_2 = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_men_women_children }
+		available = { 
+			has_completed_focus = DFB_men_women_children 
+			has_war_with = STO
+		}
+
+		custom_cost_trigger = { command_power > 50 }
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {	
+			hidden_effect = { add_command_power = -50 }
+			random_list = {
+				65 = {
+					army_experience = 10
+					random_list = {
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Volunteer Defenders" } }
+								hidden_effect = {
+									division_template = {
+										name = "Volunteer Defenders"
+										priority = 1
+										regiments = {
+											militia = { x = 0 y = 0 }
+											militia = { x = 0 y = 1 }
+											militia = { x = 0 y = 2 }
+											militia = { x = 1 y = 0 }
+											militia = { x = 1 y = 1 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Volunteer Defenders\" division_template = \"Volunteer Defenders\" start_experience_factor = 0.15 start_equipment_factor = 0.25"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = militia_equipment_1
+								amount = 50
+								producer = STO
+							}
+						}
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Criminal Elements" } }
+								hidden_effect = {
+									division_template = {
+										name = "Criminal Elements"
+										priority = 1
+										regiments = {
+											footman = { x = 0 y = 0 }
+											footman = { x = 0 y = 1 }
+											footman = { x = 0 y = 2 }
+											footman = { x = 1 y = 0 }
+											footman = { x = 1 y = 1 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Criminal Elements\" division_template = \"Criminal Elements\" start_experience_factor = 0.15 start_equipment_factor = 0.25"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = footman_equipment_1
+								amount = 25
+								producer = STO
+							}
+						}
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Local Guard" } }
+								hidden_effect = {
+									division_template = {
+										name = "Local Guard"
+										priority = 1
+										regiments = {
+											pikeman = { x = 0 y = 0 }
+											pikeman = { x = 0 y = 1 }
+											pikeman = { x = 0 y = 2 }
+											pikeman = { x = 1 y = 0 }
+											pikeman = { x = 1 y = 1 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Local Guard\" division_template = \"Local Guard\" start_experience_factor = 0.15 start_equipment_factor = 0.25"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = pikeman_equipment_1
+								amount = 25
+								producer = STO
+							}
+						}
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Hunters" } }
+								hidden_effect = {
+									division_template = {
+										name = "Hunters"
+										priority = 1
+										regiments = {
+											archer = { x = 0 y = 0 }
+											archer = { x = 0 y = 1 }
+											archer = { x = 0 y = 2 }
+											archer = { x = 1 y = 0 }
+											archer = { x = 1 y = 1 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Hunters\" division_template = \"Hunters\" start_experience_factor = 0.15 start_equipment_factor = 0.25"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = archer_equipment_1
+								amount = 25
+								producer = STO
+							}
+						}
+					}
+				}
+				35 = {
+					army_experience = 20
+					random_list = {
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Volunteer Militia" } }
+								hidden_effect = {
+									division_template = {
+										name = "Volunteer Militia"
+										priority = 1
+										regiments = {
+											militia = { x = 0 y = 0 }
+											militia = { x = 0 y = 1 }
+											militia = { x = 0 y = 2 }
+											militia = { x = 0 y = 3 }
+											militia = { x = 1 y = 0 }
+											militia = { x = 1 y = 1 }
+											militia = { x = 1 y = 2 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Volunteer Militia\" division_template = \"Volunteer Militia\" start_experience_factor = 0.3 start_equipment_factor = 0.50"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = militia_equipment_1
+								amount = 100
+								producer = STO
+							}
+						}
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Deserters" } }
+								hidden_effect = {
+									division_template = {
+										name = "Deserters"
+										priority = 1
+										regiments = {
+											footman = { x = 0 y = 0 }
+											footman = { x = 0 y = 1 }
+											footman = { x = 0 y = 2 }
+											footman = { x = 0 y = 3 }
+											footman = { x = 1 y = 0 }
+											footman = { x = 1 y = 1 }
+											footman = { x = 1 y = 2 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Deserters\" division_template = \"Deserters\" start_experience_factor = 0.3 start_equipment_factor = 0.50"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = footman_equipment_1
+								amount = 50
+								producer = STO
+							}
+						}
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Kings Spears" } }
+								hidden_effect = {
+									division_template = {
+										name = "Kings Spears"
+										priority = 1
+										regiments = {
+											pikeman = { x = 0 y = 0 }
+											pikeman = { x = 0 y = 1 }
+											pikeman = { x = 0 y = 2 }
+											pikeman = { x = 0 y = 3 }
+											pikeman = { x = 1 y = 0 }
+											pikeman = { x = 1 y = 1 }
+											pikeman = { x = 1 y = 2 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Kings Spears\" division_template = \"Kings Spears\" start_experience_factor = 0.3 start_equipment_factor = 0.50"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = pikeman_equipment_1
+								amount = 50
+								producer = STO
+							}
+						}
+						25 = {
+							if = {
+								limit = { NOT = { has_template = "Highway Men" } }
+								hidden_effect = {
+									division_template = {
+										name = "Highway Men"
+										priority = 1
+										regiments = {
+											footman = { x = 0 y = 0 }
+											archer = { x = 0 y = 1 }
+											archer = { x = 0 y = 2 }
+											archer = { x = 0 y = 3 }
+											footman = { x = 1 y = 0 }
+											archer = { x = 1 y = 1 }
+											archer = { x = 1 y = 2 }
+										}
+									}
+								}
+							}
+							random_controlled_state = {
+								limit = { impassable = no }
+								create_unit = {
+									division = "name = \"Highway Men\" division_template = \"Highway Men\" start_experience_factor = 0.3 start_equipment_factor = 0.50"
+									owner = DFB
+								}
+							}
+							add_equipment_to_stockpile = {
+								type = archer_equipment_1
+								amount = 50
+								producer = STO
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+	
+}
+
+propaganda_efforts = {
+
+	DFB_support_elwynn = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_the_ripples_of_revolution }
+		available = { 
+			has_completed_focus = DFB_the_resistance 
+			any_controlled_state = {
+				is_core_of = ELW
+				NOT = { is_core_of = DFB }
+				compliance < 80
+				infrastructure < 8
+			}
+		}
+
+		days_remove = 60
+
+		cost = 10
+
+		modifier = {
+			consumer_goods_factor = 0.10
+		}
+
+		remove_effect = {
+			random_controlled_state = {
+				limit = { 
+					is_core_of = ELW
+					NOT = { is_core_of = DFB }
+					compliance < 80
+					infrastructure < 8
+				}
+				add_compliance = 10
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_support_duskwood = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_the_ripples_of_revolution }
+		available = { 
+			has_completed_focus = DFB_the_resistance 
+			any_controlled_state = {
+				is_core_of = DSK
+				NOT = { is_core_of = DFB }
+				compliance < 80
+				infrastructure < 8
+			}
+		}
+
+		days_remove = 60
+
+		cost = 10
+
+		modifier = {
+			consumer_goods_factor = 0.10
+		}
+
+		remove_effect = {
+			random_controlled_state = {
+				limit = { 
+					is_core_of = DSK
+					NOT = { is_core_of = DFB }
+					compliance < 80
+					infrastructure < 8
+				}
+				add_compliance = 10
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_support_redridge = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_the_ripples_of_revolution }
+		available = { 
+			has_completed_focus = DFB_the_resistance 
+			any_controlled_state = {
+				is_core_of = RDR
+				NOT = { is_core_of = DFB }
+				compliance < 80
+				infrastructure < 8
+			}
+		}
+
+		days_remove = 60
+
+		cost = 10
+
+		modifier = {
+			consumer_goods_factor = 0.10
+		}
+
+		remove_effect = {
+			random_controlled_state = {
+				limit = { 
+					is_core_of = RDR
+					NOT = { is_core_of = DFB }
+					compliance < 80
+					infrastructure < 8
+				}
+				add_compliance = 10
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_core_elwynn = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_the_ripples_of_revolution }
+		available = { 
+			has_completed_focus = DFB_the_resistance 
+			any_controlled_state = {
+				is_core_of = ELW
+				NOT = { is_core_of = DFB }
+				compliance > 80
+			}
+		}
+
+		days_remove = 60
+
+		cost = 10
+
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_gain = -0.1
+		}
+
+		remove_effect = {
+			random_controlled_state = {
+				limit = { 
+					is_core_of = ELW
+					NOT = { is_core_of = DFB }
+					compliance > 80
+				}
+				add_core_of = DFB
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_core_duskwood = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_the_ripples_of_revolution }
+		available = { 
+			has_completed_focus = DFB_the_resistance 
+			any_controlled_state = {
+				is_core_of = DSK
+				NOT = { is_core_of = DFB }
+				compliance > 80
+			}
+		}
+
+		days_remove = 60
+
+		cost = 10
+
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_gain = -0.1
+		}
+
+		remove_effect = {
+			random_controlled_state = {
+				limit = { 
+					is_core_of = DSK
+					NOT = { is_core_of = DFB }
+					compliance > 80
+				}
+				add_core_of = DFB
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	DFB_core_redridge = {
+		icon = generic_prepare_civil_war
+
+		visible = {	has_completed_focus = DFB_the_ripples_of_revolution }
+		available = { 
+			has_completed_focus = DFB_the_resistance 
+			any_controlled_state = {
+				is_core_of = RDR
+				NOT = { is_core_of = DFB }
+				compliance > 80
+			}
+		}
+
+		days_remove = 60
+
+		cost = 10
+
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_gain = -0.1
+		}
+
+		remove_effect = {
+			random_controlled_state = {
+				limit = { 
+					is_core_of = RDR
+					NOT = { is_core_of = DFB }
+					compliance > 80
+				}
+				add_core_of = DFB
+			}
+    	}
+		
+		ai_will_do = { base = 1 }
+	}
+}

@@ -1,0 +1,503 @@
+﻿###########################
+#governments
+###########################
+
+### City State
+
+add_namespace = government_city_state
+
+country_event = {
+	id = government_city_state.1
+	title = government_city_state.1.t
+	desc = government_city_state.1.d
+
+	hidden = yes
+
+	trigger = {
+		tag = ROOT
+		ROOT = { 
+			has_idea = city_state 
+			has_war = no
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 90
+	}
+
+	option = {
+		name = government_city_state.1.option.1
+		random_list = {
+			20 = { country_event = government_city_state.2 }
+			20 = { country_event = government_city_state.3 }
+			20 = { country_event = government_city_state.4 }
+			20 = { country_event = government_city_state.5 }
+			20 = { country_event = government_city_state.6 }
+		}
+	}
+}
+
+### Merchant Pool Resouces
+country_event = {
+	id = government_city_state.2
+	title = government_city_state.2.t
+	desc = government_city_state.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_city_state.2.option.1
+		add_political_power = 50
+	}
+}
+
+### Festival
+country_event = {
+	id = government_city_state.3
+	title = government_city_state.3.t
+	desc = government_city_state.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_city_state.3.option.1
+		add_stability = 0.02
+	}
+}
+
+### Tradesmen Breakthrough
+country_event = {
+	id = government_city_state.4
+	title = government_city_state.4.t
+	desc = government_city_state.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_city_state.4.option.1
+		add_timed_idea = {
+			idea = trademen_breakthrough
+			days = 60
+		}
+	}
+}
+
+### Diplomatic Envoy
+country_event = {
+	id = government_city_state.5
+	title = government_city_state.5.t
+	desc = government_city_state.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_city_state.5.option.1
+		add_timed_idea = {
+			idea = diplomatic_envoy
+			days = 60
+		}
+		random_neighbor_country = {
+			ROOT = {
+				add_intel = {
+					target = PREV
+					army_intel = 5
+					civilian_intel = 5
+					navy_intel = 5
+					airforce_intel = 5
+				}
+			}
+		}
+	}
+}
+
+### Scholar Arrival
+country_event = {
+	id = government_city_state.6
+	title = government_city_state.6.t
+	desc = government_city_state.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_city_state.6.option.1
+		add_timed_idea = {
+			idea = scholar_arrival
+			days = 60
+		}
+	}
+}
+
+### Clan
+
+add_namespace = government_clan
+
+country_event = {
+	id = government_clan.1
+	title = government_clan.1.t
+	desc = government_clan.1.d
+
+	hidden = yes
+
+	trigger = {
+		tag = ROOT
+		ROOT = { 
+			has_idea = clan 
+			has_war = no
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 90
+	}
+
+	option = {
+		name = government_clan.1.option.1
+		random_list = {
+			20 = { country_event = government_clan.2 }
+			20 = { country_event = government_clan.3 }
+			20 = { country_event = government_clan.4 }
+			20 = { country_event = government_clan.5 }
+			20 = { country_event = government_clan.6 }
+		}
+	}
+}
+
+### Training Bouts
+country_event = {
+	id = government_clan.2
+	title = government_clan.2.t
+	desc = government_clan.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_clan.2.option.1
+		army_experience = 10
+	}
+}
+
+### Rituals
+country_event = {
+	id = government_clan.3
+	title = government_clan.3.t
+	desc = government_clan.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_clan.3.option.1
+		add_stability = 0.02
+	}
+}
+
+### Bountiful Hunt
+country_event = {
+	id = government_clan.4
+	title = government_clan.4.t
+	desc = government_clan.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_clan.4.option.1
+		add_timed_idea = {
+			idea = bountiful_hunt
+			days = 60
+		}
+	}
+}
+
+### Infused Steel
+country_event = {
+	id = government_clan.5
+	title = government_clan.5.t
+	desc = government_clan.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_clan.5.option.1
+		random_military_industrial_organization = {
+			add_mio_funds = 200
+		}
+	}
+}
+
+### Pilgrimage
+country_event = {
+	id = government_clan.6
+	title = government_clan.6.t
+	desc = government_clan.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_clan.6.option.1
+		add_to_variable = {
+			var = faith_points
+			value = 30
+			tooltip = add_faith_points_tt
+		}
+	}
+}
+
+### Council
+
+add_namespace = government_council
+
+country_event = {
+	id = government_council.1
+	title = government_council.1.t
+	desc = government_council.1.d
+
+	hidden = yes
+
+	trigger = {
+		tag = ROOT
+		ROOT = { 
+			has_idea = council 
+			has_war = no
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 90
+	}
+
+	option = {
+		name = government_council.1.option.1
+		random_list = {
+			20 = { country_event = government_council.2 }
+			20 = { country_event = government_council.3 }
+			20 = { country_event = government_council.4 }
+			20 = { country_event = government_council.5 }
+			20 = { country_event = government_council.6 }
+		}
+	}
+}
+
+### New Blood
+country_event = {
+	id = government_council.2
+	title = government_council.2.t
+	desc = government_council.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_council.2.option.1
+		add_timed_idea = {
+			idea = council_decree
+			days = 60
+		}
+	}
+}
+
+### Trade Agreement
+country_event = {
+	id = government_council.3
+	title = government_council.3.t
+	desc = government_council.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_council.3.option.1
+		add_timed_idea = {
+			idea = trade_agreement
+			days = 60
+		}
+	}
+}
+
+### Public Works
+country_event = {
+	id = government_council.4
+	title = government_council.4.t
+	desc = government_council.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_council.4.option.1
+		add_timed_idea = {
+			idea = public_works
+			days = 60
+		}
+	}
+}
+
+### Diplomatic Summit
+country_event = {
+	id = government_council.5
+	title = government_council.5.t
+	desc = government_council.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_council.5.option.1
+		add_political_power = 25
+		add_command_power = 25
+		random_army_leader = { gain_xp = 30 }
+	}
+}
+
+### Library Expansion
+country_event = {
+	id = government_council.6
+	title = government_council.6.t
+	desc = government_council.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_council.6.option.1
+		add_timed_idea = {
+			idea = library_expansion
+			days = 60
+		}
+	}
+}
+
+
+### Cult
+
+### Kingdom
+
+### Tribe
+
+### Tyrant
+
+### Military
+
+### Trade
+
+### Criminal
+
+add_namespace = government_criminal
+
+country_event = {
+	id = government_criminal.1
+	title = government_criminal.1.t
+	desc = government_criminal.1.d
+
+	hidden = yes
+
+	trigger = {
+		tag = ROOT
+		ROOT = { 
+			has_idea = criminal_enterprise 
+			has_war = no
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 90
+	}
+
+	option = {
+		name = government_criminal.1.option.1
+		random_list = {
+			20 = { country_event = government_criminal.2 }
+			20 = { country_event = government_criminal.3 }
+			20 = { country_event = government_criminal.4 }
+			20 = { country_event = government_criminal.5 }
+			20 = { country_event = government_criminal.6 }
+		}
+	}
+}
+
+### Heist Spoils
+country_event = {
+	id = government_criminal.2
+	title = government_criminal.2.t
+	desc = government_criminal.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_criminal.2.option.1
+		add_timed_idea = {
+			idea = heist_spoils
+			days = 60
+		}
+	}
+}
+
+### Spy Network
+country_event = {
+	id = government_criminal.3
+	title = government_criminal.3.t
+	desc = government_criminal.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_criminal.3.option.1
+		random_neighbor_country = {
+			ROOT = {
+				add_intel = {
+					target = PREV
+					army_intel = 10
+					civilian_intel = 10
+					navy_intel = 10
+					airforce_intel = 10
+				}
+			}
+		}
+	}
+}
+
+### Black Market Boom
+country_event = {
+	id = government_criminal.4
+	title = government_criminal.4.t
+	desc = government_criminal.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_criminal.4.option.1
+		add_timed_idea = {
+			idea = market_boom
+			days = 60
+		}
+	}
+}
+
+### Assassins
+country_event = {
+	id = government_criminal.5
+	title = government_criminal.5.t
+	desc = government_criminal.5.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_criminal.5.option.1
+		add_political_power = 50
+		random_neighbor_country = {
+			limit = { NOT = { is_ally_with = ROOT } }
+			add_political_power = -20
+		}
+	}
+}
+
+### Smuggler's Route
+country_event = {
+	id = government_criminal.6
+	title = government_city_state.6.t
+	desc = government_city_state.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = government_criminal.6.option.1
+		add_timed_idea = {
+			idea = smugglers_route
+			days = 60
+		}
+	}
+
+}

@@ -1,0 +1,434 @@
+trade_guild_decisions = {
+
+	commission_grand_bazaar = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			OR = {
+				has_idea = merchant_guild_1
+				has_idea = merchant_guild_2
+			}
+			any_owned_state = {
+				state_population_k > 30
+				NOT = { has_state_flag = trade_grand_bazaar }
+				industrial_complex > 2
+			}
+		}
+
+		available = { 
+			OR = {
+				has_idea = merchant_guild_1
+				has_idea = merchant_guild_2
+			}
+			any_owned_state = {
+				state_population_k > 30
+				NOT = { has_state_flag = trade_grand_bazaar }
+				industrial_complex > 7
+			}  
+		}
+
+		days_remove = 90
+
+		cost = 100
+
+		remove_effect = {	
+			random_owned_state = {
+				limit = {
+					state_population_k > 30
+					NOT = { has_state_flag = trade_grand_bazaar }
+					industrial_complex > 7
+				}
+				set_state_flag = trade_grand_bazaar
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { NOT = { has_idea = GEN_grand_bazaar_1 } }
+				add_ideas = GEN_grand_bazaar_1
+			}
+			else_if = {
+				limit = { has_idea = GEN_grand_bazaar_1 }
+				swap_ideas = {
+					remove_idea = GEN_grand_bazaar_1
+					add_idea = GEN_grand_bazaar_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = GEN_grand_bazaar_2 }
+				swap_ideas = {
+					remove_idea = GEN_grand_bazaar_2
+					add_idea = GEN_grand_bazaar_3
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	exploit_our_subjects_oil = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { oil > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				oil > 49 
+				NOT = {	has_idea = GEN_overlord_oil	}
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_oil
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					oil > 49 
+					NOT = {	has_idea = GEN_overlord_oil	}					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_oil
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	exploit_our_subjects_mana = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { mana > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				mana > 49 
+				NOT = {	has_idea = GEN_overlord_mana	}
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_mana
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					mana > 49 
+					NOT = {	has_idea = GEN_overlord_mana }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_mana
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+exploit_our_subjects_wood = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { wood > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				wood > 49 
+				NOT = {	has_idea = GEN_overlord_wood }
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_wood
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					wood > 49 
+					NOT = {	has_idea = GEN_overlord_wood }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_wood
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+exploit_our_subjects_gunpowder = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { gunpowder > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				gunpowder > 49 
+				NOT = {	has_idea = GEN_overlord_gunpowder }
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_gunpowder
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					gunpowder > 49 
+					NOT = {	has_idea = GEN_overlord_gunpowder }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_gunpowder
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+exploit_our_subjects_ores = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { ores > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				ores > 49 
+				NOT = {	has_idea = GEN_overlord_ores }
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_ores
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					ores > 49 
+					NOT = {	has_idea = GEN_overlord_ores }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_ores
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+exploit_our_subjects_mounts = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { mounts > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				mounts > 49 
+				NOT = {	has_idea = GEN_overlord_mounts }
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_mounts
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					mounts > 49 
+					NOT = {	has_idea = GEN_overlord_mounts }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_mounts
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+exploit_our_subjects_eggs = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { eggs > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				eggs > 49 
+				NOT = {	has_idea = GEN_overlord_eggs }
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_eggs
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					eggs > 49 
+					NOT = {	has_idea = GEN_overlord_eggs }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_eggs
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+exploit_our_subjects_wheat = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+			any_subject_country = { wheat > 29 }
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_subject_country = { 
+				wheat > 49 
+				NOT = {	has_idea = GEN_overlord_wheat }
+			}
+		}
+
+		days_remove = 10
+
+		cost = 20
+
+		remove_effect = {	
+			add_timed_idea = {
+				idea = GEN_exploited_wheat
+				days = 360
+			}
+			random_subject_country = {
+				limit = {
+					wheat > 49 
+					NOT = {	has_idea = GEN_overlord_wheat }					
+				}
+				add_timed_idea = {
+					idea = GEN_overlord_wheat
+					days = 360
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+
+	establish_the_crown_market = {
+		icon = GFX_decision_category_generic_industry
+
+		visible = {	
+			has_idea = merchant_guild_2
+		}
+
+		available = { 
+			has_idea = merchant_guild_2
+			any_owned_state = { has_state_flag = trade_grand_bazaar } 
+		}
+
+		days_remove = 30
+
+		cost = 75
+
+		remove_effect = {	
+			if = {
+				limit = { has_idea = free_trade }
+				swap_ideas = {
+					remove_idea = free_trade
+					add_idea = crown_commerce
+				}
+			}
+			else_if = {
+				limit = { has_idea = export_focus }
+				swap_ideas = {
+					remove_idea = export_focus
+					add_idea = crown_commerce
+				}
+			}
+			else_if = {
+				limit = { has_idea = limited_exports }
+				swap_ideas = {
+					remove_idea = limited_exports
+					add_idea = crown_commerce
+				}
+			}
+		}
+		
+		ai_will_do = { base = 1 }
+	}
+}

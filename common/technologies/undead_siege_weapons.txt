@@ -1,0 +1,677 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	slaughterhouse_tech = {
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_obsidian_statue_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = haunted_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_meat_wagon_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			siege_works_technology
+		}
+	}
+
+	undead_obsidian_statue_tech = {
+
+		enable_subunits = {
+			undead_obsidian_statue
+		}
+
+		on_research_complete = {
+			set_technology = { undead_obsidian_statue_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = undead_obsidian_statue_tech_unit_details_tt
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_obsidian_statue_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_obsidian_statue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_obsidian_statue_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_obsidian_statue_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_obsidian_statue_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_obsidian_statue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_obsidian_statue_1 = {
+
+		undead_obsidian_statue = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_obsidian_statue_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_obsidian_statue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_obsidian_statue_2 = {
+
+		undead_obsidian_statue = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_undead_obsidian_statue_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_obsidian_statue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_obsidian_statue_3 = {
+
+		undead_obsidian_statue = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_obsidian_statue_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_obsidian_statue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_obsidian_statue_4 = {
+
+		undead_obsidian_statue = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_obsidian_statue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	haunted_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			haunted_caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = haunted_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	haunted_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			haunted_caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = haunted_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	haunted_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			haunted_caravan_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_meat_wagon_tech = {
+
+		enable_subunits = {
+			undead_meat_wagon
+			undead_meat_wagon_support
+		}
+
+		on_research_complete = {
+			set_technology = { undead_meat_wagon_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_meat_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_meat_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_meat_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_meat_wagon_corpse_collection_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_meat_wagon_plagued_projectiles_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	undead_meat_wagon_corpse_collection_tech = {
+
+		undead_meat_wagon = {
+			supply_consumption_factor = -0.05
+			hard_attack = 0.05
+		}
+		undead_meat_wagon_support = {
+			supply_consumption_factor = -0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_meat_wagon_plagued_projectiles_tech }
+
+		path = {
+			leads_to_tech = undead_meat_wagon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = undead_meat_wagon_plagued_projectiles_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_meat_wagon_plagued_projectiles_tech
+			}
+		}
+	}
+
+	undead_meat_wagon_plagued_projectiles_tech = {
+
+		undead_meat_wagon = {
+			soft_attack = 0.15
+		}
+		undead_meat_wagon_support = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_meat_wagon_corpse_collection_tech }
+
+		path = {
+			leads_to_tech = undead_meat_wagon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = undead_meat_wagon_corpse_collection_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_meat_wagon_corpse_collection_tech
+			}
+		}
+	}
+
+	undead_meat_wagon_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_meat_wagon_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_meat_wagon_saronite_frame_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_meat_wagon_blight_bomb_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_meat_wagon_saronite_frame_tech = {
+
+		undead_meat_wagon = {
+			armor_value = 0.05
+			reliability_factor = 0.05
+		}
+		undead_meat_wagon_support = {
+			armor_value = 0.05
+			reliability_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_meat_wagon_blight_bomb_tech }
+
+		path = {
+			leads_to_tech = undead_meat_wagon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = undead_meat_wagon_blight_bomb_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_meat_wagon_blight_bomb_tech
+			}
+		}
+	}
+
+	undead_meat_wagon_blight_bomb_tech = {
+
+		undead_meat_wagon = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+		undead_meat_wagon_support = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_meat_wagon_saronite_frame_tech }
+
+		path = {
+			leads_to_tech = undead_meat_wagon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = undead_meat_wagon_saronite_frame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_meat_wagon_saronite_frame_tech
+			}
+		}
+	}
+
+	undead_meat_wagon_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_meat_wagon_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			undead_meat_wagon_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

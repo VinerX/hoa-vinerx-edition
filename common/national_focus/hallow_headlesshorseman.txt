@@ -1,0 +1,1704 @@
+focus_tree = {
+	id = headlesshorseman
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = HED
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 0
+		y = 1200
+	}
+	
+	focus = {
+		id = HED_the_horseman_rises
+		icon = GFX_horseman_focus_icon_generic
+		cost = 5
+		x = 19
+		y = 0
+
+		completion_reward = {
+			country_event = headless_horseman.1
+			hidden_effect = {
+				if = {
+					limit = { has_start_date < 616.1.1 }
+					country_event = { id = headless_horseman.0 days = 2 }
+				}			
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_a_new_head
+		icon = GFX_horseman_focus_icon_generic
+		cost = 5
+		prerequisite = { focus = HED_the_horseman_rises }
+		x = 19
+		y = 1
+
+		completion_reward = {
+			country_event = headless_horseman.2
+		}
+	}
+	
+	focus = {
+		id = HED_the_haunting_begins
+		icon = GFX_horseman_focus_icon_generic
+		cost = 5
+		prerequisite = { focus = HED_a_new_head }
+		x = 19
+		y = 2
+
+		completion_reward = {
+			country_event = headless_horseman.3
+			set_country_flag = unlocked_other_branches
+		}
+	}
+
+	focus = {
+		id = HED_all_hallows_end
+		icon = GFX_horseman_focus_icon_generic
+		cost = 21
+		x = 19
+		y = 10
+
+		available = {
+			has_country_flag = unlocked_other_branches
+		}
+
+		completion_reward = {
+			1037 = { add_dynamic_modifier = { modifier = HED_haunted_dwellings } }
+			592 = { add_dynamic_modifier = { modifier = HED_haunted_dwellings } }
+			445 = { add_dynamic_modifier = { modifier = HED_haunted_dwellings } }
+			325 = { add_dynamic_modifier = { modifier = HED_haunted_dwellings } }
+			212 = { add_dynamic_modifier = { modifier = HED_haunted_dwellings } }
+			168 = { add_dynamic_modifier = { modifier = HED_haunted_dwellings } }
+		}
+	}
+	
+	focus = {
+		id = HED_soldiers_arise
+		icon = GFX_horseman_focus_icon_generic
+		cost = 30
+		x = 10
+		y = 3
+
+		available = {
+			has_country_flag = unlocked_other_branches
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.4
+			custom_effect_tooltip = soldiers_arise_tooltip
+		}
+	}
+	
+	focus = {
+		id = HED_sprouting_pumpkins
+		icon = GFX_horseman_focus_icon_generic
+		cost = 5
+		prerequisite = { focus = HED_soldiers_arise }
+		mutually_exclusive = { focus = HED_riders_of_the_night }
+		relative_position_id = HED_soldiers_arise
+		x = -3
+		y = 1
+
+		available = { always = no }
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = HED_improved_vines
+		icon = GFX_horseman_focus_icon_generic
+		cost = 30
+		prerequisite = { focus = HED_sprouting_pumpkins }
+		relative_position_id = HED_sprouting_pumpkins
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = hoa_vine_tech
+				bonus = 1.5
+				uses = 1
+				category = hoa_vine_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_improved_heads
+		icon = GFX_horseman_focus_icon_generic
+		cost = 30
+		prerequisite = { focus = HED_sprouting_pumpkins }
+		relative_position_id = HED_sprouting_pumpkins
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = hoa_head_tech
+				bonus = 0.75
+				uses = 2
+				category = hoa_head_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_riders_of_the_night
+		icon = GFX_focus_ebon_blade_death_knight
+		cost = 5
+		prerequisite = { focus = HED_soldiers_arise }
+		mutually_exclusive = { focus = HED_sprouting_pumpkins }
+		relative_position_id = HED_soldiers_arise
+		x = 3
+		y = 1
+
+		available = { always = no }
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = HED_broom_closets
+		icon = GFX_goal_generic_air_production
+		cost = 30
+		prerequisite = { focus = HED_soldiers_arise }
+		relative_position_id = HED_soldiers_arise
+		x = 7
+		y = 1
+
+		completion_reward = {
+			country_event = headless_horseman.5
+			custom_effect_tooltip = broom_closets_tooltip
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 30
+		prerequisite = { focus = HED_soldiers_arise }
+		relative_position_id = HED_soldiers_arise
+		x = -7
+		y = 1
+
+		available = {
+			any_owned_state = {
+				is_coastal = yes
+				impassable = no
+				is_core_of = HED
+			}
+		}
+
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+					impassable = no
+					is_core_of = HED	
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = dockyard
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_the_haunting_of_brill
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = { focus = HED_all_hallows_end }
+		mutually_exclusive = {
+			focus = HED_the_haunting_of_farstrider_square
+			focus = HED_the_haunting_of_kharanos
+			focus = HED_the_haunting_of_goldshire
+			focus = HED_the_haunting_of_razor_hill
+			focus = HED_the_haunting_of_bloodhoof_village
+		}
+		relative_position_id = HED_all_hallows_end
+		x = -8
+		y = 1
+
+		available = {
+			has_country_flag = HED_soldiers_arise_flag
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.7
+		}
+	}
+
+	focus = {
+		id = HED_corrupt_the_land
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = { focus = HED_the_haunting_of_brill }
+		relative_position_id = HED_the_haunting_of_brill
+		x = 0
+		y = 1
+
+		completion_reward = {
+			country_event = headless_horseman.8
+		}
+	}
+
+	focus = {
+		id = HED_the_kingdom_falls
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = { focus = HED_corrupt_the_land }
+		relative_position_id = HED_the_haunting_of_brill
+		x = 0
+		y = 2
+
+		available = {
+			owns_state = 10
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.9
+		}
+	}
+
+	focus = {
+		id = HED_lordaeron_falls
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = { focus = HED_the_kingdom_falls }
+		relative_position_id = HED_the_haunting_of_brill
+		x = 0
+		y = 3
+
+		completion_reward = {
+			complete_national_focus = HED_the_haunting_of_farstrider_square
+		}
+	}
+
+	focus = {
+		id = HED_burn_the_land
+		icon = GFX_focus_LOR_generic
+		cost = 21
+		prerequisite = { focus = HED_the_kingdom_falls }
+		relative_position_id = HED_the_haunting_of_brill
+		x = -2
+		y = 3
+
+		completion_reward = {
+			declare_war_on = { target = GIL type = annex_everything }
+			declare_war_on = { target = DAL type = annex_everything }
+			declare_war_on = { target = ALT type = annex_everything }
+			declare_war_on = { target = STR type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = HED_the_fields_of_the_north
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = { focus = HED_burn_the_land }
+		relative_position_id = HED_burn_the_land
+		x = -1
+		y = 1
+
+		completion_reward = {
+			division_template = {
+				name = "Pumpkin Rattles"
+				priority = 1
+				regiments = {
+					undead_skeletal_warrior = { x = 0 y = 0 }
+					undead_skeletal_warrior = { x = 0 y = 1 }
+					hoa_pumpkin_fiend = { x = 0 y = 2 }
+					hoa_pumpkin_fiend = { x = 0 y = 3 }
+					undead_skeletal_warrior = { x = 1 y = 0 }
+					undead_skeletal_warrior = { x = 1 y = 1 }
+				}
+			}
+			every_state = {
+				limit = {
+					is_controlled_by = HED
+				}
+				create_unit = {
+					division = "name = \"Pumpkin Rattles\" division_template = \"Pumpkin Rattles\" start_experience_factor = 0.75"
+					owner = HED
+					count = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HED_drust_do_it
+		icon = GFX_focus_KUL_generic
+		cost = 14
+		prerequisite = { focus = HED_burn_the_land }
+		relative_position_id = HED_burn_the_land
+		x = 1
+		y = 1
+
+		available = {
+			has_tech = hoa_wickerman
+		}
+
+		completion_reward = {
+			declare_war_on = { target = KUL type = annex_everything }
+			635 = {
+				transfer_state_to = HED
+				add_core_of = HED
+			}
+			division_template = {
+				name = "Scarecrows"
+				priority = 1
+				regiments = {
+					hoa_wickerman = { x = 0 y = 0 }
+					hoa_wickerman = { x = 0 y = 1 }
+					hoa_wickerman = { x = 0 y = 2 }
+					hoa_wickerman = { x = 0 y = 3 }
+					hoa_wickerman = { x = 1 y = 0 }
+					hoa_wickerman = { x = 1 y = 1 }
+				}
+			}
+			635 = {
+				create_unit = {
+					division = "name = \"Scarecrows\" division_template = \"Scarecrows\" start_experience_factor = 0.75"
+					owner = HED
+					count = 6
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HED_hide_in_their_holes
+		icon = GFX_focus_NET_dwarven_leadership
+		cost = 14
+		prerequisite = { focus = HED_burn_the_land }
+		relative_position_id = HED_burn_the_land
+		x = 0
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = SPC type = annex_everything }
+			declare_war_on = { target = AER type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = HED_the_haunting_of_farstrider_square
+		icon = GFX_focus_CZE_german_puppet
+		cost = 30
+		prerequisite = { focus = HED_all_hallows_end }
+		mutually_exclusive = {
+			focus = HED_the_haunting_of_brill
+			focus = HED_the_haunting_of_kharanos
+			focus = HED_the_haunting_of_goldshire
+			focus = HED_the_haunting_of_razor_hill
+			focus = HED_the_haunting_of_bloodhoof_village
+		}
+		relative_position_id = HED_all_hallows_end
+		x = -5
+		y = 1
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.10
+		}
+	}
+	
+	focus = {
+		id = HED_fall_of_quelthalas
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		cost = 30
+		prerequisite = { focus = HED_the_haunting_of_farstrider_square }
+		relative_position_id = HED_the_haunting_of_farstrider_square
+		x = 0
+		y = 1
+
+		available = {
+			owns_state = 17
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.11
+		}
+	}
+
+	focus = {
+		id = HED_a_dip_in_the_pool
+		icon = GFX_goal_tfv_generic_tech_sharing
+		cost = 30
+		prerequisite = { focus = HED_fall_of_quelthalas }
+		relative_position_id = HED_the_haunting_of_farstrider_square
+		x = -1
+		y = 2
+
+		search_filters = {
+			FOCUS_FILTER_SPECIAL_PROJECT
+		}
+
+		available = {
+			owns_state = 33
+			33 = { is_core_of = HED }
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_magic_mana_bomb
+		}
+	}
+	
+	focus = {
+		id = HED_spooking_the_loa
+		icon = GFX_focus_AST_squander_bug
+		cost = 21
+		prerequisite = { focus = HED_fall_of_quelthalas }
+		relative_position_id = HED_the_haunting_of_farstrider_square
+		x = 1
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = AMA type = annex_everything }
+			declare_war_on = { target = SPT type = annex_everything }
+			declare_war_on = { target = SMR type = annex_everything }
+			declare_war_on = { target = FTT type = annex_everything }
+			declare_war_on = { target = MFT type = annex_everything }
+			declare_war_on = { target = WBT type = annex_everything }
+			declare_war_on = { target = VIL type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = HED_fields_of_green_pumpkins_too
+		icon = GFX_focus_AST_squander_bug
+		cost = 30
+		prerequisite = { focus = HED_spooking_the_loa }
+		prerequisite = { focus = HED_a_dip_in_the_pool }
+		relative_position_id = HED_the_haunting_of_farstrider_square
+		x = 0
+		y = 3
+
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = QUE
+						is_core_of = AMA
+						is_core_of = SPT
+						is_core_of = SMR
+						is_core_of = MFT
+						is_core_of = WBT
+						is_core_of = VIL
+						is_core_of = FTT
+					}
+					is_owned_by = HED
+				}
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			complete_national_focus = HED_the_haunting_of_kharanos
+		}
+	}
+	
+	focus = {
+		id = HED_the_haunting_of_kharanos
+		icon = GFX_focus_NET_dwarven_leadership
+		cost = 30
+		prerequisite = { focus = HED_all_hallows_end }
+		mutually_exclusive = {
+			focus = HED_the_haunting_of_brill
+			focus = HED_the_haunting_of_farstrider_square
+			focus = HED_the_haunting_of_goldshire
+			focus = HED_the_haunting_of_razor_hill
+			focus = HED_the_haunting_of_bloodhoof_village
+		}
+		relative_position_id = HED_all_hallows_end
+		x = -1
+		y = 1
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.12
+		}
+	}
+	
+	focus = {
+		id = HED_behead_the_coalition
+		icon = GFX_focus_NET_dwarven_leadership
+		cost = 14
+		prerequisite = { focus = HED_the_haunting_of_kharanos }
+		relative_position_id = HED_the_haunting_of_kharanos
+		x = 0
+		y = 1
+
+		completion_reward = {
+			declare_war_on = { target = GNO type = annex_everything }
+			declare_war_on = { target = NRT type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = HED_fall_of_an_old_empire
+		icon = GFX_focus_AST_squander_bug
+		cost = 14
+		prerequisite = { focus = HED_behead_the_coalition }
+		relative_position_id = HED_the_haunting_of_kharanos
+		x = -1
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = FRT type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = HED_beheading_of_the_aspects
+		icon = GFX_DMC_focus_dragon
+		cost = 14
+		prerequisite = { focus = HED_behead_the_coalition }
+		relative_position_id = HED_the_haunting_of_kharanos
+		x = 1
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = VMR type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = HED_head_south
+		icon = GFX_focus_dark_iron_dwarf
+		cost = 21
+		prerequisite = { focus = HED_beheading_of_the_aspects }
+		prerequisite = { focus = HED_fall_of_an_old_empire }
+		relative_position_id = HED_the_haunting_of_kharanos
+		x = 0
+		y = 3
+
+		completion_reward = {
+			declare_war_on = { target = MLC type = annex_everything }
+			declare_war_on = { target = DIC type = annex_everything }
+			declare_war_on = { target = THR type = annex_everything }
+			complete_national_focus = HED_the_haunting_of_goldshire
+		}
+	}
+	
+	focus = {
+		id = HED_the_haunting_of_goldshire
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		prerequisite = { focus = HED_all_hallows_end }
+		mutually_exclusive = {
+			focus = HED_the_haunting_of_brill
+			focus = HED_the_haunting_of_farstrider_square
+			focus = HED_the_haunting_of_kharanos
+			focus = HED_the_haunting_of_razor_hill
+			focus = HED_the_haunting_of_bloodhoof_village
+		}
+		relative_position_id = HED_all_hallows_end
+		x = 3
+		y = 1
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.13
+		}
+	}
+
+	focus = {
+		id = HED_raven_hill_dead
+		icon = GFX_focus_undead_armies
+		cost = 21
+		prerequisite = { focus = HED_the_haunting_of_goldshire }
+		relative_position_id = HED_the_haunting_of_goldshire
+		x = -2
+		y = 1
+
+		completion_reward = {
+			1600 = { transfer_state_to = HED }
+			division_template = {
+				name = "Raven Hill Undead"
+				priority = 1
+				regiments = {
+					undead_skeletal_warrior = { x = 0 y = 0 }
+					undead_skeletal_warrior = { x = 0 y = 1 }
+					undead_skeletal_warrior = { x = 0 y = 2 }
+					undead_skeletal_warrior = { x = 0 y = 3 }
+					undead_skeletal_warrior = { x = 1 y = 0 }
+					undead_skeletal_warrior = { x = 1 y = 1 }
+				}
+			}
+			1600 = {
+				create_unit = {
+					division = "name = \"Raven Hill Undead\" division_template = \"Raven Hill Undead\" start_experience_factor = 0.75"
+					owner = HED
+					count = 5
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_a_throne_fit_for_your_head
+		icon = GFX_focus_stormwind_crest
+		cost = 30
+		prerequisite = { focus = HED_the_haunting_of_goldshire }
+		relative_position_id = HED_the_haunting_of_goldshire
+		x = 0
+		y = 1
+
+		available = {
+			owns_state = 22
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.14
+		}
+	}
+	
+	focus = {
+		id = HED_threats_from_a_new_world
+		icon = GFX_focus_generic_orc_warrior
+		cost = 21
+		prerequisite = { focus = HED_mornful_swamps }
+		relative_position_id = HED_the_haunting_of_goldshire
+		x = -2
+		y = 3
+
+		completion_reward = {
+			declare_war_on = { target = BHC type = annex_everything }
+			declare_war_on = { target = DMC type = annex_everything }
+			declare_war_on = { target = BRC type = annex_everything }
+			declare_war_on = { target = TSC type = annex_everything }
+			declare_war_on = { target = BTG type = annex_everything }
+			declare_war_on = { target = BBC type = annex_everything }
+			declare_war_on = { target = THC type = annex_everything }
+			declare_war_on = { target = FWC type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = HED_old_world_problems
+		icon = GFX_focus_AST_squander_bug
+		cost = 21
+		prerequisite = { focus = HED_a_throne_fit_for_your_head }
+		relative_position_id = HED_the_haunting_of_goldshire
+		x = 1
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = GUR type = annex_everything }
+			declare_war_on = { target = BLO type = annex_everything }
+			declare_war_on = { target = SKU type = annex_everything }
+			declare_war_on = { target = TSW type = annex_everything }
+			declare_war_on = { target = RPP type = annex_everything }
+			declare_war_on = { target = RRP type = annex_everything }
+			declare_war_on = { target = ELK type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = HED_mornful_swamps
+		icon = GFX_focus_AST_squander_bug
+		cost = 21
+		prerequisite = { focus = HED_a_throne_fit_for_your_head }
+		relative_position_id = HED_the_haunting_of_goldshire
+		x = -1
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = TSW type = annex_everything }
+			declare_war_on = { target = MTT type = annex_everything }
+			declare_war_on = { target = HAK type = annex_everything }
+			declare_war_on = { target = GTH type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = HED_children_of_the_pumpking_patch
+		icon = GFX_focus_AST_squander_bug
+		cost = 30
+		prerequisite = { focus = HED_mornful_swamps }
+		prerequisite = { focus = HED_old_world_problems }
+		relative_position_id = HED_the_haunting_of_goldshire
+		x = 0
+		y = 3
+
+		available = {
+			owns_state = 1590
+			owns_state = 357
+		}
+
+		completion_reward = {
+			division_template = {
+				name = "Pumpkin Patch Kids"
+				priority = 1
+				regiments = {
+					hoa_pumpkin_fiend = { x = 0 y = 0 }
+					hoa_pumpkin_fiend = { x = 0 y = 1 }
+					hoa_pumpkin_fiend = { x = 0 y = 2 }
+					hoa_pumpkin_fiend = { x = 0 y = 3 }
+					hoa_pumpkin_fiend = { x = 1 y = 0 }
+					hoa_pumpkin_fiend = { x = 1 y = 1 }
+				}
+			}
+			1590 = {
+				create_unit = {
+					division = "name = \"Pumpkin Patch Kids\" division_template = \"Pumpkin Patch Kids\" start_experience_factor = 0.75"
+					owner = HED
+					count = 4
+				}
+			}
+			357 = {
+				create_unit = {
+					division = "name = \"Pumpkin Patch Kids\" division_template = \"Pumpkin Patch Kids\" start_experience_factor = 0.75"
+					owner = HED
+					count = 4
+				}
+			}
+			complete_national_focus = HED_the_haunting_of_razor_hill
+		}
+	}
+	
+	focus = {
+		id = HED_the_haunting_of_razor_hill
+		icon = GFX_focus_horde_orc_warrior
+		cost = 30
+		prerequisite = { focus = HED_all_hallows_end }
+		mutually_exclusive = {
+			focus = HED_the_haunting_of_brill
+			focus = HED_the_haunting_of_farstrider_square
+			focus = HED_the_haunting_of_kharanos
+			focus = HED_the_haunting_of_goldshire
+			focus = HED_the_haunting_of_bloodhoof_village
+		}
+		relative_position_id = HED_all_hallows_end
+		x = 6
+		y = 1
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.15
+		}
+	}
+	
+	focus = {
+		id = HED_durotar_falls
+		icon = GFX_focus_horde_orc_warrior
+		cost = 21
+		prerequisite = { focus = HED_the_haunting_of_razor_hill }
+		relative_position_id = HED_the_haunting_of_razor_hill
+		x = 0
+		y = 1
+
+		completion_reward = {
+			declare_war_on = { target = DWT type = annex_everything }
+			declare_war_on = { target = DFT type = annex_everything }
+			complete_national_focus = HED_the_haunting_of_bloodhoof_village
+		}
+	}
+	
+	focus = {
+		id = HED_the_haunting_of_bloodhoof_village
+		icon = GFX_focus_tauren_2
+		cost = 30
+		prerequisite = { focus = HED_all_hallows_end }
+		mutually_exclusive = {
+			focus = HED_the_haunting_of_brill
+			focus = HED_the_haunting_of_farstrider_square
+			focus = HED_the_haunting_of_kharanos
+			focus = HED_the_haunting_of_goldshire
+			focus = HED_the_haunting_of_razor_hill
+		}
+		relative_position_id = HED_all_hallows_end
+		x = 8
+		y = 1
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			country_event = headless_horseman.16
+		}
+	}
+	
+	focus = {
+		id = HED_mulgore_falls
+		icon = GFX_focus_tauren_2
+		cost = 21
+		prerequisite = { focus = HED_the_haunting_of_bloodhoof_village }
+		relative_position_id = HED_the_haunting_of_bloodhoof_village
+		x = 0
+		y = 1
+
+		completion_reward = {
+			declare_war_on = { target = HWT type = annex_everything }
+			declare_war_on = { target = WIN type = annex_everything }
+			declare_war_on = { target = TMT type = annex_everything }
+			declare_war_on = { target = WFT type = annex_everything }
+			declare_war_on = { target = WIL type = annex_everything }
+			declare_war_on = { target = EAG type = annex_everything }
+			declare_war_on = { target = DWN type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = HED_a_haunted_continent
+		icon = GFX_focus_CZE_german_puppet
+		cost = 21
+		prerequisite = { focus = HED_mulgore_falls }
+		prerequisite = { focus = HED_durotar_falls }
+		relative_position_id = HED_the_haunting_of_razor_hill
+		x = 1
+		y = 2
+
+		completion_reward = {
+			declare_war_on = { target = DWT type = annex_everything }
+			declare_war_on = { target = DFT type = annex_everything }
+			declare_war_on = { target = HWT type = annex_everything }
+			declare_war_on = { target = WIN type = annex_everything }
+			declare_war_on = { target = TMT type = annex_everything }
+			declare_war_on = { target = WFT type = annex_everything }
+			declare_war_on = { target = WIL type = annex_everything }
+			declare_war_on = { target = EAG type = annex_everything }
+			declare_war_on = { target = DWN type = annex_everything }
+			declare_war_on = { target = WWT type = annex_everything }
+			declare_war_on = { target = BHT type = annex_everything }
+			declare_war_on = { target = KOL type = annex_everything }
+			declare_war_on = { target = MIR type = annex_everything }
+			declare_war_on = { target = BRI type = annex_everything }
+			declare_war_on = { target = RZF type = annex_everything }
+			declare_war_on = { target = BLF type = annex_everything }
+			declare_war_on = { target = GAL type = annex_everything }
+			declare_war_on = { target = GRM type = annex_everything }
+			declare_war_on = { target = FAR type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_towns
+		icon = GFX_focus_stormwind_town_hall
+		cost = 30
+		x = 24
+		y = 3
+
+		available = {
+			has_country_flag = unlocked_other_branches
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = administration_technology
+				bonus = 0.75
+				uses = 3
+				category = administration_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_fields
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = HED_haunted_towns }
+		relative_position_id = HED_haunted_towns
+		x = -3
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = agriculture_technology
+				bonus = 1.5
+				uses = 1
+				category = agriculture_technology
+			}
+			add_tech_bonus = {
+				name = city_growth_technology
+				bonus = 1.5
+				uses = 1
+				category = city_growth_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_farms
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = HED_haunted_fields }
+		relative_position_id = HED_haunted_towns
+		x = -3
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = agriculture_technology
+				bonus = 1.5
+				uses = 1
+				category = agriculture_technology
+			}
+			add_tech_bonus = {
+				name = city_growth_technology
+				bonus = 1.5
+				uses = 1
+				category = city_growth_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_barns
+		icon = GFX_focus_stormwind_farm
+		cost = 30
+		prerequisite = { focus = HED_haunted_farms }
+		relative_position_id = HED_haunted_towns
+		x = -3
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = stable_technology
+				bonus = 1.5
+				uses = 1
+				category = stable_technology
+			}
+			add_tech_bonus = {
+				name = city_growth_technology
+				bonus = 1.5
+				uses = 1
+				category = city_growth_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_forges
+		icon = GFX_goal_generic_construction
+		cost = 30
+		prerequisite = { focus = HED_haunted_towns }
+		relative_position_id = HED_haunted_towns
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = forge_technology
+				bonus = 0.75
+				uses = 3
+				category = forge_technology
+				category = blueprint_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_workshops
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 30
+		prerequisite = { focus = HED_haunted_forges }
+		relative_position_id = HED_haunted_towns
+		x = -1
+		y = 2
+
+		completion_reward = {
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					is_core_of = HED
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					is_core_of = HED
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					is_core_of = HED
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			#add_offsite_building = { type = industrial_complex level = 25 }
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_blacksmiths
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = HED_haunted_forges }
+		relative_position_id = HED_haunted_towns
+		x = 1
+		y = 2
+
+		completion_reward = {
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					is_core_of = HED
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					is_core_of = HED
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					is_core_of = HED
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			#add_offsite_building = { type = arms_factory level = 25 }
+		}
+	}
+	
+	focus = {
+		id = HED_possessed_tools
+		icon = GFX_focus_generic_construction_brown
+		cost = 30
+		prerequisite = { focus = HED_haunted_workshops }
+		prerequisite = { focus = HED_haunted_blacksmiths }
+		relative_position_id = HED_haunted_towns
+		x = 0
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = peasant_tools_technology
+				bonus = 0.75
+				uses = 2
+				category = peasant_tools_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_brooms_take_flight
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = HED_broom_closets }
+		relative_position_id = HED_broom_closets
+		x = 0
+		y = 1
+
+		completion_reward = {
+			set_technology = {
+				undead_boneyard_tech = 1
+				undead_gargoyle_tech = 1
+				undead_gargoyle_equipment_tech_1 = 1
+			}
+			add_equipment_to_stockpile = {
+				type = undead_gargoyle_equipment_1
+				amount = 200
+				producer = HED
+			}
+			custom_effect_tooltip = HED_brooms_take_flight_TT
+		}
+	}
+
+	
+	focus = {
+		id = HED_spectral_lancers
+		icon = GFX_focus_ebon_blade_death_knight
+		cost = 30
+		prerequisite = { focus = HED_riders_of_the_night }
+		relative_position_id = HED_riders_of_the_night
+		x = -1
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = undead_skeletal_knight_technology
+				bonus = 1.5
+				uses = 1
+				category = undead_skeletal_knight_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_spectral_mounts
+		icon = GFX_focus_ebon_blade_death_knight
+		cost = 30
+		prerequisite = { focus = HED_spectral_lancers }
+		prerequisite = { focus = HED_spectral_knights }
+		relative_position_id = HED_riders_of_the_night
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = horse_technology
+				bonus = 1.5
+				uses = 1
+				category = horse_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_spectral_knights
+		icon = GFX_focus_ebon_blade_death_knight
+		cost = 30
+		prerequisite = { focus = HED_riders_of_the_night }
+		relative_position_id = HED_riders_of_the_night
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = undead_skeletal_knight_technology
+				bonus = 1.5
+				uses = 1
+				category = undead_skeletal_knight_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_a_new_batch
+		icon = GFX_horseman_focus_icon_generic
+		cost = 30
+		prerequisite = { focus = HED_improved_vines }
+		prerequisite = { focus = HED_improved_heads }
+		relative_position_id = HED_sprouting_pumpkins
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = hoa_pumpkin_fiend_tech
+				bonus = 1.5
+				uses = 1
+				category = hoa_pumpkin_fiend_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_raised_from_the_depths
+		icon = GFX_goal_generic_navy_battleship
+		cost = 30
+		prerequisite = { focus = HED_haunted_shipyards }
+		relative_position_id = HED_soldiers_arise
+		x = -7
+		y = 2
+
+		completion_reward = {
+			country_event = headless_horseman.6
+			custom_effect_tooltip = broom_closets_tooltip
+		}
+	}
+	
+	focus = {
+		id = HED_cas_brooms
+		icon = GFX_goal_generic_air_fighter2
+		cost = 30
+		prerequisite = { focus = HED_brooms_take_flight }
+		relative_position_id = HED_broom_closets
+		x = -1
+		y = 2
+
+		completion_reward = {
+			set_technology = {
+				undead_obsidian_destroyer_tech = 1
+				undead_obsidian_destroyer_equipment_tech_1 = 1
+			}
+			add_equipment_to_stockpile = {
+				type = undead_obsidian_destroyer_equipment_1
+				amount = 125
+				producer = HED
+			}
+			custom_effect_tooltip = HED_cas_brooms_TT
+		}
+	}
+	
+	focus = {
+		id = HED_bomber_brooms
+		icon = GFX_goal_generic_air_bomber
+		cost = 30
+		prerequisite = { focus = HED_brooms_take_flight }
+		relative_position_id = HED_broom_closets
+		x = 1
+		y = 2
+
+		completion_reward = {
+			set_technology = {
+				undead_frost_wyrm_tech = 1
+				undead_frost_wyrm_equipment_tech_1 = 1
+			}
+			add_equipment_to_stockpile = {
+				type = undead_frost_wyrm_equipment_1
+				amount = 125
+				producer = HED
+			}
+			custom_effect_tooltip = HED_bomber_brooms_TT
+		}
+	}
+	
+	focus = {
+		id = HED_unorthadox_tactics
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = HED_sprouting_pumpkins
+			focus = HED_riders_of_the_night
+		}
+		relative_position_id = HED_soldiers_arise
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 1
+				uses = 2
+				category = land_doctrine
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 2
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 1
+					days = 200
+					track = operations
+				}
+			}
+			else = { army_experience = 50 }
+		}
+	}
+
+	focus = {
+		id = HED_pumpkin_launchers
+		icon = GFX_goal_generic_army_artillery2
+		cost = 30
+		prerequisite = { focus = HED_unorthadox_tactics }
+		relative_position_id = HED_unorthadox_tactics
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = siege_weapons_technology
+				bonus = 1.5
+				uses = 1
+				category = siege_weapons_technology
+			}
+		}
+	}
+
+	focus = {
+		id = HED_specialized_pumpkins
+		icon = GFX_focus_usa_tank_destroyer_doctrine
+		cost = 30
+		prerequisite = { focus = HED_pumpkin_launchers }
+		relative_position_id = HED_unorthadox_tactics
+		x = 1
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = support_technology
+				bonus = 1.5
+				uses = 1
+				category = support_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_pumpkin_mancers
+		icon = GFX_goal_tfv_generic_tech_sharing
+		cost = 30
+		prerequisite = { focus = HED_pumpkin_launchers }
+		relative_position_id = HED_unorthadox_tactics
+		x = -1
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = undead_necromancer_technology
+				bonus = 1.5
+				uses = 1
+				category = undead_necromancer_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_adapted_for_combat
+		icon = GFX_goal_generic_special_forces
+		cost = 30
+		prerequisite = { focus = HED_pumpkin_mancers }
+		prerequisite = { focus = HED_specialized_pumpkins }
+		relative_position_id = HED_unorthadox_tactics
+		x = 0
+		y = 3
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 1
+				uses = 2
+				category = land_doctrine
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 2
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 1
+					days = 200
+					track = infantry
+				}
+			}
+			else = { army_experience = 50 }
+		}
+	}
+
+	focus = {
+		id = HED_twigs_and_hate
+		icon = GFX_goal_generic_special_forces
+		cost = 30
+		prerequisite = { focus = HED_adapted_for_combat }
+		relative_position_id = HED_unorthadox_tactics
+		x = 0
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = altar_technology
+				bonus = 1.5
+				uses = 1
+				category = altar_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_broom_tactics
+		icon = GFX_goal_generic_air_doctrine
+		cost = 30
+		prerequisite = { focus = HED_cas_brooms }
+		prerequisite = { focus = HED_bomber_brooms }
+		relative_position_id = HED_broom_closets
+		x = 0
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_technology
+				bonus = 1.5
+				uses = 2
+				category = air_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_heavy_fleet
+		icon = GFX_focus_generic_cruiser2
+		cost = 30
+		prerequisite = { focus = HED_raised_from_the_depths }
+		mutually_exclusive = { focus = HED_escort_fleet }
+		relative_position_id = HED_soldiers_arise
+		x = -8
+		y = 3
+
+		available = { always = no }
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = HED_escort_fleet
+		icon = GFX_focus_generic_destroyer
+		cost = 5
+		prerequisite = { focus = HED_raised_from_the_depths }
+		mutually_exclusive = { focus = HED_heavy_fleet }
+		relative_position_id = HED_soldiers_arise
+		x = -6
+		y = 3
+
+		available = { always = no }
+
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_battleships
+		icon = GFX_focus_generic_navy_battleship2
+		cost = 5
+		prerequisite = {
+			focus = HED_heavy_fleet
+			focus = HED_escort_fleet
+		}
+		relative_position_id = HED_soldiers_arise
+		x = -6
+		y = 4
+
+		completion_reward = {
+			custom_effect_tooltip = HED_haunted_battleships_TT
+			hidden_effect = { load_oob = HED_haunted_battleships_oob }
+		}
+	}
+	
+	focus = {
+		id = HED_haunted_carriers
+		icon = GFX_goal_generic_navy_carrier
+		cost = 30
+		prerequisite = {
+			focus = HED_heavy_fleet
+			focus = HED_escort_fleet
+		}
+		relative_position_id = HED_soldiers_arise
+		x = -8
+		y = 4
+
+		completion_reward = {
+			custom_effect_tooltip = HED_haunted_carriers_TT
+			hidden_effect = { load_oob = HED_haunted_carriers_oob }
+		}
+	}
+	
+	focus = {
+		id = HED_modern_ships
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 30
+		prerequisite = { focus = HED_haunted_carriers }
+		prerequisite = { focus = HED_haunted_battleships }
+		relative_position_id = HED_soldiers_arise
+		x = -7
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.75
+				uses = 3
+				category = naval_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_ghost_towers
+		icon = GFX_goal_generic_radar
+		cost = 30
+		prerequisite = { focus = HED_haunted_towns }
+		relative_position_id = HED_haunted_towns
+		x = 3
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = tower_technology
+				bonus = 1.5
+				uses = 1
+				category = tower_technology
+			}
+		}
+	}
+
+	focus = {
+		id = HED_haunted_citadel
+		icon = GFX_focus_spa_save_the_alcazar
+		cost = 30
+		prerequisite = { focus = HED_haunted_barns }
+		prerequisite = { focus = HED_possessed_tools }
+		prerequisite = { focus = HED_haunted_walls }
+		relative_position_id = HED_haunted_towns
+		x = 0
+		y = 4
+
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 10 }
+			add_offsite_building = { type = industrial_complex level = 10 }
+		}
+	}
+
+	focus = {
+		id = HED_haunted_walls
+		icon = GFX_goal_generic_fortify_city
+		cost = 30
+		prerequisite = { focus = HED_ghost_towers }
+		relative_position_id = HED_haunted_towns
+		x = 3
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 1
+				uses = 2
+				category = fortification_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = HED_the_time_for_vengeance
+		icon = GFX_focus_usa_tank_destroyer_doctrine
+		cost = 30
+		prerequisite = { focus = HED_haunting_of_the_great_sea }
+		prerequisite = { focus = HED_children_of_the_pumpking_patch }
+		prerequisite = { focus = HED_fields_of_green_pumpkins_too }
+		prerequisite = { focus = HED_head_south }
+		prerequisite = { focus = HED_lordaeron_falls }
+		relative_position_id = HED_all_hallows_end
+		x = 0
+		y = 5
+
+		completion_reward = {
+			country_event = headless_horseman.17
+		}
+	}
+	
+	focus = {
+		id = HED_haunting_of_the_great_sea
+		icon = GFX_goal_generic_navy_submarine
+		cost = 21
+		prerequisite = { focus = HED_a_haunted_continent }
+		relative_position_id = HED_the_haunting_of_razor_hill
+		x = 1
+		y = 3
+
+		completion_reward = {
+			declare_war_on = { target = OOM type = annex_everything }
+			declare_war_on = { target = AZS type = annex_everything }
+			declare_war_on = { target = BIL type = annex_everything }
+			declare_war_on = { target = TVC type = annex_everything }
+			declare_war_on = { target = TIN type = annex_everything }
+			declare_war_on = { target = STC type = annex_everything }
+			declare_war_on = { target = DST type = annex_everything }
+			declare_war_on = { target = ZAN type = annex_everything }
+			declare_war_on = { target = SFT type = annex_everything }
+			declare_war_on = { target = TMB type = annex_everything }
+			declare_war_on = { target = FAL type = annex_everything }
+			declare_war_on = { target = MOO type = annex_everything }
+			declare_war_on = { target = WIT type = annex_everything }
+			declare_war_on = { target = SUR type = annex_everything }
+			declare_war_on = { target = DRK type = annex_everything }
+			declare_war_on = { target = SRD type = annex_everything }
+			declare_war_on = { target = TID type = annex_everything }
+			declare_war_on = { target = HEL type = annex_everything }
+			declare_war_on = { target = BON type = annex_everything }
+			declare_war_on = { target = VAL type = annex_everything }
+			declare_war_on = { target = VAK type = annex_everything }
+		}
+	}
+	
+	#focus = {
+	#	id = HED_a_new_world_to_haunt
+	#	icon = GFX_focus_the_dark_portal
+	#	cost = 30
+	#	prerequisite = { focus = HED_all_hallows_end }
+	#	relative_position_id = HED_all_hallows_end
+	#	x = 9
+	#	y = 1
+
+	#	completion_reward = {
+	#		declare_war_on = { target = SMC type = annex_everything }
+	#		declare_war_on = { target = TDC type = annex_everything }
+	#		declare_war_on = { target = SKE type = annex_everything }
+	#		declare_war_on = { target = SHC type = annex_everything }
+	#		declare_war_on = { target = ANG type = annex_everything }
+	#		declare_war_on = { target = CAB type = annex_everything }
+	#		declare_war_on = { target = SET type = annex_everything }
+	#		declare_war_on = { target = AUC type = annex_everything }
+	#		declare_war_on = { target = RWC type = annex_everything }
+	#		declare_war_on = { target = BWC type = annex_everything }
+	#		declare_war_on = { target = WSC type = annex_everything }
+	#		declare_war_on = { target = WMC type = annex_everything }
+	#		declare_war_on = { target = BRK type = annex_everything }
+	#		declare_war_on = { target = GAR type = annex_everything }
+	#		declare_war_on = { target = BFC type = annex_everything }
+	#		declare_war_on = { target = GOR type = annex_everything }
+	#		declare_war_on = { target = DRE type = annex_everything }
+	#		declare_war_on = { target = OGL type = annex_everything }
+	#		declare_war_on = { target = TLC type = annex_everything }
+	#		declare_war_on = { target = BMC type = annex_everything }
+	#		declare_war_on = { target = BSC type = annex_everything }
+	#		declare_war_on = { target = LSC type = annex_everything }
+	#		declare_war_on = { target = STM type = annex_everything }
+	#		declare_war_on = { target = MOK type = annex_everything }
+	#		declare_war_on = { target = LBC type = annex_everything }
+	#		declare_war_on = { target = GRN type = annex_everything }
+	#	}
+	#}
+}

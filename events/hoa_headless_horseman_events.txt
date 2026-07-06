@@ -1,0 +1,632 @@
+﻿###########################
+#Headless Horseman
+###########################
+
+add_namespace = headless_horseman
+
+#before my Time
+country_event = {
+	id = headless_horseman.0
+	title = headless_horseman.0.t
+	desc = headless_horseman.0.d
+	picture = GFX_news_event_hallows_eve
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			### Increase Bronze Dragonflight Instability Counter
+		}
+	}
+
+    option = {
+		name = headless_horseman.0.option.1
+	}
+}
+
+#the horseman rises
+country_event = {
+	id = headless_horseman.1
+	title = headless_horseman.1.t
+	desc = headless_horseman.1.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			remove_ideas = {
+				HED_a_cautious_horseman
+				HED_a_bold_horseman
+				HED_a_statesman_horseman
+				HED_a_cruel_horseman
+			}
+		}
+		215 = {
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+	}
+
+    option = {
+		name = headless_horseman.1.option.1
+		add_ideas = HED_a_cautious_horseman
+	}
+	
+    option = {
+		name = headless_horseman.1.option.2
+		add_ideas = HED_a_bold_horseman
+	}
+	
+    option = {
+        name = headless_horseman.1.option.3
+		add_ideas = HED_a_statesman_horseman
+	}
+	
+    option = {
+		name = headless_horseman.1.option.4
+		add_ideas = HED_a_cruel_horseman
+	}
+}
+
+#a new head
+country_event = {
+	id = headless_horseman.2
+	title = headless_horseman.2.t
+	desc = headless_horseman.2.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # a large head
+		name = headless_horseman.2.option.1
+		capital_scope = {
+			add_extra_state_shared_building_slots = 10
+			add_building_construction = {
+				type = arms_factory
+				level = 5
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 5
+				instant_build = yes
+			}
+		}
+		#add_offsite_building = { type = arms_factory level = 15 }
+		#add_offsite_building = { type = industrial_complex level = 5 }
+	}
+}
+
+#the hauntin begins
+country_event = {
+	id = headless_horseman.3
+	title = headless_horseman.3.t
+	desc = headless_horseman.3.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			783 = { 
+				transfer_state_to = HED
+				add_core_of = HED 
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			214 = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			216 = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			218 = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}			
+		}
+	}
+
+    option = {
+        name = headless_horseman.3.option.1
+		214 = { 
+			transfer_state_to = HED
+			add_core_of = HED 
+		}
+		216 = {	
+			transfer_state_to = HED
+			add_core_of = HED 
+		}
+		218 = {
+			transfer_state_to = HED
+			add_core_of = HED 
+		}
+	}
+}
+
+#soldiers arise
+country_event = {
+	id = headless_horseman.4
+	title = headless_horseman.4.t
+	desc = headless_horseman.4.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { #sprouting pumpkins
+		name = headless_horseman.4.option.1
+		complete_national_focus = HED_sprouting_pumpkins
+		set_country_flag = HED_sprouting_pumpkins_flag
+		set_country_flag = HED_soldiers_arise_flag
+		load_oob = "HED_sprouting_pumpkins_oob"
+	}
+
+    option = { #riders of the night
+		name = headless_horseman.4.option.2
+		complete_national_focus = HED_riders_of_the_night
+		set_country_flag = HED_riders_of_the_night_flag
+		set_country_flag = HED_soldiers_arise_flag
+		load_oob = "HED_riders_of_the_night_oob"
+	}
+}
+
+#broom closets
+country_event = {
+	id = headless_horseman.5
+	title = headless_horseman.5.t
+	desc = headless_horseman.5.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { #sprouting pumpkins
+		name = headless_horseman.5.option.1
+		
+		every_state = {
+			limit = { 
+				is_owned_by = HED
+				impassable = no 
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+}
+
+#raised from the depths
+country_event = {
+	id = headless_horseman.6
+	title = headless_horseman.6.t
+	desc = headless_horseman.6.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { #heavy fleet
+		name = headless_horseman.6.option.1
+		complete_national_focus = HED_heavy_fleet
+		set_country_flag = HED_heavy_fleet_flag
+		load_oob = HED_heavy_fleet_oob
+	}
+
+    option = { #escort fleet
+		name = headless_horseman.6.option.2
+		complete_national_focus = HED_escort_fleet
+		set_country_flag = HED_escort_fleet_flag
+		load_oob = HED_escort_fleet_oob
+	}
+}
+
+#the haunting of brill
+country_event = {
+	id = headless_horseman.7
+	title = headless_horseman.7.t
+	desc = headless_horseman.7.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		212 = {
+			remove_dynamic_modifier = { modifier = HED_haunted_dwellings }
+			add_core_of = HED
+			transfer_state_to = HED
+		}
+		213 = {
+			add_core_of = HED
+			transfer_state_to = HED
+		}
+	}
+
+    option = {
+		name = headless_horseman.7.option.1
+
+		HED = {
+			declare_war_on = { target = LOR type = annex_everything }
+			if = {
+				limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+				load_oob = HED_sprouting_pumpkins_lordaeron
+			}
+			if = {
+				limit = { has_country_flag = HED_riders_of_the_night_flag }
+				load_oob = HED_riders_of_the_night_lordaeron
+			}
+		}
+	}
+}
+
+#corrupt-the_land
+country_event = {
+	id = headless_horseman.8
+	title = headless_horseman.8.t
+	desc = headless_horseman.8.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+		name = headless_horseman.8.option.1
+		division_template = {
+			name = "Risen Skeletons"
+			priority = 1
+			regiments = {
+				undead_skeletal_warrior = { x = 0 y = 0 }
+				undead_skeletal_warrior = { x = 0 y = 1 }
+				undead_skeletal_warrior = { x = 0 y = 2 }
+				undead_skeletal_warrior = { x = 0 y = 3 }
+				undead_skeletal_warrior = { x = 1 y = 0 }
+			}
+		}
+		random_owned_state = {
+			limit = { impassable = no }
+			create_unit = {
+				division = "name = \"Risen Skeletons\" division_template = \"Risen Skeletons\" start_experience_factor = 0.1"
+				owner = HED
+				count = 3
+			}
+		}
+		random_owned_state = {
+			limit = { impassable = no }
+			create_unit = {
+				division = "name = \"Risen Skeletons\" division_template = \"Risen Skeletons\" start_experience_factor = 0.1"
+				owner = HED
+				count = 3
+			}
+		}
+		random_owned_state = {
+			limit = { impassable = no }
+			create_unit = {
+				division = "name = \"Risen Skeletons\" division_template = \"Risen Skeletons\" start_experience_factor = 0.1"
+				owner = HED
+				count = 3
+			}
+		}
+	}
+}
+
+#the kingdom falls
+country_event = {
+	id = headless_horseman.9
+	title = headless_horseman.9.t
+	desc = headless_horseman.9.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+		name = headless_horseman.9.option.1
+
+		HED = { set_capital = {	state = 10 } }
+		every_state = {
+			limit = { is_core_of = LOR }
+			add_core_of = HED
+		}
+	}
+}
+
+#the haunting of farstrider square
+country_event = {
+	id = headless_horseman.10
+	title = headless_horseman.10.t
+	desc = headless_horseman.10.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		168 = {
+			remove_dynamic_modifier = { modifier = HED_haunted_dwellings }
+			add_core_of = HED
+			transfer_state_to = HED
+		}
+		104 = {
+			add_core_of = HED
+			transfer_state_to = HED
+		}
+	}
+
+    option = {
+		name = headless_horseman.10.option.1
+		HED = {
+			declare_war_on = { target = QUE type = annex_everything }
+			if = {
+				limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+				load_oob = HED_sprouting_pumpkins_quelthalas
+			}
+			if = {
+				limit = { has_country_flag = HED_riders_of_the_night_flag }
+				load_oob = HED_riders_of_the_night_quelthalas
+			}
+		}
+	}
+}
+
+#fall of quelthalas
+country_event = {
+	id = headless_horseman.11
+	title = headless_horseman.11.t
+	desc = headless_horseman.11.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+		name = headless_horseman.11.option.1
+		every_state = {
+			limit = { is_core_of = QUE }
+			add_core_of = HED
+		}	
+	}
+}
+
+#the haunting of kharanos
+country_event = {
+	id = headless_horseman.12
+	title = headless_horseman.12.t
+	desc = headless_horseman.12.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		445 = {
+			remove_dynamic_modifier = { modifier = HED_haunted_dwellings }
+			add_core_of = HED
+			transfer_state_to = HED
+		}
+	}
+
+    option = {
+		name = headless_horseman.12.option.1
+
+		HED = {
+			declare_war_on = { target = IRO type = annex_everything }
+			if = {
+				limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+				load_oob = HED_sprouting_pumpkins_kharanos
+			}
+			if = {
+				limit = { has_country_flag = HED_riders_of_the_night_flag }
+				load_oob = HED_riders_of_the_night_kharanos
+			}
+		}
+	}
+}
+
+#the haunting of goldshire
+country_event = {
+	id = headless_horseman.13
+	title = headless_horseman.13.t
+	desc = headless_horseman.13.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		325 = {
+			remove_dynamic_modifier = { modifier = HED_haunted_dwellings }
+			add_core_of = HED
+			transfer_state_to = HED
+		}
+	}
+
+    option = {
+		name = headless_horseman.13.option.1
+
+		HED = {
+			declare_war_on = { target = STO type = annex_everything }
+			if = {
+				limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+				load_oob = HED_sprouting_pumpkins_goldshire
+			}
+			if = {
+				limit = { has_country_flag = HED_riders_of_the_night_flag }
+				load_oob = HED_riders_of_the_night_goldshire
+			}
+		}
+	}
+}
+
+#a throne fit for your head
+country_event = {
+	id = headless_horseman.14
+	title = headless_horseman.14.t
+	desc = headless_horseman.14.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+		name = headless_horseman.14.option.1
+		every_state = {
+			limit = { is_core_of = STO }
+			add_core_of = HED
+		}	
+	}
+}
+
+#the haunting of razor hill
+country_event = {
+	id = headless_horseman.15
+	title = headless_horseman.15.t
+	desc = headless_horseman.15.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		592 = {
+			remove_dynamic_modifier = { modifier = HED_haunted_dwellings }
+			transfer_state_to = HED
+			add_core_of = HED
+		}
+	}
+
+    option = {
+		name = headless_horseman.15.option.1
+
+		if = {
+			limit = { RZM = { owns_state = 591 } }
+			HED = {
+				set_capital = {	state = 592 }
+				declare_war_on = { target = RZM type = annex_everything }
+				if = {
+					limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+					load_oob = HED_sprouting_pumpkins_razor_hill
+				}
+				if = {
+					limit = { has_country_flag = HED_riders_of_the_night_flag }
+					load_oob = HED_riders_of_the_night_razor_hill
+				}
+			}
+		}
+		if = {
+			limit = { OGR = { owns_state = 591 } }
+			HED = {
+				set_capital = {	state = 592 }
+				declare_war_on = { target = OGR type = annex_everything }
+				if = {
+					limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+					load_oob = HED_sprouting_pumpkins_razor_hill
+				}
+				if = {
+					limit = { has_country_flag = HED_riders_of_the_night_flag }
+					load_oob = HED_riders_of_the_night_razor_hill
+				}
+			}
+		}	
+	}
+}
+
+#the haunting of bloodhoof village
+country_event = {
+	id = headless_horseman.16
+	title = headless_horseman.16.t
+	desc = headless_horseman.16.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		1037 = {
+			remove_dynamic_modifier = { modifier = HED_haunted_dwellings }
+			transfer_state_to = HED
+			add_core_of = HED
+		}
+	}
+
+    option = {
+		name = headless_horseman.16.option.1
+
+		if = {
+			limit = { PAL = { owns_state = 1036 } }
+			HED = {
+				declare_war_on = { target = PAL type = annex_everything }
+				if = {
+					limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+					load_oob = HED_sprouting_pumpkins_bloodhoof_village
+				}
+				if = {
+					limit = { has_country_flag = HED_riders_of_the_night_flag }
+					load_oob = HED_riders_of_the_night_bloodhoof_village
+				}
+			}
+		}
+		if = {
+			limit = { THB = { owns_state = 1036 } }
+			HED = {
+				declare_war_on = { target = THB type = annex_everything }
+				if = {
+					limit = { has_country_flag = HED_sprouting_pumpkins_flag }
+					load_oob = HED_sprouting_pumpkins_bloodhoof_village
+				}
+				if = {
+					limit = { has_country_flag = HED_riders_of_the_night_flag }
+					load_oob = HED_riders_of_the_night_bloodhoof_village
+				}
+			}
+		}
+	}
+}
+
+#the time for vengeance
+country_event = {
+	id = headless_horseman.17
+	title = headless_horseman.17.t
+	desc = headless_horseman.17.d
+	#picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+		name = headless_horseman.17.option.1
+
+		every_country = {
+			limit = { 
+				NOT = { tag = HED }
+				NOT = {	has_war_with = HED } 
+				NOT = {	is_puppet_of = HED }
+			}
+			declare_war_on = { target = HED type = annex_everything }
+		}
+	}	
+}

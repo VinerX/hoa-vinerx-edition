@@ -1,0 +1,1997 @@
+#!gfx:interface\hoa_Technologies.gfx
+#demonic gateway = barracks
+# felguard = footman
+# infernal = dire orc
+# succubus = archer
+# magic unit = doomguard
+# imps = militia spam unit but ranged
+# recon = observer
+# supression = inquisitor
+# initiative = 
+# healer = 
+
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	demons_demonic_gateway_tech = {
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_imp_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_felguard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_infernal_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_succubus_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_doomguard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 14 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+		}
+	}
+
+	demons_imp_tech = {
+
+		enable_subunits = {
+			demons_imp
+		}
+
+		on_research_complete = {
+			set_technology = { demons_imp_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_imp_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_imp_mother_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_imp_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_imp_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = fel_touched_flares
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = fury_infusions
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	fel_touched_flares = {
+
+		demons_imp = {
+			ap_attack = 0.35
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { fury_infusions }
+
+		path = {
+			leads_to_tech = demons_imp_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = fury_infusions
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = fury_infusions
+			}
+		}
+	}
+
+	fury_infusions = {
+
+		demons_imp = {
+			soft_attack = 0.15
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { fel_touched_flares }
+
+		path = {
+			leads_to_tech = demons_imp_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = fel_touched_flares
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = fel_touched_flares
+			}
+		}
+	}
+
+	demons_imp_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_imp_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = havoc_swarm
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = unstable_mutation
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	havoc_swarm = {
+
+		demons_imp = {
+			max_organisation = 5
+			breakthrough = 0.1
+			maximum_speed = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { unstable_mutation }
+
+		path = {
+			leads_to_tech = demons_imp_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = unstable_mutation
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = unstable_mutation
+			}
+		}
+	}
+
+	unstable_mutation = {
+
+		demons_imp = {
+			breakthrough = 0.2
+			defense = 0.2
+			max_strength = 0.25
+			hardness = 0.1
+			max_organisation = -5
+			reliability = -0.03
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { havoc_swarm }
+
+		path = {
+			leads_to_tech = demons_imp_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = unstable_mutation
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = unstable_mutation
+			}
+		}
+	}
+
+	demons_imp_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_imp_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_imp_mother_tech = {
+
+		enable_subunits = {
+			demons_imp_mother
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_imp_mother_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_mother_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_imp_mother_training_1_tech = {
+
+		demons_imp_mother = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_imp_mother_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_mother_technology
+			support_technology
+			priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_imp_mother_training_2_tech = {
+
+		demons_imp_mother = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = demons_imp_mother_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_mother_technology
+			support_technology
+			priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_imp_mother_training_3_tech = {
+
+		demons_imp_mother = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_imp_mother_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_mother_technology
+			support_technology
+			priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_imp_mother_training_4_tech = {
+
+		demons_imp_mother = {
+			initiative = 0.09
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_imp_mother_technology
+			support_technology
+			priest_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_felguard_tech = {
+
+		enable_subunits = {
+			demons_felguard
+		}
+
+		on_research_complete = {
+			set_technology = { demons_felguard_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_felguard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_wrathguard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_felguard_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_felguard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = infernal_resilience
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = fel_Iron_weapons
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	infernal_resilience = {
+
+		demons_felguard = {
+			defense = 0.15
+			hardness = 0.2
+			max_strength = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { fel_Iron_weapons }
+
+		path = {
+			leads_to_tech = demons_felguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = fel_Iron_weapons
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = fel_Iron_weapons
+			}
+		}
+	}
+
+	fel_Iron_weapons = {
+
+		demons_felguard = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { infernal_resilience }
+
+		path = {
+			leads_to_tech = demons_felguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = infernal_resilience
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = infernal_resilience
+			}
+		}
+	}
+
+	demons_felguard_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_felguard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = brutal_onslaught
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = soulbound_armor
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	brutal_onslaught = {
+
+		demons_felguard = {
+			breakthrough = 0.35
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { soulbound_armor }
+
+		path = {
+			leads_to_tech = demons_felguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = soulbound_armor
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = soulbound_armor
+			}
+		}
+	}
+
+	soulbound_armor = {
+
+		demons_felguard = {
+			armor_value = 0.3
+			defense = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { brutal_onslaught }
+
+		path = {
+			leads_to_tech = demons_felguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = brutal_onslaught
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = brutal_onslaught
+			}
+		}
+	}
+
+	demons_felguard_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_felguard_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_felguard_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_wrathguard_tech = {
+
+		enable_subunits = {
+			demons_wrathguard
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_wrathguard_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_wrathguard_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_wrathguard_training_1_tech = {
+
+		demons_wrathguard = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_wrathguard_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_wrathguard_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_wrathguard_training_2_tech = {
+
+		demons_wrathguard = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = demons_wrathguard_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_wrathguard_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_wrathguard_training_3_tech = {
+
+		demons_wrathguard = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_wrathguard_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_wrathguard_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_wrathguard_training_4_tech = {
+
+		demons_wrathguard = {
+			initiative = 0.09
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_wrathguard_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	demons_infernal_tech = {
+
+		enable_subunits = {
+			demons_infernal
+		}
+
+		on_research_complete = {
+			set_technology = { demons_infernal_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_infernal_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	demons_infernal_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_infernal_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = seismic_impact
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = felfire_ignition
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	seismic_impact = {
+
+		demons_infernal = {
+			hard_attack = 0.2
+			fort = {
+				attack = 0.2
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { felfire_ignition }
+
+		path = {
+			leads_to_tech = demons_infernal_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = felfire_ignition
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = felfire_ignition
+			}
+		}
+	}
+
+	felfire_ignition = {
+
+		demons_infernal = {
+			soft_attack = 0.2
+			forest = {
+				attack = 0.1
+			}
+			dense_forest = {
+				attack = 0.1
+			}
+			jungle = {
+				attack = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { seismic_impact }
+
+		path = {
+			leads_to_tech = demons_infernal_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = seismic_impact
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = seismic_impact
+			}
+		}
+	}
+
+	demons_infernal_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_infernal_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = core_reinforcement
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = brimstone_assault
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	core_reinforcement = {
+
+		demons_infernal = {
+			armor_value = 0.2
+			max_strength = 0.25
+			hardness = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { brimstone_assault }
+
+		path = {
+			leads_to_tech = demons_infernal_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = brimstone_assault
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = brimstone_assault
+			}
+		}
+	}
+
+	brimstone_assault = {
+
+		demons_infernal = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { core_reinforcement }
+
+		path = {
+			leads_to_tech = demons_infernal_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = core_reinforcement
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = core_reinforcement
+			}
+		}
+	}
+
+	demons_infernal_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_infernal_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_infernal_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_succubus_tech = {
+
+		enable_subunits = {
+			demons_succubus
+			demons_succubus_support
+		}
+
+		on_research_complete = {
+			set_technology = { demons_succubus_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_succubus_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 19 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	demons_succubus_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_succubus_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = dark_seduction
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = whipmastery
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 19 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dark_seduction = {
+
+		demons_succubus = {
+			max_organisation = 5
+			default_morale = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { whipmastery }
+
+		path = {
+			leads_to_tech = demons_succubus_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = whipmastery
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = whipmastery
+			}
+		}
+	}
+
+	whipmastery = {
+
+		demons_succubus = {
+			soft_attack = 0.1
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { dark_seduction }
+
+		path = {
+			leads_to_tech = demons_succubus_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = dark_seduction
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = dark_seduction
+			}
+		}
+	}
+
+	demons_succubus_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_succubus_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = draining_kiss
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = netherborn_reflexes
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 19 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draining_kiss = {
+
+		demons_succubus = {
+			casualty_trickleback = 0.01
+			hard_attack = 0.1
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { netherborn_reflexes }
+
+		path = {
+			leads_to_tech = demons_succubus_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = netherborn_reflexes
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = netherborn_reflexes
+			}
+		}
+	}
+
+	netherborn_reflexes = {
+
+		demons_succubus = {
+			defense = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { draining_kiss }
+
+		path = {
+			leads_to_tech = demons_succubus_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draining_kiss
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = draining_kiss
+			}
+		}
+	}
+
+	demons_succubus_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_succubus_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 19 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_succubus_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	demons_doomguard_tech = {
+
+		enable_subunits = {
+			demons_doomguard
+			demons_doomguard_support
+		}
+
+		on_research_complete = {
+			set_technology = { demons_doomguard_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_doomguard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	demons_doomguard_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_doomguard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = aura_of_dread
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demonic_fortitude
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	aura_of_dread = {
+
+		demons_doomguard = {
+			soft_attack = 0.15
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { demonic_fortitude }
+
+		path = {
+			leads_to_tech = demons_doomguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = demonic_fortitude
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = demonic_fortitude
+			}
+		}
+	}
+
+	demonic_fortitude = {
+
+		demons_doomguard = {
+			max_strength = 0.2
+			defense = 0.2
+			hardness = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { aura_of_dread }
+
+		path = {
+			leads_to_tech = demons_doomguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = aura_of_dread
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = aura_of_dread
+			}
+		}
+	}
+
+	demons_doomguard_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_doomguard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		dependencies = { demons_abyssal_fortress_tech = 1 }
+
+		path = {
+			leads_to_tech = flames_of_annihilation
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = crippling_blasts
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 23 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	flames_of_annihilation = {
+
+		demons_doomguard = {
+			soft_attack = 0.20
+			hard_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { crippling_blasts }
+
+		path = {
+			leads_to_tech = demons_doomguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = crippling_blasts
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = crippling_blasts
+			}
+		}
+	}
+
+	crippling_blasts = {
+
+		demons_doomguard = {
+			hard_attack = 0.1
+			ap_attack = 0.50
+		}
+
+		on_research_complete = {
+			increase_tech_count_demons = yes
+		}
+
+		xor = { flames_of_annihilation }
+
+		path = {
+			leads_to_tech = demons_doomguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = flames_of_annihilation
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = flames_of_annihilation
+			}
+		}
+	}
+
+	demons_doomguard_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_doomguard_equipment_3
+		}
+
+		dependencies = { demons_burning_throne_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = demons_infantry_folder
+			position = { x = 23 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			demons_demonic_gateway_technology
+			demons_doomguard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+}

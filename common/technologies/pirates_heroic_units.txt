@@ -1,0 +1,1155 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	pirates_altar_of_the_seas_tech = {
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = priates_trials_of_the_high_seas_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_captain_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_sky_captain_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_great_bombard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	priates_trials_of_the_high_seas_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = priates_trials_of_the_high_seas_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	priates_trials_of_the_high_seas_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = priates_trials_of_the_high_seas_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	priates_trials_of_the_high_seas_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	pirates_captain_tech = {
+
+		enable_subunits = {
+			pirates_captain
+		}
+
+		path = {
+			leads_to_tech = pirates_captain_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				pirates_captain_equipment_tech_1 = 1
+			}
+			increase_tech_count_pirates = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_captain_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_captain_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_blade_dance_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_bursting_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_blade_dance_tech = {
+
+		pirates_captain = {
+			hard_attack = 0.2
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_bursting_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_captain_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_bursting_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_bursting_shot_tech
+			}
+		}
+	}
+
+	pirates_bursting_shot_tech = {
+
+		pirates_captain = {
+			ap_attack = 0.2
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_blade_dance_tech }
+
+		path = {
+			leads_to_tech = pirates_captain_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_blade_dance_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_blade_dance_tech
+			}
+		}
+	}
+
+	pirates_captain_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_captain_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_bottle_of_rum_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_slice_and_dice_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_bottle_of_rum_tech = {
+
+		pirates_captain = {
+			max_organisation = 5
+			default_morale = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_slice_and_dice_tech }
+
+		path = {
+			leads_to_tech = pirates_captain_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_slice_and_dice_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_slice_and_dice_tech
+			}
+		}
+	}
+
+	pirates_slice_and_dice_tech = {
+
+		pirates_captain = {
+			soft_attack = 0.15
+			breakthrough = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_bottle_of_rum_tech }
+
+		path = {
+			leads_to_tech = pirates_captain_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_bottle_of_rum_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_bottle_of_rum_tech
+			}
+		}
+	}
+
+	pirates_captain_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_captain_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_sky_captain_tech = {
+
+		enable_subunits = {
+			pirates_sky_captain
+		}
+
+		path = {
+			leads_to_tech = pirates_sky_captain_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { pirates_sky_captain_equipment_tech_1 = 1 }
+			increase_tech_count_pirates = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_sky_captain_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_sky_captain_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_dive_bomb_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_sharp_claws_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_dive_bomb_tech = {
+
+		pirates_sky_captain = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_sharp_claws_tech }
+
+		path = {
+			leads_to_tech = pirates_sky_captain_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_sharp_claws_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_sharp_claws_tech
+			}
+		}
+	}
+
+	pirates_sharp_claws_tech = {
+
+		pirates_sky_captain = {
+			ap_attack = 0.3
+			hard_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_dive_bomb_tech }
+
+		path = {
+			leads_to_tech = pirates_sky_captain_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_dive_bomb_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_dive_bomb_tech
+			}
+		}
+	}
+
+	pirates_sky_captain_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_sky_captain_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_battle_keg_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_black_powder_bombs_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_battle_keg_tech = {
+
+		pirates_sky_captain = {
+			breakthrough = 0.25
+			default_morale = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_black_powder_bombs_tech }
+
+		path = {
+			leads_to_tech = pirates_sky_captain_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_black_powder_bombs_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_black_powder_bombs_tech
+			}
+		}
+	}
+
+	pirates_black_powder_bombs_tech = {
+
+		pirates_sky_captain = {
+			soft_attack = 0.3
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_battle_keg_tech }
+
+		path = {
+			leads_to_tech = pirates_sky_captain_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_battle_keg_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_battle_keg_tech
+			}
+		}
+	}
+
+	pirates_sky_captain_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_sky_captain_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_sky_captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_great_bombard_tech = {
+
+		enable_subunits = {
+			pirates_great_bombard
+		}
+
+		path = {
+			leads_to_tech = pirates_great_bombard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				pirates_great_bombard_equipment_tech_1 = 1
+			}
+			increase_tech_count_pirates = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_great_bombard_equipment_tech_1 = {
+
+		enable_equipments = {
+			pirates_great_bombard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		path = {
+			leads_to_tech = pirates_barrage_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_canister_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_barrage_tech = {
+
+		pirates_great_bombard = {
+			hard_attack = 0.15
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_canister_shot_tech }
+
+		path = {
+			leads_to_tech = pirates_great_bombard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_canister_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_canister_shot_tech
+			}
+		}
+	}
+
+	pirates_canister_shot_tech = {
+
+		pirates_great_bombard = {
+			soft_attack = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_barrage_tech }
+
+		path = {
+			leads_to_tech = pirates_great_bombard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_barrage_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_barrage_tech
+			}
+		}
+	}
+
+	pirates_great_bombard_equipment_tech_2 = {
+
+		enable_equipments = {
+			pirates_great_bombard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		dependencies = { pirates_buccaneer_port_tech = 1 }
+
+		path = {
+			leads_to_tech = pirates_wall_bombardment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pirates_musketeer_guards_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	pirates_wall_bombardment_tech = {
+
+		pirates_great_bombard = {
+			fort = { attack = 0.25 }
+			city = { attack = 0.15 }
+			outpost = { attack = 0.1 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_musketeer_guards_tech }
+
+		path = {
+			leads_to_tech = pirates_great_bombard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_musketeer_guards_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_musketeer_guards_tech
+			}
+		}
+	}
+
+	pirates_musketeer_guards_tech = {
+
+		pirates_great_bombard = {
+			defense = 0.5
+			max_strength = 0.25
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_pirates = yes
+		}
+
+		xor = { pirates_wall_bombardment_tech }
+
+		path = {
+			leads_to_tech = pirates_great_bombard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = pirates_wall_bombardment_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = pirates_wall_bombardment_tech
+			}
+		}
+	}
+
+	pirates_great_bombard_equipment_tech_3 = {
+
+		enable_equipments = {
+			pirates_great_bombard_equipment_3
+		}
+
+		dependencies = { pirates_pirate_stronghold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = pirates_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			pirates_great_bombard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+}

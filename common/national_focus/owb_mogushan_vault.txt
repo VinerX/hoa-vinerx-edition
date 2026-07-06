@@ -1,0 +1,233 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+    id = owb_mogushan_vault
+    continuous_focus_position = { x = 100 y = 1400}
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = OMV
+		}
+	}
+	default = no
+
+	shared_focus = owb_technology_of_the_future
+	shared_focus = owb_modern_weapons
+
+	focus = {
+		id = owb_mogushan_vault_the_great_war
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		x = 10
+		y = 0
+
+		completion_reward = { 
+			country_event = owb_shared_events.1
+			hidden_effect = {
+				annex_country = {
+					target = MGS
+				}
+				1838 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+				2010 = {
+					add_core_of = OMV
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = owb_mogushan_vault_life_in_the_vault
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		prerequisite = {
+			focus = owb_mogushan_vault_the_great_war
+		}
+		relative_position_id = owb_mogushan_vault_the_great_war
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			country_event = owb_shared_events.2
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_emerging_from_the_vault
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		prerequisite = {
+			focus = owb_mogushan_vault_life_in_the_vault
+		}
+		relative_position_id = owb_mogushan_vault_life_in_the_vault
+		x = 0
+		y = 1
+
+		completion_reward = {
+			create_wargoal = { target = DOX type = annex_everything }
+			hidden_effect = {
+				set_country_flag = emerging_from_the_vault
+			}
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_expanding_east
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_emerging_from_the_vault
+		}
+		relative_position_id = owb_mogushan_vault_emerging_from_the_vault
+		x = -1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = MGJ type = annex_everything }
+			create_wargoal = { target = GRU type = annex_everything }
+			create_wargoal = { target = HLS type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_clearing_out_the_hills
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_expanding_east
+		}
+		relative_position_id = owb_mogushan_vault_expanding_east
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = KRN type = annex_everything }
+			create_wargoal = { target = KTT type = annex_everything }
+			create_wargoal = { target = BKT type = annex_everything }
+			create_wargoal = { target = OOK type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_expanding_to_the_south
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_emerging_from_the_vault
+		}
+		relative_position_id = owb_mogushan_vault_emerging_from_the_vault
+		x = 1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = PRS type = annex_everything }
+			create_wargoal = { target = INK type = annex_everything }
+			create_wargoal = { target = DHT type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_into_the_vale
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_expanding_to_the_south
+		}
+		relative_position_id = owb_mogushan_vault_expanding_to_the_south
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = STN type = annex_everything }
+			create_wargoal = { target = MGE type = annex_everything }
+			create_wargoal = { target = TGL type = annex_everything }
+			create_wargoal = { target = PBT type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_the_defenders_of_this_world
+		icon = GFX_goal_generic_major_war
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_clearing_out_the_hills
+		}
+		prerequisite = {
+			focus = owb_mogushan_vault_into_the_vale
+		}
+		relative_position_id = owb_mogushan_vault_into_the_vale
+		x = -1
+		y = 1
+
+		available = {
+			has_war = no
+			has_country_flag = owb_knowledge_from_the_past
+			has_country_flag = owb_a_professional_army
+		}
+
+		completion_reward = {
+			create_wargoal = { target = SHP type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_utilizing_our_new_lands
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_the_defenders_of_this_world
+		}
+		relative_position_id = owb_mogushan_vault_the_defenders_of_this_world
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+			has_country_flag = owb_knowledge_from_the_past
+			has_country_flag = owb_a_professional_army
+		}
+
+		completion_reward = {
+			country_event = owb_shared_events.3
+		}
+	}
+
+	focus = {
+		id = owb_mogushan_vault_our_place_on_azeroth
+		icon = GFX_focus_pick_a_side
+		cost = 30
+		prerequisite = {
+			focus = owb_mogushan_vault_utilizing_our_new_lands
+		}
+
+		relative_position_id = owb_mogushan_vault_utilizing_our_new_lands
+		x = 0
+		y = 1
+
+		completion_reward = {
+			load_focus_tree = generic_focus
+		}
+	}
+
+}

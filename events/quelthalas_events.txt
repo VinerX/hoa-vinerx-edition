@@ -1,0 +1,1117 @@
+﻿###########################
+# Quel'thalas
+###########################
+
+add_namespace = quelthalas
+
+country_event = { # Border War
+	id = quelthalas.1
+	title = quelthalas.1.t
+	desc = quelthalas.1.d
+
+	trigger = {
+		tag = QUE
+		date > 592.8.1
+		has_start_date > 591.1.1
+		has_start_date < 595.1.1
+	}
+
+	fire_only_once = yes
+
+	option = { # Border War
+		name = quelthalas.1.option.1
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 2244
+				num_provinces = 3
+				on_win = quelthalas.20
+				on_lose = quelthalas.21
+			}
+			defender = {
+				state = 190
+				num_provinces = 3
+				on_win = quelthalas.22
+				on_lose = quelthalas.23
+			}
+		}
+	}
+}
+
+country_event = { # the blood pact
+	id = quelthalas.2
+	title = quelthalas.2.t
+	desc = quelthalas.2.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { #honor the blood pact
+		name = quelthalas.2.option.1
+		IF = {
+			Limit = { STO = { has_government = alliance } }
+			add_popularity = {
+				ideology = alliance
+				popularity = 0.05
+			}
+		}
+		IF = {
+			Limit = {  STO = { has_government = neutral } }
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.05
+			}
+		}
+		STO = { set_country_flag = QUE_support_stormwind }
+	}
+
+	 option = { #dishonor the blood pact
+		name = quelthalas.2.option.2
+		add_stability = -0.05
+		add_political_power = -75
+		add_opinion_modifier = {
+			target = STO
+			modifier = unstable_relations
+		}
+		reverse_add_opinion_modifier = {
+			target = STO
+			modifier = unstable_relations
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.3	# Start chain part 1
+	title = quelthalas.3.t
+	desc = quelthalas.3.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.3.option.1
+		country_event = {
+			id = quelthalas.4
+			days = 7
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.4	# Start chain part 2
+	title = quelthalas.4.t
+	desc = quelthalas.4.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.4.option.1
+		country_event = {
+			id = quelthalas.5
+			days = 7
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.5	# Start chain part 3
+	title = quelthalas.5.t
+	desc = quelthalas.5.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.5.option.1
+		add_political_power = 50
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.6	# Command Structure Dilemma
+	title = quelthalas.6.t
+	desc = quelthalas.6.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.6.option.1
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+		add_breakthrough_points = {
+			specialization = specialization_land
+			value = 1
+		}
+	}
+
+	option = {
+		name = quelthalas.6.option.2
+		# Placeholder effect that can be changed later
+		add_manpower = 1500
+		add_war_support = 0.05
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.7	# Intro to Greengill and Grimscale
+	title = quelthalas.7.t
+	desc = quelthalas.7.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.7.option.1
+		add_political_power = 100
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.8	# Greengill Investigation
+	title = quelthalas.8.t
+	desc = quelthalas.8.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.8.option.1
+		hidden_effect = {
+			country_event = {
+				id = quelthalas.9
+				days = 10
+				random_days = 4
+				random_hours = 12
+			}
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.9	# Greengill are moving ore and supplies somewhere
+	title = quelthalas.9.t
+	desc = quelthalas.9.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.9.option.1
+		hidden_effect = {
+			country_event = {
+				id = quelthalas.10
+				days = 10
+				random_days = 4
+				random_hours = 12
+			}
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.10	# Darkspine are mind controlling the Greengill!
+	title = quelthalas.10.t
+	desc = quelthalas.10.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.10.option.1
+		set_country_flag = QUE_naga_plot_exposed_flag	# TODO Add tooltip saying focus is accessible
+		add_ideas = QUE_darkspine_trouble
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.11	# Assassinating Mmmrrrggglll
+	title = quelthalas.11.t
+	desc = quelthalas.11.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.11.option.1	# Not our problem. Arm the civilians, let them handle this
+		random_list = {
+			10 = {
+				country_event = {
+					id = quelthalas.12
+					days = 7
+					random_days = 7
+				}
+			}
+			90 = {
+				country_event = quelthalas.13
+				country_event = {
+					id = quelthalas.13
+					days = 7
+					random_days = 7
+				}
+			}
+		}
+		ai_chance = {
+			base = 1	# Superfluous since default is already 1, but keeping it for clarity
+		}
+	}
+
+	option = {
+		name = quelthalas.11.option.2	# Send the rangers to strike from range
+		add_political_power = -25
+		random_list = {
+			40 = {
+				country_event = {
+					id = quelthalas.12
+					days = 7
+					random_days = 7
+				}
+			}
+			60 = {
+				country_event = quelthalas.13
+				country_event = {
+					id = quelthalas.13
+					days = 7
+					random_days = 7
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+
+	option = {
+		name = quelthalas.11.option.3	# Have Silvermoon Army operatives infiltrate the camp
+		add_political_power = -75
+		random_list = {
+			70 = {
+				country_event = {
+					id = quelthalas.12
+					days = 7
+					random_days = 7
+				}
+			}
+			30 = {
+				country_event = quelthalas.13
+				country_event = {
+					id = quelthalas.13
+					days = 7
+					random_days = 7
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+
+	option = {
+		name = quelthalas.11.option.4	# Ask the Farstriders for assistance
+		add_political_power = -150
+		random_list = {	# Easier to understand for players if they see the "100% chance of" wording
+			100 = {
+				country_event = {
+					id = quelthalas.12
+					days = 7
+					random_days = 7
+				}
+			}
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.12	# Mmmrrrggglll Killed Success
+	title = quelthalas.12.t
+	desc = quelthalas.12.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.12.option.1
+		complete_national_focus = QUE_averted_bloodshed
+		custom_effect_tooltip = QUE_focus_effects_tt	# TODO Loc to something along the lines of "this focus will have the following effects"
+		effect_tooltip = {
+			remove_ideas = QUE_murloc_pirates
+			2103 = {	# Tranquil Shore
+				add_extra_state_shared_building_slots = 2
+			}
+			2101 = {	# Golden Strand
+				add_extra_state_shared_building_slots = 2
+			}
+			army_experience = 5
+			add_war_support = 0.025
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.13	# Mmmrrrggglll Killed Failure
+	title = quelthalas.13.t
+	desc = quelthalas.13.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = quelthalas.13.option.1
+		complete_national_focus = QUE_show_of_force
+		custom_effect_tooltip = QUE_focus_effects_tt	# TODO Loc to something along the lines of "this focus will have the following effects"
+		effect_tooltip = {
+			remove_ideas = QUE_murloc_pirates
+			170 = {	# West Sanctum
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			174 = {	# Sunsail Anchorage
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			army_experience = 20
+			add_manpower = -250
+			add_stability = -0.05
+		}
+	}
+}
+
+country_event = {	# TODO Loc
+	id = quelthalas.14	# Anasterian Sunstrider replaced as king
+	title = quelthalas.14.t
+	desc = quelthalas.14.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	# TODO Coding for all 3 options
+	option = {
+		name = quelthalas.14.option.1
+	}
+
+	option = {
+		name = quelthalas.14.option.2
+	}
+
+	option = {
+		name = quelthalas.14.option.3
+	}
+}
+
+country_event = { # Border War
+	id = quelthalas.20
+	title = quelthalas.20.t
+	desc = quelthalas.20.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Border War
+		name = quelthalas.20.option.1
+		190 = { transfer_state_to = QUE }
+		add_stability = 0.05
+	}
+}
+
+country_event = { # Border War
+	id = quelthalas.21
+	title = quelthalas.21.t
+	desc = quelthalas.21.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Border War
+		name = quelthalas.21.option.1
+		757 = {	
+			add_resource = {
+				type = mana
+				amount = -3
+			}
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+	}
+}
+
+country_event = { # Border War
+	id = quelthalas.22
+	title = quelthalas.22.t
+	desc = quelthalas.22.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Border War
+		name = quelthalas.22.option.1
+		190 = { 
+			add_resource = {
+				type = mana
+				amount = 3
+			}
+		}
+		add_stability = 0.05
+	}
+}
+
+country_event = { # Border War
+	id = quelthalas.23
+	title = quelthalas.22.t
+	desc = quelthalas.23.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Border War
+		name = quelthalas.23.option.1
+		757 = {	
+			add_resource = {
+				type = mana
+				amount = -3
+			}
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+	}
+}
+
+###########################
+# Quel'thalas Third War events
+###########################
+
+add_namespace = quelthalas_third_war
+
+country_event = { # Our place within the Alliance
+	id = quelthalas_third_war.1
+	title = quelthalas_third_war.1.t
+	desc = quelthalas_third_war.1.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Leave the Alliance (historical)
+		name = quelthalas_third_war.1.option.1
+
+		leave_faction = yes
+		add_stability = 0.05
+		add_popularity = {
+		    ideology = alliance
+		    popularity = -0.05
+		}
+
+		add_ideas = isolation
+
+		# If the country hasn't changed to another ideology yet
+		if = {
+			limit = {
+				has_government = alliance
+			}
+			set_politics = {
+				ruling_party = var:QUE.highest_party_ideology
+			    elections_allowed = no
+			}
+		}
+		hidden_effect = {
+			set_country_flag = QUE_leave_the_alliance
+			LOR = { country_event = quelthalas_third_war.2 }
+			HEA = { country_event = quelthalas_third_war.2 }
+			STH = { country_event = quelthalas_third_war.2 }
+			GIL= { country_event = quelthalas_third_war.2 }
+			DAL= { country_event = quelthalas_third_war.2 }
+			AER= { country_event = quelthalas_third_war.2 }
+			STR= { country_event = quelthalas_third_war.2 }
+			SPC= { country_event = quelthalas_third_war.2 }
+			IRO= { country_event = quelthalas_third_war.2 }
+			GNO= { country_event = quelthalas_third_war.2 }
+			KUL= { country_event = quelthalas_third_war.2 }
+			TOL= { country_event = quelthalas_third_war.2 }
+			STO= { country_event = quelthalas_third_war.2 }
+			NET= { country_event = quelthalas_third_war.2 }
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # Stay in the Alliance
+		name = quelthalas_third_war.1.option.2
+
+		add_stability = -0.05
+
+		add_popularity = {
+		    ideology = alliance
+		    popularity = 0.05
+		}
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+		hidden_effect = {
+			set_country_flag = QUE_stay_in_alliance
+			LOR = { country_event = quelthalas_third_war.2 }
+			HEA = { country_event = quelthalas_third_war.2 }
+			STH = { country_event = quelthalas_third_war.2 }
+			GIL= { country_event = quelthalas_third_war.2 }
+			DAL= { country_event = quelthalas_third_war.2 }
+			AER= { country_event = quelthalas_third_war.2 }
+			STR= { country_event = quelthalas_third_war.2 }
+			SPC= { country_event = quelthalas_third_war.2 }
+			IRO= { country_event = quelthalas_third_war.2 }
+			GNO= { country_event = quelthalas_third_war.2 }
+			KUL= { country_event = quelthalas_third_war.2 }
+			TOL= { country_event = quelthalas_third_war.2 }
+			STO= { country_event = quelthalas_third_war.2 }
+			NET= { country_event = quelthalas_third_war.2 }
+		}
+	}
+}
+
+country_event = {
+    id = quelthalas_third_war.2
+
+	is_triggered_only = yes
+    fire_only_once = yes
+	
+    title = { #quelthalas stays in the alliance
+        text = quelthalas_third_war.2.t.1
+        trigger = {
+			QUE = {	has_country_flag = QUE_stay_in_alliance	}
+        }
+    }
+
+    title = { #quelthalas leaves alliance
+        text = quelthalas_third_war.2.t.2
+        trigger = {
+			QUE = {	has_country_flag = QUE_leave_the_alliance }
+        }
+    }
+	desc = { #quelthalas leaves alliance
+        text = quelthalas_third_war.2.d.1
+        trigger = {
+			QUE = {	has_country_flag = QUE_stay_in_alliance	}
+        }
+    }
+	desc = { #quel'thalas stays
+        text = quelthalas_third_war.2.d.2
+        trigger = {
+			QUE = {	has_country_flag = QUE_leave_the_alliance }
+        }
+    }
+
+    option = { # quel'thalas stays
+        name = quelthalas_third_war.2.option.1
+        trigger = {
+			QUE = { has_country_flag = QUE_stay_in_alliance }
+        }
+    }
+
+    option = { # quel'thalas
+        name = quelthalas_third_war.2.option.2
+        trigger = {
+			QUE = { has_country_flag = QUE_leave_the_alliance }
+        }
+    }
+}
+
+country_event = { # Undead Invasion
+	id = quelthalas_third_war.3
+	title = quelthalas_third_war.3.t
+	desc = quelthalas_third_war.3.d
+	picture = GFX_durnholde_ruins_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = QUE
+		OR = {
+			120 = { controller = { has_idea = undead_primary_race } }
+			221 = { controller = { has_idea = undead_primary_race } }
+		}
+	}
+
+	option = { ### Leave, but Tactically
+		name = quelthalas_third_war.3.option.1
+		hidden_effect = {
+			LOR = {	country_event = { id = quelthalas_third_war.4 days = 90 } }
+			QUE = {	country_event = { id = quelthalas_third_war.5 days = 21 } }
+		}
+		222 = {
+			add_manpower = -6000
+			transfer_state_to = CAE
+			add_dynamic_modifier = { modifier = GEN_high_elf_problem days = 90 }
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_army_leader = {
+			gain_xp = 120
+			add_planning = 1
+		}
+	}
+}
+
+country_event = { # Undead Invasion
+	id = quelthalas_third_war.4
+	title = quelthalas_third_war.4.t
+	desc = quelthalas_third_war.4.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { ### Leave, but Tactically
+		name = quelthalas_third_war.4.option.1
+		182 = {
+			add_manpower = 6000
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = { # Undead Invasion
+	id = quelthalas_third_war.5
+	title = quelthalas_third_war.5.t
+	desc = quelthalas_third_war.5.d
+	picture = GFX_durnholde_ruins_event
+
+	immediate = {
+		hidden_effect = {
+			222 = { add_core_of = CAE }
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { ### Leave, but Tactically
+		name = quelthalas_third_war.5.option.1
+		division_template = {
+			name = "Quel'dorei Swordsmen"
+			priority = 1
+			regiments = {
+				high_elf_swordsman = { x = 0 y = 0 }
+				high_elf_swordsman = { x = 0 y = 1 }
+				high_elf_swordsman = { x = 0 y = 2 }
+				high_elf_swordsman = { x = 0 y = 3 }
+				high_elf_swordsman = { x = 1 y = 0 }
+				high_elf_swordsman = { x = 1 y = 1 }
+				high_elf_swordsman = { x = 1 y = 2 }
+				high_elf_swordsman = { x = 1 y = 3 }
+			}
+		}
+    	random_owned_state = {
+			limit = {
+				is_coastal = yes
+				is_core_of = ROOT
+				impassable = no
+			}
+    	    create_unit = {
+				division = "name = \"Quel'dorei Swordsmen\" division_template = \"Quel'dorei Swordsmen\" start_experience_factor = 0.6"
+				owner = LOR
+			}
+		}
+	}
+}
+
+add_namespace = quelthalas_capitulation
+
+country_event = {
+  id = quelthalas_capitulation.1
+  title = quelthalas_capitulation.1.t
+  desc = quelthalas_capitulation.1.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  immediate = {
+	hidden_effect = {
+		if = {
+			limit = { QUE = { has_idea = NET_funding_research } }
+			QUE = { remove_ideas = NET_funding_research }
+		}
+		33 = {
+			remove_building = {
+				type = nuclear_facility
+				level = 1
+				province = 3308
+			}
+		}
+		QUE = { 
+			set_country_flag = high_elf_scourged
+			set_cosmetic_tag = QUE_survivors
+			set_capital = { state = 249 } 
+			retire_character = QUE_anasterian_sunstrider
+			retire_character = QUE_sylvanas_windrunner
+			retire_character = QUE_lireesa_windrunner
+			retire_character = QUE_belovir_salonar
+			remove_ideas = QUE_farstriders
+		}
+		### QUE Transfers
+		249 = { 
+			transfer_state_to = QUE
+			add_manpower = -9600 
+		}
+		250 = { 
+			transfer_state_to = QUE
+			add_manpower = -6600 
+		}
+		251 = { 
+			transfer_state_to = QUE 
+			add_manpower = -7500
+		}
+		254 = { 
+			transfer_state_to = QUE
+			add_manpower = -8400 
+		}
+
+		180 = { 
+			transfer_state_to = QUE
+			add_manpower = -5400
+		}
+
+		174 = {
+			transfer_state_to = QUE
+			add_manpower = -6600
+		}
+		2101 = {
+			transfer_state_to = QUE
+			add_manpower = -1500	
+		}
+
+		every_state = {
+			limit = {
+				OR = {
+					is_controlled_by = CAE
+					is_controlled_by = SRG
+				}
+				is_core_of = QUE
+				NOT = {
+					state = 180
+					state = 249
+					state = 250
+					state = 251
+					state = 244
+					state = 174
+					state = 2101
+
+					state = 182
+					state = 183
+					state = 184
+					state = 774
+					state = 1520
+					state = 2240
+					state = 2241
+				}
+			}
+			transfer_state_to = DET
+			add_claim_by = DET
+		}
+
+		division_template = {
+			name = "Remnant Swordsmen"
+			priority = 1
+			regiments = {
+				high_elf_swordsman = { x = 0 y = 0 }
+				high_elf_swordsman = { x = 0 y = 1 }
+				high_elf_swordsman = { x = 0 y = 2 }
+				high_elf_swordsman = { x = 1 y = 0 }
+				high_elf_swordsman = { x = 1 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Remnant Lancer"
+			priority = 1
+			regiments = {
+				high_elf_lancer = { x = 0 y = 0 }
+				high_elf_lancer = { x = 0 y = 1 }
+				high_elf_lancer = { x = 0 y = 2 }
+				high_elf_lancer = { x = 1 y = 0 }
+				high_elf_lancer = { x = 1 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Remnant Rangers"
+			priority = 1
+			regiments = {
+				high_elf_swordsman = { x = 0 y = 0 }
+				high_elf_archer = { x = 0 y = 1 }
+				high_elf_archer = { x = 0 y = 2 }
+				high_elf_swordsman = { x = 1 y = 0 }
+				high_elf_archer = { x = 1 y = 1 }
+			}
+		}
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Remnant Swordsmen\" division_template = \"Remnant Swordsmen\" start_experience_factor = 0.2"
+				owner = QUE
+			}
+		}
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Remnant Swordsmen\" division_template = \"Remnant Swordsmen\" start_experience_factor = 0.2"
+				owner = QUE
+			}
+		}
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Remnant Swordsmen\" division_template = \"Remnant Swordsmen\" start_experience_factor = 0.2"
+				owner = QUE
+			}
+		}
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Remnant Swordsmen\" division_template = \"Remnant Swordsmen\" start_experience_factor = 0.2"
+				owner = QUE
+			}
+		}
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Remnant Lancer\" division_template = \"Remnant Lancer\" start_experience_factor = 0.2"
+				owner = QUE
+			}
+		}
+		random_owned_state = {
+			create_unit = {
+				division = "name = \"Remnant Rangers\" division_template = \"Remnant Rangers\" start_experience_factor = 0.2"
+				owner = QUE
+			}
+		}
+
+		DET = { inherit_technology = CAE }
+
+		### DET
+		33 = { add_manpower = -15600 }
+		252 = { add_manpower = -1800 }
+		253 = { add_manpower = -1500 }
+		2247 = { add_manpower = -5400 }
+
+		104 = { add_manpower = -8100 }
+		2104 = { add_manpower = -3300 }
+
+		182 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+			add_manpower = -10000 
+		}
+		183 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+			add_manpower = -12400 
+		}
+		184 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+			add_manpower = -15600
+		}
+		1520 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+			add_manpower = -1200
+		}
+		2240 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+			add_manpower = -800
+		}
+		2241 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+			add_manpower = -1200
+		}
+		774 = { 
+			transfer_state_to = DET
+			add_core_of = DET
+		}
+	}
+  }
+
+  option = { # 
+    name = quelthalas_capitulation.1.option.1
+    goto_state = 249
+	hidden_effect = {
+		QUE = { country_event = { id = quelthalas_capitulation.2 days = 60 } }
+	}
+	add_timed_idea = {
+		idea = QUE_tainted_sunwell
+		days = 180
+	}
+	add_ideas = QUE_devastated_army
+  }
+}
+
+country_event = {
+  id = quelthalas_capitulation.2
+  title = quelthalas_capitulation.2.t
+  desc = quelthalas_capitulation.2.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = { # 
+    name = quelthalas_capitulation.2.option.1
+	add_ideas = QUE_withdrawl_1
+  }
+}
+
+country_event = {
+  id = quelthalas_capitulation.3
+  title = quelthalas_capitulation.3.t
+  desc = quelthalas_capitulation.3.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  immediate = {
+	set_cosmetic_tag = QUE_blood
+	33 = { 
+		transfer_state_to = QUE 
+		add_dynamic_modifier = { modifier = destroyed_sunwell }
+	}
+  }
+
+  option = { # 
+    name = quelthalas_capitulation.3.option.1
+	swap_ideas = {
+		remove_idea = QUE_withdrawl_1
+		add_idea = QUE_withdrawl_2
+	}
+	remove_ideas = QUE_devastated_army
+	add_timed_idea = {
+		idea = QUE_those_who_serve_1
+		years = 3
+	}
+	hidden_effect = {
+		QUE = { country_event = { id = quelthalas_remnants.1 days = 30 } }
+	}
+  }
+}
+
+add_namespace = quelthalas_remnants
+
+country_event = {
+  id = quelthalas_remnants.1
+  title = quelthalas_remnants.1.t
+  desc = quelthalas_remnants.1.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  immediate = {
+	222 = { 
+		transfer_state_to = QUE 
+		add_dynamic_modifier = { modifier = GEN_undead_problem }
+	}
+  }
+
+  option = { 
+    name = quelthalas_remnants.1.option.1
+	hidden_effect = {
+		QUE = { country_event = { id = quelthalas_remnants.2 days = 60 } }
+	}
+	division_template = {
+		name = "Sin'dorei Swordsmen"
+		priority = 1
+		regiments = {
+			high_elf_swordsman = { x = 0 y = 0 }
+			high_elf_swordsman = { x = 0 y = 1 }
+			high_elf_swordsman = { x = 0 y = 2 }
+			high_elf_swordsman = { x = 1 y = 0 }
+			high_elf_swordsman = { x = 1 y = 1 }
+		}
+	}
+    222 = {
+        create_unit = {
+			division = "name = \"Sin'dorei Swordsmen\" division_template = \"Sin'dorei Swordsmen\" start_experience_factor = 0.4"
+			owner = QUE
+			count = 2
+		}
+	}
+  }
+}
+
+country_event = {
+  id = quelthalas_remnants.2
+  title = quelthalas_remnants.2.t
+  desc = quelthalas_remnants.2.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  immediate = {
+	178 = { 
+		transfer_state_to = QUE 
+		add_dynamic_modifier = { modifier = GEN_undead_problem }
+	}
+	add_ideas = QUE_farstriders_rebuild
+  }
+
+  option = { 
+    name = quelthalas_remnants.2.option.1
+	division_template = {
+		name = "Farstriders"
+		priority = 1
+		regiments = {
+			high_elf_swordsman = { x = 0 y = 0 }
+			high_elf_farstrider = { x = 0 y = 1 }
+			high_elf_farstrider = { x = 0 y = 2 }
+			high_elf_swordsman = { x = 1 y = 0 }
+			high_elf_farstrider = { x = 1 y = 1 }
+		}
+	}
+    178 = {
+        create_unit = {
+			division = "name = \"Farstriders\" division_template = \"Farstriders\" start_experience_factor = 0.4"
+			owner = QUE
+		}
+	}
+  }
+}

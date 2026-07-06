@@ -1,0 +1,64 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			every_country = {
+				setup_accepted_religion_arrays = yes
+				set_variable = { religion_conversion_cost = 40 }
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = religion_conversion_ai
+						option = NO_CONVERTING
+					}
+				}
+				set_variable = { global.RELIGION_CONVERSION_BLOCKED = 1 }
+			}
+		}
+	}
+
+	on_daily = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						NOT = { has_variable = global.RELIGION_CONVERSION_BLOCKED }
+						# The var condition is always either false or true, so it does not need to be checked twice @Tran
+						# AND = {
+							is_ai = no
+							# has_variable = global.RELIGION_CONVERSION_BLOCKED
+						# }
+					}
+				}
+				every_owned_state = {
+					limit = {
+						has_variable = religion_conversion_progress
+					}
+					if = {
+						limit = {
+							is_owned_by = religion_conversion_country
+						}
+						add_to_variable = { religion_conversion_progress = 1 }
+						if = {
+							limit = {
+								check_variable = { religion_conversion_progress > -1 }
+							}
+							set_state_religion = yes
+							var:religion_conversion_country = {
+								add_to_array = { religion_conversion_complete_popup = PREV }
+							}
+							clear_variable = religion_conversion_daily_progress
+							clear_variable = religion_conversion_progress
+							PREV = { clear_variable = religion_conversion_country }
+						}
+					}
+				}
+			}
+			else = {
+				clear_variable = religion_conversion_daily_progress
+				clear_variable = religion_conversion_progress
+				clear_variable = religion_conversion_country
+			}
+		}
+	}
+}

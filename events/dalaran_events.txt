@@ -1,0 +1,104 @@
+﻿###########################
+#dalaran
+###########################
+
+add_namespace = dalaran
+
+# attending meeting of the seven kingdoms Alliance
+country_event = {
+	id = dalaran.3
+	title = dalaran.3.t
+	desc = dalaran.3.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = dalaran.3.option.1
+	add_popularity = { ideology = alliance popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_alliance
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance > 49
+			}
+		}
+  	}
+
+	option = {
+    name = dalaran.3.option.2
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance < 50
+			}
+		}
+  	}
+}
+
+# attending meeting of the seven kingdoms
+country_event = {
+	id = dalaran.4
+	title = dalaran.4.t
+	desc = dalaran.4.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = dalaran.4.option.1
+	add_popularity = { ideology = neutral popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_neutral
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 0
+		}
+  	}
+
+	option = {
+    name = dalaran.4.option.2
+		set_country_flag = LOR_denied_an_alliance
+		ai_chance = {
+			base = 1
+		}
+  	}
+}

@@ -1,0 +1,2235 @@
+#!gfx:interface\hoa_Technologies.gfx
+
+technologies = {
+
+	wildhammer_dwarf_longhouse_tech = {
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+                                                                                           
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 11 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	wildhammer_dwarf_clansman_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_clansman
+		}
+
+		on_research_complete = {
+			set_technology = { wildhammer_dwarf_clansman_equipment_tech_1 = 1 }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_thane_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_guard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_clansman_equipment_tech_1 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_clansman_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_slam_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_sunder_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_clansman_slam_tech = {
+
+		wildhammer_dwarf_clansman = {
+			soft_attack = 0.1
+			max_strength = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_clansman_sunder_armor_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_clansman_sunder_armor_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_clansman_sunder_armor_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_clansman_sunder_armor_tech = {
+
+		wildhammer_dwarf_clansman = {
+			soft_attack = 0.05
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_clansman_slam_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_clansman_slam_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_clansman_slam_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_clansman_equipment_tech_2 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_clansman_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_thunder_clap_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_lightning_rush_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_thunder_clap_tech = {
+
+		wildhammer_dwarf_clansman = {
+			casualty_trickleback = 0.02
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_clansman_lightning_rush_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_clansman_lightning_rush_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_clansman_lightning_rush_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_clansman_lightning_rush_tech = {
+
+		wildhammer_dwarf_clansman = {
+			maximum_speed = 0.1
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_thunder_clap_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_clansman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_clansman_lightning_rush_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_clansman_lightning_rush_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_clansman_equipment_tech_3 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_clansman_equipment_3
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_clansman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_thane_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_thane
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_thane_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_thane_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_thane_training_tech_1 = {
+
+		wildhammer_dwarf_thane = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_thane_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_thane_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_thane_training_tech_2 = {
+
+		wildhammer_dwarf_thane = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_thane_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_thane_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_thane_training_tech_3 = {
+
+		wildhammer_dwarf_thane = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_thane_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_thane_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_thane_training_tech_4 = {
+
+		wildhammer_dwarf_thane = {
+			initiative = 0.09
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_thane_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_guard_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_guard
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_guard_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_guard_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_guard_training_tech_1 = {
+
+		wildhammer_dwarf_guard = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_guard_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_guard_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_guard_training_tech_2 = {
+
+		wildhammer_dwarf_guard = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_guard_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_guard_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_guard_training_tech_3 = {
+
+		wildhammer_dwarf_guard = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_guard_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_guard_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_guard_training_tech_4 = {
+
+		wildhammer_dwarf_guard = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_guard_technology
+			support_technology
+			guard_technology
+		}
+
+				ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_slayer_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_slayer
+		}
+
+		on_research_complete = {
+			set_technology = { wildhammer_dwarf_slayer_equipment_tech_1 = 1 }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 11 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_slayer_equipment_tech_1 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_slayer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_battle_shout_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_1_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 11 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_slayer_battle_shout_tech = {
+
+		wildhammer_dwarf_slayer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_slayer_1_2 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_slayer_1_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_slayer_1_2
+			}
+		}
+	}
+
+	wildhammer_dwarf_slayer_1_2 = {
+
+		wildhammer_dwarf_slayer = {
+			defense = 0.05
+			armor_value = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_slayer_battle_shout_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_slayer_battle_shout_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_slayer_battle_shout_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_slayer_equipment_tech_2 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_slayer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_2_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 11 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_slayer_2_1 = {
+
+		wildhammer_dwarf_slayer = {
+			entrenchment = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_slayer_2_2 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_slayer_2_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_slayer_2_2
+			}
+		}
+	}
+
+	wildhammer_dwarf_slayer_2_2 = {
+
+		wildhammer_dwarf_slayer = {
+			soft_attack = 0.05
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_slayer_2_1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_slayer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_slayer_2_1
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_slayer_2_1
+			}
+		}
+	}
+
+	wildhammer_dwarf_slayer_equipment_tech_3 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_slayer_equipment_3
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 11 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_slayer_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_mountaineer_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_mountaineer
+		}
+
+		on_research_complete = {
+			set_technology = { wildhammer_dwarf_mountaineer_equipment_tech_1 = 1 }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_lookout_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_mountaineer_equipment_tech_1 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_mountaineer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_falcon_companion_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_1_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_mountaineer_falcon_companion_tech = {
+
+		wildhammer_dwarf_mountaineer = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_mountaineer_1_2 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_mountaineer_1_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_mountaineer_1_2
+			}
+		}
+	}
+
+	wildhammer_dwarf_mountaineer_1_2 = {
+
+		wildhammer_dwarf_mountaineer = {
+			initiative = 0.05
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_mountaineer_falcon_companion_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_mountaineer_falcon_companion_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_mountaineer_falcon_companion_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_mountaineer_equipment_tech_2 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_mountaineer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_2_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_mountaineer_2_1 = {
+
+		wildhammer_dwarf_mountaineer = {
+			armor_value = 0.2
+			max_strength = 0.1
+			hardness = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_mountaineer_2_2 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_mountaineer_2_2
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_mountaineer_2_2
+			}
+		}
+	}
+
+	wildhammer_dwarf_mountaineer_2_2 = {
+
+		wildhammer_dwarf_mountaineer = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_mountaineer_2_1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_mountaineer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_mountaineer_2_1
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_mountaineer_2_1
+			}
+		}
+	}
+
+	wildhammer_dwarf_mountaineer_equipment_tech_3 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_mountaineer_equipment_3
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_mountaineer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wildhammer_dwarf_lookout_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_lookout
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_lookout_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_lookout_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_lookout_training_tech_1 = {
+
+		wildhammer_dwarf_lookout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_lookout_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_lookout_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_lookout_training_tech_2 = {
+
+		wildhammer_dwarf_lookout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_lookout_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_lookout_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_lookout_training_tech_3 = {
+
+		wildhammer_dwarf_lookout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_lookout_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_lookout_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_lookout_training_tech_4 = {
+
+		wildhammer_dwarf_lookout = {
+			recon = 1.5
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_lookout_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_elementalists_lodge_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+        on_research_complete = {
+            set_technology = { arcane_tower_tech_global = 1 popup = no }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elemental_surge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 23 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	wildhammer_dwarf_elemental_surge_tech = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		wildhammer_dwarf_elementalist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elemental_surge_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_elemental_surge_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		wildhammer_dwarf_elementalist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elemental_surge_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_elemental_surge_tech_3 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		wildhammer_dwarf_elementalist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elemental_surge_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_elemental_surge_tech_4 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		wildhammer_dwarf_elementalist = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		wildhammer_dwarf_flame_binder = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+        dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_elementalist_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_elementalist
+		}
+
+		on_research_complete = {
+			set_technology = { wildhammer_dwarf_elementalist_equipment_tech_1 = 1 }
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_shaman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_elementalist_equipment_tech_1 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_elementalist_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_chain_lightning_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_flame_shock_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_elementalist_chain_lightning_tech = {
+
+		wildhammer_dwarf_elementalist = {
+			default_morale = 0.5
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_elementalist_flame_shock_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_elementalist_flame_shock_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_elementalist_flame_shock_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_elementalist_flame_shock_tech = {
+
+		wildhammer_dwarf_elementalist = {
+			ap_attack = 0.05
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_elementalist_chain_lightning_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_elementalist_chain_lightning_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_elementalist_chain_lightning_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_elementalist_equipment_tech_2 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_elementalist_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_earth_shield_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_earthquake_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 23 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_elementalist_earth_shield_tech = {
+
+		wildhammer_dwarf_elementalist = {
+			max_strength = 0.05
+			experience_loss_factor = 0.03
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_elementalist_earthquake_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_elementalist_earthquake_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_elementalist_earthquake_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_elementalist_earthquake_tech = {
+
+		wildhammer_dwarf_elementalist = {
+			hard_attack = 0.1
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		xor = { wildhammer_dwarf_elementalist_earth_shield_tech }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_elementalist_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = wildhammer_dwarf_elementalist_earth_shield_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = wildhammer_dwarf_elementalist_earth_shield_tech
+			}
+		}
+	}
+
+	wildhammer_dwarf_elementalist_equipment_tech_3 = {
+
+		enable_equipments = {
+			wildhammer_dwarf_elementalist_equipment_3
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 23 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_elementalist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_shaman_tech = {
+
+		enable_subunits = {
+			wildhammer_dwarf_shaman
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_shaman_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wildhammer_dwarf_shamans_blessing_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 26 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_shaman_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	wildhammer_dwarf_shaman_training_tech_1 = {
+
+		wildhammer_dwarf_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_shaman_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_shaman_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_shaman_training_tech_2 = {
+
+		wildhammer_dwarf_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_shaman_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_shaman_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_shaman_training_tech_3 = {
+
+		wildhammer_dwarf_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_shaman_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_shaman_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_shaman_training_tech_4 = {
+
+		wildhammer_dwarf_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			wildhammer_dwarf_shaman_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	wildhammer_dwarf_shamans_blessing_tech = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_shamans_blessing_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 28 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	wildhammer_dwarf_shamans_blessing_tech_2 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_wildhammer_dwarf = yes
+		}
+
+		dependencies = { wildhammer_dwarf_aerie_keep_tech = 1 }
+
+		path = {
+			leads_to_tech = wildhammer_dwarf_shamans_blessing_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 28 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	wildhammer_dwarf_shamans_blessing_tech_3 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		dependencies = { wildhammer_dwarf_skyhold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = wildhammer_dwarf_infantry_folder
+			position = { x = 28 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+}

@@ -1,0 +1,3479 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	swamp_tech = {
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = mire_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spores_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	mire_tech = {
+
+		research_speed_factor = 0.025
+		global_building_slots_factor = 0.15
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+			set_technology = { tier_2_tech = 1 }
+		}
+
+		dependencies = {
+			bog_beast_tier_2 = 1
+		}
+
+		path = {
+			leads_to_tech = bog_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	bog_tech = {
+
+		research_speed_factor = 0.025
+		global_building_slots_factor = 0.15
+
+		dependencies = {
+			bog_beast_tier_3 = 1
+		}
+
+		on_research_complete = {
+			set_technology = { tier_3_tech = 1 }
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "601.1.1"
+			}
+		}
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	spores_tech = {
+
+		enable_subunits = {
+			healing_spore
+			supply_spore
+			noxious_spore
+		}
+
+		on_research_complete = {
+			set_technology = { spores_equipment_tech = 1 }
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = spores_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bogshaper_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 6 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+		}
+	}
+
+	spores_equipment_tech = {
+
+		enable_equipments = {
+			bog_beast_spore_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_healing_spore_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = improved_supply_spore_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = improved_noxious_spore_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 6 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+		}
+	}
+
+	improved_healing_spore_1 = {
+
+		healing_spore = {
+			reliability_factor = 0.05
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_healing_spore_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 4 y = 4 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			healer_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	improved_healing_spore_2 = {
+	
+		healing_spore = {
+			reliability_factor = 0.05
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_healing_spore_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 4 y = 6 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			healer_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	improved_healing_spore_3 = {
+	
+		healing_spore = {
+			reliability_factor = 0.05
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_healing_spore_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 4 y = 8 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			healer_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	improved_healing_spore_4 = {
+	
+		healing_spore = {
+			reliability_factor = 0.05
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+	
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 4 y = 10 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			healer_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_supply_spore_1 = {
+
+		supply_spore = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_supply_spore_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 6 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_supply_spore_2 = {
+
+		supply_spore = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_supply_spore_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_supply_spore_3 = {
+
+		supply_spore = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_supply_spore_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_supply_spore_4 = {
+
+		supply_spore = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_noxious_spore_1 = {
+
+		noxious_spore = {
+			suppression_factor = 0.075
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		research_cost = 1.5
+
+		path = {
+			leads_to_tech = improved_noxious_spore_2
+			research_cost_coeff = 1
+		}
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 8 y = 4 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			militia_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	improved_noxious_spore_2 = {
+	
+		noxious_spore = {
+			suppression_factor = 0.075
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_noxious_spore_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 8 y = 6 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			militia_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	improved_noxious_spore_3 = {
+	
+		noxious_spore = {
+			suppression_factor = 0.075
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_noxious_spore_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 8 y = 8 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			militia_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+	
+	improved_noxious_spore_4 = {
+	
+		noxious_spore = {
+			suppression_factor = 0.075
+			equipment_capture_factor = 0.05
+		}
+	
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 8 y = 10 }
+		}
+	
+		categories = {
+			administration_technology
+			spore_technology
+			support_technology
+			militia_technology
+		}
+	
+		ai_will_do = { factor = 1 }
+	}
+
+	bogshaper_tech = {
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = mutation_pool_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = overgrown_caravan_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = improved_bogshaping_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = rootshaping_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thorn_bush_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = moss_mats_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = wood_shaper_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = stone_mover_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = shrunken_shrine_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = skulker_den_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 24 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+		}
+	}
+
+	mutation_pool_tech = {
+	
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { arcane_tower_tech_global = 1 popup = no }
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = vines_mutation_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thorns_mutation_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = improved_mutation
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = water_resistance_mutation
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = heat_resistance_mutation
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 14 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vines_mutation_tech = {
+
+		bog_beast = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		raincaller = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			soft_attack = 0.05
+			hard_attack = 0.05	
+		}
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = vines_mutation_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 10 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			sword_technology
+			blacksmith_technology
+		}
+	}
+
+	vines_mutation_tech_2 = {
+
+		bog_beast = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		raincaller = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			soft_attack = 0.05
+			hard_attack = 0.05	
+		}
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = vines_mutation_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			sword_technology
+			blacksmith_technology
+		}
+	}
+
+	vines_mutation_tech_3 = {
+
+		bog_beast = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		raincaller = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			soft_attack = 0.05
+			hard_attack = 0.05	
+		}
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = vines_mutation_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			sword_technology
+			blacksmith_technology
+		}
+	}
+
+	vines_mutation_tech_4 = {
+
+		bog_beast = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		raincaller = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			soft_attack = 0.05
+			hard_attack = 0.05	
+		}
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			sword_technology
+			blacksmith_technology
+		}
+	}
+
+	thorns_mutation_tech = {
+
+		bog_beast = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		raincaller = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		bog_lord = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		marsh_roots = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		shardthrower = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		jungle_stalker = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		deep_behemoths = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = thorns_mutation_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 12 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			armor_technology
+			blacksmith_technology
+		}
+	}
+	
+	thorns_mutation_tech_2 = {
+	
+		bog_beast = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		raincaller = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		bog_lord = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		marsh_roots = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		shardthrower = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		jungle_stalker = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		deep_behemoths = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = thorns_mutation_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 12 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			armor_technology
+			blacksmith_technology
+		}
+	}
+	
+	thorns_mutation_tech_3 = {
+	
+		bog_beast = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		raincaller = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		bog_lord = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		marsh_roots = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		shardthrower = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		jungle_stalker = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		deep_behemoths = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = thorns_mutation_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 12 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			armor_technology
+			blacksmith_technology
+		}
+	}
+	
+	thorns_mutation_tech_4 = {
+	
+		bog_beast = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		raincaller = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		bog_lord = {
+			defense = 0.05
+			breakthrough = 0.05
+		}
+		marsh_roots = {
+			defense = 0.07
+			breakthrough = 0.03
+		}
+		shardthrower = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		jungle_stalker = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+		deep_behemoths = {
+			defense = 0.03
+			breakthrough = 0.07
+		}
+	
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 12 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			armor_technology
+			blacksmith_technology
+		}
+	}
+	
+	improved_mutation = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		category_infantry = {
+			max_strength = 0.25
+		}
+	
+		path = {
+			leads_to_tech = improved_mutation_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 14 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	improved_mutation_2 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		category_infantry = {
+			max_strength = 0.25
+		}
+
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = improved_mutation_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 14 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	improved_mutation_3 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		category_infantry = {
+			max_strength = 0.25
+		}
+	
+		path = {
+			leads_to_tech = improved_mutation_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 14 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	improved_mutation_4 = {
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		category_infantry = {
+			max_strength = 0.25
+		}
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 14 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	water_resistance_mutation = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = water_resistance_mutation_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 16 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			blacksmith_technology
+			climate_technology
+		}
+	}
+	
+	water_resistance_mutation_2 = {
+	
+		acclimatization_cold_climate_gain_factor = 0.1
+	
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 16 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			blacksmith_technology
+			climate_technology
+		}
+	}
+
+	sp_salt_adaptation = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_salt_adaptation } 
+		}
+
+		bog_beast = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+		raincaller = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+		bog_lord = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+		marsh_roots = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+		shardthrower = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+		jungle_stalker = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+		deep_behemoths = {
+			river = { attack = 0.1 }
+			amphibious = { attack = 0.1 }
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			tier_technology
+		}
+	}
+
+	heat_resistance_mutation = {
+
+		acclimatization_hot_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = heat_resistance_mutation_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 18 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			blacksmith_technology
+			climate_technology
+		}
+	}
+	
+	heat_resistance_mutation_2 = {
+	
+		acclimatization_hot_climate_gain_factor = 0.1
+	
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 18 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			blacksmith_technology
+			climate_technology
+		}
+	}
+
+	overgrown_caravan_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 21 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		path = {
+			leads_to_tech = overgrown_caravan_tech_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	overgrown_caravan_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 21 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		path = {
+			leads_to_tech = overgrown_caravan_tech_3
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	overgrown_caravan_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 21 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_bogshaping_tech = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_bogshaping_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 24 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+	
+	improved_bogshaping_2 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_bogshaping_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 24 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+	
+	improved_bogshaping_3 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = improved_bogshaping_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 24 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+	
+	improved_bogshaping_4 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_bogshaping_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 24 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+	
+	improved_bogshaping_5 = {
+	
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 24 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	rootshaping_tech = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = root_construction_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = symbiosis_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = root_collection_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 28 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+			rootshaping_technology
+		}
+	}
+
+	root_construction_1 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = root_construction_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 26 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+			rootshaping_technology
+		}
+	}
+
+	root_construction_2 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+
+		path = {
+			leads_to_tech = root_construction_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 26 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+			rootshaping_technology
+		}
+	}
+
+	root_construction_3 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = root_construction_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 26 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+			rootshaping_technology
+		}
+	}
+
+	root_construction_4 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+
+		path = {
+			leads_to_tech = root_construction_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 26 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+			rootshaping_technology
+		}
+	}
+
+	root_construction_5 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 26 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			peasant_tools_technology
+			construction_tools_technology
+			rootshaping_technology
+		}
+	}
+
+	symbiosis_1 = {
+
+		monthly_population = 0.25
+		land_reinforce_rate = 0.02
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = symbiosis_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 28 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	symbiosis_2 = {
+
+		monthly_population = 0.25
+		land_reinforce_rate = 0.02
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = symbiosis_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 28 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	symbiosis_3 = {
+
+		monthly_population = 0.25
+		land_reinforce_rate = 0.02
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = symbiosis_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 28 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	symbiosis_4 = {
+
+		monthly_population = 0.25
+		land_reinforce_rate = 0.02
+		coordination_bonus = 0.01
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 28 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			horn_technology
+		}
+	}
+
+	root_collection_1 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = root_collection_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 30 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			rootshaping_technology
+			peasant_tools_technology
+		}
+	}
+
+	root_collection_2 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = root_collection_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 30 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			rootshaping_technology
+			peasant_tools_technology
+		}
+	}
+
+	root_collection_3 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = root_collection_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 30 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			rootshaping_technology
+			peasant_tools_technology
+		}
+	}
+
+	root_collection_4 = {
+
+		local_resources_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = root_collection_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 30 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			rootshaping_technology
+			peasant_tools_technology
+		}
+	}
+
+	root_collection_5 = {
+
+		local_resources_factor = 0.1
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 30 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			rootshaping_technology
+			peasant_tools_technology
+		}
+	}
+	
+	thorn_bush_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_bog_beast = yes
+		}
+
+		industry_repair_factor = 0.05
+	
+		path = {
+			leads_to_tech = thorn_bush_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 32 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			fortification_technology
+		}
+	}
+
+	thorn_bush_tech_2 = {
+
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+
+		industry_repair_factor = 0.05
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = thorn_bush_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 32 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			fortification_technology
+		}
+	}
+
+	thorn_bush_tech_3 = {
+
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+
+		industry_repair_factor = 0.05
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = thorn_bush_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 32 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			fortification_technology
+		}
+	}
+
+	thorn_bush_tech_4 = {
+
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+
+		industry_repair_factor = 0.05
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = thorn_bush_tech_5
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 32 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			fortification_technology
+		}
+	}
+
+	thorn_bush_tech_5 = {
+
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+
+		industry_repair_factor = 0.05
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 32 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			fortification_technology
+		}
+	}
+
+	moss_mats_tech = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+	
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1	popup = no }
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_moss_mats
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 34 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			forge_technology
+			agriculture_technology
+			blacksmith_technology
+		}
+	}
+	
+	improved_moss_mats = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_moss_mats_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 34 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			forge_technology
+			agriculture_technology
+			blacksmith_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_moss_mats_2 = {
+
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = improved_moss_mats_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 34 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			forge_technology
+			agriculture_technology
+			blacksmith_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_moss_mats_3 = {
+	
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_moss_mats_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 34 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			forge_technology
+			agriculture_technology
+			blacksmith_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_moss_mats_4 = {
+	
+		production_factory_max_efficiency_factor = 0.08
+		production_factory_efficiency_gain_factor = 0.2
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+		}
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 34 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			forge_technology
+			agriculture_technology
+			blacksmith_technology
+			resource_building_technology
+		}
+	}
+
+	wood_shaper_tech = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.02
+		equipment_conversion_speed = 0.15
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_bog_beast = yes
+		}
+
+		bog_beast = {
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			hard_attack = 0.05
+		}
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+		path = {
+			leads_to_tech = improved_wood_shaper
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 36 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	improved_wood_shaper = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.02
+		equipment_conversion_speed = 0.15
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		bog_beast = {
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			hard_attack = 0.05
+		}
+
+		path = {
+			leads_to_tech = improved_wood_shaper_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 36 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	improved_wood_shaper_2 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.02
+		#equipment_conversion_speed = 0.15
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		bog_beast = {
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			hard_attack = 0.05
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_wood_shaper_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 36 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	improved_wood_shaper_3 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.02
+		#equipment_conversion_speed = 0.15
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		bog_beast = {
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			hard_attack = 0.05
+		}
+
+		path = {
+			leads_to_tech = improved_wood_shaper_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 36 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	improved_wood_shaper_4 = {
+
+		line_change_production_efficiency_factor = 0.02
+		production_factory_start_efficiency_factor = 0.02
+		#equipment_conversion_speed = 0.2
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		bog_beast = {
+			hard_attack = 0.05
+		}
+		marsh_roots = {
+			hard_attack = 0.05
+		}
+		bog_lord = {
+			hard_attack = 0.05
+		}
+		jungle_stalker = {
+			hard_attack = 0.05
+		}
+		deep_behemoths = {
+			hard_attack = 0.05
+		}
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 36 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			resource_building_technology
+		}
+	}
+
+	stone_mover_tech = {
+	
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		static_anti_air_hit_chance_factor = 0.05
+
+		on_research_complete = {
+			set_technology = {
+				iron_mine_tech_global = 1
+				sulfur_mine_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_bog_beast = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_stone_mover
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 38 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_stone_mover = {
+
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		static_anti_air_hit_chance_factor = 0.05
+	
+		path = {
+			leads_to_tech = improved_stone_mover_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 38 y = 4 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_stone_mover_2 = {
+
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		static_anti_air_hit_chance_factor = 0.05
+
+		dependencies = { mire_tech = 1 }
+	
+		path = {
+			leads_to_tech = improved_stone_mover_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 38 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_stone_mover_3 = {
+
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		static_anti_air_hit_chance_factor = 0.05
+	
+		path = {
+			leads_to_tech = improved_stone_mover_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 38 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+	
+	improved_stone_mover_4 = {
+
+		shardthrower = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+	
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+
+		static_anti_air_hit_chance_factor = 0.05
+
+		dependencies = { bog_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 38 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	shrunken_shrine_tech = {
+
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { church_tech_global = 1 popup = no }
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = shrine_offerings_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 40 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shrine_offerings_tech = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = shrine_offerings_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 40 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shrine_offerings_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = shrine_offerings_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 40 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shrine_offerings_tech_3 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = shrine_offerings_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 40 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shrine_offerings_tech_4 = {
+
+		country_faith_gain_factor = 0.125
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 40 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	skulker_den_tech = {
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { spy_tech_global = 1 popup = no }
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = night_skulking
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = improved_skulking_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tree_skulker_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 44 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			decryption_technology
+		}
+	}
+
+	night_skulking = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = night_skulking_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 42 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	night_skulking_2 = {
+
+		land_night_attack = 0.1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = night_skulking_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 42 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	night_skulking_3 = {
+
+		land_night_attack = 0.1
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 42 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nights_watch_technology
+		}
+	}
+
+	improved_skulking_1 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_skulking_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 44 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			decryption_technology
+		}
+	}
+
+	improved_skulking_2 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_skulking_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 44 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			decryption_technology
+		}
+	}
+
+	improved_skulking_3 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_skulking_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 44 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			decryption_technology
+		}
+	}
+
+	improved_skulking_4 = {
+
+		encryption = 1
+		decryption = 1
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 44 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			decryption_technology
+		}
+	}
+
+	tree_skulker_tech = {
+
+		enable_building = {
+			building = radar_station
+			level = 1
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			set_technology = {
+				scout_tower_tech_global = 1
+				guard_tower_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = tree_skulker_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 46 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+		}
+	}
+
+	tree_skulker_tech_2 = {
+
+		enable_building = {
+			building = radar_station
+			level = 2
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = tree_skulker_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 46 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+		}
+	}
+
+	tree_skulker_tech_3 = {
+
+		enable_building = {
+			building = radar_station
+			level = 3
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = tree_skulker_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 46 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+		}
+	}
+
+	tree_skulker_tech_4 = {
+
+		enable_building = {
+			building = radar_station
+			level = 4
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = tree_skulker_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 46 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+		}
+	}
+
+	tree_skulker_tech_5 = {
+
+		enable_building = {
+			building = radar_station
+			level = 5
+		}
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+
+		industry_air_damage_factor = -0.05
+
+		dependencies = { bog_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = bog_beast_administration_folder
+			position = { x = 46 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+		}
+	}
+}

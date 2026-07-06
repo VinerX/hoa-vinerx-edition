@@ -1,0 +1,299 @@
+capital = 1013
+
+oob = "BBC_581"
+set_convoys = 5
+
+set_stability = 0.5
+set_war_support = 0.80
+
+set_country_flag = orc_technology
+set_research_slots = 3
+
+add_ideas = {
+	clan
+	limited_conscription
+	preparing_for_war
+	limited_exports
+
+	orc_primary_race
+	primary_trait_axe_specialization
+	primary_trait_hardness
+	primary_trait_bloodfury
+
+	ogre_secondary_race
+
+	primary_religion_the_elemental_furies
+
+	BBC_cyclones_of_rage_1
+}
+
+recruit_character = BBC_azuka_bladefury
+recruit_character = BBC_luhk_the_keeneyed
+recruit_character = BBC_flamebender_kagraz
+
+set_technology = {
+	great_hall = 1
+	peon_tech = 1
+	peon_equipment_tech = 1
+	orc_tools_tech_1 = 1
+	orc_mines_tech = 1
+	city_development_1 = 1
+	pig_farm_tech = 1
+	war_mill_tech = 1
+	forge_master_tech = 1
+	war_forges_tech = 1
+	orc_lumber_mill_tech = 1
+	burrow_tech = 1
+	watch_tower_tech = 1
+
+	orc_barracks_tech = 1
+	grunt_tech = 1
+	grunt_equipment_tech_1 = 1
+	overseer_tech = 1
+
+	orc_beastiary_tech = 1
+
+	orc_siege_works = 1
+	orc_supply_cart_tech = 1
+	orc_supply_cart_equipment_tech_1 = 1
+	orc_caravan_equipment_tech_1 = 1
+
+	altar_of_storms_tech = 1
+	blade_master_tech = 1
+	blade_master_equipment_tech_1 = 1
+}
+
+set_politics = {
+	ruling_party = neutral
+	last_election = "590.10.27"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+	alliance = 0
+	horde = 0
+	death = 0
+	fel = 0
+	old_gods = 0
+	titans = 0
+	neutral = 100
+}
+
+### 592 - Start - Removes Errors
+if = {
+	limit = { 
+		has_start_date < 591.10.1 
+		has_start_date > 595.1.1
+	}
+	set_capital = { state = 390 }
+}
+
+### 596 - Start - Removes Errors
+if = {
+	limit = { 
+		has_start_date < 595.10.1 
+		has_start_date > 599.1.1
+	}
+	set_capital = { state = 72 }
+	declare_war_on = {
+		target = IRO
+		type = annex_everything
+	}
+	declare_war_on = {
+		target = GNO
+		type = annex_everything
+	}
+	declare_war_on = {
+		target = NRT
+		type = annex_everything
+	}
+}
+
+### 617 - Start - Removes Errors
+if = {
+	limit = { 
+		has_start_date < 616.10.1 
+		has_start_date > 618.1.1
+	}
+	set_capital = { state = 1196 }
+}
+
+592.1.1 = {
+	oob = "BBC_592"
+
+	recruit_character = BBC_jugkar_grimrod
+	recruit_character = BBC_neeru_fireblade
+
+	add_ideas = {
+		ogre_secondary_race
+
+		primary_religion_demonology
+
+		BBC_dustbelcher_clan
+	}
+
+	add_timed_idea = {
+		idea = horde_lost_generations_1
+		days = 180
+	}
+
+	remove_ideas = {
+		primary_religion_the_elemental_furies
+	}
+
+	set_technology = {
+		orc_temple_of_the_damned_tech = 1
+		warlock_tech = 1
+		warlock_equipment_tech_1 = 1
+	}
+
+	set_politics = {
+		ruling_party = fel
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+		alliance = 0
+		horde = 0
+		death = 0
+		fel = 100
+		old_gods = 0
+		titans = 0
+		neutral = 0
+	}
+
+	set_country_flag = Invasion_Clan
+	set_country_flag = slave_traders
+}
+
+596.1.1 = {
+	set_technology = {
+		spearman_tech = 1
+		spearman_equipment_tech_1 = 1
+
+		generic_naval_naval_facilities_tech = 1
+		generic_naval_small_frames_tech = 1
+		generic_naval_convoy_tech_1 = 1
+		generic_naval_destroyer_tech_1 = 1
+	}
+
+	oob = "BBC_596"
+	#set_naval_oob = "BBC_596_naval"
+	set_convoys = 30
+
+	set_stability = 0.7
+	set_war_support = 1
+
+	add_ideas = {
+		extensive_conscription
+		war_economy
+
+		primary_religion_necrolytes
+	}
+
+	remove_ideas = {
+		horde_lost_generations_1
+		horde_lost_generations_2
+		horde_lost_generations_3
+	}
+
+	set_politics = {
+		ruling_party = horde
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+		alliance = 0
+		horde = 66
+		death = 0
+		fel = 34
+		old_gods = 0
+		titans = 0
+		neutral = 0
+	}
+}
+
+610.1.1 = {
+	# Maybe move some stuff here to earlier start date
+	oob = "BBC_610"
+
+	add_ideas = {
+		limited_conscription
+		preparing_for_war
+		BBC_cyclones_of_rage_2
+	}
+
+	remove_ideas = {
+		BBC_dustbelcher_clan
+		BBC_cyclones_of_rage_1
+		ogre_secondary_race
+	}
+
+	leave_faction = yes
+	diplomatic_relation = { country = IRO relation = war_relation active = no }
+	diplomatic_relation = { country = GNO relation = war_relation active = no }
+	diplomatic_relation = { country = NRT relation = war_relation active = no }
+
+	diplomatic_relation = { country = DBC relation = puppet active = no }
+
+	set_politics = {
+		ruling_party = fel
+		last_election = "590.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+    	alliance = 0
+    	horde = 15
+    	death = 0
+    	fel = 45
+    	old_gods = 0
+    	titans = 0
+    	neutral = 40
+	}
+
+	clr_country_flag = Invasion_Clan
+}
+
+612.1.1 = {
+	retire_character = BBC_azuka_bladefury
+}
+
+617.1.1 = {
+	set_stability = 0.5
+	set_war_support = 0.8
+
+	oob = "BBC_617"
+
+	add_ideas = {
+		cult
+		extensive_conscription
+		primary_religion_demonology
+	}
+	remove_ideas = {
+		primary_religion_necrolytes
+	}
+
+	set_politics = {
+		ruling_party = fel
+		last_election = "616.10.27"
+		election_frequency = 48
+		elections_allowed = no
+	}
+
+	set_popularities = {
+    	alliance = 0
+    	horde = 2
+    	death = 0
+    	fel = 88
+    	old_gods = 0
+    	titans = 0
+    	neutral = 10
+	}
+}

@@ -1,0 +1,1170 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	bandits_altar_of_thieves_tech = {
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_trial_of_thieves_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_blackguard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_bandit_lord_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_blood_wizzard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_trial_of_thieves_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_trial_of_thieves_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_trial_of_thieves_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_trial_of_thieves_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_trial_of_thieves_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 2
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_blackguard_tech = {
+
+		enable_subunits = {
+			bandits_blackguard
+		}
+
+		path = {
+			leads_to_tech = bandits_blackguard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_blackguard_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	bandits_blackguard_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_blackguard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_tarnished_steel_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_underhanded_dagger_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_tarnished_steel_tech = {
+
+		bandits_blackguard = {
+			armor_value = 0.15
+			defense = 0.2
+			maximum_speed = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_underhanded_dagger_tech }
+
+		path = {
+			leads_to_tech = bandits_blackguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_underhanded_dagger_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_underhanded_dagger_tech
+			}
+		}
+	}
+
+	bandits_underhanded_dagger_tech = {
+
+		bandits_blackguard = {
+			ap_attack = 0.35
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_tarnished_steel_tech }
+
+		path = {
+			leads_to_tech = bandits_blackguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_tarnished_steel_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_tarnished_steel_tech
+			}
+		}
+	}
+
+	bandits_blackguard_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_blackguard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_siege_breakers_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_battle_scared_veterans_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_siege_breakers_tech = {
+
+		bandits_blackguard = {
+			soft_attack = 0.15
+			fort = {
+				attack = 0.2
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_battle_scared_veterans_tech }
+
+		path = {
+			leads_to_tech = bandits_blackguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_battle_scared_veterans_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_battle_scared_veterans_tech
+			}
+		}
+	}
+
+	bandits_battle_scared_veterans_tech = {
+
+		bandits_blackguard = {
+			max_organisation = 10
+			breakthrough = 0.15
+			defense = 0.15
+			experience_loss_factor = -0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_siege_breakers_tech }
+
+		path = {
+			leads_to_tech = bandits_blackguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_siege_breakers_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_siege_breakers_tech
+			}
+		}
+	}
+
+	bandits_blackguard_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_blackguard_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blackguard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_bandit_lord_tech = {
+
+		enable_subunits = {
+			bandits_bandit_lord
+		}
+
+		path = {
+			leads_to_tech = bandits_bandit_lord_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_bandit_lord_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_bandit_lord_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_bandit_lord_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_sinister_strike_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_endurance_aura_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	bandits_sinister_strike_tech = {
+
+		bandits_bandit_lord = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_endurance_aura_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_lord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_endurance_aura_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_endurance_aura_tech
+			}
+		}
+	}
+
+	bandits_endurance_aura_tech = {
+
+		bandits_bandit_lord = {
+			defense = 0.15
+			max_strength = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_sinister_strike_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_lord_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_sinister_strike_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_sinister_strike_tech
+			}
+		}
+	}
+
+	bandits_bandit_lord_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_bandit_lord_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_legendary_combatant_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_shockwave_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_legendary_combatant_tech = {
+
+		bandits_bandit_lord = {
+			maximum_speed = 0.15
+			breakthrough = 0.1
+			default_morale = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_shockwave_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_lord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_shockwave_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_shockwave_tech
+			}
+		}
+	}
+
+	bandits_shockwave_tech = {
+
+		bandits_bandit_lord = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_legendary_combatant_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_lord_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_legendary_combatant_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_legendary_combatant_tech
+			}
+		}
+	}
+
+	bandits_bandit_lord_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_bandit_lord_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_bandit_lord_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_blood_wizzard_tech = {
+
+		enable_subunits = {
+			bandits_blood_wizzard
+		}
+
+		path = {
+			leads_to_tech = bandits_blood_wizzard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_blood_wizzard_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	bandits_blood_wizzard_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_blood_wizzard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_bloodbolt_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_ragezone_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	bandits_bloodbolt_tech = {
+
+		bandits_blood_wizzard = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_ragezone_tech }
+
+		path = {
+			leads_to_tech = bandits_blood_wizzard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_ragezone_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_ragezone_tech
+			}
+		}
+	}
+
+	bandits_ragezone_tech = {
+
+		bandits_blood_wizzard = {
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_bloodbolt_tech }
+
+		path = {
+			leads_to_tech = bandits_blood_wizzard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_bloodbolt_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_bloodbolt_tech
+			}
+		}
+	}
+
+	bandits_blood_wizzard_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_blood_wizzard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_bloodwash_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_blood_boil_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	bandits_bloodwash_tech = {
+
+		bandits_blood_wizzard = {
+			breakthrough = 0.1
+			supply_consumption = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_blood_boil_tech }
+
+		path = {
+			leads_to_tech = bandits_blood_wizzard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_blood_boil_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_blood_boil_tech
+			}
+		}
+	}
+
+	bandits_blood_boil_tech = {
+
+		bandits_blood_wizzard = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_bloodwash_tech }
+
+		path = {
+			leads_to_tech = bandits_blood_wizzard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_bloodwash_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_bloodwash_tech
+			}
+		}
+	}
+
+	bandits_blood_wizzard_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_blood_wizzard_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			bandits_blood_wizzard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

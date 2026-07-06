@@ -1,0 +1,1106 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	altar_of_elune_tech = {
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = sentinel_heroic_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = warden_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = frostsaber_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = priestess_of_the_moon_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentinel_heroic_training_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = sentinel_heroic_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x =  5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentinel_heroic_training_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = sentinel_heroic_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x =  5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	sentinel_heroic_training_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x =  5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	warden_tech = {
+
+		enable_subunits = {
+			warden
+		}
+
+		path = {
+			leads_to_tech = warden_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { warden_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	warden_equipment_tech_1 = {
+
+		enable_equipments = {
+			warden_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = warden_fan_of_knives_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = warden_blink_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	warden_fan_of_knives_tech = {
+
+		warden = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+		}
+		sentinel_jailer = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { warden_blink_tech }
+
+		path = {
+			leads_to_tech = warden_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_blink_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_blink_tech
+			}	
+		}
+	}
+
+	warden_blink_tech = {
+
+		warden = {
+			maximum_speed = 0.1
+			breakthrough = 0.1
+		}
+		sentinel_jailer = {
+			maximum_speed = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { warden_fan_of_knives_tech }
+
+		path = {
+			leads_to_tech = warden_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_fan_of_knives_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_fan_of_knives_tech
+			}	
+		}
+	}
+
+	warden_equipment_tech_2 = {
+
+		enable_equipments = {
+			warden_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = warden_shadow_strike_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = warden_vengeance_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	warden_shadow_strike_tech = {
+
+		warden = {
+			ap_attack = 0.1
+			breakthrough = 0.05
+		}
+		sentinel_jailer = {
+			ap_attack = 0.1
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { warden_vengeance_tech }
+
+		path = {
+			leads_to_tech = warden_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_vengeance_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_vengeance_tech
+			}	
+		}
+	}
+
+	warden_vengeance_tech = {
+
+		warden = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+		sentinel_jailer = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { warden_shadow_strike_tech }
+
+		path = {
+			leads_to_tech = warden_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = warden_shadow_strike_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warden_shadow_strike_tech
+			}	
+		}
+	}
+
+	warden_equipment_tech_3 = {
+
+		enable_equipments = {
+			warden_equipment_3
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			warden_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	frostsaber_tech = {
+
+		enable_subunits = {
+			frostsaber
+		}
+
+		path = {
+			leads_to_tech = frostsaber_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { frostsaber_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	frostsaber_equipment_tech_1 = {
+
+		enable_equipments = {
+			frostsaber_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = frostsaber_rend_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = frostsaber_frostbite_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	frostsaber_rend_tech = {
+
+		frostsaber = {
+			ap_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { frostsaber_frostbite_armor_tech }
+
+		path = {
+			leads_to_tech = frostsaber_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+			combat_animals_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = frostsaber_frostbite_armor_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = frostsaber_frostbite_armor_tech
+			}	
+		}
+	}
+
+	frostsaber_frostbite_armor_tech = {
+
+		frostsaber = {
+			defense = 0.1
+			armor_value = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { frostsaber_rend_tech }
+
+		path = {
+			leads_to_tech = frostsaber_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+			combat_animals_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = frostsaber_rend_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = frostsaber_rend_tech
+			}	
+		}
+	}
+
+	frostsaber_equipment_tech_2 = {
+
+		enable_equipments = {
+			frostsaber_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = frostsaber_fearless_rage_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = frostsaber_moonlight_sight_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	frostsaber_fearless_rage_tech = {
+
+		frostsaber = {
+			soft_attack = 0.15
+			default_morale = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { frostsaber_moonlight_sight_tech }
+
+		path = {
+			leads_to_tech = frostsaber_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+			combat_animals_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = frostsaber_moonlight_sight_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = frostsaber_moonlight_sight_tech
+			}	
+		}
+	}
+
+	frostsaber_moonlight_sight_tech = {
+
+		frostsaber = {
+			initiative = 0.15
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { frostsaber_fearless_rage_tech }
+
+		path = {
+			leads_to_tech = frostsaber_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+			combat_animals_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = frostsaber_fearless_rage_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = frostsaber_fearless_rage_tech
+			}	
+		}
+	}
+
+	frostsaber_equipment_tech_3 = {
+
+		enable_equipments = {
+			frostsaber_equipment_3
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			sentinel_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	priestess_of_the_moon_tech = {
+
+		enable_subunits = {
+			priestess_of_the_moon
+		}
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			set_technology = { priestess_of_the_moon_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	priestess_of_the_moon_equipment_tech_1 = {
+
+		enable_equipments = {
+			priestess_of_the_moon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_owl_scout_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = priestess_of_the_moon_searing_arrows_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	priestess_of_the_moon_owl_scout_tech = {
+
+		priestess_of_the_moon = {
+			recon = 0.25
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { priestess_of_the_moon_searing_arrows_tech }
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	priestess_of_the_moon_searing_arrows_tech = {
+
+		priestess_of_the_moon = {
+			soft_attack = 0.1
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { priestess_of_the_moon_owl_scout_tech }
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	priestess_of_the_moon_equipment_tech_2 = {
+
+		enable_equipments = {
+			priestess_of_the_moon_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		dependencies = { night_elf_sentinel_outpost_tech = 1 }
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_trueshot_aura_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = priestess_of_the_moon_starfall_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	priestess_of_the_moon_trueshot_aura_tech = {
+
+		priestess_of_the_moon = {
+			defense = 0.1
+			air_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { priestess_of_the_moon_starfall_tech }
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	priestess_of_the_moon_starfall_tech = {
+
+		priestess_of_the_moon = {
+		  	hard_attack = 0.15
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_sentinel = yes
+		}
+
+		xor = { priestess_of_the_moon_trueshot_aura_tech }
+
+		path = {
+			leads_to_tech = priestess_of_the_moon_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	priestess_of_the_moon_equipment_tech_3 = {
+
+		enable_equipments = {
+			priestess_of_the_moon_equipment_3
+		}
+
+		dependencies = { night_elf_sentinel_enclave_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = night_elf_sentinel_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			priestess_of_the_moon_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

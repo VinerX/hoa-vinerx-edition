@@ -1,0 +1,1983 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	training_grounds_tech = {
+
+		path = {
+			leads_to_tech = thornguard_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spearhide_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = huntmaster_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+		}
+	}
+	
+	thornguard_tech = {
+
+		enable_subunits = {
+			thornguard
+		}
+
+		on_research_complete = {
+			set_technology = { thornguard_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = thornguard_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = quilboar_brute_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 3 y = 2 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+	
+	thornguard_equipment_tech_1 = {
+	
+		enable_equipments = {
+			thornguard_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = thornguard_brutal_strike_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thornguard_primal_rage_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 3 y = 4 }
+		}		
+		
+		categories = {
+			training_grounds_technology
+			quilboar_infantry_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	thornguard_brutal_strike_tech = {
+
+		thornguard = {
+			hard_attack = 0.10
+			ap_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { thornguard_primal_rage_tech } 
+	
+		path = {
+			leads_to_tech = thornguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 2 y = 6 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	thornguard_primal_rage_tech = {
+
+		thornguard = {
+			soft_attack = 0.10
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { thornguard_brutal_strike_tech } 
+	
+		path = {
+			leads_to_tech = thornguard_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 4 y = 6 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	thornguard_equipment_tech_2 = {
+	
+		enable_equipments = {
+			thornguard_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = thornguard_quil_barrage_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thornguard_regeneration_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 3 y = 8 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+	
+	thornguard_quil_barrage_tech = {
+
+		thornguard = {
+			soft_attack = 0.10
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { thornguard_regeneration_tech } 
+	
+		path = {
+			leads_to_tech = thornguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 2 y = 10 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	thornguard_regeneration_tech = {
+
+		thornguard = {
+			casualty_trickleback = 0.02
+			max_strength = 0.10
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { thornguard_quil_barrage_tech } 
+	
+		path = {
+			leads_to_tech = thornguard_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 4 y = 10 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	thornguard_equipment_tech_3 = {
+	
+		enable_equipments = {
+			thornguard_equipment_3
+		}
+	
+		dependencies = { kraul_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 3 y = 12 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			thornguard_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	quilboar_brute_tech = {
+
+		enable_subunits = {
+			quilboar_brute
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_brute_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 6 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_brute_technology
+			captain_technology
+		}
+	}
+	
+	improved_quilboar_brute_1 = {
+
+		quilboar_brute = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_brute_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_brute_technology
+			captain_technology
+		}
+	}
+	
+	improved_quilboar_brute_2 = {
+
+		quilboar_brute = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_brute_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 6 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_brute_technology
+			captain_technology
+		}
+	}
+	
+	improved_quilboar_brute_3 = {
+
+		quilboar_brute = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_brute_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_brute_technology
+			captain_technology
+		}
+	}
+	
+	improved_quilboar_brute_4 = {
+
+		quilboar_brute = {
+			initiative = 0.09
+		}
+	
+		dependencies = { kraul_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 6 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_brute_technology
+			captain_technology
+		}
+	}
+
+	spearhide_tech = {
+
+		enable_subunits = {
+			spearhide
+		}
+	
+		path = {
+			leads_to_tech = spearhide_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		
+		on_research_complete = {
+			set_technology = { spearhide_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 9 y = 2 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+	
+	spearhide_equipment_tech_1 = {
+	
+		enable_equipments = {
+			spearhide_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = spearhide_spear_throw_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spearhide_spear_thrust_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 9 y = 4 }
+		}		
+		
+		categories = {
+			training_grounds_technology
+			quilboar_infantry_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	spearhide_spear_throw_tech = {
+
+		spearhide = {
+			defense = 0.10
+			plains = { attack = 0.05 }
+			savanna = { attack = 0.05 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { spearhide_spear_thrust_tech } 
+	
+		path = {
+			leads_to_tech = spearhide_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 8 y = 6 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	spearhide_spear_thrust_tech = {
+
+		spearhide = {
+			hard_attack = 0.10
+			ap_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { spearhide_spear_throw_tech } 
+	
+		path = {
+			leads_to_tech = spearhide_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 10 y = 6 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	spearhide_equipment_tech_2 = {
+	
+		enable_equipments = {
+			spearhide_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = spearhide_pre_quilled_armor
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spearhide_unrelenting_fury
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 9 y = 8 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+	
+	spearhide_pre_quilled_armor = {
+
+		spearhide = {
+			armor_value = 0.10
+			defense = 0.15
+		}
+	
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { spearhide_unrelenting_fury } 
+	
+		path = {
+			leads_to_tech = spearhide_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 8 y = 10 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	spearhide_unrelenting_fury = {
+
+		spearhide = {
+			defense = -0.10
+			breakthrough = 0.20
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { spearhide_pre_quilled_armor } 
+	
+		path = {
+			leads_to_tech = spearhide_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 10 y = 10 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	spearhide_equipment_tech_3 = {
+	
+		enable_equipments = {
+			spearhide_equipment_3
+		}
+	
+		dependencies = { kraul_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 9 y = 12 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			spearhide_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	huntmaster_tech = {
+
+		enable_subunits = {
+			huntmaster
+		}
+
+		on_research_complete = {
+			set_technology = { huntmaster_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = huntmaster_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = quilboar_scout_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 13 y = 2 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+	
+	huntmaster_equipment_tech_1 = {
+	
+		enable_equipments = {
+			huntmaster_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = huntmaster_bone_tusk_arrows_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = huntmaster_boar_net_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 13 y = 4 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	huntmaster_bone_tusk_arrows_tech = {
+
+		huntmaster = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { huntmaster_boar_net_tech } 
+	
+		path = {
+			leads_to_tech = huntmaster_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 12 y = 6 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	huntmaster_boar_net_tech = {
+
+		huntmaster = {
+			air_attack = 0.25
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { huntmaster_bone_tusk_arrows_tech } 
+	
+		path = {
+			leads_to_tech = huntmaster_equipment_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 14 y = 6 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	huntmaster_equipment_tech_2 = {
+	
+		enable_equipments = {
+			huntmaster_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = huntmaster_wolf_companion_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = huntmaster_toxic_shot_tech
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 13 y = 8 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+	
+	huntmaster_wolf_companion_tech = {
+
+		huntmaster = {
+			soft_attack = 0.10
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { huntmaster_toxic_shot_tech } 
+	
+		path = {
+			leads_to_tech = huntmaster_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 12 y = 10 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	huntmaster_toxic_shot_tech = {
+
+		huntmaster = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		xor = { huntmaster_wolf_companion_tech } 
+	
+		path = {
+			leads_to_tech = huntmaster_equipment_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 14 y = 10 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+	
+	huntmaster_equipment_tech_3 = {
+	
+		enable_equipments = {
+			huntmaster_equipment_3
+		}
+	
+		dependencies = { kraul_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 13 y = 12 }
+		}		
+		
+		categories = {
+			quilboar_infantry_technology
+			training_grounds_technology
+			huntmaster_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	quilboar_scout_tech = {
+
+		enable_subunits = {
+			quilboar_scout
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_scout_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 16 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_scout_technology
+		}
+	}
+	
+	improved_quilboar_scout_1 = {
+
+		quilboar_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_quilboar_scout_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_scout_technology
+		}
+	}
+	
+	improved_quilboar_scout_2 = {
+
+		quilboar_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_scout_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 16 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_scout_technology
+		}
+	}
+	
+	improved_quilboar_scout_3 = {
+
+		quilboar_scout = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_quilboar_scout_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_scout_technology
+		}
+	}
+	
+	improved_quilboar_scout_4 = {
+
+		quilboar_scout = {
+			recon = 1.5
+		}
+	
+		dependencies = { kraul_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 16 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			quilboar_scout_technology
+		}
+	}
+	
+	thornweavers_hut_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { arcane_tower_tech_global = 1 popup = no }
+			increase_tech_count_quilboar = yes
+		}
+		
+		path = {
+			leads_to_tech = thornweaver_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = medicine_man_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thorn_rituals_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 21 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+	
+	thornweaver_tech = {
+
+		enable_subunits = {
+			thornweaver
+			thornweaver_support
+		}
+
+		on_research_complete = {
+			set_technology = { thornweaver_equipment_tech_1 = 1 }
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = geomancer_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = thornweaver_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 21 y = 2 }
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	geomancer_tech = {
+
+		enable_subunits = {
+			geomancer
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_geomancer_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			geomancer_technology
+		}
+	}
+
+	improved_geomancer_1 = {
+
+		geomancer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_geomancer_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			geomancer_technology
+		}
+	}
+
+	improved_geomancer_2 = {
+
+		geomancer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = improved_geomancer_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			geomancer_technology
+		}
+	}
+
+	improved_geomancer_3 = {
+
+		geomancer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = improved_geomancer_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			geomancer_technology
+		}
+	}
+
+	improved_geomancer_4 = {
+
+		geomancer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			geomancer_technology
+		}
+	}
+
+	thornweaver_equipment_tech_1 = {
+
+		enable_equipments = {
+			thornweaver_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = thornweaver_faerie_fire_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thornweaver_entangling_roots_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 21 y = 4 }
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	thornweaver_faerie_fire_tech = {
+
+		thornweaver = {
+			breakthrough = 0.10
+			ap_attack = 0.30
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { thornweaver_entangling_roots_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		path = {
+			leads_to_tech = thornweaver_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	thornweaver_entangling_roots_tech = {
+
+		thornweaver = {
+			defense = 0.10
+			soft_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { thornweaver_faerie_fire_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		path = {
+			leads_to_tech = thornweaver_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	thornweaver_equipment_tech_2 = {
+
+		enable_equipments = {
+			thornweaver_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = thornweaver_earth_bolt_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thornweaver_bramble_shield_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 21 y = 8 }
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	thornweaver_earth_bolt_tech = {
+
+		thornweaver = {
+			ap_attack = 0.10
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { thornweaver_bramble_shield_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		path = {
+			leads_to_tech = thornweaver_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	thornweaver_bramble_shield_tech = {
+
+		thornweaver = {
+			defense = 0.25
+			max_strength = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+
+		xor = { thornweaver_earth_bolt_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		path = {
+			leads_to_tech = thornweaver_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	thornweaver_equipment_tech_3 = {
+
+		enable_equipments = {
+			thornweaver_equipment_3
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 21 y = 12 }
+		}
+
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			thornweaver_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	medicine_man_tech = {
+
+		enable_subunits = {
+			medicine_man
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_medicine_man_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 24 y = 2 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			medicine_man_technology
+		}
+	}
+	
+	improved_medicine_man_1 = {
+	
+		medicine_man = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_medicine_man_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			medicine_man_technology
+			healer_technology
+		}
+	}
+	
+	improved_medicine_man_2 = {
+	
+		medicine_man = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+	
+		path = {
+			leads_to_tech = improved_medicine_man_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 24 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			medicine_man_technology
+			healer_technology
+		}
+	}
+	
+	improved_medicine_man_3 = {
+	
+		medicine_man = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_quilboar = yes
+		}
+	
+		path = {
+			leads_to_tech = improved_medicine_man_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+	
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			medicine_man_technology
+			healer_technology
+		}
+	}
+	
+	improved_medicine_man_4 = {
+	
+		medicine_man = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+	
+		dependencies = { kraul_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 24 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			quilboar_infantry_technology
+			thornweavers_hut_technology
+			medicine_man_technology
+			healer_technology
+		}
+	}
+
+	thorn_rituals_tech_1 = {
+
+		geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		thornweaver = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		prophet_of_agamaggan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = thorn_rituals_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	thorn_rituals_tech_2 = {
+
+		geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		thornweaver = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		prophet_of_agamaggan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		dependencies = {
+			thorn_ravine_tech = 1
+		}
+
+		path = {
+			leads_to_tech = thorn_rituals_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	thorn_rituals_tech_3 = {
+
+		geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		thornweaver = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		prophet_of_agamaggan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_quilboar = yes
+		}
+
+		path = {
+			leads_to_tech = thorn_rituals_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	thorn_rituals_tech_4 = {
+
+		geomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		thornweaver = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		prophet_of_agamaggan = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = quilboar_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		dependencies = { kraul_tech = 1 }
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			resource_building_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

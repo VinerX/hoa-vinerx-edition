@@ -1,0 +1,720 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	splinter_works = {
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_supply_wagon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = gnoll_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spinehurler_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+		
+		categories = {
+			siege_works_technology
+		}
+		
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_supply_wagon_tech = {
+
+		enable_subunits = {
+			supply_wagon
+		}
+
+		on_research_complete = {
+			set_technology = { gnoll_supply_wagon_equipment_tech_1 = 1 }
+			custom_effect_tooltip = supply_wagon_tech_unit_details_tt
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_supply_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_supply_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			supply_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_improved_supply_wagon_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_improved_supply_wagon_1 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_improved_supply_wagon_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_improved_supply_wagon_2 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_improved_supply_wagon_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = {
+			gnoll_outpost = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_improved_supply_wagon_3 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_improved_supply_wagon_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_improved_supply_wagon_4 = {
+
+		supply_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			supply_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		path = {
+			leads_to_tech = gnoll_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	gnoll_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = {
+			gnoll_outpost = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		path = {
+			leads_to_tech = gnoll_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	gnoll_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	spinehurler_tech = {
+
+		enable_subunits = {
+			spinehurler
+			spinehurler_support
+		}
+
+		on_research_complete = {
+			set_technology = { spinehurler_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = spinehurler_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	spinehurler_equipment_tech_1 = {
+
+		enable_equipments = {
+			spinehurler_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = piercing_bolts
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = scouting_scopes
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	piercing_bolts = {
+
+		spinehurler = {
+			ap_attack = 0.25
+		}
+		spinehurler_support = {
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { scouting_scopes }
+
+		path = {
+			leads_to_tech = spinehurler_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = scouting_scopes
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = scouting_scopes
+			}	
+		}
+	}
+
+	scouting_scopes = {
+
+		spinehurler = {
+			hard_attack = 0.10
+			soft_attack = 0.10
+		}
+		spinehurler_support = {
+			hard_attack = 0.10
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { piercing_bolts }
+
+		path = {
+			leads_to_tech = spinehurler_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = piercing_bolts
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = piercing_bolts
+			}	
+		}
+	}
+
+	spinehurler_equipment_tech_2 = {
+
+		enable_equipments = {
+			spinehurler_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = {
+			gnoll_outpost = 1
+		}
+
+		path = {
+			leads_to_tech = quick_reload_mechanism
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spinehurler_reinforced_frame
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bone_breaker_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bone_breaker_equipment_tech_1 = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_bone_breaker } 
+		}
+
+		enable_equipments = {
+			bone_breaker_equipment_1
+		}
+
+		path = {
+			leads_to_tech = bone_breaker_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bone_breaker_equipment_tech_2 = {
+
+		enable_equipments = {
+			bone_breaker_equipment_2
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 20 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	quick_reload_mechanism = {
+
+		spinehurler = {
+			breakthrough = 0.25
+			fort = {
+				attack = 0.10
+			}
+			forest = {
+				attack = 0.10
+			}
+			hills = {
+				attack = 0.10
+			}
+		}
+		spinehurler_support = {
+			breakthrough = 0.25
+			fort = {
+				attack = 0.05
+			}
+			forest = {
+				attack = 0.05
+			}
+			hills = {
+				attack = 0.05
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { spinehurler_reinforced_frame }
+
+		path = {
+			leads_to_tech = spinehurler_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = spinehurler_reinforced_frame
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spinehurler_reinforced_frame
+			}	
+		}
+	}
+
+	spinehurler_reinforced_frame = {
+
+		spinehurler = {
+			defense = 0.25
+			fort = {
+				defence = 0.10
+			}
+			forest = {
+				defence = 0.10
+			}
+			hills = {
+				defence = 0.10
+			}
+		}
+		spinehurler_support = {
+			defense = 0.25
+			fort = {
+				defence = 0.05
+			}
+			forest = {
+				defence = 0.05
+			}
+			hills = {
+				defence = 0.05
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { quick_reload_mechanism }
+
+		path = {
+			leads_to_tech = spinehurler_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = quick_reload_mechanism
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = quick_reload_mechanism
+			}	
+		}
+	}
+
+	spinehurler_equipment_tech_3 = {
+
+		enable_equipments = {
+			spinehurler_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			catapult_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

@@ -1,0 +1,723 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	dwarf_ram_stables_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_ram_breeding_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_ram_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 6 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			resource_building_technology
+			stable_technology
+		}
+	}
+
+	dwarf_ram_breeding_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_dwarf = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = dwarf_ram_breeding_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 6 y = 4 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+		}
+	}
+
+	dwarf_ram_breeding_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_dwarf = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_ram_breeding_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+		}
+	}
+
+	dwarf_ram_breeding_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_dwarf = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = dwarf_ram_breeding_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+		}
+	}
+
+	dwarf_ram_breeding_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 2.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+		}
+	}
+
+	dwarf_ram_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_ram_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_ram_equipment_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mounted_axeman_tech = {
+
+		enable_subunits = {
+			dwarf_mounted_axeman
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_sharpened_horns_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_reinforced_head_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 9 y = 2}
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_mounted_axeman_sharpened_horns_tech = {
+
+		dwarf_mounted_axeman = {
+			ap_attack = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mounted_axeman_reinforced_head_armor_tech }
+
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_stampede_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_throwing_axes_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_axeman_reinforced_head_armor_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_axeman_reinforced_head_armor_tech
+			}
+		}
+	}
+
+	dwarf_mounted_axeman_reinforced_head_armor_tech = {
+
+		dwarf_mounted_axeman = {
+			armor_value = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mounted_axeman_sharpened_horns_tech }
+
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_stampede_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_axeman_throwing_axes_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_axeman_sharpened_horns_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_axeman_sharpened_horns_tech
+			}
+		}
+	}
+
+	dwarf_mounted_axeman_stampede_tech = {
+
+		dwarf_mounted_axeman = {
+			maximum_speed = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mounted_axeman_throwing_axes_tech }
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_axeman_throwing_axes_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_axeman_throwing_axes_tech
+			}
+		}
+	}
+
+	dwarf_mounted_axeman_throwing_axes_tech = {
+
+		dwarf_mounted_axeman = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		xor = { dwarf_mounted_axeman_stampede_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_axeman_stampede_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_axeman_stampede_tech
+			}
+		}
+	}
+
+	dwarf_ram_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_ram_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_ram_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_ram_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_ram_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			dwarf_cavalry_technology
+			cavalry_technology
+			horse_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mounted_rifleman_tech = {
+
+		enable_subunits = {
+			dwarf_mounted_rifleman
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_precise_shots_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_blunderbuss_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_mounted_rifleman_precise_shots_tech = {
+
+		dwarf_mounted_rifleman = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mounted_rifleman_blunderbuss_tech }
+
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_close_combat_weapons_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_hit_and_run_tactics_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 14 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_rifleman_blunderbuss_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_rifleman_blunderbuss_tech
+			}
+		}
+	}
+
+	dwarf_mounted_rifleman_blunderbuss_tech = {
+
+		dwarf_mounted_rifleman = {
+			ap_attack = 0.1
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mounted_rifleman_precise_shots_tech }
+
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_close_combat_weapons_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mounted_rifleman_hit_and_run_tactics_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_rifleman_precise_shots_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_rifleman_precise_shots_tech
+			}
+		}
+	}
+
+	dwarf_mounted_rifleman_close_combat_weapons_tech = {
+
+		dwarf_mounted_rifleman = {
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		xor = { dwarf_mounted_rifleman_hit_and_run_tactics_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 14 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_rifleman_hit_and_run_tactics_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_rifleman_hit_and_run_tactics_tech
+			}
+		}
+	}
+
+	dwarf_mounted_rifleman_hit_and_run_tactics_tech = {
+
+		dwarf_mounted_rifleman = {
+			maximum_speed = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		xor = { dwarf_mounted_rifleman_close_combat_weapons_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			mounted_footman_technology
+		}
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mounted_rifleman_close_combat_weapons_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mounted_rifleman_close_combat_weapons_tech
+			}
+		}
+	}
+
+	dwarf_animal_war_training = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_animal_war_training } 
+		}
+
+		category_cavalry = {
+			max_strength = 0.2
+			defense = 0.1
+			breakthrough = 0.1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_cavalry_folder
+			position = { x = 4 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+}

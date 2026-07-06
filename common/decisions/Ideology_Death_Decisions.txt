@@ -1,0 +1,994 @@
+death_labor = {
+
+	death_ancestral_labor_initiative_1 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_workers
+			NOT = {
+				has_idea = death_labor_initiative_1
+				has_idea = death_labor_initiative_2
+				has_idea = death_labor_initiative_3
+				has_idea = death_labor_initiative_4
+				has_idea = death_labor_initiative_5
+			}
+		}
+
+		visible = {
+			has_country_flag = undead_workers
+			NOT = {
+				has_idea = death_labor_initiative_1
+				has_idea = death_labor_initiative_2
+				has_idea = death_labor_initiative_3
+				has_idea = death_labor_initiative_4
+				has_idea = death_labor_initiative_5
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			add_ideas = death_labor_initiative_1
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_ancestral_labor_initiative_2 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_1
+		}
+
+		visible = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_1
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			swap_ideas = {
+				remove_idea = death_labor_initiative_1
+				add_idea = death_labor_initiative_2
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_ancestral_labor_initiative_3 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_2
+		}
+
+		visible = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_2
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			swap_ideas = {
+				remove_idea = death_labor_initiative_2
+				add_idea = death_labor_initiative_3
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_ancestral_labor_initiative_4 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_3
+		}
+
+		visible = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_3
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			swap_ideas = {
+				remove_idea = death_labor_initiative_3
+				add_idea = death_labor_initiative_4
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_ancestral_labor_initiative_5 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_4
+		}
+
+		visible = {
+			has_country_flag = undead_workers
+			has_idea = death_labor_initiative_4
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			swap_ideas = {
+				remove_idea = death_labor_initiative_4
+				add_idea = death_labor_initiative_5
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_tireless_labor = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = { has_country_flag = undead_workers }
+		visible = { has_country_flag = undead_workers }
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		modifier = {
+			local_resources_factor = 0.15
+			consumer_goods_expected_value = -0.025
+		}
+
+		complete_effect = {
+			random_controlled_state = {
+				limit = { impassable = no }
+				random_list = {
+					10 = {
+						add_resource = {
+							type = oil
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = mana
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = mounts
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = gunpowder
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = ores
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = wheat
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = eggs
+							amount = 1
+						}
+					}
+					30 = {
+
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_mass_production = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = { has_country_flag = undead_workers }
+		visible = { has_country_flag = undead_workers }
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		modifier = {
+			production_factory_max_efficiency_factor = 0.15
+		}
+
+		complete_effect = {
+			random_list = {
+				30 = {
+					add_equipment_to_stockpile = {
+						type = undead_skeletal_warrior_equipment_1
+						amount = 25
+					}
+				}
+				30 = {
+					add_equipment_to_stockpile = {
+						type = undead_skeletal_knight_equipment_1
+						amount = 25
+					}
+				}
+				30 = {
+					add_equipment_to_stockpile = {
+						type = undead_necromancer_equipment_1
+						amount = 25
+					}
+				}
+				10 = {
+					add_equipment_to_stockpile = {
+						type = undead_skeletal_warrior_equipment_1
+						amount = 25
+					}
+					add_equipment_to_stockpile = {
+						type = undead_skeletal_knight_equipment_1
+						amount = 25
+					}
+					add_equipment_to_stockpile = {
+						type = undead_necromancer_equipment_1
+						amount = 25
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_built_from_the_grave = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = { has_country_flag = undead_workers }
+		visible = { has_country_flag = undead_workers }
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		modifier = {
+			production_speed_buildings_factor = 0.10
+		}
+
+		complete_effect = {
+			random_controlled_state = {
+				limit = { 
+					impassable = no 
+					NOT = { has_state_flag = death_built }
+				}
+				random_list = {
+					25 = {
+						add_extra_state_shared_building_slots = 1
+						set_state_flag = death_built
+					}
+					10 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						set_state_flag = death_built
+					}
+					10 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+						set_state_flag = death_built
+					}
+					55 = {
+	
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+	
+}
+
+death_army = {
+
+	#######
+	### UNDEAD ARMY - SKELETONS
+	#######
+
+	death_bones_for_battle_1 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_army
+			NOT = { has_country_flag = bones_for_battle_1 }
+		}
+
+		visible = {
+			has_country_flag = undead_army
+			NOT = { has_country_flag = bones_for_battle_1 }
+		}
+
+		cost = 100
+
+		days_remove = 30
+
+		days_re_enable = 90
+
+		modifier = {
+			political_power_gain = -0.1
+			industrial_capacity_factory = -0.10
+		}
+
+		complete_effect = {
+			add_command_power = -20
+			if = {
+				limit = { has_country_flag = undead_technology }
+				division_template = {
+					name = "Risen Skeletons"
+					priority = 1
+					regiments = {
+						undead_skeletal_warrior = { x = 0 y = 0 }
+						undead_skeletal_warrior = { x = 0 y = 1 }
+						undead_skeletal_warrior = { x = 0 y = 2 }
+						undead_skeletal_warrior = { x = 0 y = 3 }
+						undead_skeletal_warrior = { x = 1 y = 0 }
+					}
+				}
+			}
+			else = {
+				hidden_effect = {
+					set_country_flag = bones_for_battle_1
+					division_template = {
+						name = "Risen Skeletons"
+						priority = 1
+						regiments = {
+							undead_skeletal_warrior = { x = 0 y = 0 }
+							undead_skeletal_warrior = { x = 0 y = 1 }
+							undead_skeletal_warrior = { x = 0 y = 2 }
+							undead_skeletal_warrior = { x = 0 y = 3 }
+							undead_skeletal_warrior = { x = 1 y = 0 }
+						}
+						is_locked = yes
+					}
+				}
+			}
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = {	has_tech = undead_skeletal_warrior_equipment_tech_1 }
+				}
+				set_technology = { undead_skeletal_warrior_equipment_tech_1 = 1 }
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Risen Skeletons\" division_template = \"Risen Skeletons\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+			} 
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_bones_for_battle_2 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_army
+			has_country_flag = bones_for_battle_1
+		}
+
+		visible = {
+			has_country_flag = undead_army
+			has_country_flag = bones_for_battle_1
+		}
+
+		cost = 100
+
+		days_remove = 30
+
+		days_re_enable = 90
+
+		modifier = {
+			political_power_gain = -0.1
+			industrial_capacity_factory = -0.10
+		}
+
+		remove_effect = {
+			add_command_power = -20
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Risen Skeletons\" division_template = \"Risen Skeletons\" start_experience_factor = 0.2 start_equipment_factor = 0.5"
+					owner = ROOT
+				}
+			} 
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_bones_for_battle_upgrade_1 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = bones_for_battle_1
+			NOT = { has_country_flag = bones_for_battle_upgrade_1 }
+		}
+
+		visible = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = bones_for_battle_1
+			NOT = { has_country_flag = bones_for_battle_upgrade_1 }
+		}
+
+		cost = 100
+
+		days_remove = 30
+
+		modifier = {
+			political_power_gain = -0.15
+			command_power_gain = -0.10
+		}
+
+		remove_effect = {
+			set_country_flag = bones_for_battle_upgrade_1
+			set_technology = { skeletal_archers_tech = 1 }
+			add_units_to_division_template = {
+				template_name = "Risen Skeletons"
+				regiments = {
+					undead_skeletal_warrior = 2
+					undead_skeletal_warrior = 2
+					undead_skeletal_warrior = 2
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_bones_for_battle_upgrade_2 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = bones_for_battle_1
+			has_country_flag = bones_for_battle_upgrade_1
+			NOT = { has_country_flag = bones_for_battle_upgrade_2 }
+			has_equipment = { caster_equipment > 0 }
+		}
+
+		visible = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = bones_for_battle_1
+			has_country_flag = bones_for_battle_upgrade_1
+			NOT = { has_country_flag = bones_for_battle_upgrade_2 }
+		}
+
+		cost = 100
+
+		days_remove = 60
+
+		modifier = {
+			political_power_gain = -0.15
+			command_power_gain = -0.10
+		}
+
+		remove_effect = {
+			set_country_flag = bones_for_battle_upgrade_2
+			set_technology = { undead_skeletal_warrior_skeletal_mastery_tech = 1 }
+			add_units_to_division_template = {
+				template_name = "Risen Skeletons"
+				regiments = {
+					undead_skeletal_warrior = 1
+					undead_skeletal_warrior = 1
+				}
+				support = {
+					undead_boneweaver = 0
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	#######
+	### UNDEAD ARMY - Hounds
+	#######
+
+	death_dread_hounds_1 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_army
+			NOT = { has_country_flag = dread_hounds_1 }
+		}
+
+		visible = {
+			has_country_flag = undead_army
+			NOT = { has_country_flag = dread_hounds_1 }
+		}
+
+		cost = 100
+
+		days_remove = 30
+
+		days_re_enable = 90
+
+		modifier = {
+			political_power_gain = -0.1
+			industrial_capacity_factory = -0.10
+		}
+
+		complete_effect = {
+			add_command_power = -20
+			if = {
+				limit = { has_country_flag = undead_technology }
+				division_template = {
+					name = "Risen Hounds"
+					priority = 1
+					regiments = {
+						undead_plague_hound = { x = 0 y = 0 }
+						undead_plague_hound = { x = 0 y = 1 }
+						undead_plague_hound = { x = 0 y = 2 }
+						undead_plague_hound = { x = 0 y = 3 }
+						undead_plague_hound = { x = 1 y = 0 }
+					}
+				}
+			}
+			else = {
+				hidden_effect = {
+					set_country_flag = dread_hounds_1
+					division_template = {
+						name = "Risen Hounds"
+						priority = 1
+						regiments = {
+							undead_plague_hound = { x = 0 y = 0 }
+							undead_plague_hound = { x = 0 y = 1 }
+							undead_plague_hound = { x = 0 y = 2 }
+							undead_plague_hound = { x = 0 y = 3 }
+							undead_plague_hound = { x = 1 y = 0 }
+						}
+						is_locked = yes
+					}
+				}
+			}
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = {	has_tech = undead_plague_hound_equipment_tech_1 }
+				}
+				set_technology = { undead_plague_hound_equipment_tech_1 = 1 }
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Risen Hounds\" division_template = \"Risen Hounds\" start_experience_factor = 0.1"
+					owner = ROOT
+				}
+			} 
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_dread_hounds_2 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			has_country_flag = undead_army
+			has_country_flag = dread_hounds_1
+		}
+
+		visible = {
+			has_country_flag = undead_army
+			has_country_flag = dread_hounds_1
+		}
+
+		cost = 100
+
+		days_remove = 30
+
+		days_re_enable = 90
+
+		modifier = {
+			political_power_gain = -0.1
+			industrial_capacity_factory = -0.10
+		}
+
+		remove_effect = {
+			add_command_power = -20
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Risen Hounds\" division_template = \"Risen Hounds\" start_experience_factor = 0.1"
+					owner = ROOT
+				}
+			} 
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_dread_hounds_upgrade_1 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = dread_hounds_1
+			NOT = { has_country_flag = dread_hounds_upgrade_1 }
+		}
+
+		visible = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = dread_hounds_1
+			NOT = { has_country_flag = dread_hounds_upgrade_1 }
+		}
+
+		cost = 100
+
+		days_remove = 30
+
+		modifier = {
+			political_power_gain = -0.15
+			command_power_gain = -0.10
+		}
+
+		remove_effect = {
+			set_country_flag = dread_hounds_upgrade_1
+			set_technology = { undead_plague_hound_infected_wound_tech = 1 }
+			add_units_to_division_template = {
+				template_name = "Risen Hounds"
+				regiments = {
+					undead_plague_hound = 2
+					undead_plague_hound = 2
+					undead_plague_hound = 2
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_dread_hounds_upgrade_2 = {
+		icon = GFX_decision_generic_religion_necromancy
+
+		available = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = dread_hounds_1
+			has_country_flag = dread_hounds_upgrade_1
+			NOT = { has_country_flag = dread_hounds_upgrade_2 }
+			has_equipment = { caster_equipment > 0 }
+		}
+
+		visible = {
+			NOT = {	has_country_flag = undead_technology }
+			has_country_flag = undead_army
+			has_country_flag = dread_hounds_1
+			has_country_flag = dread_hounds_upgrade_1
+			NOT = { has_country_flag = dread_hounds_upgrade_2 }
+		}
+
+		cost = 100
+
+		days_remove = 60
+
+		modifier = {
+			political_power_gain = -0.15
+			command_power_gain = -0.10
+		}
+
+		remove_effect = {
+			set_country_flag = dread_hounds_upgrade_2
+			set_technology = { undead_plague_hound_unholy_regeneration_tech = 1 }
+			add_units_to_division_template = {
+				template_name = "Risen Hounds"
+				regiments = {
+					undead_plague_hound = 1
+					undead_plague_hound = 1
+				}
+				support = {
+					undead_boneweaver = 0
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_feed_the_hordes = {
+
+		available = {
+			has_government = death
+			has_idea = undead_guild
+			any_controlled_state = { 
+				NOT = { is_core_of = ROOT } 
+				state_population > 5000
+			}
+		}
+
+		visible = {
+			has_government = death
+			has_idea = undead_guild
+			any_controlled_state = { 
+				NOT = { is_core_of = ROOT } 
+				state_population > 5000
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_re_enable = 90
+
+		remove_effect = {
+			hidden_effect = { add_command_power = -50 }
+			random_owned_state = {
+				limit = {
+					NOT = { is_core_of = ROOT }
+					impassable = no
+				}
+				add_compliance = 20
+				add_manpower = -1000
+			}
+			add_manpower = 300
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_taint_grain_1 = {
+
+		available = {
+			has_government = death
+			has_idea = undead_guild
+			any_neighbor_country = { 
+				farm > 0 
+				NOT = { 
+					has_country_flag = immune_to_lesser_plagues 
+					has_country_flag = immune_to_plagues
+				}
+				NOT = { 
+					is_in_faction_with = ROOT 
+					has_idea = undead_primary_race
+				}
+			}
+			NOT = { has_country_flag = tainted_grain }
+		}
+
+		visible = {
+			has_government = death
+			has_idea = undead_guild
+			any_neighbor_country = { 
+				farm > 0 
+				NOT = { 
+					is_in_faction_with = ROOT 
+					has_idea = undead_primary_race
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+
+		days_remove = 120
+
+		days_re_enable = 90
+
+		remove_effect = {
+			clr_country_flag = tainted_grain
+			remove_ideas = death_taint_grain_1_recieve
+		}
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -25 }
+			add_ideas = death_taint_grain_1_recieve
+			random_neighbor_country = {
+				limit = { 
+					farm > 0 
+					NOT = { 
+						has_country_flag = immune_to_lesser_plagues 
+						has_country_flag = immune_to_plagues
+					}
+					NOT = { 
+						is_in_faction_with = ROOT 
+						has_idea = undead_primary_race
+					}
+				}
+				add_timed_idea = {
+					idea = death_taint_grain_1_take
+					days = 120
+				}
+			}
+			set_country_flag = tainted_grain
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_taint_grain_10 = {
+
+		available = {
+			has_government = death
+			has_idea = undead_guild
+			any_neighbor_country = { 
+				farm > 4 
+					NOT = { 
+						is_in_faction_with = ROOT 
+						has_idea = undead_primary_race
+					}
+				NOT = { has_country_flag = immune_to_plagues }
+			}
+			NOT = { has_country_flag = tainted_grain }
+		}
+
+		visible = {
+			has_government = death
+			has_idea = undead_guild
+			any_neighbor_country = { 
+				farm > 4 
+					NOT = { 
+						is_in_faction_with = ROOT 
+						has_idea = undead_primary_race
+					}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 120
+
+		days_re_enable = 90
+
+		remove_effect = {
+			clr_country_flag = tainted_grain
+			remove_ideas = death_taint_grain_10_recieve
+		}
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			add_ideas = death_taint_grain_10_recieve
+			random_neighbor_country = {
+				limit = { 
+					farm > 4
+					NOT = { 
+						is_in_faction_with = ROOT 
+						has_idea = undead_primary_race
+					}
+					NOT = { has_country_flag = immune_to_plagues }
+				}
+				add_timed_idea = {
+					idea = death_taint_grain_10_take
+					days = 120
+				}
+			}
+			set_country_flag = tainted_grain
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	death_taint_grain_20 = {
+
+		available = {
+			has_government = death
+			has_idea = undead_guild
+			any_neighbor_country = { 
+				farm > 14 
+				NOT = { 
+					is_in_faction_with = ROOT 
+					has_idea = undead_primary_race
+				}
+				NOT = { has_country_flag = immune_to_plagues }
+			}
+			NOT = { has_country_flag = tainted_grain }
+		}
+
+		visible = {
+			has_government = death
+			has_idea = undead_guild
+			any_neighbor_country = { 
+				farm > 14 
+				NOT = { 
+					is_in_faction_with = ROOT 
+					has_idea = undead_primary_race
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 99 }
+		custom_cost_text = decision_cost_command_100
+
+		days_remove = 120
+
+		days_re_enable = 90
+
+		remove_effect = {
+			clr_country_flag = tainted_grain
+			remove_ideas = death_taint_grain_20_recieve
+		}
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -100 }
+			add_ideas = death_taint_grain_20_recieve
+			random_neighbor_country = {
+				limit = { 
+					farm > 14 
+					NOT = { 
+						is_in_faction_with = ROOT 
+						has_idea = undead_primary_race
+					}
+					NOT = { has_country_flag = immune_to_plagues }
+				}
+				add_timed_idea = {
+					idea = death_taint_grain_20_take
+					days = 120
+				}
+			}
+			set_country_flag = tainted_grain
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

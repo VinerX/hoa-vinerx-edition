@@ -1,0 +1,129 @@
+Occupation_Decisions = {
+	### SAME RACE MISSION
+	accepted_race_mission = {
+	 	icon = generic_civil_support
+		fire_only_once = no
+
+	 	available = {
+	 		any_controlled_state = {
+	 			NOT = { is_core_of = ROOT }
+	 			state_does_not_match_primary_or_secondary_race = no
+	 			NOT = { has_dynamic_modifier = { modifier = RACE_resistance_state } }
+	 		}
+	 		has_war = no
+	 	}
+
+		visible = {
+			any_controlled_state = {
+				NOT = { is_core_of = ROOT }
+				state_does_not_match_primary_or_secondary_race = no
+				NOT = { has_dynamic_modifier = { modifier = RACE_resistance_state } }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -25 }
+	 		if = {
+	 			limit = {
+	 				any_controlled_state = {
+	 					NOT = { is_core_of = ROOT }
+	 					state_does_not_match_primary_or_secondary_race = no
+	 				}
+	 			}
+	 			random_controlled_state = {
+	 				limit = {
+	 					NOT = { has_dynamic_modifier = { modifier = RACE_resistance_state } }
+	 					NOT = { is_core_of = ROOT }
+	 					state_does_not_match_primary_or_secondary_race = no
+	 				}
+	 				add_dynamic_modifier = { modifier = RACE_resistance_state }
+	 			}
+	 		}
+	 	}
+	 }
+
+	### ACCEPTED FAITH MISSION
+	accepted_faith_mission = {
+	 	icon = generic_civil_support
+	 	fire_only_once = no
+
+	 	available = {
+	 		any_controlled_state = {
+	 			NOT = { is_core_of = ROOT }
+	 			state_does_not_match_primary_or_secondary_religion = no
+	 			NOT = { has_dynamic_modifier = { modifier = FAITH_resistance_state } }
+	 		}
+	 		has_war = no
+	 	}
+
+		visible = {
+			any_controlled_state = {
+				NOT = { is_core_of = ROOT }
+				state_does_not_match_primary_or_secondary_religion = no
+				NOT = { has_dynamic_modifier = { modifier = FAITH_resistance_state } }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 24 }
+		custom_cost_text = decision_cost_command_25
+
+	 	complete_effect = {
+			hidden_effect = { add_command_power = -25 }
+	 		if = {
+	 			limit ={
+	 				any_controlled_state = {
+	 					NOT = { is_core_of = ROOT }
+	 					state_does_not_match_primary_or_secondary_religion = no
+	 				}
+	 			}
+	 			random_controlled_state = {
+	 				limit = {
+	 					NOT = { has_dynamic_modifier = { modifier = FAITH_resistance_state } }
+	 					NOT = { is_core_of = ROOT }
+	 					state_does_not_match_primary_or_secondary_religion = no
+	 				}
+	 				add_dynamic_modifier = { modifier = FAITH_resistance_state }
+	 			}
+	 		}
+	 	}
+	}
+
+	redirected_supplies = {
+	 	icon = generic_civil_support
+		fire_only_once = no
+
+	 	available = {
+			controls_state = 1611
+			controls_state = 280
+			NOT = { tag = GRG }
+	 	}
+
+		visible = {
+			STD = { has_idea = STD_Supplies_From_Gromgol }
+			NOT = { tag = GRG }
+			OR = {
+				any_neighbor_country = { tag = GRG }
+				AND = {
+					controls_state = 1611
+					controls_state = 280
+				}
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			add_timed_idea = {
+				idea = STD_redirected_supplies
+				days = 180
+			}
+			STD = { remove_ideas = STD_Supplies_From_Gromgol }
+	 	}
+	}
+
+}

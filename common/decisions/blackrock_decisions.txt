@@ -1,0 +1,986 @@
+BRC_managing_our_territory_decisions = {
+
+    BRC_deal_with_overextension_decision = {
+
+        priority = 10
+        cost = 100
+
+        days_remove = 45
+        days_re_enable = 45
+
+        allowed = { original_tag = BRC }
+        visible = {
+            OR = {
+                has_idea = BRC_horde_overstretch_tier_1_idea
+                has_idea = BRC_horde_overstretch_tier_2_idea
+                has_idea = BRC_horde_overstretch_tier_3_idea
+                has_idea = BRC_horde_overstretch_tier_4_idea
+                has_idea = BRC_horde_overstretch_tier_5_idea
+            }
+        }
+
+        available = {
+            OR = {
+                has_idea = BRC_horde_overstretch_tier_1_idea
+                has_idea = BRC_horde_overstretch_tier_2_idea
+                has_idea = BRC_horde_overstretch_tier_3_idea
+                has_idea = BRC_horde_overstretch_tier_4_idea
+                has_idea = BRC_horde_overstretch_tier_5_idea
+            }
+        }
+
+        remove_effect = {
+            reduce_horde_overextension = yes
+		}
+
+        ai_will_do = {
+			factor = 50
+		}
+    }
+
+    BRC_fate_of_arathi_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Arathi
+            OR = {
+                owns_state = 12
+                owns_state = 121
+                owns_state = 127
+                owns_state = 128
+                owns_state = 129
+                owns_state = 130
+                owns_state = 131
+                owns_state = 132
+                owns_state = 133
+                owns_state = 575
+                owns_state = 576
+                owns_state = 577
+                owns_state = 578
+                owns_state = 579
+                owns_state = 580
+                owns_state = 581
+                owns_state = 1566
+                owns_state = 1567
+                owns_state = 1568
+                owns_state = 1569
+                owns_state = 1570
+                owns_state = 1571
+                owns_state = 1572
+                owns_state = 2211
+                owns_state = 2212
+            }
+        }
+
+        available = {
+            # Own at least one state in Arathi
+            OR = {
+                owns_state = 12
+                owns_state = 121
+                owns_state = 127
+                owns_state = 128
+                owns_state = 129
+                owns_state = 130
+                owns_state = 131
+                owns_state = 132
+                owns_state = 133
+                owns_state = 575
+                owns_state = 576
+                owns_state = 577
+                owns_state = 578
+                owns_state = 579
+                owns_state = 580
+                owns_state = 581
+                owns_state = 1566
+                owns_state = 1567
+                owns_state = 1568
+                owns_state = 1569
+                owns_state = 1570
+                owns_state = 1571
+                owns_state = 1572
+                owns_state = 2211
+                owns_state = 2212
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.57
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_alterac_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Alterac (minus the surroundings of Dalaran and impassable)
+            OR = {
+                owns_state = 11
+                owns_state = 113
+                owns_state = 114
+                owns_state = 115
+                owns_state = 116
+                owns_state = 117
+                owns_state = 118
+                owns_state = 749
+                owns_state = 758
+                owns_state = 1539
+                owns_state = 1582
+                owns_state = 2216
+                owns_state = 2217
+                owns_state = 2218
+            }
+        }
+
+        available = {
+            # Own at least one state in Alterac (minus the surroundings of Dalaran and impassable)
+            OR = {
+                owns_state = 11
+                owns_state = 113
+                owns_state = 114
+                owns_state = 115
+                owns_state = 116
+                owns_state = 117
+                owns_state = 118
+                owns_state = 749
+                owns_state = 758
+                owns_state = 1539
+                owns_state = 1582
+                owns_state = 2216
+                owns_state = 2217
+                owns_state = 2218
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.66
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_hillsbrad_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Hillsbrad
+            OR = {
+                owns_state = 15
+                owns_state = 32
+                owns_state = 35
+                owns_state = 122
+                owns_state = 123
+                owns_state = 124
+                owns_state = 638
+                owns_state = 721
+                owns_state = 722
+                owns_state = 1540
+                owns_state = 1541
+                owns_state = 1542
+                owns_state = 1544
+                owns_state = 2215
+            }
+        }
+
+        available = {
+            # Own at least one state in Hillsbrad
+            OR = {
+                owns_state = 15
+                owns_state = 32
+                owns_state = 35
+                owns_state = 122
+                owns_state = 123
+                owns_state = 124
+                owns_state = 638
+                owns_state = 721
+                owns_state = 722
+                owns_state = 1540
+                owns_state = 1541
+                owns_state = 1542
+                owns_state = 1544
+                owns_state = 2215
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.58
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_dalaran_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Dalaran and its surrounding
+            OR = {
+                owns_state = 14
+                owns_state = 111
+                owns_state = 2218
+                owns_state = 2250
+                owns_state = 2251
+            }
+        }
+
+        available = {
+            # Own at least one state in Dalaran and its surrounding
+            OR = {
+                owns_state = 14
+                owns_state = 111
+                owns_state = 2218
+                owns_state = 2250
+                owns_state = 2251
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.59
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_hearthglen_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Western Plaguelands (minus impassable)
+            OR = {
+                owns_state = 29
+                owns_state = 103
+                owns_state = 106
+                owns_state = 151
+                owns_state = 152
+                owns_state = 153
+                owns_state = 154
+                owns_state = 155
+                owns_state = 156
+                owns_state = 157
+                owns_state = 158
+                owns_state = 159
+                owns_state = 160
+                owns_state = 344
+                owns_state = 1289
+                owns_state = 1290
+                owns_state = 2232
+            }
+        }
+
+        available = {
+            # Own at least one state in Western Plaguelands (minus impassable)
+            OR = {
+                owns_state = 29
+                owns_state = 103
+                owns_state = 106
+                owns_state = 151
+                owns_state = 152
+                owns_state = 153
+                owns_state = 154
+                owns_state = 155
+                owns_state = 156
+                owns_state = 157
+                owns_state = 158
+                owns_state = 159
+                owns_state = 160
+                owns_state = 344
+                owns_state = 1289
+                owns_state = 1290
+                owns_state = 2232
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.60
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_eastweald_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Eastern Plaguelands (Eastweald) (minus impassable)
+            OR = {
+                owns_state = 30
+                owns_state = 119
+                owns_state = 201
+                owns_state = 223
+                owns_state = 224
+                owns_state = 226
+                owns_state = 227
+                owns_state = 228
+                owns_state = 229
+                owns_state = 230
+                owns_state = 231
+                owns_state = 232
+                owns_state = 234
+                owns_state = 236
+                owns_state = 237
+                owns_state = 238
+                owns_state = 239
+                owns_state = 241
+                owns_state = 242
+                owns_state = 243
+                owns_state = 245
+                owns_state = 246
+                owns_state = 247
+                owns_state = 248
+                owns_state = 376
+                owns_state = 1543
+                owns_state = 1583
+                owns_state = 1584
+                owns_state = 1585
+                owns_state = 1586
+                owns_state = 1587
+                owns_state = 2233
+                owns_state = 2234
+                owns_state = 2235
+                owns_state = 2236
+                owns_state = 2237
+                owns_state = 2238
+            }
+        }
+
+        available = {
+            # Own at least one state in Eastern Plaguelands (Eastweald) (minus impassable)
+            OR = {
+                owns_state = 30
+                owns_state = 119
+                owns_state = 201
+                owns_state = 223
+                owns_state = 224
+                owns_state = 226
+                owns_state = 227
+                owns_state = 228
+                owns_state = 229
+                owns_state = 230
+                owns_state = 231
+                owns_state = 232
+                owns_state = 234
+                owns_state = 236
+                owns_state = 237
+                owns_state = 238
+                owns_state = 239
+                owns_state = 241
+                owns_state = 242
+                owns_state = 243
+                owns_state = 245
+                owns_state = 246
+                owns_state = 247
+                owns_state = 248
+                owns_state = 376
+                owns_state = 1543
+                owns_state = 1583
+                owns_state = 1584
+                owns_state = 1585
+                owns_state = 1586
+                owns_state = 1587
+                owns_state = 2233
+                owns_state = 2234
+                owns_state = 2235
+                owns_state = 2236
+                owns_state = 2237
+                owns_state = 2238
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.61
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_northern_lordaeron_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Northern Lordaeron
+            OR = {
+                owns_state = 120
+                owns_state = 220
+                owns_state = 221
+                owns_state = 222
+            }
+        }
+
+        available = {
+            # Own at least one state in Northern Lordaeron
+            OR = {
+                owns_state = 120
+                owns_state = 220
+                owns_state = 221
+                owns_state = 222
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.62
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_silverpine_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Silverpine Forest (minus impassable)
+            OR = {
+                owns_state = 31
+        		owns_state = 109
+        		owns_state = 110
+        		owns_state = 162
+        		owns_state = 163
+        		owns_state = 164
+        		owns_state = 165
+        		owns_state = 166
+        		owns_state = 167
+        		owns_state = 708
+        		owns_state = 717
+        		owns_state = 718
+        		owns_state = 719
+        		owns_state = 720
+        		owns_state = 1096
+        		owns_state = 1537
+        		owns_state = 1538
+        		owns_state = 2224
+        		owns_state = 2225
+            }
+        }
+
+        available = {
+            # Own at least one state in Silverpine Forest (minus impassable)
+            OR = {
+                owns_state = 31
+        		owns_state = 109
+        		owns_state = 110
+        		owns_state = 162
+        		owns_state = 163
+        		owns_state = 164
+        		owns_state = 165
+        		owns_state = 166
+        		owns_state = 167
+        		owns_state = 708
+        		owns_state = 717
+        		owns_state = 718
+        		owns_state = 719
+        		owns_state = 720
+        		owns_state = 1096
+        		owns_state = 1537
+        		owns_state = 1538
+        		owns_state = 2224
+        		owns_state = 2225
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.63
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_gilneas_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Gilneas (minus impassable)
+            OR = {
+                owns_state = 1
+        		owns_state = 2
+        		owns_state = 3
+        		owns_state = 4
+        		owns_state = 98
+        		owns_state = 99
+        		owns_state = 412
+        		owns_state = 413
+        		owns_state = 414
+        		owns_state = 415
+        		owns_state = 416
+        		owns_state = 417
+        		owns_state = 418
+        		owns_state = 419
+        		owns_state = 2093
+        		owns_state = 2094
+        		owns_state = 2095
+        		owns_state = 2096
+        		owns_state = 2097
+        		owns_state = 2098
+        		owns_state = 2099
+        		owns_state = 2219
+        		owns_state = 2220
+        		owns_state = 2221
+        		owns_state = 2222
+        		owns_state = 2223
+            }
+        }
+
+        available = {
+            # Own at least one state in Gilneas (minus impassable)
+            OR = {
+                owns_state = 1
+        		owns_state = 2
+        		owns_state = 3
+        		owns_state = 4
+        		owns_state = 98
+        		owns_state = 99
+        		owns_state = 412
+        		owns_state = 413
+        		owns_state = 414
+        		owns_state = 415
+        		owns_state = 416
+        		owns_state = 417
+        		owns_state = 418
+        		owns_state = 419
+        		owns_state = 2093
+        		owns_state = 2094
+        		owns_state = 2095
+        		owns_state = 2096
+        		owns_state = 2097
+        		owns_state = 2098
+        		owns_state = 2099
+        		owns_state = 2219
+        		owns_state = 2220
+        		owns_state = 2221
+        		owns_state = 2222
+        		owns_state = 2223
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.64
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+
+    BRC_fate_of_kul_tiras_decision = {
+
+        priority = 9
+        cost = 50
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            # Own at least one state in Kul'tiras (minus impassable and minor islands)
+            OR = {
+                owns_state = 5
+                owns_state = 100
+                owns_state = 101
+        		owns_state = 102
+        		owns_state = 331
+                owns_state = 614
+        		owns_state = 615
+        		owns_state = 616
+        		owns_state = 628
+                owns_state = 630
+        		owns_state = 631
+        		owns_state = 632
+        		owns_state = 633
+        		owns_state = 634
+        		owns_state = 635
+        		owns_state = 640
+        		owns_state = 641
+        		owns_state = 642
+        		owns_state = 644
+        		owns_state = 645
+        		owns_state = 646
+        		owns_state = 647
+                owns_state = 648
+        		owns_state = 649
+                owns_state = 669
+        		owns_state = 670
+        		owns_state = 671
+        		owns_state = 672
+            }
+        }
+
+        available = {
+            # Own at least one state in Kul'tiras (minus impassable and minor islands)
+            OR = {
+                owns_state = 5
+                owns_state = 100
+                owns_state = 101
+        		owns_state = 102
+        		owns_state = 331
+                owns_state = 614
+        		owns_state = 615
+        		owns_state = 616
+        		owns_state = 628
+                owns_state = 630
+        		owns_state = 631
+        		owns_state = 632
+        		owns_state = 633
+        		owns_state = 634
+        		owns_state = 635
+        		owns_state = 640
+        		owns_state = 641
+        		owns_state = 642
+        		owns_state = 644
+        		owns_state = 645
+        		owns_state = 646
+        		owns_state = 647
+                owns_state = 648
+        		owns_state = 649
+                owns_state = 669
+        		owns_state = 670
+        		owns_state = 671
+        		owns_state = 672
+            }
+        }
+
+        complete_effect = {
+            custom_effect_tooltip = BRC_fate_of_x_tt
+            country_event = blackrock.65
+        }
+
+        ai_will_do = { factor = 1 }
+    }
+}
+
+BRC_human_resistance_decisions = {
+
+    # Available to any nation with human resistance
+    BRC_special_training_for_garrisons_decision = {
+
+        priority = 10
+        cost = 50
+
+        days_remove = 180
+        days_re_enable = 180
+
+        allowed = {
+      	    always = yes
+      	}
+
+        visible = {
+            # any_owned_state = {
+    		# 	has_dynamic_modifier = { modifier = BRC_human_resistance }
+    		# }
+            has_country_flag = BRC_human_resistance_present_flag
+        }
+
+        available = {
+            has_manpower > 100
+            has_army_experience > 5
+        }
+
+        modifier = {
+			required_garrison_factor = -0.1
+			resistance_activity = -0.1
+            experience_gain_army_factor = 0.05
+		}
+    }
+
+    # Generic Deal with Resistance decision
+    # For nations that have human resistance but are not Blackrock Clan (BRC)
+    BRC_deal_with_resistance_decision = {
+
+        priority = 10
+        cost = 100
+
+        days_remove = 45
+
+        state_target = yes
+        on_map_mode = map_only
+
+        allowed = {
+      	    NOT = { original_tag = BRC }
+      	}
+
+        visible = {
+            # any_owned_state = {
+    		# 	has_dynamic_modifier = { modifier = BRC_human_resistance }
+    		# }
+            has_country_flag = BRC_human_resistance_present_flag
+        }
+
+        target_array = owned_controlled_states
+        target_trigger = {
+            FROM = {
+                has_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+        }
+
+        remove_effect = {
+            FROM = {
+                remove_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+            # Checks if we now no longer have a state with the modifier
+            hidden_effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            any_owned_state = { has_dynamic_modifier = { modifier = BRC_human_resistance } }
+                        }
+                    }
+                    clr_country_flag = BRC_human_resistance_present_flag	# Used for decision tracking (more performance efficient than recursive any_owned_state checks)
+                }
+            }
+		}
+    }
+
+    BRC_build_internment_camp_decision = {
+
+        priority = 10
+        cost = 75
+        icon = GFX_decision_category_SOV_soviet_academy_of_sciences
+
+        days_remove = 90
+
+        state_target = yes
+        on_map_mode = map_only
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            has_country_flag = BRC_human_resistance_internment_camps_flag
+            # any_owned_state = {
+    		# 	has_dynamic_modifier = { modifier = BRC_human_resistance }
+    		# }
+            has_country_flag = BRC_human_resistance_present_flag
+        }
+
+        target_array = ROOT.owned_controlled_states
+        target_trigger = {
+            FROM = {
+                has_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+        }
+
+        modifier = {
+            civilian_factory_use = 1
+        }
+
+        remove_effect = {
+            FROM = {
+                add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+                remove_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+            # Checks if we now no longer have a state with the modifier
+            hidden_effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            any_owned_state = { has_dynamic_modifier = { modifier = BRC_human_resistance } }
+                        }
+                    }
+                    clr_country_flag = BRC_human_resistance_present_flag	# Used for decision tracking (more performance efficient than recursive any_owned_state checks)
+                }
+            }
+		}
+    }
+
+    BRC_increase_garrison_forces_decision = {
+
+        priority = 10
+        cost = 100
+        icon = GFX_decision_category_eng_organize_the_blackshirts
+
+        days_remove = 30
+
+        state_target = yes
+        on_map_mode = map_only
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            has_country_flag = BRC_human_resistance_garrisons_forces_flag
+            # any_owned_state = {
+    		# 	has_dynamic_modifier = { modifier = BRC_human_resistance }
+    		# }
+            has_country_flag = BRC_human_resistance_present_flag
+        }
+
+        target_array = ROOT.owned_controlled_states
+        target_trigger = {
+            FROM = {
+                has_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+        }
+
+        complete_effect = {
+            add_manpower = -1000
+        }
+
+        remove_effect = {
+            FROM = {
+                remove_dynamic_modifier = { modifier = BRC_human_resistance }
+            }
+            # Checks if we now no longer have a state with the modifier
+            hidden_effect = {
+                if = {
+                    limit = {
+                        NOT = {
+                            any_owned_state = { has_dynamic_modifier = { modifier = BRC_human_resistance } }
+                        }
+                    }
+                    clr_country_flag = BRC_human_resistance_present_flag	# Used for decision tracking (more performance efficient than recursive any_owned_state checks)
+                }
+            }
+		}
+    }
+}
+
+foreign_politics = {
+
+    # Ask Bleeding Hollow to give control of Westfall (after Stormwind capitulation)
+    BRC_ask_for_westfall_decision = {
+
+        priority = 10
+
+        cost = 250
+
+        days_re_enable = 90
+
+        allowed = { original_tag = BRC }
+
+        visible = {
+            BRC = { has_completed_focus = BRC_the_fall_of_stormwind }
+        }
+
+        available = {
+            BRC = { is_neighbor_of = BHC }
+
+            BHC = {
+                is_in_faction_with = BRC
+                has_full_control_of_westfall = yes
+            }
+        }
+
+        complete_effect = {
+            BHC = {
+                country_event = {
+                    id = bleeding_hollow.4
+                    days = 1
+                }
+            }
+		}
+    }
+
+    BRC_call_the_draenor_clans_to_war = {
+
+        priority = 10
+        cost = 100
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+        visible = {
+            original_tag = BRC
+            NOT = { has_start_date > 609.1.1 }
+            NOT = { has_start_date < 591.1.1 }
+        }
+
+        available = {
+            original_tag = BRC
+            BRC = {
+                OR = {
+                    has_completed_focus = BRC_blackhands_horde
+                    has_completed_focus = BRC_doomhammers_horde
+                }
+            }
+            has_war_with_major = yes
+        }
+
+        complete_effect = {
+            BRC = {
+                country_event = {
+                    id = blackrock.13
+                    days = 1
+                }
+            }
+		}
+    }
+
+    ######
+    ### 3rd War
+    ######
+
+    BRC_backstabbers_heir = {
+
+        priority = 10
+        cost = 100
+        fire_only_once = yes
+
+        allowed = { original_tag = BRC }
+        visible = { 
+            original_tag = BRC
+            has_start_date > 609.1.1 
+        }
+        available = {
+            original_tag = BRC
+            owns_state = 604
+            FWC = { has_country_flag = fled_west }
+        }
+
+        complete_effect = {
+            hidden_effect = { set_country_flag = backstabbers_heir }
+            add_stability = 0.05
+            add_war_support = 0.10
+            add_manpower = 2000
+		}
+    }
+}

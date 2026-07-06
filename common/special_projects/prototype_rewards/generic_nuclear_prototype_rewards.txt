@@ -1,0 +1,131 @@
+# sp_nuclear_scientist_xp_generic_reward
+# sp_nuclear_minor_progress_generic_reward
+# sp_nuclear_generic_electronics_tech_reward
+# sp_nuclear_war_support_generic_reward
+# sp_nuclear_generic_industry_tech_reward
+
+# sp_nuclear_reactor_radioactive_leak_stabilized_reward
+# sp_nuclear_reactor_minor_explosion_reward
+
+sp_nuclear_scientist_xp_generic_reward = {
+	fire_only_once = no
+	
+	threshold = { 
+		min = 0
+		max = 100
+	}
+	
+	weight = {
+		factor = 1.0
+	}
+	
+	option = {
+		token = sp_nuclear_scientist_xp_generic_reward_option
+				
+		iteration_output = {
+			scientist_effects = {
+				add_scientist_xp = {
+					#experience = constant:sp_scientist_xp_gain.low
+					experience = 10
+					specialization = specialization_magic
+				}
+			}
+		}
+	}
+}
+
+sp_nuclear_minor_progress_generic_reward = {
+	fire_only_once = no
+	
+	threshold = { 
+		min = 0
+		max = 80
+	}
+	
+	weight = {
+		factor = 1.0
+	}
+	
+	option = {
+		token = sp_nuclear_minor_progress_generic_reward_option
+				
+		iteration_output = {
+			country_effects = {
+				FROM = { add_project_progress_ratio = 0.1 }
+			}
+		}
+	}
+}
+
+sp_nuclear_reactor_radioactive_leak_stabilized_reward = {
+	fire_only_once = yes
+	
+	threshold = { 
+		min = 40
+		max = 60
+	}
+	
+	weight = {
+		base = 0.75
+	}
+	
+	option = {
+		token = sp_nuclear_reactor_radioactive_leak_stabilized_reward_option
+		
+		iteration_output = {
+			country_effects = {
+				FROM = { add_project_progress_ratio = 0.1 }
+			}
+			scientist_effects = {
+				add_scientist_xp = {
+					#experience = constant:sp_scientist_xp_gain.medium
+					experience = 25
+					specialization = specialization_magic
+				}
+			}
+
+			facility_state_effects = { 
+				damage_building = {
+					tags = facility
+					damage = 0.1
+					province = var:facility_province_id
+				}
+			}
+		}
+	}
+}
+
+sp_nuclear_reactor_minor_explosion_reward = {
+	fire_only_once = yes
+	
+	threshold = { 
+		min = 20
+		max = 40
+	}
+	
+	weight = {
+		base = 0.75
+	}
+	
+	option = {
+		token = sp_nuclear_reactor_minor_explosion_reward_option
+		
+		iteration_output = {
+			scientist_effects = {
+				add_scientist_xp = {
+					#experience = constant:sp_scientist_xp_gain.low
+					experience = 10
+					specialization = specialization_magic
+				}
+			}
+
+			facility_state_effects = { 
+				damage_building = {
+					tags = facility
+					damage = 0.1
+					province = var:facility_province_id
+				}
+			}
+		}
+	}
+}

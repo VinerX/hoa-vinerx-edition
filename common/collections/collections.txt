@@ -1,0 +1,390 @@
+########################################
+
+ ##   ##  #  # #  # ### ###  ### ###  ##     
+#  # #  # #  # ## #  #  #  #  #  #   #       
+#    #  # #  # # ##  #  ###   #  ##   #      
+#  # #  # #  # #  #  #  #  #  #  #     #     
+ ##   ##   ##  #  #  #  #  # ### ### ## 
+
+########################################     
+
+world_at_peace_countries = {
+	input = game:all_countries
+	operators = {
+		limit = {
+			has_war = no 
+		}
+	}
+	name = COLLECTION_COUNTRIES_AT_PEACE
+}
+
+alliance_faction_members = {
+	input = game:scope
+	operators = {
+		faction_members
+		limit = {
+			has_government = alliance
+		}
+	}
+	name = COLLECTION_ALLIANCE_FACTION_MEMBERS
+}
+
+uncapitulated_alliance_faction_members = {
+	input = game:scope
+	operators = {
+		faction_members
+		limit = {
+			has_government = alliance
+			has_capitulated = no
+		}
+	}
+	name = COLLECTION_UNCAPITULATED_ALLIANCE_FACTION_MEMBERS
+}
+
+world_alliance_countries = {
+	input = game:all_countries
+	name = COLLECTION_WORLD_ALLIANCE_COUNTRIES
+	operators = {
+		limit = {
+			has_government = alliance
+		}
+	}
+}
+
+###
+world_uncapitulated_alliance_countries = {
+	input = collection:world_alliance_countries
+	name = COLLECTION_UNCAPITULATED_ALLIANCE_COUNTRIES
+	operators = {
+		limit = {
+			has_capitulated = no
+		}
+	}	
+}
+
+# New Order in Asia etc
+
+#countries_asia = {
+#	input = game:all_countries
+#	name = COLLECTION_COUNTRIES_ASIA
+#	operators = {
+#		limit = {
+#			capital_scope = { is_on_continent = asia }
+#		}
+#	}
+#}
+
+faction_owned_core_states = {
+	input = game:scope
+	operators = {
+		faction_members
+		owned_states
+		limit = {
+			is_core_of = PREV 
+		}
+	}
+	name = COLLECTION_FACTION_OWNED_CORE_STATES
+}
+
+#world_non_fascist_controlled_states = {
+#	input = game:all_states
+#	operators = {
+#		limit = {
+#			controller = { NOT = { has_government = fascism } }
+#		}
+#	}
+#}
+
+faction_controlled_non_core_states = {
+	input = game:scope
+	operators = {
+		faction_members
+		controlled_states
+		limit = {
+			NOT = { is_core_of = PREV }
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_NON_CORE_STATES
+}
+
+
+country_and_all_subjects_controlled_non_core_states = {
+	input = game:scope
+	operators = {
+		country_and_all_subjects
+		controlled_states
+		limit = {
+			NOT = { is_core_of = PREV }
+		}
+	}
+	name = COLLECTION_COUNTRY_AND_SUBJECTS_CONTROLLED_NON_CORE_STATES
+}
+
+faction_states_on_my_continent = {
+	input = game:all_states
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			is_controlled_by_ROOT_or_ally = yes 
+		}
+	}
+	name = COLLECTION_FACTION_STATES_MY_CONTINENT
+}
+states_on_my_continent = {
+	input = game:all_states
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+		}
+	}
+	name = COLLECTION_STATES_MY_CONTINENT
+}
+
+states_controlled_by_faction_member_and_core_holder = {
+	input = game:scope
+	operators = {
+		faction_members
+		controlled_states
+		limit = {
+			is_core_of = controller
+		}
+	}
+	name = COLLECTION_STATES_CONTROLLED_BY_FACTION_MEMBER_AND_CORE_HOLDER
+}
+
+# New Order in east Asia
+#communist_controlled_states_my_continent = {
+#	input = game:all_states
+#	name = COLLECTION_AMOUNT_OF_COMMUNIST_CONTROLLED_STATES_SAME_CONTINENT
+#	operators = {
+#		limit = {
+#			is_on_same_continent_as = ROOT
+#			controller = {
+#				has_government = communism
+#			}
+#		}
+#	}
+#}
+
+countries_my_continent = {
+	input = game:all_countries
+	name = COLLECTION_ALL_SAME_CONTINENT_COUNTRIES
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+		}
+	}
+}
+
+#communist_or_capitulated_countries_my_continent = {
+#	input = game:all_countries
+#	name = COLLECTION_ALL_COMMUNIST_OR_DEFEATED_SAME_CONTINENT_COUNTRIES
+#	operators = {
+#		limit = {
+#			is_on_same_continent_as = ROOT
+#			OR = {
+#				has_government = communism 
+#				has_capitulated = yes
+#			}
+#		}
+#	}
+#}
+
+neighboring_states_to_leader = {
+	input = game:all_states
+	name = COLLECTION_NEIGHBORING_STATES
+	operators = {
+		limit = {
+			any_neighbor_state = {
+				is_owned_by = ROOT 
+			}	
+		}
+	}
+}
+
+puppet_controlled_border_states = {
+	input = collection:neighboring_states_to_leader
+	name = COLLECTION_CONTROLLED_PUPPET_BORDER_STATES
+	operators = {
+		limit = {
+			controller = {
+				is_subject_of = ROOT
+			}
+		}
+	}
+}
+
+alliance_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_ALLIANCE_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = alliance
+			}
+		}
+	}
+}
+
+horde_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_HORDE_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = horde
+			}
+		}
+	}
+}
+
+death_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_DEATH_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = death
+			}
+		}
+	}
+}
+
+fel_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_FEL_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = fel
+			}
+		}
+	}
+}
+
+old_gods_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_OLD_GODS_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = old_gods
+			}
+		}
+	}
+}
+
+titans_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_TITANS_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = titans
+			}
+		}
+	}
+}
+
+neutral_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_AMOUNT_OF_NEUTRAL_CONTROLLED_STATES_SAME_CONTINENT
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				has_government = neutral
+			}
+		}
+	}
+}
+
+evil_nations_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_STATES_MY_CONTINENT_CONTROLLED_EVIL_NATIONS
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				OR = {
+					has_government = death
+					has_government = fel
+					has_government = old_gods					
+				}
+			}
+		}
+	}
+}
+
+good_nations_controlled_states_my_continent = {
+	input = game:all_states
+	name = COLLECTION_STATES_MY_CONTINENT_CONTROLLED_DEMOCRATIC_FASCIST
+	operators = {
+		limit = {
+			is_on_same_continent_as = ROOT
+			any_country = {
+				controls_state = PREV
+				OR = {
+					has_government = alliance
+					has_government = horde
+					has_government = titans
+					has_government = neutral				
+				}
+			}
+		}
+	}
+}
+
+world_uncapitulated_democratic_countries_and_dominions = {
+	input = game:all_countries
+	name = COLLECTION_UNCAPITULATED_DEMOCRATIC_COUNTRIES_AND_DOMINIONS
+	operators = {
+		limit = {
+			OR = {
+				has_government = alliance
+				has_government = horde
+				has_government = titans
+				has_government = neutral				
+			}
+			has_capitulated = no
+			is_subject = no
+			### I the below is meant to take into account an Australia/New Zealand Level Puppet, so its Not needed
+			#OR = {
+			#	is_subject = no
+			#	has_autonomy_state = autonomy_dominion
+			#}
+		}
+	}
+}
+
+states_in_pandaria = {
+	input = game:all_states
+	operators = {
+		limit = { is_on_continent = pandaria }
+	}
+	name = COLLECTION_STATES_IN_PANDARIA
+}
+
+faction_states_in_pandaria = {
+	input = game:scope
+	operators = {
+		faction_members
+		controlled_states
+		limit = { is_on_continent = pandaria }
+	}
+	name = COLLECTION_FACTION_CONTROLLED_STATES_IN_PANDARIA
+}

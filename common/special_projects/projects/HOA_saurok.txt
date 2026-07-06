@@ -1,0 +1,142 @@
+sp_saurok_dino_taming_tech = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = saurok_improved_baskalisk_den_tech_1
+			OR = {
+				has_tech = saurok_basilisk_equipment_tech_2
+				has_tech = saurok_son_of_kros_equipment_tech_2
+			}
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = saurok_nest_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 15
+			mounts = 30
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { saurok_dino_taming_tech_1 = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_1
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+sp_dreadshells = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = saurok_guardian_equipment_tech_1
+			has_tech = saurok_scaleforged_armor_tech_1
+			has_tech = saurok_adaptable_blood_tech
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = saurok_nest_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 10
+			ores = 20
+			wood = 10
+		}
+	}
+	
+	project_output = {
+		enable_subunits = {
+			saurok_dreadshell
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Dreadshells"
+				priority = 1
+				regiments = {
+					saurok_dreadshell = { x = 0 y = 0 }
+					saurok_dreadshell = { x = 0 y = 1 }
+					saurok_dreadshell = { x = 0 y = 2 }
+					saurok_dreadshell = { x = 0 y = 3 }
+					saurok_dreadshell = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Dreadshells\" division_template = \"Dreadshells\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}

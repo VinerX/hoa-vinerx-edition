@@ -1,0 +1,1798 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = stormwind_second_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = STO
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 100
+		y = 0
+	}
+
+	focus = {
+		id = STO_stages_of_grief
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		cost = 5
+		x = 15
+		y = 0
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STO_grief
+				days = 30
+			}
+		}
+	}
+
+	focus = {
+		id = STO_commanders_sacrifice
+		icon = GFX_focus_alliance_footman
+		cost = 5
+		prerequisite = { focus = STO_stages_of_grief }
+		x = 15
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 25
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_operations
+					amount = 0.5
+					days = 50
+					track = operations
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = STO_the_lord_regent
+		icon = GFX_focus_alliance_prove_our_strength
+		cost = 5
+		prerequisite = { focus = STO_commanders_sacrifice }
+		x = 15
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 100
+			add_command_power = 100
+		}
+	}
+
+	focus = {
+		id = STO_second_war_prepare_for_the_next_war
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		cost = 30
+		prerequisite = { focus = STO_the_lord_regent }
+		x = 15
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 500
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = STO_second_war_develop_hillsbrad
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 30
+		prerequisite = {
+			focus = STO_second_war_prepare_for_the_next_war
+		}
+		x = -8
+		y = 1
+		relative_position_id = STO_second_war_prepare_for_the_next_war
+
+		available = {
+			15 = { is_owned_and_controlled_by = ROOT }
+			32 = { is_owned_and_controlled_by = ROOT }
+			35 = { is_owned_and_controlled_by = ROOT }
+			122 = { is_owned_and_controlled_by = ROOT }
+			123 = { is_owned_and_controlled_by = ROOT }
+			124 = { is_owned_and_controlled_by = ROOT }
+			721 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			15 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			32 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			35 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			122 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			123 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			124 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			721 = {
+				add_claim_by = STO
+				add_compliance = 30
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_modernize_durholde
+		icon = GFX_goal_generic_construct_military
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_hillsbrad }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = -6
+		y = 1
+		
+		available = {
+			35 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			#custom_effect_tooltip = STO_second_war_modernize_durholde_tt
+			if = {
+				limit = { 35 = { NOT = { is_core_of = STO } } }
+				35 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 35 = { is_claimed_by = STO } }
+					35 = { remove_claim_by = STO }
+				}
+			}
+			35 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1937 
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1935 
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1933
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1931 
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_first_war_veterans
+		icon = GFX_focus_generic_military_mission
+		cost = 30
+		prerequisite = { focus = STO_second_war_modernize_durholde }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = STO_first_war_veterans_idea
+		}
+	}
+
+	focus = {
+		id = STO_golden_pigments
+		icon = GFX_focus_shendralar_restore_gardens
+		cost = 14
+		prerequisite = { focus = STO_second_war_first_war_veterans }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = -2
+		y = 2
+
+		available_if_capitulated = yes
+
+		available = {
+			OR = {
+				has_idea = herbalism_guild
+				has_idea = inscription_guild
+			}
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_first_war_veterans_idea
+				add_idea = STO_first_war_veterans_idea_2
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_durnholde_smiths
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = STO_second_war_modernize_durholde }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = 1
+		y = 1
+
+		available = {
+			35 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			35 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_durnholde_knights
+		icon = GFX_goal_generic_cavalry
+		cost = 30
+		prerequisite = { focus = STO_second_war_first_war_veterans }
+		prerequisite = { focus = STO_second_war_durnholde_smiths }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = knight_technology
+				uses = 1
+				bonus = 0.5
+				category = knight_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_develop_tarren_mill
+		icon = GFX_focus_generic_industry_1
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_hillsbrad }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = -2
+		y = 1
+
+		available = {
+			123 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { 123 = { NOT = { is_core_of = STO } } }
+				123 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 123 = { is_claimed_by = STO } }
+					123 = { remove_claim_by = STO }
+				}
+			}
+			123 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_grain_silos
+		icon = GFX_goal_generic_construction
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_tarren_mill }
+		relative_position_id = STO_second_war_develop_tarren_mill
+		x = -1
+		y = 1
+
+		available = {
+			123 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { 123 = { NOT = { is_core_of = STO } } }
+				122 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 123 = { is_claimed_by = STO } }
+					123 = { remove_claim_by = STO }
+				}
+			}
+			123 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_hillsbrad_watch_towers
+		icon = GFX_goal_generic_radar
+		cost = 30
+		prerequisite = { focus = STO_second_war_grain_silos }
+		prerequisite = { focus = STO_second_war_ravenholdt_manor }
+		relative_position_id = STO_second_war_develop_tarren_mill
+		x = 0
+		y = 2
+
+		available = {
+			122 = { is_owned_and_controlled_by = ROOT }
+			638 = { is_owned_and_controlled_by = ROOT }
+			721 = { is_owned_and_controlled_by = ROOT }
+			2215 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			122 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+			638 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+			721 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+			2215 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_ravenholdt_manor
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_tarren_mill }
+		relative_position_id = STO_second_war_develop_tarren_mill
+		x = 1
+		y = 1
+
+		available = {
+			722 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { 722 = { NOT = { is_core_of = STO } } }
+				722 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 722 = { is_claimed_by = STO } }
+					722 = { remove_claim_by = STO }
+				}
+			}
+			722 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_si7_operatives
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 30
+		prerequisite = { focus = STO_second_war_durnholde_knights }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = -1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = rogue_technology
+				uses = 1
+				bonus = 0.5
+				category = rogue_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_develop_hillsbrad_fields
+		icon = GFX_focus_generic_industry_2
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_hillsbrad }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = 2
+		y = 1
+
+		available = {
+			32 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { 32 = { NOT = { is_core_of = STO } } }
+				32 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 32 = { is_claimed_by = STO } }
+					32 = { remove_claim_by = STO }
+				}
+			}
+			32 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_hillsbrad_militias
+		icon = GFX_focus_generic_military_academy
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_hillsbrad_fields }
+		relative_position_id = STO_second_war_develop_hillsbrad_fields
+		x = -1
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = STO_hillsbrad_militias_idea
+		}
+	}
+
+	focus = {
+		id = STO_second_war_azureload_mine
+		icon = GFX_goal_generic_construction2
+		cost = 30
+		prerequisite = {
+			focus = STO_second_war_develop_hillsbrad_fields
+		}
+		x = 1
+		y = 1
+		relative_position_id = STO_second_war_develop_hillsbrad_fields
+
+		available = {
+			15 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { 15 = { NOT = { is_core_of = STO } } }
+				15 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 15 = { is_claimed_by = STO } }
+					15 = { remove_claim_by = STO }
+				}
+			}
+			15 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_hillsbrad_armory
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = STO_second_war_hillsbrad_militias }
+		prerequisite = { focus = STO_second_war_azureload_mine }
+		relative_position_id = STO_second_war_develop_hillsbrad_fields
+		x = 0
+		y = 2
+
+		available = {
+			32 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			32 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_mass_rearmament
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = STO_second_war_hillsbrad_watch_towers }
+		prerequisite = { focus = STO_second_war_hillsbrad_armory }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			721 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = STO_hillsbrad_militias_idea
+				add_idea = STO_rebuild_the_army
+			}
+		}
+	}
+
+	focus = {
+		id = STO_finest_materials
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 24
+		prerequisite = { focus = STO_mass_rearmament }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = -1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				mio:generic_melee_infantry_org = {
+					complete_mio_trait = { trait = generic_mio_trait_advanced_metallurgy }
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = forge_technology
+					uses = 1
+					bonus = 1
+					category = forge_technology
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_azureload_strip_mine
+		icon = GFX_goal_generic_production2
+		cost = 24
+		prerequisite = { focus = STO_finest_materials }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = -2
+		y = 6
+
+		available_if_capitulated = yes
+
+		available = {
+			15 = { iron_mine > 2 }
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = mine_technology
+				uses = 1
+				bonus = 1
+				category = mine_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_gilnean_woodlands
+		icon = GFX_generic_focus_lumbermill
+		cost = 24
+		prerequisite = { focus = STO_mass_rearmament }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = 1
+		y = 5
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			GIL = {
+				give_resource_rights = {
+					receiver = STO
+					state = 164
+					resources = { wood }
+				}
+				add_ideas = STO_woodland_payments
+			}
+			164 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_maintain_the_basics
+		icon = GFX_focus_generic_industry_2
+		cost = 14
+		prerequisite = { focus = STO_finest_materials }
+		prerequisite = { focus = STO_gilnean_woodlands }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = 0
+		y = 6
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STO_rebuild_the_army
+				add_idea = STO_rebuild_the_state
+			}
+		}
+	}
+
+	focus = {
+		id = STO_everything_for_the_cause
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 24
+		prerequisite = { focus = STO_gilnean_woodlands }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = 2
+		y = 6
+
+		available_if_capitulated = yes
+
+		available = {
+			has_resources_in_country = {
+				resource = wood
+				amount > 50
+			}
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STO_everything_for_the_cause
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STO_duskwood_woodsmen
+		icon = GFX_focus_generic_air_defense
+		cost = 24
+		prerequisite = { focus = STO_second_war_durnholde_knights }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = 1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = archer_technology
+				uses = 1
+				bonus = 0.5
+				category = archer_technology
+			}
+			division_template = {
+				name = "Duskwood Woodsmen"
+				priority = 1
+				regiments = {
+					militia = { x = 0 y = 0 }
+					archer = { x = 0 y = 1 }
+					archer = { x = 0 y = 2 }
+					militia = { x = 1 y = 0 }
+					archer = { x = 1 y = 1 }
+					archer = { x = 1 y = 2 }
+					militia = { x = 2 y = 0 }
+				}
+				support = {
+					captain = {	x = 0 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				create_unit = {
+					division = "name = \"Duskwood Woodsmen\" division_template = \"Duskwood Woodsmen\" start_experience_factor = 0.4"
+					owner = STO
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_prepare_for_the_return
+		icon = GFX_focus_NET_the_alliance_of_stormwind
+		cost = 24
+		prerequisite = { focus = STO_second_war_si7_operatives }
+		prerequisite = { focus = STO_duskwood_woodsmen }
+		relative_position_id = STO_second_war_modernize_durholde
+		x = 0
+		y = 4
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 20
+			random_army_leader = {
+				gain_xp = 300
+			}
+			random_army_leader = {
+				add_attack = 1
+			}
+			random_army_leader = {
+				add_defense = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_fortify_southshore
+		icon = GFX_focus_generic_coastal_fort
+		cost = 30
+		prerequisite = { focus = STO_second_war_develop_hillsbrad }
+		relative_position_id = STO_second_war_develop_hillsbrad
+		x = 5
+		y = 1
+
+		available = { 122 = { is_owned_and_controlled_by = ROOT } }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			#custom_effect_tooltip = STO_second_war_fortify_southshore_tt
+			if = {
+				limit = { 122 = { NOT = { is_core_of = STO } } }
+				122 = { add_core_of = STO }
+			}
+			hidden_effect = {
+				if = {
+					limit = { 122 = { is_claimed_by = STO } }
+					122 = { remove_claim_by = STO }
+				}
+			}
+			122 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = 1785
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 1785
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_southshore_docks
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 30
+		prerequisite = { focus = STO_second_war_fortify_southshore }
+		relative_position_id = STO_second_war_fortify_southshore
+		x = 0
+		y = 1
+
+		available = {
+			122 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			122 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_southshore_oil
+		icon = GFX_goal_generic_oil_refinery
+		cost = 30
+		prerequisite = { focus = STO_second_war_southshore_docks }
+		relative_position_id = STO_second_war_fortify_southshore
+		x = -1
+		y = 2
+
+		available = {
+			122 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			122 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_centralized_port
+		icon = GFX_goal_generic_build_navy
+		cost = 30
+		prerequisite = { focus = STO_second_war_southshore_docks }
+		relative_position_id = STO_second_war_fortify_southshore
+		x = 1
+		y = 2
+
+		available = { 122 = { is_owned_and_controlled_by = ROOT } }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			#custom_effect_tooltip = STO_second_war_centralized_port_tt
+			122 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					province = 1785
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_escort_fleet
+		icon = GFX_focus_generic_destroyer
+		cost = 30
+		prerequisite = { focus = STO_second_war_centralized_port }
+		prerequisite = { focus = STO_second_war_southshore_oil }
+		mutually_exclusive = { focus = STO_second_war_submarine_fleet }
+		relative_position_id = STO_second_war_fortify_southshore
+		x = -1
+		y = 3
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = STO_escort_fleet_idea
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				mio:generic_screen_ships_org = { 
+					complete_mio_trait = {
+						trait = generic_mio_trait_small_frame_focus
+						show_modifiers = no
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_submarine_fleet
+		icon = GFX_goal_generic_navy_submarine
+		cost = 30
+		prerequisite = { focus = STO_second_war_centralized_port }
+		prerequisite = { focus = STO_second_war_southshore_oil }
+		mutually_exclusive = { focus = STO_second_war_escort_fleet }
+		relative_position_id = STO_second_war_fortify_southshore
+		x = 1
+		y = 3
+
+		available_if_capitulated = yes
+
+		available = {
+			has_completed_focus = STO_second_war_gnomish_submarines
+		}
+
+		completion_reward = {
+			add_ideas = STO_submarine_fleet_idea
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				mio:generic_sub_organization = { 
+					complete_mio_trait = {
+						trait = generic_mio_trait_small_frame_focus
+						show_modifiers = no
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_kultiran_marines
+		icon = GFX_goal_generic_amphibious_assault
+		cost = 30
+		prerequisite = {
+			focus = STO_second_war_submarine_fleet
+			focus = STO_second_war_escort_fleet
+		}
+		relative_position_id = STO_second_war_fortify_southshore
+		x = 0
+		y = 4
+		
+		available = {
+			is_in_faction_with = KUL
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			####ADD Amphibious Tech much like BRC
+			random_army_leader = {
+				limit = {
+					NOT = { is_character = STO_anduin_lothar }
+				}
+				add_unit_leader_trait = naval_invader
+			}
+			add_tech_bonus = {
+				name = footman_technology
+				uses = 1
+				bonus = 0.5
+				category = footman_technology
+			}
+			add_opinion_modifier = {
+				target = KUL
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = KUL
+				modifier = small_increase
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_diplomatic_relations
+		icon = GFX_goal_generic_major_alliance
+		cost = 14
+		prerequisite = { focus = STO_second_war_prepare_for_the_next_war }
+		relative_position_id = STO_second_war_prepare_for_the_next_war
+		x = 10
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_political_power = 75
+		}
+	}
+
+	focus = {
+		id = STO_dwarven_district_dwarves
+		icon = GFX_focus_chi_collaboration_with_the_japanese
+		cost = 14
+		relative_position_id = STO_second_war_diplomatic_relations
+		prerequisite = { focus = STO_second_war_diplomatic_relations }
+		x = -7
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_gnomish_technolodgy
+		icon = GFX_goal_generic_production2
+		cost = 30
+		prerequisite = { focus = STO_dwarven_district_dwarves }
+		relative_position_id = STO_dwarven_district_dwarves
+		x = -2
+		y = 1
+
+		available = {
+			GNO = { exists = yes }
+		}
+
+		bypass = {
+			GNO = { exists = no }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = STO_gnomish_technolodgy_idea
+		}
+	}
+
+	focus = {
+		id = STO_second_war_gnomish_submarines
+		icon = GFX_goal_generic_navy_anti_submarine
+		cost = 30
+		prerequisite = { focus = STO_second_war_gnomish_technolodgy }
+		x = 0
+		y = 1
+		relative_position_id = STO_second_war_gnomish_technolodgy
+
+		available = {
+			GNO = { exists = yes }
+		}
+
+		bypass = {
+			GNO = { exists = no }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = submarine_technology
+				uses = 1
+				bonus = 0.75
+				category = submarine_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_flying_machines
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = STO_second_war_gnomish_submarines }
+		relative_position_id = STO_second_war_gnomish_submarines
+		x = 0
+		y = 1
+
+		available = {
+			GNO = { exists = yes }
+		}
+
+		bypass = {
+			GNO = { exists = no }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = mechanical_air_technology
+				uses = 1
+				bonus = 0.5
+				category = mechanical_air_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_secure_the_stormpike_clan
+		icon = GFX_focus_eng_imperial_federation
+		cost = 30
+		prerequisite = { focus = STO_dwarven_district_dwarves }
+		relative_position_id = STO_dwarven_district_dwarves
+		x = 0
+		y = 1
+
+		available = {
+			SPC = { exists = yes }
+		}
+
+		bypass = {
+			SPC = { 
+				OR = {
+					exists = no
+					is_in_faction_with = STO 
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			SPC = { country_event = stormpike.1 }
+		}
+	}
+
+	focus = {
+		id = STO_stormpike_metalworkers
+		icon = GFX_focus_eng_imperial_federation
+		cost = 30
+		prerequisite = { focus = STO_second_war_secure_the_stormpike_clan }
+		relative_position_id = STO_second_war_secure_the_stormpike_clan
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = STO_stormpike_metalworkers
+		}
+	}
+
+	focus = {
+		id = STO_second_war_secure_the_wildhammer_support
+		icon = GFX_focus_eng_imperial_federation
+		cost = 30
+		prerequisite = { focus = STO_dwarven_district_dwarves }
+		relative_position_id = STO_dwarven_district_dwarves
+		x = 2
+		y = 1
+
+		available = {
+			AER = { exists = yes }
+		}
+
+		bypass = {
+			AER = { 
+				OR = {
+					exists = no
+					is_in_faction_with = STO 
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			AER = { country_event = stormpike.1 }
+		}
+	}
+
+	focus = {
+		id = STO_second_war_aviary_construction
+		icon = GFX_goal_generic_build_airforce
+		cost = 21
+		prerequisite = { focus = STO_second_war_secure_the_wildhammer_support }
+		relative_position_id = STO_second_war_secure_the_wildhammer_support
+		x = 0
+		y = 1
+
+		available = {
+			35 = { is_owned_and_controlled_by = ROOT }
+			32 = { is_owned_and_controlled_by = ROOT }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			32 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+			35 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_gryphon_riders
+		icon = GFX_focus_gryphons
+		cost = 30
+		prerequisite = { focus = STO_second_war_aviary_construction }
+		relative_position_id = STO_second_war_secure_the_wildhammer_support
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = cas_technology
+				uses = 1
+				bonus = 0.5
+				category = cas_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_order_of_the_silver_hand
+		icon = GFX_focus_ger_revive_kaiserreich
+		cost = 14
+		prerequisite = { focus = STO_second_war_diplomatic_relations }
+		relative_position_id = STO_second_war_diplomatic_relations
+		x = 0
+		y = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			IF = {
+				Limit = { has_government = alliance }
+				add_ideas = LOR_order_of_the_silver_hand
+			}
+			IF = {
+				Limit = { has_government = neutral }
+				add_ideas = LOR_order_of_the_scarlet_crusade
+			}
+			STO_gavinrad_the_dire = {
+				add_unit_leader_trait = retribution_trait
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_kirin_tor_training
+		icon = GFX_focus_DAL_generic
+		cost = 30
+		prerequisite = { focus = STO_second_war_order_of_the_silver_hand }
+		relative_position_id = STO_second_war_order_of_the_silver_hand
+		x = -2
+		y = 1
+
+		available = {
+			is_in_faction_with = DAL
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = mage_technology
+				uses = 1
+				bonus = 0.5
+				category = mage_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_lordaeron_administration
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = { focus = STO_second_war_order_of_the_silver_hand }
+		relative_position_id = STO_second_war_order_of_the_silver_hand
+		x = -1
+		y = 2
+
+		available = {
+			is_in_faction_with = LOR
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = city_growth_technology
+				uses = 1
+				bonus = 0.5
+				category = city_growth_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_stromgardian_warrior_training
+		icon = GFX_focus_STR_generic
+		cost = 30
+		prerequisite = { focus = STO_second_war_order_of_the_silver_hand }
+		relative_position_id = STO_second_war_order_of_the_silver_hand
+		x = 0
+		y = 1
+
+		available = {
+			is_in_faction_with = STR
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = knight_technology
+				uses = 1
+				bonus = 0.5
+				category = knight_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_gilnean_intel
+		icon = GFX_focus_GIL_generic
+		cost = 30
+		prerequisite = { focus = STO_second_war_order_of_the_silver_hand }
+		relative_position_id = STO_second_war_order_of_the_silver_hand
+		x = 1
+		y = 2
+
+		available = {
+			is_in_faction_with = GIL
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = sword_technology
+				uses = 1
+				bonus = 0.5
+				category = armor_technology
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_alteran_mountaineers
+		icon = GFX_focus_alterac_kingdom_of_alterac
+		cost = 30
+		prerequisite = { focus = STO_second_war_order_of_the_silver_hand }
+		relative_position_id = STO_second_war_order_of_the_silver_hand
+		x = 2
+		y = 1
+
+		available = {
+			is_in_faction_with = ALT
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = decryption_technology
+				uses = 1
+				bonus = 0.5
+				category = decryption_technology
+				category = encryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_the_blood_pact
+		icon = GFX_focus_generic_diplomatic_treaty
+		cost = 14
+		prerequisite = { focus = STO_second_war_diplomatic_relations }
+		relative_position_id = STO_second_war_diplomatic_relations
+		x = 5
+		y = 1
+
+		available = {
+			QUE = { exists = yes }
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			QUE = { country_event = quelthalas.2 }
+		}
+	}
+
+	focus = {
+		id = STO_second_war_elven_ranger_training
+		icon = GFX_focus_generic_air_defense
+		cost = 30
+		prerequisite = { focus = STO_second_war_the_blood_pact }
+		relative_position_id = STO_second_war_the_blood_pact
+		x = -1
+		y = 1
+
+		available = {
+			has_country_flag = QUE_support_stormwind
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = archer_technology
+				uses = 1
+				bonus = 1
+				category = archer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_ballista_schematics
+		icon = GFX_goal_generic_army_artillery2
+		cost = 30
+		prerequisite = { focus = STO_second_war_the_blood_pact }
+		relative_position_id = STO_second_war_the_blood_pact
+		x = 1
+		y = 1
+
+		available = {
+			has_country_flag = QUE_support_stormwind
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = catapult_technology
+				uses = 1
+				bonus = 1
+				category = catapult_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STO_second_war_spellbreakers
+		icon = GFX_focus_mex_restore_the_army_of_christ
+		cost = 30
+		prerequisite = { focus = STO_second_war_elven_ranger_training }
+		prerequisite = { focus = STO_second_war_ballista_schematics }
+		relative_position_id = STO_second_war_the_blood_pact
+		x = 0
+		y = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			division_template = {
+				name = "High Elf Spellbreakers"
+				priority = 1
+				regiments = {
+					high_elf_spellbreaker = { x = 0 y = 0 }
+					high_elf_spellbreaker = { x = 0 y = 1 }
+					high_elf_spellbreaker = { x = 0 y = 2 }
+					high_elf_spellbreaker = { x = 1 y = 0 }
+					high_elf_spellbreaker = { x = 1 y = 1 }
+					high_elf_spellbreaker = { x = 1 y = 2 }
+					high_elf_spellbreaker = { x = 2 y = 0 }
+					high_elf_spellbreaker = { x = 2 y = 1 }
+					high_elf_spellbreaker = { x = 2 y = 2 }
+				}
+			}
+			123 = {
+				create_unit = {
+					division = "name = \"High Elf Spellbreakers\" division_template = \"High Elf Spellbreakers\" start_experience_factor = 0.4"
+					owner = STO
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_so_it_begins
+		icon = GFX_focus_NET_equality
+		cost = 5
+		relative_position_id = STO_second_war_prepare_for_the_next_war
+		x = 0
+		y = 7
+
+		available = {
+			has_war_with = BRC
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = STO_wildhammer_skirmishers
+		icon = GFX_focus_eng_imperial_federation
+		cost = 21
+		relative_position_id = STO_so_it_begins
+		x = 2
+		y = 1
+
+		available = {
+			has_completed_focus = STO_so_it_begins
+			is_in_faction_with = AER
+			AER = {
+				OR = {
+					has_war_with = BRC
+					has_war_with = DMC
+					has_war_with = TSC
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			AER = {
+				division_template = {
+					name = "Stormwind Shields"
+					priority = 1
+					regiments = {
+						ironclad = { x = 0 y = 0 }
+						ironclad = { x = 0 y = 1 }
+						ironclad = { x = 0 y = 2 }
+						ironclad = { x = 1 y = 0 }
+						ironclad = { x = 1 y = 1 }
+						ironclad = { x = 1 y = 2 }
+					}
+				}
+				123 = {
+					create_unit = {
+						division = "name = \"Stormwind Shields\" division_template = \"Stormwind Shields\" start_experience_factor = 0.4"
+						owner = AER
+					}
+				}
+			}
+			division_template = {
+				name = "Wildhammer Skirmishers"
+				priority = 1
+				regiments = {
+					dwarf_slayer = { x = 0 y = 0 }
+					dwarf_slayer = { x = 0 y = 1 }
+					dwarf_slayer = { x = 0 y = 2 }
+					dwarf_slayer = { x = 1 y = 0 }
+					dwarf_slayer = { x = 1 y = 1 }
+					dwarf_slayer = { x = 1 y = 2 }
+				}
+			}
+			123 = {
+				create_unit = {
+					division = "name = \"Wildhammer Skirmishers\" division_template = \"Wildhammer Skirmishers\" start_experience_factor = 0.4"
+					owner = STO
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STO_kultiran_naval_tactics
+		icon = GFX_focus_KUL_generic
+		cost = 21
+		relative_position_id = STO_so_it_begins
+		x = -2
+		y = 1
+
+		available = {
+			has_completed_focus = STO_so_it_begins
+			is_in_faction_with = KUL
+			KUL = {
+				OR = {
+					has_war_with = BRC
+					has_war_with = DMC
+					has_war_with = TSC
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			KUL = {
+				add_doctrine_cost_reduction = {
+					name = naval_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = naval_doctrine
+				}
+				add_daily_mastery = {
+					name = doctrine_screens
+					amount = 0.5
+					days = 50
+					track = screens
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 1
+				uses = 1
+				category = naval_doctrine
+			}
+			if = {
+				limit = {
+					ROOT = { has_any_grand_doctrine = naval }
+				}
+				add_daily_mastery = {
+					name = doctrine_screens
+					amount = 0.5
+					days = 100
+					track = screens
+				}
+			}
+			else = { navy_experience = 25 }
+		}
+	}
+
+	focus = {
+		id = STO_what_we_have_learned
+		icon = GFX_focus_STR_generic
+		cost = 21
+		relative_position_id = STO_so_it_begins
+		x = 0
+		y = 1
+
+		available = {
+			has_completed_focus = STO_so_it_begins
+			is_in_faction_with = STR
+			STR = {
+				OR = {
+					has_war_with = BRC
+					has_war_with = DMC
+					has_war_with = TSC
+				}
+			}
+		}
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			STR = {
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.5
+					uses = 1
+					category = land_doctrine
+				}
+				add_daily_mastery = {
+					name = doctrine_armor
+					amount = 0.5
+					days = 50
+					track = armor
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_armor
+					amount = 0.5
+					days = 50
+					track = armor
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+}

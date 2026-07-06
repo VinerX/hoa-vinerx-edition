@@ -1,0 +1,677 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	vrykul_siege_foundry_tech = {
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_icebreaker_wagon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_caravan_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			siege_works_technology
+		}
+	}
+
+	vrykul_icebreaker_wagon_tech = {
+
+		enable_subunits = {
+			vrykul_icebreaker_wagon
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_icebreaker_wagon_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = icebreaker_wagon_tech_unit_details_tt
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_icebreaker_wagon_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_icebreaker_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_icebreaker_wagon_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_icebreaker_wagon_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = improved_vrykul_icebreaker_wagon_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_icebreaker_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_vrykul_icebreaker_wagon_1 = {
+
+		vrykul_icebreaker_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = improved_vrykul_icebreaker_wagon_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_icebreaker_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_vrykul_icebreaker_wagon_2 = {
+
+		vrykul_icebreaker_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_vrykul_icebreaker_wagon_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_icebreaker_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_vrykul_icebreaker_wagon_3 = {
+
+		vrykul_icebreaker_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = improved_vrykul_icebreaker_wagon_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_icebreaker_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_vrykul_icebreaker_wagon_4 = {
+
+		vrykul_icebreaker_wagon = {
+			supply_consumption_factor = -0.1
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_icebreaker_wagon_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_caravan_equipment_tech_1 = {
+
+		enable_equipments = {
+			caravan_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_caravan_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				date > "595.1.1"
+			}
+		}
+	}
+
+	vrykul_caravan_equipment_tech_2 = {
+
+		enable_equipments = {
+			caravan_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_caravan_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_caravan_equipment_tech_3 = {
+
+		enable_equipments = {
+			caravan_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			caravan_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_harpoon_gun_tech = {
+
+		enable_subunits = {
+			vrykul_harpoon_gun
+			vrykul_harpoon_gun_support
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_harpoon_gun_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_harpoon_gun_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_harpoon_gun_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_piercing_shot_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_bolas_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	vrykul_harpoon_gun_piercing_shot_tech = {
+
+		vrykul_harpoon_gun = {
+			supply_consumption_factor = -0.05
+			hard_attack = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			supply_consumption_factor = -0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpoon_gun_bolas_shot_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpoon_gun_bolas_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpoon_gun_bolas_shot_tech
+			}
+		}
+	}
+
+	vrykul_harpoon_gun_bolas_shot_tech = {
+
+		vrykul_harpoon_gun = {
+			soft_attack = 0.15
+		}
+		vrykul_harpoon_gun_support = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpoon_gun_piercing_shot_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpoon_gun_piercing_shot_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpoon_gun_piercing_shot_tech
+			}
+		}
+	}
+
+	vrykul_harpoon_gun_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_harpoon_gun_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1 }
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_reinforced_frame_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpoon_mobile_frame_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_harpoon_gun_reinforced_frame_tech = {
+
+		vrykul_harpoon_gun = {
+			armor_value = 0.05
+			reliability_factor = 0.05
+		}
+		vrykul_harpoon_gun_support = {
+			armor_value = 0.05
+			reliability_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpoon_mobile_frame_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpoon_mobile_frame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpoon_mobile_frame_tech
+			}
+		}
+	}
+
+	vrykul_harpoon_mobile_frame_tech = {
+
+		vrykul_harpoon_gun = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+		vrykul_harpoon_gun_support = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpoon_gun_reinforced_frame_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpoon_gun_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpoon_gun_reinforced_frame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpoon_gun_reinforced_frame_tech
+			}
+		}
+	}
+
+	vrykul_harpoon_gun_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_harpoon_gun_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_siege_weapons_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			siege_works_technology
+			vrykul_harpoon_gun_technology
+			catapult_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

@@ -1,0 +1,699 @@
+﻿###########################
+# stormwind first war capitulations
+###########################
+
+add_namespace = stormwind_capitulation
+
+country_event = { # Stormwind first war capitulation (land distributed between enemies)
+	id = stormwind_capitulation.99
+	title = stormwind_capitulation.99.t
+	desc = stormwind_capitulation.99.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+
+	option = {
+		# Array of concerned states in Redridge, Elwynn and Stormwind
+		add_to_temp_array = { concerned_states = 22 }
+		add_to_temp_array = { concerned_states = 39 }
+		add_to_temp_array = { concerned_states = 41 }
+		add_to_temp_array = { concerned_states = 311 }
+		add_to_temp_array = { concerned_states = 312 }
+		add_to_temp_array = { concerned_states = 315 }
+		add_to_temp_array = { concerned_states = 316 }
+		add_to_temp_array = { concerned_states = 317 }
+		add_to_temp_array = { concerned_states = 318 }
+		add_to_temp_array = { concerned_states = 319 }
+		add_to_temp_array = { concerned_states = 320 }
+		add_to_temp_array = { concerned_states = 321 }
+		add_to_temp_array = { concerned_states = 322 }
+		add_to_temp_array = { concerned_states = 325 }
+		add_to_temp_array = { concerned_states = 326 }
+		add_to_temp_array = { concerned_states = 327 }
+		add_to_temp_array = { concerned_states = 347 }
+		add_to_temp_array = { concerned_states = 349 }
+		add_to_temp_array = { concerned_states = 350 }
+		add_to_temp_array = { concerned_states = 351 }
+		add_to_temp_array = { concerned_states = 352 }
+		add_to_temp_array = { concerned_states = 353 }
+		add_to_temp_array = { concerned_states = 354 }
+		add_to_temp_array = { concerned_states = 355 }
+		add_to_temp_array = { concerned_states = 356 }
+		add_to_temp_array = { concerned_states = 357 }
+		add_to_temp_array = { concerned_states = 358 }
+		add_to_temp_array = { concerned_states = 359 }
+		add_to_temp_array = { concerned_states = 360 }
+		add_to_temp_array = { concerned_states = 361 }
+		add_to_temp_array = { concerned_states = 362 }
+		add_to_temp_array = { concerned_states = 363 }
+		add_to_temp_array = { concerned_states = 364 }
+		add_to_temp_array = { concerned_states = 365 }
+		add_to_temp_array = { concerned_states = 367 }
+		add_to_temp_array = { concerned_states = 368 }
+		add_to_temp_array = { concerned_states = 370 }
+		add_to_temp_array = { concerned_states = 372 }
+		add_to_temp_array = { concerned_states = 373 }
+		add_to_temp_array = { concerned_states = 375 }
+		add_to_temp_array = { concerned_states = 557 }
+		add_to_temp_array = { concerned_states = 666 }
+		add_to_temp_array = { concerned_states = 791 }
+		add_to_temp_array = { concerned_states = 792 }
+		add_to_temp_array = { concerned_states = 793 }
+		add_to_temp_array = { concerned_states = 1175 }
+		add_to_temp_array = { concerned_states = 1528 }
+		add_to_temp_array = { concerned_states = 1529 }
+		add_to_temp_array = { concerned_states = 1530 }
+		add_to_temp_array = { concerned_states = 1588 }
+		add_to_temp_array = { concerned_states = 1589 }
+
+		# Loop through the states
+		# Transfer them to their controller at war with STO
+		for_each_scope_loop = {
+			array = concerned_states
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							original_tag = STO
+							original_tag = ELW
+							original_tag = RDR
+							is_puppet_of = STO
+						}
+					}
+				}
+				# If not controlled by BRC or STO (or one of its puppet), it will be transfered to the controller
+				# else it will be transfered to BRC
+				if = {
+					limit = {
+						controller = {
+							NOT = {
+								original_tag = BRC
+								original_tag = STO
+								original_tag = ELW
+								original_tag = RDR
+								is_puppet_of = STO
+							}
+						}
+					}
+					controller = {
+						transfer_state = PREV # PREV = previous scope i.e. state in the array
+					}
+				}
+				else = {
+					transfer_state_to = BRC
+				}
+			}
+		}
+		clear_array = concerned_states
+
+		# Array of concerned states in Westfall and Duskwood
+		add_to_temp_array = { concerned_states = 38 }
+		add_to_temp_array = { concerned_states = 40 }
+		add_to_temp_array = { concerned_states = 42 }
+		add_to_temp_array = { concerned_states = 142 }
+		add_to_temp_array = { concerned_states = 143 }
+		add_to_temp_array = { concerned_states = 144 }
+		add_to_temp_array = { concerned_states = 145 }
+		add_to_temp_array = { concerned_states = 146 }
+		add_to_temp_array = { concerned_states = 147 }
+		add_to_temp_array = { concerned_states = 148 }
+		add_to_temp_array = { concerned_states = 149 }
+		add_to_temp_array = { concerned_states = 296 }
+		add_to_temp_array = { concerned_states = 297 }
+		add_to_temp_array = { concerned_states = 300 }
+		add_to_temp_array = { concerned_states = 301 }
+		add_to_temp_array = { concerned_states = 302 }
+		add_to_temp_array = { concerned_states = 303 }
+		add_to_temp_array = { concerned_states = 304 }
+		add_to_temp_array = { concerned_states = 305 }
+		add_to_temp_array = { concerned_states = 306 }
+		add_to_temp_array = { concerned_states = 307 }
+		add_to_temp_array = { concerned_states = 308 }
+		add_to_temp_array = { concerned_states = 309 }
+		add_to_temp_array = { concerned_states = 310 }
+		add_to_temp_array = { concerned_states = 366 }
+		add_to_temp_array = { concerned_states = 374 }
+		add_to_temp_array = { concerned_states = 782 }
+		add_to_temp_array = { concerned_states = 789 }
+		add_to_temp_array = { concerned_states = 797 }
+		add_to_temp_array = { concerned_states = 1590 }
+		add_to_temp_array = { concerned_states = 1591 }
+		add_to_temp_array = { concerned_states = 1592 }
+		add_to_temp_array = { concerned_states = 1593 }
+		add_to_temp_array = { concerned_states = 1594 }
+		add_to_temp_array = { concerned_states = 1595 }
+		add_to_temp_array = { concerned_states = 1596 }
+		add_to_temp_array = { concerned_states = 1597 }
+		add_to_temp_array = { concerned_states = 1598 }
+		add_to_temp_array = { concerned_states = 1599 }
+		add_to_temp_array = { concerned_states = 1600 }
+		add_to_temp_array = { concerned_states = 1601 }
+		add_to_temp_array = { concerned_states = 1602 }
+		add_to_temp_array = { concerned_states = 1603 }
+		add_to_temp_array = { concerned_states = 2150 }
+		add_to_temp_array = { concerned_states = 2151 }
+		add_to_temp_array = { concerned_states = 2152 }
+		add_to_temp_array = { concerned_states = 2161 }
+		add_to_temp_array = { concerned_states = 2162 }
+		add_to_temp_array = { concerned_states = 2163 }
+		add_to_temp_array = { concerned_states = 2164 }
+
+		# Loop through the states
+		# Transfer them to their controller at war with STO
+		for_each_scope_loop = {
+			array = concerned_states
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							original_tag = KAR
+							original_tag = STO
+							original_tag = DSK
+							original_tag = WST
+							is_puppet_of = STO
+						}
+					}
+				}
+				# If not controlled by BHC or STO (or one of its puppet), it will be transfered to the controller
+				# else it will be transfered to BRC
+				if = {
+					limit = {
+						controller = {
+							NOT = {
+								original_tag = BHC
+								original_tag = KAR
+								original_tag = STO
+								original_tag = DSK
+								original_tag = WST
+								is_puppet_of = STO
+							}
+						}
+					}
+					controller = {
+						transfer_state = PREV # PREV = previous scope i.e. state in the array
+					}
+				}
+				else = {
+					transfer_state_to = BHC
+				}
+			}
+		}
+		clear_array = concerned_states
+
+		# White peace with every enemy
+		STO = {
+			every_enemy_country = {
+				white_peace = STO
+			}
+		}
+	}
+}
+
+country_event = { #Lordeaon Ceeds Land
+	id = stormwind_capitulation.98
+	title = stormwind_capitulation.98.t
+	desc = stormwind_capitulation.98.d
+	#picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	immediate = {
+		STO = {
+			set_capital = { state = 122 }
+			transfer_state = 15
+			transfer_state = 32
+			transfer_state = 35
+			transfer_state = 111
+			transfer_state = 122
+			transfer_state = 123
+			transfer_state = 124
+			transfer_state = 638
+			transfer_state = 721
+			transfer_state = 755
+			transfer_state = 766
+			transfer_state = 1540
+			transfer_state = 1541
+			transfer_state = 1542
+			transfer_state = 2215
+			hidden_effect = {
+				load_oob = STO_596
+				### Port of Stormwind
+				317 = {	add_manpower = -6300 }
+				122 = { add_manpower = 6300 }
+				### Port of Stormwind
+				318 = {	add_manpower = -4800 }
+				124 = { add_manpower = 4800 }
+				### North Stormwind
+				320 = {	add_manpower = -6900 }
+				111 = { add_manpower = 6900 }
+				### Dwarf District
+				321 = {	add_manpower = -10500 }
+				35 = { add_manpower = 10500 }
+				### Mage
+				316 = {	
+					add_manpower = -11400 
+					remove_building = {
+						type = infrastructure
+						level = 3
+					}
+					remove_building = {
+						type = arcane_tower
+						level = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				123 = { add_manpower = 11400 }
+				### KEEP
+				22 = { add_manpower = -6300 }
+				1540 = { add_manpower = 6300 }
+				### Old Town
+				322 = { add_manpower = -13200 }
+				15 = { add_manpower = 13200 }
+				### Trade
+				315 = {	add_manpower = -15600 }
+				32 = { add_manpower = 15600 }
+				### Church
+				319 = {	add_manpower = -13800 }
+				721 = {	add_manpower = 13800 }
+			}
+		}
+		LOR = {
+			create_faction = Alliance_of_Lordaeron
+			set_country_flag = alliance_of_lordaeron_formed
+			add_to_faction = STO
+		}
+	}
+}
+
+# Capitulation events
+country_event = {
+	id = stormwind_capitulation.101
+	title = stormwind_capitulation.101.t
+	desc = stormwind_capitulation.101.d
+	picture = GFX_report_event_german_parade_paris
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	option = {
+		country_event = stormwind_capitulation.99 # Orcs get Stormwind land instantly
+		if = {
+			limit = { #if we have a coward king
+				has_idea = STO_coward_king
+			}
+			country_event = stormwind_capitulation.130
+			else = { #if we don't have a coward king
+				if = {
+					limit = {
+						and = {
+							has_country_flag = Rally_HasTriggered
+							not = {has_idea = STO_rally_the_troops}
+						}
+					}
+					country_event = stormwind_capitulation.120
+					else = {
+						country_event = stormwind_capitulation.110
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Elwynn_Lost_2
+	id = stormwind_capitulation.102
+	title = stormwind_capitulation.102.t
+	desc = stormwind_capitulation.102.d
+	picture = GFX_report_event_german_parade_paris
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = STO
+		and = {
+			has_country_flag = Rally_HasTriggered
+			not = {has_idea = STO_rally_the_troops}
+			not = {has_idea = STO_coward_king}
+			or = {
+				any_other_country = {
+					controls_state = 349 #Northshire
+					has_war_with = STO
+				}
+				any_other_country = {
+					controls_state = 326 #Mirror Lake
+					has_war_with = STO
+				}
+				any_other_country = {
+					controls_state = 325 #Goldshire
+					has_war_with = STO
+				}
+			}
+		}
+	}
+
+	option = {
+		name = stormwind_capitulation.102.option.1
+		country_event = { days = 0 id = stormwind_capitulation.103 }
+	}
+}
+
+country_event = { #King_Llane_Dies_1
+	id = stormwind_capitulation.103
+	title = stormwind_capitulation.103.t
+	desc = stormwind_capitulation.103.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.103.option.1
+		STO = {
+			kill_country_leader = yes
+		#	create_country_leader = {
+		#		name = "Regent Lord Anduin Lothar"
+		#		desc = "POLITICS_FEDERAL_COUNCIL_DESC"
+		#		picture = "Anduin_Lothar.dds"
+		#		expire = "1965.1.1"
+		#		ideology = alliance_type
+		#		traits = {
+		#		}
+		#	}
+		}
+	}
+}
+
+country_event = { #Stormwind_Capitulates_2
+	id = stormwind_capitulation.120
+	title = stormwind_capitulation.120.t
+	desc = stormwind_capitulation.120.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.120.option.1
+		LOR = { country_event = { days = 0 id = stormwind_capitulation.121 } }
+	}
+}
+
+country_event = { #Cede_land_to_Stormwind_2
+	id = stormwind_capitulation.121
+	title = stormwind_capitulation.121.t
+	desc = stormwind_capitulation.121.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.121.option.1
+		STO = {country_event = { days = 0 id = stormwind_capitulation.201 } } #Lordaeron_accepts_2
+		ai_chance = { base = 1 }
+	}
+	#option = {
+	#	name = stormwind_capitulation.121.option.2
+	#	STO = {country_event = { days = 0 id = stormwind_capitulation.202 } } #Lordaeron_con_accepts_2
+	#	ai_chance = { base = 0 }
+	#}
+	#option = {
+	#	name = stormwind_capitulation.121.option.3
+	#	STO = {country_event = { days = 0 id = stormwind_capitulation.203 } } #Lordaeron_refuses_2
+	#	ai_chance = { base = 0 }
+	#}
+}
+
+country_event = { #Lordaeron_accepts_2
+	id = stormwind_capitulation.201
+	title = stormwind_capitulation.201.t
+	desc = stormwind_capitulation.201.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.201.option.1
+		country_event = { days = 0 id = stormwind_capitulation.98 }
+		set_cosmetic_tag = STO_REF
+		set_country_flag = STO_REF
+		load_focus_tree = {
+			tree = stormwind_second_war
+			keep_completed = yes
+		}
+		LOR = {
+			if = {
+				limit = { has_dlc = "Together for Victory" }
+				set_autonomy = {
+					target = STO
+					autonomous_state = autonomy_personal_union
+					freedom_level = 0.4
+				}
+				else = { puppet = STO }
+			}
+			complete_national_focus = LOR_southern_refuge
+		}
+		hidden_effect = {
+			STO = {
+				retire_character = STO_commander_borton
+				remove_ideas = {
+					STO_over_reliance_on_medivh_1
+					STO_over_reliance_on_medivh_2
+					STO_over_reliance_on_medivh_3
+					STO_over_reliance_on_medivh_4
+					STO_over_reliance_on_medivh_5
+					STO_kobolds_in_the_mines
+					STO_gnoll_attacks
+					STO_export_focus
+					STO_cathedral_of_light
+					STO_jewel_of_the_south_idea
+					STO_house_of_nobles
+					STO_house_of_nobles_2
+					STO_house_of_nobles_3
+					STO_house_of_nobles_4
+					STO_house_of_nobles_5
+					STO_southern_bastion_idea
+					STO_private_labor
+				}
+				clr_country_flag = STO_noble_veto
+				if = {
+					limit = { LOR = { has_idea = LOR_court_chaplain_1 } }
+					add_ideas = LOR_court_chaplain_1
+				}
+				if = {
+					limit = { LOR = { has_idea = LOR_court_chaplain_2 } }
+					add_ideas = LOR_court_chaplain_2
+				}
+			}
+		}
+
+		####Need to add this only if the Horde keeps trying to Liberate Stormwind
+		#create_country_leader = {
+		#	name = "Regent Lord Anduin Lothar"
+		#	desc = "POLITICS_FEDERAL_COUNCIL_DESC"
+		#	picture = "Anduin_Lothar.dds"
+		#	expire = "1965.1.1"
+		#	ideology = alliance_type
+		#	traits = {
+		#	}
+		#}
+	}
+}
+
+country_event = { #Lordaeron_con_accepts_2
+	id = stormwind_capitulation.202
+	title = stormwind_capitulation.202.t
+	desc = stormwind_capitulation.202.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.202.option.1
+		country_event = { days = 0 id = stormwind_capitulation.98 }
+		LOR = { transfer_state = 323 } # Lordaeron gets Balor
+		# Lordaeron gets Anduin Lothar as a Field Marshal
+		# Lordaeron gets idea [Stormwind_Refugees]
+	}
+}
+
+country_event = { #Lordaeron_refuses_2
+	id = stormwind_capitulation.203
+	title = stormwind_capitulation.203.t
+	desc = stormwind_capitulation.203.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.203.option.1
+		STO = {
+			set_capital = { state = 323 }
+			add_ideas = STO_balor_overpopulated_1
+			add_ideas = STO_balor_humiliated_military
+			set_cosmetic_tag = STO_BAL
+			#ADD IDEA "DEFIENT"
+		}
+		323 = { add_manpower = 3000000 }
+	}
+	option = {
+		name = stormwind_capitulation.203.option.2
+		#ARMISTICE
+	}
+}
+
+country_event = { #Stormwind_Capitulates_3
+	id = stormwind_capitulation.130
+	title = stormwind_capitulation.130.t
+	desc = stormwind_capitulation.130.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.130.option.1
+		#???ORC ARMISTICE LIKELY
+	}
+
+	option = {
+		name = stormwind_capitulation.130.option.2
+		LOR = { country_event = { days = 0 id = stormwind_capitulation.301 } }
+	}
+}
+
+country_event = { #Cede_land_to_Stormwind_3
+	id = stormwind_capitulation.301
+	title = stormwind_capitulation.301.t
+	desc = stormwind_capitulation.301.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.301.option.1
+		STO = {country_event = { days = 0 id = stormwind_capitulation.310 } }
+		ai_chance = { base = 1 }
+	}
+	option = {
+		name = stormwind_capitulation.301.option.2
+		STO = {country_event = { days = 0 id = stormwind_capitulation.320 } }
+		ai_chance = { base = 0 }
+	}
+	option = {
+		name = stormwind_capitulation.301.option.3
+		STO = {country_event = { days = 0 id = stormwind_capitulation.330 } }
+		ai_chance = { base = 0 }
+	}
+}
+
+country_event = { #Lordaeron_accepts_3
+	id = stormwind_capitulation.310
+	title = stormwind_capitulation.310.t
+	desc = stormwind_capitulation.310.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.310.option.1
+		ai_chance = { base = 1 }
+		country_event = { days = 0 id = stormwind_capitulation.98 }
+		set_cosmetic_tag = STO_REF
+		#LORDAERON GETS IDEA [OUTRAGED CITIZENS]
+	}
+	option = {
+		name = stormwind_capitulation.310.option.2
+		ai_chance = { base = 0 }
+		country_event = { days = 0 id = stormwind_capitulation.98 }
+		LOR = { country_event = { days = 0 id = stormwind_capitulation.311 } } #insult lordaeron
+		#set_cosmetic_tag = HILLSBRAD
+	}
+}
+
+country_event = { #Stormwind_insults_us_LAND
+	id = stormwind_capitulation.311
+	title = stormwind_capitulation.311.t
+	desc = stormwind_capitulation.311.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.311.option.1
+		#ARATHI
+	}
+}
+
+country_event = { #Lordaeron_con_accepts_3
+	id = stormwind_capitulation.320
+	title = stormwind_capitulation.320.t
+	desc = stormwind_capitulation.320.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.320.option.1
+		country_event = { days = 0 id = stormwind_capitulation.98 }
+		LOR = { transfer_state = 323 } # Lordaeron gets Balor
+		# Lordaeron gets Anduin Lothar as a Field Marshal and Llane Wrynn as a Field Marshal
+		# Lordaeron gets idea [Stormwind_Refugees]
+	}
+
+	option = {
+		name = stormwind_capitulation.320.option.2
+		#ARMISTICE DEAL
+	}
+}
+
+country_event = { #Lordaeron_refuses_3
+	id = stormwind_capitulation.330
+	title = stormwind_capitulation.330.t
+	desc = stormwind_capitulation.330.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.330.option.1
+		#ARMISTICE
+	}
+	option = {
+		name = stormwind_capitulation.330.option.2 #Game ends
+		TSC = { transfer_state = 323 } # TSC gets Balor
+	}
+}
+
+country_event = { #Stormwind_Capitulates_1
+	id = stormwind_capitulation.110
+	title = stormwind_capitulation.110.t
+	desc = stormwind_capitulation.110.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = stormwind_capitulation.110.option.1
+		LOR = { country_event = { days = 0 id = stormwind_capitulation.121 } }
+		 STO = {
+			kill_country_leader = yes
+			#create_country_leader = {
+			#	name = "Regent Lord Anduin Lothar"
+			#	desc = "POLITICS_FEDERAL_COUNCIL_DESC"
+			#	picture = "Anduin_Lothar.dds"
+			#	expire = "1965.1.1"
+			#	ideology = alliance_type
+			#	traits = {
+			#	}
+			#}
+		}
+	}
+}

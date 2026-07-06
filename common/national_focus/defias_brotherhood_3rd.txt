@@ -1,0 +1,1557 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = defias_brotherhood
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = DFB
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 1150
+		y = 1800
+	}
+
+	shared_focus = arming_the_nation
+	shared_focus = develop_the_country
+	
+	focus = {
+		id = DFB_no_kings_no_queens
+		icon = GFX_goal_tfv_burn_the_royal_portraits
+		cost = 5
+		x = 24
+		y = 0
+
+		completion_reward = {
+			set_country_flag = neutral_alignment
+			add_ideas = DFB_no_kings_no_queens
+		}
+	}	
+
+	focus = {
+		id = DFB_safety_in_numbers
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		cost = 10
+		x = 35
+		y = 3
+
+		available = { has_completed_focus = DFB_safety_not_regulation }
+
+		completion_reward = {
+			add_ideas = DFB_militia_control_1
+			add_ideas = DFB_workers_control_1
+			STO = {
+				add_timed_idea = {
+					idea = DFB_deserters_1
+					days = 90
+				}
+				add_timed_idea = {
+					idea = DFB_peasant_unrest_1
+					days = 90
+				}
+			}
+		}
+	}	
+
+	focus = {
+		id = DFB_formation_of_the_militia
+		icon = GFX_focus_generic_spur_communist_revolutions
+		cost = 10
+		prerequisite = { focus = DFB_safety_in_numbers }
+		mutually_exclusive = { focus = DFB_undermine_the_foundations }
+		relative_position_id = DFB_safety_in_numbers
+		x = -1
+		y = 1
+
+		completion_reward = {
+			army_experience = 20
+			swap_ideas = {
+				remove_idea = DFB_militia_control_1
+				add_idea = DFB_militia_control_2
+			}
+			STO = {
+				if = {
+					limit = { STO = { has_idea = DFB_deserters_1 } }
+					hidden_effect = {
+						STO = { remove_ideas = DFB_deserters_1 }
+					}
+					add_timed_idea = {
+						idea = DFB_deserters_2	
+						days = 90
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = DFB_deserters_1
+						days = 90
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_undermine_the_foundations
+		icon = GFX_focus_generic_public_works
+		cost = 10
+		prerequisite = { focus = DFB_safety_in_numbers }
+		mutually_exclusive = { focus = DFB_formation_of_the_militia }
+		relative_position_id = DFB_safety_in_numbers
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_political_power = 75
+			swap_ideas = {
+				remove_idea = DFB_workers_control_1
+				add_idea = DFB_workers_control_2
+			}
+			STO = {
+				if = {
+					limit = { STO = { has_idea = DFB_peasant_unrest_1 } }
+					hidden_effect = {
+						STO = { remove_ideas = DFB_peasant_unrest_1 }
+					}
+					add_timed_idea = {
+						idea = DFB_peasant_unrest_2	
+						days = 90
+					}
+				}
+				else = {
+					add_timed_idea = {
+						idea = DFB_peasant_unrest_1
+						days = 90
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_underhanded_dealings
+		icon = GFX_focus_CONGO_gold_and_diamonds
+		cost = 10
+		prerequisite = { 
+			focus = DFB_formation_of_the_militia
+			focus = DFB_undermine_the_foundations
+		}
+		relative_position_id = DFB_safety_in_numbers
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_ideas = DFB_criminal_control_1
+			STO = {
+				add_timed_idea = {
+					idea = DFB_banditry_1
+					days = 90
+				}
+				add_timed_idea = {
+					idea = DFB_burned_aviary
+					days = 90
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_liberator
+		icon = GFX_focus_eng_liberate_the_home_of_marx
+		prerequisite = { focus = DFB_no_kings_no_queens	}
+		cost = 5
+		relative_position_id = DFB_no_kings_no_queens
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_country_leader_trait = popular_leader_trait
+		}
+	}	
+
+	focus = {
+		id = DFB_safety_not_regulation
+		icon = GFX_focus_generic_mining_industry
+		prerequisite = { focus = DFB_the_liberator }
+		cost = 5
+		relative_position_id = DFB_no_kings_no_queens
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_ideas = mining_guild
+		}
+	}
+
+	focus = {
+		id = DFB_ferriers_cobblers_tanners
+		icon = GFX_focus_generic_the_giant_wakes
+		prerequisite = { 
+			focus = DFB_we_fight_alone 
+			focus = DFB_enemy_of_my_enemy
+		}
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = 0
+		y = 4
+
+		completion_reward = {
+			custom_effect_tooltip = DFB_ferriers_cobblers_tanners_tt
+			add_command_power = 50
+		}
+	}
+
+	focus = {
+		id = DFB_men_women_children
+		icon = GFX_focus_generic_little_entente
+		prerequisite = { focus = DFB_ferriers_cobblers_tanners }
+		cost = 28
+		relative_position_id = DFB_safety_in_numbers
+		x = 0
+		y = 5
+
+		completion_reward = {
+			custom_effect_tooltip = DFB_men_women_children_tt
+			add_command_power = 50
+		}
+	}
+
+	focus = {
+		id = DFB_the_ripples_of_revolution
+		icon = GFX_focus_generic_join_comintern
+		prerequisite = { focus = DFB_men_women_children }
+		mutually_exclusive = { focus = DFB_secure_our_foothold }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = -1
+		y = 6
+
+		available = { always = no }
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = DFB_secure_our_foothold
+		icon = GFX_focus_generic_home_defense
+		prerequisite = { focus = DFB_men_women_children }
+		mutually_exclusive = { focus = DFB_the_ripples_of_revolution }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = 1
+		y = 6
+
+		available = { always = no }
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = DFB_we_fight_alone
+		icon = GFX_focus_ITA_by_blood_alone
+		prerequisite = { focus = DFB_underhanded_dealings }
+		mutually_exclusive = { focus = DFB_enemy_of_my_enemy }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = -2
+		y = 3
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_ideas = DFB_we_fight_alone
+			complete_national_focus = arming_the_nation
+		}
+	}	
+
+	focus = {
+		id = DFB_the_workers_army
+		icon = GFX_focus_generic_workers
+		prerequisite = { focus = DFB_we_fight_alone }
+		cost = 21
+		relative_position_id = DFB_safety_in_numbers
+		x = -3
+		y = 4
+
+		completion_reward = {
+			hidden_effect = { load_oob = DFB_militia_army }
+			add_ideas = DFB_undermanned_economy
+			custom_effect_tooltip = DFB_the_workers_army_tt
+		}
+	}
+
+	focus = {
+		id = DFB_southern_uprisings
+		icon = GFX_focus_generic_spur_communist_revolutions
+		prerequisite = { focus = DFB_the_workers_army }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = -2
+		y = 5
+
+		completion_reward = {
+			354 = { transfer_state_to = DFB }
+			DFB = {
+				division_template = {
+					name = "Local Militia"
+					priority = 1
+					regiments = {
+						bandits_bandit = { x = 0 y = 0 }
+						bandits_bandit = { x = 0 y = 1 }
+						bandits_bandit = { x = 0 y = 2 }
+						bandits_bandit = { x = 0 y = 3 }
+						bandits_bandit = { x = 1 y = 0 }
+						bandits_bandit = { x = 1 y = 1 }
+						bandits_bandit = { x = 1 y = 2 }
+					}
+					support = {
+						bandits_taskmaster = { x = 0 y = 1 }
+					}
+				}
+				354 = {
+					create_unit = {
+						division = "name = \"Local Militia\" division_template = \"Local Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+						owner = DFB
+						count = 2
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_northern_uprisings
+		icon = GFX_focus_generic_spur_communist_revolutions
+		prerequisite = { focus = DFB_the_workers_army }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = -4
+		y = 5
+
+		completion_reward = {
+			666 = { 
+				transfer_state_to = DFB 
+				remove_building = {
+					type = farm
+					level = 1
+				}
+			}
+			DFB = {
+				division_template = {
+					name = "Local Militia"
+					priority = 1
+					regiments = {
+						bandits_bandit = { x = 0 y = 0 }
+						bandits_bandit = { x = 0 y = 1 }
+						bandits_bandit = { x = 0 y = 2 }
+						bandits_bandit = { x = 0 y = 3 }
+						bandits_bandit = { x = 1 y = 0 }
+						bandits_bandit = { x = 1 y = 1 }
+						bandits_bandit = { x = 1 y = 2 }
+					}
+					support = {
+						bandits_taskmaster = { x = 0 y = 1 }
+					}
+				}
+				666 = {
+					create_unit = {
+						division = "name = \"Local Militia\" division_template = \"Local Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+						owner = DFB
+						count = 2
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_to_the_forges
+		icon = GFX_focus_ICE_embrace_the_workers_revolution
+		prerequisite = { focus = DFB_southern_uprisings }
+		prerequisite = { focus = DFB_northern_uprisings }
+		cost = 21
+		relative_position_id = DFB_safety_in_numbers
+		x = -3
+		y = 6
+
+		completion_reward = {
+			add_ideas = DFB_child_labour
+		}
+	}
+
+	focus = {
+		id = DFB_the_calm
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { 
+			focus = DFB_to_the_forges
+			focus = DFB_ogre_foremen
+		}
+		cost = 10
+		relative_position_id = DFB_safety_in_numbers
+		x = 0
+		y = 7
+
+		available = { has_war = no }
+
+		completion_reward = {
+			add_stability = 0.10
+			set_country_flag = unlocked_other_branches
+			custom_effect_tooltip = unlocking_other_branches_tt
+		}
+	}
+
+	focus = {
+		id = DFB_secure_grain_shipments
+		icon = GFX_focus_generic_farmland
+		prerequisite = { focus = DFB_the_calm }
+		cost = 28
+		relative_position_id = DFB_safety_in_numbers
+		x = 0
+		y = 8
+
+		completion_reward = {
+			1590 = {
+				add_resource = {
+					type = wheat
+					amount = -3
+				}
+			}
+			143 = {
+				add_resource = {
+					type = wheat
+					amount = 3
+				}
+			}
+			add_tech_bonus = {
+				name = agriculture_technology
+				uses = 1
+				bonus = 0.50
+				category = agriculture_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_wind_mill_sabotage
+		icon = GFX_focus_generic_industry_1
+		prerequisite = { focus = DFB_secure_grain_shipments }
+		cost = 28
+		relative_position_id = DFB_secure_grain_shipments
+		x = -1
+		y = 1
+
+		completion_reward = {
+			if = {
+				limit = { 149 = { is_controlled_by = DFB } }
+				350 = {
+					damage_building = {
+						type = farm
+						damage = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			else = {
+				149 = {
+					damage_building = {
+						type = farm
+						damage = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = rogue_technology
+				uses = 1
+				bonus = 0.50
+				category = rogue_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_burn_the_farmsteads
+		icon = GFX_focus_ETH_african_wildfire
+		prerequisite = { focus = DFB_wind_mill_sabotage }
+		cost = 28
+		relative_position_id = DFB_secure_grain_shipments
+		x = -1
+		y = 2
+
+		completion_reward = {
+			if = {
+				limit = { 1590 = { is_controlled_by = DFB } }
+				357 = {
+					damage_building = {
+						type = farm
+						damage = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			else = {
+				1590 = {
+					damage_building = {
+						type = farm
+						damage = 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = nights_watch_technology
+				uses = 1
+				bonus = 0.50
+				category = nights_watch_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_gold_dust_bargain
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		prerequisite = { focus = DFB_secure_grain_shipments }
+		cost = 28
+		relative_position_id = DFB_secure_grain_shipments
+		x = 1
+		y = 1
+
+		completion_reward = {
+			add_ideas = DFB_gold_dust_trade
+		}
+	}
+
+	focus = {
+		id = DFB_caravan_raids
+		icon = GFX_goal_continuous_reduce_training_time
+		prerequisite = { focus = DFB_gold_dust_bargain }
+		cost = 28
+		relative_position_id = DFB_secure_grain_shipments
+		x = 1
+		y = 2
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 250
+				producer = STO
+			}
+			add_equipment_to_stockpile = {
+				type = pikeman_equipment_1
+				amount = 250
+				producer = STO
+			}
+			add_equipment_to_stockpile = {
+				type = archer_equipment_1
+				amount = 250
+				producer = STO
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_eliminate_watchmen
+		icon = GFX_focus_SWE_bofors_fly_swatter
+		prerequisite = { focus = DFB_burn_the_farmsteads }
+		prerequisite = { focus = DFB_caravan_raids }
+		cost = 28
+		relative_position_id = DFB_secure_grain_shipments
+		x = 0
+		y = 3
+
+		completion_reward = {
+			146 = { remove_core_of = STO }
+			148 = {	remove_core_of = STO }
+			149 = {	remove_core_of = STO }
+			1590 = { remove_core_of = STO }
+			if = {
+				limit = {
+					DFB = {
+						controls_state = 146
+						controls_state = 148
+						controls_state = 149
+						controls_state = 1590
+					}
+				}
+				312 = { add_core_of = DFB }
+			}
+			swap_ideas = {
+				remove_idea = DFB_gold_dust_trade
+				add_idea = DFB_gold_dust_trade_2
+			}
+		}
+	}
+
+	### Minor Nation Uprising
+
+	focus = {
+		id = DFB_enemy_of_my_enemy
+		icon = GFX_focus_NOR_lurk_in_the_shadows
+		prerequisite = { focus = DFB_underhanded_dealings }
+		mutually_exclusive = { focus = DFB_we_fight_alone }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = 2
+		y = 3
+
+		completion_reward = {
+			add_war_support = 0.05
+			complete_national_focus = arming_the_nation
+			add_opinion_modifier = {
+				target = RPP
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = RPP
+				modifier = alliance_loyalty
+			}
+			hidden_effect = {
+				add_opinion_modifier = {
+					target = ELK
+					modifier = alliance_loyalty
+				}
+				reverse_add_opinion_modifier = {
+					target = ELK
+					modifier = alliance_loyalty
+				}
+				add_opinion_modifier = {
+					target = ELM
+					modifier = alliance_loyalty
+				}
+				reverse_add_opinion_modifier = {
+					target = ELM
+					modifier = alliance_loyalty
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DFB_outsider_help
+		icon = GFX_focus_gnoll_hogger
+		prerequisite = { focus = DFB_enemy_of_my_enemy }
+		cost = 21
+		relative_position_id = DFB_safety_in_numbers
+		x = 3
+		y = 4
+
+		completion_reward = {
+			312 = {
+				add_manpower = -900
+				damage_building = {
+					type = radar_station
+					damage = 1
+				}
+				damage_building = {
+					type = arms_factory
+					damage = 1
+				}
+				damage_building = {
+					type = industrial_complex
+					damage = 1
+				}
+			}
+			hidden_effect = { load_oob = DFB_gnoll_assist }
+			add_timed_idea = {
+				idea = DFB_gnoll_issues
+				days = 90
+			}
+			add_ideas = DFB_gnoll_control_1
+			hidden_effect = { RPP = { add_political_power = 50 } }
+			custom_effect_tooltip = DFB_outsider_help_tt
+		}
+	}
+
+	focus = {
+		id = DFB_backdoor_deals
+		icon = GFX_focus_hol_abandon_the_gold_standard
+		prerequisite = { focus = DFB_outsider_help }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = 2
+		y = 5
+
+		available = { has_completed_focus = DFB_goblin_cartels }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DFB_discretionary_funds
+				days = 70
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_goblin_cartels
+		icon = GFX_goblin_focus_gallywix
+		prerequisite = { focus = DFB_outsider_help }
+		cost = 14
+		relative_position_id = DFB_safety_in_numbers
+		x = 4
+		y = 5
+
+		completion_reward = {
+			add_ideas = DFB_goblin_control_1
+			add_equipment_to_stockpile = {
+				type = dwarf_rifleman_equipment_1
+				amount = 200
+			}
+			add_equipment_to_stockpile = {
+				type = grunt_equipment_1
+				amount = 200
+			}
+			add_equipment_to_stockpile = {
+				type = mechanical_fighter_equipment_1
+				amount = 20
+			}
+			add_political_power = 50
+			add_opinion_modifier = {
+				target = BOO
+				modifier = alliance_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = BOO
+				modifier = alliance_loyalty
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_ogre_foremen
+		icon = GFX_focus_generic_military_dictatorship
+		prerequisite = { focus = DFB_backdoor_deals }
+		prerequisite = { focus = DFB_goblin_cartels }
+		cost = 21
+		relative_position_id = DFB_safety_in_numbers
+		x = 3
+		y = 6
+
+		completion_reward = {
+			301 = {
+				add_manpower = -1200
+				damage_building = {
+					type = farm
+					damage = 1
+				}
+				damage_building = {
+					type = arms_factory
+					damage = 1
+				}
+				damage_building = {
+					type = industrial_complex
+					damage = 1
+				}
+			}
+			143 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			142 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				303 = { transfer_state_to = SFC }
+				304 = { transfer_state_to = SFC }
+				SFC = { country_event = { id = defias.12 days = 1 }	}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_purge_nobility
+		icon = GFX_focus_stormwind_varian
+		cost = 28
+		relative_position_id = DFB_safety_in_numbers
+		x = -5
+		y = 7
+
+		available = {
+			has_completed_focus = DFB_the_ripples_of_revolution
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			core_stormwind = yes
+			hidden_effect = {
+				STO = { retire_character = STO_king_varian_wrynn }
+			}
+			hidden_effect = {
+				STO = {
+					add_ideas = STO_balor_overpopulated_1
+					remove_ideas = NET_funding_keep
+					remove_ideas = STO_overstretched_military_1
+					remove_ideas = STO_massive_debt_1
+					remove_ideas = STO_massive_debt_2
+					remove_ideas = STO_massive_debt_3
+					remove_ideas = STO_massive_debt_4
+					remove_ideas = STO_massive_debt_5
+					remove_ideas = STO_stone_masons
+				}
+				323 = {
+					transfer_state_to = STO
+					add_manpower = 88000
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_gnoll_agreement
+		icon = GFX_focus_gnoll_dealings
+		cost = 28
+		prerequisite = { focus = DFB_the_baronies }
+		relative_position_id = DFB_purge_nobility
+		x = 2
+		y = 3
+
+		available = { 
+			has_completed_focus = DFB_outsider_help
+			always = no
+		}
+
+		completion_reward = {
+			350 = {
+				transfer_state_to = RPP
+				hidden_effect = {
+					add_core_of = RPP
+					add_manpower = -1800
+					remove_core_of = ELW
+				}
+			}
+			351 = {
+				transfer_state_to = RPP
+				hidden_effect = {
+					add_core_of = RPP
+					add_manpower = -3560
+					remove_core_of = ELW
+				}
+			}
+			352 = {
+				transfer_state_to = RPP
+				hidden_effect = {
+					add_core_of = RPP
+					add_manpower = -3800
+					remove_core_of = ELW
+				}
+			}
+			hidden_effect = {
+				random_owned_state = {
+					limit = {
+						impassable = no
+						is_core_of = DFB
+					}
+					add_manpower = 3560
+				}
+				random_owned_state = {
+					limit = {
+						impassable = no
+						is_core_of = DFB
+					}
+					add_manpower = 1800
+				}
+				random_owned_state = {
+					limit = {
+						impassable = no
+						is_core_of = DFB
+					}
+					add_manpower = 3800
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_goblin_agreement
+		icon = GFX_goblin_focus_gallywix
+		cost = 28
+		prerequisite = { focus = DFB_westfall_reconstruction }
+		relative_position_id = DFB_purge_nobility
+		x = -2
+		y = 3
+
+		available = { 
+			has_completed_focus = DFB_outsider_help
+			always = no
+		}
+
+		completion_reward = {
+			give_resource_rights = {
+				receiver = BOO
+				state = 1591
+			}
+			give_resource_rights = {
+				receiver = BOO
+				state = 1592
+			}
+			give_resource_rights = {
+				receiver = BOO
+				state = 1593
+			}
+			give_resource_rights = {
+				receiver = BOO
+				state = 1595
+			}
+			give_resource_rights = {
+				receiver = BOO
+				state = 2162
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_new_regime
+		icon = GFX_focus_NOR_quislings_regime
+		prerequisite = { focus = DFB_purge_nobility }
+		cost = 28
+		relative_position_id = DFB_purge_nobility
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_stability = 0.1
+			add_political_power = 75
+			swap_ideas = {
+				remove_idea = city_state
+				add_idea = kingdom
+			}
+			set_cosmetic_tag = DFB_Brotherhood
+			if = {
+				limit = { has_idea = DFB_banditry_1	}
+				remove_ideas = DFB_banditry_1
+				add_timed_idea = {
+					idea = DFB_banditry_perm
+					days = 120
+				}
+			}
+			hidden_effect = {
+				366 = { add_core_of = DFB }
+				782 = { add_core_of = DFB }
+				789 = { add_core_of = DFB }
+				791 = { add_core_of = DFB }
+				2150 = { add_core_of = DFB }
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_westfall_reconstruction
+		icon = GFX_goal_generic_soviet_construction
+		prerequisite = { focus = DFB_the_new_regime }
+		cost = 28
+		relative_position_id = DFB_purge_nobility
+		x = -1
+		y = 2
+
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = DFB_outsider_help }
+				complete_national_focus = DFB_the_goblin_agreement
+			}
+			143 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			144 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			1594 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_baronies
+		icon = GFX_goal_continuous_non_factory_construct
+		prerequisite = { focus = DFB_the_new_regime }
+		cost = 28
+		relative_position_id = DFB_purge_nobility
+		x = 1
+		y = 2
+
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = DFB_outsider_help }
+				complete_national_focus = DFB_the_gnoll_agreement
+			}
+			303 = {
+				add_core_of = DFB
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			305 = {
+				add_core_of = DFB
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			326 = {
+				add_core_of = DFB
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			354 = {
+				add_core_of = DFB
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			357 = {
+				add_core_of = DFB
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_peoples_movement
+		icon = GFX_SOV_leader_of_the_party_and_the_people_ccp_2d_sov_compatibility
+		prerequisite = { focus = DFB_westfall_reconstruction }
+		prerequisite = { focus = DFB_the_baronies }
+		cost = 28
+		relative_position_id = DFB_purge_nobility
+		x = 0
+		y = 3
+
+		completion_reward = {
+			every_country = {
+				limit = { 
+					has_idea = human_primary_race 
+					NOT = {
+						tag = DAL
+						tag = NET
+						tag = DFB
+						tag = SYN
+						tag = SLP
+						tag = SVB
+						tag = CAE
+						tag = TMB
+						tag = KAR
+					}
+					NOT = { has_idea = cult }
+					NOT = {	has_idea = GEN_pirate_nation }
+					NOT = {	has_idea = GEN_bandits_and_burglars }
+					NOT = {	has_war_with = CAE }
+					NOT = {	has_war_with = SRG }
+					has_stability < 0.60
+				}
+				add_ideas = DFB_rural_unrest
+				### Need to put in some way to getting rid of this
+				### Probably a Stability Cap
+			}
+			every_country = {
+				limit = { 
+					has_idea = human_primary_race 
+					NOT = {
+						tag = DAL
+						tag = NET
+						tag = DFB
+						tag = SYN
+						tag = SLP
+						tag = SVB
+						tag = CAE
+						tag = TMB
+						tag = KAR
+					}
+					OR = {
+						has_war_with = CAE
+						has_war_with = SRG
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = -30
+				}
+				random_core_state = {
+					limit = { state_population > 3999 }
+					add_manpower = -3000
+				}
+				random_state = {
+					limit = { is_core_of = DFB }
+					add_manpower = 3000
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_resistance
+		icon = GFX_focus_SWI_spirit_of_resistance
+		prerequisite = { focus = DFB_the_peoples_movement }
+		cost = 28
+		relative_position_id = DFB_purge_nobility
+		x = 0
+		y = 4
+
+		completion_reward = {
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						is_core_of = STO
+						impassable = yes
+					}
+					add_core_of = DFB
+					remove_core_of = STO
+				}
+			}
+			### Unlock Decisions to core the areas of stormwind if certain creteria are met
+			custom_effect_tooltip = future_content_tt
+		}
+	}
+
+	focus = {
+		id = DFB_goblin_embargo
+		icon = GFX_goblin_focus_rouge
+		cost = 10
+		prerequisite = { focus = DFB_the_resistance }
+		relative_position_id = DFB_purge_nobility
+		x = -1
+		y = 5
+
+		available = {
+			has_completed_focus = DFB_the_goblin_agreement
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = BOO
+				type = annex_everything
+			}
+			if = {
+				limit = { has_idea = DFB_goblin_control_1 }
+				remove_ideas = DFB_goblin_control_1
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_riverpaw_scourge
+		icon = GFX_focus_gnoll_snaggle
+		cost = 10
+		prerequisite = { focus = DFB_the_resistance }
+		relative_position_id = DFB_purge_nobility
+		x = 1
+		y = 5
+
+		completion_reward = {
+			declare_war_on = {
+				target = RPP
+				type = annex_everything
+			}
+			if = {
+				limit = { has_idea = DFB_gnoll_control_1 }
+				remove_ideas = DFB_gnoll_control_1
+			}
+			hidden_effect = {
+				set_division_template_lock = {
+					division_template = "Riverpaw Gnolls"
+					is_locked = no
+				}
+				recruit_character = DFB_blacknails
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_dispose_of_pests
+		icon = GFX_focus_alliance_footman
+		cost = 10
+		prerequisite = { focus = DFB_the_resistance }
+		relative_position_id = DFB_purge_nobility
+		x = 0
+		y = 6
+
+		available = {
+			has_completed_focus = DFB_undermanned_garrisons
+		}
+
+		completion_reward = {
+			create_wargoal = {
+				target = ELK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = ELM
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = SFC
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_undermanned_garrisons
+		icon = GFX_focus_NET_murloc_relocation
+		cost = 28
+		relative_position_id = DFB_purge_nobility
+		x = 0
+		y = 7
+
+		available = { always = no }
+
+		completion_reward = {
+			hidden_effect = {
+				ELM = { country_event = { id = defias.10 days = 1 }	}
+				ELK = { country_event = { id = defias.11 days = 1 }	}
+			}
+			353 = { add_dynamic_modifier = { modifier = LOR_murloc_problem } }
+			1588 = {
+				transfer_state_to = ELM
+				add_core_of = ELM
+			}
+			1589 = {
+				transfer_state_to = ELM
+				add_core_of = ELM
+			}
+			1175 = { 
+				transfer_state_to = ELK 
+				hidden_effect = {
+					if = {
+						limit = { 1175 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } } }
+						add_manpower = 1000
+						add_resource = {
+							type = ores
+							amount = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { 304 = { is_controlled_by = SFC } } }
+				304 = {	transfer_state_to = SFC }
+				303 = {	add_dynamic_modifier = { modifier = GEN_ogre_problem } }
+				hidden_effect = {
+					SFC = { country_event = { id = defias.12 days = 1 }	}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_there_are_consequences
+		icon = GFX_BRC_Focus_Blackrock_banner
+		cost = 50
+		relative_position_id = DFB_purge_nobility
+		x = 1
+		y = 8
+
+		available = { always = no }
+
+		completion_reward = {
+			BRC = {
+				declare_war_on = {
+					target = DFB
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_long_overdue
+		icon = GFX_BRC_focus_warmaster_voone
+		cost = 50
+		relative_position_id = DFB_purge_nobility
+		x = -1
+		y = 8
+
+		available = { always = no }
+
+		completion_reward = {
+			GUR = {
+				declare_war_on = {
+					target = DFB
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_deny_their_stronghold
+		icon = GFX_goal_generic_fortify_city
+		cost = 28
+		relative_position_id = DFB_safety_in_numbers
+		x = 5
+		y = 7
+
+		available = {
+			has_completed_focus = DFB_secure_our_foothold
+		}
+
+		completion_reward = {
+			146 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = radar_station
+					level = 1
+				}
+			}
+			142 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1720
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 5524
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_highway_bandits
+		icon = GFX_focus_ITA_banda_carita
+		prerequisite = { focus = DFB_deny_their_stronghold }
+		cost = 14
+		relative_position_id = DFB_deny_their_stronghold
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_ideas = GEN_bandits_and_burglars
+			swap_ideas = {
+				remove_idea = DFB_criminal_control_1
+				add_idea = DFB_criminal_control_2
+			}
+			STO = { add_ideas = DFB_banditry_perm }
+		}
+	}
+
+	focus = {
+		id = DFB_gnoll_invitation
+		icon = GFX_focus_gnoll_dealings
+		prerequisite = { focus = DFB_highway_bandits }
+		cost = 28
+		relative_position_id = DFB_deny_their_stronghold
+		x = -1
+		y = 2
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = DFB_gnoll_control_1 }
+				swap_ideas = {
+					remove_idea = DFB_gnoll_control_1
+					add_idea = DFB_gnoll_control_2
+				}
+			}
+			else = { add_ideas = DFB_gnoll_control_1 }
+			add_tech_bonus = {
+				name = infantry_technology
+				uses = 1
+				bonus = 0.25
+				category = infantry_technology
+			}
+			RPP = {
+				add_ideas = DFB_red_bandannas
+				add_tech_bonus = {
+					name = encryption_technology
+					uses = 2
+					bonus = 0.25
+					category = encryption_technology
+					category = decryption_technology
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_goblin_element
+		icon = GFX_goblin_focus_mad_bomber
+		prerequisite = { focus = DFB_highway_bandits }
+		cost = 28
+		relative_position_id = DFB_deny_their_stronghold
+		x = 1
+		y = 2
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = DFB_goblin_control_1 }
+				swap_ideas = {
+					remove_idea = DFB_goblin_control_1
+					add_idea = DFB_goblin_control_2
+				}
+			}
+			add_tech_bonus = {
+				name = naval_cannon_technology
+				uses = 1
+				bonus = 0.25
+				category = naval_cannon_technology
+			}
+			BOO = {
+				add_ideas = DFB_defias_riches
+				add_tech_bonus = {
+					name = agriculture_technology
+					uses = 1
+					bonus = 0.5
+					category = agriculture_technology
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DFB_the_inside_woman
+		icon = GFX_focus_generic_vatican_agents
+		prerequisite = { focus = DFB_gnoll_invitation }
+		prerequisite = { focus = DFB_the_goblin_element }
+		cost = 14
+		relative_position_id = DFB_deny_their_stronghold
+		x = 0
+		y = 3
+
+		completion_reward = {
+			add_ideas = DFB_prestors_backing
+		}
+	}
+
+	focus = {
+		id = DFB_the_juggernaught
+		icon = GFX_focus_POL_develop_polish_shipbuilding
+		prerequisite = { focus = DFB_the_inside_woman }
+		cost = 28
+		relative_position_id = DFB_deny_their_stronghold
+		x = 0
+		y = 4
+
+		search_filters = {
+			FOCUS_FILTER_SPECIAL_PROJECT
+		}
+
+		completion_reward = {
+			complete_special_project = sp:sp_colossus_juggernaught
+			add_equipment_production = {
+				equipment = {
+					type = colossus_juggernaught
+					creator = DFB
+				}
+				requested_factories = 1
+				progress = 0.15
+				amount = 1
+				name = "Defias Juggernaught"
+			}
+		}
+	}
+}

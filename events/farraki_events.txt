@@ -1,0 +1,1690 @@
+﻿###########################
+# Farraki Tribe
+###########################
+
+add_namespace = farraki
+
+#STC_the_sands_of_tanaris (STC arrive in Tanaris)
+country_event = {
+	id = farraki.1
+	title = farraki.1.t
+	desc = farraki.1.d
+	picture = GFX_steemwheedle_port_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#perhaps a trade agreement can be made
+  	option = {
+    	name = farraki.1.option.1
+
+		STC = {
+			country_event = { id = steamwheedle.5 days = 5 }
+		}
+	}
+
+}
+
+#from steamwheedle.5.option.1
+country_event = {
+	id = farraki.2
+	title = farraki.2.t
+	desc = farraki.2.d
+	picture = GFX_steemwheedle_port_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#sell them the land
+  	option = {
+    	name = farraki.2.option.1
+
+		STC = {
+			country_event = steamwheedle.6
+		}
+		724 = {
+			add_extra_state_shared_building_slots = 4
+			add_building_construction = {
+				type = industrial_complex
+				level = 3
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+
+	#declare war
+	option = {
+    	name = farraki.2.option.2
+
+		STC = {
+			country_event = steamwheedle.7
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = STC
+		}	
+	}
+
+}
+
+#from steamwheedle.5.option.2
+country_event = {
+	id = farraki.3
+	title = farraki.3.t
+	desc = farraki.3.d
+	picture = GFX_steemwheedle_port_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#declare war
+	option = {
+    	name = farraki.3.option.1
+
+		create_wargoal = {
+			type = annex_everything
+			target = STC
+		}	
+	}
+}
+
+country_event = {
+	id = farraki.5
+	title = farraki.5.t
+	desc = farraki.5.d
+	picture = GFX_steemwheedle_port_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#declare war
+	option = {
+    	name = farraki.5.option.1
+
+		create_wargoal = {
+			type = annex_everything
+			target = STC
+		}	
+	}
+}
+
+
+add_namespace = farraki_classic
+
+country_event = {
+	id = farraki_classic.1
+	title = farraki_classic.1.t
+	desc = farraki_classic.1.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    	name = farraki_classic.1.option.1
+			add_ideas = FAR_desert_logistics_1
+	}
+}
+
+country_event = {
+	id = farraki_classic.2
+	title = farraki_classic.2.t
+	desc = farraki_classic.2.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Blood magic is intended to give player an option to nudge in one direction or another with some maluses.
+	#Sacrifices will transition into less conscription factor when choosing one of the 3 main courses, or player can choose to stay dynamic for varying bonuses.
+	#Player may opt out of blood magic by selecting option 2 which will deny the altar decisions
+
+	option = {
+    	name = farraki_classic.2.option.1
+		custom_effect_tooltip = FAR_blood_magic_disclaimer_tt
+		set_country_flag = FAR_blood_magic_enabled
+	}
+	option = {
+    	name = farraki_classic.2.option.2
+		custom_effect_tooltip = FAR_blood_magic_denial_tt
+		set_country_flag = FAR_blood_magic_disabled
+	}
+}
+
+country_event = {
+	id = farraki_classic.3
+	title = farraki_classic.3.t
+	desc = farraki_classic.3.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#The Sandfury lay in the Tanaris desert. This informs them they have supply issues, and need to seek help in order to survive.
+	#Alternatively the historical path will focus on them sticking to Zulfarrak and Sandsorrow watch and a war with Gadgetzan
+	#This also opens up the troll diplomacy tree. This is a huge break from the traditional experience in Vanilla.. There are a little over 300 trolls in ZF around the time of the dungeon. 
+	option = {
+    	name = farraki_classic.3.option.1
+		set_country_flag = FAR_troll_diplomacy_enabled
+		set_country_flag = FAR_ahistorical
+		custom_effect_tooltip = FAR_history_unraveled_tt
+	}
+	option = {
+    	name = farraki_classic.3.option.2
+		set_country_flag = FAR_troll_diplomacy_disabled
+		set_country_flag = FAR_historical
+		custom_effect_tooltip = FAR_history_repeats_itself_tt
+	}
+}
+
+country_event = {
+	id = farraki_classic.4
+	title = farraki_classic.4.t
+	desc = farraki_classic.4.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Acknowledge improvements to your domain through Jangthraze, and expansions of your domain through Sangthraze. Additional benefits may be found in exultation to your loa of choice but they will delay your progress.
+	
+	option = {
+    	name = farraki_classic.4.option.1
+		ROOT = {
+			add_political_power = 50
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.5
+	title = farraki_classic.5.t
+	desc = farraki_classic.5.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Jangthraze represents the improvement of Zulfarrak as it is the primary industrial base of your empire.
+	#Left is civilian infrastructure. Right is military infrastructure.
+	option = {
+    	name = farraki_classic.5.option.1
+		ROOT = {
+			complete_national_focus = FAR_desert_home
+		}	
+	}
+	option = {
+    	name = farraki_classic.5.option.2
+		ROOT = {
+			complete_national_focus = FAR_sandfury_hold
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.6
+	title = farraki_classic.6.t
+	desc = farraki_classic.6.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	##_## Bazaar Focus 1
+	option = {
+    	name = farraki_classic.6.option.1
+		724 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    			type = industrial_complex
+    			level = 1
+    			instant_build = yes
+			}
+			add_resource = {
+				type = ores
+				amount = 2
+			}
+			add_resource = {
+				type = eggs
+				amount = 1
+			}
+		}
+	}
+	option = {
+    	name = farraki_classic.6.option.2
+		724 = {
+			add_resource = {
+				type = wood
+				amount = 3
+			}
+			add_resource = {
+				type = ores
+				amount = 3
+			}
+			add_resource = {
+				type = eggs
+				amount = 3
+			}
+		}
+	}
+	option = {
+    	name = farraki_classic.6.option.3
+		724 = {
+			add_resource = {
+				type = mounts
+				amount = 4
+			}
+			add_resource = {
+				type = eggs
+				amount = 4
+			}
+		}
+	}
+	option = {
+    	name = farraki_classic.6.option.4
+		724 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    			type = arms_factory
+    			level = 1
+    			instant_build = yes
+			}
+			add_resource = {
+				type = mounts
+				amount = 2
+			}
+			add_resource = {
+				type = wheat
+				amount = 4
+			}
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.7
+	title = farraki_classic.7.t
+	desc = farraki_classic.7.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	##_## Bazaar Focus 2 - I am not happy with the values for Drakkari and Darkspear.
+
+	option = {
+    	name = farraki_classic.7.option.1
+		724 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+    			type = industrial_complex
+    			level = 1
+    			instant_build = yes
+			}
+		}
+	}
+	option = {
+    	name = farraki_classic.7.option.2
+		724 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+    			type = arms_factory
+    			level = 1
+    			instant_build = yes
+			}
+		}
+	}
+	option = {
+    	name = farraki_classic.7.option.3
+		724 = {
+			add_resource = {
+				type = ores
+				amount = 4
+			}
+			add_resource = {
+				type = eggs
+				amount = 4
+			}
+		}
+	}
+	option = {
+    	name = farraki_classic.7.option.4
+		724 = {
+			add_resource = {
+				type = wood
+				amount = 4
+			}
+			add_resource = {
+				type = wheat
+				amount = 4
+			}
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.8
+	title = farraki_classic.8.t
+	desc = farraki_classic.8.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	##_##
+	#The Pinnacle
+	option = {
+    	name = farraki_classic.8.option.1
+		#Muehzala
+		FAR = {
+			add_to_variable = { far_supply_node_range = 0.05 }
+			add_to_variable = { far_research_gain = 0.05 }
+			add_to_variable = { far_command_power_gain = 0.05 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+		option = {
+    	name = farraki_classic.8.option.2
+		#Kimbul
+		FAR = {
+			add_to_variable = { far_war_support = 0.05 }
+			add_to_variable = { far_justify_war_time = 0.05 }
+			add_to_variable = { far_conscription_factor = 0.015 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+		option = {
+    	name = farraki_classic.8.option.3
+		#Shadra
+		FAR = {
+			add_to_variable = { far_intel_network_gain = 0.05 }
+			add_to_variable = { far_intelligence_defense = 0.05 }
+			add_to_variable = { far_agency_upgrade_time = 0.05 }
+			add_to_variable = { far_operative_slots = 1 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+		option = {
+    	name = farraki_classic.8.option.4
+		#Ghazrilla
+		FAR = {
+			add_to_variable = { far_stability_factor = 0.05 }
+			add_to_variable = { far_industrial_factories = 0.05 }
+			add_to_variable = { far_resources_local = 0.05 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.9
+	title = farraki_classic.9.t
+	desc = farraki_classic.9.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Self Sufficient - Player gets a choice of doctrine tech bonus or flat faith gain
+	option = {
+    	name = farraki_classic.9.option.1
+		add_doctrine_cost_reduction = {
+				name = land_doctrine
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+	}
+	option = {
+    	name = farraki_classic.9.option.2
+		add_to_variable = {
+			var = faith_points
+			value = 100
+			tooltip = add_faith_points_tt
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.10
+	title = farraki_classic.10.t
+	desc = farraki_classic.10.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Manpower or Drugs. Witchdoctors have some mad mojo.
+	option = {
+		name = farraki_classic.10.option.1
+    	add_ideas = { FAR_witchdoctor_mojo }
+	}
+	option = {
+		name = farraki_classic.10.option.2
+    	add_ideas = { FAR_witchdoctor_mojo_2 }
+	}
+}
+
+country_event = {
+	id = farraki_classic.11
+	title = farraki_classic.11.t
+	desc = farraki_classic.11.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+#Survival of the Fittest
+
+	option = {
+		name = farraki_classic.11.option.1
+			724 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = farm
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = iron_mine
+    				level = 1
+    				instant_build = yes
+				}
+			}
+	}
+	option = {
+		name = farraki_classic.11.option.2
+		724 = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+    			type = arms_factory
+    			level = 1
+    			instant_build = yes
+			}
+			add_building_construction = {
+    			type = arcane_tower
+    			level = 2
+    			instant_build = yes
+			}
+		}
+		add_breakthrough_progress = {
+			specialization = specialization_magic
+			value = 0.50
+		}
+	}
+	option = {
+		name = farraki_classic.11.option.3
+			724 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = stable
+    				level = 2
+    				instant_build = yes
+				}
+			}
+	}
+}
+
+country_event = {
+	id = farraki_classic.12
+	title = farraki_classic.12.t
+	desc = farraki_classic.12.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Ukorz Dream - He wanted everything in Tanaris for the tribe.
+
+	option = {
+		name = farraki_classic.12.option.1
+		add_ideas = { FAR_ground_breaking }
+	}
+	option = {
+		name = farraki_classic.12.option.2
+		add_ideas = { FAR_ground_breaking_2 }
+	}
+}
+
+country_event = {
+	id = farraki_classic.13
+	title = farraki_classic.13.t
+	desc = farraki_classic.13.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.13.option.1
+		FAR = {
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 150
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.14
+	title = farraki_classic.14.t
+	desc = farraki_classic.14.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.14.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.15
+	title = farraki_classic.15.t
+	desc = farraki_classic.15.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		#Muehzala
+		name = farraki_classic.15.option.1
+		FAR = {
+			add_to_variable = { far_supply_node_range = 0.05 }
+			add_to_variable = { far_research_gain = 0.05 }
+			add_to_variable = { far_command_power_gain = 0.05 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+	option = {
+		#Kimbul
+		name = farraki_classic.15.option.2
+		FAR = {
+			add_to_variable = { far_war_support = 0.05 }
+			add_to_variable = { far_justify_war_time = 0.05 }
+			add_to_variable = { far_conscription_factor = 0.015 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+	option = {
+		#Shadra
+		name = farraki_classic.15.option.3
+		FAR = {
+			add_to_variable = { far_intel_network_gain = 0.05 }
+			add_to_variable = { far_intelligence_defense = 0.05 }
+			add_to_variable = { far_agency_upgrade_time = 0.05 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+	
+}
+
+country_event = {
+	id = farraki_classic.16
+	title = farraki_classic.16.t
+	desc = farraki_classic.16.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.16.option.1
+		add_timed_idea = { 
+			idea = FAR_goblin_laborers
+			days = 180
+		}
+	}
+	option = {
+		name = farraki_classic.16.option.2
+		add_timed_idea = {
+    		idea = FAR_appeased_loa
+    		days = 270
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.17
+	title = farraki_classic.17.t
+	desc = farraki_classic.17.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.17.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.18
+	title = farraki_classic.18.t
+	desc = farraki_classic.18.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.18.option.1
+		724 = {
+			add_resource = {
+				type = wood
+				amount = 8
+			}
+			add_resource = {
+				type = ores
+				amount = 4
+			}
+		}
+		GUR = {
+			add_offsite_building = { 
+				type = arms_factory
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1
+			}
+		}		
+	}
+	option = {
+		name = farraki_classic.18.option.2
+		ROOT = {
+			add_manpower = 1000
+		}
+		724 = {
+			add_resource = {
+				type = wood
+				amount = 2
+			}
+			add_resource = {
+				type = ores
+				amount = 2
+			}
+		}
+		GUR = {
+			add_offsite_building = { 
+				type = arms_factory
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.19
+	title = farraki_classic.19.t
+	desc = farraki_classic.19.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Zandalari Diplomacy
+
+	option = {
+		name = farraki_classic.19.option.1
+		add_to_variable = {
+					var = faith_points
+					value = 200
+					tooltip = add_faith_points_tt
+				}
+	}
+	option = {
+		name = farraki_classic.19.option.2
+		ROOT = {
+			add_offsite_building = { 
+				type = arms_factory
+				level = 1
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 2
+			}
+		}
+	}
+	option = {
+		name = farraki_classic.19.option.3
+		add_political_power = 150
+		ROOT = {
+			add_timed_idea = {
+				idea = FAR_zandalari_resource_rights
+				days = 365
+			}
+		}
+	}
+	option = {
+		name = farraki_classic.19.option.4
+		ROOT = {
+			add_timed_idea = {
+				idea = FAR_zandalari_architects
+				days = 365
+			}
+		}
+	}
+}
+
+
+country_event = {
+	id = farraki_classic.20
+	title = farraki_classic.20.t
+	desc = farraki_classic.20.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+#They are meant to do the same thing. Flavor choices.
+
+	option = {
+		name = farraki_classic.20.option.1
+		add_ideas = { FAR_rulers_of_tanaris }
+	}
+	option = {
+		name = farraki_classic.20.option.2
+		add_ideas = { FAR_rulers_of_tanaris }
+	}
+}
+
+country_event = {
+	id = farraki_classic.21
+	title = farraki_classic.21.t
+	desc = farraki_classic.21.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes 
+
+	option = { #Bar the Gates S#724 P#9504 P#9505
+		name = farraki_classic.21.option.1
+			724 = {
+				add_building_construction = {
+					type = bunker
+					province = 9504
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 9505
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	}
+	option = { #Sandsorrow #929
+		name = farraki_classic.21.option.2
+			929 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+	}
+	option = { #Broken Pillar #940
+		name = farraki_classic.21.option.3
+		940 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+	}
+}
+
+country_event = {
+	id = farraki_classic.22
+	title = farraki_classic.22.t
+	desc = farraki_classic.22.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.22.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.23
+	title = farraki_classic.23.t
+	desc = farraki_classic.23.d
+	#picture = GFX_placeholder
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Quaking Earth - We're going back to Uldum Boys/Gals!
+
+	option = {
+		name = farraki_classic.23.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.24
+	title = farraki_classic.24.t
+	desc = farraki_classic.24.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Sundered Earth
+
+	option = {
+		name = farraki_classic.24.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.25
+	title = farraki_classic.25.t
+	desc = farraki_classic.25.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	##_## Ungoro Focus.
+
+	option = {
+		name = farraki_classic.25.option.1
+			1123 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 5
+
+	      		set_state_name = "Zul'Ukorz"
+
+				set_state_flag = rebuilt_state_flag
+			}
+	}
+	option = {
+		name = farraki_classic.25.option.2
+			1115 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 5
+
+	      		set_state_name = "Jin'Kimbul"
+
+				set_state_flag = rebuilt_state_flag
+			}
+	}
+	option = {
+		name = farraki_classic.25.option.3
+		1120 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 5
+
+	      		set_state_name = "Jin'Shadra"
+
+				set_state_flag = rebuilt_state_flag
+			}
+	}
+	option = {
+		name = farraki_classic.25.option.4
+		84 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 5
+
+	      		set_state_name = "Jin'Zala"
+
+				set_state_flag = rebuilt_state_flag
+			}
+	}
+}
+
+country_event = {
+	id = farraki_classic.26
+	title = farraki_classic.26.t
+	desc = farraki_classic.26.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.26.option.1
+		ROOT = {
+			complete_national_focus = FAR_answers_in_the_past
+		}	
+	}
+	option = {
+		name = farraki_classic.26.option.2
+		ROOT = {
+			complete_national_focus = FAR_mandibles_of_the_beast
+		}	
+	}
+}
+
+country_event = {
+	id = farraki_classic.27
+	title = farraki_classic.27.t
+	desc = farraki_classic.27.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.27.option.1
+		ROOT = {
+			complete_national_focus = FAR_rise_of_a_deity
+		}	
+	}
+	option = {
+		name = farraki_classic.27.option.2
+		ROOT = {
+			complete_national_focus = FAR_collect_the_tablets
+		}	
+	}
+}
+
+country_event = {
+	id = farraki_classic.28
+	title = farraki_classic.28.t
+	desc = farraki_classic.28.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+##_## Ask Pigeon for Advice. It does what I want, but the tooltip is confusing for players.
+
+	option = {
+		name = farraki_classic.28.option.1
+		#ROOT = {
+			#country_resource_cost_wheat = 25
+		#}
+		FAR_gahzrilla_ascendency = yes
+	}
+	option = {
+		name = farraki_classic.28.option.2
+		ROOT = {
+			add_manpower = -1000
+		}
+		FAR_gahzrilla_ascendency = yes
+		FAR_gahzrilla_ascendency = yes
+	}
+}
+
+country_event = {
+	id = farraki_classic.29
+	title = farraki_classic.29.t
+	desc = farraki_classic.29.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.29.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.30
+	title = farraki_classic.30.t
+	desc = farraki_classic.30.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.30.option.1
+		ROOT = {
+			random_owned_controlled_state = {
+				limit = {
+                    impassable = no
+					arms_factory > 1
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		VIL = {
+			random_owned_controlled_state = {
+				limit = {
+                    impassable = no
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = farraki_classic.30.option.2
+		ROOT = {
+			add_manpower = -1000
+		}
+		VIL = {
+			add_manpower = 1000
+		}
+	}
+}
+
+country_event = {
+	id = farraki_classic.31
+	title = farraki_classic.31.t
+	desc = farraki_classic.31.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.31.option.1
+		ROOT = {
+			add_manpower = -500
+		}
+		add_ideas = {FAR_gahzrilla_buff_1}
+	}
+	option = {
+		name = farraki_classic.31.option.2
+		ROOT = {
+			add_manpower = -1000
+		}
+		add_ideas = { FAR_gahzrilla_buff_2 }
+	}
+	option = {
+		name = farraki_classic.31.option.3
+		ROOT = {
+			add_manpower = -1500
+		}
+		add_ideas = { FAR_gahzrilla_buff_3 }
+	}
+	option = {
+		name = farraki_classic.31.option.4
+		ROOT = {
+			add_manpower = -2000
+		}
+		add_ideas = { FAR_gahzrilla_buff_4 }
+	}
+}
+
+country_event = {
+	id = farraki_classic.32
+	title = farraki_classic.32.t
+	desc = farraki_classic.32.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.32.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.33
+	title = farraki_classic.33.t
+	desc = farraki_classic.33.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.33.option.1
+		add_political_power = 100
+	}
+}
+
+country_event = {
+	id = farraki_classic.34
+	title = farraki_classic.34.t
+	desc = farraki_classic.34.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.34.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.35
+	title = farraki_classic.35.t
+	desc = farraki_classic.35.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.35.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.36
+	title = farraki_classic.36.t
+	desc = farraki_classic.36.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.36.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.37
+	title = farraki_classic.37.t
+	desc = farraki_classic.37.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.37.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.38
+	title = farraki_classic.38.t
+	desc = farraki_classic.38.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.38.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.39
+	title = farraki_classic.39.t
+	desc = farraki_classic.39.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.39.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.40
+	title = farraki_classic.40.t
+	desc = farraki_classic.40.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.40.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.41
+	title = farraki_classic.41.t
+	desc = farraki_classic.41.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.41.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.42
+	title = farraki_classic.42.t
+	desc = farraki_classic.42.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.42.option.1
+	}
+}
+
+country_event = {
+	id = farraki_classic.43
+	title = farraki_classic.43.t
+	desc = farraki_classic.43.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.43.option.1
+	}
+	option = {
+		name = farraki_classic.43.option.2
+	}
+}
+################################################################
+##_## Historical Events (if not re-used)
+country_event = {
+	id = farraki_classic.44
+	title = farraki_classic.44.t
+	desc = farraki_classic.44.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.44.option.1
+	}
+}
+country_event = {
+	id = farraki_classic.45
+	title = farraki_classic.45.t
+	desc = farraki_classic.45.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	#929
+	option = {
+		name = farraki_classic.45.option.1
+		929 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+		}
+	}
+	option = {
+		name = farraki_classic.45.option.2
+		929 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+		}
+	}
+}
+country_event = {
+	id = farraki_classic.46
+	title = farraki_classic.46.t
+	desc = farraki_classic.46.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.46.option.1
+		ROOT = {
+			add_timed_idea = {
+    			idea = FAR_southsea_looted
+    			days = 360
+			}
+		}
+	}
+	option = {
+		name = farraki_classic.46.option.2
+		ROOT = {
+			add_timed_idea = {
+    			idea = FAR_pinched_pennies
+    			days = 360
+			}
+		}
+	}
+}
+country_event = {
+	id = farraki_classic.47
+	title = farraki_classic.47.t
+	desc = farraki_classic.47.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.47.option.1
+		ROOT = { FAR_desert_logistics = yes }
+		#Tech Bonus for farms
+		add_tech_bonus = {
+				name = troll_hunting_technology
+				uses = 1
+				bonus = 1.0
+				category = troll_hunting_technology
+			}
+	}
+	option = {
+		name = farraki_classic.47.option.2
+		ROOT = { FAR_desert_logistics = yes }
+		940 = {
+			add_resource = {
+				type = wheat
+				amount = 3
+			}	
+		}
+		942 = {
+			add_resource = {
+				type = wheat
+				amount = 3
+			}
+		}
+	}
+}
+country_event = {
+	id = farraki_classic.48
+	title = farraki_classic.48.t
+	desc = farraki_classic.48.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.48.option.1
+		add_offsite_building = { type = industrial_complex level = 3 }
+	}
+	option = {
+		name = farraki_classic.48.option.2
+		add_offsite_building = { type = arms_factory level = 3 }
+	}
+}
+country_event = {
+	id = farraki_classic.49
+	title = farraki_classic.49.t
+	desc = farraki_classic.49.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.49.option.1
+		929 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = church
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 5
+
+	      	set_state_name = "Sandscalp Reach"
+
+			set_state_flag = rebuilt_state_flag
+		}
+	}
+	option = {
+		name = farraki_classic.49.option.2
+		build_railway = {
+    			level = 2
+    			build_only_on_allied = yes
+    			controller_priority = {
+       				base = 1
+        			modifier = {
+            			tag = FAR
+            			add = 2
+        			}
+    			}
+    		fallback = yes
+    		path = { 9504 9492 9489 9485 9476 9470 9461 9445 9438 9432 }
+    		start_state = 724
+    		target_state = 940
+			}
+		940 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = church
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 5
+
+	      	set_state_name = "Pillar of the Wild Gods"
+
+			set_state_flag = rebuilt_state_flag
+		}
+	}
+}
+country_event = {
+	id = farraki_classic.50
+	title = farraki_classic.50.t
+	desc = farraki_classic.50.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.50.option.1
+	}
+}
+country_event = {
+	id = farraki_classic.51
+	title = farraki_classic.51.t
+	desc = farraki_classic.51.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.51.option.1
+	}
+	option = {
+		name = farraki_classic.51.option.2
+	}
+}
+country_event = {
+	id = farraki_classic.52
+	title = farraki_classic.52.t
+	desc = farraki_classic.52.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = farraki_classic.52.option.1
+	}
+	option = {
+		name = farraki_classic.52.option.2
+	}
+}
+
+
+#country_event = {
+#	id = farraki_classic.00
+#	desc = farraki_classic.00.d
+#	#picture = GFX_placeholder
+#
+#	is_triggered_only = yes
+#
+#	fire_only_once = yes
+#
+#	option = {
+#		name = farraki_classic.00.option.1
+#	}
+#}

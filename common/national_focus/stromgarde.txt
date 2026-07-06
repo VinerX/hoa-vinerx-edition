@@ -1,0 +1,8126 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = stromgarde_first_war
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = STR
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 1150
+		y = 0
+	}
+
+	focus = {
+		id = STR_thousand_years_of_peace
+		icon = GFX_focus_STR_generic
+		x = 22
+		y = 0
+		cost = 7
+
+		completion_reward = {
+			country_event = { id = stromgarde.11 }
+		}
+	}
+
+	focus = {
+		id = STR_lord_trollbane
+		icon = GFX_focus_STR_generic
+		x = 22
+		y = 1
+		cost = 7
+		prerequisite = { focus = STR_thousand_years_of_peace }
+
+		completion_reward = {
+			country_event = { id = stromgarde.12 }
+		}
+	}
+
+	focus = {
+		id = STR_kingdom_of_stromgarde
+		icon = GFX_focus_STR_generic
+		prerequisite = { focus = STR_lord_trollbane	}
+		x = 22
+		y = 2
+		cost = 7
+
+		completion_reward = {
+			country_event = { id = stromgarde.13 }
+			set_country_flag = unlocked_other_branches
+			custom_effect_tooltip = unlocking_other_branches_tt
+			hidden_effect = { country_event = { id = stromgarde.100 } }
+		}
+	}
+
+	focus = {
+		id = STR_stromgrades_military
+		icon = GFX_goal_generic_axis_build_infantry
+		x = -1
+		y = 3
+		cost = 24
+
+		available = { has_country_flag = unlocked_other_branches }
+
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+		}
+	}
+
+	focus = {
+		id = STR_stromic_army
+		icon = GFX_focus_chi_army_reform
+		prerequisite = { focus = STR_stromgrades_military }
+		relative_position_id = STR_stromgrades_military
+		x = -2
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_technology
+				bonus = 0.25
+				uses = 2
+				category = infantry_technology
+			}
+			mio:generic_melee_infantry_org = { add_mio_funds = 250 }
+		}
+	}
+
+	focus = {
+		id = STR_pike_and_blade
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = STR_stromic_army }
+		relative_position_id = STR_stromic_army
+		x = -1
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = sword_technology
+				bonus = 0.5
+				uses = 1
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_shield_and_plate
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = STR_stromic_army }
+		relative_position_id = STR_stromic_army
+		x = 1
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.5
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_army_academy
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = STR_pike_and_blade }
+		prerequisite = { focus = STR_shield_and_plate }
+		relative_position_id = STR_stromic_army
+		x = 0
+		y = 2
+		cost = 24
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+		}
+	}
+
+	focus = {
+		id = STR_royal_guard
+		icon = GFX_focus_generic_little_entente
+		prerequisite = { focus = STR_army_academy }
+		relative_position_id = STR_stromic_army
+		x = -1
+		y = 3
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = royal_guard_technology
+				bonus = 0.5
+				uses = 1
+				category = royal_guard_technology
+			}
+			mio:generic_melee_infantry_org = { add_mio_funds = 250 }
+		}
+	}
+
+	focus = {
+		id = STR_infantry_captain
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		prerequisite = { focus = STR_royal_guard }
+		relative_position_id = STR_stromic_army
+		x = -1
+		y = 4
+		cost = 14
+
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_dathanor_cromwell
+			create_corps_commander = {
+				name = "Dathanor Cromwell"
+				picture = "Portrait_STR_Generic_land_5.dds"
+				traits = { infantry_leader }
+				skill = 2
+				attack_skill = 1
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STR_stromic_cavalry
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = STR_army_academy }
+		relative_position_id = STR_stromic_army
+		x = 1
+		y = 3
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = horse_technology
+				bonus = 0.5
+				uses = 1
+				category = horse_technology
+			}
+			mio:generic_heavy_cav_organization = { add_mio_funds = 250 }
+		}
+	}
+
+	focus = {
+		id = STR_cavalry_captain
+		icon = GFX_focus_BUL_prussia_of_the_balkans
+		prerequisite = { focus = STR_stromic_cavalry }
+		relative_position_id = STR_stromic_army
+		x = 1
+		y = 4
+		cost = 14
+
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_ariana_thesslocke
+			create_corps_commander = {
+				name = "Ariana Thesslocke"
+				picture = "Portrait_STR_Generic_land_5.dds"
+				traits = { cavalry_leader }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_weapon_specialists
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = STR_cavalry_captain }
+		prerequisite = { focus = STR_infantry_captain }
+		relative_position_id = STR_stromic_army
+		x = 0
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			country_event = { id = stromgarde.4 }
+		}
+	}
+
+	focus = {
+		id = STR_combined_forces
+		icon = GFX_focus_generic_little_entente
+		prerequisite = { focus = STR_weapon_specialists }
+		relative_position_id = STR_stromic_army
+		x = 0
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			add_ideas = STR_stromic_army_corps
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+		}
+	}
+
+	focus = {
+		id = STR_stromic_navy
+		icon = GFX_goal_generic_occupy_states_coastal
+		prerequisite = { focus = STR_stromgrades_military }
+		relative_position_id = STR_stromgrades_military
+		x = 2
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.5
+				uses = 1
+				category = naval_technology
+			}
+			TOL = {
+				if = {
+					limit = { has_idea = TOL_privateers }
+					swap_ideas = {
+						remove_idea = TOL_privateers
+						add_idea = TOL_privateers_2
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_2 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_2
+						add_idea = TOL_privateers_3
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_3 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_3
+						add_idea = TOL_privateers_4
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_4 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_4
+						add_idea = TOL_privateers_5
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_5 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_5
+						add_idea = TOL_privateers_6
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_6 }
+					remove_ideas = TOL_privateers_6
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_improve_frigates
+		icon = GFX_focus_generic_cruiser2
+		prerequisite = { focus = STR_stromic_navy }
+		relative_position_id = STR_stromic_navy
+		x = -1
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = frigate_technology
+				bonus = 0.5
+				uses = 1
+				category = frigate_technology
+			}
+			mio:generic_screen_ships_org = { add_mio_funds = 250 }
+		}
+	}
+
+	focus = {
+		id = STR_design_battleships
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = STR_stromic_navy }
+		relative_position_id = STR_stromic_navy
+		x = 1
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = juggernaught_technology
+				bonus = 0.5
+				uses = 1
+				category = juggernaught_technology
+			}
+			mio:generic_capital_organization = { add_mio_funds = 250 }
+		}
+	}
+
+	focus = {
+		id = STR_battle_upon_the_tides
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = STR_improve_frigates }
+		prerequisite = { focus = STR_design_battleships	}
+		relative_position_id = STR_stromic_navy
+		x = 0
+		y = 2
+		cost = 24
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_naval
+				value = 0.50
+			}
+			TOL = {
+				if = {
+					limit = { has_idea = TOL_privateers }
+					swap_ideas = {
+						remove_idea = TOL_privateers
+						add_idea = TOL_privateers_2
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_2 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_2
+						add_idea = TOL_privateers_3
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_3 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_3
+						add_idea = TOL_privateers_4
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_4 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_4
+						add_idea = TOL_privateers_5
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_5 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_5
+						add_idea = TOL_privateers_6
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_6 }
+					remove_ideas = TOL_privateers_6
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_fueling_the_fleet
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = STR_expanded_dockyards }
+		x = 13
+		y = 7
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = oil_technology
+				bonus = 0.5
+				uses = 1
+				category = oil_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_returned_to_service
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = STR_battle_upon_the_tides }
+		relative_position_id = STR_stromic_navy
+		x = 0
+		y = 3
+		cost = 24
+
+		available = { has_completed_focus = STR_rebuild_thoradins_Wall }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = naval_cannon_technology
+				bonus = 0.25
+				uses = 1
+				category = naval_cannon_technology
+			}
+			add_timed_idea = {
+				idea = STR_old_screen_cannons
+				days = 180
+			}
+			TOL = {
+				if = {
+					limit = { has_idea = TOL_privateers }
+					swap_ideas = {
+						remove_idea = TOL_privateers
+						add_idea = TOL_privateers_2
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_2 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_2
+						add_idea = TOL_privateers_3
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_3 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_3
+						add_idea = TOL_privateers_4
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_4 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_4
+						add_idea = TOL_privateers_5
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_5 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_5
+						add_idea = TOL_privateers_6
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_6 }
+					remove_ideas = TOL_privateers_6
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_antipiracy_measures
+		icon = GFX_goal_generic_navy_anti_submarine
+		prerequisite = { focus = STR_returned_to_service }
+		relative_position_id = STR_stromic_navy
+		x = 1
+		y = 4
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_stromic_marines
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = small_frame_technology
+				bonus = 0.5
+				uses = 1
+				category = small_frame_technology
+			}
+			TOL = {
+				if = {
+					limit = { has_idea = TOL_privateers }
+					swap_ideas = {
+						remove_idea = TOL_privateers
+						add_idea = TOL_privateers_2
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_2 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_2
+						add_idea = TOL_privateers_3
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_3 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_3
+						add_idea = TOL_privateers_4
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_4 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_4
+						add_idea = TOL_privateers_5
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_5 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_5
+						add_idea = TOL_privateers_6
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_6 }
+					remove_ideas = TOL_privateers_6
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_stromic_marines
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = STR_returned_to_service }
+		relative_position_id = STR_stromic_navy
+		x = -1
+		y = 4
+		cost = 24
+
+		completion_reward = {
+			TOL = { set_technology = { STR_stromic_marines_tech = 1	} }
+			set_technology = { STR_stromic_marines_tech = 1	}
+			custom_effect_tooltip = STR_stromic_marines_tech_tt
+			TOL = {
+				if = {
+					limit = { has_idea = TOL_privateers }
+					swap_ideas = {
+						remove_idea = TOL_privateers
+						add_idea = TOL_privateers_2
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_2 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_2
+						add_idea = TOL_privateers_3
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_3 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_3
+						add_idea = TOL_privateers_4
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_4 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_4
+						add_idea = TOL_privateers_5
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_5 }
+					swap_ideas = {
+						remove_idea = TOL_privateers_5
+						add_idea = TOL_privateers_6
+					}
+				}
+				else_if = {
+					limit = { has_idea = TOL_privateers_6 }
+					remove_ideas = TOL_privateers_6
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_reinforced_hulls
+		icon = GFX_focus_generic_coastal_fort
+		prerequisite = { focus = STR_stromic_marines }
+		prerequisite = { focus = STR_antipiracy_measures }
+		relative_position_id = STR_stromic_navy
+		x = 0
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = reinforced_frames_technology
+				bonus = 0.5
+				uses = 1
+				category = reinforced_frames_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_second_fleet
+		icon = GFX_focus_generic_refit_civilian_ships
+		prerequisite = { focus = STR_reinforced_hulls }
+		relative_position_id = STR_stromic_navy
+		x = 0
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_the_second_fleet_idea
+				days = 240
+			}
+		}
+	}
+
+	focus = {
+		id = STR_reginald_baradin_i
+		icon = GFX_goal_generic_defence
+		cost = 14
+		x = 7
+		y = 3
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			TOL = {	add_ideas = TOL_stubbornly_loyal }
+		}
+	}
+
+	focus = {
+		id = STR_penal_trade
+		icon = GFX_focus_hol_abandon_the_gold_standard
+		cost = 14
+		prerequisite = { focus = STR_reginald_baradin_i }
+		relative_position_id = STR_reginald_baradin_i
+		x = 0
+		y = 1
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			TOL = {	add_ideas = TOL_penal_economy }
+		}
+	}
+
+	focus = {
+		id = STR_the_state_of_tolbarad
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 14
+		prerequisite = { focus = STR_penal_trade }
+		relative_position_id = STR_reginald_baradin_i
+		x = 0
+		y = 2
+
+		available = {
+			always = no
+		}
+
+		completion_reward = {
+			TOL = {
+				173 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				13 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_basic_skills
+		icon = GFX_goal_generic_construction2
+		x = 7
+		y = 6
+		cost = 14
+
+		available = { 
+			has_completed_focus = STR_the_state_of_tolbarad
+			TOL = { is_puppet_of = STR }
+			has_country_flag = unlocked_other_branches 
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = resource_building_technology
+				bonus = 0.25
+				uses = 1
+				category = resource_building_technology
+			}
+			TOL = {
+				add_tech_bonus = {
+					name = resource_building_technology
+					bonus = 0.25
+					uses = 1
+					category = resource_building_technology
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_encourage_work
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = STR_basic_skills }
+		relative_position_id = STR_basic_skills
+		x = 0
+		y = 1
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			TOL = {
+				give_resource_rights = {
+					receiver = STR
+					state = 420
+				}
+				add_ideas = TOL_work_incentives
+			}
+		}
+	}
+
+	focus = {
+		id = STR_improved_living
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = STR_encourage_work }
+		relative_position_id = STR_basic_skills
+		x = 1
+		y = 2
+		cost = 24
+		mutually_exclusive = { focus = STR_training_militia }
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			TOL = {
+				add_stability = 0.05
+				swap_ideas = {
+					remove_idea = TOL_penal_colony
+					add_idea = TOL_penal_colony_2
+				}
+			}
+			420 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_training_priests
+		icon = GFX_goal_continuous_reduce_training_time
+		prerequisite = { focus = STR_improved_living }
+		relative_position_id = STR_basic_skills
+		x = 1
+		y = 3
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = priest_technology
+				bonus = 0.25
+				uses = 1
+				category = priest_technology
+			}
+			TOL = {
+				add_tech_bonus = {
+					name = priest_technology
+					bonus = 0.25
+					uses = 1
+					category = priest_technology
+				}
+				add_stability = 0.05
+				swap_ideas = {
+					remove_idea = TOL_penal_colony_2
+					add_idea = TOL_penal_colony_3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_leisure_fishing
+		icon = GFX_goal_continuous_naval_production
+		prerequisite = { focus = STR_improved_living }
+		relative_position_id = STR_basic_skills
+		x = 3
+		y = 3
+		cost = 14
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			add_ideas = STR_fisheries
+			TOL = {
+				add_stability = 0.05
+				custom_effect_tooltip = fishing_funding
+				GEN_upgrade_fishing = yes
+				if = {
+					limit = { is_ai = yes }
+					add_ideas = fishing_guild_1
+				}
+			}
+			173 = {
+				add_resource = {
+					type = wheat
+					amount = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_safety_concerns
+		icon = GFX_focus_generic_coal_mining
+		prerequisite = { focus = STR_leisure_fishing }
+		prerequisite = { focus = STR_training_priests }
+		relative_position_id = STR_basic_skills
+		x = 3
+		y = 4
+		cost = 14
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			TOL = {
+				add_stability = 0.02
+				add_political_power = 35
+			}
+			173 = {	add_dynamic_modifier = { modifier = industrial_zone_mines_mod }	}
+		}
+	}
+
+	focus = {
+		id = STR_coastal_oil_rigs
+		icon = GFX_focus_generic_offshore_oil_rig
+		prerequisite = { focus = STR_rehabilitation }
+		prerequisite = { focus = STR_safety_concerns }
+		relative_position_id = STR_basic_skills
+		x = 3
+		y = 5
+		cost = 14
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			13 = {
+				if = {
+					limit = { synthetic_refinery < 3 }
+					add_building_construction = {
+						type = synthetic_refinery
+						level = 1
+						instant_build = yes
+					}
+				}
+				else_if = {
+					limit = { synthetic_refinery > 2 }
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+			}
+			TOL = {
+				add_tech_bonus = {
+					name = nights_watch_technology
+					bonus = 1
+					uses = 1
+					category = nights_watch_technology
+				}
+			}
+			add_tech_bonus = {
+				name = nights_watch_technology
+				bonus = 1
+				uses = 1
+				category = nights_watch_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_dying_breaths
+		icon = GFX_focus_ETH_the_lion_stands_firm
+		prerequisite = { focus = STR_monitor_activity }
+		prerequisite = { focus = STR_coastal_oil_rigs }
+		relative_position_id = STR_basic_skills
+		x = 2
+		y = 6
+		cost = 14
+
+		available = {
+			has_war_with_major = yes
+			has_completed_focus = STR_storm_on_the_horizon
+		}
+
+		completion_reward = {
+			TOL = { add_ideas = TOL_dying_breaths }
+		}
+	}
+
+	focus = {
+		id = STR_rehabilitation
+		icon = GFX_goal_generic_national_unity
+		prerequisite = { focus = STR_training_priests }
+		relative_position_id = STR_basic_skills
+		x = 1
+		y = 4
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			country_event = { id = stromgarde.3 }
+			LOR = { country_event = { id = stromgarde.3 } }
+			ALT = {	country_event = { id = stromgarde.3 } }
+			KUL = {	country_event = { id = stromgarde.3 } }
+			GIL = {	country_event = { id = stromgarde.3 } }
+			TOL = {
+				add_stability = 0.05
+				add_ideas = TOL_prison_guards
+				swap_ideas = {
+					remove_idea = TOL_penal_colony_3
+					add_idea = TOL_penal_colony_4
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_monitor_activity
+		icon = GFX_goal_generic_wolf_pack
+		prerequisite = { focus = STR_rehabilitation }
+		relative_position_id = STR_basic_skills
+		x = 1
+		y = 5
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			TOL = {
+				add_tech_bonus = {
+					name = rogue_technology
+					bonus = 0.25
+					uses = 1
+					category = rogue_technology
+				}
+				swap_ideas = {
+					remove_idea = TOL_penal_colony_4
+					add_idea = TOL_penal_colony_5
+				}
+			}
+			add_ideas = STR_trained_spies
+		}
+	}
+
+	focus = {
+		id = STR_training_militia
+		icon = GFX_focus_SOV_mobilization_plan
+		prerequisite = { focus = STR_encourage_work }
+		relative_position_id = STR_basic_skills
+		x = -1
+		y = 2
+		cost = 24
+		mutually_exclusive = { focus = STR_improved_living }
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_technology
+				bonus = 0.25
+				uses = 1
+				category = infantry_technology
+			}
+			TOL = {
+				add_stability = -0.05
+				add_war_support = -0.05
+				hidden_effect = { load_oob = TOL_penal_militia }
+				custom_effect_tooltip = TOL_penal_militia_tooltip
+			}
+		}
+	}
+
+	focus = {
+		id = STR_chain_of_command
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = STR_training_militia }
+		relative_position_id = STR_basic_skills
+		x = -1
+		y = 3
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			army_experience = 20
+			TOL = {
+				army_experience = 10
+				add_stability = -0.05
+				add_war_support = -0.05
+				swap_ideas = {
+					remove_idea = TOL_penal_colony
+					add_idea = TOL_penal_colony_2
+				}
+			}
+			###Give Milita Leader (Same as the STR One)
+		}
+	}
+
+	focus = {
+		id = STR_expand_farson_hold
+		icon = GFX_focus_generic_fortify_denmark
+		cost = 14
+		prerequisite = { focus = STR_training_militia }
+		relative_position_id = STR_training_militia
+		x = -2
+		y = 1
+
+		available = { 173 = { is_controlled_by_ROOT_or_ally = yes} }
+
+		completion_reward = {
+			173 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 154
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 699
+					instant_build = yes
+				}	
+			}
+		}
+	}
+
+	focus = {
+		id = STR_isolation_wards
+		icon = GFX_focus_BEL_prisoner_king
+		cost = 14
+		prerequisite = { focus = STR_expand_farson_hold }
+		prerequisite = { focus = STR_chain_of_command }
+		relative_position_id = STR_training_militia
+		x = -2
+		y = 2
+
+		available = { 420 = { is_controlled_by_ROOT_or_ally = yes} }
+
+		completion_reward = {
+			TOL = { add_ideas = TOL_isolation_wards }
+			420 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 699
+					instant_build = yes
+				}	
+			}
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 0.5
+				uses = 1
+				category = fortification_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_arcane_surveillance_network
+		icon = GFX_goal_generic_radar
+		cost = 14
+		prerequisite = { focus = STR_isolation_wards }
+		prerequisite = { focus = STR_second_hand_equipment }
+		relative_position_id = STR_training_militia
+		x = -2
+		y = 3
+
+		available = { 420 = { is_controlled_by_ROOT_or_ally = yes} }
+
+		completion_reward = {
+			420 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}		
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = STR_legion_expansion
+		icon = GFX_focus_ITA_albanian_fascist_militia
+		cost = 14
+		prerequisite = { focus = STR_arcane_surveillance_network }
+		prerequisite = { focus = STR_ruthless_drills }
+		relative_position_id = STR_training_militia
+		x = -1
+		y = 4
+
+		available = {
+			has_completed_focus = STR_storm_on_the_horizon
+		}
+
+		completion_reward = {
+			TOL = {
+				hidden_effect = {
+					add_to_variable = {
+						var = TOL_penal_enforcers
+						value = 2
+					}
+				}
+				set_division_template_cap = {
+					division_template = "Baradin Penal Enforcers"
+					division_cap = TOL_penal_enforcers
+				}
+			}
+			420 = {
+				create_unit = {
+					division = "name = \"Baradin Penal Enforcers\" division_template = \"Baradin Penal Enforcers\" start_experience_factor = 0.3"
+					owner = TOL
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_second_hand_equipment
+		icon = GFX_goal_generic_air_production
+		prerequisite = { focus = STR_chain_of_command }
+		relative_position_id = STR_basic_skills
+		x = -1
+		y = 4
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = forge_technology
+				bonus = 0.25
+				uses = 1
+				category = forge_technology
+			}
+			TOL = {
+				add_ideas = TOL_second_hand_equipment
+				add_stability = -0.05
+				add_war_support = -0.05
+			}
+		}
+	}
+
+	focus = {
+		id = STR_ruthless_drills
+		icon = GFX_focus_CZE_german_puppet
+		prerequisite = { focus = STR_second_hand_equipment }
+		relative_position_id = STR_basic_skills
+		x = -1
+		y = 5
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			### Will add an Event later on to cause a Civil War between Prisoners and Wardens
+			TOL = {
+				add_stability = -0.05
+				add_war_support = -0.05
+				add_ideas = TOL_penal_legions
+				swap_ideas = {
+					remove_idea = TOL_penal_colony_2
+					add_idea = TOL_penal_colony_3
+				}
+			}
+			army_experience = 10
+			add_tech_bonus = {
+				name = guard_technology
+				bonus = 0.25
+				uses = 1
+				category = guard_technology
+			}
+		}
+	}
+
+
+	focus = {
+		id = STR_wardens_vigil
+		icon = GFX_goal_generic_radar
+		prerequisite = {
+			focus = STR_monitor_activity
+			focus = STR_ruthless_drills
+		}
+		relative_position_id = STR_basic_skills
+		x = 0
+		y = 6
+		cost = 24
+
+		available = {
+			TOL = { is_puppet_of = STR }
+			has_completed_focus = STR_antipiracy_measures
+		}
+
+		completion_reward = {
+			13 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+		 	}
+			country_event = stromgarde.5
+		}
+	}
+
+	focus = {
+		id = STR_baradin_royal_guard
+		icon = GFX_focus_rom_royal_dictatorship
+		prerequisite = { focus = STR_wardens_vigil }
+		relative_position_id = STR_basic_skills
+		x = 0
+		y = 7
+		cost = 24
+
+		available = { TOL = { is_puppet_of = STR } }
+
+		completion_reward = {
+			TOL = { custom_effect_tooltip = STR_baradin_royal_guard_tt }
+			TOL = {
+				division_template = {
+					name = "Baradin Royal Guard"
+					priority = 1
+					regiments = {
+						royal_guard = { x = 0 y = 0 }
+						royal_guard = { x = 0 y = 1 }
+						royal_guard = { x = 0 y = 2 }
+						royal_guard = { x = 0 y = 3 }
+						royal_guard = { x = 1 y = 0 }
+						royal_guard = { x = 1 y = 1 }
+						royal_guard = { x = 1 y = 2 }
+						royal_guard = { x = 1 y = 3 }
+					}
+					support = {
+						royal_captains = { x = 0 y = 0 }
+					}
+				}
+
+				capital_scope  = {
+					create_unit = {
+						division = "name = \"Baradin Royal Guard\" division_template = \"Baradin Royal Guard\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+						owner = TOL
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_developing_the_kingdom
+		icon = GFX_goal_generic_construction
+		x = 15
+		y = 3
+		cost = 24
+
+		available = { has_country_flag = unlocked_other_branches }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_construction_investments
+				days = 365
+			}
+		}
+	}
+
+	focus = {
+		id = STR_khazmodan_trade_road
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = STR_developing_the_kingdom }
+		x = 13
+		y = 4
+		cost = 24
+
+		bypass = {
+			NOT = {	130 = {	is_controlled_by = STR	} }
+		}
+
+		completion_reward = {
+			add_opinion_modifier = { target = IRO modifier = STR_khazmodan_road	}
+			reverse_add_opinion_modifier = { target = IRO modifier = STR_khazmodan_road	}
+			130 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			490 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_hinterlands_cave
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = STR_khazmodan_trade_road }
+		x = 13
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			581 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2009
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2005
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_expanded_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = STR_hinterlands_cave }
+		x = 13
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			129 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_promote_growth
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = STR_fueling_the_fleet }
+		x = 13
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_reduced_land_tax
+				days = 365
+			}
+			add_tech_bonus = {
+				name = city_growth_technology
+				bonus = 0.5
+				uses = 1
+				category = city_growth_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_thandol_span_dockworks
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = STR_promote_growth }
+		x = 13
+		y = 9
+		cost = 24
+
+		completion_reward = {
+			130 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 1857
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_cobbled_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = STR_developing_the_kingdom }
+		x = 15
+		y = 4
+		cost = 24
+
+		completion_reward = {
+			133 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			2211 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			1570 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			1571 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+			1572 = {
+				add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_expand_mining_operations
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = STR_cobbled_roads }
+		x = 15
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			577 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_arcane_studies
+		icon = GFX_focus_DAL_generic
+		prerequisite = { focus = STR_expand_mining_operations }
+		x = 15
+		y = 6
+		cost = 24
+
+		bypass = { has_war_with = DAL }
+
+		completion_reward = {
+			1567 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = STR_capital_and_country
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		prerequisite = { focus = STR_arcane_studies }
+		x = 15
+		y = 7
+		cost = 35
+
+		completion_reward = {
+			12 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			128 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			127 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_build_workshops
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = STR_developing_the_kingdom }
+		x = 17
+		y = 4
+		cost = 24
+
+		completion_reward = {
+			random_owned_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_more_farmhands
+		icon = GFX_focus_hol_abandon_the_gold_standard
+		prerequisite = { focus = STR_build_workshops }
+		x = 17
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			121 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			132 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_highlands_mill
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = STR_more_farmhands }
+		x = 17
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			576 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_hammers_and_hoes
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = STR_highlands_mill }
+		x = 17
+		y = 7
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = peasant_tools_technology
+				bonus = 0.5
+				uses = 2
+				category = peasant_tools_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_drywhisker_plains
+		icon = GFX_focus_generic_horse_studs
+		prerequisite = { focus = STR_capital_and_country }
+		x = 15
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			127 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_centralization_efforts
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = STR_drywhisker_plains }
+		x = 15
+		y = 9
+		cost = 24
+
+		completion_reward = {
+			133 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_refuge_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = STR_hammers_and_hoes }
+		x = 17
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			578 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2020
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_high_perch_equestrians
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = STR_refuge_forges }
+		x = 17
+		y = 9
+		cost = 24
+
+		completion_reward = {
+			2212 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = horse_technology
+				bonus = 0.5
+				uses = 1
+				category = horse_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_stromgarde_armory
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = STR_thandol_span_dockworks }
+		prerequisite = { focus = STR_centralization_efforts }
+		prerequisite = { focus = STR_high_perch_equestrians }
+		x = 15
+		y = 10
+		cost = 24
+
+		available = {
+			OR = {
+				threat > 0.25
+				has_war_support > 0.49
+				NOT = {
+					has_government = alliance
+					has_government = neutral
+				}
+			}
+		}
+
+		completion_reward = {
+			12 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_galson_metal_works
+		icon = GFX_focus_generic_steel
+		x = 15
+		y = 11
+		cost = 24
+
+		available = {
+			OR = {
+				has_completed_focus = STR_storm_on_the_horizon
+				has_completed_focus = STR_the_embers_of_war
+			}
+		}
+
+		completion_reward = {
+			2211 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_highperch_crossroads
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = STR_galson_metal_works }
+		x = 15
+		y = 12
+		cost = 24
+
+		completion_reward = {
+			2212 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_drywhisker_gorge
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = STR_highperch_crossroads }
+		x = 15
+		y = 13
+		cost = 24
+
+		completion_reward = {
+			575 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = sulfur_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { 575 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } }	}
+				remove_dynamic_modifier = { modifier = GEN_kobold_menace }
+				random_army_leader = { gain_xp = 50	}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_we_struck_gold
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		prerequisite = { focus = STR_drywhisker_gorge }
+		prerequisite = { focus = STR_east_sea_defences }
+		x = 16
+		y = 14
+		cost = 24
+
+		completion_reward = {
+			575 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = STR_gold_reserves
+		}
+	}
+
+	focus = {
+		id = STR_hill_terracing
+		icon = GFX_focus_GRE_a_land_of_mountains
+		prerequisite = { focus = STR_galson_metal_works }
+		x = 17
+		y = 12
+		cost = 24
+
+		completion_reward = {
+			579 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_east_sea_defences
+		icon = GFX_focus_generic_coastal_fort
+		prerequisite = { focus = STR_hill_terracing }
+		x = 17
+		y = 13
+		cost = 24
+
+		completion_reward = {
+			130 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 5143
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 5130
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					province = 5120
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_manor_mares
+		icon = GFX_focus_generic_horse_studs
+		prerequisite = { focus = STR_galson_metal_works }
+		x = 13
+		y = 12
+		cost = 24
+
+		completion_reward = {
+			128 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = mounts
+					amount = 3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_fund_whaling_operations
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = STR_manor_mares }
+		x = 13
+		y = 13
+		cost = 24
+
+		completion_reward = {
+			129 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_mithril_refinement
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = STR_fund_whaling_operations }
+		prerequisite = { focus = STR_drywhisker_gorge }
+		x = 14
+		y = 14
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.25
+				uses = 1
+				category = armor_technology
+			}
+			add_tech_bonus = {
+				name = mine_technology
+				bonus = 0.25
+				uses = 1
+				category = mine_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_youth_org_military
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = STR_mithril_refinement }
+		prerequisite = { focus = STR_we_struck_gold }
+		x = 14
+		y = 15
+		cost = 24
+		mutually_exclusive = { focus = STR_youth_org_research }
+
+		completion_reward = {
+			add_ideas = STR_order_of_the_pathfinders
+		}
+	}
+
+	focus = {
+		id = STR_young_smiths
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = STR_youth_org_military }
+		x = 13
+		y = 16
+		cost = 14
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.25
+				uses = 1
+				category = armor_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_youth_org_research
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = STR_mithril_refinement }
+		prerequisite = { focus = STR_we_struck_gold }
+		x = 16
+		y = 15
+		cost = 24
+		mutually_exclusive = { focus = STR_youth_org_military }
+
+		completion_reward = {
+			add_ideas = STR_order_of_the_illuminated
+		}
+	}
+
+	focus = {
+		id = STR_pathfinders
+		icon = GFX_focus_ETH_expand_the_kebur_zabagna
+		prerequisite = { focus = STR_youth_org_research }
+		x = 17
+		y = 16
+		cost = 14
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = rogue_technology
+				bonus = 0.25
+				uses = 1
+				category = rogue_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_penal_reform
+		icon = GFX_focus_eng_global_defense
+		prerequisite = {
+			focus = STR_youth_org_military
+			focus = STR_youth_org_research
+		}
+		x = 15
+		y = 16
+		cost = 24
+
+		available = {
+			TOL = {
+				is_puppet_of = STR
+				has_war = yes
+			}
+			has_completed_focus = STR_wardens_vigil
+		}
+
+		bypass = {
+			NOT = { TOL = {	is_puppet_of = STR } }
+		}
+
+		completion_reward = {
+			if = {
+				limit = { TOL = { has_idea = TOL_penal_colony_5 } }
+				TOL = {
+					swap_ideas = {
+						remove_idea = TOL_penal_colony_5
+						add_idea = TOL_penal_colony_6
+					}
+				}
+			}
+			if = {
+				limit = { TOL = { has_idea = TOL_penal_colony_6 } }
+				TOL = {
+					swap_ideas = {
+						remove_idea = TOL_penal_colony_6
+						add_idea = TOL_penal_colony_7
+					}
+				}
+			}
+			if = {
+				limit = { TOL = { has_idea = TOL_penal_colony_3 } }
+				TOL = {
+					swap_ideas = {
+						remove_idea = TOL_penal_colony_3
+						add_idea = TOL_penal_colony_4
+					}
+				}
+			}
+			if = {
+				limit = { TOL = { has_idea = TOL_penal_colony_4 } }
+				TOL = {
+					swap_ideas = {
+						remove_idea = TOL_penal_colony_4
+						add_idea = TOL_penal_colony_5
+					}
+				}
+			}
+			add_ideas = STR_penal_logistics
+		}
+	}
+
+	focus = {
+		id = STR_drywhisker_mines
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = STR_penal_reform }
+		x = 14
+		y = 17
+		cost = 24
+
+		completion_reward = {
+			581 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_military_staging_camp
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = STR_penal_reform }
+		x = 16
+		y = 17
+		cost = 24
+
+		completion_reward = {
+			131 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 607
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = sword_technology
+				bonus = 0.25
+				uses = 1
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_deep_wood_fletchers
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = STR_military_staging_camp }
+		x = 16
+		y = 18
+		cost = 24
+
+		completion_reward = {
+			576 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = wood
+					amount = 3
+				}
+			}
+			add_tech_bonus = {
+				name = archer_technology
+				bonus = 0.25
+				uses = 1
+				category = archer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_sulfur_extraction
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = STR_penal_reform }
+		x = 15
+		y = 19
+		cost = 24
+
+		completion_reward = {
+			575 = {
+				add_resource = {
+					type = gunpowder
+					amount = 3
+				}
+			}
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_fortress_kingdom
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = STR_sulfur_extraction }
+		x = 14
+		y = 20
+		cost = 24
+
+		completion_reward = {
+			add_ideas = STR_fortress_build
+		}
+	}
+
+	focus = {
+		id = STR_cove_expansion
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = STR_sulfur_extraction }
+		x = 16
+		y = 20
+		cost = 24
+
+		available = {
+			has_resources_in_country = {
+				resource = gunpowder
+				amount > 59
+			}
+		}
+
+		completion_reward = {
+			129 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_boulder_hill_tunnels
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = STR_drywhisker_mines }
+		x = 14
+		y = 18
+		cost = 24
+
+		available = { has_completed_focus = STR_hill_terracing }
+
+		completion_reward = {
+			579 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1146
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 5136
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2004
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_dealing_with_alterac
+		icon = GFX_focus_alterac_kingdom_of_alterac
+		x = 22
+		y = 3
+		cost = 14
+
+		will_lead_to_war_with = ALT
+
+		available = {
+			date > 593.01.01
+		}
+
+		completion_reward = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 1544
+					num_provinces = 2
+					on_win = stromgarde.32
+					on_lose = stromgarde.33
+					modifier = 0.1
+					dig_in_factor = 0
+					terrain_factor = 0
+				}
+				defender = {
+					state = 722
+					num_provinces = 2
+					on_win = alterac.5
+					on_lose = alterac.6
+					modifier = 0.1
+					dig_in_factor = 0
+					terrain_factor = 0
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_triumph_in_the_west
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = STR_dealing_with_alterac }
+		x = 23
+		y = 4
+		cost = 14
+
+		mutually_exclusive = { focus = STR_bloodied_red_hand }
+
+		bypass = {
+			NOT = { country_exists = ALT }
+		}
+
+		available = {
+			has_country_flag = STR_border_success
+		}
+
+		completion_reward = {
+			1544 = {
+				remove_claim_by = ALT
+			}
+			remove_opinion_modifier = {
+				target = ALT
+				modifier = hoa_border_conflict
+			}
+			add_stability = 0.1
+			army_experience = 10
+		}
+	}
+
+	focus = {
+		id = STR_prisoner_exchange
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = STR_triumph_in_the_west }
+		x = 23
+		y = 5
+		cost = 14
+
+		bypass = {
+			NOT = { country_exists = ALT }
+		}
+
+		completion_reward = {
+			722 = {	add_manpower = 250 }
+			1544 = { add_manpower = 250	}
+			add_stability = 0.05
+			ALT = { add_stability = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_bloodied_red_hand
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = STR_dealing_with_alterac }
+		x = 25
+		y = 4
+		cost = 14
+
+		mutually_exclusive = { focus = STR_triumph_in_the_west }
+
+		available = { has_country_flag = STR_border_failure	}
+
+		completion_reward = {
+			1544 = {
+				remove_core_of = STR
+				add_core_of = ALT
+				transfer_state_to = ALT
+				add_manpower = 250
+			}
+			ALT = {
+				remove_opinion_modifier = {
+					target = STR
+					modifier = hoa_border_conflict
+				}
+			}
+			###Gives Idea that Reduces Political power gain for 2 Years
+			add_stability = -0.1
+			add_war_support = -0.1
+			army_experience = 15
+		}
+	}
+
+	focus = {
+		id = STR_deny_the_exchange
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = STR_bloodied_red_hand }
+		x = 25
+		y = 5
+		cost = 14
+
+		completion_reward = {
+			420 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 500
+			}
+			ALT = {
+				add_war_support = 0.1
+				add_opinion_modifier = {
+					target = STR
+					modifier = STR_enslaved_relations
+				}
+			}
+			###Worsen TOL Penal Colony Debuff
+		}
+	}
+
+
+	focus = {
+		id = STR_rebuild_thoradins_Wall
+		icon = GFX_goal_generic_construct_military
+		x = 24
+		y = 6
+		cost = 24
+		prerequisite = {
+			focus = STR_deny_the_exchange
+			focus = STR_prisoner_exchange
+		}
+
+		completion_reward = {
+			580 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1149
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1747
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1748
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1749
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1750
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 1751
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_stormpike_pact
+		icon = GFX_goal_generic_construct_military
+		x = 22
+		y = 7
+		cost = 14
+		prerequisite = { focus = STR_renovate_the_pass }
+		prerequisite = { focus = STR_rebuild_thoradins_Wall	}
+
+		bypass = {
+			OR = {
+				NOT = { country_exists = SPC }
+				has_war_with = SPC
+			}
+		}
+
+		completion_reward = {
+			###Create Event to Evacuate Stormpike Dwarves in Capitulated
+			add_opinion_modifier = { target = SPC modifier = alliance_loyalty }
+			reverse_add_opinion_modifier = { target = SPC modifier = alliance_loyalty }
+			add_tech_bonus = {
+				name = fortification_technology
+				bonus = 0.25
+				uses = 1
+				category = fortification_technology
+			}
+			125 = { add_resource = { type = wheat amount = 3 } }
+			580 = {	add_resource = { type = wheat amount = 3 } }
+		}
+	}
+
+	focus = {
+		id = STR_kick_the_witherbark
+		icon = GFX_focus_GRE_following_in_the_footsteps_of_giants
+		x = 21
+		y = 9
+		cost = 24
+		prerequisite = { focus = STR_the_meeting_at_the_lodge }
+
+		completion_reward = {
+			army_experience = 10
+			AER = { army_experience = 10 }
+			225 = {
+				add_resource = {
+					type = mounts
+					amount = -3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_meeting_at_the_lodge
+		icon = GFX_goal_continuous_increase_nu
+		x = 21
+		y = 8
+		cost = 24
+		prerequisite = { focus = STR_stormpike_pact }
+
+		bypass = {
+			OR = {
+				NOT = { country_exists = AER }
+				has_war_with = AER
+			}
+		}
+
+		completion_reward = {
+			give_guarantee = AER
+			add_opinion_modifier = { target = AER modifier = alliance_loyalty }
+			reverse_add_opinion_modifier = { target = AER modifier = alliance_loyalty }
+			add_stability = 0.05
+			AER = { add_stability = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_wildhammer_path
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = STR_stormpike_pact }
+		x = 23
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			136 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1544 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			580 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_evacuate_gryphons
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = STR_wildhammer_path }
+		x = 23
+		y = 9
+		cost = 24
+
+		available = {
+			country_exists = AER
+			has_war_with_major = yes
+			ROOT = {
+				OR = {
+					is_in_faction_with = AER
+					AER = { is_puppet_of = ROOT }
+				}
+			}
+		}
+
+		completion_reward = {
+			2213 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = nesting_grounds
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2178
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1683
+					instant_build = yes
+				}
+			}
+			580 = {
+				add_resource = {
+					type = eggs
+					amount = 3
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = organic_fighter_equipment_1
+				amount = 25
+				producer = AER
+			}
+		}
+	}
+
+	focus = {
+		id = STR_northen_bulwark
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		x = 22
+		y = 10
+		cost = 24
+		prerequisite = { focus = STR_kick_the_witherbark }
+		prerequisite = { focus = STR_evacuate_gryphons }
+
+		available = {
+			OR = {
+				country_exists = WBT
+				country_exists = VIL
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STR_northen_bulwark_idea
+		}
+	}
+
+	focus = {
+		id = STR_shelter_for_the_exiles
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 11
+		cost = 14
+		mutually_exclusive = { focus = STR_bar_the_gates }
+
+		available = {
+			has_government = alliance
+			OR = {
+				NOT = { country_exists = STO }
+				STO = {	has_country_flag = STO_REF }
+			}
+		}
+
+		completion_reward = {
+			capital_scope = { add_manpower = 13000 }
+			add_timed_idea = {
+				idea = STR_shelter_for_the_exiles_strain
+				days = 120
+			}
+			STO = { add_ideas = STR_shelter_for_the_exiles_STO }
+			custom_effect_tooltip = STR_shelter_for_the_exiles_tt
+		}
+	}
+
+	focus = {
+		id = STR_bar_the_gates
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 11
+		cost = 14
+		mutually_exclusive = { focus = STR_shelter_for_the_exiles }
+
+		available = {
+			OR = {
+				AND = {
+					has_government = alliance
+					OR = {
+						NOT = { country_exists = STO }
+						STO = {	has_country_flag = STO_REF }
+					}
+				}
+				AND = {
+					has_government = neutral
+					threat > 0.30
+					OR = {
+						has_completed_focus = STR_closed_borders
+						has_completed_focus = STR_never_again
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_look_to_our_own
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STR_fields_of_the_displaced
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = 0
+		y = 12
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_shelter_for_the_exiles
+			has_political_power > 50
+		}
+
+		completion_reward = {
+			add_political_power = -50
+			add_ideas = STR_westfall_farmers
+			every_owned_state = {
+				limit = { farm > 0 }
+				add_manpower = 1000
+			}
+			every_owned_state = {
+				limit = { farm > 1 }
+				add_manpower = 1000
+				add_resource = {
+					type = wheat
+					amount = 1
+				}
+			}
+			every_owned_state = {
+				limit = { farm > 2 }
+				add_manpower = 2000
+				add_resource = {
+					type = wheat
+					amount = 1
+				}
+			}
+			STO = { add_ideas = STR_westfall_farmers }
+		}
+	}
+
+	focus = {
+		id = STR_mutual_trade
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = 0
+		y = 14
+		cost = 24
+
+		prerequisite = { 
+			focus = STR_idle_hands
+			focus = STR_northfold_resettlement
+		}
+
+		available = {
+			has_political_power > 25
+			command_power > 25
+		}
+
+		completion_reward = {
+			add_political_power = -25
+			add_command_power = -25
+			add_ideas = STR_mutual_trade_STR
+			STO = { add_ideas = STR_mutual_trade_STO }
+		}
+	}
+
+	focus = {
+		id = STR_northfold_resettlement
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 13
+		cost = 24
+
+		prerequisite = { focus = STR_fields_of_the_displaced }
+
+		available = {
+			has_political_power > 50
+		}
+
+		completion_reward = {
+			add_political_power = -50
+			128 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 5000
+			}
+			STO = { add_stability = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_wall_of_the_south
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = 2
+		y = 14
+		cost = 24
+
+		prerequisite = { focus = STR_northfold_resettlement }
+
+		available = {
+			has_political_power > 50
+		}
+
+		completion_reward = {
+			add_political_power = -50
+			add_war_support = 0.05
+			swap_ideas = {
+				remove_idea = STR_westfall_farmers
+				add_idea = STR_wall_of_the_south
+			}
+			STO = {
+				add_war_support = 0.05
+				swap_ideas = {
+					remove_idea = STR_westfall_farmers
+					add_idea = STR_wall_of_the_south
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_knights_for_the_lion
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 15
+		cost = 24
+
+		prerequisite = { focus = STR_wall_of_the_south }
+
+		available = {
+			has_political_power > 50
+		}
+
+		completion_reward = {
+			add_political_power = -50
+			add_tech_bonus = {
+				name = knight_technology
+				bonus = 1
+				uses = 1
+				category = knight_technology
+			}
+			STO = {
+				hidden_effect = {
+					division_template = {
+						name = "Stromgarde Knights"
+						priority = 1
+						regiments = {
+							knight = { x = 0 y = 0 }
+							knight = { x = 0 y = 1 }
+							mounted_footman = { x = 0 y = 2 }
+							mounted_footman = { x = 0 y = 3 }
+							knight = { x = 1 y = 0 }
+							knight = { x = 1 y = 1 }
+							mounted_footman = { x = 1 y = 2 }
+							mounted_footman = { x = 1 y = 3 }
+						}
+						support = {
+							captain = { x = 0 y = 1 }
+						}
+					}
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"Stromgarde Knights\" division_template = \"Stromgarde Knights\" start_experience_factor = 0.4"
+						owner = STO
+						count = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_council_with_the_commander
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = 0
+		y = 16
+		cost = 14
+
+		prerequisite = { focus = STR_mutual_trade }
+		prerequisite = { 
+			focus = STR_worst_case
+			focus = STR_knights_for_the_lion
+		}
+
+		available = {
+			has_political_power > 25
+			command_power > 25
+		}
+
+		completion_reward = {
+			add_political_power = -25
+			add_command_power = -25
+			army_experience = 15
+			add_timed_idea = {
+				idea = STR_the_lions_council
+				days = 365
+			}
+			STO = {
+				army_experience = 15
+				add_timed_idea = {
+					idea = STR_trollbanes_oath
+					days = 365
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_idle_hands
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 13
+		cost = 24
+
+		prerequisite = { focus = STR_fields_of_the_displaced }
+
+		available = {
+			command_power > 50
+		}
+
+		search_filters = { FOCUS_FILTER_TRADE_GUILD }
+
+		completion_reward = {
+			add_command_power = -50
+			1568 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = blacksmith_funding
+			GEN_upgrade_blacksmith = yes
+			if = {
+				limit = { has_idea = blacksmith_guild }
+				swap_ideas = {
+					remove_idea = blacksmith_guild
+					add_idea = blacksmith_guild_1
+				}
+			}
+			STO = { add_ideas = STR_stromgarde_materials }
+		}
+	}
+
+	focus = {
+		id = STR_stormgarde_militia
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = -2
+		y = 14
+		cost = 24
+
+		prerequisite = { focus = STR_idle_hands }
+
+		available = {
+			command_power > 50
+		}
+
+		completion_reward = {
+			add_command_power = -50
+			STR = {
+				hidden_effect = {
+					division_template = {
+						name = "Stormguard Militia"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 0 y = 3 }
+							footman = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+						}
+						support = {
+							peasant = { x = 0 y = 0 }
+							captain = { x = 0 y = 1 }
+						}
+					}
+				}
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = land_doctrine
+				}
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = 0.25
+				}
+				capital_scope  = {
+					create_unit = {
+						division = "name = \"Stormguard Militia\" division_template = \"Stormguard Militia\" start_experience_factor = 0.4"
+						owner = STR
+						count = 2
+					}
+				}
+			}
+			STO = {
+				hidden_effect = {
+					division_template = {
+						name = "Stormguard Militia"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							militia = { x = 0 y = 1 }
+							militia = { x = 0 y = 2 }
+							militia = { x = 0 y = 3 }
+							footman = { x = 1 y = 0 }
+							militia = { x = 1 y = 1 }
+						}
+						support = {
+							peasant = { x = 0 y = 0 }
+							captain = { x = 0 y = 1 }
+						}
+					}
+				}
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = land_doctrine
+				}
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = 0.25
+				}
+				capital_scope  = {
+					create_unit = {
+						division = "name = \"Stormguard Militia\" division_template = \"Stormguard Militia\" start_experience_factor = 0.4"
+						owner = STO
+						count = 4
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_worst_case
+		icon = GFX_focus_stormwind_crest
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 15
+		cost = 24
+
+		prerequisite = { focus = STR_stormgarde_militia }
+
+		available = {
+			command_power > 50
+		}
+
+		completion_reward = {
+			add_command_power = -50
+			add_equipment_to_stockpile = {
+				type = catapult_equipment_1
+				amount = 25
+				producer = STO
+			}
+			add_tech_bonus = {
+				name = catapult_technology
+				bonus = 0.50
+				uses = 1
+				category = catapult_technology
+			}
+			mio:generic_siege_organization = {
+				add_mio_size = 1
+			}
+			STO = {
+				add_equipment_to_stockpile = {
+					type = catapult_equipment_1
+					amount = 25
+					producer = STO
+				}
+				add_tech_bonus = {
+					name = catapult_technology
+					bonus = 0.50
+					uses = 1
+					category = catapult_technology
+				}
+				mio:generic_siege_organization = {
+					add_mio_size = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_stand_with_the_alliance
+		icon = GFX_focus_alliance
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 17
+		cost = 14
+
+		mutually_exclusive = { focus = STR_crush_the_greenskins }
+
+		available = {
+			OR = {
+				has_completed_focus = STR_council_with_the_commander
+				has_completed_focus = STR_bar_the_gates
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STR_hold_the_line
+		}
+	}
+
+	focus = {
+		id = STR_crush_the_greenskins
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 17
+		cost = 14
+
+		mutually_exclusive = { focus = STR_stand_with_the_alliance }
+
+		available = {
+			OR = {
+				has_completed_focus = STR_council_with_the_commander
+				has_completed_focus = STR_bar_the_gates
+			}
+			any_neighbor_country = {
+				OR = {
+					has_war_with = BRC
+					has_war_with = TSC
+					has_war_with = DMC
+					has_war_with = SRC
+				}
+			}
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = BRC
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = STR_by_the_blade
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 0
+		y = 18
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_crush_the_greenskins
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = horse_equipment_2
+				amount = 250
+				producer = STR
+			}
+			add_timed_idea = {
+				idea = STR_mount_and_blade
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STR_deploy_the_kings_guard
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 19
+		cost = 24
+		prerequisite = { focus = STR_by_the_blade }
+
+		completion_reward = {
+			add_political_power = -100
+			add_ideas = STR_kings_guard_command
+			if = {
+				limit = { NOT = { is_special_project_completed = sp:sp_royal_captains } }
+				complete_special_project = sp:sp_royal_captains
+			}
+			STR = {
+				hidden_effect = {
+					division_template = {
+						name = "Kings Guard"
+						priority = 1
+						regiments = {
+							royal_guard = { x = 0 y = 0 }
+							royal_guard = { x = 0 y = 1 }
+							royal_guard = { x = 0 y = 2 }
+							royal_guard = { x = 0 y = 3 }
+							royal_guard = { x = 1 y = 0 }
+							royal_guard = { x = 1 y = 1 }
+						}
+						support = {
+							royal_captains = { x = 0 y = 1 }
+						}
+					}
+				}
+				capital_scope  = {
+					create_unit = {
+						division = "name = \"Kings Guard\" division_template = \"Kings Guard\" start_experience_factor = 0.6"
+						owner = STR
+						count = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_highland_raids
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 19
+		cost = 24
+		prerequisite = { focus = STR_by_the_blade }
+
+		bypass = {
+			OR = {
+				has_war_with = WBT
+				NOT = { country_exists = WBT }
+			}
+		}
+
+		completion_reward = {
+			WBT = {
+				add_stability = -0.05
+				add_war_support = 0.05
+			}
+			random_state = {
+				limit = {
+					is_owned_by = WBT
+					is_capital = yes
+				}
+				add_manpower = -700
+				damage_building = {
+					type = infrastructure
+					damage = 5
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+			STR = {
+				hidden_effect = {
+					division_template = {
+						name = "Highland Raiders"
+						priority = 1
+						regiments = {
+							mounted_footman = { x = 0 y = 0 }
+							mounted_footman = { x = 0 y = 1 }
+							mounted_footman = { x = 0 y = 2 }
+							mounted_footman = { x = 0 y = 3 }
+							mounted_footman = { x = 1 y = 0 }
+							mounted_footman = { x = 1 y = 1 }
+						}
+					}
+				}
+				random_owned_state = {
+					create_unit = {
+						division = "name = \"Highland Raiders\" division_template = \"Highland Raiders\" start_experience_factor = 0.2"
+						owner = STR
+						count = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_pick_the_frontline
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 0
+		y = 20
+		cost = 24
+		prerequisite = { 
+			focus = STR_deploy_the_kings_guard
+			focus = STR_highland_raids
+		}
+
+		available = {
+			OR = {
+				NOT = { country_exists = IRO }
+				AND = {
+					country_exists = IRO
+					IRO = { 
+						has_war_with = BRC 
+						is_in_faction_with = STR
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = IRO
+					IRO = { 
+						has_war_with = BRC 
+						is_in_faction_with = STR
+					}
+				}
+				IRO = {
+					diplomatic_relation = {
+						country = STR
+						relation = offer_military_access
+					}
+				}
+			}
+			else = {
+				488 = {
+					transfer_state_to = STR
+					add_core_of = STR
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_move_the_mountain
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 21
+		cost = 24
+		prerequisite = { focus = STR_pick_the_frontline }
+
+		mutually_exclusive = { focus = STR_open_a_new_front }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_move_the_mountain
+				days = 120
+			}
+		}
+	}
+
+	focus = {
+		id = STR_wade_the_swamps
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 22
+		cost = 24
+		prerequisite = { focus = STR_move_the_mountain }
+
+		available = {
+			488 = { is_controlled_by = ROOT	}
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_wade_the_swamps
+				days = 90
+			}
+			488 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 3757
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_wetlands_stronghold
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = -3
+		y = 23
+		cost = 24
+		prerequisite = { focus = STR_wade_the_swamps }
+
+		available = {
+			47 = { is_controlled_by = ROOT	}
+		}
+
+		completion_reward = {
+			47 = {
+				add_core_of = STR
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 486
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 3629
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_retake_the_loch
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = -1
+		y = 23
+		cost = 24
+		prerequisite = { focus = STR_wade_the_swamps }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_retake_the_loch
+				days = 120
+			}
+			if = {
+				limit = {
+					country_exists = DUN
+					DUN = { has_war_with = BRC }
+				}
+				add_timed_idea = {
+					idea = STR_retake_the_loch
+					days = 120
+				}
+			}
+			if = {
+				limit = {
+					country_exists = IRO
+					IRO = { has_war_with = BRC }
+				}
+				add_timed_idea = {
+					idea = STR_retake_the_loch
+					days = 120
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_open_a_new_front
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 21
+		cost = 24
+		prerequisite = { focus = STR_pick_the_frontline }
+
+		mutually_exclusive = { focus = STR_move_the_mountain }
+
+		available = {
+			OR = {
+				NOT = { country_exists = NRT }
+				AND = {
+					country_exists = NRT
+					NRT = { 
+						has_war_with = BRC 
+						is_in_faction_with = STR
+					}
+				}
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = NRT
+					NRT = { 
+						has_war_with = DMC
+						is_in_faction_with = STR 
+					}
+				}
+				NRT = {
+					diplomatic_relation = {
+						country = STR
+						relation = offer_military_access
+					}
+					diplomatic_relation = {
+						country = STR
+						relation = offer_docking_rights
+					}
+				}
+			}
+			else = {
+				172 = {
+					transfer_state_to = STR
+					add_core_of = STR
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_twilight_landfall
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 22
+		cost = 24
+		prerequisite = { focus = STR_open_a_new_front }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_twilight_landfall
+				days = 90
+			}
+			STR = {
+				division_template = {
+					name = "Stromic Marines"
+					priority = 1
+					regiments = {
+						footman = { x = 0 y = 0 }
+						footman = { x = 0 y = 1 }
+						footman = { x = 0 y = 2 }
+						footman = { x = 1 y = 0 }
+						footman = { x = 1 y = 1 }
+						footman = { x = 1 y = 2 }
+					}
+				}
+				172 = {
+					create_unit = {
+						division = "name = \"Stromic Marines\" division_template = \"Stromic Marines\" start_experience_factor = 0.5"
+						owner = STR
+						count = 2
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_burn_the_outpost
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 3
+		y = 23
+		cost = 24
+		prerequisite = { focus = STR_twilight_landfall }
+
+		available = {
+			503 = { is_controlled_by = ROOT	}
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_pillaged_outpost
+				days = 90
+			}
+			add_equipment_to_stockpile = {
+				type = grunt_equipment_2
+				amount = 120
+				producer = DMC
+			}
+			503 = {
+				add_core_of = STR
+				remove_building = {
+					type = infrastructure
+					level = 2
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_broken_chains
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 1
+		y = 23
+		cost = 24
+		prerequisite = { focus = STR_twilight_landfall }
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = grunt_equipment_2
+				amount = 300
+				producer = DMC
+			}
+			random_state = {
+				limit = {
+					is_controlled_by = DMC
+					is_core_of = NRT
+					impassable = no
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				add_manpower = -900
+			}
+			STR = {
+				division_template = {
+					name = "Dwarven Slaves"
+					priority = 1
+					regiments = {
+						dwarf_slayer = { x = 0 y = 0 }
+						dwarf_axeman = { x = 0 y = 1 }
+						dwarf_axeman = { x = 0 y = 2 }
+						dwarf_slayer = { x = 1 y = 0 }
+						dwarf_axeman = { x = 1 y = 1 }
+						dwarf_axeman = { x = 1 y = 2 }
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = NRT
+						impassable = no
+					}
+					create_unit = {
+						division = "name = \"Dwarven Slaves\" division_template = \"Dwarven Slaves\" start_experience_factor = 0.1"
+						owner = STR
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_deal_with_the_dragons
+		icon = GFX_focus_STR_generic
+		relative_position_id = STR_thousand_years_of_peace
+		x = 0
+		y = 24
+		cost = 24
+		prerequisite = { 
+			focus = STR_retake_the_loch
+			focus = STR_broken_chains
+		}
+
+		available = {
+			2203 = { is_controlled_by_ROOT_or_ally = yes }
+			500 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			country_event = stromgarde.30
+		}
+	}
+
+	focus = {
+		id = STR_clear_the_infestation
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = STR_dealing_with_alterac }
+		x = 20
+		y = 4
+		cost = 14
+
+		will_lead_to_war_with = WBT
+
+		available = {
+			581 = { is_controlled_by = STR }
+			OR = {
+				139 = {	is_controlled_by = WBT }
+				139 = {	is_controlled_by = VIL }
+			}
+		}
+
+		bypass = {
+			NOT = {
+				581 = { is_controlled_by = STR }
+				OR = {
+					139 = {	is_controlled_by = WBT }
+					139 = {	is_controlled_by = VIL }
+				}
+			}
+		}
+
+		completion_reward = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 581
+					num_provinces = 2
+					on_win = stromgarde.34
+					on_lose = stromgarde.35
+					modifier = 0.1
+					dig_in_factor = 0
+					terrain_factor = 0
+				}
+				defender = {
+					state = 139
+					num_provinces = 2
+					on_win = stromgarde.36
+					on_lose = stromgarde.37
+					modifier = 0.1
+					dig_in_factor = 0
+					terrain_factor = 0
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_clear_remnants
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		prerequisite = { focus = STR_clear_the_infestation }
+		x = 20
+		y = 5
+		cost = 24
+
+		available = { owns_state = 139 }
+
+		completion_reward = {
+			139 = {
+				add_manpower = -500
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			custom_effect_tooltip = will_convert_race_religion_tt
+		}
+	}
+
+	focus = {
+		id = STR_renovate_the_pass
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = STR_clear_remnants}
+		x = 20
+		y = 6
+		cost = 24
+
+		available = { owns_state = 139 }
+
+		completion_reward = {
+			139 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2948
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2065
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_kingdom_politics
+		icon = GFX_focus_generic_treaty
+		x = 34
+		y = 3
+		cost = 14
+
+		available = { has_country_flag = unlocked_other_branches }
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = STR_status_quo
+		icon = GFX_focus_generic_treaty
+		prerequisite = { focus = STR_kingdom_politics }
+		x = 31
+		y = 4
+		cost = 14
+
+		mutually_exclusive = { focus = STR_a_change_in_discourse }
+
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = STR_the_peoples_king
+		icon = GFX_focus_POL_consolidate_sanation_government
+		prerequisite = { focus = STR_status_quo }
+		x = 32
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			add_country_leader_trait = {
+				ideology = neutral_type
+				trait = peoples_king_trait
+			}
+		}
+	}
+
+	focus = {
+		id = STR_cultural_exchange
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { focus = STR_status_quo }
+		x = 28
+		y = 5
+		cost = 14
+
+		completion_reward = {
+			AER = {
+				add_tech_bonus = {
+					name = cavalry_technology
+					bonus = 0.25
+					uses = 1
+					category = cavalry_technology
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			add_tech_bonus = {
+				name = nesting_ground_technology
+				bonus = 0.25
+				uses = 1
+				category = nesting_ground_technology
+			}
+			add_popularity = { ideology = alliance popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_a_dear_friend
+		icon = GFX_focus_LOR_generic
+		prerequisite = { focus = STR_cultural_exchange }
+		relative_position_id = STR_cultural_exchange
+		x = 0
+		y = 1
+		cost = 24
+
+		mutually_exclusive = { focus = STR_bitter_heart }
+		mutually_exclusive = { focus = STR_ear_of_the_king }
+
+		completion_reward = {
+			set_country_flag = alliance_alignment
+			add_opinion_modifier = {
+				target = LOR
+				modifier = STR_friendly_relations
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = STR_friendly_relations
+			}
+			add_stability = 0.05
+			add_popularity = { ideology = alliance popularity = 0.05 }
+			LOR = {
+				add_stability = 0.05
+				add_timed_idea = {
+					idea = LOR_stromgarde_assistance
+					days = 120
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			35 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_brewfest
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { focus = STR_a_dear_friend }
+		relative_position_id = STR_cultural_exchange
+		x = -1
+		y = 2
+		cost = 14
+
+		available = {
+			date > 592.09.20
+		}
+
+		completion_reward = {
+			IRO = {
+				add_stability = 0.05
+				add_political_power = 50
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			add_stability = 0.05
+			add_political_power = 50
+			add_popularity = { ideology = alliance popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_the_drunken_hammer
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { focus = STR_a_dear_friend }
+		relative_position_id = STR_cultural_exchange
+		x = 1
+		y = 2
+		cost = 14
+
+		available = {
+			date > 592.09.20
+		}
+
+		completion_reward = {
+			SPC = {
+				add_tech_bonus = {
+					name = armor_technology
+					bonus = 0.25
+					uses = 1
+					category = armor_technology
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			add_tech_bonus = {
+				name = armor_technology
+				bonus = 0.25
+				uses = 1
+				category = armor_technology
+			}
+			add_popularity = { ideology = alliance popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_champions_of_the_seas
+		icon = GFX_focus_KUL_generic
+		prerequisite = { focus = STR_brewfest }
+		prerequisite = { focus = STR_the_drunken_hammer }
+		relative_position_id = STR_cultural_exchange
+		x = -1
+		y = 3
+		cost = 14
+
+		completion_reward = {
+			KUL = {
+				add_tech_bonus = {
+					name = scout_tower_technology
+					bonus = 0.25
+					uses = 1
+					category = scout_tower_technology
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			add_timed_idea = {
+				idea = STR_light_houses
+				days = 180
+			}
+			activate_mission = STR_channel_light_houses
+			add_tech_bonus = {
+				name = scout_tower_technology
+				bonus = 0.25
+				uses = 1
+				category = scout_tower_technology
+			}
+			add_popularity = { ideology = alliance popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_coal_for_iron
+		icon = GFX_focus_GIL_generic
+		prerequisite = { focus = STR_brewfest }
+		prerequisite = { focus = STR_the_drunken_hammer }
+		relative_position_id = STR_cultural_exchange
+		x = 1
+		y = 3
+		cost = 14
+
+		completion_reward = {
+			GIL = {
+				add_tech_bonus = {
+					name = forge_technology
+					bonus = 0.25
+					uses = 1
+					category = forge_technology
+				}
+				add_ideas = STR_coal_for_iron
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			add_tech_bonus = {
+				name = mine_technology
+				bonus = 0.25
+				uses = 1
+				category = mine_technology
+			}
+			add_popularity = { ideology = alliance popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_the_southern_kingdom
+		icon = GFX_focus_stormwind_crest
+		prerequisite = { 
+			focus = STR_champions_of_the_seas
+			focus = STR_coal_for_iron 
+		}
+		relative_position_id = STR_cultural_exchange
+		x = 0
+		y = 4
+		cost = 14
+
+		available = { country_exists = STO }
+		bypass = { NOT = { country_exists = STO } }
+
+		completion_reward = {
+			STO = {
+				add_tech_bonus = {
+					name = tabard_technology
+					bonus = 0.25
+					uses = 1
+					category = tabard_technology
+				}
+				add_popularity = { ideology = alliance popularity = 0.05 }
+			}
+			add_tech_bonus = {
+				name = tabard_technology
+				bonus = 0.25
+				uses = 1
+				category = tabard_technology
+			}
+			add_popularity = { ideology = alliance popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_forced_our_hand
+		icon = GFX_focus_stormwind_crest
+		prerequisite = { focus = STR_the_southern_kingdom }
+		relative_position_id = STR_cultural_exchange
+		x = 0
+		y = 5
+		cost = 14
+
+		available = {
+			NOT = { has_government = alliance }
+			OR = {
+				NOT = { country_exists = STO }
+				STO = {	has_country_flag = STO_REF }
+			}
+			has_political_power > 100
+		}
+
+		completion_reward = {
+			add_political_power = -100
+			set_politics = {
+				ruling_party = alliance
+				elections_allowed = no
+			}
+		}
+	}
+
+	focus = {
+		id = STR_bitter_heart
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = STR_the_peoples_king }
+		x = 33
+		y = 6
+		cost = 24
+
+		mutually_exclusive = { focus = STR_a_dear_friend }
+		mutually_exclusive = { focus = STR_ear_of_the_king }
+
+		available = {
+			has_completed_focus = STR_bloodied_red_hand
+		}
+
+		completion_reward = {
+			set_country_flag = neutral_alignment
+			swap_ruler_traits = {
+				remove = peoples_king_trait
+				add = bitter_heart_trait
+			}
+		}
+	}
+
+	focus = {
+		id = STR_a_cold_shoulder
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = STR_bitter_heart }
+		x = 33
+		y = 7
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_deny_the_exchange
+		}
+
+		completion_reward = {
+			add_ideas = STR_diplomatic_distance
+			LOR = {
+				add_opinion_modifier = {
+					target = STR
+					modifier = unstable_relations
+				}
+				reverse_add_opinion_modifier = {
+					target = STR
+					modifier = unstable_relations
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_survivors
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = { focus = STR_a_cold_shoulder }
+		x = 33
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			country_event = stromgarde.6
+		}
+	}
+
+	focus = {
+		id = STR_never_again
+		icon = GFX_focus_ger_break_anglo_french_colonial_hegemony
+		prerequisite = { focus = STR_the_survivors }
+		x = 33
+		y = 9
+		cost = 24
+
+		completion_reward = {
+			### Once you have inflicted Enough Casualties or Taken Enough Teriroty and Event will fire
+			### Ultimate Either Give over ALT Leader or Continue War
+			### If Give over ALT Leader is picked STR takes the Lowlands from ALT
+			### Puppets What remains of ALT
+			### ALT Leader is killed and replaced by ALT Nobles
+			### Nobles will aligning to Horde.
+			create_faction = "Ironclad League"
+			declare_war_on = {
+				target = ALT
+				type = annex_everything
+			}
+			swap_ruler_traits = {
+				remove = bitter_heart_trait
+				add = ironclad_king_trait
+			}
+		}
+	}
+
+	focus = {
+		id = STR_ear_of_the_king
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		prerequisite = { focus = STR_the_peoples_king }
+		x = 31
+		y = 6
+		cost = 14
+
+		mutually_exclusive = { focus = STR_a_dear_friend }
+		mutually_exclusive = { focus = STR_bitter_heart }
+
+		available = {
+			has_completed_focus = STR_triumph_in_the_west
+		}
+
+		completion_reward = {
+			set_country_flag = neutral_alignment
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_marcel_dabyrie
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_thorvald_stoneheart
+		}
+	}
+
+	focus = {
+		id = STR_gateway_to_the_kingdoms
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		prerequisite = { focus = STR_ear_of_the_king }
+		x = 31
+		y = 7
+		cost = 24
+
+		completion_reward = {
+			add_ideas = STR_trade_taxes
+		}
+	}
+
+	focus = {
+		id = STR_maintain_borders
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		prerequisite = { focus = STR_gateway_to_the_kingdoms }
+		x = 31
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			add_ideas = STR_maintain_our_borders
+		}
+	}
+
+	focus = {
+		id = STR_closed_borders
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		prerequisite = { focus = STR_maintain_borders }
+		x = 31
+		y = 9
+		cost = 14
+
+		completion_reward = {
+			add_ideas = isolation
+			add_ideas = war_economy
+			swap_ideas = {
+				remove_idea = STR_maintain_our_borders
+				add_idea = STR_stromic_militia
+			}
+		}
+	}
+
+	focus = {
+		id = STR_a_change_in_discourse
+		icon = GFX_goal_generic_forceful_treaty
+		x = 41
+		y = 4
+		cost = 14
+		prerequisite = { focus = STR_kingdom_politics }
+		mutually_exclusive = { focus = STR_status_quo }
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = STR_death_in_the_family
+		icon = GFX_focus_genric_skeletal_warriors
+		prerequisite = { focus = STR_a_change_in_discourse }
+		relative_position_id = STR_a_change_in_discourse
+		x = 6
+		y = 1
+		cost = 18
+		mutually_exclusive = { focus = STR_powder_keg_incident }
+		mutually_exclusive = { focus = STR_the_red_banner }
+		mutually_exclusive = { focus = STR_the_royal_visit }
+
+		completion_reward = {
+			add_stability = -0.20
+			kill_country_leader = yes
+			hidden_effect = {
+				retire_character = STR_thoras_trollbane
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_black_pox
+		icon = GFX_focus_genric_skeletal_warriors
+		relative_position_id = STR_death_in_the_family
+		x = 0
+		y = 1
+		cost = 24
+		prerequisite = { focus = STR_death_in_the_family }
+
+		completion_reward = {
+			set_country_flag = death_alignment
+			add_ideas = STR_the_pox
+			add_popularity = { ideology = death popularity = 0.10 }
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_audrid_grenich
+		}
+	}
+
+	focus = {
+		id = STR_the_tower_explosion
+		icon = GFX_focus_genric_skeletal_warriors
+		relative_position_id = STR_death_in_the_family
+		x = 0
+		y = 2
+		cost = 24
+		prerequisite = { focus = STR_the_black_pox }
+
+		available = {
+			death > 0.25
+		}
+
+		completion_reward = {
+			add_opinion_modifier = { target = DAL modifier = unstable_relations }
+			reverse_add_opinion_modifier = { target = DAL modifier = unstable_relations	}
+			add_popularity = {
+				ideology = death
+				popularity = 0.10
+			}
+			add_war_support = 0.05
+			1567 = {
+				remove_building = {
+					type = arcane_tower
+					level = 1
+				}
+				add_manpower = -200
+			}
+		}
+	}
+
+	focus = {
+		id = STR_forbidden_knowledge
+		icon = GFX_focus_genric_skeletal_warriors
+		relative_position_id = STR_death_in_the_family
+		x = 0
+		y = 3
+		cost = 24
+		prerequisite = { focus = STR_the_tower_explosion }
+
+		completion_reward = {
+			country_event = stromgarde.40
+			remove_opinion_modifier = {
+				target = DAL
+				modifier = unstable_relations
+			}
+			add_opinion_modifier = {
+				target = DAL
+				modifier = hoa_mortal_enemies
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_traitor_revealed
+		icon = GFX_focus_genric_skeletal_warriors
+		relative_position_id = STR_death_in_the_family
+		x = 0
+		y = 4
+		cost = 24
+		prerequisite = { focus = STR_forbidden_knowledge }
+
+		available = {
+			death > 0.5
+		}
+
+		completion_reward = {
+			country_event = stromgarde.41
+			add_war_support = 0.10
+			set_politics = {
+				ruling_party = death
+				elections_allowed = no
+			}
+			add_popularity = { ideology = death	popularity = 0.10 }
+		}
+	}
+
+	focus = {
+		id = STR_powder_keg_incident
+		icon = GFX_focus_whispers_of_the_old_gods
+		prerequisite = { focus = STR_a_change_in_discourse }
+		x = 51
+		y = 5
+		cost = 18
+		mutually_exclusive = { focus = STR_death_in_the_family }
+		mutually_exclusive = { focus = STR_the_red_banner }
+		mutually_exclusive = { focus = STR_the_royal_visit }
+
+		available = { always = no }
+
+		completion_reward = {
+			country_event = { id = stromgarde.14 }
+		}
+	}
+
+	#focus = {
+	#	id = STR_an_unexpected_offer
+	#	icon = GFX_focus_whispers_of_the_old_gods
+	#	x = 41
+	#	y = 6
+	#	cost = 24
+	#	prerequisite = { focus = STR_powder_keg_incident }
+
+	#	completion_reward = {
+	#		###Kingdom is contacted by the Dark Iron Dwarves
+	#		set_country_flag = old_gods_alignment
+	#		###Add Idea to gain old god Alignment
+	#	}
+	#}
+
+	#focus = {
+	#	id = STR_OLD_GODS_FOCUS_THREE
+	#	icon = GFX_focus_whispers_of_the_old_gods
+	#	x = 41
+	#	y = 7
+	#	cost = 24
+	#	prerequisite = { focus = STR_an_unexpected_offer }
+
+	#	completion_reward = {
+	#		###WIP
+	#		add_popularity = {
+	#			ideology = old_gods
+	#			popularity = 0.10
+	#		}
+	#	}
+	#}
+
+	#focus = {
+	#	id = STR_OLD_GODS_FOCUS_FOUR
+	#	icon = GFX_focus_whispers_of_the_old_gods
+	#	x = 41
+	#	y = 8
+	#	cost = 24
+	#	prerequisite = { focus = STR_OLD_GODS_FOCUS_THREE }
+
+	#	completion_reward = {
+
+	#	}
+	#}
+
+	#focus = {
+	#	id = STR_OLD_GODS_CONVERT_FOCUS
+	#	icon = GFX_focus_whispers_of_the_old_gods
+	#	x = 41
+	#	y = 9
+	#	cost = 24
+	#	prerequisite = { focus = STR_OLD_GODS_FOCUS_FOUR }
+
+	#	completion_reward = {
+	#		add_war_support = 0.10
+	#		set_politics = {
+	#			ruling_party = old_gods
+	#			elections_allowed = no
+	#		}
+	#	}
+	#}
+
+	focus = {
+		id = STR_the_red_banner
+		icon = GFX_focus_horde_symbol
+		prerequisite = { focus = STR_a_change_in_discourse }
+		x = 36
+		y = 5
+		cost = 18
+		mutually_exclusive = { focus = STR_death_in_the_family }
+		mutually_exclusive = { focus = STR_powder_keg_incident }
+		mutually_exclusive = { focus = STR_the_royal_visit }
+
+		available = {
+			OR = {
+				has_country_flag = STR_orcs_uncovered
+				NOT = {
+					365 = { is_controlled_by = STO }
+					296 = {	is_controlled_by = KAR }
+				}
+			}
+		}
+
+		completion_reward = {
+			set_country_flag = horde_alignment
+			add_stability = -0.05
+			add_popularity = { ideology = horde	popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_a_tithe_of_steel
+		icon = GFX_focus_horde_symbol
+		prerequisite = { focus = STR_the_red_banner }
+		x = 36
+		y = 6
+		cost = 24
+
+		available = {
+			has_equipment = { infantry_equipment > 999 }
+		}
+
+		completion_reward = {
+			add_popularity = { ideology = horde popularity = 0.10 }
+			unlock_decision_category_tooltip = horde_demand_respect_decisions
+			set_country_flag = horde_demand_respect_flag
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_throm_stormbreath
+			add_ideas = horde_clan_respect_1_idea
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+			BRC = {	country_event = { id = stromgarde.20 } }
+		}
+	}
+
+	focus = {
+		id = STR_slaves_for_gold
+		icon = GFX_focus_horde_symbol
+		prerequisite = { focus = STR_a_tithe_of_steel }
+		x = 36
+		y = 7
+		cost = 24
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = horde_clan_respect_1_idea
+				add_idea = horde_clan_respect_2_idea
+			}
+			add_popularity = { ideology = horde	popularity = 0.10 }
+			420 = {	add_manpower = -1000 }
+			add_timed_idea = {
+				idea = STR_slaves_for_gold
+				days = 180
+			}
+			BRC = {
+				country_event = { id = stromgarde.21 }
+				384 = {	add_manpower = 1000	}
+			}
+			###Reduce TOL Penal Colony Debuff
+		}
+	}
+
+	focus = {
+		id = STR_dragonmaw_landing
+		icon = GFX_focus_horde_symbol
+		prerequisite = { focus = STR_slaves_for_gold }
+		x = 35
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = DMC
+				modifier = STR_friendly_relations
+			}
+			reverse_add_opinion_modifier = {
+				target = DMC
+				modifier = STR_friendly_relations
+			}
+			751 = {
+				transfer_state_to = DMC
+				add_claim_by = DMC
+			}
+			751 = {	set_state_name = dragonmaw_landing }
+			add_timed_idea = {
+				idea = STR_land_purchase
+				days = 180
+			}
+			add_popularity = { ideology = horde	popularity = 0.15 }
+			add_stability = -0.10
+			add_political_power = -100
+			hidden_effect = {
+				AER = {	add_timed_idea = { idea = AER_land_purchase	days = 180 } }
+				DMC = {
+					add_tech_bonus = {
+						name = air_technology
+						bonus = 0.25
+						uses = 2
+						category = air_technology
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_undermine_the_brotherhood
+		icon = GFX_focus_horde_symbol
+		prerequisite = { focus = STR_slaves_for_gold }
+		x = 37
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			BRC = {
+				add_timed_idea = {
+					idea = STR_undermine_the_brotherhood
+					days = 120
+				}
+			}
+			BHC = {
+				add_timed_idea = {
+					idea = STR_undermine_the_brotherhood
+					days = 120
+				}
+			}
+			DMC = {
+				add_timed_idea = {
+					idea = STR_undermine_the_brotherhood
+					days = 120
+				}
+			}
+			add_popularity = { ideology = horde	popularity = 0.05 }
+		}
+	}
+
+	focus = {
+		id = STR_makrogahn
+		icon = GFX_focus_horde_symbol
+		prerequisite = { focus = STR_dragonmaw_landing }
+		prerequisite = { focus = STR_undermine_the_brotherhood }
+		x = 36
+		y = 9
+		cost = 24
+
+		available = {
+			horde > 0.5
+		}
+
+		completion_reward = {
+			if = {
+				limit = { BRC = { has_war_with = STO } }
+				country_event = { id = stromgarde.22 days = 7 }
+			}
+			if = {
+				limit = { NOT = { BRC = { has_war_with = STO } } }
+				set_politics = {
+					ruling_party = horde
+					elections_allowed = no
+				}
+				retire_character = STR_throm_stormbreath
+			}
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_grommokar_blacktusk
+		}
+	}
+
+	### FEL
+
+	focus = {
+		id = STR_the_royal_visit
+		icon = GFX_focus_legion_faction_3
+		prerequisite = { focus = STR_a_change_in_discourse }
+		x = 41
+		y = 5
+		cost = 18
+		mutually_exclusive = { focus = STR_death_in_the_family }
+		mutually_exclusive = { focus = STR_powder_keg_incident }
+		mutually_exclusive = { focus = STR_the_red_banner }
+
+		completion_reward = {
+			STO = {
+				add_political_power = 50
+				army_experience = 5
+			}
+			add_political_power = 50
+			army_experience = 5
+		}
+	}
+
+	focus = {
+		id = STR_the_dark_riders
+		icon = GFX_focus_fel_Metamorphosis
+		relative_position_id = STR_the_royal_visit
+		x = -2
+		y = 1
+		cost = 24
+
+		prerequisite = { focus = STR_the_royal_visit }
+	
+		completion_reward = {
+			country_event = stromgarde.50
+		}
+	}
+
+	focus = {
+		id = STR_our_demands
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_the_royal_visit
+		x = 2
+		y = 1
+		cost = 24
+		prerequisite = { focus = STR_the_royal_visit }
+
+		available = {
+			has_completed_focus = STR_the_dark_riders
+		}
+	
+		completion_reward = {
+			country_event = stromgarde.51
+		}
+	}
+
+	focus = {
+		id = STR_behind_enemy_lines
+		icon = GFX_focus_fel_dreadlord
+		relative_position_id = STR_the_royal_visit
+		x = 0
+		y = 1
+		cost = 24
+		prerequisite = { focus = STR_the_royal_visit }
+
+		available = {
+			has_completed_focus = STR_our_demands
+		}
+	
+		completion_reward = {
+			country_event = stromgarde.52
+			set_country_flag = fel_alignment
+		}
+	}
+
+	focus = {
+		id = STR_summon_a_warcouncil
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_the_royal_visit
+		x = -1
+		y = 2
+		cost = 24
+		prerequisite = { focus = STR_behind_enemy_lines }
+	
+		completion_reward = {
+			add_political_power = -50
+			add_popularity = {
+				ideology = fel
+				popularity = 0.10
+			}
+			create_corps_commander = {
+				name = "Roland Hearthwell"
+				picture = "Portrait_STR_Generic_land_3.dds"
+				traits = { dreadlord_loyalists }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				### Becomes an Advisor Army for Infantry
+				name = "Elynne Carver"
+				picture = "Portrait_STR_Generic_land_5.dds"
+				traits = { dreadlord_loyalists }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_reinforce_stormwind
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_the_royal_visit
+		x = 1
+		y = 2
+		cost = 24
+		prerequisite = { focus = STR_behind_enemy_lines }
+
+		available = {
+			has_completed_focus = STR_summon_a_warcouncil
+		}
+	
+		completion_reward = {
+			hidden_effect = {
+				if = {
+					limit = { ROOT = { controls_state = 139 } }
+					139 = { set_demilitarized_zone = yes }
+				}
+				581 = { set_demilitarized_zone = yes }
+				128 = { set_demilitarized_zone = yes }
+				delete_unit = { disband = no }
+				delete_unit = { disband = no }
+				delete_unit = { disband = no }
+				delete_unit = { disband = no }
+				delete_unit = { disband = no }
+			}
+			add_ideas = STR_the_march_south
+		}
+	}
+
+	focus = {
+		id = STR_inside_our_borders
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_the_royal_visit
+		x = -1
+		y = 3
+		cost = 14
+		prerequisite = { focus = STR_summon_a_warcouncil }
+		prerequisite = { focus = STR_reinforce_stormwind }
+	
+		completion_reward = {
+			country_event = stromgarde.53
+		}
+	}
+
+	focus = {
+		id = STR_the_broken_highlands
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_the_royal_visit
+		x = 1
+		y = 3
+		cost = 14
+		prerequisite = { focus = STR_summon_a_warcouncil }
+		prerequisite = { focus = STR_reinforce_stormwind }
+
+		available = {
+			has_completed_focus = STR_inside_our_borders
+		}
+	
+		completion_reward = {
+			WBT = {
+				declare_war_on = {
+					target = STR
+					type = annex_everything
+				}
+			}
+			VIL = {
+				create_faction = "Hinterlands Warhost"
+				add_to_faction = WBT
+				declare_war_on = {
+					target = STR
+					type = annex_everything
+				}
+			}
+			remove_ideas = STR_the_march_south
+		}
+	}
+
+	focus = {
+		id = STR_the_guardians_gift
+		icon = GFX_focus_fel_life_tap
+		relative_position_id = STR_the_royal_visit
+		x = 0
+		y = 4
+		cost = 24
+		prerequisite = { focus = STR_inside_our_borders }
+		prerequisite = { focus = STR_the_broken_highlands }
+	
+		completion_reward = {
+			country_event = stromgarde.54
+		}
+	}
+
+	focus = {
+		id = STR_storm_on_the_horizon
+		icon = GFX_focus_ETH_african_wildfire
+		x = 32
+		y = 10
+		cost = 24
+		prerequisite = {
+			focus = STR_the_southern_kingdom
+			focus = STR_never_again
+			focus = STR_closed_borders
+			focus = STR_makrogahn
+		}
+
+		available = {
+			OR = {
+				AND = {
+					threat > 0.30
+					has_completed_focus = STR_stromgarde_armory
+					has_completed_focus = STR_combined_forces
+				}
+				has_war_with_major = yes
+			}
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = STR_the_embers_of_war
+		icon = GFX_focus_spa_strengthen_the_supreme_reality_of_spain
+		x = 47
+		y = 10
+		cost = 24
+		prerequisite = {
+			focus = STR_the_guardians_gift
+			focus = STR_the_traitor_revealed
+			#focus = STR_OLD_GODS_CONVERT_FOCUS
+		}
+
+		available = {
+			threat > 0.30
+			has_completed_focus = STR_stromgarde_armory
+			has_completed_focus = STR_combined_forces
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = STR_what_we_do_best
+		icon = GFX_focus_chosen_of_the_light
+		x = 34
+		y = 11
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_storm_on_the_horizon
+			OR = {
+				has_government = alliance
+				has_government = neutral
+			}
+		}
+
+		completion_reward = {
+			add_political_power = 150
+			add_war_support = 0.1
+
+			custom_effect_tooltip = STR_lockout_tt
+		}
+	}
+
+	focus = {
+		id = STR_warchiefs_command
+		icon = GFX_focus_horde_symbol
+		x = 34
+		y = 12
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_storm_on_the_horizon
+			has_government = horde
+		}
+
+		completion_reward = {
+			add_political_power = 150
+			add_war_support = 0.1
+			custom_effect_tooltip = STR_lockout_tt
+		}
+	}
+
+	###LEFT side Politcs
+	focus = {
+		id = STR_maintain_the_kingdom
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 32
+		y = 11
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_status_quo
+			has_completed_focus = STR_storm_on_the_horizon
+		}
+
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_maintain_mines
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = STR_maintain_the_kingdom }
+		x = 32
+		y = 12
+		cost = 24
+
+		completion_reward = {
+			577 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 5123
+					instant_build = yes
+				}
+			}
+			578 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2020
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_land_subdivision
+		icon = GFX_focus_generic_land_reclamation
+		prerequisite = { focus = STR_maintain_mines }
+		x = 32
+		y = 13
+		cost = 24
+
+		completion_reward = {
+			add_political_power = -150
+			random_owned_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_civic_education
+		icon = GFX_focus_generic_military_academy
+		prerequisite = { focus = STR_land_subdivision }
+		x = 32
+		y = 14
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = administration_technology
+				bonus = 0.5
+				uses = 2
+				category = administration_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_road_investment_fund
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = STR_civic_education }
+		prerequisite = { focus = STR_farmhand_grants }
+		x = 32
+		y = 15
+		cost = 24
+
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					impassable = no
+					infrastructure < 8
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					impassable = no
+					infrastructure < 8
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					impassable = no
+					infrastructure < 8
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_ideas = STR_road_investment
+		}
+	}
+
+	###RIGHT Side Politics
+	focus = {
+		id = STR_forge_our_path
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 36
+		y = 11
+		cost = 24
+
+		available = {
+			has_completed_focus = STR_the_embers_of_war
+		}
+
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_maintain_forges
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = STR_forge_our_path }
+		x = 36
+		y = 12
+		cost = 24
+
+		completion_reward = {
+			578 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2020
+					instant_build = yes
+				}
+			}
+			133 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1920
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 3625
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_sieze_land
+		icon = GFX_focus_generic_land_reclamation
+		prerequisite = { focus = STR_maintain_forges }
+		x = 36
+		y = 13
+		cost = 24
+
+		completion_reward = {
+			add_stability = -0.10
+			random_owned_state = {
+				limit = { 
+					impassable = no 
+					NOT = {
+						state = 139
+						state = 580
+						state = 1544
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_state = {
+				limit = { 
+					impassable = no
+					NOT = {
+						state = 139
+						state = 580
+						state = 1544
+					} 
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_advanced_doctrine
+		icon = GFX_focus_chi_army_reform
+		prerequisite = { focus = STR_sieze_land }
+		x = 36
+		y = 14
+		cost = 14
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.25
+            }
+		}
+	}
+
+	focus = {
+		id = STR_logistic_command
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = STR_advanced_doctrine }
+		prerequisite = { focus = STR_farmhand_grants }
+		x = 36
+		y = 15
+		cost = 24
+
+		completion_reward = {
+			add_ideas = STR_pillage_supplies
+		}
+	}
+
+	focus = {
+		id = STR_resource_management
+		icon = GFX_goal_generic_construction2
+		prerequisite = {
+			focus = STR_maintain_forges
+			focus = STR_maintain_mines
+		}
+		x = 34
+		y = 13
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = resource_building_technology
+				bonus = 0.25
+				uses = 2
+				category = resource_building_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_farmhand_grants
+		icon = GFX_focus_ITA_grande_rivolta_rurale
+		prerequisite = { focus = STR_resource_management }
+		x = 34
+		y = 14
+		cost = 24
+
+		completion_reward = {
+			132 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			121 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_circles_of_binding
+		icon = GFX_focus_spa_the_phalanx_ascendant
+		prerequisite = { focus = STR_farmhand_grants }
+		x = 34
+		y = 15
+		cost = 24
+
+		completion_reward = {
+			1572 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			1571 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			1570 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			1566 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = mana
+					amount = 3
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = STR_military_research_focus
+		icon = GFX_focus_generic_fascist_troops
+		prerequisite = { focus = STR_circles_of_binding }
+		x = 35
+		y = 16
+		cost = 24
+		mutually_exclusive = { focus = STR_civilian_research_focus }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_equipment_research_focus_idea
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STR_civilian_research_focus
+		icon = GFX_focus_ITA_generic_fascist_workers
+		prerequisite = { focus = STR_circles_of_binding }
+		x = 33
+		y = 16
+		cost = 24
+		mutually_exclusive = { focus = STR_military_research_focus }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_resource_research_focus_idea
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STR_assume_direct_command
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = {
+			focus = STR_civilian_research_focus
+			focus = STR_military_research_focus
+		}
+		x = 34
+		y = 17
+		cost = 24
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = STR_thoras_trollbane
+						ruling_only = yes
+					}
+				}
+				STR_thoras_trollbane = {
+					add_trait = { trait = panzer_leader }
+				}
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = STR_danath_trollbane
+						ruling_only = yes
+					}
+				}
+				STR_danath_trollbane = {
+					add_trait = { trait = panzer_leader }
+				}
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = STR_galen_trollbane
+						ruling_only = yes
+					}
+				}
+				STR_galen_trollbane = {
+					add_trait = { trait = panzer_leader }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_muster_troll_hunters
+		icon = GFX_focus_POL_ukrainian_army
+		prerequisite = { focus = STR_assume_direct_command }
+		x = 33
+		y = 18
+		cost = 24
+
+		completion_reward = {
+			STR = { custom_effect_tooltip = STR_troll_hunters_tt }
+			STR = {
+				hidden_effect = {
+					division_template = {
+						name = "Veteran Troll Hunters"
+						priority = 1
+						regiments = {
+							footman = { x = 0 y = 0 }
+							footman = { x = 0 y = 1 }
+							footman = { x = 1 y = 0 }
+							footman = { x = 1 y = 1 }
+							pikeman = { x = 0 y = 2 }
+							pikeman = { x = 1 y = 2 }
+							archer = { x = 0 y = 3 }
+							archer = { x = 1 y = 3 }
+						}
+						support = {
+							peasant = { x = 0 y = 0 }
+							mage_support = { x = 0 y = 1 }
+						}
+					}
+
+					capital_scope  = {
+						create_unit = {
+							division = "name = \"Veteran Troll Hunters\" division_template = \"Baradin Royal Guard\" start_experience_factor = 0.6 start_equipment_factor = 1.0"
+							owner = STR
+							count = 2
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_a_shared_tradition
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		prerequisite = { focus = STR_assume_direct_command }
+		x = 35
+		y = 18
+		cost = 14
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.25
+            }
+			TOL = {
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = land_doctrine
+				}
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = 0.25
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_trust_our_allies
+		icon = GFX_focus_hol_the_fourth_ally
+		prerequisite = { focus = STR_assume_direct_command }
+		x = 32
+		y = 19
+		cost = 14
+		mutually_exclusive = { focus = STR_my_new_empire }
+		mutually_exclusive = { focus = STR_twin_fates }
+
+		available = {
+			is_in_faction = yes
+		}
+
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+			random_other_country = {
+				limit = { is_in_faction_with = STR }
+				add_political_power = 25
+				add_stability = 0.05
+			}
+			random_other_country = {
+				limit = { is_in_faction_with = STR }
+				add_political_power = 25
+				add_stability = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = STR_prepare_for_war
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = STR_trust_our_allies }
+		x = 32
+		y = 20
+		cost = 24
+
+		available = {
+			is_in_faction = yes
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_muster_the_troops
+				days = 120
+			}
+			random_other_country = {
+				limit = { is_in_faction_with = STR }
+				add_timed_idea = {
+					idea = STR_muster_the_troops
+					days = 120
+				}
+			}
+			random_other_country = {
+				limit = { is_in_faction_with = STR }
+				add_timed_idea = {
+					idea = STR_muster_the_troops
+					days = 120
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_my_new_empire
+		icon = GFX_focus_focus_fra_third_empire
+		prerequisite = { focus = STR_assume_direct_command }
+		x = 34
+		y = 19
+		cost = 14
+		mutually_exclusive = { focus = STR_trust_our_allies }
+		mutually_exclusive = { focus = STR_twin_fates }
+
+		available = {
+			is_faction_leader = yes
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = STR_stoke_the_forges
+		icon = GFX_focus_generic_tank_production
+		prerequisite = { focus = STR_my_new_empire }
+		x = 34
+		y = 20
+		cost = 24
+
+		available = {
+			is_faction_leader = yes
+		}
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_stoke_the_forges
+				days = 180
+			}
+		}
+	}
+
+	focus = {
+		id = STR_twin_fates
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = STR_assume_direct_command }
+		x = 36
+		y = 19
+		cost = 14
+		mutually_exclusive = { focus = STR_trust_our_allies }
+		mutually_exclusive = { focus = STR_my_new_empire }
+
+		available = {
+			is_in_faction = yes
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+			random_other_country = {
+				limit = {
+					is_in_faction_with = STR
+					is_faction_leader = yes
+				}
+				add_political_power = 50
+				add_war_support = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = STR_a_bond_of_iron
+		icon = GFX_focus_SWI_closer_ties_with_germany
+		prerequisite = { focus = STR_twin_fates }
+		x = 36
+		y = 20
+		cost = 24
+
+		available = {
+			is_in_faction = yes
+		}
+
+		completion_reward = {
+			add_ideas = STR_iron_brotherhood
+			random_other_country = {
+				limit = {
+					is_in_faction_with = STR
+					is_faction_leader = yes
+				}
+				add_ideas = STR_iron_brotherhood
+			}
+		}
+	}
+
+	focus = {
+		id = STR_militarize_the_highlands
+		icon = GFX_focus_generic_infiltration
+		x = -1
+		y = 11
+		cost = 24
+
+		available = {
+			OR = {
+				has_completed_focus = STR_storm_on_the_horizon
+				has_completed_focus = STR_the_embers_of_war
+			}
+		}
+
+		completion_reward = {
+			remove_ideas = STR_peace_time_drills
+			swap_ideas = {
+				remove_idea = STR_stromic_army_corps
+				add_idea = STR_stromic_army_corps_2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_stromic_high_command
+		icon = GFX_focus_generic_military_mission
+		prerequisite = { focus = STR_militarize_the_highlands }
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 1
+		cost = 24
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 2
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+		}
+	}
+
+	focus = {
+		id = STR_cavarly_focus
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = STR_stromic_high_command }
+		relative_position_id = STR_militarize_the_highlands
+		x = -1
+		y = 2
+		cost = 24
+		mutually_exclusive = { focus = STR_infantry_focus }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_arathi_riders
+				add_idea = STR_arathi_riders_2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_infantry_focus
+		icon = GFX_focus_generic_scandinavia_flags
+		prerequisite = { focus = STR_stromic_high_command }
+		relative_position_id = STR_militarize_the_highlands
+		x = 1
+		y = 2
+		cost = 24
+		mutually_exclusive = { focus = STR_cavarly_focus }
+
+		completion_reward = {
+			add_ideas = STR_standard_bearer
+		}
+	}
+
+	focus = {
+		id = STR_arathorian_legacy
+		icon = GFX_focus_hun_elect_a_king
+		prerequisite = {
+			focus = STR_cavarly_focus
+			focus = STR_infantry_focus
+		}
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 3
+		cost = 24
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_stromic_army_corps_2
+				add_idea = STR_stromic_army_corps_3
+			}
+		}
+	}
+
+	focus = {
+		id = STR_reinforce_the_family_crypt
+		icon = GFX_focus_mex_restore_the_army_of_christ
+		prerequisite = { focus = STR_arathorian_legacy }
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 4
+		cost = 24
+
+		completion_reward = {
+			1569 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1738
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1743
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 503
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = STR_crypt_guard_tt
+			STR = {
+				division_template = {
+					name = "Crypt Guardians"
+					priority = 1
+					regiments = {
+						royal_guard = { x = 0 y = 0 }
+						royal_guard = { x = 0 y = 1 }
+						royal_guard = { x = 0 y = 2 }
+						royal_guard = { x = 1 y = 0 }
+						royal_guard = { x = 1 y = 1 }
+					}
+					support = {
+						peasant = { x = 0 y = 0 }
+					}
+				}
+
+				capital_scope  = {
+					create_unit = {
+						division = "name = \"Crypt Guardians\" division_template = \"Crypt Guardians\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+						owner = STR
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_harbinger
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = STR_reinforce_the_family_crypt }
+		relative_position_id = STR_militarize_the_highlands
+		x = -2
+		y = 5
+		cost = 24
+
+		available = {
+			has_tech = generic_naval_heavy_frigate_tech_3
+		}
+
+		completion_reward = {
+			add_equipment_production = {
+				equipment = {
+					type = heavy_frigate_equipment_3
+					creator = STR
+				}
+				requested_factories = 1
+				progress = 0.3
+				amount = 1
+				name = "The Harbinger"
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_green_sea_fleet
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = STR_the_harbinger }
+		relative_position_id = STR_militarize_the_highlands
+		x = -2
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			add_ideas = STR_green_sea_fleet
+			every_navy_leader = {
+				add_unit_leader_trait = green_water_expert
+			}
+		}
+	}
+
+	focus = {
+		id = STR_coastal_patrol_fleet
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = STR_the_green_sea_fleet }
+		relative_position_id = STR_militarize_the_highlands
+		x = -2
+		y = 7
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = destroyer_technology
+				bonus = 0.5
+				uses = 1
+				category = destroyer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_cove_naval_garrison
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = STR_coastal_patrol_fleet }
+		relative_position_id = STR_militarize_the_highlands
+		x = -2
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			129 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 3
+					province = 1766
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 3
+					province = 1766
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_hold_naval_constructions
+		icon = GFX_goal_generic_build_navy
+		prerequisite = { focus = STR_coastal_patrol_fleet }
+		relative_position_id = STR_militarize_the_highlands
+		x = -4
+		y = 8
+		cost = 24
+
+		available = {
+			13 = { is_controlled_by_ROOT_or_ally = yes }
+			173 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		completion_reward = {
+			13 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 1304
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 1304
+					instant_build = yes
+				}
+			}
+			173 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 154
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 154
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_troop_colors
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = STR_reinforce_the_family_crypt }
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 5
+		cost = 14
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = tabard_technology
+				bonus = 0.5
+				uses = 1
+				category = tabard_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_refine_tactics
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = STR_troop_colors }
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+                specialization = specialization_land
+                value = 0.50
+            }
+		}
+	}
+
+	focus = {
+		id = STR_forced_military_conscription
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = STR_refine_tactics }
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 7
+		cost = 24
+
+		available = {
+			has_war = yes
+			has_war_support > 0.49
+		}
+
+		completion_reward = {
+			add_stability = -0.10
+			swap_ideas = {
+				remove_idea = STR_stromic_army_corps_3
+				add_idea = STR_stromic_army_corps_4
+			}
+		}
+	}
+
+	focus = {
+		id = STR_integrate_the_peasents
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = STR_forced_military_conscription }
+		relative_position_id = STR_militarize_the_highlands
+		x = 0
+		y = 8
+		cost = 24
+
+		available = {
+			has_war = yes
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = peasant_technology
+				bonus = 0.5
+				uses = 1
+				category = peasant_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_improved_stock
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = STR_reinforce_the_family_crypt }
+		relative_position_id = STR_militarize_the_highlands
+		x = 2
+		y = 5
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = horse_technology
+				bonus = 0.5
+				uses = 1
+				category = horse_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_mainline
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = STR_knight_expertiese }
+		relative_position_id = STR_militarize_the_highlands
+		x = 2
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			1570 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1919
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1765
+					instant_build = yes
+				}
+			}
+			133 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1920
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1923
+					instant_build = yes
+				}
+			}
+			577 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1997
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1996
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 1995
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_knight_expertiese
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = STR_captain_knighthoods }
+		relative_position_id = STR_militarize_the_highlands
+		x = 2
+		y = 7
+		cost = 24
+
+		completion_reward = {
+			IF = {
+				limit = { has_idea = STR_arathi_riders }
+				swap_ideas = {
+					remove_idea = STR_arathi_riders
+					add_idea = STR_arathi_riders_armor
+				}
+			}
+			IF = {
+				limit = { has_idea = STR_arathi_riders_2 }
+				swap_ideas = {
+					remove_idea = STR_arathi_riders_2
+					add_idea = STR_arathi_riders_2_armor
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_captain_knighthoods
+		icon = GFX_goal_generic_cavalry
+		prerequisite = { focus = STR_improved_stock }
+		relative_position_id = STR_militarize_the_highlands
+		x = 2
+		y = 6
+		cost = 24
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = captain_technology
+				bonus = 0.5
+				uses = 1
+				category = captain_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_ensure_the_future
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = STR_knight_expertiese }
+		relative_position_id = STR_militarize_the_highlands
+		x = 4
+		y = 8
+		cost = 24
+
+		completion_reward = {
+			###Add Event to spawn a Max XP 20-width Royal guard division if
+			###STR is not in control of 2 of the following;
+			###131, 2211, 1570
+			###After Capitulation have 50% chance of leader dying
+			1734 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 1729
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			129 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 1768
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 1763
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_south_wharf_intelligence
+		icon = GFX_focus_generic_secret_service_agency
+		prerequisite = { focus = STR_cove_naval_garrison }
+		prerequisite = { focus = STR_integrate_the_peasents }
+		relative_position_id = STR_militarize_the_highlands
+		x = -1
+		y = 9
+		cost = 24
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			if = {
+				limit = { has_idea = STR_trained_spies }
+				swap_ideas = {
+					remove_idea = STR_trained_spies
+					add_idea = STR_trained_spies_wharf
+				}
+			}
+			else = { add_ideas = STR_south_wharf }
+		}
+	}
+
+	focus = {
+		id = STR_professional_armed_forces
+		icon = GFX_focus_ETH_peacekeeping_forces
+		prerequisite = { focus = STR_mainline }
+		prerequisite = { focus = STR_integrate_the_peasents }
+		relative_position_id = STR_militarize_the_highlands
+		x = 1
+		y = 9
+		cost = 24
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_stromic_army_corps_4
+				add_idea = STR_stromic_army_corps_5
+			}
+		}
+	}
+
+	focus = {
+		id = STR_protecters_of_the_realm_alliance
+		icon = GFX_focus_chosen_of_the_light
+		x = 27
+		y = 11
+		cost = 24
+		mutually_exclusive = { focus = STR_protecters_of_the_realm_neutral }
+
+		available = {
+			alliance > 0.55
+			has_completed_focus = STR_storm_on_the_horizon
+			has_completed_focus = STR_a_dear_friend
+			NOT = { has_completed_focus = STR_what_we_do_best }
+		}
+
+		completion_reward = {
+			add_political_power = 150
+			set_politics = {
+				ruling_party = alliance
+				elections_allowed = no
+			}
+		}
+	}
+
+	focus = {
+		id = STR_protecters_of_the_realm_neutral
+		icon = GFX_focus_BUL_cooperate_with_the_zveno
+		x = 29
+		y = 11
+		cost = 24
+		mutually_exclusive = { focus = STR_protecters_of_the_realm_alliance }
+
+		available = {
+			neutral > 0.55
+			OR = {
+				has_completed_focus = STR_bitter_heart
+				has_completed_focus = STR_ear_of_the_king
+			}
+			has_completed_focus = STR_storm_on_the_horizon
+			NOT = { has_completed_focus = STR_what_we_do_best }
+		}
+
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = STR_stonefist_covenant
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { 
+			focus = STR_protecters_of_the_realm_alliance 
+			focus = STR_protecters_of_the_realm_neutral
+		}
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = 1
+		y = 1
+		cost = 14
+
+		available = { is_in_faction = no }
+
+		bypass = { is_faction_leader = yes }
+
+		completion_reward = {
+			create_faction = "Stonefist Covenant"
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	focus = {
+		id = STR_force_the_stormpike
+		icon = GFX_focus_chosen_of_the_light
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = -1
+		y = 1
+		cost = 14
+
+		available = { 
+			OR = {
+				has_country_flag = SPC_enforced_leadership
+				SPC = { is_puppet_of = STR }
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STR_mountain_pact_STR
+			SPC = { add_ideas = STR_skyward_pact_AER }
+		}
+	}
+
+	focus = {
+		id = STR_align_the_stormpike
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { focus = STR_stonefist_covenant }
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = 0
+		y = 2
+		cost = 24
+
+		available = { is_faction_leader = yes }
+
+		completion_reward = {
+			if = {
+				limit = {
+					SPC = {
+						OR = {
+							has_government = neutral
+							has_government = alliance
+						}
+					}
+				}
+				add_to_faction = SPC
+				add_ideas = STR_mountain_pact_STR
+				SPC = { add_ideas = STR_skyward_pact_AER }
+			}
+			if = {
+				limit = {
+					SPC = {
+						NOT = {
+							has_government = neutral
+							has_government = alliance
+						}
+					}
+				}
+				set_country_flag = SPC_enforced_leadership
+				declare_war_on = {
+					target = SPC
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_sniper_company
+		icon = GFX_focus_NET_dwarven_leadership
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = -1
+		y = 3
+		cost = 24
+		prerequisite = { focus = STR_align_the_stormpike }
+
+		available = {
+			country_exists = SPC
+			ROOT = {
+				OR = {
+					is_in_faction_with = SPC
+					SPC = { is_puppet_of = ROOT }
+				}
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = { NOT = { is_special_project_completed = sp:sp_smoothbore_rifles } }
+				complete_special_project = sp:sp_smoothbore_rifles
+			}
+			complete_special_project = sp:sp_dwarven_marksmen
+		}
+	}
+
+	focus = {
+		id = STR_force_the_wildhammers
+		icon = GFX_focus_chosen_of_the_light
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = 3
+		y = 1
+		cost = 14
+
+		available = { 
+			OR = {
+				has_country_flag = AER_enforced_leadership
+				AER = { is_puppet_of = STR }
+			}
+		}
+
+		completion_reward = {
+			add_ideas = STR_skyward_pact_STR
+			AER = { add_ideas = STR_skyward_pact_AER }
+		}
+	}
+
+	focus = {
+		id = STR_align_the_wildhammers
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { focus = STR_stonefist_covenant }
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = 2
+		y = 2
+		cost = 24
+
+		available = { is_faction_leader = yes }
+
+		completion_reward = {
+			if = {
+				limit = {
+					AER = {
+						OR = {
+							has_government = neutral
+							has_government = alliance
+						}
+					}
+				}
+				add_to_faction = AER
+				add_ideas = STR_skyward_pact_STR
+				AER = { add_ideas = STR_skyward_pact_AER }
+			}
+			if = {
+				limit = {
+					AER = {
+						NOT = {
+							has_government = neutral
+							has_government = alliance
+						}
+					}
+				}
+				set_country_flag = AER_enforced_leadership
+				declare_war_on = {
+					target = AER
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_a_great_honour
+		icon = GFX_focus_gryphons
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = 3
+		y = 3
+		cost = 24
+		prerequisite = { focus = STR_align_the_wildhammers }
+
+		available = {
+			country_exists = AER
+			ROOT = {
+				OR = {
+					is_in_faction_with = AER
+					AER = { is_puppet_of = ROOT }
+				}
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = organic_air_technology
+				bonus = 0.75
+				uses = 1
+				category = organic_air_technology
+			}
+			add_breakthrough_progress = {
+				value = 0.5
+				specialization = specialization_air
+			}
+			add_equipment_to_stockpile = {
+				type = organic_fighter_equipment_2
+				amount = 30
+				producer = AER
+			}
+		}
+	}
+
+	focus = {
+		id = STR_two_hammer_union
+		icon = GFX_focus_chosen_of_the_light
+		prerequisite = { focus = STR_align_the_stormpike }
+		prerequisite = { focus = STR_align_the_wildhammers }
+		relative_position_id = STR_protecters_of_the_realm_alliance
+		x = 1
+		y = 3
+		cost = 7
+
+		available = {
+			SPC = { is_in_faction_with = STR }
+			AER = { is_in_faction_with = STR }
+		}
+
+		completion_reward = {
+			AER = {
+				add_opinion_modifier = {
+					target = SPC
+					modifier = SHC_common_understanding
+				}
+				reverse_add_opinion_modifier = {
+					target = SPC
+					modifier = SHC_common_understanding
+				}
+			}
+			AER = { add_ideas = STR_two_hammer_union }
+			SPC = { add_ideas = STR_two_hammer_union }
+		}
+	}
+
+	focus = {
+		id = STR_our_masters_will
+		icon = GFX_focus_ebon_blade_death_knight
+		x = 47
+		y = 11
+		cost = 14
+
+		available = {
+			#OR = {
+			#	#has_government = fel
+			#	has_government = death
+			#	#has_government = old_gods
+			#}
+			has_completed_focus = STR_the_traitor_revealed
+		}
+
+		completion_reward = {
+			IF = {
+				limit = { has_government = death }
+				custom_effect_tooltip = convert_to_necromancy_tt
+				hidden_effect = {
+				  	remove_ideas = secondary_religion_necromancy
+				  	add_ideas = primary_religion_necromancy
+				  	remove_from_array = {
+						array = accepted_religions
+						value = 1
+					}
+				}
+				if = {
+					limit = { has_country_leader_with_trait = from_beyond_trait }
+					country_event = stromgarde.44
+				}
+			}
+			IF = {
+				limit = { has_government = old_gods }
+				custom_effect_tooltip = convert_to_followers_of_the_firelord_tt
+				hidden_effect = {
+				  	remove_ideas = secondary_religion_followers_of_the_firelord
+				  	add_ideas = primary_religion_followers_of_the_firelord
+				  	remove_from_array = {
+						array = accepted_religions
+						value = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_purge_the_light
+		icon = GFX_focus_ebon_blade_death_knight
+		relative_position_id = STR_our_masters_will
+		x = 0
+		y = 1
+		cost = 14
+		prerequisite = { focus = STR_our_masters_will }
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = -0.10
+			every_state = {
+				limit = {
+					is_core_of = STR
+					impassable = no
+				}
+				add_manpower = -50
+				set_state_religion_to_primary_religion = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = STR
+					impassable = yes
+				}
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+	}
+
+	focus = {
+		id = STR_allies_from_beyond
+		icon = GFX_focus_ebon_blade_death_knight
+		relative_position_id = STR_our_masters_will
+		x = 0
+		y = 2
+		cost = 14
+		prerequisite = { focus = STR_purge_the_light }
+
+		completion_reward = {
+			IF = {
+				limit = { has_government = death }
+				add_ideas = undead_secondary_race
+				hidden_effect = {
+					add_to_array = {
+						array = accepted_races
+						value = 129
+					}
+					every_owned_state = {
+						if = {
+							limit = {
+								is_controlled_by = STR
+								impassable = no
+							}
+							random = {
+								chance = 15
+								set_variable = { var = race value = 129	}
+								add_manpower = 3000
+							}
+						}
+					}
+				}
+			}
+			IF = {
+				limit = { has_government = old_gods }
+				add_ideas = fire_elemental_secondary_race
+				hidden_effect = {
+					add_to_array = {
+						array = accepted_races
+						value = 34
+					}
+					every_owned_state = {
+						if = {
+							limit = {
+								is_controlled_by = STR
+								impassable = no
+							}
+							random = {
+								chance = 15
+								set_variable = { var = race value = 34 }
+								add_manpower = 3000
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_bleed_them_dry
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_our_masters_will
+		x = -6
+		y = 0
+		cost = 14
+
+		available = {
+			has_completed_focus = STR_the_guardians_gift
+		}
+	
+		completion_reward = {
+			2212 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2002
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2001
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 2000
+					instant_build = yes
+				}
+			}
+			add_timed_idea = {
+				idea = STR_bleed_them_dry
+				days = 90
+			}
+		}
+	}
+
+	focus = {
+		id = STR_repel_the_savages
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 1
+		cost = 14
+		prerequisite = { focus = STR_bleed_them_dry }
+	
+		completion_reward = {
+			add_ideas = demons_secondary_race
+			swap_ideas = {
+				remove_idea = STR_trollbane_legacy
+				add_idea = STR_trollbane_legacy_1
+			}
+			127 = {
+				set_state_name = "The Eternal Flame"
+				set_province_name = {
+					id = 2058
+					name = "The Eternal Flame"
+				}
+			}
+			hidden_effect = {
+				swap_ideas = {
+					remove_idea = STR_forest_troll_bonus
+					add_idea = STR_forest_troll_bonus_1
+				}
+				add_to_array = {
+					array = accepted_races
+					value = 18
+				}
+				every_owned_state = {
+					if = {
+						limit = {
+							is_controlled_by = STR
+							impassable = no
+						}
+						random = {
+							chance = 15
+							set_variable = { var = race value = 18 }
+							add_manpower = 3000
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_harvest_their_essence
+		icon = GFX_focus_fel_life_tap
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 2
+		cost = 14
+		prerequisite = { focus = STR_repel_the_savages }
+	
+		completion_reward = {
+			add_breakthrough_progress = {
+				value = 0.3
+				specialization = specialization_magic
+			}
+			complete_special_project = sp:sp_half_blood_warriors
+			IF = {
+				limit = { has_government = fel }
+				add_ideas = primary_religion_the_fel
+				hidden_effect = {
+				  	remove_ideas = secondary_religion_the_fel
+				  	remove_from_array = {
+						array = accepted_religions
+						value = 1
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_kings_deployment
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_bleed_them_dry
+		x = 1
+		y = 3
+		cost = 14
+		prerequisite = { focus = STR_harvest_their_essence }
+	
+		completion_reward = {
+			add_political_power = -100
+			add_war_support = 0.05
+			STR_thoras_trollbane = {
+				add_unit_leader_trait = thorough_planner
+				add_planning = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_crimson_will
+		icon = GFX_focus_fel_sargeras
+		relative_position_id = STR_the_kings_deployment
+		x = 1
+		y = 1
+		cost = 14
+		prerequisite = { focus = STR_the_kings_deployment }
+	
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_stability = 0.05
+			every_state = {
+				limit = {
+					is_core_of = STR
+					impassable = no
+				}
+				add_manpower = -50
+				set_state_religion_to_primary_religion = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = STR
+					impassable = yes
+				}
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+	}
+
+	focus = {
+		id = STR_subjugate_the_hinterlands
+		icon = GFX_focus_fel_inquisitor
+		relative_position_id = STR_bleed_them_dry
+		x = -1
+		y = 6
+		cost = 14
+		prerequisite = { 
+			focus = STR_hex_hound_hunters
+			focus = STR_living_flames
+		}
+
+		mutually_exclusive = { focus = STR_the_empires_crown }
+	
+		completion_reward = {
+			hidden_effect = {
+				137 = { set_variable = { var = race value = 18 } }
+				138 = { set_variable = { var = race value = 18 } }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ROOT
+					check_variable = { var = race value = 153 }
+					NOT = { is_core_of = ROOT }
+				}
+				add_compliance = 45
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_empires_crown
+		icon = GFX_focus_fel_doom_lord
+		relative_position_id = STR_bleed_them_dry
+		x = 1
+		y = 6
+		cost = 14
+		prerequisite = { 
+			focus = STR_hex_hound_hunters
+			focus = STR_living_flames
+		}
+		mutually_exclusive = { focus = STR_subjugate_the_hinterlands }
+	
+		completion_reward = {
+			hidden_effect = {
+				134 = {
+					add_core_of = STR
+					hidden_effect = {
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+				313 = {
+					add_core_of = STR
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+				442 = {
+					add_core_of = STR
+					hidden_effect = {
+						set_state_race_to_primary_race = yes
+						set_state_religion_to_primary_religion = yes
+					}
+				}
+			}
+			19 = {
+				add_core_of = STR
+				add_manpower = -100000
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+			137 = {
+				add_core_of = STR
+				add_manpower = -20000
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+			138 = {
+				add_core_of = STR
+				add_manpower = -19000
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+			139 = {
+				add_core_of = STR
+				add_manpower = -400
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+			225 = {
+				add_core_of = STR
+				add_manpower = -1400
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+			233 = {
+				add_core_of = STR
+				add_manpower = -19000
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+			2214 = {
+				add_core_of = STR
+				add_manpower = -10000
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+					if = {
+						limit = { industrial_complex > 2 }
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					if = {
+						limit = { arms_factory > 2 }
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					remove_building = {
+						type = farm
+						level = 3
+					}
+					remove_building = {
+						type = lumber_mill
+						level = 3
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_felsteel_production
+		icon = GFX_focus_dark_iron_fel_reaver
+		relative_position_id = STR_bleed_them_dry
+		x = 2
+		y = 7
+		cost = 14
+		prerequisite = { 
+			focus = STR_subjugate_the_hinterlands
+			focus = STR_the_empires_crown
+		}
+	
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_roland_hearthwell
+			activate_mission = STR_felsteel_production
+			127 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				set_technology = { felsteel_weaponry = 1 popup = no }
+			}
+		}
+	}
+
+	focus = {
+		id = STR_shadows_of_doubt
+		icon = GFX_focus_fel_dreadlord
+		relative_position_id = STR_bleed_them_dry
+		x = -1
+		y = 8
+		cost = 14
+		prerequisite = { focus = STR_whispers_in_the_flames }
+		mutually_exclusive = { focus = STR_crush_the_heretics }
+	
+		completion_reward = {
+			STR = {
+				set_autonomy = {
+					target = TOL
+					autonomy_state = autonomy_free
+					end_wars = no
+					end_civil_wars = no
+				}
+			}
+			TOL = {
+				add_timed_idea = {
+					idea = TOL_breakdown_of_command
+					days = 90
+				}
+			}
+			STR_galen_trollbane = {
+				add_unit_leader_trait = dreadlord_loyalists
+			}
+			start_civil_war = {
+				ruling_party = fel
+				ideology = neutral
+				size = 0.4
+				capital = 128
+				states = { 128 131 2212 580 1544 1566 579 1568 }
+	
+				keep_all_characters = yes
+	
+				PREV = { STR_danath_trollbane = { set_nationality = PREV.PREV } }
+	
+				promote_character = {
+					character = STR_danath_trollbane
+					ideology = neutral_type
+				}
+	
+				hidden_effect = {
+	
+					set_popularities = {
+						alliance = 40
+						horde = 0
+						death = 0
+						fel = 0
+						old_gods = 0
+						titans = 0
+						neutral = 60
+					}
+	
+					add_ideas = {
+						military_admin
+						limited_conscription
+						preparing_for_war
+						limited_exports
+		
+						human_primary_race
+						primary_trait_diplomatic
+						primary_trait_human_spirit
+						primary_trait_perception
+		
+						primary_religion_the_church_of_the_holy_light
+					}
+		
+					set_country_flag = human_technology
+					inherit_technology = STR
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_crush_the_heretics
+		icon = GFX_focus_fel_dreadlord
+		relative_position_id = STR_bleed_them_dry
+		x = 1
+		y = 8
+		cost = 14
+		prerequisite = { focus = STR_whispers_in_the_flames }
+
+		mutually_exclusive = { focus = STR_shadows_of_doubt }
+
+		available = {
+			fel > 0.7
+		}
+	
+		completion_reward = {
+			retire_character = STR_danath_trollbane
+			STR_galen_trollbane = {
+				add_unit_leader_trait = dreadlord_loyalists
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_temple_of_eternal_flame
+		icon = GFX_focus_fel_dark_portal
+		relative_position_id = STR_bleed_them_dry
+		x = 2
+		y = 10
+		cost = 14
+		prerequisite = { focus = STR_crimson_lords_chosen }
+	
+		completion_reward = {
+			127 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2058
+				}
+				add_manpower = 8000
+				set_variable = { var = race value = 18 }
+			}
+		}
+	}
+
+	focus = {
+		id = STR_destructive_terraforming
+		icon = GFX_focus_fel_demon_wrath
+		relative_position_id = STR_bleed_them_dry
+		x = 2
+		y = 11
+		cost = 14
+		prerequisite = { focus = STR_the_temple_of_eternal_flame }
+
+		mutually_exclusive = { focus = STR_the_labor_of_man }
+	
+		completion_reward = {
+			127 = {
+				add_extra_state_shared_building_slots = 2
+				add_resource = {
+					type = ores
+					amount = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_labor_of_man
+		icon = GFX_focus_fel_inquisitor
+		relative_position_id = STR_bleed_them_dry
+		x = 4
+		y = 11
+		cost = 14
+		prerequisite = { focus = STR_the_temple_of_eternal_flame }
+
+		mutually_exclusive = { focus = STR_destructive_terraforming }
+	
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_the_labor_of_man
+				days = 60
+			}
+		}
+	}
+
+	focus = {
+		id = STR_chosen_of_the_flame
+		icon = GFX_focus_fel_blood
+		relative_position_id = STR_bleed_them_dry
+		x = -2
+		y = 10
+		cost = 14
+		prerequisite = { focus = STR_crimson_lords_chosen }
+	
+		completion_reward = {
+			add_ideas = STR_chosen_of_the_flame_idea
+		}
+	}
+
+	focus = {
+		id = STR_eternal_guard_dogs
+		icon = GFX_focus_fel_sargeras_2
+		relative_position_id = STR_bleed_them_dry
+		x = -2
+		y = 11
+		cost = 14
+		prerequisite = { focus = STR_chosen_of_the_flame }
+
+		mutually_exclusive = { focus = STR_mastering_the_flame }
+	
+		completion_reward = {
+			set_technology = {
+				demons_fel_hunter_equipment_tech_3 = 1
+				demons_fel_hunter_1_2 = 1
+				demons_fel_hunter_2_1 = 1
+			}
+		}
+	}
+
+	focus = {
+		id = STR_mastering_the_flame
+		icon = GFX_focus_fel_life_tap
+		relative_position_id = STR_bleed_them_dry
+		x = -4
+		y = 11
+		cost = 14
+		prerequisite = { focus = STR_chosen_of_the_flame }
+
+		mutually_exclusive = { focus = STR_eternal_guard_dogs }
+	
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_chosen_of_the_flame_idea
+				add_idea = STR_chosen_of_the_flame_idea_2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_pact_with_the_legion
+		icon = GFX_focus_fel_archimonde
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 10
+		cost = 14
+		prerequisite = { focus = STR_crimson_lords_chosen }
+	
+		completion_reward = {
+			add_ideas = within_their_borders_idea
+			hidden_effect = { set_cosmetic_tag = STR_dreadlord }
+			create_faction = "The Legion of Azeroth"
+		}
+	}
+
+	focus = {
+		id = STR_designs_from_beyond
+		icon = GFX_focus_dark_iron_fel_reaver
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 11
+		cost = 14
+		prerequisite = { focus = STR_the_empires_crown }
+		prerequisite = { focus = STR_the_temple_of_eternal_flame }
+		prerequisite = { focus = STR_chosen_of_the_flame }
+	
+		completion_reward = {
+			set_technology = { fel_reaver_tech = 1 }
+			custom_effect_tooltip = STR_designs_from_beyond_tt
+		}
+	}
+
+	focus = {
+		id = STR_crimson_forged_steel
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_bleed_them_dry
+		x = -1
+		y = 3
+		cost = 14
+		prerequisite = { focus = STR_harvest_their_essence }
+
+		search_filters = { FOCUS_FILTER_TRADE_GUILD }
+	
+		completion_reward = {
+			add_ideas = crimson_forge_smiths
+			custom_effect_tooltip = blacksmith_funding
+			GEN_upgrade_blacksmith = yes
+			if = {
+				limit = { has_idea = blacksmith_guild }
+				swap_ideas = {
+					remove_idea = blacksmith_guild
+					add_idea = blacksmith_guild_1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_conscript_the_devout
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_crimson_forged_steel
+		x = -1
+		y = 1
+		cost = 14
+		prerequisite = { focus = STR_crimson_forged_steel }
+	
+		completion_reward = {
+			add_ideas = power_beyond_imagination_idea 
+			### Make a Special Conscription for Demons at some point
+		}
+	}
+
+	focus = {
+		id = STR_hex_hound_hunters
+		icon = GFX_focus_fel_sargeras_2
+		relative_position_id = STR_bleed_them_dry
+		x = -1
+		y = 5
+		cost = 14
+		prerequisite = { focus = STR_conscript_the_devout }
+		prerequisite = { focus = STR_the_chosens_commander }
+		mutually_exclusive = { focus = STR_living_flames }
+	
+		completion_reward = {
+			hidden_effect = {
+				set_technology = {
+					demons_fel_hunter_tech = 1
+					demons_fel_hunter_equipment_tech_2 = 1
+				}
+			}
+			division_template = {
+				name = "Hex Hounds"
+				priority = 1
+				regiments = {
+					demons_fel_hunter = { x = 0 y = 0 }
+					demons_fel_hunter = { x = 0 y = 1 }
+					half_blood_warriors = { x = 0 y = 2 }
+					half_blood_warriors = { x = 0 y = 3 }
+					demons_fel_hunter = { x = 1 y = 0 }
+					demons_fel_hunter = { x = 1 y = 1 }
+					half_blood_warriors = { x = 1 y = 2 }
+					half_blood_warriors = { x = 1 y = 3 }
+				}
+			}
+
+			capital_scope  = {
+				create_unit = {
+					division = "name = \"Hex Hounds\" division_template = \"Hex Hounds\" start_experience_factor = 0.4"
+					owner = STR
+					count = 3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_chosens_commander
+		icon = GFX_focus_fel_inquisitor
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 4
+		cost = 14
+		prerequisite = { focus = STR_crimson_forged_steel }
+		prerequisite = { focus = STR_the_kings_deployment }
+	
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = STR_elynne_carver
+			create_field_marshal = {
+				name = "Aldric The Chosen"
+				picture = "generic_1.dds"
+				traits = { 
+					infantry_leader 
+					aggressive_assaulter
+					offensive_doctrine
+					infantry_expert
+				}
+				skill = 4
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 2
+			}
+		}
+	}
+
+	focus = {
+		id = STR_living_flames
+		icon = GFX_focus_fel_demon_wrath
+		relative_position_id = STR_bleed_them_dry
+		x = 1
+		y = 5
+		cost = 14
+		prerequisite = { focus = STR_the_chosens_commander }
+		prerequisite = { focus = STR_the_crimson_will }
+		mutually_exclusive = { focus = STR_hex_hound_hunters }
+	
+		completion_reward = {
+			hidden_effect = {
+				set_technology = {
+					demons_infernal_tech = 1
+					demons_infernal_equipment_tech_2 = 1
+				}
+			}
+			division_template = {
+				name = "Fire Lords"
+				priority = 1
+				regiments = {
+					demons_infernal = { x = 0 y = 0 }
+					demons_infernal = { x = 0 y = 1 }
+					half_blood_warriors = { x = 0 y = 2 }
+					half_blood_warriors = { x = 0 y = 3 }
+					demons_infernal = { x = 1 y = 0 }
+					demons_infernal = { x = 1 y = 1 }
+					half_blood_warriors = { x = 1 y = 2 }
+					half_blood_warriors = { x = 1 y = 3 }
+				}
+			}
+
+			capital_scope  = {
+				create_unit = {
+					division = "name = \"Fire Lords\" division_template = \"Fire Lords\" start_experience_factor = 0.6"
+					owner = STR
+					count = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_great_war_machines
+		icon = GFX_focus_fel_morag_engineer
+		relative_position_id = STR_crimson_forged_steel
+		x = -1
+		y = 4
+		cost = 14
+		prerequisite = { 
+			focus = STR_subjugate_the_hinterlands
+			focus = STR_the_empires_crown
+		}
+	
+		completion_reward = {
+			set_technology = {
+				demons_infernal_machine_tech = 1
+				demons_infernal_machine_equipment_tech_2 = 1
+			}
+			swap_ideas = {
+				remove_idea = crimson_forge_smiths
+				add_idea = crimson_forge_smiths_1
+			}
+		}
+	}
+
+	focus = {
+		id = STR_crimson_lords_chosen
+		icon = GFX_focus_fel_kiljaden
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 9
+		cost = 14
+		prerequisite = { 
+			focus = STR_crush_the_heretics 
+			focus = STR_shadows_of_doubt
+		}
+	
+		completion_reward = {
+			add_ideas = kiljadens_plans_idea
+		}
+	}
+
+	focus = {
+		id = STR_whispers_in_the_flames
+		icon = GFX_focus_legion_faction_3
+		relative_position_id = STR_bleed_them_dry
+		x = 0
+		y = 7
+		cost = 14
+		prerequisite = { 
+			focus = STR_subjugate_the_hinterlands
+			focus = STR_the_empires_crown
+		}
+	
+		completion_reward = {
+			add_popularity = {
+				ideology = fel
+				popularity = 0.05
+			}
+			add_ideas = STR_the_guiding_hand
+		}
+	}
+
+	focus = {
+		id = STR_the_deathbinders
+		icon = GFX_focus_the_young_and_the_dead
+		relative_position_id = STR_our_masters_will
+		x = 0
+		y = 3
+		cost = 24
+		prerequisite = { focus = STR_allies_from_beyond }
+		
+		available = {
+			has_completed_focus = STR_allies_from_beyond
+			has_country_flag = death_alignment
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = death
+				popularity = 0.1
+			}
+			add_ideas = STR_pact_of_the_grave_1
+		}
+	}
+
+	focus = {
+		id = STR_whispers_of_the_grave
+		icon = GFX_focus_the_young_and_the_dead
+		relative_position_id = STR_the_deathbinders
+		x = 0
+		y = 1
+		cost = 24
+		prerequisite = { focus = STR_the_deathbinders }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_pact_of_the_grave_1
+				add_idea = STR_pact_of_the_grave_2
+			}
+			if = {
+				limit = { NOT = { is_special_project_completed = sp:sp_deathbound_human } }
+				complete_special_project = sp:sp_deathbound_human
+			}
+		}
+	}
+
+	focus = {
+		id = STR_we_are_the_living
+		icon = GFX_focus_ebon_blade_death_knight
+		relative_position_id = STR_the_deathbinders
+		x = -1
+		y = 2
+		cost = 24
+		prerequisite = { focus = STR_whispers_of_the_grave }
+
+		available = {
+			has_country_leader_with_trait = brutal_tyrant
+		}
+
+		completion_reward = {
+			add_ideas = we_are_the_living_idea
+		}
+	}
+
+	focus = {
+		id = STR_my_eternal_legacy
+		icon = GFX_focus_ebon_blade_death_knight
+		relative_position_id = STR_the_deathbinders
+		x = -1
+		y = 3
+		cost = 24
+		prerequisite = { focus = STR_we_are_the_living }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_my_eternal_legacy
+				days = 180
+			}
+			12 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			1569 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			1568 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			1567 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_whispers_of_betrayal
+		icon = GFX_focus_ebon_blade_death_knight
+		relative_position_id = STR_the_deathbinders
+		x = -1
+		y = 4
+		cost = 24
+		prerequisite = { focus = STR_my_eternal_legacy }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_pact_of_the_grave_2
+				add_idea = STR_pact_of_the_grave_3_1
+			}
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_walls_of_spectors
+		icon = GFX_focus_ebon_blade_death_knight
+		relative_position_id = STR_the_deathbinders
+		x = -1
+		y = 5
+		cost = 24
+		prerequisite = { focus = STR_whispers_of_betrayal }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_pact_of_the_grave_3_1
+				add_idea = STR_pact_of_the_grave_4_1
+			}
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_the_shambling_empire
+		icon = GFX_focus_organize_the_acolytes
+		relative_position_id = STR_the_deathbinders
+		x = 0
+		y = 6
+		cost = 14
+		prerequisite = { 
+			focus = STR_walls_of_spectors
+			focus = STR_deathforged_arsenal
+		}
+
+		completion_reward = {
+			complete_national_focus = STR_my_new_empire
+			if = {
+				limit = { has_country_leader_with_trait = brutal_tyrant }
+				set_cosmetic_tag = STR_Restless
+			}
+			if = {
+				limit = { has_country_leader_with_trait = from_beyond_trait }
+				set_cosmetic_tag = STR_Necropolis
+			}
+		}
+	}
+
+	focus = {
+		id = STR_hunt_the_living
+		icon = GFX_focus_undead_armies
+		relative_position_id = STR_the_deathbinders
+		x = 1
+		y = 2
+		cost = 24
+		prerequisite = { focus = STR_whispers_of_the_grave }
+
+		available = {
+			has_country_leader_with_trait = from_beyond_trait
+		}
+
+		completion_reward = {
+			add_ideas = hunt_the_living_idea
+		}
+	}
+
+	focus = {
+		id = STR_prepare_the_harvest
+		icon = GFX_focus_undead_armies
+		relative_position_id = STR_the_deathbinders
+		x = 1
+		y = 3
+		cost = 24
+		prerequisite = { focus = STR_hunt_the_living }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = STR_prepare_the_harvest
+				days = 180
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = STR_necromantic_foundries
+		icon = GFX_focus_undead_armies
+		relative_position_id = STR_the_deathbinders
+		x = 1
+		y = 4
+		cost = 24
+		prerequisite = { focus = STR_prepare_the_harvest }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_pact_of_the_grave_2
+				add_idea = STR_pact_of_the_grave_3_2
+			}
+			add_tech_bonus = {
+				name = city_growth_technology
+				bonus = 0.5
+				uses = 1
+				category = city_growth_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STR_deathforged_arsenal
+		icon = GFX_focus_undead_armies
+		relative_position_id = STR_the_deathbinders
+		x = 1
+		y = 5
+		cost = 24
+		prerequisite = { focus = STR_necromantic_foundries }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = STR_pact_of_the_grave_3_2
+				add_idea = STR_pact_of_the_grave_4_2
+			}
+			add_tech_bonus = {
+				name = peasant_technology
+				bonus = 0.5
+				uses = 1
+				category = peasant_technology
+			}
+		}
+	}
+}

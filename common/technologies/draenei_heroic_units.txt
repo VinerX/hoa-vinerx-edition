@@ -1,0 +1,1130 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	draenei_altar_of_the_naaru_tech = {
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_heroic_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_vindicator_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_exarch_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_naaru_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_heroic_training_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_heroic_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 4 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_heroic_training_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_heroic_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_heroic_training_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 4 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_vindicator_tech = {
+
+		enable_subunits = {
+			draenei_vindicator
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_vindicator_equipment_tech_1 = 1	}
+			#custom_effect_tooltip = draenei_vindicator_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_vindicator_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_vindicator_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_vindicator_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_vindicator_templars_verdict_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_vindicator_word_of_glory
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_vindicator_templars_verdict_tech = {
+
+		draenei_vindicator = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		draenei_lightsworn = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_vindicator_word_of_glory }
+
+		path = {
+			leads_to_tech = draenei_vindicator_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_vindicator_word_of_glory
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_vindicator_word_of_glory
+			}
+		}
+	}
+
+	draenei_vindicator_word_of_glory = {
+
+		draenei_vindicator = {
+			defense = 0.10
+			breakthrough = 0.10
+			casualty_trickleback = 0.01
+		}
+
+		draenei_lightsworn = {
+			defense = 0.10
+			breakthrough = 0.10
+			casualty_trickleback = 0.01
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_vindicator_templars_verdict_tech }
+
+		path = {
+			leads_to_tech = draenei_vindicator_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_vindicator_templars_verdict_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_vindicator_templars_verdict_tech
+			}
+		}
+	}
+
+	draenei_vindicator_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_vindicator_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_vindicator_shield_of_vengeance_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_vindicator_grand_crusader_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_vindicator_grand_crusader_tech = {
+
+		draenei_vindicator = {
+			max_organisation = 5
+			max_strength = 0.50
+			default_morale = 0.25
+		}
+
+		draenei_lightsworn = {
+			max_organisation = 5
+			max_strength = 0.50
+			default_morale = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_vindicator_shield_of_vengeance_tech }
+
+		path = {
+			leads_to_tech = draenei_vindicator_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_vindicator_shield_of_vengeance_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_vindicator_shield_of_vengeance_tech
+			}
+		}
+	}
+
+	draenei_vindicator_shield_of_vengeance_tech = {
+
+		draenei_vindicator = {
+			ap_attack = 0.25
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		draenei_lightsworn = {
+			ap_attack = 0.25
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_vindicator_grand_crusader_tech }
+
+		path = {
+			leads_to_tech = draenei_vindicator_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_vindicator_grand_crusader_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_vindicator_grand_crusader_tech
+			}
+		}
+	}
+
+	draenei_vindicator_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_vindicator_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_vindicator_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_exarch_tech = {
+
+		enable_subunits = {
+			draenei_exarch
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_exarch_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = draenei_exarch_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_exarch_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_exarch_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_exarch_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_exarch_swift_justice
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_exarch_lights_hammer
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_exarch_swift_justice = {
+
+		draenei_exarch = {
+			maximum_speed = 0.2
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_exarch_lights_hammer }
+
+		path = {
+			leads_to_tech = draenei_exarch_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_exarch_lights_hammer
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_exarch_lights_hammer
+			}
+		}
+	}
+
+	draenei_exarch_lights_hammer = {
+
+		draenei_exarch = {
+			hard_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_exarch_swift_justice }
+
+		path = {
+			leads_to_tech = draenei_exarch_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_exarch_swift_justice
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_exarch_swift_justice
+			}
+		}
+	}
+
+	draenei_exarch_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_exarch_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_exarch_naarus_aegis
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_exarch_final_reckoning_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_exarch_naarus_aegis = {
+
+		draenei_exarch = {
+			max_strength = 0.50
+			armor_value = 0.25
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_exarch_final_reckoning_tech }
+
+		path = {
+			leads_to_tech = draenei_exarch_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_exarch_final_reckoning_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_exarch_final_reckoning_tech
+			}
+		}
+	}
+
+	draenei_exarch_final_reckoning_tech = {
+
+		draenei_exarch = {
+			breakthrough = 0.25
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_exarch_naarus_aegis }
+
+		path = {
+			leads_to_tech = draenei_exarch_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_exarch_naarus_aegis
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_exarch_naarus_aegis
+			}
+		}
+	}
+
+	draenei_exarch_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_exarch_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_exarch_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_naaru_tech = {
+
+		enable_subunits = {
+			draenei_naaru
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_naaru_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = draenei_naaru_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_naaru_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_naaru_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_naaru_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_naruu_light_shield_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_naruu_light_beam
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	draenei_naruu_light_shield_tech = {
+
+		draenei_naaru = {
+			ap_attack = 0.2
+			breakthrough = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_naruu_light_beam }
+
+		path = {
+			leads_to_tech = draenei_naaru_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_naruu_light_beam
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_naruu_light_beam
+			}
+		}
+	}
+
+	draenei_naruu_light_beam = {
+
+		draenei_naaru = {
+			anti_air_attack = 0.2
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_naruu_light_shield_tech }
+
+		path = {
+			leads_to_tech = draenei_naaru_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_naruu_light_shield_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_naruu_light_shield_tech
+			}
+		}
+	}
+
+	draenei_naaru_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_naaru_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_naruu_void_form
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_naaru_purification_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_naruu_void_form = {
+
+		draenei_naaru = {
+			defense = 0.2
+			max_organisation = 2.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_naaru_purification_tech }
+
+		path = {
+			leads_to_tech = draenei_naaru_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_naaru_purification_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_naaru_purification_tech
+			}
+		}
+	}
+
+	draenei_naaru_purification_tech = {
+
+		draenei_naaru = {
+			hard_attack = 0.1
+			fort = { attack = 0.33 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_naruu_void_form }
+
+		path = {
+			leads_to_tech = draenei_naaru_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = draenei_naruu_void_form
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_naruu_void_form
+			}
+		}
+	}
+
+	draenei_naaru_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_naaru_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	radiant_strike = {
+
+		draenei_naaru = {
+			soft_attack = 0.2
+			breakthrough = 0.15
+		}
+
+		allow = { always = no }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 15 y = 14 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = { factor = 0 }
+	}
+
+	aura_of_hope = {
+
+		draenei_naaru = {
+			max_organisation = 10
+			defense = 0.10
+			supply_consumption_factor = -0.25
+		}
+
+		allow = { always = no }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 17 y = 14 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = { factor = 0 }
+	}
+
+	sanctified_shield = {
+
+		draenei_naaru = {
+			defense = 0.25
+			anti_air_attack = 3
+		}
+
+		allow = { always = no }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_heroic_units_folder
+			position = { x = 19 y = 14 }
+		}
+
+		categories = {
+			altar_technology
+			draenei_naaru_technology
+		}
+
+		ai_will_do = { factor = 0 }
+	}
+}

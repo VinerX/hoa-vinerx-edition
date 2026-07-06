@@ -1,0 +1,551 @@
+characters={
+
+	STR_thoras_trollbane = {
+		name = STR_thoras_trollbane
+		portraits = {
+			civilian = { 
+				large = "gfx/leaders/STR/Thoras_Trollbane.dds"
+			}
+			army = {
+				large = "gfx/leaders/STR/Thoras_Trollbane.dds"
+				small = "gfx/interface/ideas/idea_ENG_william_slim.dds" #need portrait
+			}
+		}
+		country_leader = {
+			ideology = alliance_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = horde_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = death_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = fel_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = old_gods_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = titans_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = neutral_type
+			desc = "POLITICS_THORAS_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+
+		field_marshal = {
+			traits = { trait_reckless arms_trait }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+	}
+
+	STR_galen_trollbane = {
+		name = STR_galen_trollbane
+		portraits = {
+			civilian = { 
+				large = "gfx/leaders/STR/Galen_Trollbane.dds"
+			}
+			army = {
+				large = "gfx/leaders/STR/Galen_Trollbane.dds"
+				small = "gfx/interface/ideas/idea_ENG_william_slim.dds" #need portrait
+			}
+		}
+
+		country_leader = {
+			ideology = alliance_type
+			desc = "POLITICS_GALEN_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = horde_type
+			desc = "POLITICS_GALEN_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = death_type
+			desc = "POLITICS_GALEN_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = fel_type
+			desc = "POLITICS_GALEN_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = old_gods_type
+			desc = "POLITICS_GALEN_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = neutral_type
+			desc = "POLITICS_GALEN_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+
+		corps_commander = {
+			traits = { protection_warrior_trait }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+	}
+
+	STR_danath_trollbane = {
+		name = STR_danath_trollbane
+		portraits = {
+			civilian = { 
+				large = "gfx/leaders/STR/Danath_Trollbane.dds"
+			}
+			army = {
+				large = "gfx/leaders/STR/Danath_Trollbane.dds"
+				small = "gfx/interface/ideas/idea_ENG_william_slim.dds" #need portrait
+			}
+		}
+
+		country_leader = {
+			ideology = alliance_type
+			desc = "POLITICS_DANATH_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+		country_leader = {
+			ideology = neutral_type
+			desc = "POLITICS_DANATH_TROLLBANE_DESC"
+			traits = {}
+			id = -1
+		}
+
+		corps_commander = {
+			traits = { protection_warrior_trait }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}
+	}
+
+	STR_valorcall = {
+		name = STR_valorcall
+		portraits = {
+			army = {
+				large = "gfx/leaders/STR/Lieutenant_Valorcall.dds"
+				small = "gfx/interface/ideas/idea_ENG_william_slim.dds" #need portrait
+			}
+		}
+
+		corps_commander = {
+			traits = { cavalry_leader }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 2
+		}
+	}
+
+	###COUNTRY ADVISORS
+
+	STR_vikki_lonsav = {
+		name = STR_vikki_lonsav
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_vikki_lonsav
+			ledger = civilian
+            cost = 100
+            traits = { merchant_idea_2 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_carettaker_alaric = {
+		name = STR_carettaker_alaric
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_carettaker_alaric
+			available = {
+				OR = {
+					has_completed_focus = STR_bitter_heart
+					has_completed_focus = STR_ear_of_the_king
+					has_completed_focus = stay_neutral
+				}
+			}
+			visible = {
+				OR = {
+					NOT = { has_completed_focus = pick_a_side }
+					NOT = { has_completed_focus = serving_higher_powers }
+					NOT = { has_completed_focus = path_of_the_titans }
+				}
+			}
+			ledger = civilian
+            cost = 100
+            traits = { neutrality_partisan_idea }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_carettaker_weston = {
+		name = STR_carettaker_weston
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_carettaker_weston
+			available = { 
+				OR = {
+					has_completed_focus = STR_a_dear_friend
+					has_completed_focus = support_the_alliance
+				}
+			}
+			visible = {
+				OR = {
+					NOT = { has_completed_focus = stay_neutral }
+					NOT = { has_completed_focus = serving_higher_powers }
+					NOT = { has_completed_focus = path_of_the_titans }
+					NOT = { has_completed_focus = generic_support_the_horde_focus }
+				}
+			}
+			ledger = civilian
+            cost = 100
+            traits = { alliance_sympathizer_idea }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_samuel_hawke = {
+		name = STR_samuel_hawke
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_samuel_hawke
+			ledger = civilian
+            cost = 100
+            traits = { logistics_marshal_idea }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_hammon_karwn = {
+		name = STR_hammon_karwn
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_hammon_karwn
+			ledger = civilian
+            cost = 100
+            traits = { builder_idea_1 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_emily_jackson = {
+		name = STR_emily_jackson
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_emily_jackson
+			ledger = civilian
+            cost = 100
+            traits = { stable_master_idea }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_gregor_steelarm = {
+		name = STR_gregor_steelarm
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_gregor_steelarm
+			ledger = civilian
+            cost = 100
+            traits = { foreman_idea_2 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_deneb_walker = {
+		name = STR_deneb_walker
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = high_command
+			idea_token = STR_deneb_walker
+			ledger = army
+            cost = 100
+            traits = { healer_idea_1 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_orman_of_stromgarde = {
+		name = STR_orman_of_stromgarde
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = high_command
+			idea_token = STR_orman_of_stromgarde
+			ledger = army
+            cost = 100
+            traits = { infantry_specialist_idea_2 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_fardel_dabyrie = {
+		name = STR_fardel_dabyrie
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = high_command
+			idea_token = STR_fardel_dabyrie
+			ledger = army
+            cost = 100
+            traits = { recruiter_idea_2 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_carettaker_nevlin = {
+		name = STR_carettaker_nevlin
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = high_command
+			idea_token = STR_carettaker_nevlin
+			ledger = army
+            cost = 100
+            traits = { guardian_idea_2 }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	###FOCUS ADVISORS
+	STR_dathanor_cromwell = {
+		name = STR_dathanor_cromwell
+		portraits = {
+			army = {
+				large = "gfx/leaders/STR/Portrait_STR_Generic_land_5.dds"
+                small = "GFX_idea_generic_advisor_hoa"
+			}
+		}
+
+        advisor = {
+            slot = army_chief
+			idea_token = STR_dathanor_cromwell
+			ledger = army
+			available = { 
+				OR = {
+					has_completed_focus = STR_infantry_captain 
+					has_start_date > 600.1.1
+				}
+			}
+            cost = 100
+            traits = { infantry_captain_idea }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+
+	STR_ariana_thesslocke = {
+		name = STR_ariana_thesslocke
+		portraits = {
+			army = {
+				###FEMALE
+				large = "gfx/leaders/STR/Portrait_STR_Generic_land_5.dds"
+                small = "GFX_idea_generic_advisor_hoa"
+			}
+		}
+
+        advisor = {
+            slot = army_chief
+			idea_token = STR_ariana_thesslocke
+			ledger = army
+			available = { 
+				OR = {
+					has_completed_focus = STR_cavalry_captain 
+					has_start_date > 600.1.1
+				}
+			}
+            cost = 100
+            traits = { cavalry_captain_idea }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+
+	STR_marcel_dabyrie = {
+		name = STR_marcel_dabyrie
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+
+        advisor = {
+            slot = high_command
+			idea_token = STR_marcel_dabyrie
+			available = { 
+				OR = {
+					has_completed_focus = stay_neutral
+					has_completed_focus = STR_ear_of_the_king
+				}
+			}
+			ledger = army
+            cost = 100
+            traits = { trainer_idea_2 }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+
+	STR_elynne_carver = {
+		name = STR_elynne_carver
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+
+        advisor = {
+            slot = high_command
+			idea_token = STR_elynne_carver
+			available = { 
+				OR = {
+					has_completed_focus = agents_of_kiljaden
+					has_completed_focus = STR_the_chosens_commander 
+					has_completed_focus = heralds_of_archimonde
+				}
+			}
+			ledger = army
+            cost = 100
+            traits = { legion_champion }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+
+	STR_thorvald_stoneheart = {
+		name = STR_thorvald_stoneheart
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+	
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_thorvald_stoneheart
+			available = {
+				OR = {
+					has_completed_focus = STR_ear_of_the_king
+					has_completed_focus = stay_neutral
+				} 
+			}
+			ledger = civilian
+            cost = 100
+            traits = { workers_voice_idea }
+	
+            ai_will_do = { factor = 5 }
+        }
+	}
+	
+	STR_throm_stormbreath = {
+		name = STR_throm_stormbreath
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_throm_stormbreath
+			ledger = civilian
+			available = { has_completed_focus = STR_a_tithe_of_steel }
+			visible = { has_completed_focus = STR_a_tithe_of_steel }
+            cost = 100
+            traits = { guldans_puppet_idea }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+
+	STR_grommokar_blacktusk = {
+		name = STR_grommokar_blacktusk
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_grommokar_blacktusk
+			ledger = civilian
+			available = { has_completed_focus = STR_makrogahn }
+			visible = { has_completed_focus = STR_makrogahn }
+            cost = 100
+            traits = { blackrock_envoy_idea }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+
+	STR_audrid_grenich = {
+		name = STR_audrid_grenich
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_audrid_grenich
+			available = { 
+				OR = {
+					has_completed_focus = STR_the_black_pox 
+					has_completed_focus = in_service_of_death
+				}
+			}
+			visible = { 
+				OR = {
+					has_completed_focus = STR_the_black_pox 
+					has_start_date > 600.1.1
+				}
+			}
+			ledger = civilian
+            cost = 100
+            traits = { royal_apothecary }
+            ai_will_do = { factor = 3 }
+        }
+	}
+
+	STR_roland_hearthwell = {
+		name = STR_roland_hearthwell
+		portraits = { army = { small = "GFX_idea_generic_advisor_hoa" }	}
+
+        advisor = {
+            slot = political_advisor
+			idea_token = STR_roland_hearthwell
+			available = { 
+				OR = {
+					has_completed_focus = agents_of_kiljaden
+					has_completed_focus = STR_felsteel_production 
+					has_completed_focus = heralds_of_archimonde
+				}
+			}
+			ledger = civilian
+            cost = 100
+            traits = { warden_of_the_forges }
+
+            ai_will_do = { factor = 5 }
+        }
+	}
+}

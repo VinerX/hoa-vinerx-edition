@@ -1,0 +1,1901 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	war_hut_tech = {
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = flailpaw_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = poacher_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = mystic_burrow_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 8 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+		}
+	}
+
+	flailpaw_tech = {
+
+		enable_subunits = {
+			flailpaw
+		}
+
+		on_research_complete = {
+			set_technology = { flailpaw_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = flailpaw_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = watchfangs_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = howlmaster_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 5 y = 2 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+			melee_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	howlmaster_tech = {
+
+		enable_subunits = {
+			howlmaster
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = howlmaster_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 2 y = 4 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			captain_technology
+			support_technology
+		}
+	}
+
+	howlmaster_tech_1 = {
+
+		howlmaster = {
+			initiative = 0.1
+		}
+		brute_commanders = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = howlmaster_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 2 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			captain_technology
+			support_technology
+		}
+	}
+
+	howlmaster_tech_2 = {
+
+		howlmaster = {
+			initiative = 0.1
+		}
+		brute_commanders = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = howlmaster_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 2 y = 8 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			captain_technology
+			support_technology
+		}
+	}
+
+	howlmaster_tech_3 = {
+
+		howlmaster = {
+			initiative = 0.1
+		}
+		brute_commanders = {
+			initiative = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = howlmaster_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 2 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			captain_technology
+			support_technology
+		}
+	}
+
+	howlmaster_tech_4 = {
+
+		howlmaster = {
+			initiative = 0.1
+		}
+		brute_commanders = {
+			initiative = 0.1
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 2 y = 12 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			captain_technology
+			support_technology
+		}
+	}
+
+	watchfangs_tech = {
+
+		enable_subunits = {
+			watchfangs
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = watchfangs_tech_1
+			research_cost_coeff = 1
+		}
+
+		dependencies = {
+			flailpaw_tech = 1
+			poacher_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 8 y = 4 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			guard_technology
+			support_technology
+			militia_technology
+			watchfang_technology
+		}
+	}
+
+	watchfangs_tech_1 = {
+
+		watchfangs = {
+			suppression_factor = 0.075
+		}
+		warden_guards = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = watchfangs_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 8 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			guard_technology
+			support_technology
+			militia_technology
+			watchfang_technology
+		}
+	}
+
+	watchfangs_tech_2 = {
+
+		watchfangs = {
+			suppression_factor = 0.075
+		}
+		warden_guards = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = watchfangs_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 8 y = 8 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			guard_technology
+			support_technology
+			militia_technology
+			watchfang_technology
+		}
+	}
+
+	watchfangs_tech_3 = {
+
+		watchfangs = {
+			suppression_factor = 0.075
+		}
+		warden_guards = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = watchfangs_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 8 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			guard_technology
+			support_technology
+			militia_technology
+			watchfang_technology
+		}
+	}
+
+	watchfangs_tech_4 = {
+
+		watchfangs = {
+			suppression_factor = 0.075
+		}
+		warden_guards = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 8 y = 12 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			guard_technology
+			support_technology
+			militia_technology
+			watchfang_technology
+		}
+	}
+
+	flailpaw_equipment_tech_1 = {
+
+		enable_equipments = {
+			flailpaw_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = vicious_mauling
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = pack_rally
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 5 y = 4 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+			melee_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	vicious_mauling = {
+
+		flailpaw = {
+			soft_attack = 0.15
+		}
+		gnoll_scrapguards = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { pack_rally } 
+
+		path = {
+			leads_to_tech = flailpaw_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 4 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = pack_rally
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = pack_rally
+			}	
+		}
+	}
+
+	pack_rally = {
+
+		flailpaw = {
+			max_organisation = 2
+			default_morale = 0.2
+		}
+		gnoll_scrapguards = {
+			max_organisation = 2
+			default_morale = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { vicious_mauling } 
+
+		path = {
+			leads_to_tech = flailpaw_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 6 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = vicious_mauling
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = vicious_mauling
+			}	
+		}
+	}
+
+	flailpaw_equipment_tech_2 = {
+
+		enable_equipments = {
+			flailpaw_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = thickhide_armor
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spiked_flails
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 5 y = 8 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+			melee_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	thickhide_armor = {
+
+		flailpaw = {
+			defense = 0.10
+			armor_value = 0.25
+		}
+		gnoll_scrapguards = {
+			defense = 0.10
+			armor_value = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { spiked_flails } 
+
+		path = {
+			leads_to_tech = flailpaw_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 4 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = spiked_flails
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spiked_flails
+			}	
+		}
+	}
+
+	spiked_flails = {
+
+		flailpaw = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+		gnoll_scrapguards = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { thickhide_armor } 
+
+		path = {
+			leads_to_tech = flailpaw_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 6 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = thickhide_armor
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = thickhide_armor
+			}	
+		}
+	}
+
+	flailpaw_equipment_tech_3 = {
+
+		enable_equipments = {
+			flailpaw_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 5 y = 12 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			flailpaw_technology
+			infantry_technology
+			melee_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	poacher_tech = {
+
+		enable_subunits = {
+			poacher
+		}
+		
+		on_research_complete = {
+			set_technology = { poacher_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = poacher_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tracker_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 11 y = 2 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	poacher_equipment_tech_1 = {
+
+		enable_equipments = {
+			poacher_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = bolt_shield
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = basic_sights
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 11 y = 4 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	bolt_shield = {
+
+		poacher = {	
+			defense = 0.10
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { basic_sights } 
+
+		path = {
+			leads_to_tech = poacher_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 10 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = basic_sights
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = basic_sights
+			}	
+		}
+	}
+
+	basic_sights = {
+
+		poacher = {	
+			ap_attack = 0.15
+			air_attack = 0.25
+		}
+		tracker = {
+			air_attack = 0.25
+	   	}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { bolt_shield } 
+
+		path = {
+			leads_to_tech = poacher_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 12 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = bolt_shield
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bolt_shield
+			}	
+		}
+	}
+
+	poacher_equipment_tech_2 = {
+
+		enable_equipments = {
+			poacher_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = poisoned_bolts
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ambush_maneuvers
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 11 y = 8 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	poisoned_bolts = {
+
+		poacher = {	
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { ambush_maneuvers } 
+
+		path = {
+			leads_to_tech = poacher_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 10 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = ambush_maneuvers
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = ambush_maneuvers
+			}	
+		}
+	}
+
+	ambush_maneuvers = {
+
+		poacher = {	
+			forest = { attack = 0.10 }
+			hills = { attack = 0.10 }
+			marsh = { attack = 0.10 }
+			jungle = { attack = 0.10 }
+		}
+		tracker = {
+			forest = { attack = 0.10 }
+			hills = { attack = 0.10 }
+	   	}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { poisoned_bolts } 
+
+		path = {
+			leads_to_tech = poacher_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 12 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = poisoned_bolts
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = poisoned_bolts
+			}	
+		}
+	}
+
+	poacher_equipment_tech_3 = {
+
+		enable_equipments = {
+			poacher_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 11 y = 12 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			poacher_technology
+			archer_technology
+			infantry_technology
+			ranged_infantry_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	tracker_tech = {
+
+		enable_subunits = {
+			tracker
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = tracker_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 14 y = 4 }
+		}		
+		
+		categories = {
+			ranged_infantry_technology
+			gnoll_infantry_technology
+			war_hut_technology
+			rogue_technology
+			support_technology
+			tracker_technology
+		}
+	}
+
+	tracker_tech_1 = {
+
+		tracker = {
+		 	recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = tracker_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 14 y = 6 }
+		}		
+		
+		categories = {
+			ranged_infantry_technology
+			gnoll_infantry_technology
+			war_hut_technology
+			rogue_technology
+			support_technology
+			tracker_technology
+		}
+	}
+
+	tracker_tech_2 = {
+
+		tracker = {
+		 	recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = tracker_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 14 y = 8 }
+		}		
+		
+		categories = {
+			ranged_infantry_technology
+			gnoll_infantry_technology
+			war_hut_technology
+			rogue_technology
+			support_technology
+			tracker_technology
+		}
+	}
+
+	tracker_tech_3 = {
+
+		tracker = {
+		 	recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = tracker_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 14 y = 10 }
+		}		
+		
+		categories = {
+			ranged_infantry_technology
+			gnoll_infantry_technology
+			war_hut_technology
+			rogue_technology
+			support_technology
+			tracker_technology
+		}
+	}
+
+	tracker_tech_4 = {
+
+		tracker = {
+		 	recon = 1.5
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 14 y = 12 }
+		}		
+		
+		categories = {
+			ranged_infantry_technology
+			gnoll_infantry_technology
+			war_hut_technology
+			rogue_technology
+			support_technology
+			tracker_technology
+		}
+	}
+
+	mystic_burrow_tech = {
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_mystic_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 17 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+		}
+	}
+
+	gnoll_mystic_tech = {
+
+		enable_subunits = {
+			gnoll_mystic
+		}
+		
+		on_research_complete = {
+			set_technology = { gnoll_mystic_equipment_tech_1 = 1 }
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = gnoll_mystic_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = gnoll_shaman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 17 y = 2 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	gnoll_mystic_equipment_tech_1 = {
+
+		enable_equipments = {
+			gnoll_mystic_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = stone_ward
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = elemental_infusion
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 17 y = 4 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	stone_ward = {
+
+		gnoll_mystic = {	
+			defense = 0.25
+			breakthrough = 0.10
+		}
+
+		gnoll_warcaller = {	
+			defense = 0.25
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { elemental_infusion } 
+
+		path = {
+			leads_to_tech = gnoll_mystic_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 16 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = elemental_infusion
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = elemental_infusion
+			}	
+		}
+	}
+
+	elemental_infusion = {
+
+		gnoll_mystic = {	
+			soft_attack = 0.10
+			hard_attack = 0.10
+			air_attack = 0.25
+		}
+		gnoll_shaman = {
+			hard_attack = 0.10
+		}
+
+		gnoll_warcaller = {	
+			soft_attack = 0.10
+			hard_attack = 0.10
+			air_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { stone_ward } 
+
+		path = {
+			leads_to_tech = gnoll_mystic_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 18 y = 6 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = stone_ward
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = stone_ward
+			}	
+		}
+	}
+
+	gnoll_mystic_equipment_tech_2 = {
+
+		enable_equipments = {
+			gnoll_mystic_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = spirit_manipulation
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = healing_rites
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 17 y = 8 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	spirit_manipulation = {
+
+		gnoll_mystic = {	
+			default_morale = 0.05
+			breakthrough = 0.10
+		}
+
+		gnoll_warcaller = {	
+			default_morale = 0.05
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { healing_rites } 
+
+		path = {
+			leads_to_tech = gnoll_mystic_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 16 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 0
+				has_tech = healing_rites
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = healing_rites
+			}	
+		}
+	}
+
+	healing_rites = {
+
+		gnoll_mystic = {	
+			casualty_trickleback = 0.02
+			max_organisation = 3
+		}
+		gnoll_shaman = {
+			max_organisation = 3
+		}
+
+		gnoll_warcaller = {	
+			casualty_trickleback = 0.02
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		xor = { spirit_manipulation } 
+
+		path = {
+			leads_to_tech = gnoll_mystic_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 18 y = 10 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 0
+				has_tech = spirit_manipulation
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spirit_manipulation
+			}	
+		}
+	}
+
+	gnoll_mystic_equipment_tech_3 = {
+
+		enable_equipments = {
+			gnoll_mystic_equipment_3
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 17 y = 12 }
+		}		
+		
+		categories = {
+			gnoll_infantry_technology
+			war_hut_technology
+			infantry_technology
+			spellcaster_technology
+			gnoll_mystic_technology
+		}
+		
+		ai_will_do = {
+			factor = 300
+		
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	gnoll_shaman_tech = {
+
+		enable_subunits = {
+			gnoll_shaman
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_gnoll_shaman_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 20 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			war_hut_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_gnoll_shaman_1 = {
+
+		gnoll_shaman = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_gnoll_shaman_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			war_hut_technology
+			support_technology
+			healer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_gnoll_shaman_2 = {
+
+		gnoll_shaman = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		dependencies = { gnoll_outpost = 1 }
+
+		path = {
+			leads_to_tech = improved_gnoll_shaman_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			war_hut_technology
+			support_technology
+			healer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_gnoll_shaman_3 = {
+
+		gnoll_shaman = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_gnoll = yes
+		}
+
+		path = {
+			leads_to_tech = improved_gnoll_shaman_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			war_hut_technology
+			support_technology
+			healer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_gnoll_shaman_4 = {
+
+		gnoll_shaman = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.05
+		}
+
+		dependencies = { gnoll_fort = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = gnoll_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			war_hut_technology
+			support_technology
+			healer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+}

@@ -1,0 +1,2335 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	saurok_warcamp_tech = {
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_guardian_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_ripper_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_skirmisher_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+		}
+	}
+
+	saurok_guardian_tech = {
+
+		enable_subunits = {
+			saurok_guardian
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_guardian_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_guardian_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_clutchguard_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_clutchguard_tech = {
+
+		enable_subunits = {
+			saurok_clutchguard
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = saurok_clutchguard_tech_unit_details_tt
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_clutchguard_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = nights_watch_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_clutchguard_technology
+			support_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	saurok_clutchguard_training_tech_1 = {
+
+		saurok_clutchguard = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_clutchguard_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_clutchguard_technology
+			support_technology
+		}
+	}
+
+	saurok_clutchguard_training_tech_2 = {
+
+		saurok_clutchguard = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_clutchguard_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_clutchguard_technology
+			support_technology
+		}
+	}
+
+	saurok_clutchguard_training_tech_3 = {
+
+		saurok_clutchguard = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_clutchguard_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_clutchguard_technology
+			support_technology
+		}
+	}
+
+	saurok_clutchguard_training_tech_4 = {
+
+		saurok_clutchguard = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_clutchguard_technology
+			support_technology
+		}
+	}
+
+	saurok_guardian_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_guardian_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_scaleforged_shields_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_natural_born_hunters
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_scaleforged_shields_tech = {
+
+		saurok_guardian = {
+			defense = 0.1
+			breakthrough = 0.1
+		}
+		saurok_clutchguard = {
+			defense = 0.1
+		}
+
+		saurok_dreadshell = {
+			defense = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_natural_born_hunters }
+
+		path = {
+			leads_to_tech = saurok_guardian_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_natural_born_hunters
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_natural_born_hunters
+			}
+		}
+	}
+
+	saurok_natural_born_hunters = {
+
+		saurok_guardian = {
+			soft_attack = 0.15
+			maximum_speed = 0.05
+		}
+
+		saurok_dreadshell = {
+			soft_attack = 0.15
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_scaleforged_shields_tech }
+
+		path = {
+			leads_to_tech = saurok_guardian_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_scaleforged_shields_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_scaleforged_shields_tech
+			}
+		}
+	}
+
+	saurok_guardian_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_guardian_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_skull_bash
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_ironscale_leaders
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_skull_bash = {
+
+		saurok_guardian = {
+			ap_attack = 0.25
+			hard_attack = 0.2
+		}
+		saurok_clutchguard = {
+			hard_attack = 0.2
+		}
+
+		saurok_dreadshell = {
+			ap_attack = 0.25
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_ironscale_leaders }
+
+		path = {
+			leads_to_tech = saurok_guardian_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_ironscale_leaders
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_ironscale_leaders
+			}
+		}
+	}
+
+	saurok_ironscale_leaders = {
+
+		saurok_guardian = {
+			max_organisation = 5
+			default_morale = 0.1
+		}
+
+		saurok_dreadshell = {
+			max_organisation = 5
+			default_morale = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_skull_bash }
+
+		path = {
+			leads_to_tech = saurok_guardian_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_skull_bash
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_skull_bash
+			}
+		}
+	}
+
+	saurok_guardian_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_guardian_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_guardian_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_ripper_tech = {
+
+		enable_subunits = {
+			saurok_ripper
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_ripper_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_ripper_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_gladiator_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_ripper_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_ripper_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_serrated_blades
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_twin_daggers_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_serrated_blades = {
+
+		saurok_ripper = {
+			soft_attack = 0.05
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_twin_daggers_tech }
+
+		path = {
+			leads_to_tech = saurok_ripper_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_twin_daggers_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_twin_daggers_tech
+			}
+		}
+	}
+
+	saurok_twin_daggers_tech = {
+
+		saurok_ripper = {
+			soft_attack = 0.1
+			hard_attack = 0.05
+		}
+		saurok_gladiator = {
+			soft_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_serrated_blades }
+
+		path = {
+			leads_to_tech = saurok_ripper_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_serrated_blades
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_serrated_blades
+			}
+		}
+	}
+
+	saurok_ripper_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_ripper_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_rip_and_tear_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_envenomed_blades
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_rip_and_tear_tech = {
+
+		saurok_ripper = {
+			ap_attack = 0.25
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_envenomed_blades }
+
+		path = {
+			leads_to_tech = saurok_ripper_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_envenomed_blades
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_envenomed_blades
+			}
+		}
+	}
+
+	saurok_envenomed_blades = {
+
+		saurok_ripper = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+		saurok_gladiator = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_rip_and_tear_tech }
+
+		path = {
+			leads_to_tech = saurok_ripper_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			melee_infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_rip_and_tear_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_rip_and_tear_tech
+			}
+		}
+	}
+
+	saurok_ripper_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_ripper_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_ripper_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_gladiator_tech = {
+
+		enable_subunits = {
+			saurok_gladiator
+		}
+	
+		on_research_complete = {
+			#custom_effect_tooltip = saurok_gladiator_tech_unit_details_tt
+			increase_tech_count_saurok = yes
+		}
+	
+		path = {
+			leads_to_tech = saurok_gladiator_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = nights_watch_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 12 y = 2 }
+		}
+	
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_gladiator_technology
+			support_technology
+		}
+	
+		ai_will_do = {
+			factor = 300
+	
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+	
+	saurok_gladiator_training_tech_1 = {
+	
+		saurok_gladiator = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+	
+		path = {
+			leads_to_tech = saurok_gladiator_training_tech_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_gladiator_technology
+			support_technology
+		}
+	}
+	
+	saurok_gladiator_training_tech_2 = {
+	
+		saurok_gladiator = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+	
+		dependencies = { saurok_grotto_tech = 1 }
+	
+		path = {
+			leads_to_tech = saurok_gladiator_training_tech_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 12 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_gladiator_technology
+			support_technology
+		}
+	}
+	
+	saurok_gladiator_training_tech_3 = {
+	
+		saurok_gladiator = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+	
+		path = {
+			leads_to_tech = saurok_gladiator_training_tech_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_gladiator_technology
+			support_technology
+		}
+	}
+	
+	saurok_gladiator_training_tech_4 = {
+	
+		saurok_gladiator = {
+			initiative = 0.09
+		}
+	
+		dependencies = { saurok_warren_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 12 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_gladiator_technology
+			support_technology
+		}
+	}
+
+	saurok_skirmisher_tech = {
+
+		enable_subunits = {
+			saurok_skirmisher
+			saurok_skirmisher_support
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_skirmisher_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_skirmisher_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_skirmisher_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_skirmisher_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_envenomed_arrow
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_barbed_arrows_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_envenomed_arrow = {
+
+		saurok_skirmisher ={
+			soft_attack = 0.125
+			hard_attack = 0.1
+		}
+		saurok_skirmisher_support = {
+			soft_attack = 0.125
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_barbed_arrows_tech }
+
+		path = {
+			leads_to_tech = saurok_skirmisher_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_barbed_arrows_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_barbed_arrows_tech
+			}
+		}
+	}
+
+	saurok_barbed_arrows_tech = {
+
+		saurok_skirmisher ={
+			soft_attack = 0.05
+			hard_attack = 0.1
+			ap_attack = 0.1
+		}
+		saurok_skirmisher_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			ap_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_envenomed_arrow }
+
+		path = {
+			leads_to_tech = saurok_skirmisher_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_envenomed_arrow
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_envenomed_arrow
+			}
+		}
+	}
+
+	saurok_skirmisher_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_skirmisher_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_dragon_turtle_companion
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_fangblade_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_dragon_turtle_companion = {
+
+		saurok_skirmisher ={
+			defense = 0.1
+			breakthrough = 0.1
+			soft_attack = 0.05
+		}
+		saurok_skirmisher_support = {
+			defense = 0.1
+			breakthrough = 0.1
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_fangblade_tech }
+
+		path = {
+			leads_to_tech = saurok_skirmisher_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_fangblade_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_fangblade_tech
+			}
+		}
+	}
+
+	saurok_fangblade_tech = {
+
+		saurok_skirmisher = {
+			max_organisation = 5
+			soft_attack = 0.05
+		}
+		saurok_skirmisher_support = {
+			max_organisation = 5
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_dragon_turtle_companion }
+
+		path = {
+			leads_to_tech = saurok_skirmisher_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_dragon_turtle_companion
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_dragon_turtle_companion
+			}
+		}
+	}
+
+	saurok_skirmisher_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_skirmisher_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_warcamp_technology
+			saurok_skirmisher_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	saurok_dinomancer_sanctum_tech = {
+
+		enable_building = {
+			building = church
+			level = 1
+		}
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				arcane_tower_tech_global = 1
+				church_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spirit_ritual_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_dinomancy_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 21 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_dinomancer_tech = {
+
+		enable_subunits = {
+			saurok_dinomancer
+		}
+
+		on_research_complete = {
+			set_technology = { saurok_dinomancer_equipment_tech_1 = 1 }
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_oracle_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_dinomancer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_shaman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 21 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_oracle_tech = {
+
+		enable_subunits = {
+			saurok_oracle
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_oracle_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_oracle_technology
+			support_technology
+		}
+	}
+
+	saurok_oracle_training_tech_1 = {
+
+		saurok_oracle = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_oracle_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_oracle_technology
+			support_technology
+		}
+	}
+
+	saurok_oracle_training_tech_2 = {
+
+		saurok_oracle = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_oracle_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_oracle_technology
+			support_technology
+		}
+	}
+
+	saurok_oracle_training_tech_3 = {
+
+		saurok_oracle = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_oracle_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_oracle_technology
+			support_technology
+		}
+	}
+
+	saurok_oracle_training_tech_4 = {
+
+		saurok_oracle = {
+			recon = 1.5
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_oracle_technology
+			support_technology
+		}
+	}
+
+	saurok_dinomancer_equipment_tech_1 = {
+
+		enable_equipments = {
+			saurok_dinomancer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_pterrordax_companion_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_raptor_spirits_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 21 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	saurok_pterrordax_companion_tech = {
+
+		saurok_dinomancer = {
+			hard_attack = 0.05
+			anti_air_attack = 0.2
+		}
+		saurok_oracle = {
+			anti_air_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_raptor_spirits_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_raptor_spirits_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_raptor_spirits_tech
+			}
+		}
+	}
+
+	saurok_raptor_spirits_tech = {
+
+		saurok_dinomancer = {
+			hard_attack = 0.05
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_pterrordax_companion_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_pterrordax_companion_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_pterrordax_companion_tech
+			}
+		}
+	}
+
+	saurok_dinomancer_equipment_tech_2 = {
+
+		enable_equipments = {
+			saurok_dinomancer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_feral_roar_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saurok_dinoform_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 21 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_feral_roar_tech = {
+
+		saurok_dinomancer = {
+			hard_attack = 0.1
+			breakthrough = 0.2
+		}
+		saurok_oracle = {
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_dinoform_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_dinoform_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_dinoform_tech
+			}
+		}
+	}
+
+	saurok_dinoform_tech = {
+
+		saurok_dinomancer = {
+			max_organisation = 5
+			hard_attack = 0.05
+		}
+		saurok_shaman = {
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		xor = { saurok_feral_roar_tech }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = saurok_feral_roar_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = saurok_feral_roar_tech
+			}
+		}
+	}
+
+	saurok_dinomancer_equipment_tech_3 = {
+
+		enable_equipments = {
+			saurok_dinomancer_equipment_3
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 21 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_dinomancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_shaman_tech = {
+
+		enable_subunits = {
+			saurok_shaman
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_shaman_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 24 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_shaman_technology
+			support_technology
+		}
+	}
+
+	saurok_shaman_training_tech_1 = {
+
+		saurok_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_shaman_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_shaman_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	saurok_shaman_training_tech_2 = {
+
+		saurok_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_shaman_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 24 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_shaman_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	saurok_shaman_training_tech_3 = {
+
+		saurok_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_shaman_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_shaman_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	saurok_shaman_training_tech_4 = {
+
+		saurok_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 24 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+			saurok_shaman_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	saurok_dinomancy_tech = {
+
+		country_faith_gain_factor = 0.1
+
+		saurok_dinomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_saur_priest = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_son_of_kros = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancy_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_dinomancy_tech_2 = {
+
+		country_faith_gain_factor = 0.1
+
+		saurok_dinomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_saur_priest = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_son_of_kros = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_saurok = yes
+		}
+
+		dependencies = { saurok_grotto_tech = 1 }
+
+		path = {
+			leads_to_tech = saurok_dinomancy_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_dinomancy_tech_3 = {
+
+		country_faith_gain_factor = 0.1
+
+		saurok_dinomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_saur_priest = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_son_of_kros = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_saurok = yes
+		}
+
+		path = {
+			leads_to_tech = saurok_dinomancy_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saurok_dinomancy_tech_4 = {
+
+		country_faith_gain_factor = 0.1
+
+		saurok_dinomancer = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_saur_priest = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_rider = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_mushan_artillery_support = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saurok_son_of_kros = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		dependencies = { saurok_warren_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saurok_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			saurok_dinomancer_sanctum_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

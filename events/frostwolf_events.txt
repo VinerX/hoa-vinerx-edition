@@ -1,0 +1,1045 @@
+﻿###########################
+# Frostwolf Clan
+###########################
+
+add_namespace = frostwolf
+
+#identity crisis
+country_event = {
+	id = frostwolf.1
+	title = frostwolf.1.t
+	desc = frostwolf.1.d
+	picture = GFX_orgrim_doomhammer_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = frostwolf.1.option.1
+
+		FWC = {
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 1
+			}
+
+			declare_war_on = { target = TSC type = annex_everything }
+			load_oob = "FWC_horde_civil_war"
+			add_manpower = 2000
+		}
+	}
+}
+
+#banished
+country_event = {
+	id = frostwolf.2
+	title = frostwolf.2.t
+	desc = frostwolf.2.d
+	picture = GFX_guldan_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = frostwolf.2.option.1
+
+		FWC = {
+			114 = {
+				add_core_of = FWC
+				transfer_state_to = FWC
+			}
+			761 = {
+				add_core_of = FWC
+				transfer_state_to = FWC
+			}
+			381 = { remove_core_of = FWC }
+			382 = { remove_core_of = FWC }
+			hidden_effect = {
+				785 = { remove_core_of = FWC }
+			}
+			set_politics = {
+				ruling_party = neutral
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = neutral
+				popularity = 1
+			}
+			add_ideas = { primary_religion_shamanism }
+			leave_faction = yes
+		}
+
+		BRC = {
+			if = {
+				limit = {
+					BTG = {	is_puppet_of = BRC }
+				}
+				381 = {
+					add_core_of = BTG
+					transfer_state_to = BTG
+				}
+				hidden_effect = {
+					785 = {
+						add_core_of = BTG
+						transfer_state_to = BTG
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {	BTG = {	is_puppet_of = BRC } }
+				}
+				381 = {
+					add_core_of = BRC
+					transfer_state_to = BRC
+				}
+				hidden_effect = {
+					785 = {
+						add_core_of = BRC
+						transfer_state_to = BRC
+					}
+				}
+			}
+			382 = {
+				add_core_of = THC
+				transfer_state_to = THC
+			}
+		}
+	}
+}
+
+###########################
+# Frostwolf Third War events
+###########################
+
+add_namespace = frostwolf_third_war
+
+# Siege of Durnholde - FWC side
+country_event = {
+    id = frostwolf_third_war.1
+    title = frostwolf_third_war.1.t
+    desc = frostwolf_third_war.1.d
+	picture = GFX_durnholde_ruins_event
+
+    fire_only_once = yes
+
+    trigger = {
+        tag = FWC
+        has_start_date > 609.12.31
+		has_start_date < 610.01.02
+        date > 610.01.07
+    }
+
+	immediate = {
+        hidden_effect = {
+			GIL = {	country_event = { id = gilneas_third_war.2 days = 3 } }
+			QUE = {	country_event = { id = quelthalas_third_war.1 days = 7 } }
+			#BRC = {	country_event = { id = blackrock_third_war.1 days = 7 } }
+			STR = {	country_event = { id = stromgarde_third_war.1 days = 14 } }
+			news_event = { id = news_third_war.1 hours = 6 }
+        }
+    }
+
+    option = { # Siege of Durnholde
+        name = frostwolf_third_war.1.option.1
+
+		add_stability = 0.1
+		add_war_support = 0.1
+
+		LOR = {	set_country_flag = durnhole_keep_siege }
+		
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.3
+				days = 365
+            }
+		}
+    }
+}
+
+#useless event ID repurpose
+country_event = { 
+    id = frostwolf_third_war.2
+    title = frostwolf_third_war.2.t
+    desc = frostwolf_third_war.2.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+
+    option = { # Siege of Durnholde
+        name = frostwolf_third_war.2.option.1
+
+		remove_from_faction = ROOT
+		set_politics = {
+			ruling_party = neutral
+			last_election = "590.10.27"
+			election_frequency = 48
+			elections_allowed = no
+		}
+
+		set_popularities = {
+			alliance = 35
+			horde = 0
+			death = 0
+			fel = 0
+			old_gods = 0
+			titans = 0
+			neutral = 65
+		}
+    }
+}
+
+# The Nightmare
+country_event = {
+    id = frostwolf_third_war.3
+    title = frostwolf_third_war.3.t
+    desc = frostwolf_third_war.3.d
+	picture = GFX_the_vision_event
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # the vision
+        name = frostwolf_third_war.3.option.1
+
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.4
+				days = 1
+            }
+		}
+    }
+}
+
+# The Prophet
+country_event = {
+    id = frostwolf_third_war.4
+    title = frostwolf_third_war.4.t
+    desc = frostwolf_third_war.4.d
+	picture = GFX_medivh_lordaeron_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # Leave for Kalimdor
+        name = frostwolf_third_war.4.option.1
+
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.5
+				days = 30
+            }
+		}
+
+		ai_chance = { base = 100 }
+    }
+
+    option = { # Stay in EK
+        name = frostwolf_third_war.4.option.2
+
+		ai_chance = { base = 0 }
+    }
+}
+
+# Exodus of the Horde
+country_event = {
+    id = frostwolf_third_war.5
+    title = frostwolf_third_war.5.t
+    desc = frostwolf_third_war.5.d
+	picture = GFX_southshore_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			FWC = {
+				set_nationality = {
+            		target_country = WCC
+            		character = FWC_drekthar
+          		}
+				set_nationality = {
+            		target_country = WCC
+            		character = FWC_galvangar
+          		}
+			}
+			WCC = { country_event = { id = frostwolf_WCC.1 days = 2 } }
+			WCC = { 
+       			inherit_technology = FWC 
+        		set_cosmetic_tag = WCC_frostwolf
+        		retire_country_leader = yes
+				add_ideas = FWC_hidden_from_the_world
+      		}
+      		114 = {
+        		transfer_state_to = WCC
+        		add_core_of = WCC
+      		}
+      		761 = {
+       			transfer_state_to = WCC
+        		add_core_of = WCC
+      		}
+		}
+	}
+
+    option = {
+        name = frostwolf_third_war.5.option.1
+		hidden_effect = {
+			set_country_flag = horde_exodus
+			country_event = {
+                id = frostwolf_third_war.6
+				days = 14
+            }
+
+			WSC = {
+				country_event = {
+					id = warsong_third_war.1
+					days = 14
+				}
+			}
+			NET = {
+				country_event = {
+					id = nethergarde.22
+					days = 14
+				}
+			}
+		}
+    }
+
+	option = { # Frostwolf Remnants
+		name = frostwolf_third_war.5.option.2
+		WCC = { change_tag_from = FWC }
+		goto_state = 114
+	}
+}
+
+# shipwrecked
+country_event = {
+    id = frostwolf_third_war.6
+    title = frostwolf_third_war.6.t
+    desc = frostwolf_third_war.6.d
+	picture = GFX_maelstrom_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # the prophet
+        name = frostwolf_third_war.6.option.1
+
+		FWC = {
+			transfer_state = 294
+			set_capital = { state = 294 }
+			every_state = {
+				limit = {
+					impassable = no
+					owner = { NOT = { has_war_with = FWC } }
+				}
+				teleport_armies = {
+					to_state = 294
+					limit = { tag = FWC }
+				}
+			}
+		}
+		hidden_effect = {
+			1544 = { set_demilitarized_zone = yes }
+			722 = { set_demilitarized_zone = yes }
+			35 = { set_demilitarized_zone = yes }	
+		}
+		114 = {	add_manpower = -55000 }
+		294 = {
+			add_core_of = FWC
+			add_manpower = 55000
+		}
+
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.7
+				days = 7
+            }
+			LOR = {
+				transfer_ship = { type = destroyer target = FWC }
+				transfer_ship = { type = destroyer target = FWC }
+				transfer_ship = { type = destroyer target = FWC }
+				transfer_ship = { type = destroyer target = FWC }
+			}
+			FWC = {	country_event = { id = frostwolf_third_war.15 days = 14 } }
+		}
+    }
+}
+
+# the darkspeer
+country_event = {
+    id = frostwolf_third_war.7
+    title = frostwolf_third_war.7.t
+    desc = frostwolf_third_war.7.d
+	picture = GFX_senjin_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # the prophet
+        name = frostwolf_third_war.7.option.1
+		FWC = { add_to_faction = DST }
+
+		hidden_effect = {
+			DST = {
+				set_politics = {
+					ruling_party = horde
+					last_election = "590.10.27"
+					election_frequency = 48
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					alliance = 0
+					horde = 85
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 15
+				}
+			}
+
+			country_event = {
+                id = frostwolf_third_war.8
+				days = 7
+            }
+		}
+    }
+}
+
+# the underworld tribe
+country_event = {
+    id = frostwolf_third_war.8
+    title = frostwolf_third_war.8.t
+    desc = frostwolf_third_war.8.d
+	picture = GFX_murlocs_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # the prophet
+        name = frostwolf_third_war.8.option.1
+		UWT = {
+			declare_war_on = {
+                target = FWC
+                type = annex_everything
+            }
+			declare_war_on = {
+                target = DST
+                type = annex_everything
+            }
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				country_event = {
+					id = frostwolf_third_war.9
+					days = 30
+				}
+			}
+		}
+    }
+}
+
+# journey to kalimdor
+country_event = {
+    id = frostwolf_third_war.9
+    title = frostwolf_third_war.9.t
+    desc = frostwolf_third_war.9.d
+	picture = GFX_orc_ship_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = FWC
+			FWC = {
+				295 = { is_controlled_by_ROOT_or_ally = yes }
+				294 = { is_controlled_by_ROOT_or_ally = yes	}
+				292 = { is_controlled_by_ROOT_or_ally = yes }
+				293 = { is_controlled_by_ROOT_or_ally = yes	}
+			}
+	}
+
+    option = { # the prophet
+        name = frostwolf_third_war.9.option.1
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.10
+				days = 7
+            }
+			white_peace = UWT
+		}
+    }
+
+}
+
+# journey to kalimdor
+country_event = {
+    id = frostwolf_third_war.10
+    title = frostwolf_third_war.10.t
+    desc = frostwolf_third_war.10.d
+	picture = GFX_durotar_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # the prophet
+        name = frostwolf_third_war.10.option.1
+
+		FWC = {
+			transfer_state = 592
+			transfer_state = 590
+			set_capital = { state = 592 }
+			every_state = {
+				limit = {
+					impassable = no
+					owner = { NOT = { has_war_with = FWC } }
+				}
+				teleport_armies = {
+					to_state = 592
+					limit = { tag = FWC }
+				}
+			}
+		}
+		DST = {
+			transfer_state = 589
+			transfer_state = 1005
+			set_capital = { state = 589 }
+			every_state = {
+				limit = {
+					impassable = no
+					owner = { NOT = { has_war_with = DST } }
+				}
+				teleport_armies = {
+					to_state = 589
+					limit = { tag = DST }
+				}
+			}
+		}
+		294 = {
+			remove_core_of = FWC
+			add_manpower = -55000
+		}
+		292 = { add_manpower = -60000 }
+		592 = {
+			add_manpower = 50000
+			add_core_of = FWC
+		}
+		590 = {
+			add_manpower = 10000
+			add_core_of = FWC
+		}
+		589 = {
+			add_manpower = 60000
+			add_core_of = DST
+		}
+		1005 = {
+			add_core_of = DST
+		}
+
+		hidden_effect = {
+			292 = { set_demilitarized_zone = yes }
+			293 = { set_demilitarized_zone = yes }
+			294 = { set_demilitarized_zone = yes }
+			295 = { set_demilitarized_zone = yes }
+		}
+
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.11
+				days = 30
+            }
+		}
+    }
+}
+
+# the search for grom
+country_event = {
+    id = frostwolf_third_war.11
+    title = frostwolf_third_war.11.t
+    desc = frostwolf_third_war.11.d
+	picture = GFX_grom_hellscream_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # the prophet
+        name = frostwolf_third_war.11.option.1
+		RZM = {
+			declare_war_on = {
+                target = FWC
+                type = annex_everything
+            }
+			declare_war_on = {
+                target = DST
+                type = annex_everything
+            }
+		}
+		UWT = {
+			transfer_state = 292
+			transfer_state = 294
+			transfer_state = 295
+			transfer_state = 293
+		}
+
+		hidden_effect = {
+			292 = { 
+				set_demilitarized_zone = no 
+				remove_core_of = FWC
+			}
+			293 = { 
+				set_demilitarized_zone = no
+				remove_core_of = FWC 
+			}
+			294 = { 
+				set_demilitarized_zone = no 
+				remove_core_of = FWC
+			}
+			295 = { 
+				set_demilitarized_zone = no
+				remove_core_of = FWC 
+			}
+		}
+
+		hidden_effect = {
+			country_event = {
+                id = frostwolf_third_war.12
+				days = 21
+            }
+		}
+    }
+}
+
+# The Bloodhoof Tribe
+country_event = {
+    id = frostwolf_third_war.12
+    title = frostwolf_third_war.12.t
+    desc = frostwolf_third_war.12.d
+	picture = GFX_cairne_bloodhoof_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = frostwolf_third_war.12.option.1
+		FWC = {
+			add_to_faction = BHT
+		}
+
+		hidden_effect = {
+			BHT = {
+				set_politics = {
+					ruling_party = horde
+					last_election = "590.10.27"
+					election_frequency = 48
+					elections_allowed = no
+				}
+
+				set_popularities = {
+					alliance = 0
+					horde = 85
+					death = 0
+					fel = 0
+					old_gods = 0
+					titans = 0
+					neutral = 15
+				}
+			}
+
+			country_event = {
+                id = frostwolf_third_war.13
+				days = 45
+            }
+        	if = {
+        	  limit = { country_exists = WCC }
+        	  WCC = { country_event = frostwolf_WCC.2 }
+        	}
+		}
+    }
+}
+
+# Durotar
+country_event = {
+    id = frostwolf_third_war.13
+    title = frostwolf_third_war.13.t
+    desc = frostwolf_third_war.13.d
+	picture = GFX_durotar_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = frostwolf_third_war.13.option.1
+
+		add_war_support = 0.05
+
+		custom_effect_tooltip = frostwolf_third_war.13.option.1.d
+		hidden_effect = {
+			# Durotar + Orgrimmar states (not Echo Isles)
+			add_to_array = { durotar_states = 61 }
+			add_to_array = { durotar_states = 587 }
+			add_to_array = { durotar_states = 588 }
+			add_to_array = { durotar_states = 589 }
+			add_to_array = { durotar_states = 590 }
+			add_to_array = { durotar_states = 591 }
+			add_to_array = { durotar_states = 592 }
+			add_to_array = { durotar_states = 594 }
+			add_to_array = { durotar_states = 595 }
+			add_to_array = { durotar_states = 596 }
+			add_to_array = { durotar_states = 597 }
+			add_to_array = { durotar_states = 598 }
+			add_to_array = { durotar_states = 599 }
+			add_to_array = { durotar_states = 600 }
+			add_to_array = { durotar_states = 602 }
+			add_to_array = { durotar_states = 604 }
+			add_to_array = { durotar_states = 605 }
+			add_to_array = { durotar_states = 606 }
+			add_to_array = { durotar_states = 607 }
+			add_to_array = { durotar_states = 608 }
+			add_to_array = { durotar_states = 609 }
+			add_to_array = { durotar_states = 610 }
+			add_to_array = { durotar_states = 611 }
+			add_to_array = { durotar_states = 612 }
+			add_to_array = { durotar_states = 1003 }
+			add_to_array = { durotar_states = 1004 }
+			add_to_array = { durotar_states = 1005 }
+			add_to_array = { durotar_states = 1006 }
+			add_to_array = { durotar_states = 1623 }
+			add_to_array = { durotar_states = 1624 }
+
+			for_each_scope_loop = {
+				array = durotar_states
+				# Core all concerned states already owned
+				if = {
+					limit = {
+						is_owned_by = FWC
+						is_owned_by = DST
+						is_owned_by = WSC
+					}
+					add_core_of = FWC
+				}
+				else = {
+					# Claim others
+					add_claim_by = FWC
+				}
+
+				# Darkspear Tribe (DST) gets core on states they own already
+				if = {
+					limit = {
+						is_owned_by = DST
+					}
+					add_core_of = DST
+				}
+			}
+			clear_array = durotar_states
+
+			FWC = {
+				hidden_effect = { set_country_flag = fled_west }
+			}
+		}
+    }
+}
+
+# Founding of Orgrimmar
+country_event = {
+    id = frostwolf_third_war.14
+    title = frostwolf_third_war.14.t
+    desc = frostwolf_third_war.14.d
+	picture = GFX_orgrimmar_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = FWC
+		FWC = {
+			587 = {	is_controlled_by_ROOT_or_ally = yes	}
+			598 = {	is_controlled_by_ROOT_or_ally = yes	}
+			602 = {	is_controlled_by_ROOT_or_ally = yes	}
+			604 = {	is_controlled_by_ROOT_or_ally = yes	}
+			605 = {	is_controlled_by_ROOT_or_ally = yes	}
+			606 = {	is_controlled_by_ROOT_or_ally = yes	}
+			607 = {	is_controlled_by_ROOT_or_ally = yes	}
+			1003 = { is_controlled_by_ROOT_or_ally = yes }
+			1004 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+	}
+
+    option = {
+        name = frostwolf_third_war.14.option.1
+
+		add_political_power = 150
+		add_stability = 0.1
+
+		# Move capital to Valley of Wisdom
+		set_capital = { state = 587 }
+
+		587 = {	add_manpower = 20000 }
+		602 = {	add_manpower = 8500 }
+		605 = { add_manpower = 12500 }
+		606 = {	add_manpower = 18500 }
+		607 = {	add_manpower = 5000	}
+
+		# Core Orgrimmar and convert race / religon
+		custom_effect_tooltip = FWC_founding_orgrimmar_tt
+		hidden_effect = {
+			add_to_array = { orgrimmar_states = 587 }
+			add_to_array = { orgrimmar_states = 598 }
+			add_to_array = { orgrimmar_states = 602 }
+			add_to_array = { orgrimmar_states = 604 }
+			add_to_array = { orgrimmar_states = 605 }
+			add_to_array = { orgrimmar_states = 606 }
+			add_to_array = { orgrimmar_states = 607 }
+			add_to_array = { orgrimmar_states = 1003 }
+			add_to_array = { orgrimmar_states = 1004 }
+
+			for_each_scope_loop = {
+				array = orgrimmar_states
+
+				if = {
+					limit = {
+						NOT = { is_owned_by = FWC }
+					}
+					transfer_state_to = FWC
+				}
+
+				add_core_of = FWC
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+			clear_array = orgrimmar_states
+		}
+
+		set_cosmetic_tag = FWC_orgrimmar
+
+		custom_effect_tooltip = frostwolf_third_war.14.option.1.d
+		hidden_effect = {
+			BBC = {
+				country_event = {
+					id = burning_blade_third_war.1
+					days = 7
+				}
+			}
+		}
+    }
+}
+
+country_event = {
+    id = frostwolf_third_war.15
+    title = frostwolf_third_war.15.t
+    desc = frostwolf_third_war.15.d
+	picture = GFX_grunt_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = { # the prophet
+        name = frostwolf_third_war.15.option.1
+
+		#if = {
+		#	limit = {
+		#		#ALT = { is_puppet_of = LOR }
+		#		always = no
+		#	}
+		#	1544 = {
+		#		add_core_of = LOR
+		#		transfer_state_to = LOR
+		#	}
+		#	722 = {
+		#		add_core_of = ALT
+		#		transfer_state_to = ALT
+		#	}
+		#	761 = {
+		#		add_core_of = ALT
+		#		transfer_state_to = ALT
+		#	}
+		#	114 = {
+		#		add_core_of = ALT
+		#		transfer_state_to = ALT
+		#	}
+		#	35 = { transfer_state_to = LOR }
+		#	LOR = { set_country_flag = alterac_compliance }
+		#}
+		#else = {
+		#	STR = { transfer_state = 1544 }
+		#	SYN = { transfer_state = 722 }
+		#	LOR = { transfer_state = 35 }
+		#}
+		STR = { transfer_state = 1544 }
+		SYN = { transfer_state = 722 }
+		LOR = { transfer_state = 35 }
+		hidden_effect = {
+			1544 = { 
+				set_demilitarized_zone = no 
+				remove_core_of = FWC 
+			}
+			722 = { 
+				set_demilitarized_zone = no
+				remove_core_of = FWC  
+			}
+			35 = { 
+				set_demilitarized_zone = no 
+				remove_core_of = FWC 
+			}	
+		}
+		add_manpower = 500
+		army_experience = 10
+		navy_experience = 5
+		random_army_leader = {
+			gain_xp = 100
+			add_planning = 1
+		}
+    }
+}
+
+country_event = {
+    id = frostwolf_third_war.16
+    title = frostwolf_third_war.16.t
+    desc = frostwolf_third_war.16.d
+	picture = GFX_samuro_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = frostwolf_third_war.16.option.1
+		add_popularity = {
+			ideology = fel
+			popularity = 0.05
+		}
+		602 = { add_manpower = 3000 }
+		602 = { add_manpower = 1200 }
+		606 = { add_manpower = 1900 }
+		add_tech_bonus = {
+			name = blade_master_technology
+			uses = 1
+			bonus = 0.50
+			category = blade_master_technology
+		}
+    }
+}
+
+country_event = {
+    id = frostwolf_third_war.17
+    title = frostwolf_third_war.17.t
+    desc = frostwolf_third_war.17.d
+	picture = GFX_thrall_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = frostwolf_third_war.16.option.1
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.02
+		}
+		602 = { add_manpower = 3000 }
+		add_tech_bonus = {
+			name = far_seer_technology
+			uses = 1
+			bonus = 0.50
+			category = far_seer_technology
+		}
+		division_template = {
+		name = "Frostwolf Remnants"
+		priority = 1
+			regiments = {
+				shaman = { x = 0 y = 0 }
+				grunt = { x = 0 y = 1 }
+				grunt = { x = 0 y = 2 }
+				grunt = { x = 1 y = 0 }
+				grunt = { x = 1 y = 1 }
+			}
+		}
+		capital_scope = {
+			create_unit = {
+				division = "name = \"Frostwolf Remnants\" division_template = \"Frostwolf Remnants\" start_experience_factor = 0.5"
+				owner = FWC
+			}
+		} 
+    }
+}
+
+add_namespace = frostwolf_WCC
+
+country_event = {
+  id = frostwolf_WCC.1
+  title = frostwolf_WCC.1.t
+  desc = frostwolf_WCC.1.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = {
+    name = frostwolf_WCC.1.option.1
+    hidden_effect = {
+      every_owned_state = {
+        set_state_race_to_primary_race = yes
+        set_state_religion_to_primary_religion = yes
+      }
+    }
+    division_template = {
+      name = "Frostwolf Remnants"
+      priority = 1
+      regiments = {
+        shaman = { x = 0 y = 0 }
+        grunt = { x = 0 y = 1 }
+        grunt = { x = 0 y = 2 }
+        grunt = { x = 1 y = 0 }
+        grunt = { x = 1 y = 1 }
+      }
+    }
+    capital_scope = {
+      create_unit = {
+        division = "name = \"Frostwolf Remnants\" division_template = \"Frostwolf Remnants\" start_experience_factor = 0.5"
+        owner = WCC
+      }
+    } 
+  }
+}
+
+country_event = {
+  id = frostwolf_WCC.2
+  title = frostwolf_WCC.2.t
+  desc = frostwolf_WCC.2.d
+
+  is_triggered_only = yes
+  fire_only_once = yes
+
+  option = {
+    name = frostwolf_WCC.2.option.1
+	WCC = {
+		set_nationality = {
+            target_country = FWC
+            character = FWC_drekthar
+        }
+	}
+	hidden_effect = {
+		FWC = {
+			country_event = {
+				id = frostwolf_third_war.17
+				days = 14
+			}
+		}
+	}
+	
+    ai_chance = {
+      base = 1
+    }
+  }
+
+  option = {
+    name = frostwolf_WCC.2.option.2
+	
+    ai_chance = {
+      base = 0
+    }
+  }
+}

@@ -1,0 +1,341 @@
+####################################################################
+# Generic events that can be used in multiple places and with multiple nations
+# Should make extensive use of dynamic localisation so it works properly
+####################################################################
+
+add_namespace = generic_event
+
+# Generic "X has accepted our offer"
+# Used to give feedback to player after sending offer to another nation (via decision, focus, etc...)
+country_event = {
+  id = generic_event.1
+  title = generic_event.1.t
+  desc = generic_event.1.d
+
+  is_triggered_only = yes
+
+  option = {
+      name = generic_event.1.option.1
+      # Do nothing
+  }
+}
+
+# Generic "X has refused our offer"
+# Used to give feedback to player after sending offer to another nation (via decision, focus, etc...)
+country_event = {
+  id = generic_event.2
+  title = generic_event.2.t
+  desc = generic_event.2.d
+
+  is_triggered_only = yes
+
+  option = {
+      name = generic_event.2.option.1
+      # Do nothing
+  }
+}
+
+# Destroy the Dam
+country_event = {
+  id = generic_event.3
+  title = generic_event.3.t
+  desc = generic_event.3.d
+
+  is_triggered_only = yes
+
+  fire_only_once = yes
+
+  option = {
+      name = generic_event.3.option.1
+      add_to_temp_variable = { 477state_pop = 477.state_population }
+      multiply_temp_variable = { 477state_pop = 0.5 }
+      multiply_temp_variable = { 477state_pop = -1 }
+
+      add_to_temp_variable = { 2195state_pop = 2195.state_population }
+      multiply_temp_variable = { 2195state_pop = 0.5 }
+      multiply_temp_variable = { 2195state_pop = -1 }
+
+      add_to_temp_variable = { 479state_pop = 479.state_population }
+      multiply_temp_variable = { 479state_pop = 0.5 }
+      multiply_temp_variable = { 479state_pop = -1 }
+
+      add_to_temp_variable = { 478state_pop = 478.state_population }
+      multiply_temp_variable = { 478state_pop = 0.5 }
+      multiply_temp_variable = { 478state_pop = -1 }
+
+      add_to_temp_variable = { 495state_pop = 495.state_population }
+      multiply_temp_variable = { 495state_pop = 0.5 }
+      multiply_temp_variable = { 495state_pop = -1 }
+
+      477 = {
+        remove_building = {
+          type = industrial_complex
+          level = 1
+        }
+        remove_building = {
+          type = infrastructure
+          level = 4
+        }
+        add_manpower = 477state_pop
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      2195 = {
+        remove_building = {
+          type = sulfur_mine
+          level = 1
+        }
+        remove_building = {
+          type = infrastructure
+          level = 2
+        }
+        add_manpower = 2195state_pop
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      479 = {
+        remove_building = {
+          type = iron_mine
+          level = 1
+        }
+        remove_building = {
+          type = infrastructure
+          level = 3
+        }
+        add_manpower = 479state_pop
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      478 = {
+        remove_building = {
+          type = infrastructure
+          level = 4
+        }
+        add_manpower = 478state_pop
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      495 = {
+        remove_building = {
+          type = infrastructure
+          level = 2
+        }
+        add_manpower = 495state_pop
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      493 = {
+        remove_building = {
+          type = infrastructure
+          level = 2
+        }
+        add_manpower = -750
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      2248 = {
+        remove_building = {
+          type = infrastructure
+          level = 2
+        }
+        add_manpower = -450
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      2196 = {
+        remove_building = {
+          type = infrastructure
+          level = 2
+        }
+        add_manpower = -1000
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      492 = {
+        remove_building = {
+          type = industrial_complex
+          level = 1
+        }
+        remove_building = {
+          type = infrastructure
+          level = 2
+        }
+        add_manpower = -1500
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      490 = {
+        remove_building = {
+          type = arms_factory
+          level = 1
+        }
+        remove_building = {
+          type = farm
+          level = 1
+        }
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -2500
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      491 = {
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -500
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      481 = {
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -250
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      2197 = {
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -500
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      489 = {
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -600
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      2198 = {
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -500
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      488 = {
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -250
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+      486 = {
+        remove_building = {
+          type = dockyard
+          level = 1
+        }
+        remove_building = {
+          type = infrastructure
+          level = 1
+        }
+        add_manpower = -1000
+        add_dynamic_modifier = { modifier = GEN_flood_wreckage }
+      }
+  }
+}
+
+# Generic offer for mutual guarantee
+country_event = {
+  id = generic_event.4
+  title = generic_event.4.t
+  desc = generic_event.4.d
+
+  is_triggered_only = yes
+
+  # Accept
+  option = {
+      name = generic_event.4.option.1
+
+      # Give THIS and FROM a mutual guarantee
+      THIS = {
+          diplomatic_relation = {
+            country = FROM
+            relation = guarantee
+            active = yes
+          }
+      }
+      FROM = {
+          diplomatic_relation = {
+            country = THIS
+            relation = guarantee
+            active = yes
+          }
+      }
+
+      # Tell FROM that THIS have accepted
+      FROM = { country_event = generic_event.1 } # Generic accept event
+  }
+
+  # Refuse
+  option = {
+      name = generic_event.4.option.2
+
+      # Tell FROM that THIS have refused
+      FROM = { country_event = generic_event.2 } # Generic refusal event
+  }
+}
+
+# Special Project - Narru Guidance
+country_event = {
+  id = generic_event.5
+  title = generic_event.5.t
+  desc = generic_event.5.d
+
+  is_triggered_only = yes
+
+  option = {
+    name = generic_event.5.option.1
+      set_technology = { radiant_strike = 1 }
+  }
+
+  option = {
+    name = generic_event.5.option.2
+      set_technology = { aura_of_hope = 1 }
+  }
+
+  option = {
+    name = generic_event.5.option.3
+      set_technology = { sanctified_shield = 1 }
+  }
+}
+
+country_event = {
+	id = generic_event.6
+	title = generic_event.6.t
+	desc = generic_event.6.d
+	
+	is_triggered_only = yes
+
+	option = {
+		name = generic_event.6.option.1
+
+    if = {
+			limit = {
+				has_core_occupation_modifier = {
+					occupied_country_tag = FROM.FROM
+					modifier = compliance_80
+				}
+				NOT = {
+					any_country_with_original_tag = {
+						original_tag_to_check = FROM.FROM
+						is_puppet_of = PREV
+						has_autonomy_state = autonomy_collaboration_government
+					}
+				}
+			}
+			set_temp_variable = { country_to_initiate = FROM.FROM }
+			instantiate_collaboration_government = yes
+		}
+		
+		ai_chance = {
+			base = 0
+		}
+	}
+
+	option = {
+		name = generic_event.6.option.2
+		ai_chance = {
+			base = 100
+		}
+	}
+}

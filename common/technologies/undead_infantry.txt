@@ -1,0 +1,2288 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	undead_crypt_tech = {
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_ghoul_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_crypt_fiend_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_abomination_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	undead_ghoul_tech = {
+
+		enable_subunits = {
+			undead_ghoul
+		}
+
+		on_research_complete = {
+			set_technology = { undead_ghoul_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_ghoul_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_zombie_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_ghoul_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_ghoul_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_ghoul_frenzy_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_ghoul_sharpened_claws_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_ghoul_frenzy_tech = {
+
+		undead_ghoul = {
+			soft_attack = 0.1
+			max_strength = 0.25
+		}
+		undead_zombie = {
+			max_strength = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_ghoul_sharpened_claws_tech }
+
+		path = {
+			leads_to_tech = undead_ghoul_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_ghoul_sharpened_claws_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_ghoul_sharpened_claws_tech
+			}
+		}
+	}
+
+	undead_ghoul_sharpened_claws_tech = {
+
+		undead_ghoul = {
+			soft_attack = 0.05
+			hard_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_ghoul_frenzy_tech }
+
+		path = {
+			leads_to_tech = undead_ghoul_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_ghoul_frenzy_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_ghoul_frenzy_tech
+			}
+		}
+	}
+
+	undead_ghoul_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_ghoul_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_ghoul_cannibalize_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_ghoul_encirclement_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_ghoul_cannibalize_tech = {
+
+		undead_ghoul = {
+			casualty_trickleback = 0.02
+			defense = 0.10
+		}
+		undead_zombie = {
+			casualty_trickleback = 0.02
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_ghoul_encirclement_tech }
+
+		path = {
+			leads_to_tech = undead_ghoul_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_ghoul_encirclement_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_ghoul_encirclement_tech
+			}
+		}
+	}
+
+	undead_ghoul_encirclement_tech = {
+
+		undead_ghoul = {
+			maximum_speed = 0.1
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_ghoul_cannibalize_tech }
+
+		path = {
+			leads_to_tech = undead_ghoul_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_ghoul_encirclement_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_ghoul_encirclement_tech
+			}
+		}
+	}
+
+	undead_ghoul_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_ghoul_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_ghoul_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_zombie_tech = {
+
+		enable_subunits = {
+			undead_zombie
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_zombie_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_zombie_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_zombie_1_tech = {
+
+		undead_zombie = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_zombie_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_zombie_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_zombie_2_tech = {
+
+		undead_zombie = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_undead_zombie_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_zombie_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_zombie_3_tech = {
+
+		undead_zombie = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_zombie_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_zombie_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_zombie_4_tech = {
+
+		undead_zombie = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_zombie_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_crypt_fiend_tech = {
+
+		enable_subunits = {
+			undead_crypt_fiend
+			undead_crypt_fiend_support
+		}
+
+		on_research_complete = {
+			set_technology = { undead_crypt_fiend_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = huntress_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_crypt_fiend_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_crypt_fiend_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_insect_swarm_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_crypt_fiend_improved_carapace_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_crypt_fiend_insect_swarm_tech = {
+
+		undead_crypt_fiend = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_crypt_fiend_improved_carapace_tech }
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_crypt_fiend_improved_carapace_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_crypt_fiend_improved_carapace_tech
+			}
+		}
+	}
+
+	undead_crypt_fiend_improved_carapace_tech = {
+
+		undead_crypt_fiend = {
+			defense = 0.10
+			armor_value = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_crypt_fiend_insect_swarm_tech }
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_crypt_fiend_insect_swarm_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_crypt_fiend_insect_swarm_tech
+			}
+		}
+	}
+
+	undead_crypt_fiend_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_crypt_fiend_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_burrow_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_crypt_fiend_web_throw_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_crypt_fiend_burrow_tech = {
+
+		undead_crypt_fiend = {
+			entrenchment = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_crypt_fiend_web_throw_tech }
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_crypt_fiend_web_throw_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_crypt_fiend_web_throw_tech
+			}
+		}
+	}
+
+	undead_crypt_fiend_web_throw_tech = {
+
+		undead_crypt_fiend = {
+			soft_attack = 0.05
+			air_attack = 0.75
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_crypt_fiend_burrow_tech }
+
+		path = {
+			leads_to_tech = undead_crypt_fiend_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_crypt_fiend_burrow_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_crypt_fiend_burrow_tech
+			}
+		}
+	}
+
+	undead_crypt_fiend_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_crypt_fiend_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_crypt_fiend_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_abomination_tech = {
+
+		enable_subunits = {
+			undead_abomination
+		}
+
+		on_research_complete = {
+			set_technology = { undead_abomination_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_abomination_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_flesh_beast_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	undead_abomination_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_abomination_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_abomination_disease_cloud_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_abomination_improved_cognition_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_abomination_disease_cloud_tech = {
+
+		undead_abomination = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_abomination_improved_cognition_tech }
+
+		path = {
+			leads_to_tech = undead_abomination_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_abomination_improved_cognition_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_abomination_improved_cognition_tech
+			}
+		}
+	}
+
+	undead_abomination_improved_cognition_tech = {
+
+		undead_abomination = {
+			initiative = 0.05
+			max_organisation = 5
+		}
+		undead_flesh_beast = {
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_abomination_disease_cloud_tech }
+
+		path = {
+			leads_to_tech = undead_abomination_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_abomination_disease_cloud_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_abomination_disease_cloud_tech
+			}
+		}
+	}
+
+	undead_abomination_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_abomination_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_abomination_thicker_skin_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_abomination_enhanced_limbs_coordination_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_abomination_thicker_skin_tech = {
+
+		undead_abomination = {
+			armor_value = 0.2
+			max_strength = 0.1
+			hardness = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_abomination_enhanced_limbs_coordination_tech }
+
+		path = {
+			leads_to_tech = undead_abomination_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_abomination_enhanced_limbs_coordination_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_abomination_enhanced_limbs_coordination_tech
+			}
+		}
+	}
+
+	undead_abomination_enhanced_limbs_coordination_tech = {
+
+		undead_abomination = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.25
+		}
+		undead_flesh_beast = {
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_abomination_thicker_skin_tech }
+
+		path = {
+			leads_to_tech = undead_abomination_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_abomination_thicker_skin_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_abomination_thicker_skin_tech
+			}
+		}
+	}
+
+	undead_abomination_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_abomination_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_abomination_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_flesh_beast_tech = {
+
+		enable_subunits = {
+			undead_flesh_beast
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_flesh_beast_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_flesh_beast_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_flesh_beast_1_tech = {
+
+		undead_flesh_beast = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_flesh_beast_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_flesh_beast_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_flesh_beast_2_tech = {
+
+		undead_flesh_beast = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_undead_flesh_beast_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_flesh_beast_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_flesh_beast_3_tech = {
+
+		undead_flesh_beast = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_flesh_beast_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_flesh_beast_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_flesh_beast_4_tech = {
+
+		undead_flesh_beast = {
+			initiative = 0.09
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_flesh_beast_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_temple_of_the_damned_tech = {
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_necromancer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_banshee_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 23 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	undead_skeletal_warrior_tech = {
+
+		enable_subunits = {
+			undead_skeletal_warrior
+		}
+
+		on_research_complete = {
+			set_technology = { undead_skeletal_warrior_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_skeletal_warrior_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 19 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_skeletal_warrior_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_skeletal_warrior_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = skeletal_archers_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = skeletal_mages_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 19 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	skeletal_archers_tech = {
+
+		undead_skeletal_warrior = {
+			air_attack = 2
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { skeletal_mages_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_warrior_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = skeletal_mages_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = skeletal_mages_tech
+			}
+		}
+	}
+
+	skeletal_mages_tech = {
+
+		undead_skeletal_warrior = {
+			ap_attack = 0.25
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { skeletal_archers_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_warrior_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = skeletal_archers_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = skeletal_archers_tech
+			}
+		}
+	}
+
+	undead_skeletal_warrior_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_skeletal_warrior_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_skeletal_warrior_stronger_joints_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_skeletal_warrior_skeletal_mastery_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 19 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_skeletal_warrior_stronger_joints_tech = {
+
+		undead_skeletal_warrior = {
+			max_strength = 0.05
+			reliability_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_skeletal_warrior_skeletal_mastery_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_warrior_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_skeletal_warrior_skeletal_mastery_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_skeletal_warrior_skeletal_mastery_tech
+			}
+		}
+	}
+
+	undead_skeletal_warrior_skeletal_mastery_tech = {
+
+		undead_skeletal_warrior = {
+			supply_consumption = -0.05
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_skeletal_warrior_stronger_joints_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_warrior_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_skeletal_warrior_stronger_joints_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_skeletal_warrior_stronger_joints_tech
+			}
+		}
+	}
+
+	undead_skeletal_warrior_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_skeletal_warrior_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 19 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_skeletal_warrior_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_necromancer_tech = {
+
+		enable_subunits = {
+			undead_necromancer
+		}
+
+		on_research_complete = {
+			set_technology = { undead_necromancer_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_necromancer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_skeletal_warrior_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_boneweaver_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = huntress_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	undead_necromancer_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_necromancer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_necromancer_unholy_frenzy_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_necromancer_necromantic_bolt_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_necromancer_unholy_frenzy_tech = {
+
+		undead_necromancer = {
+			default_morale = 0.5
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_necromancer_necromantic_bolt_tech }
+
+		path = {
+			leads_to_tech = undead_necromancer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_necromancer_necromantic_bolt_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_necromancer_necromantic_bolt_tech
+			}
+		}
+	}
+
+	undead_necromancer_necromantic_bolt_tech = {
+
+		undead_necromancer = {
+			ap_attack = 0.5
+			soft_attack = 0.15
+		}
+		undead_boneweaver = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_necromancer_unholy_frenzy_tech }
+
+		path = {
+			leads_to_tech = undead_necromancer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_necromancer_unholy_frenzy_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_necromancer_unholy_frenzy_tech
+			}
+		}
+	}
+
+	undead_necromancer_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_necromancer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_necromancer_cripple_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_necromancer_death_aura_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 23 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	undead_necromancer_cripple_tech = {
+
+		undead_necromancer = {
+			hard_attack = 0.1
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_necromancer_death_aura_tech }
+
+		path = {
+			leads_to_tech = undead_necromancer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_necromancer_death_aura_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_necromancer_death_aura_tech
+			}
+		}
+	}
+
+	undead_necromancer_death_aura_tech = {
+
+		undead_necromancer = {
+			max_strength = 0.5
+			experience_loss_factor = 0.03
+		}
+		undead_boneweaver = {
+			max_strength = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_necromancer_cripple_tech }
+
+		path = {
+			leads_to_tech = undead_necromancer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_necromancer_cripple_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_necromancer_cripple_tech
+			}
+		}
+	}
+
+	undead_necromancer_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_necromancer_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 23 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_necromancer_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	undead_boneweaver_tech = {
+
+		enable_subunits = {
+			undead_boneweaver
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_boneweaver_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 26 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_boneweaver_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_boneweaver_1_tech = {
+
+		undead_boneweaver = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_boneweaver_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_boneweaver_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_boneweaver_2_tech = {
+
+		undead_boneweaver = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_undead_boneweaver_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_boneweaver_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_boneweaver_3_tech = {
+
+		undead_boneweaver = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_boneweaver_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_boneweaver_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_boneweaver_4_tech = {
+
+		undead_boneweaver = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_boneweaver_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_banshee_tech = {
+
+		enable_subunits = {
+			undead_banshee
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_banshee_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 28 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_banshee_technology
+			militia_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_banshee_1_tech = {
+
+		undead_banshee = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_banshee_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 28 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_banshee_technology
+			militia_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_banshee_2_tech = {
+
+		undead_banshee = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_undead_banshee_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 28 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_banshee_technology
+			militia_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_banshee_3_tech = {
+
+		undead_banshee = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = improved_undead_banshee_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 28 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_banshee_technology
+			militia_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_undead_banshee_4_tech = {
+
+		undead_banshee = {
+			suppression_factor = 0.075
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_infantry_folder
+			position = { x = 28 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			undead_banshee_technology
+			militia_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

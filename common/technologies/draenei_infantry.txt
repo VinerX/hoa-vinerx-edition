@@ -1,0 +1,2221 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	draenei_crystal_guardhouse_tech = {
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = {
+			draenei_gem_forge_tech = 1
+		}
+
+		path = {
+			leads_to_tech = draenei_defender_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_vigilant_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_rangari_ranger_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	draenei_defender_tech = {
+
+		enable_subunits = {
+			draenei_defender
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_defender_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = draenei_defender_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_defender_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_commander_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_peacekeeper_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 7 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_defender_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_defender_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_bulwark_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_shield_bash_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	draenei_bulwark_tech = {
+
+		draenei_defender = {
+			defense = 0.1
+			armor_value = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_shield_bash_tech }
+
+		path = {
+			leads_to_tech = draenei_defender_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_shield_bash_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_shield_bash_tech
+			}
+		}
+	}
+
+	draenei_shield_bash_tech = {
+
+		draenei_defender = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_bulwark_tech }
+
+		path = {
+			leads_to_tech = draenei_defender_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_bulwark_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_bulwark_tech
+			}
+		}
+	}
+
+	draenei_defender_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_defender_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_light_sigils_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_revenge_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_light_sigils_tech = {
+
+		draenei_defender = {
+			breakthrough = 0.10
+			defense = 0.10
+			max_strength = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_revenge_tech }
+
+		path = {
+			leads_to_tech = draenei_defender_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_revenge_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_revenge_tech
+			}
+		}
+	}
+
+	draenei_revenge_tech = {
+
+		draenei_defender = {
+			ap_attack = 0.25
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_light_sigils_tech }
+
+		path = {
+			leads_to_tech = draenei_defender_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_light_sigils_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_light_sigils_tech
+			}
+		}
+	}
+
+	draenei_defender_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_defender_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_defender_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_commander_tech = {
+
+		enable_subunits = {
+			draenei_commander
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = draenei_commander_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_commander_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 4 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_commander_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	draenei_commander_training_1 = {
+
+		draenei_commander = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_commander_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_commander_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	draenei_commander_training_2 = {
+
+		draenei_commander = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_commander_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_commander_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	draenei_commander_training_3 = {
+
+		draenei_commander = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+		path = {
+			leads_to_tech = draenei_commander_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_commander_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	draenei_commander_training_4 = {
+
+		draenei_commander = {
+			initiative = 0.09
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 4 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_commander_technology
+			support_technology
+			captain_technology
+		}
+	}
+
+	draenei_vigilant_tech = {
+
+		enable_subunits = {
+			draenei_vigilant
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_vigilant_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = draenei_vigilant_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_vigilant_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	draenei_vigilant_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_vigilant_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		path = {
+			leads_to_tech = draenei_twinblades_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_hallowed_ground_tech
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	draenei_twinblades_tech = {
+
+		draenei_vigilant = {
+			hard_attack = 0.10
+			breakthrough = 0.15
+		}
+
+		auchenai_vigilant = {
+			hard_attack = 0.10
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_hallowed_ground_tech }
+
+		path = {
+			leads_to_tech = draenei_vigilant_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_hallowed_ground_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_hallowed_ground_tech
+			}
+		}
+	}
+
+	draenei_hallowed_ground_tech = {
+
+		draenei_vigilant = {
+			defense = 0.10
+			soft_attack = 0.20
+		}
+
+		auchenai_vigilant = {
+			defense = 0.10
+			soft_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_twinblades_tech }
+
+		path = {
+			leads_to_tech = draenei_vigilant_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_twinblades_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_twinblades_tech
+			}
+		}
+	}
+
+	draenei_vigilant_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_vigilant_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_intervene_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_mythril_tips_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	draenei_intervene_tech = {
+
+		draenei_vigilant = {
+			max_strength = 0.25
+			defense = 0.10
+			experience_loss_factor = -0.02
+		}
+
+		auchenai_vigilant = {
+			max_strength = 0.25
+			defense = 0.10
+			experience_loss_factor = -0.02
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_mythril_tips_tech }
+
+		path = {
+			leads_to_tech = draenei_vigilant_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_mythril_tips_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_mythril_tips_tech
+			}
+		}
+	}
+
+	draenei_mythril_tips_tech = {
+
+		draenei_vigilant = {
+			ap_attack = 0.25
+			breakthrough = 0.10
+		}
+
+		auchenai_vigilant = {
+			ap_attack = 0.25
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_intervene_tech }
+
+		path = {
+			leads_to_tech = draenei_vigilant_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_intervene_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_intervene_tech
+			}
+		}
+	}
+
+	draenei_vigilant_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_vigilant_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_vigilant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	draenei_peacekeeper_tech = {
+
+		enable_subunits = {
+			draenei_peacekeeper
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = draenei_peacekeeper_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_peacekeeper_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_peacekeeper_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	draenei_peacekeeper_training_1 = {
+
+		draenei_peacekeeper = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_peacekeeper_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_peacekeeper_technology
+			support_technology
+			guard_technology
+		}
+	}
+
+	draenei_peacekeeper_training_2 = {
+
+		draenei_peacekeeper = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_peacekeeper_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_peacekeeper_technology
+			support_technology
+			guard_technology
+		}
+	}
+
+	draenei_peacekeeper_training_3 = {
+
+		draenei_peacekeeper = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_peacekeeper_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_peacekeeper_technology
+			support_technology
+			guard_technology
+		}
+	}
+
+	draenei_peacekeeper_training_4 = {
+
+		draenei_peacekeeper = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_peacekeeper_technology
+			support_technology
+			guard_technology
+		}
+	}
+
+	draenei_rangari_ranger_tech = {
+
+		enable_subunits = {
+			draenei_rangari_ranger
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_rangari_ranger_equipment_tech_1 = 1 }
+			###custom_effect_tooltip = draenei_rangari_ranger_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_rangari_ranger_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_rangari_scout_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_rangari_ranger_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_rangari_ranger_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_wing_clip_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_pathfinder_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	draenei_wing_clip_tech = {
+
+		draenei_rangari_ranger = {
+			air_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_pathfinder_tech }
+
+		path = {
+			leads_to_tech = draenei_rangari_ranger_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_pathfinder_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_pathfinder_tech
+			}
+		}
+	}
+
+	draenei_pathfinder_tech = {
+
+		draenei_rangari_ranger = {
+			maximum_speed = 0.2
+			recon = 1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_wing_clip_tech }
+
+		path = {
+			leads_to_tech = draenei_rangari_ranger_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	draenei_rangari_ranger_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_rangari_ranger_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_sporebat_companion_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_kill_shot_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_sporebat_companion_tech = {
+
+		draenei_rangari_ranger = {
+			defense = 0.15
+			armor_value = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_kill_shot_tech }
+
+		path = {
+			leads_to_tech = draenei_rangari_ranger_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "592.1.1"
+			}
+		}
+	}
+
+	draenei_kill_shot_tech = {
+
+		draenei_rangari_ranger = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_sporebat_companion_tech }
+
+		path = {
+			leads_to_tech = draenei_rangari_ranger_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_sporebat_companion_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_sporebat_companion_tech
+			}
+		}
+	}
+
+	draenei_rangari_ranger_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_rangari_ranger_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_ranger_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "595.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	draenei_rangari_scout_tech = {
+
+		enable_subunits = {
+			draenei_rangari_scout
+		}
+	
+		on_research_complete = {
+			#custom_effect_tooltip = draenei_rangari_scout_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+	
+		path = {
+			leads_to_tech = draenei_rangari_scout_training_1
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 2
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 20 y = 2 }
+		}
+	
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_scout_technology
+			support_technology
+			rogue_technology
+		}
+	
+		ai_will_do = {
+			factor = 300
+	
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+	
+	draenei_rangari_scout_training_1 = {
+	
+		draenei_rangari_scout = {
+			recon = 1.5
+		}
+	
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+	
+		path = {
+			leads_to_tech = draenei_rangari_scout_training_2
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+	
+	draenei_rangari_scout_training_2 = {
+	
+		draenei_rangari_scout = {
+			recon = 1.5
+		}
+	
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+	
+		dependencies = { draenei_bastion_tech = 1 }
+	
+		path = {
+			leads_to_tech = draenei_rangari_scout_training_3
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+	
+	draenei_rangari_scout_training_3 = {
+	
+		draenei_rangari_scout = {
+			recon = 1.5
+		}
+	
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+	
+		path = {
+			leads_to_tech = draenei_rangari_scout_training_4
+			research_cost_coeff = 1
+		}
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+	
+	draenei_rangari_scout_training_4 = {
+	
+		draenei_rangari_scout = {
+			recon = 1.5
+		}
+	
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+	
+		dependencies = { draenei_nexus_tech = 1 }
+	
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+	
+		ai_will_do = { factor = 1 }
+	
+		categories = {
+			infantry_technology
+			barracks_technology
+			draenei_rangari_scout_technology
+			support_technology
+			rogue_technology
+		}
+	}
+
+	draenei_crystal_sanctum_tech = {
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = {
+			draenei_gem_forge_tech = 1
+			arcane_tower_tech = 1
+		}
+
+		path = {
+			leads_to_tech = draenei_arcanist_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 23 y = 0 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	draenei_arcanist_tech = {
+
+		enable_subunits = {
+			draenei_arcanist
+		}
+
+		on_research_complete = {
+			set_technology = { draenei_arcanist_equipment_tech_1 = 1 }
+			#custom_effect_tooltip = draenei_arcanist_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_arcanist_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_soul_priest_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_arcanist_equipment_tech_1 = {
+
+		enable_equipments = {
+			draenei_arcanist_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_counterspell_tech
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = draenei_arcane_blast_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+	}
+
+	draenei_counterspell_tech = {
+
+		draenei_arcanist = {
+			defense = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_arcane_blast_tech }
+
+		path = {
+			leads_to_tech = draenei_arcanist_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_arcane_blast_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_arcane_blast_tech
+			}
+		}
+	}
+
+	draenei_arcane_blast_tech = {
+
+		draenei_arcanist = {
+			hard_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_counterspell_tech }
+
+		path = {
+			leads_to_tech = draenei_arcanist_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_counterspell_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_counterspell_tech
+			}
+		}
+	}
+
+	draenei_arcanist_equipment_tech_2 = {
+
+		enable_equipments = {
+			draenei_arcanist_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_supernova_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = draenei_arcane_precision_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 23 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_supernova_tech = {
+
+		draenei_arcanist = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_arcane_precision_tech }
+
+		path = {
+			leads_to_tech = draenei_arcanist_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_arcane_precision_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_arcane_precision_tech
+			}
+		}
+	}
+
+	draenei_arcane_precision_tech = {
+
+		draenei_arcanist = {
+			breakthrough = 0.15
+			ap_attack = 0.35
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		xor = { draenei_supernova_tech }
+
+		path = {
+			leads_to_tech = draenei_arcanist_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = draenei_supernova_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = draenei_supernova_tech
+			}
+		}
+	}
+
+	draenei_arcanist_equipment_tech_3 = {
+
+		enable_equipments = {
+			draenei_arcanist_equipment_3
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 23 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_arcanist_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 10
+				date > "585.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	draenei_soul_priest_tech = {
+
+		enable_subunits = {
+			draenei_soul_priest
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = draenei_soul_priest_tech_unit_details_tt
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_soul_priest_training_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 26 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_soul_priest_technology
+			support_technology
+		}
+	}
+
+	draenei_soul_priest_training_1 = {
+
+		draenei_soul_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_soul_priest_training_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_soul_priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	draenei_soul_priest_training_2 = {
+
+		draenei_soul_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_bastion_tech = 1 }
+
+		path = {
+			leads_to_tech = draenei_soul_priest_training_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_soul_priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	draenei_soul_priest_training_3 = {
+
+		draenei_soul_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		path = {
+			leads_to_tech = draenei_soul_priest_training_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_soul_priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	draenei_soul_priest_training_4 = {
+
+		draenei_soul_priest = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_draenei = yes
+		}
+
+		dependencies = { draenei_nexus_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = draenei_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			draenei_crystal_sanctum_technology
+			draenei_soul_priest_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+}

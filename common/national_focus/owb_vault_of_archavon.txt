@@ -1,0 +1,226 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+    id = owb_vault_of_archavon
+    continuous_focus_position = { x = 100 y = 100}
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = OVA
+		}
+	}
+	default = no
+
+	shared_focus = owb_technology_of_the_future
+	shared_focus = owb_modern_weapons
+
+	focus = {
+		id = owb_vault_of_archavon_the_great_war
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		x = 10
+		y = 0
+
+		completion_reward = { 
+			country_event = owb_shared_events.1
+			hidden_effect = {
+				55 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_life_in_the_vault
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		prerequisite = {
+			focus = owb_vault_of_archavon_the_great_war
+		}
+		relative_position_id = owb_vault_of_archavon_the_great_war
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			country_event = owb_shared_events.2
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_emerging_from_the_vault
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		prerequisite = {
+			focus = owb_vault_of_archavon_life_in_the_vault
+		}
+		relative_position_id = owb_vault_of_archavon_life_in_the_vault
+		x = 0
+		y = 1
+
+		completion_reward = {
+			create_wargoal = { target = ACC type = annex_everything }
+			hidden_effect = {
+				set_country_flag = emerging_from_the_vault
+			}
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_into_the_tundra
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_emerging_from_the_vault
+		}
+		relative_position_id = owb_vault_of_archavon_emerging_from_the_vault
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = MMH type = annex_everything }
+			create_wargoal = { target = WTF type = annex_everything }
+			create_wargoal = { target = BUT type = annex_everything }
+			create_wargoal = { target = GBT type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_seeking_better_climates
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_into_the_tundra
+		}
+		relative_position_id = owb_vault_of_archavon_into_the_tundra
+		x = -2
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = SKT type = annex_everything }
+			create_wargoal = { target = RST type = annex_everything }
+			create_wargoal = { target = MWH type = annex_everything }
+			create_wargoal = { target = MWA type = annex_everything }
+			create_wargoal = { target = SLW type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_the_frozen_coast
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_into_the_tundra
+		}
+		relative_position_id = owb_vault_of_archavon_into_the_tundra
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = KLK type = annex_everything }
+			create_wargoal = { target = BPT type = annex_everything }
+			create_wargoal = { target = SKA type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_giant_cow_men
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_into_the_tundra
+		}
+		relative_position_id = owb_vault_of_archavon_into_the_tundra
+		x = 2
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = TKT type = annex_everything }
+			create_wargoal = { target = ICM type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_radioactive_spiders
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_seeking_better_climates
+		}
+		prerequisite = {
+			focus = owb_vault_of_archavon_the_frozen_coast
+		}
+		prerequisite = {
+			focus = owb_vault_of_archavon_giant_cow_men
+		}
+		relative_position_id = owb_vault_of_archavon_the_frozen_coast
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = AZJ type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_utilizing_our_new_lands
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_radioactive_spiders
+		}
+		relative_position_id = owb_vault_of_archavon_radioactive_spiders
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+			has_country_flag = owb_knowledge_from_the_past
+			has_country_flag = owb_a_professional_army
+		}
+
+		completion_reward = {
+			country_event = owb_shared_events.3
+		}
+	}
+
+	focus = {
+		id = owb_vault_of_archavon_our_place_on_azeroth
+		icon = GFX_focus_pick_a_side
+		cost = 30
+		prerequisite = {
+			focus = owb_vault_of_archavon_utilizing_our_new_lands
+		}
+
+		relative_position_id = owb_vault_of_archavon_utilizing_our_new_lands
+		x = 0
+		y = 1
+
+		completion_reward = {
+			load_focus_tree = generic_focus
+		}
+	}
+ 
+}

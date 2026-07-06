@@ -1,0 +1,101 @@
+﻿###########################
+#OWB Shared Events
+###########################
+
+add_namespace = owb_shared_events
+
+# starting event
+country_event = {
+	id = owb_shared_events.1
+	title = owb_shared_events.1.t
+	desc = owb_shared_events.1.d
+	picture = GFX_owb_the_great_war_event
+
+	is_triggered_only = yes
+
+    option = { #civilians
+    	name = owb_shared_events.1.option.1
+		add_stability = 0.25
+		add_war_support = 0.25
+		add_political_power = 500
+	}
+
+}
+
+# free industry
+country_event = { #determined by above choice
+	id = owb_shared_events.2
+	title = owb_shared_events.2.t
+	desc = owb_shared_events.2.d
+	picture = GFX_owb_vault_door_event
+
+	is_triggered_only = yes
+
+    option = { #civilians
+    	name = owb_shared_events.2.option.1
+		capital_scope = {
+			add_manpower = 30000
+            add_extra_state_shared_building_slots = 2
+            add_building_construction = {
+				type = industrial_complex
+				level = 2
+				instant_build = yes
+			}
+        }
+	}
+    option = { #balanced
+    	name = owb_shared_events.2.option.2
+		capital_scope = {
+			add_manpower = 30000
+            add_extra_state_shared_building_slots = 2
+            add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+            add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+        }
+	}
+    option = { #military
+    	name = owb_shared_events.2.option.3
+		capital_scope = {
+			add_manpower = 30000
+            add_extra_state_shared_building_slots = 2
+            add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+        }
+	}
+}
+
+country_event = {
+	id = owb_shared_events.3
+	title = owb_shared_events.3.t
+	desc = owb_shared_events.3.d
+	picture = GFX_owb_vault_door_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+    	name = owb_shared_events.3.option.1
+		every_owned_state = {
+			limit = {
+				NOT = {
+				is_core_of = ROOT
+				}
+			}
+			add_core_of = Root
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+	}
+    
+}
+

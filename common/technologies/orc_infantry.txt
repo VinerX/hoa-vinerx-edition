@@ -1,0 +1,3352 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	orc_barracks_tech = {
+
+		path = {
+			leads_to_tech = grunt_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spearman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dire_orc_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+		}
+	}
+
+	grunt_tech = {
+
+		enable_subunits = {
+			grunt
+		}
+
+		on_research_complete = {
+			set_technology = { grunt_equipment_tech_1 = 1 }
+			custom_effect_tooltip = grunt_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = grunt_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = overseer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 3 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	grunt_equipment_tech_1 = {
+
+		enable_equipments = {
+			grunt_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = berserker_strength_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = reinforced_plates_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			orc_barracks_technology
+			infantry_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	berserker_strength_tech = {
+
+		grunt = {
+			max_strength = 0.2
+			soft_attack = 0.1
+		}
+		bulwark = {
+			max_strength = 0.2
+			soft_attack = 0.1
+		}
+		bloodaxe = {
+			max_strength = 0.2
+			soft_attack = 0.1	
+		}
+		long_knives = {
+			max_strength = 0.2
+			soft_attack = 0.1		
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { reinforced_plates_tech }
+
+		path = {
+			leads_to_tech = grunt_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = reinforced_plates_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = reinforced_plates_tech
+			}
+		}
+	}
+
+	reinforced_plates_tech = {
+
+		grunt = {
+			armor_value = 0.25
+			defense = 0.1
+		}
+		bulwark = {
+			armor_value = 0.25
+			defense = 0.1
+		}
+		bloodaxe = {
+			armor_value = 0.25
+			defense = 0.1	
+		}
+		long_knives = {
+			armor_value = 0.25
+			defense = 0.1		
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { berserker_strength_tech }
+
+		path = {
+			leads_to_tech = grunt_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = berserker_strength_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = berserker_strength_tech
+			}
+		}
+	}
+
+	grunt_equipment_tech_2 = {
+
+		enable_equipments = {
+			grunt_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = cleaving_swings_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = concussive_blows_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	cleaving_swings_tech = {
+
+		grunt = {
+			soft_attack = 0.15
+		}
+		bulwark = {
+			soft_attack = 0.15
+		}
+		bloodaxe = {
+			soft_attack = 0.15
+		}
+		long_knives = {
+			soft_attack = 0.15		
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { concussive_blows_tech }
+
+		path = {
+			leads_to_tech = grunt_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = concussive_blows_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = concussive_blows_tech
+			}
+		}
+	}
+
+	concussive_blows_tech = {
+
+		grunt = {
+			hard_attack = 0.25
+			ap_attack = 0.1
+		}
+		bulwark = {
+			hard_attack = 0.25
+			ap_attack = 0.1
+		}
+		bloodaxe = {
+			hard_attack = 0.25
+			ap_attack = 0.1			
+		}
+		long_knives = {
+			hard_attack = 0.25
+			ap_attack = 0.1		
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { cleaving_swings_tech }
+
+		path = {
+			leads_to_tech = grunt_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = cleaving_swings_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = cleaving_swings_tech
+			}
+		}
+	}
+
+	grunt_equipment_tech_3 = {
+
+		enable_equipments = {
+			grunt_equipment_3
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 3 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	BRC_orc_sailor_tech = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_orc_sailors } 
+		}
+
+		grunt = {
+			amphibious = {
+				attack = 0.10
+			}
+		}
+		bulwark = {
+			amphibious = {
+				attack = 0.10
+			}
+		}
+		bloodaxe = {
+			amphibious = {
+				attack = 0.10
+			}
+		}
+		long_knives = {
+			amphibious = {
+				attack = 0.10
+			}			
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 2 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 0 }
+	}
+
+	BHC_angled_plates_tech = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_angled_plates_tech } 
+		}
+
+		grunt = {
+			armor_value = 0.20
+		}
+		bulwark = {
+			armor_value = 0.20
+		}
+		bloodaxe = {
+			armor_value = 0.20
+		}
+		long_knives = {
+			armor_value = 0.20
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 4 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			grunt_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 0 }
+	}
+
+	overseer_tech = {
+
+		enable_subunits = {
+			overseer
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = overseer_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_overseer_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 6 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			overseer_technology
+			militia_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_overseer_1 = {
+
+		overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_overseer_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			overseer_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_overseer_2 = {
+
+		overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_overseer_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			overseer_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_overseer_3 = {
+
+		overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_overseer_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			overseer_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_overseer_4 = {
+
+		overseer = {
+			initiative = 0.08
+			suppression_factor = 0.05
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 6 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			overseer_technology
+			militia_technology ###Closet there is
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	spearman_tech = {
+
+		enable_subunits = {
+			spearman
+			spearman_support
+		}
+
+		on_research_complete = {
+			set_technology = { spearman_equipment_tech_1 = 1 }
+			custom_effect_tooltip = spearman_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = spearman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	spearman_equipment_tech_1 = {
+
+		enable_equipments = {
+			spearman_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = spearman_Impaling_thrusts
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spearman_precision_javelins
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 9 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	spearman_Impaling_thrusts = {
+
+		spearman = {
+			hard_attack = 0.1
+			breakthrough = 0.1
+			ap_attack = 0.05
+		}
+		splitter = {
+			hard_attack = 0.1
+			breakthrough = 0.1
+			ap_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { spearman_precision_javelins }
+
+		path = {
+			leads_to_tech = spearman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = spearman_precision_javelins
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spearman_precision_javelins
+			}
+		}
+	}
+
+	spearman_precision_javelins = {
+
+		spearman = {
+			air_attack = 0.2
+			soft_attack = 0.1
+			defense = 0.05
+		}
+		splitter = {
+			air_attack = 0.2
+			soft_attack = 0.1
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { spearman_Impaling_thrusts }
+
+		path = {
+			leads_to_tech = spearman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = spearman_Impaling_thrusts
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spearman_Impaling_thrusts
+			}
+		}
+	}
+
+	spearman_equipment_tech_2 = {
+
+		enable_equipments = {
+			spearman_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = spearman_chain_coat
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = spearman_explosive_spears
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 9 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	spearman_chain_coat = {
+
+		spearman = {
+			defense = 0.10
+			armor_value = 0.25
+		}
+		splitter = {
+			defense = 0.10
+			armor_value = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { spearman_explosive_spears }
+
+		path = {
+			leads_to_tech = spearman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = spearman_explosive_spears
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spearman_explosive_spears
+			}
+		}
+	}
+
+	spearman_explosive_spears = {
+
+		spearman = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+			fort = {
+				attack = 0.15
+			}
+		}
+		splitter = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+			fort = {
+				attack = 0.15
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { spearman_chain_coat }
+
+		path = {
+			leads_to_tech = spearman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = spearman_chain_coat
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = spearman_chain_coat
+			}
+		}
+	}
+
+	spearman_equipment_tech_3 = {
+
+		enable_equipments = {
+			spearman_equipment_3
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 9 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spearman_technology
+			ranged_infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dire_orc_tech = {
+
+		enable_subunits = {
+			dire_orc
+		}
+
+		on_research_complete = {
+			set_technology = { dire_orc_equipment_tech_1 = 1 }
+			custom_effect_tooltip = dire_orc_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = dire_orc_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	dire_orc_equipment_tech_1 = {
+
+		enable_equipments = {
+			dire_orc_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = dire_orc_hulking_blow
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dire_orc_war_paint
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dire_orc_hulking_blow = {
+
+		dire_orc = {
+			breakthrough = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.25
+		}
+		siege_behemoths = {
+			breakthrough = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { dire_orc_war_paint }
+
+		path = {
+			leads_to_tech = dire_orc_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = dire_orc_war_paint
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dire_orc_war_paint
+			}
+		}
+	}
+
+	dire_orc_war_paint = {
+
+		dire_orc = {
+			max_organisation = 5
+			defense = 0.1
+			armor_value = 0.25
+		}
+		siege_behemoths = {
+			max_organisation = 5
+			defense = 0.1
+			armor_value = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { dire_orc_hulking_blow }
+
+		path = {
+			leads_to_tech = dire_orc_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = dire_orc_hulking_blow
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dire_orc_hulking_blow
+			}
+		}
+	}
+
+	dire_orc_equipment_tech_2 = {
+
+		enable_equipments = {
+			dire_orc_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = dire_orc_bloodlust
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dire_orc_oversized_armor
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	dire_orc_bloodlust = {
+
+		dire_orc = {
+			max_strength = 0.1
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+		siege_behemoths = {
+			max_strength = 0.1
+			soft_attack = 0.1
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { dire_orc_oversized_armor }
+
+		path = {
+			leads_to_tech = dire_orc_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = dire_orc_oversized_armor
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dire_orc_oversized_armor
+			}
+		}
+	}
+
+	dire_orc_oversized_armor = {
+
+		dire_orc = {
+			defense = 0.15
+			armor_value = 0.25
+			default_morale = 0.05
+		}
+		siege_behemoths = {
+			defense = 0.15
+			armor_value = 0.25
+			default_morale = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { dire_orc_bloodlust }
+
+		path = {
+			leads_to_tech = dire_orc_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = dire_orc_oversized_armor
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dire_orc_oversized_armor
+			}
+		}
+	}
+
+	dire_orc_equipment_tech_3 = {
+
+		enable_equipments = {
+			dire_orc_equipment_3
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			dire_orc_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	orc_temple_of_the_damned_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				arcane_tower_tech_global = 1
+				church_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_orc = yes
+		}
+
+		xor = { orc_spirit_lodge_tech }
+
+		path = {
+			leads_to_tech = warlock_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demonic_ritual_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 18 y = 0 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = orc_spirit_lodge_tech
+			}
+			modifier = {
+				factor = 0
+				is_researching_technology = orc_spirit_lodge_tech
+			}
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spellcaster_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	warlock_tech = {
+
+		enable_subunits = {
+			warlock
+		}
+
+		on_research_complete = {
+			set_technology = { warlock_equipment_tech_1 = 1	}
+			custom_effect_tooltip = warlock_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = warlock_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = necrolyte_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 17 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	warlock_equipment_tech_1 = {
+
+		enable_equipments = {
+			warlock_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = warlock_litany_of_curses
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = warlock_waves_of_destruction
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 17 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	warlock_litany_of_curses = {
+
+		warlock = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			ap_attack = 0.15
+		}
+		doombringer = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			ap_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { warlock_waves_of_destruction }
+
+		path = {
+			leads_to_tech = warlock_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = warlock_waves_of_destruction
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warlock_waves_of_destruction
+			}
+		}
+	}
+
+	warlock_waves_of_destruction = {
+
+		warlock = {
+			breakthrough = 0.15
+			fort = { attack = 0.15 }
+			forest = { attack = 0.15 }
+			jungle = { attack = 0.15 }
+		}
+		doombringer = {
+			breakthrough = 0.15
+			fort = { attack = 0.15 }
+			forest = { attack = 0.15 }
+			jungle = { attack = 0.15 }
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { warlock_litany_of_curses }
+
+
+		path = {
+			leads_to_tech = warlock_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = warlock_litany_of_curses
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warlock_litany_of_curses
+			}
+		}
+	}
+
+	warlock_equipment_tech_2 = {
+
+		enable_equipments = {
+			warlock_equipment_2
+		}
+		
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = warlock_demon_minions
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = warlock_felstorm
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 17 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	warlock_demon_minions = {
+
+		warlock = {
+			max_strength = 0.2
+			defense = 0.15
+		}
+		doombringer = {
+			max_strength = 0.2
+			defense = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { warlock_felstorm }
+
+		path = {
+			leads_to_tech = warlock_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = warlock_felstorm
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warlock_felstorm
+			}
+		}
+	}
+
+	warlock_felstorm = {
+
+		warlock = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.15
+			anti_air_attack = 0.15
+		}
+		doombringer = {
+			soft_attack = 0.1
+			hard_attack = 0.1
+			ap_attack = 0.15
+			anti_air_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { warlock_demon_minions }
+
+		path = {
+			leads_to_tech = warlock_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = warlock_demon_minions
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = warlock_demon_minions
+			}
+		}
+	}
+
+	warlock_equipment_tech_3 = {
+
+		enable_equipments = {
+			warlock_equipment_3
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 17 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			warlock_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	necrolyte_tech = {
+
+		enable_subunits = {
+			necrolyte
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = necrolyte_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_necrolyte_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 20 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			nectolyte_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_necrolyte_1 = {
+
+		necrolyte = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_necrolyte_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			nectolyte_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_necrolyte_2 = {
+
+		necrolyte = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_necrolyte_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			nectolyte_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_necrolyte_3 = {
+
+		necrolyte = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_necrolyte_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			nectolyte_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_necrolyte_4 = {
+
+		necrolyte = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			nectolyte_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demonic_ritual_tech = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		warlock = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		orc_death_knight = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		doombringer = {
+			soft_attack = 0.07
+			hard_attack = 0.07	
+		}
+
+		path = {
+			leads_to_tech = demonic_ritual_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	demonic_ritual_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		warlock = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		orc_death_knight = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		doombringer = {
+			soft_attack = 0.07
+			hard_attack = 0.07	
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = demonic_ritual_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	demonic_ritual_tech_3 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		warlock = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		orc_death_knight = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		doombringer = {
+			soft_attack = 0.07
+			hard_attack = 0.07	
+		}
+
+		path = {
+			leads_to_tech = demonic_ritual_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	demonic_ritual_tech_4 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		warlock = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		orc_death_knight = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		doombringer = {
+			soft_attack = 0.07
+			hard_attack = 0.07	
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 22 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	orc_spirit_lodge_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				arcane_tower_tech_global = 1
+				church_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_orc = yes
+		}
+
+		xor = { orc_temple_of_the_damned_tech }
+
+		path = {
+			leads_to_tech = shaman_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = call_of_the_elements_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 27 y = 0 }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_tech = orc_temple_of_the_damned_tech
+			}
+			modifier = {
+				factor = 0
+				is_researching_technology = orc_temple_of_the_damned_tech
+			}
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			spellcaster_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shaman_tech = {
+
+		enable_subunits = {
+			shaman
+		}
+
+		on_research_complete = {
+			set_technology = { shaman_equipment_tech_1 = 1 }
+			custom_effect_tooltip = shaman_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = shaman_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = restoration_shaman_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 25 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	shaman_equipment_tech_1 = {
+
+		enable_equipments = {
+			shaman_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = shaman_cleansing_waves
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = shaman_controlled_inferno
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 25 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	shaman_cleansing_waves = {
+
+		shaman = {
+			casualty_trickleback = 0.01
+			defense = 0.15
+			river = {
+				attack = 0.10
+				defence = 0.15
+			}
+			amphibious = {
+				attack = 0.10
+				defence = 0.15
+			}
+		}
+
+		stone_speakers = {
+			casualty_trickleback = 0.01
+			defense = 0.15
+			river = {
+				attack = 0.10
+				defence = 0.15
+			}
+			amphibious = {
+				attack = 0.10
+				defence = 0.15
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { shaman_controlled_inferno }
+
+		path = {
+			leads_to_tech = shaman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = shaman_controlled_inferno
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = shaman_controlled_inferno
+			}
+		}
+	}
+
+	shaman_controlled_inferno = {
+
+		shaman = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+			breakthrough = 0.15
+			desert = {
+				attack = 0.10
+				defence = 0.15
+			}
+			badlands = {
+				attack = 0.10
+				defence = 0.15
+			}
+		}
+
+		stone_speakers = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+			breakthrough = 0.15
+			desert = {
+				attack = 0.10
+				defence = 0.15
+			}
+			badlands = {
+				attack = 0.10
+				defence = 0.15
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { shaman_cleansing_waves }
+
+		path = {
+			leads_to_tech = shaman_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = shaman_cleansing_waves
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = shaman_cleansing_waves
+			}
+		}
+	}
+
+	shaman_equipment_tech_2 = {
+
+		enable_equipments = {
+			shaman_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = shaman_earthen_fury
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = shaman_elemental_mastery
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 25 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shaman_earthen_fury = {
+
+		shaman = {
+			max_strength = 0.15
+			defense = 0.35
+			hills = {
+				attack = 0.10
+				defence = 0.15
+			}
+			mountain = {
+				attack = 0.10
+				defence = 0.15
+			}
+		}
+
+		stone_speakers = {
+			max_strength = 0.15
+			defense = 0.35
+			hills = {
+				attack = 0.10
+				defence = 0.15
+			}
+			mountain = {
+				attack = 0.10
+				defence = 0.15
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { shaman_elemental_mastery }
+
+
+		path = {
+			leads_to_tech = shaman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = shaman_elemental_mastery
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = shaman_elemental_mastery
+			}
+		}
+	}
+
+	shaman_elemental_mastery = {
+
+		shaman = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			air_attack = 0.4
+			breakthrough = 0.5
+		}
+
+		stone_speakers = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			breakthrough = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		xor = { shaman_earthen_fury }
+
+		path = {
+			leads_to_tech = shaman_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				has_tech = shaman_earthen_fury
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = shaman_earthen_fury
+			}
+		}
+	}
+
+	shaman_equipment_tech_3 = {
+
+		enable_equipments = {
+			shaman_equipment_3
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		path = {
+			leads_to_tech = shaman_ashspeaker
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = shaman_tempestborn
+			research_cost_coeff = 1
+		}
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 25 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	shaman_ashspeaker = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_ashspeaker } 
+		}
+
+		shaman = {
+			soft_attack = 0.25
+			breakthrough = 0.30
+			air_attack = 0.10
+		}
+
+		stone_speakers = {
+			soft_attack = 0.25
+			breakthrough = 0.3
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 24 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	shaman_tempestborn = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_tempestborn } 
+		}
+
+		shaman = {
+			hard_attack = 0.25
+			ap_attack = 0.75
+			air_attack = 0.25
+		}
+
+		stone_speakers = {
+			hard_attack = 0.25
+			ap_attack = 0.75
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 26 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			shaman_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	restoration_shaman_tech = {
+
+		enable_subunits = {
+			restoration_shaman
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = restoration_shaman_tech_unit_details_tt
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_restoration_shaman_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 28 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			restoration_shaman_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_restoration_shaman_1 = {
+
+		restoration_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_restoration_shaman_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 28 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			restoration_shaman_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_restoration_shaman_2 = {
+
+		restoration_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_restoration_shaman_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 28 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			restoration_shaman_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_restoration_shaman_3 = {
+
+		restoration_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_orc = yes
+		}
+
+		path = {
+			leads_to_tech = improved_restoration_shaman_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 28 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			restoration_shaman_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	improved_restoration_shaman_4 = {
+
+		restoration_shaman = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 28 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			orc_barracks_technology
+			orc_support_technology
+			support_technology
+			restoration_shaman_technology
+			healer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	call_of_the_elements_tech = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		shaman = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		far_seer = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		stone_speakers = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		path = {
+			leads_to_tech = call_of_the_elements_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 30 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	call_of_the_elements_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		shaman = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		far_seer = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		stone_speakers = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		dependencies = { stronghold_tech = 1 }
+
+		path = {
+			leads_to_tech = call_of_the_elements_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 30 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	call_of_the_elements_tech_3 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_orc = yes
+		}
+
+		shaman = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		far_seer = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		stone_speakers = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		path = {
+			leads_to_tech = call_of_the_elements_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 30 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	call_of_the_elements_tech_4 = {
+
+		country_faith_gain_factor = 0.125
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		shaman = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+		far_seer = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		stone_speakers = {
+			soft_attack = 0.07
+			hard_attack = 0.07
+		}
+
+		dependencies = { fortress_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = orc_infantry_folder
+			position = { x = 30 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

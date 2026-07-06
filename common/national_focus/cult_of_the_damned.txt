@@ -1,0 +1,1119 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = cult_of_the_damned
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = CAE
+		}
+	}
+	default = no
+
+	continuous_focus_position = {
+		x = 1500
+		y = 1300
+	}
+
+	focus = {
+		id = CAE_the_cult_of_the_damned
+		icon = GFX_focus_necromancer
+		cost = 7
+		x = 10
+		y = 0
+
+		completion_reward = {
+			country_event = cult_of_the_damned.14
+		}
+	}
+
+	focus = {
+		id = CAE_the_scholomance
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 7
+		prerequisite = { focus = CAE_the_cult_of_the_damned }
+		relative_position_id = CAE_the_cult_of_the_damned
+		x = -6
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.15
+		}
+	}
+
+	focus = {
+		id = CAE_necromatic_studies
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scholomance
+		}
+		relative_position_id = CAE_the_scholomance
+		x = -3
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = administration_technology
+				bonus = 0.25
+				uses = 3
+				category = administration_technology
+			}		
+			custom_effect_tooltip = CAE_necromatic_studies_tt
+			hidden_effect = {
+				add_units_to_division_template = {
+					template_name = "Cult of the Damned Skeletons" 
+					regiments = {
+						undead_necromancer = 1 
+						undead_necromancer = 2 
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CAE_blighting_the_land
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = {
+			focus = CAE_necromatic_studies
+		}
+		relative_position_id = CAE_necromatic_studies
+		x = -2
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = undead_blight_growth_technology
+				bonus = 0.25
+				uses = 2
+				category = undead_blight_growth_technology
+			}	
+		}
+	}
+
+	focus = {
+		id = CAE_plague_cauldrons
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = {
+			focus = CAE_blighting_the_land
+		}
+		relative_position_id = CAE_blighting_the_land
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			103 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+	}
+
+	focus = {
+		id = CAE_plague_studies
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = {
+			focus = CAE_plague_cauldrons
+		}
+		relative_position_id = CAE_plague_cauldrons
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = undead_graveyard_technology
+				bonus = 0.3
+				uses = 3
+				category = undead_graveyard_technology
+			}
+		}
+	}
+
+	focus = {
+		id = CAE_fleshcrafting
+		icon = GFX_focus_ghoul
+		cost = 30
+		prerequisite = {
+			focus = CAE_necromatic_studies
+		}
+		relative_position_id = CAE_necromatic_studies
+		x = 0
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_summoning_rituals
+		}
+
+		completion_reward = { 
+			add_ideas = {
+				CAE_fleshcrafting_idea
+			}
+		}
+
+	}
+
+	focus = {
+		id = CAE_animal_studies
+		icon = GFX_Focus_CAE_animal_studies
+		cost = 30
+		prerequisite = {
+			focus = CAE_fleshcrafting
+		}
+		relative_position_id = CAE_fleshcrafting
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.24
+			effect_tooltip = {
+				set_technology = {
+					undead_haunted_stable_tech = 1
+					undead_plague_hound_tech = 1
+					undead_plague_hound_equipment_tech_1 = 1
+				}	
+			}
+			custom_effect_tooltip = CAE_animal_studies_tt
+		}
+	}
+
+	focus = {
+		id = CAE_the_abomination
+		icon = GFX_Focus_abomination
+		cost = 30
+		prerequisite = {
+			focus = CAE_animal_studies
+		}
+		prerequisite = {
+			focus = CAE_the_slaughterhouse
+		}
+		relative_position_id = CAE_animal_studies
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.18
+			effect_tooltip = {
+				set_technology = {
+					undead_abomination_tech = 1
+					undead_abomination_equipment_tech_1 = 1
+				}	
+			}
+			custom_effect_tooltip = CAE_the_abomination_tt
+		}
+
+	}
+
+	focus = {
+		id = CAE_summoning_rituals
+		icon = GFX_focus_necromancer
+		cost = 30
+		prerequisite = {
+			focus = CAE_necromatic_studies
+		}
+		relative_position_id = CAE_necromatic_studies
+		x = 3
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.20
+			add_tech_bonus = {
+				name = peasant_tools_technology
+				bonus = 0.5
+				uses = 1
+				category = peasant_tools_technology
+			}
+			effect_tooltip = {
+				set_technology = {
+					undead_haunted_mine_tech = 1
+					undead_graveyard_tech = 1
+					undead_sacrificial_pit_tech = 1
+					undead_ziggurat_tech = 1
+					undead_spirit_tower_tech = 1
+					undead_saronite_wall_tech = 1
+					undead_altar_of_darkness_tech = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CAE_the_slaughterhouse
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = {
+			focus = CAE_summoning_rituals
+		}
+		relative_position_id = CAE_summoning_rituals
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.25
+			effect_tooltip = {
+				set_technology = {
+					slaughterhouse_tech = 1
+					undead_meat_wagon_tech = 1
+					undead_meat_wagon_equipment_tech_1 = 1
+					haunted_caravan_equipment_tech_1 = 1
+				}	
+			}
+		}
+
+	}
+
+	focus = {
+		id = CAE_expanding_the_crypts
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = { focus = CAE_summoning_rituals }
+		relative_position_id = CAE_summoning_rituals
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			103 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.50
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 50
+					track = infantry
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = CAE_the_lich_kings_gift
+		icon = GFX_Focus_CAE_lich_kings_gift
+		cost = 30
+		prerequisite = {
+			focus = CAE_expanding_the_crypts
+		}
+		relative_position_id = CAE_expanding_the_crypts
+		x = 0
+		y = 1
+
+		completion_reward = {
+			country_event = cult_of_the_damned.23
+			effect_tooltip = {
+				set_technology = {
+					undead_lich_tech = 1
+					undead_lich_equipment_tech_1 = 1
+				}	
+			}
+			custom_effect_tooltip = CAE_the_lich_kings_gift_tt
+		}
+	}
+
+	focus = {
+		id = CAE_growing_the_cult
+		icon = GFX_focus_necromancer
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scholomance
+		}
+		relative_position_id = CAE_the_scholomance
+		x = 3
+		y = 1
+
+		completion_reward = { 
+			add_political_power = 100
+			add_tech_bonus = {
+				name = undead_necropolis_technology
+				bonus = 0.5
+				uses = 1
+				category = undead_necropolis_technology
+			}
+			add_timed_idea = {
+				idea = CAE_growing_the_cult_idea
+				days = 730
+			}
+		}
+	}
+
+	focus = {
+		id = CAE_banished_students
+		icon = GFX_focus_necromancer
+		cost = 30
+		prerequisite = {
+			focus = CAE_growing_the_cult
+		}
+		relative_position_id = CAE_growing_the_cult
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			army_experience = 25
+			add_tech_bonus = {
+				name =  undead_necromancer_technology
+				bonus = 0.5
+				uses = 1
+				category = undead_necromancer_technology
+			}
+			custom_effect_tooltip = CAE_banished_students_tt
+			hidden_effect = {
+				add_units_to_division_template = {
+					template_name = "Cult of the Damned Necromancers" 
+					regiments = {
+						undead_necromancer = 0 
+						undead_necromancer = 1 
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CAE_the_disenfranchised_masses
+		icon = GFX_focus_genric_skeletal_warriors
+		cost = 30
+		prerequisite = {
+			focus = CAE_growing_the_cult
+		}
+		relative_position_id = CAE_growing_the_cult
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			103 = { add_manpower = 25000 }
+		}
+	}
+
+	focus = {
+		id = CAE_the_baron
+		icon = GFX_focus_death_knight
+		cost = 30
+		prerequisite = { focus = CAE_banished_students }
+		prerequisite = { focus = CAE_the_disenfranchised_masses }
+		relative_position_id = CAE_banished_students
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.21
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.50
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_armor
+					amount = 0.5
+					days = 50
+					track = armor
+				}
+			}
+			else = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = CAE_the_knights_of_stratholme
+		icon = GFX_focus_ebon_blade_death_knight
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_baron
+		}
+		relative_position_id = CAE_the_baron
+		x = 0
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_animal_studies
+		}
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.22
+			effect_tooltip = {
+				set_technology = {
+					undead_skeletal_knight_tech = 1
+					undead_skeletal_knight_equipment_tech_1 = 1
+				}
+			}
+			custom_effect_tooltip = CAE_the_knights_of_stratholme_tt
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_scourging_of_lordaeron
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_cult_of_the_damned
+		}
+		relative_position_id = CAE_the_cult_of_the_damned
+		x = 0
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_plague_studies
+			has_completed_focus = CAE_the_abomination
+			has_completed_focus = CAE_the_lich_kings_gift
+			has_completed_focus = CAE_the_knights_of_stratholme
+			has_completed_focus = CAE_naxxramas_the_floating_citadel
+		}	
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.26
+			hidden_effect = {
+				LOR = {
+					country_event = lordaeron_third_war.1
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_scourging_of_the_eastweald
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scourging_of_lordaeron
+		}
+		relative_position_id = CAE_the_scourging_of_lordaeron
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.27
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_scourging_of_stratholme
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scourging_of_lordaeron
+		}
+		relative_position_id = CAE_the_scourging_of_lordaeron
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.28
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_scourging_of_tirisfal_glades
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scourging_of_the_eastweald
+		}
+		prerequisite = {
+			focus = CAE_the_scourging_of_stratholme
+		}
+		relative_position_id = CAE_the_scourging_of_the_eastweald
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.29
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_scourging_of_silverpine
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scourging_of_tirisfal_glades
+		}
+		mutually_exclusive = { focus = CAE_the_scourging_of_hillsbrad }
+		relative_position_id = CAE_the_scourging_of_tirisfal_glades
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.30
+			hidden_effect = {
+				LOR = {
+					country_event = lordaeron_third_war.4
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_scourging_of_hillsbrad
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scourging_of_tirisfal_glades
+		}
+		mutually_exclusive = { focus = CAE_the_scourging_of_silverpine }
+		relative_position_id = CAE_the_scourging_of_tirisfal_glades
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.31
+			hidden_effect = {
+				LOR = {
+					country_event = lordaeron_third_war.4
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = CAE_let_the_scourging_of_this_land_begin
+		icon = GFX_focus_LOR_generic
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_scourging_of_silverpine
+			focus = CAE_the_scourging_of_hillsbrad
+		}
+
+		relative_position_id = CAE_the_scourging_of_silverpine
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.31
+			add_stability = 0.1
+			add_war_support = 0.1
+			set_country_flag = the_scourging_of_lordaeron
+		}
+
+	}
+
+	focus = {
+		id = CAE_naxxramas_the_floating_citadel
+		icon = GFX_Focus_necropolis
+		cost = 7
+		prerequisite = {
+			focus = CAE_the_cult_of_the_damned
+		}
+		relative_position_id = CAE_the_cult_of_the_damned
+		x = 9
+		y = 1
+
+		completion_reward = { 
+			country_event = cult_of_the_damned.16
+		}
+
+	}
+
+	focus = {
+		id = CAE_the_arachnid_quarter
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_naxxramas_the_floating_citadel
+		}
+		relative_position_id = CAE_naxxramas_the_floating_citadel
+		x = -5
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_let_the_scourging_of_this_land_begin
+		}
+
+		completion_reward = { 
+			army_experience = 50
+			add_ideas = {
+				CAE_the_arachnid_quarter_1_idea
+			}
+			#bonus to all spider equipment production
+			#crypt fiend tech bonus
+		}
+	}
+
+	focus = {
+		id = CAE_the_general
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_arachnid_quarter
+		}
+		relative_position_id = CAE_the_arachnid_quarter
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = 	CAE_the_general
+				bonus = 0.25
+				uses = 1
+				category = undead_crypt_lord_technology
+			}	
+		}
+
+		#faerlyna give bonus to creating fiends
+		#maexxna
+	}
+
+	focus = {
+		id = CAE_cult_of_the_spider
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_arachnid_quarter
+		}
+		relative_position_id = CAE_the_arachnid_quarter
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = 	CAE_cult_of_the_spider
+				bonus = 0.25
+				uses = 1
+				category = undead_crypt_fiend_technology
+			}	
+		}
+		#crypt fiend buffs
+		#unlock crypt lord/ get anubrekhan as general
+		#anub'rekhan bonus to tech army xp??
+		#faerlyna give bonus to creating fiends
+		#maexxna
+	}
+
+	focus = {
+		id = CAE_the_broodmother
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_general
+		}
+		prerequisite = {
+			focus = CAE_cult_of_the_spider
+		}
+		relative_position_id = CAE_the_general
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			swap_ideas = {
+				remove_idea = CAE_the_arachnid_quarter_1_idea
+				add_idea = CAE_the_arachnid_quarter_2_idea
+			}
+		}
+		#crypt fiend buffs
+		#unlock crypt lord/ get anubrekhan as general
+		#anub'rekhan bonus to tech army xp??
+		#faerlyna give bonus to creating fiends
+		#maexxna
+	}
+
+	focus = {
+		id = CAE_the_plague_quarter
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_naxxramas_the_floating_citadel
+		}
+		relative_position_id = CAE_naxxramas_the_floating_citadel
+		x = -2
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_let_the_scourging_of_this_land_begin
+		}
+
+		completion_reward = { 
+			add_ideas = {
+				CAE_the_plague_quarter_1_idea
+			}
+		}
+		#industry/cultist buff
+		#has gargoyles
+		#noth the plaguebringer
+		#bats
+		#heigan the unclean
+		#loatheb
+		
+	}
+
+	focus = {
+		id = CAE_perfecting_the_plague
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_plague_quarter
+		}
+		relative_position_id = CAE_the_plague_quarter
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			swap_ideas = {
+				remove_idea = CAE_the_plague_quarter_1_idea
+				add_idea = CAE_the_plague_quarter_2_idea
+			}
+		}
+		#industry/cultist buff
+		#has gargoyles
+		#noth the plaguebringer
+		#bats
+		#heigan the unclean
+		#loatheb
+		
+	}
+
+	focus = {
+		id = CAE_the_necrotic_vault
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_perfecting_the_plague
+		}
+		relative_position_id = CAE_perfecting_the_plague
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			swap_ideas = {
+				remove_idea = CAE_the_plague_quarter_2_idea
+				add_idea = CAE_the_plague_quarter_3_idea
+			}
+		}
+		#industry/cultist buff
+		#has gargoyles
+		#noth the plaguebringer
+		#bats
+		#heigan the unclean
+		#loatheb
+		#future special project unit?
+		
+	}
+
+	focus = {
+		id = CAE_the_military_quarter
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_naxxramas_the_floating_citadel
+		}
+		relative_position_id = CAE_naxxramas_the_floating_citadel
+		x = 1
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_let_the_scourging_of_this_land_begin
+		}
+
+		completion_reward = { 
+			add_ideas = {
+				CAE_the_military_quarter_idea
+			}
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}	
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
+			if = {
+				limit = { ROOT = { has_any_grand_doctrine = land } }
+				add_daily_mastery = {
+					name = doctrine_infantry
+					amount = 0.5
+					days = 200
+					track = infantry
+				}
+			}
+		}
+		#forges
+		#unlock / buff skeletal knights
+		#indtsructor razuvious
+		#gothink the harvestr
+		#the four horseman
+	}
+
+	focus = {
+		id = CAE_instructor_razuvious
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_military_quarter
+		}
+		relative_position_id = CAE_the_military_quarter
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = 	undead_skeletal_knight_technology
+				bonus = 0.25
+				uses = 1
+				category = undead_skeletal_knight_technology
+			}		
+			#edit military quarter by -10% training time
+			#event that gives you 4 generals			
+		}
+	}
+
+	focus = {
+		id = CAE_hall_of_the_harvester
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_military_quarter
+		}
+		relative_position_id = CAE_the_military_quarter
+		x = 1
+		y = 1
+
+		available = {
+			#bonus to necromancers & skeletons
+			#add a 5% atatck bonus to necroamcners and skeletons equipment to mil quarter idea
+		}
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = 	undead_skeletal_warrior_technology
+				bonus = 0.2
+				uses = 1
+				category = undead_skeletal_warrior_technology
+			}		
+			add_tech_bonus = {
+				name = 	undead_necromancer_technology
+				bonus = 0.2
+				uses = 1
+				category = undead_necromancer_technology
+			}		
+			#add a 5% atatck bonus to necroamcners and skeletons equipment to mil quarter idea	
+		}
+	}
+
+	focus = {
+		id = CAE_the_four_horseman
+		icon = GFX_focus_death_knight
+		cost = 30
+		prerequisite = {
+			focus = CAE_instructor_razuvious
+		}
+		prerequisite = {
+			focus = CAE_hall_of_the_harvester
+		}
+		relative_position_id = CAE_instructor_razuvious
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = undead_death_knight_technology
+				bonus = 0.25
+				uses = 1
+				category = undead_death_knight_technology
+			}	
+			#event that gives you 4 generals		
+		}
+	}
+
+	focus = {
+		id = CAE_the_construct_quarter
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_naxxramas_the_floating_citadel
+		}
+		relative_position_id = CAE_naxxramas_the_floating_citadel
+		x = 5
+		y = 1
+
+		available = {
+			has_completed_focus = CAE_let_the_scourging_of_this_land_begin
+		}
+
+		completion_reward = { 
+			add_ideas = {
+				CAE_the_construct_quarter_1_idea
+			}
+			army_experience = 25
+			add_tech_bonus = {
+				name = undead_abomination_technology
+				bonus = 0.25
+				uses = 1
+				category = undead_abomination_technology
+			}	
+		}
+
+		#grobbulus buff to flesh giants
+		#gluth bonus to hounds
+		#thaddius as field marshal
+	}
+
+	focus = {
+		id = CAE_flesh_giants
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_construct_quarter
+		}
+		relative_position_id = CAE_the_construct_quarter
+		x = -1
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = CAE_flesh_giants
+				bonus = 0.25
+				uses = 1
+				category = undead_flesh_beast_technology
+			}	
+		}
+		
+	}
+
+	focus = {
+		id = CAE_a_undeads_best_friend
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_construct_quarter
+		}
+		relative_position_id = CAE_the_construct_quarter
+		x = 1
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = CAE_a_undeads_best_friend
+				bonus = 0.25
+				uses = 1
+				category = undead_plague_hound_technology
+			}	
+		}
+		
+	}
+
+	focus = {
+		id = CAE_the_halls_of_reanimation
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_flesh_giants
+		}
+		prerequisite = {
+			focus = CAE_a_undeads_best_friend
+		}
+		relative_position_id = CAE_the_construct_quarter
+		x = 0
+		y = 2
+
+		completion_reward = { 
+			swap_ideas = {
+				remove_idea = CAE_the_construct_quarter_1_idea
+				add_idea = CAE_the_construct_quarter_2_idea
+			}
+		}
+		
+	}
+
+	focus = {
+		id = CAE_frostwyrm_cavern
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_the_broodmother
+		}
+		prerequisite = {
+			focus = CAE_the_necrotic_vault
+		}
+		prerequisite = {
+			focus = CAE_the_four_horseman
+		}
+		prerequisite = {
+			focus = CAE_the_halls_of_reanimation
+		}
+		relative_position_id = CAE_the_broodmother
+		x = 5
+		y = 1
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = CAE_frostwyrm_cavern
+				bonus = 0.25
+				uses = 1
+				category = bomber_technology
+			}	
+			add_tech_bonus = {
+				name = CAE_frostwyrm_cavern
+				bonus = 0.25
+				uses = 1
+				category = fighter_technology
+			}
+		}
+		#air branch unlocks after LK gains frostwyrms event
+		#free tech bonus'
+		#choose gargoyl e ground vs air atatck (cas vs fighter) equipment buff
+		#frostwyrm - production %
+		
+	}
+
+	focus = {
+		id = CAE_kelthuzads_chamber
+		icon = GFX_Focus_necropolis
+		cost = 30
+		prerequisite = {
+			focus = CAE_frostwyrm_cavern
+		}
+		relative_position_id = CAE_frostwyrm_cavern
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			add_research_slot = 1
+			add_tech_bonus = {
+				name = CAE_kelthuzads_chamber
+				bonus = 0.25
+				uses = 1
+				category = undead_necropolis_technology
+			}	
+		}
+
+	}
+	
+}

@@ -1,0 +1,68 @@
+﻿division_template = {
+	name = "Westfall Militia"
+	regiments = {
+		militia = { x = 0 y = 0 }
+		militia = { x = 0 y = 1 }
+		militia = { x = 0 y = 2 }
+		militia = { x = 0 y = 3 }
+		militia = { x = 0 y = 4 }
+	}
+	priority = 1
+}
+
+division_template = {
+	name = "Sentinel Archers"
+	regiments = {
+		militia = { x = 0 y = 0 }
+		archer = { x = 0 y = 1 }
+		archer = { x = 0 y = 2 }
+		archer = { x = 0 y = 3 }
+		militia = { x = 1 y = 0 }
+		archer = { x = 1 y = 1 }
+	}
+	priority = 1
+}
+
+division_template = {
+	name = "Sentinel Scouts"
+	regiments = {
+		mounted_footman = { x = 0 y = 0 }
+		mounted_footman = { x = 0 y = 1 }
+		mounted_footman = { x = 0 y = 2 }
+		mounted_footman = { x = 0 y = 3 }
+		mounted_footman = { x = 1 y = 0 }
+		mounted_footman = { x = 1 y = 1 }
+	}
+	priority = 1
+}
+
+
+units = {
+	division = {
+		name = "Sentinel Hill Militia"
+		location = 2196
+		division_template = "Westfall Militia"
+		start_experience_factor = 0.2
+	}
+
+	division = {
+		name = "Sentinel Hill Archers"
+		location = 2196
+		division_template = "Sentinel Archers"
+		start_experience_factor = 0.2
+	}
+}
+
+#### Starting Production
+instant_effect = {
+	add_equipment_production = {
+		equipment = { type = archer_equipment_1 }
+		requested_factories = 1
+		efficiency = 40
+	}
+	add_equipment_production = {
+		equipment = { type = militia_equipment_1 }
+		requested_factories = 1
+		efficiency = 40
+	}
+}

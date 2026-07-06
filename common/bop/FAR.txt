@@ -1,0 +1,205 @@
+##_## This is planned to be a future goal/objective for Blood magic with the Farraki. In theory, likely would also be fine for Blood Trolls of Nazmir, and a power struggle for Atalai and Gurubashi.
+#FAR_power_balance = {
+#	initial_value = 0.35
+#	left_side = FAR_hakkar
+#	right_side = FAR_ghuun
+#	decision_category = FAR_balance_of_power_category
+##This is just me looking at how this would work if I wanted to use it for blood magic.
+##not currently active.
+#	### Neutral status
+#	range = {
+#		id = FAR_balance_range
+#		min = -0.10
+#		max = 0.10
+#		modifier = {
+#		}
+#		on_activate = {
+#
+#		}
+#		on_deactivate = {
+#			
+#		}
+#	}
+#
+#	### Hakkar
+#	side = {
+#		id = FAR_Hakkar
+#		icon = GFX_bop_FAR_grand_council_side
+#
+#		range = {
+#			id = FAR_hakkar_low_control_range
+#			min = -0.3
+#			max = -0.1
+#			modifier = {
+#				political_advisor_cost_factor = -0.1
+#			}
+#			on_activate = {
+#				
+#			}
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#		range = {
+#			id = ITA_hakkar_medium_control_range
+#			min = -0.6
+#			max = -0.3
+#			modifier = {
+#				political_advisor_cost_factor = -0.15
+#				offensive_war_stability_factor = -0.1
+#				war_support_factor = -0.05
+#			}
+#			on_activate = {
+#				custom_effect_tooltip = FAR_placeholder_tt
+#			}
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#		range = {
+#			id = ITA_hakkar_high_control_range
+#			min = -0.9
+#			max = -0.6
+#			modifier = {
+#				political_advisor_cost_factor = -0.2
+#				offensive_war_stability_factor = -0.15
+#				war_support_factor = -0.1
+##			}
+#			on_activate = {
+#				#Designed to Depose current country leader in base HOI4.
+#           }
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#		range = {
+#			id = ITA_hakkar_total_control_range
+#			min = -1
+#			max = -0.9
+#			modifier = {
+#				political_advisor_cost_factor = -0.25
+#				offensive_war_stability_factor = -0.2
+#				war_support_factor = -0.15
+#			}
+#			on_activate = {
+#				##_## Pigeon: No focus causes Error, just temp removed :)
+#				#if = {
+#				#	limit = {
+#				#		NOT = { has_completed_focus = ITA_crush_opposition }
+#				#	}
+#				#	hidden_effect = {
+#				#		country_event = FAR_hakkar_demands_blood.1
+#				#	}
+#					
+#					effect_tooltip = {
+#						##_## I Dont know.
+#						}
+#					}
+#				}
+#			}
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#   ### Clean Blood Magic
+#   side = {
+#		id = FAR_blood_magic_clean
+#		icon = GFX_bop_ITA_balbo_side
+#
+#		range = {
+#			id = ITA_balbo_low_control_range
+#			min = 0.1
+#			max = 0.3
+#			modifier = {
+#				experience_gain_army = 0.05 #Good
+#				experience_gain_air = 0.05 #Good
+#			}
+#			on_activate = {
+#				if = {
+#					limit = {
+#						NOT = {
+#							has_country_leader = {
+#								character = ITA_italo_balbo
+#							}
+#						}
+#					}
+#					promote_character = {
+#						character = ITA_italo_balbo
+#						ideology = fascism
+#					}
+#				}
+#			}
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#		range = {
+#			id = ITA_balbo_medium_control_range
+#			min = 0.3
+#			max = 0.6
+#			modifier = {
+#				experience_gain_army = 0.05 #Good
+#				experience_gain_air = 0.05 #Good
+#				industrial_capacity_factory = 0.05 #Good
+#				production_speed_buildings_factor = -0.05 #Bad
+#			}
+#			on_activate = {
+#				
+#			}
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#		range = {
+#			id = ITA_balbo_high_control_range
+#			min = 0.6
+#			max = 0.9
+#			modifier = {
+#				experience_gain_army = 0.1 #Good
+#				experience_gain_air = 0.1 #Good
+#				industrial_capacity_factory = 0.1 #Good
+#				production_speed_buildings_factor = -0.05 #Bad
+#			}
+#			on_activate = {
+#				
+#			}
+#			on_deactivate = {
+#				
+#			}
+#		}
+#
+#		range = {
+#			id = ITA_balbo_total_control_range
+#			min = 0.9
+#			max = 1
+#			modifier = {
+#				experience_gain_army = 0.1 #Good
+#				experience_gain_air = 0.1 #Good
+#				industrial_capacity_factory = 0.1 #Good
+#				production_lack_of_resource_penalty_factor = -0.15 #Good
+#				production_speed_buildings_factor = -0.05 #Bad
+#				consumer_goods_factor = 0.05 #Bad
+#			}
+#			on_activate = {
+#				#set_power_balance_gfx = {
+#				#	id = ITA_power_balance
+#				#	side = ITA_balbo_side
+#				#	gfx = GFX_bop_ITA_balbo_improved_side
+#				#}
+#			}
+#			on_deactivate = {
+#				#set_power_balance_gfx = {
+#				#	id = ITA_power_balance
+#				#	side = ITA_balbo_side
+#				#	gfx = GFX_bop_ITA_balbo_side
+#				#}
+#			}
+#		}
+#	}
+#}

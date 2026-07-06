@@ -1,0 +1,414 @@
+﻿###########################
+#darkiron
+###########################
+
+add_namespace = darkiron
+
+# From shadow_council.2.option.1
+country_event = {
+	id = darkiron.1
+	title = darkiron.1.t
+	desc = darkiron.1.d
+	picture = GFX_cho_gall_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # Accept offer (concede territories)
+        name = darkiron.1.option.1
+
+		if = {
+			limit = { DIC = { NOT = { has_completed_focus = DIC_The_Masters_Will } } }
+			complete_national_focus = DIC_The_Masters_Will
+		}
+
+		add_political_power = 100
+
+		add_to_variable = {
+			var = faith_points
+			value = 250
+			tooltip = add_faith_points_tt
+		}
+
+		add_popularity = {
+		    ideology = neutral
+		    popularity = 0.05
+		}
+
+		if = {
+			limit = { NOT = { has_non_aggression_pact_with = TSC } }
+			diplomatic_relation = {
+				country = TSC
+				relation = non_aggression_pact
+				active = yes
+			}	
+		}
+
+		TSC = {	country_event = { id = shadow_council.3 } }
+		custom_effect_tooltip = darkiron.1.option.1.tt
+
+		ai_chance = {
+			base = 90
+
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+    option = { # Refuse
+        name = darkiron.1.option.2
+
+		add_stability = -0.05
+
+		add_political_power = -25
+
+		add_popularity = {
+		    ideology = old_gods
+		    popularity = -0.25
+		}
+
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = -110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+}
+
+# Blackrock Offer (from BRC_alliance_with_the_dark_iron focus and blackrock.22 event)
+country_event = {
+	id = darkiron.2
+	title = darkiron.2.t # Default title
+	picture = GFX_cho_gall_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	# BRC ask for non-aggression pact
+	title = {
+		text = darkiron.2.t.1
+		trigger = {
+			BRC = { has_country_flag = BRC_ask_DIC_for_non_aggression_flag }
+		}
+	}
+
+	desc = {
+		text = darkiron.2.d.1
+		trigger = {
+			BRC = { has_country_flag = BRC_ask_DIC_for_non_aggression_flag }
+		}
+	}
+
+	# BRC ask for guarentee
+	title = {
+		text = darkiron.2.t.2
+		trigger = {
+			BRC = { has_country_flag = BRC_ask_DIC_for_guarantee_flag }
+		}
+	}
+
+	desc = {
+		text = darkiron.2.d.2
+		trigger = {
+			BRC = { has_country_flag = BRC_ask_DIC_for_guarantee_flag }
+		}
+	}
+
+    option = { # Accept
+        name = darkiron.2.option.1
+
+		if = {
+			limit = {
+				BRC = { has_country_flag = BRC_ask_DIC_for_non_aggression_flag }
+			}
+			diplomatic_relation = {
+			    country = BRC
+			    relation = non_aggression_pact
+			    active = yes
+			}
+		}
+		else_if = {
+			limit = {
+				BRC = { has_country_flag = BRC_ask_DIC_for_guarantee_flag }
+			}
+			diplomatic_relation = {
+			    country = BRC
+			    relation = guarantee
+			    active = yes
+			}
+		}
+
+		BRC = {
+			clr_country_flag = BRC_ask_DIC_for_non_aggression_flag
+			clr_country_flag = BRC_ask_DIC_for_guarantee_flag
+
+			country_event = {
+				id = generic_event.1 # Generic accept event
+				days = 1
+			}
+		}
+
+		hidden_effect = {
+			# Get whispers about giving BRC the Badlands
+			# This is to prevent border gore and allow the Burning Blade Clan to move there
+			country_event = {
+				id = darkiron.3
+				days = 7
+			}
+		}
+
+		ai_chance = {
+			base = 90
+
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+    option = { # Refuse
+        name = darkiron.2.option.2
+
+		BRC = {
+			clr_country_flag = BRC_ask_DIC_for_non_aggression_flag
+			clr_country_flag = BRC_ask_DIC_for_guarantee_flag
+
+			country_event = {
+				id = generic_event.2 # Generic refusal event
+				days = 1
+			}
+		}
+
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = -110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Whispers from Below (from darkiron.2.option.1)
+country_event = {
+	id = darkiron.3
+	title = darkiron.3.t
+	desc = darkiron.3.d
+	picture = GFX_molten_core_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = { # Listen to the whispers (concede Badlands to BRC)
+        name = darkiron.3.option.1
+		custom_effect_tooltip = darkiron.3.option.1.d
+
+		add_stability = 0.05
+
+		add_political_power = 100
+
+		add_to_variable = {
+			var = faith_points
+			value = 250
+			tooltip = add_faith_points_tt
+		}
+
+		add_popularity = {
+		    ideology = old_gods
+		    popularity = 0.1
+		}
+
+		ai_chance = {
+			base = 90
+
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = { # Reject the whispers
+        name = darkiron.3.option.2
+
+		add_stability = -0.05
+
+		add_political_power = -25
+
+		add_popularity = {
+		    ideology = old_gods
+		    popularity = -0.1
+		}
+
+		ai_chance = {
+			base = 50
+
+			modifier = {
+				factor = -150
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Ironforge Siege
+country_event = {
+	id = darkiron.4
+	title = darkiron.4.t
+	desc = darkiron.4.d
+	picture = GFX_ironforge_event
+
+	trigger = {
+		tag = DIC
+		NOT = { is_in_faction_with = IRO }
+		446 = { is_controlled_by_ROOT_or_ally = yes }
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = darkiron.4.option.1
+		complete_national_focus = DIC_the_ironforge_gates
+	}
+}
+
+# Brimstone Reckoning
+country_event = {
+	id = darkiron.5
+	title = darkiron.5.t
+	desc = darkiron.5.d
+	picture = GFX_ironforge_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = darkiron.5.option.1
+		DIC = {
+			add_nuclear_bombs = 7
+			hidden_effect = {
+				launch_nuke = {	province = 3814 }
+				launch_nuke = {	province = 3818 }
+				launch_nuke = {	province = 3793 }
+				launch_nuke = {	province = 3780 }
+				launch_nuke = {	province = 1107 }
+				launch_nuke = {	province = 3770 }
+				launch_nuke = {	province = 1037 }
+			}	
+		}
+	}
+}
+
+# Brimstone Reckoning
+country_event = {
+	id = darkiron.6
+	title = darkiron.6.t
+	desc = darkiron.6.d
+	picture = GFX_ragnaros_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = darkiron.6.option.1
+
+		MLC = {
+			hidden_effect = { load_oob = MLC_brimstone }
+		}
+		
+		IRO = {
+			add_stability = -0.10
+			add_war_support = 0.10
+			add_ideas = extensive_conscription
+			add_ideas = fully_commited
+		}
+		430 = {
+			add_manpower = -24500
+			transfer_state_to = MLC 
+			remove_building = {
+				type = industrial_complex
+				level = 2
+			}
+			remove_building = {
+				type = infrastructure
+				level = 3
+			}
+		}
+		435 = {
+			add_manpower = -9000
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = infrastructure
+				level = 2
+			}
+		}
+		434 = {
+			add_manpower = -6300
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = infrastructure
+				level = 2
+			}
+		}
+		433 = {
+			add_manpower = -10500
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = infrastructure
+				level = 2
+			}
+		}
+		432 = {
+			add_manpower = -8100
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = infrastructure
+				level = 2
+			}
+		}
+		431 = {
+			add_manpower = -9600
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+			remove_building = {
+				type = infrastructure
+				level = 2
+			}
+		}
+		429 = {
+			add_manpower = -13500
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			remove_building = {
+				type = infrastructure
+				level = 2
+			}
+		}
+	}
+}

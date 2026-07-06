@@ -1,0 +1,49 @@
+alliance_generic_historical = {
+	name = "Alliance Historical"
+	desc = "Historical generic AI Alliance-focused strategy plan for 'alliance' oriented nations."
+
+	enable = {
+		is_historical_focus_on = yes
+		OR = {
+			has_idea = human_primary_race
+			has_idea = dwarf_primary_race
+			has_idea = gnome_primary_race
+			has_idea = high_elf_primary_race
+		}
+		NOT = { 
+			tag = SYN 
+			tag = DFB
+			tag = SFB
+			tag = BSB
+		}
+		if = {
+			limit = { has_start_date > 609.12.31 }
+			tag = STO
+			tag = IRO
+		}
+	}
+
+	ai_national_focuses = {
+		pick_a_side
+		support_the_alliance
+		reform_the_administration
+		civil_guard_intergration
+		embrace_the_alliance
+		reform_the_bureaucracy_alliance
+		peacetime_alliance
+	}
+
+	focus_factors = {
+		generic_support_the_horde_focus = 0
+		stay_neutral = 0
+		serving_higher_powers = 0
+		path_of_the_titans = 0
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}

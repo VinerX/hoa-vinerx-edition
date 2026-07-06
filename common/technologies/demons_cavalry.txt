@@ -1,0 +1,788 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	demons_houndmaster_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = no }
+			increase_tech_count_demons = yes
+		}
+
+		path = {
+			leads_to_tech = demons_breeding_methods_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_fel_hunter_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_urzul_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 6 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+	}
+
+	demons_breeding_methods_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_demons = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = demons_breeding_methods_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 6 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+
+	}
+
+	demons_breeding_methods_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_demons = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = demons_breeding_methods_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = {
+			demons_abyssal_fortress_tech = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+
+	}
+
+	demons_breeding_methods_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_demons = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = demons_breeding_methods_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 6 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+
+	}
+
+	demons_breeding_methods_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = {
+			demons_burning_throne_tech = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+		}
+
+	}
+
+	demons_fel_hunter_tech = {
+
+		enable_subunits = {
+			demons_fel_hunter
+		}
+
+		on_research_complete = {
+			set_technology = { demons_fel_hunter_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 3 y = 0 }
+		}
+
+		path = {
+			leads_to_tech = demons_fel_hunter_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_fel_hunter_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_fel_hunter_equipment_1
+		}
+
+		path = {
+			leads_to_tech = demons_fel_hunter_1_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_fel_hunter_1_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 3 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_fel_hunter_1_1 = {
+
+		demons_fel_hunter = {
+			defense = 0.1
+			soft_attack = 0.05
+		}
+
+		xor = { demons_fel_hunter_1_2 }
+
+		path = {
+			leads_to_tech = demons_fel_hunter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 2 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_fel_hunter_1_2 = {
+
+		demons_fel_hunter = {
+			breakthrough = 0.15
+			soft_attack = 0.05
+			maximum_speed = 0.05
+		}
+
+		xor = { demons_fel_hunter_1_1 }
+
+		path = {
+			leads_to_tech = demons_fel_hunter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 4 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_fel_hunter_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_fel_hunter_equipment_2
+		}
+
+		dependencies = {
+			demons_abyssal_fortress_tech = 1
+		}
+
+		path = {
+			leads_to_tech = demons_fel_hunter_2_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_fel_hunter_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 3 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_fel_hunter_2_1 = {
+
+		demons_fel_hunter = {
+			ap_attack = 0.2
+			hard_attack = 0.4
+		}
+
+		xor = { demons_fel_hunter_2_2 }
+
+		path = {
+			leads_to_tech = demons_fel_hunter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_fel_hunter_2_2 = {
+
+		demons_fel_hunter = {
+			max_organisation = 5
+			default_morale = 0.05
+			maximum_speed = 0.05
+		}
+
+		xor = { demons_fel_hunter_2_1 }
+
+		path = {
+			leads_to_tech = demons_fel_hunter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_fel_hunter_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_fel_hunter_equipment_3
+		}
+
+		dependencies = {
+			demons_burning_throne_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 3 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_fel_hunter_technology	
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	demons_urzul_tech = {
+
+		enable_subunits = {
+			demons_urzul
+		}
+
+		on_research_complete = {
+			set_technology = { demons_urzul_equipment_tech_1 = 1 }
+			increase_tech_count_demons = yes
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		path = {
+			leads_to_tech = demons_urzul_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	demons_urzul_equipment_tech_1 = {
+
+		enable_equipments = {
+			demons_urzul_equipment_1
+		}
+
+		path = {
+			leads_to_tech = demons_urzul_1_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_urzul_1_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_urzul_1_1 = {
+
+		demons_urzul = {
+			defense = 0.1
+			soft_attack = 0.05
+		}
+
+		xor = { demons_urzul_1_2 }
+
+		path = {
+			leads_to_tech = demons_urzul_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_urzul_1_2 = {
+
+		demons_urzul = {
+			breakthrough = 0.15
+			soft_attack = 0.05
+			maximum_speed = 0.05
+		}
+
+		xor = { demons_urzul_1_1 }
+
+		path = {
+			leads_to_tech = demons_urzul_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_urzul_equipment_tech_2 = {
+
+		enable_equipments = {
+			demons_urzul_equipment_2
+		}
+
+		dependencies = {
+			demons_abyssal_fortress_tech = 1
+		}
+
+		path = {
+			leads_to_tech = demons_urzul_2_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = demons_urzul_2_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+
+	demons_urzul_2_1 = {
+
+		demons_urzul = {
+			ap_attack = 0.2
+			hard_attack = 0.4
+		}
+
+		xor = { demons_urzul_2_2 }
+
+		path = {
+			leads_to_tech = demons_urzul_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_urzul_2_2 = {
+
+		demons_urzul = {
+			max_organisation = 5
+			default_morale = 0.05
+			maximum_speed = 0.05
+		}
+
+		xor = { demons_urzul_2_1 }
+
+		path = {
+			leads_to_tech = demons_urzul_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	demons_urzul_equipment_tech_3 = {
+
+		enable_equipments = {
+			demons_urzul_equipment_3
+		}
+
+		dependencies = {
+			demons_burning_throne_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = demons_cavalry_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			demons_urzul_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "594.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land specialization_magic }
+	}
+}

@@ -1,0 +1,2852 @@
+Old_Gods_Dragons = {
+
+	old_gods_dragon_corruption = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = red_dragon_primary_race
+						has_idea = blue_dragon_primary_race
+						has_idea = green_dragon_primary_race
+						has_idea = bronze_dragon_primary_race
+					}
+					NOT = { has_government = old_gods }
+				}
+				add_timed_idea = {
+					idea = old_seeping_corruption_dragon
+					days = 90
+				}
+				set_country_flag = old_gods_influence
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_dragon_disruption = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				old_gods > 0.2
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = red_dragon_primary_race
+						has_idea = blue_dragon_primary_race
+						has_idea = green_dragon_primary_race
+						has_idea = bronze_dragon_primary_race
+					}
+					NOT = { has_government = old_gods }
+				}
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				random_state = {
+					limit = { 
+						is_controlled_by = PREV 
+						impassable = no
+						infrastructure > 0
+					}
+					random_list = {
+						60 = { #Minor Damage
+							damage_building = {
+								type = infrastructure
+								damage = 2
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+						}
+						30 = { #Mod
+							damage_building = {
+								type = infrastructure
+								damage = 3
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+						10 = { #Major
+							remove_building = { type = infrastructure level = 1 }
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_dragon_civil_war = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				old_gods > 0.6
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		remove_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = red_dragon_primary_race
+						has_idea = blue_dragon_primary_race
+						has_idea = green_dragon_primary_race
+						has_idea = bronze_dragon_primary_race
+					}
+					NOT = { has_government = old_gods }
+					has_civil_war = no
+				}
+				start_civil_war = { 
+					ruling_party = old_gods
+					ideology = titans
+					keep_political_leader = no
+					keep_all_characters = yes
+					size = party_popularity@old_gods
+					set_country_flag = dragon_technology
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = red_dragon_primary_race }
+						}
+						add_ideas = {
+							council
+							red_dragon_primary_race
+							primary_trait_masters_of_the_sky
+							primary_trait_eonars_blessing
+
+							primary_religion_the_titans
+						}
+					}	
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = blue_dragon_primary_race }
+						}
+						add_ideas = {
+							council
+							blue_dragon_primary_race
+							primary_trait_norgannons_blessing
+							primary_trait_arcane_mastery
+							primary_trait_masters_of_the_sky
+							primary_religion_the_titans
+						}
+					}
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = green_dragon_primary_race }
+						}
+						add_ideas = {
+							council
+							green_dragon_primary_race
+							primary_trait_eonars_blessing
+							primary_trait_the_emerald_dream
+							primary_trait_masters_of_the_sky
+							primary_religion_the_titans
+						}
+					}
+					if = { #BRONZE
+						limit = {
+							any_enemy_country = { has_idea = bronze_dragon_primary_race	}
+						}
+						add_ideas = {
+							council
+							bronze_dragon_primary_race
+							primary_trait_amanthuls_blessing
+							primary_trait_time_warp
+							primary_trait_masters_of_the_sky
+							primary_religion_the_titans
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_dragon_direct_control = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				has_government = old_gods
+				has_civil_war = no
+				has_country_flag = old_gods_influence
+				is_ai = yes
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = red_dragon_primary_race
+					has_idea = blue_dragon_primary_race
+					has_idea = green_dragon_primary_race
+					has_idea = bronze_dragon_primary_race
+				}
+				has_government = old_gods
+				has_country_flag = old_gods_influence
+			}
+		}
+
+		cost = 100
+		
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = red_dragon_primary_race
+						has_idea = blue_dragon_primary_race
+						has_idea = green_dragon_primary_race
+						has_idea = bronze_dragon_primary_race
+					}
+					has_government = old_gods
+					has_country_flag = old_gods_influence
+					is_ai = yes
+				}
+				clr_country_flag = old_gods_influence
+				ROOT = {
+					if = {
+						limit = { has_dlc = "Together for Victory" }
+						set_autonomy = {
+							target = PREV
+							autonomous_state = autonomy_enslaved
+							freedom_level = 0.5
+						}
+						else = { puppet = PREV }
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}
+
+Old_Gods_Titan_Forged = {
+
+	old_gods_forged_corruption = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = iron_dwarf_primary_race
+						has_idea = iron_giant_primary_race
+						has_idea = iron_vrykul_primary_race
+						has_idea = mecha_gnome_primary_race
+					}
+					NOT = { has_government = old_gods }
+				}
+				add_timed_idea = {
+					idea = old_curse_of_flesh_forged
+					days = 90
+				}
+				set_country_flag = old_gods_influence
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_forged_disruption = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				old_gods > 0.2
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = iron_dwarf_primary_race
+						has_idea = iron_giant_primary_race
+						has_idea = iron_vrykul_primary_race
+						has_idea = mecha_gnome_primary_race
+					}
+					NOT = { has_government = old_gods }
+				}
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				random_state = {
+					limit = { 
+						is_controlled_by = PREV 
+						impassable = no
+					}
+					random_list = {
+						60 = { #Minor Damage
+							damage_building = {
+								type = infrastructure
+								damage = 2
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+						}
+						30 = { #Mod
+							damage_building = {
+								type = infrastructure
+								damage = 3
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+						10 = { #Major
+							remove_building = { type = infrastructure level = 1 }
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_forged_civil_war = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				old_gods > 0.6
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		remove_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = iron_dwarf_primary_race
+						has_idea = iron_giant_primary_race
+						has_idea = iron_vrykul_primary_race
+						has_idea = mecha_gnome_primary_race
+					}
+					NOT = { has_government = old_gods }
+					has_civil_war = no
+				}
+				start_civil_war = { 
+					ruling_party = old_gods
+					ideology = titans
+					keep_political_leader = no
+					keep_all_characters = yes
+					size = party_popularity@old_gods
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = iron_dwarf_primary_race }
+						}
+						set_country_flag = dwarf_technology
+						add_ideas = {
+							city_state
+							iron_dwarf_primary_race
+							primary_trait_might_of_the_mountain
+							primary_trait_titanforged
+						
+							primary_religion_mystery_of_the_makers
+						}
+					}	
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = iron_giant_primary_race }
+						}
+						#set_country_flag = giant_technology ###PLACEHOLDER
+						#set_country_flag = human_technology
+						add_ideas = {
+							iron_giant_primary_race
+							primary_trait_imposing_size
+							primary_trait_titanforged
+
+							primary_religion_the_titans
+						}
+					}
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = iron_vrykul_primary_race }
+						}
+						#set_country_flag = vrykul_technology ###PLACEHOLDER
+						#set_country_flag = human_technology
+						add_ideas = {
+
+							iron_vrykul_primary_race
+							primary_trait_titanforged
+
+							primary_religion_the_titans
+						}
+					}
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = mecha_gnome_primary_race }
+						}
+						set_country_flag = dwarf_technology ###PLACEHOLDER
+						add_ideas = {
+
+							mecha_gnome_primary_race
+							primary_trait_titanforged
+
+							primary_religion_the_titans
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_forged_direct_control = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				has_government = old_gods
+				has_civil_war = no
+				has_country_flag = old_gods_influence
+				is_ai = yes
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = iron_dwarf_primary_race
+					has_idea = iron_giant_primary_race
+					has_idea = iron_vrykul_primary_race
+					has_idea = mecha_gnome_primary_race
+				}
+				has_government = old_gods
+				has_country_flag = old_gods_influence
+			}
+		}
+
+		cost = 100
+		
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = iron_dwarf_primary_race
+						has_idea = iron_giant_primary_race
+						has_idea = iron_vrykul_primary_race
+						has_idea = mecha_gnome_primary_race
+					}
+					has_government = old_gods
+					has_country_flag = old_gods_influence
+					is_ai = yes
+				}
+				clr_country_flag = old_gods_influence
+				ROOT = {
+					if = {
+						limit = { has_dlc = "Together for Victory" }
+						set_autonomy = {
+							target = PREV
+							autonomous_state = autonomy_enslaved
+							freedom_level = 0.5
+						}
+						else = { puppet = PREV }
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+}
+
+Old_Gods_Stone_Creations = {
+
+	old_gods_stone_corruption = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = earthen_primary_race
+						has_idea = tolvir_primary_race
+						has_idea = anubisath_primary_race
+						has_idea = stone_giant_primary_race
+						has_idea = mogu_primary_race
+					}
+					NOT = { has_government = old_gods }
+				}
+				add_timed_idea = {
+					idea = old_chipped_stone
+					days = 90
+				}
+				set_country_flag = old_gods_influence
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_stone_disruption = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				old_gods > 0.2
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = earthen_primary_race
+						has_idea = tolvir_primary_race
+						has_idea = anubisath_primary_race
+						has_idea = stone_giant_primary_race
+						has_idea = mogu_primary_race
+					}
+					NOT = { has_government = old_gods }
+				}
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				random_state = {
+					limit = { 
+						is_controlled_by = PREV 
+						impassable = no
+					}
+					random_list = {
+						60 = { #Minor Damage
+							damage_building = {
+								type = infrastructure
+								damage = 2
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+						}
+						30 = { #Mod
+							damage_building = {
+								type = infrastructure
+								damage = 3
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+						10 = { #Major
+							remove_building = { type = infrastructure level = 1 }
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_stone_civil_war = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				old_gods > 0.6
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		remove_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = earthen_primary_race
+						has_idea = tolvir_primary_race
+						has_idea = anubisath_primary_race
+						has_idea = stone_giant_primary_race
+						has_idea = mogu_primary_race
+					}
+					NOT = { has_government = old_gods }
+					has_civil_war = no
+				}
+				start_civil_war = { 
+					ruling_party = old_gods
+					ideology = titans
+					keep_political_leader = no
+					keep_all_characters = yes
+					size = party_popularity@old_gods
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = earthen_primary_race }
+						}
+						set_country_flag = dwarf_technology
+						add_ideas = {
+							city_state
+							
+							earthen_primary_race
+							primary_trait_strength_of_the_earth
+
+							primary_religion_mystery_of_the_makers
+						}
+					}	
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = tolvir_primary_race }
+						}
+						#set_country_flag = human_technology
+						add_ideas = {
+							tribe
+							
+							tolvir_primary_race
+							primary_trait_titan_ancestry
+							primary_trait_sand_runners
+							primary_trait_monument_builders
+						
+							primary_religion_the_titans
+						}
+					}
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = anubisath_primary_race }
+						}
+						#set_country_flag = human_technology
+						add_ideas = {
+							council
+							
+							anubisath_primary_race
+							
+							primary_trait_titan_forging
+							primary_trait_monument_builders
+							primary_trait_imposing_size
+						
+							primary_religion_the_titans
+						}
+					}
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = stone_giant_primary_race }
+						}
+						#set_country_flag = human_technology
+						add_ideas = {
+							clan
+						
+							stone_giant_primary_race
+							primary_trait_imposing_size
+					
+							primary_religion_the_titans
+						}
+					}
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = mogu_primary_race }
+						}
+						#set_country_flag = human_technology
+						add_ideas = {
+							clan
+						
+							mogu_primary_race
+							primary_trait_stone_familiars
+							primary_trait_construct_of_the_titans
+							primary_trait_legacy_of_the_thunder_king
+					
+							primary_religion_mogu_mythology
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	old_gods_stone_direct_control = {
+
+		available = {
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				has_government = old_gods
+				has_civil_war = no
+				has_country_flag = old_gods_influence
+				is_ai = yes
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				OR = {
+					has_idea = earthen_primary_race
+					has_idea = tolvir_primary_race
+					has_idea = anubisath_primary_race
+					has_idea = stone_giant_primary_race
+					has_idea = mogu_primary_race
+				}
+				has_government = old_gods
+				has_country_flag = old_gods_influence
+			}
+		}
+
+		cost = 100
+		
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					OR = {
+						has_idea = earthen_primary_race
+						has_idea = tolvir_primary_race
+						has_idea = anubisath_primary_race
+						has_idea = stone_giant_primary_race
+						has_idea = mogu_primary_race
+					}
+					has_government = old_gods
+					has_country_flag = old_gods_influence
+					is_ai = yes
+				}
+				clr_country_flag = old_gods_influence
+				ROOT = {
+					if = {
+						limit = { has_dlc = "Together for Victory" }
+						set_autonomy = {
+							target = PREV
+							autonomous_state = autonomy_enslaved
+							freedom_level = 0.5
+						}
+						else = { puppet = PREV }
+					}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}	
+}
+
+Old_Gods_The_Titans = {
+
+	old_gods_titan_corruption = {
+
+		available = {
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					has_idea = titan_watcher_primary_race
+					NOT = { has_government = old_gods }
+				}
+				add_timed_idea = {
+					idea = old_tainted_visions
+					days = 90
+				}
+				set_country_flag = old_gods_influence
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	old_gods_disrupt_order = {
+
+		available = {
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				old_gods > 0.2
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					has_idea = titan_watcher_primary_race
+					NOT = { has_government = old_gods }
+				}
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				random_state = {
+					limit = { 
+						is_controlled_by = PREV 
+						impassable = no
+					}
+					random_list = {
+						60 = { #Minor Damage
+							damage_building = {
+								type = infrastructure
+								damage = 2
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+						}
+						30 = { #Mod
+							damage_building = {
+								type = infrastructure
+								damage = 3
+							}
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+						10 = { #Major
+							remove_building = { type = infrastructure level = 1 }
+							if = {
+								limit = { industrial_complex > 0 }
+								damage_building = {
+									type = industrial_complex
+									damage = 1
+								}
+							}
+							if = {
+								limit = { arms_factory > 0 }
+								damage_building = {
+									type = arms_factory
+									damage = 1
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	old_gods_willing_puppets = {
+
+		available = {
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				old_gods > 0.6
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		cost = 100
+
+		days_remove = 90
+
+		days_re_enable = 120
+
+		remove_effect = {
+			random_neighbor_country = {
+				limit = {
+					has_idea = titan_watcher_primary_race
+					NOT = { has_government = old_gods }
+					has_civil_war = no
+				}
+				start_civil_war = { 
+					ruling_party = old_gods
+					ideology = titans
+					keep_political_leader = no
+					keep_all_characters = yes
+					size = party_popularity@old_gods
+					if = {
+						limit = {
+							any_enemy_country = { has_idea = titan_watcher_primary_race }
+						}
+						#set_country_flag = human_technology
+						add_ideas = {
+							council
+							
+							titan_watcher_primary_race
+							primary_trait_titan_forging
+
+							primary_religion_the_titans
+						}
+					}	
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	old_gods_the_mighty = {
+
+		available = {
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				has_government = old_gods
+				has_civil_war = no
+				has_country_flag = old_gods_influence
+				is_ai = yes
+			} 
+		}
+
+		visible = {
+			has_country_flag = old_god_corruption
+			any_neighbor_country = {
+				has_idea = titan_watcher_primary_race
+				has_government = old_gods
+				has_country_flag = old_gods_influence
+			}
+		}
+
+		cost = 100
+		
+		days_remove = 90
+
+		days_re_enable = 120
+
+		complete_effect = {
+			random_neighbor_country = {
+				limit = {
+					has_idea = titan_watcher_primary_race
+					has_government = old_gods
+					has_country_flag = old_gods_influence
+				}
+				clr_country_flag = old_gods_influence
+				ROOT = {
+					if = {
+						limit = { has_dlc = "Together for Victory" }
+						set_autonomy = {
+							target = PREV
+							autonomous_state = autonomy_enslaved
+							freedom_level = 0.5
+						}
+						else = { puppet = PREV }
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+}
+
+Old_Gods_decisions = {
+
+	old_gods_taint = {
+
+		available = {
+			any_neighbor_country = {
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_idea = old_gods_guild
+			has_government = old_gods
+			any_neighbor_country = {
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49} 
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 60
+
+		days_re_enable = 30
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			random_neighbor_country = {
+				limit = {
+					NOT = { has_government = old_gods }
+				}
+				add_timed_idea = {
+					idea = old_gods_taint
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	old_gods_send_followers = {
+
+		available = {
+			any_neighbor_country = {
+				NOT = { has_government = old_gods }
+			} 
+		}
+
+		visible = {
+			has_idea = old_gods_guild
+			has_government = old_gods
+			any_neighbor_country = {
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 30
+
+		days_re_enable = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			every_neighbor_country = {
+				limit = { NOT = { has_government = old_gods } }
+				add_timed_idea = {
+					idea = old_gods_agents
+					days = 60
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	old_gods_followers = {
+
+		available = {
+			any_neighbor_country = {
+				NOT = { has_government = old_gods }
+				old_gods > 0.10
+			} 
+		}
+
+		visible = {
+			has_idea = old_gods_guild
+			has_government = old_gods
+			any_neighbor_country = {
+				NOT = { has_government = old_gods }
+			}
+		}
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 30
+
+		days_re_enable = 30
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			random_neighbor_country = {
+				add_popularity = {
+					ideology = old_gods
+					popularity = -0.05
+				}
+				random_state = {
+					limit = { 
+						impassable = no 
+						is_core_of = PREV
+					}
+					add_manpower = -1000
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					impassable = no 
+					is_core_of = ROOT
+				}
+				add_manpower = 1000
+			}
+			add_manpower = 250
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+}
+
+hour_of_twilight_decisions = {
+
+	scarab_lord_927 = {
+
+		available = {
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+			has_idea = old_gods_guild
+			927 = { is_controlled_by = ROOT }
+			929 = { is_controlled_by_ROOT_or_ally = yes }
+			930 = { is_controlled_by_ROOT_or_ally = yes }
+			941 = { is_controlled_by_ROOT_or_ally = yes }
+			942 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+		}
+
+		highlight_states = { highlight_state_targets = { state = 927 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			if = {
+				limit = { 927 = { NOT = { is_core_of = ROOT } } }
+				927 = { add_core_of = ROOT }
+			}
+			927 = { add_dynamic_modifier = { modifier = OLD_centipaar_workers } }
+			929 = { add_dynamic_modifier = { modifier = OLD_centipaar_workers } }
+			930 = { add_dynamic_modifier = { modifier = OLD_centipaar_workers } }
+			941 = { add_dynamic_modifier = { modifier = OLD_centipaar_workers } }
+			942 = { add_dynamic_modifier = { modifier = OLD_centipaar_workers } }
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	scarab_lord_938 = {
+
+		available = {
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+			has_idea = old_gods_guild
+			938 = { is_controlled_by = ROOT }
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+		}
+
+		highlight_states = { highlight_state_targets = { state = 938 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			938 = { add_dynamic_modifier = { modifier = OLD_hatchery } }
+			if = {
+				limit = { 938 = { NOT = { is_core_of = ROOT } } }
+				938 = { add_core_of = ROOT }
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	scarab_lord_966 = {
+
+		available = {
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+			has_idea = old_gods_guild
+			966 = { is_controlled_by = ROOT }
+			967 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+		}
+
+		highlight_states = { highlight_state_targets = { state = 966 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			966 = { add_dynamic_modifier = { modifier = OLD_hostile_castes } }
+			967 = { add_dynamic_modifier = { modifier = OLD_hostile_castes } }
+			if = {
+				limit = { 966 = { NOT = { is_core_of = ROOT } } }
+				966 = { add_core_of = ROOT }
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	scarab_lord_1115 = {
+
+		available = {
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+			has_idea = old_gods_guild
+			1115 = { is_controlled_by = ROOT }
+			1116 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+		}
+
+		highlight_states = { highlight_state_targets = { state = 1115 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			1115 = { add_dynamic_modifier = { modifier = OLD_hostile_castes } }
+			1116 = { add_dynamic_modifier = { modifier = OLD_hostile_castes } }
+			if = {
+				limit = { 1115 = { NOT = { is_core_of = ROOT } } }
+				1115 = { add_core_of = ROOT }
+			}
+			hidden_effect = { 2005 = { add_core_of = ROOT } }
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	scarab_lord_1164 = {
+
+		available = {
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+			has_idea = old_gods_guild
+			1164 = { is_controlled_by = ROOT }
+			1165 = { is_controlled_by_ROOT_or_ally = yes }
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+		}
+
+		highlight_states = { highlight_state_targets = { state = 1164 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			1164 = { add_dynamic_modifier = { modifier = OLD_hatchery } }
+			1165 = { add_dynamic_modifier = { modifier = OLD_hatchery } }
+			if = {
+				limit = { 1164 = { NOT = { is_core_of = ROOT } } }
+				1164 = { add_core_of = ROOT }
+			}
+			hidden_effect = { 1160 = { add_core_of = ROOT }	}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	scarab_lord_1504 = {
+
+		available = {
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			}
+			has_idea = old_gods_guild
+			1504 = { is_controlled_by = ROOT }
+		}
+
+		fire_only_once = yes
+
+		visible = { 
+			OR = {
+				has_completed_focus = the_scarab_wall_4
+				tag = AHQ
+			} 
+		}
+
+		highlight_states = { highlight_state_targets = { state = 1504 } }
+
+		custom_cost_trigger = { command_power > 49 }
+		custom_cost_text = decision_cost_command_50
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -50 }
+			1504 = { add_dynamic_modifier = { modifier = OLD_hatchery } }
+			if = {
+				limit = { 1504 = { NOT = { is_core_of = ROOT } } }
+				1504 = { add_core_of = ROOT }
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	awaken_what_lies_beneath_2033 = {
+
+		available = {
+			has_completed_focus = old_gods_awaken_what_lies_beneath
+			has_idea = old_gods_guild
+			2033 = { is_controlled_by = ROOT }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_awaken_what_lies_beneath }
+
+		highlight_states = { highlight_state_targets = { state = 2033 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			if = {
+				limit = { 2033 = { NOT = { is_core_of = ROOT } } }
+				2033 = {
+					add_manpower = -3400
+					add_core_of = ROOT
+					remove_core_of = ZNE
+					hidden_effect = {
+						set_state_religion_to_primary_religion = yes
+						set_variable = { var = race value = 28 }
+					}
+				}
+			}
+			2033 = {
+				add_building_construction = {
+					type = nuclear_facility
+					level = 1
+					province = 15163
+					instant_build = yes
+				}
+				remove_dynamic_modifier = { modifier = GEN_dark_whispers }
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							NOT = { has_tech = faceless_unit_techs }
+							NOT = {	has_tech = faceless_equipment_techs_1 }
+						}
+					}
+				}
+				set_technology = {
+					faceless_unit_techs = 1
+					faceless_equipment_techs_1 = 1
+				}
+			}
+			set_country_flag = awaken_what_lies_beneath_2033
+			division_template = {
+				name = "Ancient C'Thrax"
+				priority = 1
+				regiments = {
+					faceless_cthrax = { x = 0 y = 0 }
+					faceless_cthrax = { x = 0 y = 1 }
+					faceless_cthrax = { x = 0 y = 2 }
+					faceless_cthrax = { x = 0 y = 3 }
+					faceless_cthrax = { x = 1 y = 0 }
+					faceless_cthrax = { x = 1 y = 1 }
+					faceless_cthrax = { x = 1 y = 2 }
+					faceless_cthrax = { x = 1 y = 3 }
+					faceless_cthrax = { x = 2 y = 1 }
+					faceless_cthrax = { x = 2 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Ancient Horror"
+				priority = 1
+				regiments = {
+					faceless_horror = { x = 0 y = 0 }
+					faceless_horror = { x = 0 y = 1 }
+					faceless_horror = { x = 0 y = 2 }
+					faceless_horror = { x = 0 y = 3 }
+					faceless_horror = { x = 1 y = 0 }
+					faceless_horror = { x = 1 y = 1 }
+					faceless_horror = { x = 1 y = 2 }
+					faceless_horror = { x = 1 y = 3 }
+					faceless_horror = { x = 2 y = 1 }
+					faceless_horror = { x = 2 y = 2 }
+				}
+			}
+			2033 = {
+				create_unit = {
+					division = "name = \"Ancient C'Thrax\" division_template = \"Ancient C'Thrax\" start_experience_factor = 0.5"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Ancient Horror\" division_template = \"Ancient Horror\" start_experience_factor = 0.5"
+					owner = ROOT
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	awaken_what_lies_beneath_206 = {
+
+		available = {
+			has_completed_focus = old_gods_awaken_what_lies_beneath
+			has_idea = old_gods_guild
+			206 = { is_controlled_by = ROOT	}
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_awaken_what_lies_beneath }
+
+		highlight_states = { highlight_state_targets = { state = 206 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			if = {
+				limit = { 206 = { NOT = { is_core_of = ROOT } } }
+				206 = {
+					add_core_of = ROOT
+					hidden_effect = {
+						set_state_religion_to_primary_religion = yes
+						set_variable = { var = race value = 28 }
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							NOT = { has_tech = faceless_unit_techs }
+							NOT = {	has_tech = faceless_equipment_techs_1 }
+						}
+					}
+				}
+				set_technology = {
+					faceless_unit_techs = 1
+					faceless_equipment_techs_1 = 1
+				}
+			}
+			set_country_flag = awaken_what_lies_beneath_206
+			division_template = {
+				name = "Ancient C'Thrax"
+				priority = 1
+				regiments = {
+					faceless_cthrax = { x = 0 y = 0 }
+					faceless_cthrax = { x = 0 y = 1 }
+					faceless_cthrax = { x = 0 y = 2 }
+					faceless_cthrax = { x = 0 y = 3 }
+					faceless_cthrax = { x = 1 y = 0 }
+					faceless_cthrax = { x = 1 y = 1 }
+					faceless_cthrax = { x = 1 y = 2 }
+					faceless_cthrax = { x = 1 y = 3 }
+					faceless_cthrax = { x = 2 y = 1 }
+					faceless_cthrax = { x = 2 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Ancient Horror"
+				priority = 1
+				regiments = {
+					faceless_horror = { x = 0 y = 0 }
+					faceless_horror = { x = 0 y = 1 }
+					faceless_horror = { x = 0 y = 2 }
+					faceless_horror = { x = 0 y = 3 }
+					faceless_horror = { x = 1 y = 0 }
+					faceless_horror = { x = 1 y = 1 }
+					faceless_horror = { x = 1 y = 2 }
+					faceless_horror = { x = 1 y = 3 }
+					faceless_horror = { x = 2 y = 1 }
+					faceless_horror = { x = 2 y = 2 }
+				}
+			}
+			206 = {
+				create_unit = {
+					division = "name = \"Ancient C'Thrax\" division_template = \"Ancient C'Thrax\" start_experience_factor = 0.5"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Ancient Horror\" division_template = \"Ancient Horror\" start_experience_factor = 0.5"
+					owner = ROOT
+				}
+			}
+			206 = {	remove_dynamic_modifier = { modifier = GEN_dark_whispers } }
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	uncover_what_was_hidden_1408 = {
+
+		available = {
+			has_completed_focus = old_gods_awaken_what_lies_beneath
+			has_idea = old_gods_guild
+			1408 = { is_controlled_by = ROOT }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_awaken_what_lies_beneath }
+
+		highlight_states = { highlight_state_targets = { state = 1408 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 120
+
+		complete_effect = {
+			add_to_variable = {
+				var = faith_points
+				value = 150
+				tooltip = add_faith_points_tt
+			}
+			1408 = { 
+				add_compliance = 50
+				add_dynamic_modifier = { modifier = GEN_dark_whispers } 
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	revive_soggoth_1408 = {
+
+		available = {
+			has_completed_focus = old_gods_awaken_what_lies_beneath
+			has_idea = old_gods_guild
+			1408 = { 
+				is_controlled_by = ROOT 
+				has_dynamic_modifier = GEN_dark_whispers
+			}
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_awaken_what_lies_beneath }
+
+		highlight_states = { highlight_state_targets = { state = 1408 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			if = {
+				limit = { 1408 = { NOT = { is_core_of = ROOT } } }
+				1408 = {
+					add_core_of = ROOT
+					hidden_effect = {
+						set_state_religion_to_primary_religion = yes
+						set_variable = { var = race value = 28 }
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							NOT = { has_tech = faceless_unit_techs }
+							NOT = {	has_tech = faceless_equipment_techs_1 }
+						}
+					}
+				}
+				set_technology = {
+					faceless_unit_techs = 1
+					faceless_equipment_techs_1 = 1
+				}
+			}
+			set_country_flag = awaken_what_lies_beneath_1408
+			division_template = {
+				name = "Ancient C'Thrax"
+				priority = 1
+				regiments = {
+					faceless_cthrax = { x = 0 y = 0 }
+					faceless_cthrax = { x = 0 y = 1 }
+					faceless_cthrax = { x = 0 y = 2 }
+					faceless_cthrax = { x = 0 y = 3 }
+					faceless_cthrax = { x = 1 y = 0 }
+					faceless_cthrax = { x = 1 y = 1 }
+					faceless_cthrax = { x = 1 y = 2 }
+					faceless_cthrax = { x = 1 y = 3 }
+					faceless_cthrax = { x = 2 y = 1 }
+					faceless_cthrax = { x = 2 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Ancient Horror"
+				priority = 1
+				regiments = {
+					faceless_horror = { x = 0 y = 0 }
+					faceless_horror = { x = 0 y = 1 }
+					faceless_horror = { x = 0 y = 2 }
+					faceless_horror = { x = 0 y = 3 }
+					faceless_horror = { x = 1 y = 0 }
+					faceless_horror = { x = 1 y = 1 }
+					faceless_horror = { x = 1 y = 2 }
+					faceless_horror = { x = 1 y = 3 }
+					faceless_horror = { x = 2 y = 1 }
+					faceless_horror = { x = 2 y = 2 }
+				}
+			}
+			1408 = {
+				create_unit = {
+					division = "name = \"Ancient C'Thrax\" division_template = \"Ancient C'Thrax\" start_experience_factor = 0.5"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"Ancient Horror\" division_template = \"Ancient Horror\" start_experience_factor = 0.5"
+					owner = ROOT
+				}
+			}
+			1408 = { remove_dynamic_modifier = { modifier = GEN_dark_whispers } }
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+}
+
+emerald_corruption_decisions = {
+
+	taint_the_dream_53 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			53 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		highlight_states = { highlight_state_targets = { state = 53 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 53state_pop = 53.state_population }
+			multiply_temp_variable = { 53state_pop = 0.25 }
+			multiply_temp_variable = { 53state_pop = -1 }
+			53 = {
+				add_manpower = 53state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				add_stability = -0.02
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.025
+				}
+				add_stability = -0.01
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	taint_the_dream_1689 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			1689 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		highlight_states = { highlight_state_targets = { state = 1689 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 1689state_pop = 1689.state_population }
+			multiply_temp_variable = { 1689state_pop = 0.25 }
+			multiply_temp_variable = { 1689state_pop = -1 }
+			1689 = {
+				add_manpower = 1689state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				add_stability = -0.02
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.025
+				}
+				add_stability = -0.01
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	taint_the_dream_2220 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			2220 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		highlight_states = { highlight_state_targets = { state = 2220 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 2220state_pop = 2220.state_population }
+			multiply_temp_variable = { 2220state_pop = 0.25 }
+			multiply_temp_variable = { 2220state_pop = -1 }
+			2220 = {
+				add_manpower = 2220state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.05
+				}
+				add_stability = -0.02
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				add_popularity = {
+					ideology = old_gods
+					popularity = 0.025
+				}
+				add_stability = -0.01
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	taint_the_dream_126 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			126 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		highlight_states = { highlight_state_targets = { state = 126 } }
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 126state_pop = 126.state_population }
+			multiply_temp_variable = { 126state_pop = 0.25 }
+			multiply_temp_variable = { 126state_pop = -1 }
+			126 = {
+				add_manpower = 126state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	taint_the_dream_300 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			300 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		highlight_states = { highlight_state_targets = { state = 300 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 300state_pop = 300.state_population }
+			multiply_temp_variable = { 300state_pop = 0.25 }
+			multiply_temp_variable = { 300state_pop = -1 }
+			300 = {
+				add_manpower = 300state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	taint_the_dream_1152 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			1152 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		highlight_states = { highlight_state_targets = { state = 1152 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 1152state_pop = 1152.state_population }
+			multiply_temp_variable = { 1152state_pop = 0.25 }
+			multiply_temp_variable = { 1152state_pop = -1 }
+			1152 = {
+				add_manpower = 1152state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+
+	taint_the_dream_1355 = {
+
+		available = {
+			has_completed_focus = old_gods_emerald_nightmare
+			has_idea = old_gods_guild
+			1355 = { is_controlled_by = ROOT }
+			NOT = { has_idea = green_dragon_primary_race }
+		}
+
+		fire_only_once = yes
+
+		visible = { has_completed_focus = old_gods_emerald_nightmare }
+
+		highlight_states = { highlight_state_targets = { state = 1355 } }
+
+		custom_cost_trigger = { command_power > 74 }
+		custom_cost_text = decision_cost_command_75
+
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -75 }
+			set_temp_variable = { 1355state_pop = 1355.state_population }
+			multiply_temp_variable = { 1355state_pop = 0.25 }
+			multiply_temp_variable = { 1355state_pop = -1 }
+			1355 = {
+				add_manpower = 1355state_pop
+				hidden_effect = { set_state_religion_to_primary_religion = yes }
+				add_core_of = ROOT
+				set_variable = { var = race value = 109 }
+			}
+			every_country = {
+				limit = { has_idea = green_dragon_primary_race }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+			every_country = {
+				limit = { has_idea = primary_religion_druidism }
+				if = {
+					limit = {
+						NOT = {
+							has_idea = GDF_emerald_nightmare_1
+							has_idea = GDF_emerald_nightmare_2
+							has_idea = GDF_emerald_nightmare_3
+							has_idea = GDF_emerald_nightmare_4
+							has_idea = GDF_emerald_nightmare_5
+						}
+					}
+					add_ideas = GDF_emerald_nightmare_1
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_1 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_1
+						add_idea = GDF_emerald_nightmare_2
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_2 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_2
+						add_idea = GDF_emerald_nightmare_3
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_3 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_3
+						add_idea = GDF_emerald_nightmare_4
+					}
+				}
+				if = {
+					limit = { has_idea = GDF_emerald_nightmare_4 }
+					swap_ideas = {
+						remove_idea = GDF_emerald_nightmare_4
+						add_idea = GDF_emerald_nightmare_5
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				is_historical_focus_on = no
+			}
+		}
+	}
+}

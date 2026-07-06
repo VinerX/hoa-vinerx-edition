@@ -1,0 +1,38 @@
+foreign_politics = {
+
+    # Ask Bleeding Hollow to give control of Westfall (after Stormwind capitulation)
+    SRC_ask_for_island_decision = {
+
+        priority = 10
+
+        cost = 50
+
+        days_re_enable = 90
+
+        allowed = { original_tag = SRC }
+
+        visible = {
+			OR = {
+				323 = { NOT = { is_controlled_by = SRC } }
+				1576 = { NOT = { is_controlled_by = SRC } }
+			}
+        }
+
+        available = {
+			OR = {
+				323 = { is_controlled_by = BHC }
+				1576 = { is_controlled_by = BHC }
+			}
+        }
+
+        complete_effect = {
+            BHC = {
+                country_event = {
+                    id = bleeding_hollow.3
+                    days = 1
+                }
+            }
+		}
+    }
+
+}

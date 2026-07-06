@@ -1,0 +1,826 @@
+government_decisions = {
+
+	### Kingdom/Generic
+	kingdom_tax_nobles = {
+
+		allowed = {
+			NOT = { tag = TSC }
+		}
+
+		visible = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		available = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			consumer_goods_expected_value = -0.05
+			political_power_factor = 0.1
+		}
+
+		complete_effect = {
+			add_stability = -0.05
+		}
+	}
+
+	kingdom_grant_nobility_generalship = {
+
+		allowed = {
+			NOT = { tag = TSC }
+		}
+
+		visible = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		available = {
+			OR = {
+				has_war = yes
+				threat > 0.2
+			}
+			has_war_support < 0.8
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			experience_gain_army = 0.05
+			war_support_weekly = 0.002
+			mobilization_speed = 0.1
+		}
+
+		complete_effect = {
+			add_war_support = 0.02
+		}
+	}
+
+	kingdom_raise_militia = {
+
+		allowed = {
+			NOT = { tag = TSC }
+		}
+
+		visible = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		available = {
+			has_war = yes
+			has_war_support > 0.2
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			weekly_manpower = 35
+			war_support_weekly = -0.001
+		}
+
+		complete_effect = {
+			add_manpower = 350
+		}
+	}
+
+	kingdom_improve_peasant_standards = {
+
+		allowed = {
+			NOT = { tag = TSC }
+		}
+
+		visible = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		available = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		modifier = {
+			stability_weekly = 0.005
+			consumer_goods_expected_value = 0.05
+			industrial_capacity_factory = -0.1
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_stability < 0.6
+			}
+		}
+	}
+
+	kingdom_support_the_growth_of_settlements = {
+
+		allowed = {
+			NOT = { tag = TSC }
+		}
+
+		available = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+
+			num_of_civilian_factories_available_for_projects > 5
+			num_of_controlled_states > 15
+		}
+
+		visible = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+
+			num_of_controlled_states > 10
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		modifier = {
+			monthly_population = 0.15
+			civilian_factory_use = 5
+		}
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {
+						is_in_array = {
+							array = current_decision_target
+							value = THIS
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {
+						is_in_array = {
+							array = current_decision_target
+							value = THIS
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {
+						is_in_array = {
+							array = current_decision_target
+							value = THIS
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {
+						is_in_array = {
+							array = current_decision_target
+							value = THIS
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+
+		cost = 100
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				any_owned_state = {
+					free_building_slots = {
+						building = arms_factory
+						size < 1
+						include_locked = no
+					}
+				}
+			}
+		}
+	}
+
+	kingdom_lean_on_our_vassals = {
+
+		allowed = {
+			NOT = { tag = TSC }
+		}
+
+		available = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+			any_country = { 
+				is_subject_of = ROOT
+				NOT = { has_idea = KINGDOM_exploited }
+				industrial_complex > 4
+			}
+		}
+
+		visible = {
+			NOT = { 
+				has_idea = clan
+				has_idea = criminal_enterprise 
+			}
+		}
+
+		days_remove = 30
+		days_re_enable = 30
+
+		cost = 10
+
+		modifier = {
+			political_power_gain = 1
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					is_subject_of = ROOT
+					NOT = { has_idea = KINGDOM_exploited }
+					industrial_complex > 4
+				}
+				add_ideas = KINGDOM_exploited
+			}
+			GEN_upgrade_KINGDOM_exploit = yes
+		}
+	}
+
+	### Clan Decisions
+	clan_organize_feast_decision = {
+
+		visible = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+		}
+
+		available = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+			has_war = no
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			stability_weekly = 0.001
+			consumer_goods_expected_value = 0.05
+		}
+
+		complete_effect = {
+			add_stability = 0.05
+		}
+	}
+
+	clan_meet_with_minor_chieftains_decision = {
+
+		visible = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+		}
+
+		available = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			political_power_factor = -0.05
+		}
+
+		complete_effect = {
+			add_political_power = 150
+		}
+	}
+
+	clan_hold_martial_gathering_decision = {
+
+		visible = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+		}
+
+		available = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			war_support_weekly = 0.001
+			training_time_army_factor = 0.05
+		}
+
+		complete_effect = {
+			add_manpower = -100
+			army_experience = 75
+		}
+	}
+
+	clan_extend_working_hours_decision = {
+
+		visible = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+		}
+
+		available = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+			has_war = yes
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			stability_weekly = -0.001
+			industrial_capacity_factory = 0.1
+		}
+
+		complete_effect = {
+			add_stability = -0.05
+		}
+	}
+
+	clan_clear_land_decision = {
+
+		visible = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+
+			num_of_controlled_states > 10
+		}
+
+		available = {
+			OR = {
+				has_idea = clan
+				tag = TSC
+			}
+
+			num_of_civilian_factories_available_for_projects > 5
+			num_of_controlled_states > 15
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = 0.1
+		}
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+
+	clan_claim_our_tributes_decision = {
+
+		visible = {
+			has_idea = clan
+		}
+
+		available = {
+			has_idea = clan
+			any_country = { 
+				is_subject_of = ROOT
+				NOT = { has_idea = CLAN_exploited }
+				arms_factory > 4
+			}
+		}
+
+		days_remove = 30
+		days_re_enable = 30
+
+		cost = 25
+
+		modifier = {
+			industrial_capacity_factory = 0.10
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					is_subject_of = ROOT
+					NOT = { has_idea = CLAN_exploited }
+					arms_factory > 4
+				}
+				add_ideas = CLAN_exploited
+			}
+			GEN_upgrade_CLAN_exploit = yes
+		}
+	}
+
+	### Crime Decisions
+	crime_protection_rackets_decision = {
+
+		visible = {
+			has_idea = criminal_enterprise
+		}
+
+		available = {
+			has_idea = criminal_enterprise
+			has_war = no
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			consumer_goods_expected_value = -0.10
+		}
+
+		complete_effect = {
+			add_stability = -0.05
+			add_war_support = -0.02
+		}
+	}
+
+	crime_up_and_coming_members_decision = {
+
+		visible = {
+			has_idea = criminal_enterprise
+		}
+
+		available = {
+			has_idea = criminal_enterprise
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			training_time_army_factor = -0.15
+			mobilization_speed = 0.2
+			command_power_gain = 0.2
+		}
+
+		complete_effect = {
+			add_war_support = 0.05
+			add_stability = -0.02
+		}
+	}
+
+	crime_recruit_street_gangs_decision = {
+
+		visible = {
+			has_idea = criminal_enterprise
+		}
+
+		available = {
+			has_idea = criminal_enterprise
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			weekly_manpower = 50
+			experience_gain_army = 0.10
+			stability_weekly = -0.001
+			war_support_weekly = 0.001
+		}
+
+		complete_effect = {
+			add_manpower = 250
+			add_stability = -0.05
+		}
+	}
+
+	crime_shit_where_you_eat_decision = {
+
+		visible = {
+			has_idea = criminal_enterprise
+		}
+
+		available = {
+			has_idea = criminal_enterprise
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			civilian_factory_use = 1
+			stability_weekly = 0.005
+			industrial_capacity_factory = -0.1
+		}
+
+		complete_effect = {
+			add_stability = 0.05
+		}
+	}
+
+	crime_expand_rackets_decision = {
+
+		visible = {
+			has_idea = criminal_enterprise
+			num_of_controlled_states > 10
+		}
+
+		available = {
+			has_idea = criminal_enterprise
+			num_of_civilian_factories_available_for_projects > 5
+			num_of_controlled_states > 15
+		}
+
+		days_remove = 180
+		days_re_enable = 360
+
+		cost = 100
+
+		modifier = {
+			civilian_factory_use = 5
+			production_speed_buildings_factor = 0.1
+		}
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = { impassable = no }
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+				add_to_temp_array = {
+					array = current_decision_target
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					impassable = no
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+
+	crime_leverage_our_muscle_decision = {
+
+		visible = {
+			has_idea = criminal_enterprise
+		}
+
+		available = {
+			has_idea = criminal_enterprise
+			any_country = { 
+				is_subject_of = ROOT
+				NOT = { has_idea = CRIME_exploited }
+			}
+		}
+
+		days_remove = 30
+		days_re_enable = 30
+
+		cost = 25
+
+		modifier = {
+			consumer_goods_expected_value = -0.10
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					is_subject_of = ROOT
+					NOT = { has_idea = CRIME_exploited }
+				}
+				add_ideas = CRIME_exploited
+			}
+			GEN_upgrade_CRIME_exploit = yes
+		}
+	}
+
+	### GENERIC
+	develop_our_transporation_network = {
+
+		available = {
+			num_of_civilian_factories_available_for_projects > 5
+		}
+
+		cost = 75
+
+		days_remove = 90
+		days_re_enable = 180
+
+		modifier = {
+			production_speed_rail_way_factor = 0.25
+			production_speed_infrastructure_factor = 0.05
+			production_speed_supply_node_factor = 0.05
+			civilian_factory_use = 1
+		}
+
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+					NOT = {	infrastructure > 9 }
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_to_temp_array = { array = current_decision_target }
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+					NOT = {	infrastructure > 9 }
+					NOT = {	is_in_array = {	array = current_decision_target	value = THIS } }
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}

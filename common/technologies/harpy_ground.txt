@@ -1,0 +1,2631 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	harpy_nesting_grounds_ground_tech = {
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_featherblade_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_ripper_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_sorceress_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 13 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			tier_technology
+		}
+	}
+
+	harpy_featherblade_tech = {
+
+		enable_subunits = {
+			harpy_featherblade
+		}
+
+		on_research_complete = {
+			set_technology = { harpy_featherblade_equipment_tech_1 = 1 }
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_featherblade_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_screecher_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_pillager_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	harpy_featherblade_equipment_tech_1 = {
+
+		enable_equipments = {
+			harpy_featherblade_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = evasion_mastery
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dancing_blades
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	evasion_mastery = {
+
+		harpy_featherblade = {
+			maximum_speed = 0.2
+			defense = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { dancing_blades }
+
+		path = {
+			leads_to_tech = harpy_featherblade_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dancing_blades
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dancing_blades
+			}
+		}
+	}
+
+	dancing_blades = {
+
+		harpy_featherblade = {
+			soft_attack = 0.1
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { evasion_mastery }
+
+		path = {
+			leads_to_tech = harpy_featherblade_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = evasion_mastery
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = evasion_mastery
+			}
+		}
+	}
+
+	harpy_featherblade_equipment_tech_2 = {
+
+		enable_equipments = {
+			harpy_featherblade_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = {
+			harpy_roost_tech = 1
+		}
+
+		path = {
+			leads_to_tech = razor_talons
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = hawk_eyes
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	razor_talons = {
+
+		harpy_featherblade = {
+			ap_attack = 0.3
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { hawk_eyes }
+
+		path = {
+			leads_to_tech = harpy_featherblade_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = hawk_eyes
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = hawk_eyes
+			}
+		}
+	}
+
+	hawk_eyes = {
+
+		harpy_featherblade = {
+			initiative = 0.01
+			recon = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { razor_talons }
+
+		path = {
+			leads_to_tech = harpy_featherblade_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = razor_talons
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = razor_talons
+			}
+		}
+	}
+
+	harpy_featherblade_equipment_tech_3 = {
+
+		enable_equipments = {
+			harpy_featherblade_equipment_3
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			harpy_featherblade_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	wind_enfused_feathers = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_wind_enfused_feathers	} 
+		}
+
+		harpy_featherblade = {
+			soft_attack = 0.15
+			forest = {
+				attack = 0.10
+				defence = 0.10
+			}
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 5 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	harpy_screecher_tech = {
+
+		enable_subunits = {
+			harpy_screecher
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = harpy_screecher_tech_unit_details_tt
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_screecher_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 2 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_screecher_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_screecher_1 = {
+
+		harpy_screecher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_screecher_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_screecher_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_screecher_2 = {
+
+		harpy_screecher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_roost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_harpy_screecher_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 2 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_screecher_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_screecher_3 = {
+
+		harpy_screecher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_screecher_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_screecher_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_screecher_4 = {
+
+		harpy_screecher = {
+			suppression_factor = 0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 2 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_screecher_technology
+			support_technology
+		}
+	}
+
+	harpy_pillager_tech = {
+
+		enable_subunits = {
+			harpy_pillager
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = harpy_pillager_tech_unit_details_tt
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_pillager_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 8 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_pillager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_pillager_1 = {
+
+		harpy_pillager = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_pillager_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 8 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_pillager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_pillager_2 = {
+
+		harpy_pillager = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_roost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_harpy_pillager_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 8 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_pillager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_pillager_3 = {
+
+		harpy_pillager = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_pillager_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 8 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_pillager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_pillager_4 = {
+
+		harpy_pillager = {
+			supply_consumption_factor = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 8 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_pillager_technology
+			support_technology
+		}
+	}
+
+	harpy_ripper_tech = {
+
+		enable_subunits = {
+			harpy_ripper
+		}
+
+		on_research_complete = {
+			set_technology = { harpy_ripper_equipment_tech_1 = 1 }
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_ripper_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_ravager_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_huntress_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	harpy_ripper_equipment_tech_1 = {
+
+		enable_equipments = {
+			harpy_ripper_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_laceration
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ripper_scream
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	harpy_laceration = {
+
+		harpy_ripper = {
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { ripper_scream }
+
+		path = {
+			leads_to_tech = harpy_ripper_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = ripper_scream
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = ripper_scream
+			}
+		}
+	}
+
+	ripper_scream = {
+
+		harpy_ripper = {
+			max_organisation = 2
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { harpy_laceration }
+
+		path = {
+			leads_to_tech = harpy_ripper_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = harpy_laceration
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = harpy_laceration
+			}
+		}
+	}
+
+	harpy_ripper_equipment_tech_2 = {
+
+		enable_equipments = {
+			harpy_ripper_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = {
+			harpy_roost_tech = 1
+		}
+
+		path = {
+			leads_to_tech = dense_plumage
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = ripper_retribution
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dense_plumage = {
+
+		harpy_ripper = {
+			defense = 0.15
+			armor_value = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { ripper_retribution }
+
+		path = {
+			leads_to_tech = harpy_ripper_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = ripper_retribution
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = ripper_retribution
+			}
+		}
+	}
+
+	ripper_retribution = {
+
+		harpy_ripper = {
+			defense = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { dense_plumage }
+
+		path = {
+			leads_to_tech = harpy_ripper_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dense_plumage
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dense_plumage
+			}
+		}
+	}
+
+	harpy_ripper_equipment_tech_3 = {
+
+		enable_equipments = {
+			harpy_ripper_equipment_3
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			harpy_ripper_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	storm_talons = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_storm_talons	} 
+		}
+
+		harpy_ripper = {
+			hard_attack = 0.1
+			ap_attack = 0.25
+			defense = 0.1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 13 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	harpy_ravager_tech = {
+
+		enable_subunits = {
+			harpy_ravager
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = harpy_ravager_tech_unit_details_tt
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_ravager_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 10 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_ravager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_ravager_1 = {
+
+		harpy_ravager = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_ravager_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 10 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_ravager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_ravager_2 = {
+
+		harpy_ravager = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_roost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_harpy_ravager_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 10 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_ravager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_ravager_3 = {
+
+		harpy_ravager = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_ravager_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 10 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_ravager_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_ravager_4 = {
+
+		harpy_ravager = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 10 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_ravager_technology
+			support_technology
+		}
+	}
+
+	harpy_huntress_tech = {
+
+		enable_subunits = {
+			harpy_huntress
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = harpy_huntress_tech_unit_details_tt
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_huntress_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 16 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_huntress_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_huntress_1 = {
+
+		harpy_huntress = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_huntress_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_huntress_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_huntress_2 = {
+
+		harpy_huntress = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_roost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_harpy_huntress_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_huntress_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_huntress_3 = {
+
+		harpy_huntress = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_huntress_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_huntress_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_huntress_4 = {
+
+		harpy_huntress = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 16 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_huntress_technology
+			support_technology
+		}
+	}
+
+	harpy_sorceress_tech = {
+
+		enable_subunits = {
+			harpy_sorceress
+		}
+
+		on_research_complete = {
+			set_technology = { harpy_sorceress_equipment_tech_1 = 1 }
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_sorceress_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_hexer_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = harpy_witch_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 21 y = 2 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	harpy_sorceress_equipment_tech_1 = {
+
+		enable_equipments = {
+			harpy_sorceress_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = enchanting_aura
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = razor_winds
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 21 y = 4 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	enchanting_aura = {
+
+		harpy_sorceress = {
+			defense = 0.2
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { razor_winds }
+
+		path = {
+			leads_to_tech = harpy_sorceress_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = razor_winds
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = razor_winds
+			}
+		}
+	}
+
+	razor_winds = {
+
+		harpy_sorceress = {
+			soft_attack = 0.15
+			defense = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { enchanting_aura }
+
+		path = {
+			leads_to_tech = harpy_sorceress_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = enchanting_aura
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = enchanting_aura
+			}
+		}
+	}
+
+	harpy_sorceress_equipment_tech_2 = {
+
+		enable_equipments = {
+			harpy_sorceress_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = {
+			harpy_roost_tech = 1
+		}
+
+		path = {
+			leads_to_tech = discharge
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = thunderstorms
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 21 y = 8 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	discharge = {
+
+		harpy_sorceress = {
+			hard_attack = 0.2
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { thunderstorms }
+
+		path = {
+			leads_to_tech = harpy_sorceress_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = thunderstorms
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = thunderstorms
+			}
+		}
+	}
+
+	thunderstorms = {
+
+		harpy_sorceress = {
+			air_attack = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { discharge }
+
+		path = {
+			leads_to_tech = harpy_sorceress_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = discharge
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = discharge
+			}
+		}
+	}
+
+	harpy_sorceress_equipment_tech_3 = {
+
+		enable_equipments = {
+			harpy_sorceress_equipment_3
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 21 y = 12 }
+		}
+
+		categories = {
+			harpy_sorceress_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	tempest_shroud = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_tempest_shroud } 
+		}
+
+		harpy_sorceress = {
+			soft_attack = 0.1
+			hard_attack = 0.05
+			ap_attack = 0.40 #0.15
+			defense = 0.1
+			breakthrough = -0.05
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 21 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	harpy_hexer_tech = {
+
+		enable_subunits = {
+			harpy_hexer
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = harpy_hexer_tech_unit_details_tt
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_hexer_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 18 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_hexer_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_hexer_1 = {
+
+		harpy_hexer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_hexer_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 18 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_hexer_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_hexer_2 = {
+
+		harpy_hexer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_roost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_harpy_hexer_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 18 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_hexer_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_hexer_3 = {
+
+		harpy_hexer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_hexer_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 18 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_hexer_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_hexer_4 = {
+
+		harpy_hexer = {
+			reliability_factor = 0.05
+			equipment_capture_factor = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 18 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			harpy_hexer_technology
+			support_technology
+		}
+	}
+
+	harpy_witch_tech = {
+
+		enable_subunits = {
+			harpy_witch
+		}
+
+		on_research_complete = {
+			#custom_effect_tooltip = harpy_witch_tech_unit_details_tt
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_witch_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 24 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_witch_technology
+			support_technology
+		}
+	}
+
+	improved_harpy_witch_1 = {
+
+		harpy_witch = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_witch_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 24 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_witch_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_harpy_witch_2 = {
+
+		harpy_witch = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_roost_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_harpy_witch_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 24 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_witch_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_harpy_witch_3 = {
+
+		harpy_witch = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = improved_harpy_witch_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 24 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_witch_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	improved_harpy_witch_4 = {
+
+		harpy_witch = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 24 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			mage_tower_technology
+			harpy_witch_technology
+			support_technology
+			healer_technology
+		}
+	}
+
+	altar_of_aviana_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = {
+				arcane_tower_tech_global = 1
+				church_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_matriarch_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = avianas_blessing_tech 
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 27 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	harpy_matriarch_tech = {
+
+		enable_subunits = {
+			harpy_matriarch
+		}
+
+		on_research_complete = {
+			set_technology = { harpy_matriarch_equipment_tech_1 = 1 }
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = harpy_matriarch_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 27 y = 2 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	harpy_matriarch_equipment_tech_1 = {
+
+		enable_equipments = {
+			harpy_matriarch_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		path = {
+			leads_to_tech = elder_wisdom
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = terrorizing_screech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 27 y = 4 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	elder_wisdom = {
+
+		harpy_matriarch = {
+			max_organisation = 5
+			soft_attack = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { terrorizing_screech }
+
+		path = {
+			leads_to_tech = harpy_matriarch_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = terrorizing_screech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = terrorizing_screech
+			}
+		}
+	}
+
+	terrorizing_screech = {
+
+		harpy_matriarch = {
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { elder_wisdom }
+
+		path = {
+			leads_to_tech = harpy_matriarch_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 28 y = 6 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = elder_wisdom
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = elder_wisdom
+			}
+		}
+	}
+
+	harpy_matriarch_equipment_tech_2 = {
+
+		enable_equipments = {
+			harpy_matriarch_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		dependencies = {
+			harpy_roost_tech = 1
+		}
+
+		path = {
+			leads_to_tech = winged_dominance
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = avatar_of_aviana
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 27 y = 8 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	winged_dominance = {
+
+		harpy_matriarch = {
+			max_strength = 0.25
+			defense = 0.10
+			armor_value = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { avatar_of_aviana }
+
+		path = {
+			leads_to_tech = harpy_matriarch_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = avatar_of_aviana
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = avatar_of_aviana
+			}
+		}
+	}
+
+	avatar_of_aviana = {
+
+		harpy_matriarch = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_harpy = yes
+		}
+
+		xor = { winged_dominance }
+
+		path = {
+			leads_to_tech = harpy_matriarch_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 28 y = 10 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = winged_dominance
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = winged_dominance
+			}
+		}
+	}
+
+	harpy_matriarch_equipment_tech_3 = {
+
+		enable_equipments = {
+			harpy_matriarch_equipment_3
+		}
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 27 y = 12 }
+		}
+
+		categories = {
+			harpy_matriarch_tech
+			infantry_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	winds_of_dominion = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_winds_of_dominion } 
+		}
+
+		harpy_matriarch = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+			max_organisation = 5
+			defense = 0.10
+			forest = {
+				attack = 0.10
+				defence = 0.10
+			}
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 27 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	avianas_blessing_tech = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_harpy = yes
+		}
+
+		country_faith_gain_factor = 0.1
+		special_forces_cap = 0.04
+
+		path = {
+			leads_to_tech = avianas_blessing_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 30 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	avianas_blessing_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_harpy = yes
+		}
+
+		country_faith_gain_factor = 0.1
+		special_forces_cap = 0.04
+
+		dependencies = {
+			harpy_roost_tech = 1
+		}
+
+		path = {
+			leads_to_tech = avianas_blessing_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 30 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	avianas_blessing_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_harpy = yes
+		}
+
+		country_faith_gain_factor = 0.1
+		special_forces_cap = 0.04
+
+		path = {
+			leads_to_tech = avianas_blessing_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 30 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	avianas_blessing_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		country_faith_gain_factor = 0.1
+		special_forces_cap = 0.03
+
+		dependencies = { harpy_perch_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = harpy_ground_folder
+			position = { x = 30 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			arcane_tower_technology
+			orc_resource_building_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+}

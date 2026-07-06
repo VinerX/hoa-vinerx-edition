@@ -1,0 +1,2593 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	spawning_pool_tech = {
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = bog_beast_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = raincaller_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bog_lord_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 10 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			barracks_technology
+		}
+	}
+
+    bog_beast_tech = {
+
+        enable_subunits = {
+            bog_beast
+        }
+
+        on_research_complete = {
+            set_technology = { bog_beast_equipment_tech_1 = 1 }
+			increase_tech_count_bog_beast = yes
+        }
+
+        path = {
+            leads_to_tech = lurker_tech
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = bog_beast_equipment_tech_1
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = skulker_tech
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 5 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    lurker_tech = {
+
+        enable_subunits = {
+            lurker
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_lurker
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 2 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            lurker_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_lurker = {
+
+        lurker = {
+			entrenchment = 1.5
+			fort = {
+				defence = 0.10
+				attack = 0.10
+			}
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_lurker_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 2 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            lurker_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_lurker_2 = {
+
+        lurker = {
+			entrenchment = 1.5
+			river = {
+				attack = 0.1
+				defence = 0.10
+			}
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = improved_lurker_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 2 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            lurker_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_lurker_3 = {
+
+        lurker = {
+			entrenchment = 1.5
+			city = {
+				attack = 0.1
+				defence = 0.1
+			}
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_lurker_4
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 2 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            lurker_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_lurker_4 = {
+
+        lurker = {
+			entrenchment = 1.5
+			gateway = {
+				attack = 0.1
+				defence = 0.1
+			}
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 2 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            lurker_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    bog_beast_equipment_tech_1 = {
+
+        enable_equipments = {
+            bog_beast_equipment_1
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = bog_beast_thorned_vines
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = bog_beast_bark_armor
+            research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 5 y = 4 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+		ai_will_do = { factor = 1 }
+    }
+
+    bog_beast_thorned_vines = {
+
+        bog_beast = {
+            soft_attack = 0.10
+            breakthrough = 0.15
+        }
+        marsh_roots = {
+            soft_attack = 0.10
+            breakthrough = 0.15 
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_beast_bark_armor }
+
+        path = {
+            leads_to_tech = bog_beast_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 4 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_beast_bark_armor
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_beast_bark_armor
+			}
+        }
+    }
+
+    bog_beast_bark_armor = {
+
+        bog_beast = {
+            defense = 0.10
+            hardness = 0.15
+        }
+        marsh_roots = {
+            defense = 0.10
+            hardness = 0.15
+        }
+
+        on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_beast_thorned_vines }
+
+        path = {
+            leads_to_tech = bog_beast_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 6 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_beast_thorned_vines
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_beast_thorned_vines
+			}
+        }
+    }
+
+    bog_beast_equipment_tech_2 = {
+
+        enable_equipments = {
+            bog_beast_equipment_2
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = bog_beast_photosynthesis
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = bog_beast_adaptation
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 5 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    bog_beast_photosynthesis = {
+
+        bog_beast = {
+            casualty_trickleback = 0.005
+            default_morale = 0.25
+        }
+        marsh_roots = {
+            casualty_trickleback = 0.005
+            default_morale = 0.25
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_beast_adaptation }
+
+        path = {
+            leads_to_tech = bog_beast_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 4 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_beast_adaptation
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_beast_adaptation
+			}
+        }
+    }
+
+    bog_beast_adaptation = {
+
+        bog_beast = {
+            forest = {
+                attack = 0.1
+            }
+            jungle = {
+                attack = 0.1
+            }
+            marsh = {
+                attack = 0.1
+            }
+        }
+        marsh_roots = {
+            forest = {
+                attack = 0.1
+            }
+            jungle = {
+                attack = 0.1
+            }
+            marsh = {
+                attack = 0.1
+            }
+        }
+
+        skulker = {
+            recon = 0.5
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_beast_photosynthesis }
+
+        path = {
+            leads_to_tech = bog_beast_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 6 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_beast_photosynthesis
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_beast_photosynthesis
+			}
+        }
+    }
+
+    bog_beast_equipment_tech_3 = {
+
+        enable_equipments = {
+            bog_beast_equipment_3
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 5 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_beast_technology
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_land }
+    }
+
+	fungal_growths = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_fungal_growths } 
+		}
+
+        bog_beast = {
+            soft_attack = 0.1
+            defense = 0.1
+        }
+        marsh_roots = {
+            soft_attack = 0.1
+            defense = 0.1
+        }
+        the_infested = {
+            soft_attack = 0.15
+            defense = 0.15
+            default_morale = 0.1
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 5 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+    skulker_tech = {
+
+        enable_subunits = {
+            skulker
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_skulker
+            research_cost_coeff = 1
+        }
+
+        dependencies = {
+            skulker_den_tech = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 8 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_skulker = {
+
+        skulker = {
+			recon = 1.5
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_skulker_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 8 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_skulker_2 = {
+
+        skulker = {
+			recon = 1.5
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = improved_skulker_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 8 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_skulker_3 = {
+
+        skulker = {
+			recon = 1.5
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_skulker_4
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 8 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_skulker_4 = {
+
+        skulker = {
+			recon = 1.5
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 8 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    raincaller_tech = {
+
+        enable_subunits = {
+            raincaller
+        }
+
+        on_research_complete = {
+            set_technology = { raincaller_equipment_tech_1 = 1 }
+			increase_tech_count_bog_beast = yes
+        }
+
+        path = {
+            leads_to_tech = raincaller_equipment_tech_1
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = oracle_tech
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 11 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    raincaller_equipment_tech_1 = {
+
+        enable_equipments = {
+            raincaller_equipment_1
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = raincaller_vine_whip
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = raincaller_sap_bombs
+            research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 11 y = 4 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+		ai_will_do = { factor = 1 }
+    }
+
+    raincaller_vine_whip = {
+
+        raincaller = {
+            soft_attack = 0.10
+            air_attack = 0.25
+        }
+        shardthrower = {
+            soft_attack = 0.10
+            ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { raincaller_sap_bombs }
+
+        path = {
+            leads_to_tech = raincaller_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 10 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = raincaller_sap_bombs
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = raincaller_sap_bombs
+			}
+        }
+    }
+
+    raincaller_sap_bombs = {
+
+        raincaller = {
+            hard_attack = 0.10
+            breakthrough = 0.25
+        }
+        shardthrower = {
+            hard_attack = 0.10
+            breakthrough = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { raincaller_vine_whip }
+
+        path = {
+            leads_to_tech = raincaller_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 12 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = raincaller_vine_whip
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = raincaller_vine_whip
+			}
+        }
+    }
+
+    raincaller_equipment_tech_2 = {
+
+        enable_equipments = {
+            raincaller_equipment_2
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = raincaller_vegetation_shield
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = raincaller_toxic_pollen
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 11 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_magic }
+    }
+
+    raincaller_vegetation_shield = {
+
+        raincaller = {
+            hardness = 0.20
+            max_strength = 0.10
+        }
+        shardthrower = {
+            hardness = 0.20
+            max_strength = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { raincaller_toxic_pollen }
+
+        path = {
+            leads_to_tech = raincaller_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 10 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = raincaller_toxic_pollen
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = raincaller_toxic_pollen
+			}
+        }
+    }
+
+    raincaller_toxic_pollen = {
+
+        raincaller = {
+            defense = 0.15
+            forest = {
+                defence = 0.10
+            }
+            jungle = {
+                defence = 0.10
+            }
+            marsh = {
+                defence = 0.10
+            }
+        }
+        shardthrower = {
+            defense = 0.15
+            forest = {
+                defence = 0.10
+            }
+            jungle = {
+                defence = 0.10
+            }
+            marsh = {
+                defence = 0.10
+            }
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { raincaller_vegetation_shield }
+
+        path = {
+            leads_to_tech = raincaller_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 12 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = raincaller_vegetation_shield
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = raincaller_vegetation_shield
+			}
+        }
+    }
+
+    raincaller_equipment_tech_3 = {
+
+        enable_equipments = {
+            raincaller_equipment_3
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 11 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            raincaller_technology
+            archer_technology
+            spellcaster_technology
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_magic }
+    }
+
+    oracle_tech = {
+
+        enable_subunits = {
+            oracle
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_oracle
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 14 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            spellcaster_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_oracle = {
+
+        oracle = {
+            initiative = 0.10
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_oracle_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 14 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            spellcaster_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_oracle_2 = {
+
+        oracle = {
+            initiative = 0.10
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = improved_oracle_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 14 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            spellcaster_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_oracle_3 = {
+
+        oracle = {
+            initiative = 0.10
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = improved_oracle_4
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 14 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            spellcaster_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    improved_oracle_4 = {
+
+        oracle = {
+            initiative = 0.10
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 14 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            spellcaster_technology
+            infantry_technology
+            support_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+    }
+
+    bog_lord_tech = {
+
+        enable_subunits = {
+            bog_lord
+        }
+
+        on_research_complete = {
+            set_technology = { bog_lord_equipment_tech_1 = 1 }
+			increase_tech_count_bog_beast = yes
+        }
+
+        path = {
+            leads_to_tech = bog_lord_equipment_tech_1
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 17 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    bog_lord_equipment_tech_1 = {
+
+        enable_equipments = {
+            bog_lord_equipment_1
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        path = {
+            leads_to_tech = bog_lord_earthshakers
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = bog_lord_rootbound
+            research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 17 y = 4 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+		ai_will_do = { factor = 1 }
+    }
+
+    bog_lord_earthshakers = {
+
+        bog_lord = {
+            soft_attack = 0.10
+            hard_attack = 0.10
+        }
+        jungle_stalker = {
+            soft_attack = 0.10
+            hard_attack = 0.10
+        }
+        deep_behemoths = {
+            soft_attack = 0.10
+            hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_lord_rootbound }
+
+        path = {
+            leads_to_tech = bog_lord_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 16 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_lord_rootbound
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_lord_rootbound
+			}
+        }
+    }
+
+    bog_lord_rootbound = {
+
+        bog_lord = {
+            maximum_speed = 0.25
+            breakthrough = 0.20
+        }
+        jungle_stalker = {
+            maximum_speed = 0.25
+            breakthrough = 0.20
+        }
+        deep_behemoths = {
+            maximum_speed = 0.25
+            breakthrough = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_lord_earthshakers }
+
+        path = {
+            leads_to_tech = bog_lord_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 18 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_lord_earthshakers
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_lord_earthshakers
+			}
+        }
+    }
+
+    bog_lord_equipment_tech_2 = {
+
+        enable_equipments = {
+            bog_lord_equipment_2
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = bog_lord_vengeful_spirit
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = bog_lord_siphon
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 17 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    bog_lord_vengeful_spirit = {
+
+        bog_lord = {
+            max_strength = 0.20
+            hardness = 0.25
+        }
+        jungle_stalker = {
+            max_strength = 0.20
+            hardness = 0.25
+        }
+        deep_behemoths = {
+            max_strength = 0.20
+            hardness = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_lord_siphon }
+
+        path = {
+            leads_to_tech = bog_lord_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 16 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            infantry_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_lord_siphon
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_lord_siphon
+			}
+        }
+    }
+
+    bog_lord_siphon = {
+
+        bog_lord = {
+            defense = 0.20
+            breakthrough = 0.20
+        }
+        jungle_stalker = {
+            defense = 0.20
+            breakthrough = 0.20
+        }
+        deep_behemoths = {
+            defense = 0.20
+            breakthrough = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { bog_lord_vengeful_spirit }
+
+        path = {
+            leads_to_tech = bog_lord_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 18 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = bog_lord_vengeful_spirit
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = bog_lord_vengeful_spirit
+			}
+        }
+    }
+
+    bog_lord_equipment_tech_3 = {
+
+        enable_equipments = {
+            bog_lord_equipment_3
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 17 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            altar_technology
+            melee_infantry_technology
+            bog_lord_technology
+            knight_technology ###Closest Heavy Thing
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_land }
+    }
+
+	tainted_mycelium = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_tainted_mycelium } 
+		}
+
+        bog_lord = {
+            breakthrough = 0.15
+            soft_attack = 0.1
+        }
+        jungle_stalker = {
+            breakthrough = 0.15
+            soft_attack = 0.1
+        }
+        deep_behemoths = {
+            breakthrough = 0.15
+            soft_attack = 0.1
+        }
+        the_infested = {
+            breakthrough = 0.2
+            soft_attack = 0.15
+            casualty_trickleback = 0.005
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 17 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	infesting_grounds_tech = {
+
+        enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+        enable_building = {
+			building = stable
+			level = 3
+		}
+
+        on_research_complete = {
+			set_technology = {
+				nest_tech_global = 1
+				stable_tech_global = 1
+                popup = no
+			}
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+            leads_to_tech = crocolisk_tech
+            research_cost_coeff = 1
+        }
+		path = {
+            leads_to_tech = improved_infestation_1
+            research_cost_coeff = 1
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 21 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			barracks_technology
+            horse_technology
+		}
+	}
+
+    crocolisk_tech = {
+
+        enable_subunits = {
+            crocolisk
+        }
+
+        on_research_complete = {
+            set_technology = { crocolisk_equipment_tech_1 = 1 }
+			increase_tech_count_bog_beast = yes
+        }
+
+        path = {
+            leads_to_tech = crocolisk_equipment_tech_1
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 21 y = 2 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+            modifier = {
+                factor = 1000
+                date > "592.1.1"
+            }
+        }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    crocolisk_equipment_tech_1 = {
+
+        enable_equipments = {
+            crocolisk_equipment_1
+        }
+
+        path = {
+            leads_to_tech = crocolisk_ferocious_bite
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = crocolisk_swiftscale
+            research_cost_coeff = 1
+        }
+
+        research_cost = 2
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 21 y = 4 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+		ai_will_do = { factor = 1 }
+    }
+
+    crocolisk_ferocious_bite = {
+
+        crocolisk = {
+            hard_attack = 0.10
+            soft_attack = 0.10
+        }
+        sawtooth = {
+            hard_attack = 0.10
+            soft_attack = 0.10
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { crocolisk_swiftscale }
+
+        path = {
+            leads_to_tech = crocolisk_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 20 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = crocolisk_swiftscale
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = crocolisk_swiftscale
+			}
+        }
+    }
+
+    crocolisk_swiftscale = {
+
+        crocolisk = {
+            maximum_speed = 0.5
+            breakthrough = 0.15
+        }
+        sawtooth = {
+            maximum_speed = 0.5
+            breakthrough = 0.15
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { crocolisk_ferocious_bite }
+
+        path = {
+            leads_to_tech = crocolisk_equipment_tech_2
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 22 y = 6 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = crocolisk_ferocious_bite
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = crocolisk_ferocious_bite
+			}
+        }
+    }
+
+    crocolisk_equipment_tech_2 = {
+
+        enable_equipments = {
+            crocolisk_equipment_2
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+        path = {
+            leads_to_tech = crocolisk_serrated_tail
+            research_cost_coeff = 1
+        }
+        path = {
+            leads_to_tech = crocolisk_iron_jaw
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 21 y = 8 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_land }
+    }
+
+    crocolisk_serrated_tail = {
+
+        crocolisk = {
+            breakthrough = 0.10
+            soft_attack = 0.15
+        }
+        sawtooth = {
+            breakthrough = 0.10
+            soft_attack = 0.15
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { crocolisk_iron_jaw }
+
+        path = {
+            leads_to_tech = crocolisk_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 20 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = crocolisk_iron_jaw
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = crocolisk_iron_jaw
+			}
+        }
+    }
+
+    crocolisk_iron_jaw = {
+
+        crocolisk = {
+            hard_attack = 0.10
+            ap_attack = 0.30
+        }
+        sawtooth = {
+            hard_attack = 0.10
+            ap_attack = 0.30
+        }
+
+		on_research_complete = {
+			increase_tech_count_bog_beast = yes
+		}
+
+        xor = { crocolisk_serrated_tail }
+
+        path = {
+            leads_to_tech = crocolisk_equipment_tech_3
+            research_cost_coeff = 1
+        }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 22 y = 10 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+        ai_will_do = {
+            factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = crocolisk_serrated_tail
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = crocolisk_serrated_tail
+			}
+        }
+    }
+
+    crocolisk_equipment_tech_3 = {
+
+        enable_equipments = {
+            crocolisk_equipment_3
+        }
+
+        dependencies = { bog_tech = 1 }
+
+        research_cost = 1.5
+        
+        folder = {
+            name = bog_beast_ground_folder
+            position = { x = 21 y = 12 }
+        }
+
+        categories = {
+            bog_beast_ground_technology
+            cavalry_technology
+            crocolisk_technology
+            mounted_footman_technology
+        }
+
+		ai_will_do = { factor = 1 }
+
+        special_project_specialization = { specialization_land }
+    }
+
+	corrosion_saliva = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_corrosion_saliva } 
+		}
+
+        crocolisk = {
+            hard_attack = 0.1
+            ap_attack = 0.2
+            fort = {
+                attack = 0.1
+            }
+        }
+        sawtooth = {
+            hard_attack = 0.1
+            ap_attack = 0.2
+            fort = {
+                attack = 0.1
+            }
+        }
+        the_infested = {
+            hard_attack = 0.5
+            ap_attack = 0.3
+            fort = {
+                attack = 0.1
+            }
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 21 y = 14 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	improved_infestation_1 = {
+
+		crocolisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.05
+			breakthrough = 0.05
+		}
+        sawtooth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.03
+			breakthrough = 0.07
+        }
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+            hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+            custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_infestation_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+            horse_technology
+		}
+	}
+
+	improved_infestation_2 = {
+
+		crocolisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.05
+			breakthrough = 0.05
+		}
+        sawtooth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.03
+			breakthrough = 0.07
+        }
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+                swap_ideas = {
+                    remove_idea = air_manufacturing_buff_1
+                    add_idea = air_manufacturing_buff_2
+                }
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_bog_beast = yes
+		}
+
+        dependencies = { mire_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_infestation_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 24 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+            horse_technology
+		}
+	}
+
+	improved_infestation_3 = {
+
+		crocolisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.05
+			breakthrough = 0.05
+		}
+        sawtooth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.03
+			breakthrough = 0.07
+        }
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+                swap_ideas = {
+                    remove_idea = air_manufacturing_buff_2
+                    add_idea = air_manufacturing_buff_3
+                }
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_bog_beast = yes
+		}
+
+		path = {
+			leads_to_tech = improved_infestation_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+            horse_technology
+		}
+	}
+
+	improved_infestation_4 = {
+
+		crocolisk = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.05
+			breakthrough = 0.05
+		}
+        sawtooth = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+			defense = 0.03
+			breakthrough = 0.07
+        }
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+                swap_ideas = {
+                    remove_idea = air_manufacturing_buff_3
+                    add_idea = air_manufacturing_buff_4
+                }
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+        dependencies = { bog_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 24 y = 12 }
+		}
+
+		categories = {
+			cavalry_technology
+			stable_technology
+			resource_building_technology
+            horse_technology
+		}
+	}
+
+	sp_green_dragon_adaptation = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_green_dragon_adaptation } 
+		}
+
+        on_research_complete = { 
+            add_ideas = TSW_green_dragon_adaptation 
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 26 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+    sp_blue_dragon_adaptation = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_blue_dragon_adaptation } 
+		}
+
+        on_research_complete = { 
+            add_ideas = TSW_blue_dragon_adaptation 
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+    sp_red_dragon_adaptation = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_red_dragon_adaptation } 
+		}
+
+        on_research_complete = { 
+            add_ideas = TSW_red_dragon_adaptation 
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 26 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+    sp_bronze_dragon_adaptation = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_bronze_dragon_adaptation } 
+		}
+
+        on_research_complete = { 
+            add_ideas = TSW_bronze_dragon_adaptation 
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+    sp_black_dragon_adaptation = {
+
+		allow = { 	 		
+			ROOT = { is_special_project_completed = sp:sp_black_dragon_adaptation } 
+		}
+
+        on_research_complete = { 
+            add_ideas = TSW_black_dragon_adaptation 
+        }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bog_beast_ground_folder
+			position = { x = 26 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}
+
+#bog beast
+#lurker/dweller dig in support
+#SKULKER RECON
+#bog lord

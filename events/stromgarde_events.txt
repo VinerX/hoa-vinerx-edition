@@ -1,0 +1,1714 @@
+﻿###########################
+#stromgarde
+###########################
+
+add_namespace = stromgarde
+
+# attending meeting of the seven kingdoms
+country_event = {
+	id = stromgarde.1
+	title = stromgarde.1.t
+	desc = stromgarde.1.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+    name = stromgarde.1.option.1
+	add_popularity = { ideology = alliance popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_alliance
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance > 49
+			}
+		}
+  	}
+
+	option = {
+    name = stromgarde.1.option.2
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance < 50
+			}
+		}
+  	}
+}
+
+# from secure_the_frontier decision of LOR
+country_event = {
+	id = stromgarde.2
+	title = stromgarde.2.t
+	desc = stromgarde.2.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = stromgarde.2.option.1
+		set_country_flag = accepted_alliance
+		if = {
+			limit = {
+				LOR = { has_government = alliance }
+			}
+			set_politics = {
+				ruling_party = alliance
+				elections_allowed = no
+			}
+		}
+
+		if = {
+			limit = {
+				LOR = { has_government = neutral }
+			}
+			set_politics = {
+				ruling_party = neutral
+				elections_allowed = no
+			}
+		}
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance > 49
+			}
+		}
+	}
+
+	option = {
+		name = stromgarde.2.option.1
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 50
+				is_historical_focus_on = no
+			}
+			modifier = {
+				factor = 50
+				alliance < 50
+			}
+			modifier = {
+				factor = 200
+				LOR = { has_government = neutral }
+			}
+		}
+	}
+}
+
+###TOL Rehabilitation
+country_event = {
+	id= stromgarde.3
+	title = stromgarde.3.t
+	desc = stromgarde.3.d
+	is_triggered_only = yes
+	
+	option = {
+		name = stromgarde.3.option.1
+		add_timed_idea = {
+			idea = STR_rehabilitated_citizens
+			days = 360
+		}
+	}
+}
+
+###Weapon Specialists
+country_event = {
+	id= stromgarde.4
+	title = stromgarde.4.t
+	desc = stromgarde.4.d
+	is_triggered_only = yes
+	
+	option = {
+	name = stromgarde.4.option.1
+		complete_special_project = sp:sp_vanguard
+		if = {
+			limit = { has_dlc = "Arms Against Tyranny" }
+			mio:generic_melee_infantry_org = { add_mio_funds = 250 }
+		}
+	}
+
+	option = {
+	name = stromgarde.4.option.2
+		### Will get around to making the Arbalests Equipment Tech
+		set_technology = { STR_arbalests = 1 }
+		custom_effect_tooltip = STR_arbalests_tt
+		if = {
+			limit = { has_dlc = "Arms Against Tyranny" }
+			mio:generic_ranged_infantry_org = { add_mio_funds = 250 }
+		}
+	}
+
+	option = {
+	name = stromgarde.4.option.3
+		### Will get around to making the Spellweavers Tech
+		set_technology = { STR_spellweavers = 1 }
+		custom_effect_tooltip = STR_spellweavers_tt
+		if = {
+			limit = { has_dlc = "Arms Against Tyranny" }
+			mio:generic_spellcaster_infantry_org = { add_mio_funds = 250 }
+		}
+	}
+
+	option = {
+	name = stromgarde.4.option.4
+		### Will get around to making the Lancers Tech
+		set_technology = { STR_lancers = 1 }
+		custom_effect_tooltip = STR_lancers_tt
+		if = {
+			limit = { has_dlc = "Arms Against Tyranny" }
+			mio:generic_heavy_cav_organization = { add_mio_funds = 250 }
+		}
+	}
+}
+
+###TOL Wardens Vigil
+country_event = {
+	id= stromgarde.5
+	title = stromgarde.5.t
+	desc = stromgarde.5.d
+	is_triggered_only = yes
+	
+	option = {
+	name = stromgarde.5.option.1
+		TOL = {
+			swap_ideas = {
+				remove_idea = TOL_penal_colony_5
+				add_idea = TOL_penal_colony_6
+			}
+		}
+	}
+
+	option = {
+	name = stromgarde.5.option.2
+		TOL = {
+			swap_ideas = {
+				remove_idea = TOL_privateers_5
+				add_idea = TOL_privateers_6
+			}
+		}
+	}
+}
+
+#the_survivors
+country_event = {
+	id = stromgarde.6
+	title = stromgarde.6.t
+	desc = stromgarde.6.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	option = {
+		name = stromgarde.6.option.1
+		12 = { add_manpower = 12 }
+		1544 = { add_manpower = -30	}
+		1544 = { add_claim_by = STR }
+		if = {
+			limit = { 1544 = { is_core_of = ALT } }
+			1544 = {
+				remove_core_of = ALT
+				add_claim_by = ALT
+			}
+		}
+		swap_ideas = {
+			remove_idea = STR_diplomatic_distance
+			add_idea = STR_remove_the_thorn
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.7
+	title = stromgarde.7.t
+	desc = stromgarde.7.d
+
+	is_triggered_only = yes
+
+	option = {
+    name = stromgarde.7.option.1
+	add_popularity = { ideology = neutral popularity = 0.15 }
+	add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	reverse_add_opinion_modifier = {
+		target = LOR
+		modifier = attented_the_meeting_of_the_seven_kingdoms
+	}
+	add_timed_idea = {
+		idea = LOR_meeting_of_the_seven_kingdoms_neutral
+		days = 180
+	}
+	set_country_flag = attended_meeting_of_seven_kingdoms
+		ai_chance = {
+			base = 0
+		}
+  	}
+
+	option = {
+    name = stromgarde.7.option.2
+		set_country_flag = LOR_denied_an_alliance
+		ai_chance = { base = 1 }
+  	}
+}
+
+#thousand_years_of_peace
+country_event = {
+	id = stromgarde.11
+	title = stromgarde.11.t
+	desc = stromgarde.11.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	option = {
+		name = stromgarde.11.option.1
+    	add_stability = 0.05
+	}
+	
+	option = {
+		name = stromgarde.11.option.2
+		add_war_support = 0.05
+  	}
+}
+
+#lord_trollbane
+country_event = {
+	id = stromgarde.12
+	title = stromgarde.12.t
+	desc = stromgarde.12.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	option = {
+		name = stromgarde.12.option.1
+    	add_ideas = STR_masons_guild
+	}
+	option = {
+		name = stromgarde.12.option.2
+		add_ideas = STR_ambassador
+  	}
+  	option = {
+		name = stromgarde.12.option.3
+		add_ideas = STR_civil_guard
+  	}
+}
+
+#kingdom_of_stromgarde
+country_event = {
+	id = stromgarde.13
+	title = stromgarde.13.t
+	desc = stromgarde.13.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	option = {
+    ###Military
+		name = stromgarde.13.option.1
+    complete_national_focus = STR_stromgrades_military
+	}
+	option = {
+		###Industry
+		name = stromgarde.13.option.2
+		complete_national_focus = STR_developing_the_kingdom
+  }
+  option = {
+		###Politics
+		name = stromgarde.13.option.3
+		complete_national_focus = STR_kingdom_politics
+		add_political_power = 75
+  }
+}
+
+#STR POWDER KEG
+country_event = {
+	id= stromgarde.14
+	title = stromgarde.14.t
+	desc = stromgarde.14.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	option = {
+    ###Military
+		name = stromgarde.14.option.1
+    130 = {
+      add_manpower = -80
+      remove_building = {
+        type = infrastructure
+        level = 3
+      }
+    }
+    IRO = {
+    	country_event = {
+      	id= stromgarde.16
+      	days = 2
+    	}
+  	}
+}
+}
+
+#kingdom_of_stromgarde
+country_event = {
+	id = stromgarde.15
+	title = stromgarde.15.t
+	desc = stromgarde.15.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	option = {
+		name = stromgarde.15.option.1
+	}
+}
+
+###STR POWDER KEG
+country_event = {
+	id = stromgarde.16
+	title = stromgarde.16.t
+	desc = stromgarde.16.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.16.option.1
+		###TAKE THE BRIDGE
+		130 = { 
+			transfer_state_to = IRO
+			add_claim_by = IRO
+		}
+		490 = {
+			add_manpower = -80
+			remove_building = {
+			type = infrastructure
+			level = 3
+			}
+		}
+		STR = {
+		country_event = {
+			id= stromgarde.15
+			days = 0
+		}
+		}
+	}
+}
+
+### STR Horde Event
+country_event = {
+	id = stromgarde.20
+	title = stromgarde.20.t
+	desc = stromgarde.20.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.20.option.1
+		BHC = {
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 250
+				producer = STR
+			}
+		}
+		TSC = {
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 250
+				producer = STR
+			}
+		}
+		BTG = {
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 250
+				producer = STR
+			}
+		}
+		BRC = {
+			add_equipment_to_stockpile = {
+				type = footman_equipment_1
+				amount = 250
+				producer = STR
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.21
+	title = stromgarde.21.t
+	desc = stromgarde.21.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.21.option.1
+		BRC = {
+			add_ideas = STR_northen_slaves
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.22
+	title = stromgarde.22.t
+	desc = stromgarde.22.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.22.option.1
+		BRC = {
+			country_event = {
+				id= stromgarde.23
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.23
+	title = stromgarde.23.t
+	desc = stromgarde.23.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.23.option.1
+		STR = {
+			country_event = {
+				id= stromgarde.24
+				days = 4
+			}
+		}
+		BRC = {
+			country_event = {
+				id= stromgarde.25
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.24
+	title = stromgarde.24.t
+	desc = stromgarde.24.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.24.option.1
+		STR = {
+			country_event = {
+				id= stromgarde.26
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.25
+	title = stromgarde.25.t
+	desc = stromgarde.25.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.25.option.1
+		BRC = {
+			country_event = {
+				id= stromgarde.27
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.26
+	title = stromgarde.26.t
+	desc = stromgarde.26.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.26.option.1
+		BRC = {	add_to_faction = STR }
+		STR = {
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			declare_war_on = {
+				target = STO
+				type = annex_everything
+			}
+			retire_character = STR_throm_stormbreath
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.27
+	title = stromgarde.27.t
+	desc = stromgarde.27.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.27.option.1
+	}
+}
+
+country_event = {
+	id = stromgarde.28
+	title = stromgarde.28.t
+	desc = stromgarde.28.d
+	picture = GFX_report_event_german_parade_paris
+	trigger = {
+		tag = STR
+		BRC = { has_war_with = TSC }
+		is_historical_focus_on = no
+	}
+	mean_time_to_happen = {
+		days = 3
+	}
+	fire_only_once = yes
+	option = {
+		name = stromgarde.28.option.1
+		STR = {
+			country_event = {
+				id= stromgarde.29
+				days = 2
+			}
+		}
+	}
+	option = {
+		name = stromgarde.28.option.2
+	}
+}
+
+country_event = {
+	id = stromgarde.29
+	title = stromgarde.29.t
+	desc = stromgarde.29.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = stromgarde.29.option.1
+		STR = {
+			set_country_flag = STR_orcs_uncovered
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.30
+	title = stromgarde.30.t
+	desc = stromgarde.30.d
+	picture = GFX_news_event_alexstrasza
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		DMC = {
+			custom_effect_tooltip = DMC_dragon_lose_tt
+			hidden_effect = {
+				set_technology = {
+					fighter_drake_tech = 0
+					fighter_drake_equipment_tech_1 = 0
+					bombardment_drake_equipment_tech_1 = 0
+					fighter_drake_equipment_tech_2 = 0
+					bombardment_drake_equipment_tech_2 = 0
+					fighter_drake_equipment_tech_3 = 0
+					bombardment_drake_equipment_tech_3 = 0
+					dragon_improved_scales_tech = 0
+					dragon_improved_breath_tech = 0
+					dragon_improved_claws_tech = 0
+					dragon_improved_wings_tech = 0
+					dragon_improved_scales_tech_2 = 0
+					dragon_improved_breath_tech_2 = 0
+					dragon_improved_claws_tech_2 = 0
+					dragon_improved_wings_tech_2 = 0
+					dragon_improved_scales_tech_3 = 0
+					dragon_improved_breath_tech_3 = 0
+					dragon_improved_claws_tech_3 = 0
+					dragon_improved_wings_tech_3 = 0
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = stromgarde.30.option.1
+		add_ideas = STR_dragon_liberation
+		add_opinion_modifier = {
+			target = VMR
+			modifier = common_foe
+		}
+		reverse_add_opinion_modifier = {
+			target = VMR
+			modifier = common_foe
+		}
+		VMR = {
+			declare_war_on = {
+				target = DMC
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BRC
+				type = annex_everything
+			}
+		}
+		DMC = {
+			set_autonomy = {
+				target = VMR
+				autonomy_state = autonomy_free
+				end_wars = yes
+				end_civil_wars = yes
+			}
+		}
+	}
+
+	option = {
+		name = stromgarde.30.option.2
+		add_timed_idea = {
+			idea = STR_forced_eviction
+			days = 180
+		}
+		every_state = {
+			limit = { is_core_of = VMR }
+			remove_core_of = VMR
+			add_claim_by = VMR
+			add_claim_by = STR
+			transfer_state_to = STR
+		}
+	}
+
+	option = {
+		name = stromgarde.30.option.3
+		set_autonomy = {
+			target = VMR
+			autonomy_state = autonomy_enslaved
+			freedom_level = 0.5
+		}
+		set_technology = {
+			fighter_drake_tech = 1
+			fighter_drake_equipment_tech_1 = 1
+		}
+		add_equipment_to_stockpile = {
+			type = fighter_drake_equipment_1
+			amount = 25
+			producer = RDF
+		}
+	}
+}
+
+###Border Conflict Win - ALT
+country_event = {
+	id= stromgarde.32
+	title = stromgarde.32.t
+	desc = stromgarde.32.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.32.option.1
+		complete_national_focus = STR_triumph_in_the_west
+		set_country_flag = STR_border_success
+		remove_ideas = STR_border_conflicts
+	}
+}
+
+###Border Conflict Loss - ALT
+country_event = {
+	id = stromgarde.33
+	title = stromgarde.33.t
+	desc = stromgarde.33.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.33.option.1
+		complete_national_focus = STR_bloodied_red_hand
+		set_country_flag = STR_border_failure
+		remove_ideas = STR_border_conflicts
+	}
+}
+
+###Border Conflict Win - TROLLS
+country_event = {
+	id= stromgarde.34
+	title = stromgarde.34.t
+	desc = stromgarde.34.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.34.option.1
+		139 = { transfer_state_to = STR }
+		add_stability = 0.05
+	}
+}
+
+###Border Conflict Loss - TROLLS
+country_event = {
+	id = stromgarde.35
+	title = stromgarde.35.t
+	desc = stromgarde.35.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.35.option.1
+		add_war_support = -0.05
+		add_stability = -0.05
+		add_political_power = -50
+	}
+}
+
+###Border Conflict Win - TROLLS
+country_event = {
+	id= stromgarde.36
+	title = stromgarde.36.t
+	desc = stromgarde.36.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.36.option.1
+		add_stability = 0.05
+		army_experience = 10
+	}
+}
+
+###Border Conflict Loss - TROLLS
+country_event = {
+	id = stromgarde.37
+	title = stromgarde.37.t
+	desc = stromgarde.37.d
+	is_triggered_only = yes
+	
+	option = {
+	name = stromgarde.37.option.1
+		138 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 620
+				instant_build = yes
+			}
+		}
+		225 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 3845
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 3847
+				instant_build = yes
+			}
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+	}
+}
+
+### DEATH TREE
+country_event = {
+	id = stromgarde.40
+	title = stromgarde.40.t
+	desc = stromgarde.40.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.40.option.1
+		swap_ideas = {
+			remove_idea = STR_the_pox_2
+			add_idea = STR_a_second_sentence
+		}
+	}
+	
+	option = {
+	name = stromgarde.40.option.2
+		swap_ideas = {
+			remove_idea = STR_the_pox_2
+			add_idea = STR_rights_to_life
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.41
+	title = stromgarde.41.t
+	desc = stromgarde.41.d
+	is_triggered_only = yes
+	
+	option = {
+	name = stromgarde.41.option.1
+		country_event = stromgarde.42
+		hidden_effect = { recruit_character = STR_thoras_trollbane }
+	}
+
+	option = {
+	name = stromgarde.41.option.2
+		country_event = stromgarde.43
+		hidden_effect = { recruit_character = STR_thoras_trollbane }
+	}
+}
+
+country_event = {
+	id = stromgarde.42
+	title = stromgarde.42.t
+	desc = stromgarde.42.d
+	is_triggered_only = yes
+	
+	option = {
+	name = stromgarde.42.option.1
+		kill_ideology_leader = alliance
+		remove_ideas = STR_the_empty_throne
+		hidden_effect = {
+			retire_character = STR_danath_trollbane
+			add_country_leader_trait = {
+				ideology = death_type
+				trait = brutal_tyrant
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.43
+	title = stromgarde.43.t
+	desc = stromgarde.43.d
+	is_triggered_only = yes
+	
+	option = {
+	name = stromgarde.43.option.1
+		remove_ideas = STR_the_empty_throne
+		add_country_leader_role = {
+			character = STR_thoras_trollbane
+			promote_leader = yes
+			country_leader = { ideology = death_type }
+		}
+		hidden_effect = {
+			retire_country_leader = yes
+			add_country_leader_trait = {
+				ideology = death_type
+				trait = from_beyond_trait
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.44
+	title = stromgarde.44.t
+	desc = stromgarde.44.d
+	is_triggered_only = yes
+	
+	option = {
+		name = stromgarde.44.option.1
+	}
+}
+
+country_event = {
+	id = stromgarde.45
+	title = stromgarde.45.t
+	desc = stromgarde.45.d
+	is_triggered_only = yes
+	
+	option = {
+		name = stromgarde.45.option.1
+		hidden_effect = {
+			STR = { country_event = stromgarde.46 }
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.46
+	title = stromgarde.46.t
+	desc = stromgarde.46.d
+	is_triggered_only = yes
+	
+	option = {
+		name = stromgarde.46.option.1
+		create_wargoal = {
+			target = DAL
+			type = puppet_wargoal_focus
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.47
+	title = stromgarde.47.t
+	desc = stromgarde.47.d
+	is_triggered_only = yes
+	
+	option = {
+		name = stromgarde.47.option.1
+		add_stability = 0.05
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = death
+			popularity = 1
+		}
+		add_manpower = -2500
+		hidden_effect = {
+			LOR = {
+				division_template = {
+					name = "Stromgarde Deserters"
+					regiments = {
+						footman = { x = 0 y = 0 }
+						footman = { x = 0 y = 1 }
+						footman = { x = 0 y = 2 }
+						footman = { x = 0 y = 3 }
+						footman = { x = 1 y = 0 }
+					}
+					priority = 1
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"Stromgarde Deserters\" division_template = \"Stromgarde Deserters\" start_experience_factor = 0.3"
+						owner = LOR
+						count = 3
+					}
+				}
+				151 = {
+					create_unit = {
+						division = "name = \"Stromgarde Deserters\" division_template = \"Stromgarde Deserters\" start_experience_factor = 0.3"
+						owner = LOR
+						count = 2
+					}
+				}
+			}
+		}
+	}
+}
+
+### FEL TREE
+country_event = {
+	id = stromgarde.50
+	title = stromgarde.50.t
+	desc = stromgarde.50.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.50.option.1
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = stromgarde.51
+	title = stromgarde.51.t
+	desc = stromgarde.51.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.51.option.1
+		add_war_support = 0.05
+		add_opinion_modifier = {
+			target = STO
+			modifier = hostile_status
+		}
+		add_opinion_modifier = {
+			target = KAR
+			modifier = hostile_status
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.52
+	title = stromgarde.52.t
+	desc = stromgarde.52.d
+	is_triggered_only = yes
+	option = {
+	name = stromgarde.52.option.1
+		hidden_effect = {
+			add_country_leader_trait = {
+				ideology = fel
+				trait = knowledge_of_karazhan
+			}		
+		}
+		add_country_leader_trait = {
+			ideology = neutral
+			trait = knowledge_of_karazhan
+		}
+		add_stability = 0.05
+		add_popularity = {
+			ideology = fel
+			popularity = 0.1
+		}
+		remove_opinion_modifier = {
+			target = STO
+			modifier = hostile_status
+		}
+		remove_opinion_modifier = {
+			target = KAR
+			modifier = hostile_status
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.53
+	title = stromgarde.53.t
+	desc = stromgarde.53.d
+	is_triggered_only = yes
+	immediate = {
+		139 = { transfer_state_to = WBT }
+		581 = { transfer_state_to = WBT }
+		128 = { transfer_state_to = WBT }
+	}
+	option = {
+	name = stromgarde.53.option.1
+		hidden_effect = {
+			139 = { set_demilitarized_zone = no }
+			581 = { set_demilitarized_zone = no }
+			128 = { set_demilitarized_zone = no }
+			WBT = {
+				division_template = {
+					name = "Revantusk Warriors"
+					regiments = {
+						head_hunter = { x = 0 y = 0 }
+						troll_axeman = { x = 0 y = 1 }
+						troll_axeman = { x = 0 y = 2 }
+						troll_axeman = { x = 0 y = 3 }
+					}
+					is_locked = yes
+					priority = 1
+				}
+				581 = {
+					create_unit = {
+						division = "name = \"Revantusk Warriors\" division_template = \"Revantusk Warriors\" start_experience_factor = 0.2"
+						owner = WBT
+					}
+					create_unit = {
+						division = "name = \"Revantusk Warriors\" division_template = \"Revantusk Warriors\" start_experience_factor = 0.2"
+						owner = WBT
+					}
+				}
+				128 = {
+					create_unit = {
+						division = "name = \"Revantusk Warriors\" division_template = \"Revantusk Warriors\" start_experience_factor = 0.2"
+						owner = WBT
+					}
+					create_unit = {
+						division = "name = \"Revantusk Warriors\" division_template = \"Revantusk Warriors\" start_experience_factor = 0.2"
+						owner = WBT
+					}
+				}
+			}
+			WBT = {
+				add_popularity = {
+					ideology = fel
+					popularity = 0.05
+				}
+			}
+			VIL = {
+				add_popularity = {
+					ideology = fel
+					popularity = 0.05
+				}
+			}
+		}
+		add_political_power = -50
+		add_popularity = {
+			ideology = neutral
+			popularity = -0.10
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.54
+	title = stromgarde.54.t
+	desc = stromgarde.54.d
+	is_triggered_only = yes
+	immediate = {
+		WBT = {
+			delete_unit_template_and_units = {
+				division_template = "Revantusk Warriors"
+				disband = no
+			}
+		}
+	}
+	option = {
+	name = stromgarde.54.option.1
+		add_war_support = 0.10
+		set_politics = {
+			ruling_party = fel
+			elections_allowed = no
+		}
+		add_ideas = within_their_borders_idea
+	}
+}
+
+### Tolbarad Related Shit
+country_event = {
+	id = stromgarde.100
+	title = nethergarde.100.t
+	desc = nethergarde.100.d
+	is_triggered_only = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = STR_reginald_baradin_i
+	}
+
+	option = {
+		name = stromgarde.100.option.1
+
+		country_event = {
+			id = stromgarde.101
+			days = 21
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.101
+	title = nethergarde.101.t
+	desc = nethergarde.101.d
+	is_triggered_only = yes
+
+	hidden = yes
+
+	immediate = {
+		deactivate_shine_on_focus = STR_reginald_baradin_i
+		activate_shine_on_focus = STR_penal_trade
+	}
+
+	option = {
+		name = stromgarde.101.option.1
+
+		complete_national_focus = STR_reginald_baradin_i
+
+		country_event = {
+			id = stromgarde.102
+			days = 21
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.102
+	title = nethergarde.102.t
+	desc = nethergarde.102.d
+	is_triggered_only = yes
+
+	hidden = yes
+
+	immediate = {
+		deactivate_shine_on_focus = STR_penal_trade
+		activate_shine_on_focus = STR_the_state_of_tolbarad
+	}
+
+	option = {
+		name = stromgarde.102.option.1
+
+		complete_national_focus = STR_penal_trade
+
+		country_event = {
+			id = stromgarde.103
+			days = 21
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde.103
+	title = nethergarde.103.t
+	desc = nethergarde.103.d
+	is_triggered_only = yes
+
+	hidden = yes
+
+	immediate = {
+		deactivate_shine_on_focus = STR_the_state_of_tolbarad
+	}
+
+	option = {
+		name = stromgarde.103.option.1
+		complete_national_focus = STR_the_state_of_tolbarad
+	}
+}
+
+######
+### 3rd War Events
+######
+
+add_namespace = stromgarde_third_war
+
+country_event = {
+	id = stromgarde_third_war.1
+	title = stromgarde_third_war.1.t
+	desc = stromgarde_third_war.1.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+    	name = stromgarde_third_war.1.option.1
+
+		leave_faction = yes
+		add_stability = 0.05
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.60
+		}
+		set_politics = {
+			ruling_party = neutral
+			elections_allowed = no
+		}
+
+		hidden_effect = {
+			set_country_flag = STR_leave_the_alliance
+			news_event = { id = news_third_war.2 hours = 48 }
+			LOR = { country_event = stromgarde_third_war.9 }
+			HEA = { country_event = stromgarde_third_war.9 }
+			STH = { country_event = stromgarde_third_war.9 }
+			GIL = { country_event = stromgarde_third_war.9 }
+			DAL = { country_event = stromgarde_third_war.9 }
+			AER = { country_event = stromgarde_third_war.9 }
+			QUE = { country_event = stromgarde_third_war.9 }
+			SPC = { country_event = stromgarde_third_war.9 }
+			IRO = { country_event = stromgarde_third_war.9 }
+			GNO = { country_event = stromgarde_third_war.9 }
+			KUL = { country_event = stromgarde_third_war.9 }
+			TOL = { country_event = stromgarde_third_war.9 }
+			STO = { country_event = stromgarde_third_war.9 }
+			NET = { country_event = stromgarde_third_war.9 }
+		}
+
+		ai_chance = { base = 1 }
+	}
+
+	option = {
+    	name = stromgarde_third_war.1.option.2
+
+		add_political_power = -50
+		add_stability = -0.05
+		add_war_support = -0.05
+		add_popularity = {
+		    ideology = alliance
+		    popularity = 0.05
+		}
+
+		hidden_effect = {
+			set_country_flag = STR_stay_in_alliance
+			news_event = { id = news_third_war.2 hours = 48 }
+			LOR = { country_event = stromgarde_third_war.9 }
+			HEA = { country_event = stromgarde_third_war.9 }
+			STH = { country_event = stromgarde_third_war.9 }
+			GIL = { country_event = stromgarde_third_war.9 }
+			DAL = { country_event = stromgarde_third_war.9 }
+			AER = { country_event = stromgarde_third_war.9 }
+			QUE = { country_event = stromgarde_third_war.9 }
+			SPC = { country_event = stromgarde_third_war.9 }
+			IRO = { country_event = stromgarde_third_war.9 }
+			GNO = { country_event = stromgarde_third_war.9 }
+			KUL = { country_event = stromgarde_third_war.9 }
+			TOL = { country_event = stromgarde_third_war.9 }
+			STO = { country_event = stromgarde_third_war.9 }
+			NET = { country_event = stromgarde_third_war.9 }
+		}
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.2
+	title = stromgarde_third_war.2.t
+	desc = stromgarde_third_war.2.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+    	name = stromgarde_third_war.2.option.1
+
+		kill_country_leader = yes
+		add_stability = -0.15
+
+		hidden_effect = {
+			country_event = {
+				id = stromgarde_third_war.3
+				days = 7
+			}
+			add_country_leader_role = {
+				character = STR_galen_trollbane
+				promote_leader = yes
+				country_leader = {
+					ideology = neutral_type
+					expire = "630.1.1"
+				}
+			}
+			add_country_leader_role = {
+				character = STR_galen_trollbane
+				promote_leader = yes
+				country_leader = {
+					ideology = alliance_type
+					expire = "630.1.1"
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.3
+	title = stromgarde_third_war.3.t
+	desc = stromgarde_third_war.3.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		577 = {
+			transfer_state_to = BFC
+            add_core_of = BFC
+		}
+		hidden_effect = {
+			NET = { set_country_flag = northern_disturbance }
+			BFC = { load_oob = BFC_3rd_war_577 }
+			BFC = {
+				add_stability = 0.10
+				add_war_support = 0.10
+			}
+			if = {
+				limit = { 577 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } } }
+				577 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+				BFC = {
+					add_manpower = 500
+					army_experience = 5
+				}
+			}
+		}
+
+		hidden_effect = {
+			country_event = {
+				id = stromgarde_third_war.4
+				days = 3
+			}
+		}
+	}
+
+	option = {
+    	name = stromgarde_third_war.3.option.1
+
+		add_war_support = 0.05
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.4
+	title = stromgarde_third_war.4.t
+	desc = stromgarde_third_war.4.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		130 = {
+			transfer_state_to = BFC
+            add_core_of = BFC
+		}
+		hidden_effect = {
+			BFC = { load_oob = BFC_3rd_war_130 }
+			if = {
+				limit = { 130 = { has_dynamic_modifier = { modifier = GEN_ogre_problem } } }
+				130 = { remove_dynamic_modifier = { modifier = GEN_ogre_problem } }
+				BFC = {
+					add_manpower = 500
+					army_experience = 5
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = stromgarde_third_war.5
+				days = 3
+			}
+		}
+	}
+
+	option = {
+    	name = stromgarde_third_war.4.option.1
+
+		BFC = {
+			declare_war_on = {
+				target = STR
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.5
+	title = stromgarde_third_war.5.t
+	desc = stromgarde_third_war.5.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		579 = {
+			transfer_state_to = BFC
+            add_core_of = BFC
+		}
+		hidden_effect = {
+			BFC = { load_oob = BFC_3rd_war_579 }
+		}
+	}
+
+	option = {
+    	name = stromgarde_third_war.5.option.1
+
+		add_war_support = 0.05
+		hidden_effect = {
+			country_event = {
+				id = stromgarde_third_war.6
+				days = 3
+			}
+		}
+		
+		if = {
+			limit = { STR = { has_idea = early_military_development } }
+			swap_ideas = {
+				remove_idea = early_military_development
+				add_idea = preparing_for_war
+			}
+		}
+
+		if = {
+			limit = { STR = { has_idea = preparing_for_war } }
+			swap_ideas = {
+				remove_idea = preparing_for_war
+				add_idea = war_economy
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.6
+	title = stromgarde_third_war.6.t
+	desc = stromgarde_third_war.6.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		1544 = {
+			transfer_state_to = SYN
+            add_core_of = SYN
+		}
+		hidden_effect = {
+			SYN = { load_oob = SYN_stromgarde_colapse }
+		}
+	}
+
+	option = {
+    	name = stromgarde_third_war.6.option.1
+
+		add_stability = -0.05
+
+		173 = {
+			transfer_state_to = DAL
+			add_core_of = DAL
+			teleport_armies = {
+				to_state = 129
+				limit = { tag = STR }
+			}
+		}
+		420 = {
+			transfer_state_to = DAL
+			add_core_of = DAL
+			teleport_armies = {
+				to_state = 129
+				limit = { tag = STR }
+			}
+		}
+
+		hidden_effect = {
+			country_event = {
+				id = stromgarde_third_war.7
+				days = 3
+			}
+		}
+
+		SYN = {
+			declare_war_on = {
+				target = STR
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.7
+	title = stromgarde_third_war.7.t
+	desc = stromgarde_third_war.7.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		575 = {
+			transfer_state_to = DWK
+            add_core_of = DWK
+		}
+		2211 = {
+			transfer_state_to = DWK
+            add_core_of = DWK
+		}
+		hidden_effect = {
+			DWK = { load_oob = DWK_stromgarde_colapse }
+			if = {
+				limit = { 575 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } } }
+				575 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+				DWK = {
+					add_manpower = 500
+					army_experience = 5
+				}
+			}
+			if = {
+				limit = { 2211 = { has_dynamic_modifier = { modifier = GEN_kobold_menace } } }
+				2211 = { remove_dynamic_modifier = { modifier = GEN_kobold_menace } }
+				DWK = {
+					add_manpower = 500
+					army_experience = 5
+				}
+			}
+		}
+	}
+
+	option = {
+    	name = stromgarde_third_war.7.option.1
+
+		add_stability = -0.05
+
+		DWK = {
+			declare_war_on = {
+				target = STR
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = {
+	id = stromgarde_third_war.8
+	title = stromgarde_third_war.8.t
+	desc = stromgarde_third_war.8.d
+	picture = GFX_durnholde_ruins_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { ### Unused
+    	name = stromgarde_third_war.8.option.1
+	}
+}
+
+country_event = {
+    id = stromgarde_third_war.9
+    title = { #Stromgarde stays in alliance
+        text = stromgarde_third_war.9.t.1
+        trigger = {
+			STR = {
+				has_country_flag = STR_stay_in_alliance
+			}
+        }
+    }
+
+    title = { #Stromgarde leaves alliance
+        text = stromgarde_third_war.9.t.2
+        trigger = {
+			STR = {
+				has_country_flag = STR_leave_the_alliance
+			}
+        }
+    }
+	desc = { #Stromgarde leaves alliance
+        text = stromgarde_third_war.9.d.1
+        trigger = {
+			STR = {
+				has_country_flag = STR_stay_in_alliance
+			}
+        }
+    }
+	desc = { #STRl'thalas stays
+        text = stromgarde_third_war.9.d.2
+        trigger = {
+			STR = {
+				has_country_flag = STR_leave_the_alliance
+			}
+        }
+    }
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = { # STRl'thalas stays
+        name = stromgarde_third_war.9.option.1
+        trigger = {
+			STR = {
+				has_country_flag = STR_stay_in_alliance
+			}
+        }
+    }
+
+    option = { # Stromgarde leaves
+        name = stromgarde_third_war.9.option.2
+        trigger = {
+			STR = {
+				has_country_flag = STR_leave_the_alliance
+			}
+        }
+    }
+}

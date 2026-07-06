@@ -1,0 +1,789 @@
+on_actions = { ### See Bottom of Page For IDEA/ORIGIN Examples
+
+### Troll Terrain Traits
+	on_unit_leader_created = {
+		effect = {
+			if = {
+				limit = {
+					FROM = { has_idea = sand_troll_primary_race }
+				}
+				if = {
+					limit = { is_army_leader = yes }
+					ROOT = {
+						random_list = {
+							75 = { add_unit_leader_trait = desert_fox }
+							25 = { }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_unit_leader_created = {
+		effect = {
+			if = {
+				limit = { FROM = { has_idea = jungle_troll_primary_race } }
+				if = {
+					limit = { is_army_leader = yes }
+					ROOT = {
+						random_list = {
+							75 = { add_unit_leader_trait = jungle_rat }
+							25 = { }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_unit_leader_created = {
+		effect = {
+			if = {
+				limit = { FROM = { has_idea = forest_troll_primary_race } }
+				if = {
+					limit = { is_army_leader = yes }
+					ROOT = {
+						random_list = {
+							75 = { add_unit_leader_trait = ranger }
+							25 = { }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	on_unit_leader_created = {
+		effect = {
+			if = {
+				limit = { 
+					FROM = { 
+						OR = {
+							has_idea = ice_troll_primary_race 
+							has_idea = frostborn_primary_race
+							has_idea = frost_vrykul_primary_race
+							has_idea = frost_giant_primary_race
+							has_idea = frost_nymph_primary_race
+						}
+					} 
+				}
+				if = {
+					limit = { is_army_leader = yes }
+					ROOT = {
+						random_list = {
+							75 = { add_unit_leader_trait = winter_specialist }
+							25 = { add_unit_leader_trait = winter_expert }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	######
+	### Unique Generation
+	######
+
+	### Infested Units
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_country_flag = bog_infested } }
+						ROOT = { add_unit_leader_trait = infested_mind }
+					}
+				}
+			}
+		}
+	}
+
+	######
+	### Army Leader Class Generation - BETA
+	######
+	### HUMANS
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = human_primary_race } }
+						ROOT = {
+							random_list = {
+								9 = { add_unit_leader_trait = protection_warrior_trait }
+								7 = { add_unit_leader_trait = arms_trait }
+								7 = { add_unit_leader_trait = fury_trait }
+								
+								7 = { add_unit_leader_trait = marksman_trait }
+								7 = { add_unit_leader_trait = beast_master_trait }
+								7 = { add_unit_leader_trait = survival_trait }
+								
+								7 = { add_unit_leader_trait = assassination_trait }
+								7 = { add_unit_leader_trait = outlaw_trait }
+								7 = { add_unit_leader_trait = subtlety_trait }
+								
+								7 = { add_unit_leader_trait = discipline_trait }
+								7 = { add_unit_leader_trait = holy_priest_trait }
+								
+								7 = { add_unit_leader_trait = frost_mage_trait }
+								7 = { add_unit_leader_trait = fire_trait }
+								7 = { add_unit_leader_trait = arcane_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### DWARF
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { 
+								OR = {
+									has_idea = dwarf_primary_race 
+									has_idea = dark_iron_dwarf_primary_race
+									has_idea = frostborn_primary_race
+									has_idea = iron_dwarf_primary_race
+								}
+							} 
+						}
+						ROOT = {
+							random_list = {
+								9 = { add_unit_leader_trait = protection_warrior_trait }
+								10 = { add_unit_leader_trait = arms_trait }
+								9 = { add_unit_leader_trait = fury_trait }
+								
+								9 = { add_unit_leader_trait = marksman_trait }
+								9 = { add_unit_leader_trait = beast_master_trait }
+								9 = { add_unit_leader_trait = survival_trait }
+								
+								9 = { add_unit_leader_trait = assassination_trait }
+								9 = { add_unit_leader_trait = outlaw_trait }
+								9 = { add_unit_leader_trait = subtlety_trait }
+								
+								9 = { add_unit_leader_trait = discipline_trait }
+								9 = { add_unit_leader_trait = holy_priest_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### NIGHT ELF
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = {
+							FROM = { 
+								has_idea = night_elf_primary_race 
+								NOT = { has_idea = WAR_jailers_of_the_kaldorei }
+								NOT = { has_idea = WAR_jailers_of_the_kaldorei_2 }
+							} 
+						}
+						ROOT = {
+							random_list = {
+								7 = { add_unit_leader_trait = restoration_druid_trait }
+								8 = { add_unit_leader_trait = guardian_druid_trait }
+								8 = { add_unit_leader_trait = feral_trait }
+								7 = { add_unit_leader_trait = balance_trait }
+								
+								8 = { add_unit_leader_trait = marksman_trait }
+								7 = { add_unit_leader_trait = beast_master_trait }
+								7 = { add_unit_leader_trait = survival_trait }
+								
+								6 = { add_unit_leader_trait = assassination_trait }
+								6 = { add_unit_leader_trait = outlaw_trait }
+								6 = { add_unit_leader_trait = subtlety_trait }
+								
+								6 = { add_unit_leader_trait = discipline_trait }
+								6 = { add_unit_leader_trait = holy_priest_trait }
+								
+								6 = { add_unit_leader_trait = protection_warrior_trait }
+								6 = { add_unit_leader_trait = arms_trait }
+								6 = { add_unit_leader_trait = fury_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { 
+								has_idea = night_elf_primary_race
+								OR = {
+									has_idea = WAR_jailers_of_the_kaldorei 
+									has_idea = WAR_jailers_of_the_kaldorei_2 
+								}
+							} 
+						}
+						ROOT = {
+							add_unit_leader_trait = warden_trait
+						}
+					}
+				}
+			}
+		}
+	}
+	### GNOME
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = gnome_primary_race } }
+						ROOT = {
+							random_list = {
+								7 = { add_unit_leader_trait = frost_mage_trait }
+								8 = { add_unit_leader_trait = fire_trait }
+								8 = { add_unit_leader_trait = arcane_trait }
+								
+								7 = { add_unit_leader_trait = assassination_trait }
+								7 = { add_unit_leader_trait = outlaw_trait }
+								7 = { add_unit_leader_trait = subtlety_trait }
+								
+								7 = { add_unit_leader_trait = discipline_trait }
+								7 = { add_unit_leader_trait = holy_priest_trait }
+								
+								7 = { add_unit_leader_trait = destruction_trait }
+								7 = { add_unit_leader_trait = affliction_trait }
+								7 = { add_unit_leader_trait = demonology_trait }
+								
+								7 = { add_unit_leader_trait = protection_warrior_trait }
+								7 = { add_unit_leader_trait = arms_trait }
+								7 = { add_unit_leader_trait = fury_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### ORCS (BASE)
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = orc_primary_race } }
+						ROOT = {
+							random_list = {
+								9 = { add_unit_leader_trait = protection_warrior_trait }
+								9 = { add_unit_leader_trait = arms_trait }
+								9 = { add_unit_leader_trait = fury_trait }
+								
+								8 = { add_unit_leader_trait = marksman_trait }
+								8 = { add_unit_leader_trait = beast_master_trait }
+								9 = { add_unit_leader_trait = survival_trait }
+								
+								8 = { add_unit_leader_trait = assassination_trait }
+								8 = { add_unit_leader_trait = outlaw_trait }
+								8 = { add_unit_leader_trait = subtlety_trait }
+								
+								8 = { add_unit_leader_trait = destruction_trait }
+								8 = { add_unit_leader_trait = affliction_trait }
+								8 = { add_unit_leader_trait = demonology_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### TAUREN
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = tauren_primary_race } }
+						ROOT = {
+							random_list = {
+								7 = { add_unit_leader_trait = restoration_druid_trait }
+								7 = { add_unit_leader_trait = guardian_druid_trait }
+								7 = { add_unit_leader_trait = feral_trait }
+								7 = { add_unit_leader_trait = balance_trait }
+								
+								8 = { add_unit_leader_trait = marksman_trait }
+								8 = { add_unit_leader_trait = beast_master_trait }
+								8 = { add_unit_leader_trait = survival_trait }
+								
+								8 = { add_unit_leader_trait = elemental_trait }
+								8 = { add_unit_leader_trait = enhancement_trait }
+								8 = { add_unit_leader_trait = restoration_shaman_trait }
+								
+								8 = { add_unit_leader_trait = protection_warrior_trait }
+								8 = { add_unit_leader_trait = arms_trait }
+								8 = { add_unit_leader_trait = fury_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### TROLL
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { 
+								OR = {
+									has_idea = sand_troll_primary_race
+									has_idea = ice_troll_primary_race
+									has_idea = dark_troll_primary_race
+									has_idea = blood_troll_primary_race
+									has_idea = jungle_troll_primary_race
+									has_idea = forest_troll_primary_race
+									has_idea = zandalari_troll_primary_race
+								}
+							} 
+						}
+						ROOT = {
+							random_list = {
+								6 = { add_unit_leader_trait = marksman_trait }
+								6 = { add_unit_leader_trait = beast_master_trait }
+								6 = { add_unit_leader_trait = survival_trait }
+
+								5 = { add_unit_leader_trait = frost_mage_trait }
+								5 = { add_unit_leader_trait = fire_trait }
+								5 = { add_unit_leader_trait = arcane_trait }
+
+								6 = { add_unit_leader_trait = discipline_trait }
+								6 = { add_unit_leader_trait = holy_priest_trait }
+								6 = { add_unit_leader_trait = shadow_trait }
+
+								6 = { add_unit_leader_trait = assassination_trait }
+								6 = { add_unit_leader_trait = outlaw_trait }
+								6 = { add_unit_leader_trait = subtlety_trait }
+
+								6 = { add_unit_leader_trait = elemental_trait }
+								5 = { add_unit_leader_trait = enhancement_trait }
+								5 = { add_unit_leader_trait = restoration_shaman_trait }
+
+								5 = { add_unit_leader_trait = protection_warrior_trait }
+								5 = { add_unit_leader_trait = arms_trait }
+								5 = { add_unit_leader_trait = fury_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### QUILBOARS
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = quilboar_primary_race } }
+						ROOT = {
+							random_list = {
+								6 = { add_unit_leader_trait = elemental_trait }
+								6 = { add_unit_leader_trait = enhancement_trait }
+								6 = { add_unit_leader_trait = restoration_shaman_trait }
+
+								7 = { add_unit_leader_trait = protection_warrior_trait }
+								7 = { add_unit_leader_trait = arms_trait }
+								7 = { add_unit_leader_trait = fury_trait }
+								
+								7 = { add_unit_leader_trait = marksman_trait }
+								7 = { add_unit_leader_trait = beast_master_trait }
+								7 = { add_unit_leader_trait = survival_trait }
+								
+								7 = { add_unit_leader_trait = assassination_trait }
+								7 = { add_unit_leader_trait = outlaw_trait }
+								7 = { add_unit_leader_trait = subtlety_trait }
+								
+								6 = { add_unit_leader_trait = frost_mage_trait }
+								6 = { add_unit_leader_trait = fire_trait }
+								7 = { add_unit_leader_trait = arcane_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### CENTAUR
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = centaur_primary_race } }
+						ROOT = {
+							random_list = {
+								11 = { add_unit_leader_trait = elemental_trait }
+								11 = { add_unit_leader_trait = enhancement_trait }
+								11 = { add_unit_leader_trait = restoration_shaman_trait }
+
+								11 = { add_unit_leader_trait = protection_warrior_trait }
+								11 = { add_unit_leader_trait = arms_trait }
+								11 = { add_unit_leader_trait = fury_trait }
+								
+								11 = { add_unit_leader_trait = marksman_trait }
+								11 = { add_unit_leader_trait = beast_master_trait }
+								12 = { add_unit_leader_trait = survival_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### HARPY
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = harpy_primary_race } }
+						ROOT = {
+							random_list = {
+								17 = { add_unit_leader_trait = elemental_trait }
+								16 = { add_unit_leader_trait = restoration_shaman_trait }
+
+								17 = { add_unit_leader_trait = assassination_trait }
+								17 = { add_unit_leader_trait = outlaw_trait }
+								17 = { add_unit_leader_trait = subtlety_trait }
+								
+								16 = { add_unit_leader_trait = survival_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	###Saberon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = saberon_primary_race } }
+						ROOT = {
+							random_list = {
+								6 = { add_unit_leader_trait = protection_warrior_trait }
+								7 = { add_unit_leader_trait = arms_trait }
+								7 = { add_unit_leader_trait = fury_trait }
+
+								6 = { add_unit_leader_trait = marksman_trait }
+								7 = { add_unit_leader_trait = beast_master_trait }
+								7 = { add_unit_leader_trait = survival_trait }
+
+								7 = { add_unit_leader_trait = assassination_trait }
+								6 = { add_unit_leader_trait = outlaw_trait }
+								7 = { add_unit_leader_trait = subtlety_trait }
+
+								7 = { add_unit_leader_trait = elemental_trait }
+								7 = { add_unit_leader_trait = enhancement_trait }
+								6 = { add_unit_leader_trait = restoration_shaman_trait }
+
+								7 = { add_unit_leader_trait = restoration_druid_trait }
+								6 = { add_unit_leader_trait = guardian_druid_trait }
+								7 = { add_unit_leader_trait = feral_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### High Elf
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { 
+								OR = {
+									has_idea = high_elf_primary_race
+									has_idea = blood_elf_primary_race
+								}
+							} 
+						}
+						ROOT = {
+							random_list = {
+								7 = { add_unit_leader_trait = protection_warrior_trait }
+								7 = { add_unit_leader_trait = arms_trait }
+								
+								10 = { add_unit_leader_trait = marksman_trait }
+								7 = { add_unit_leader_trait = beast_master_trait }
+								7 = { add_unit_leader_trait = survival_trait }
+								
+								7 = { add_unit_leader_trait = assassination_trait }
+								7 = { add_unit_leader_trait = outlaw_trait }
+								7 = { add_unit_leader_trait = subtlety_trait }
+								
+								8 = { add_unit_leader_trait = discipline_trait }
+								7 = { add_unit_leader_trait = holy_priest_trait }
+								
+								8 = { add_unit_leader_trait = frost_mage_trait }
+								8 = { add_unit_leader_trait = fire_trait }
+								10 = { add_unit_leader_trait = arcane_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### GNOLLS
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = gnoll_primary_race } }
+						ROOT = {
+							random_list = {
+								8 = { add_unit_leader_trait = protection_warrior_trait }
+								10 = { add_unit_leader_trait = arms_trait }
+								8 = { add_unit_leader_trait = fury_trait }
+								
+								8 = { add_unit_leader_trait = marksman_trait }
+								9 = { add_unit_leader_trait = beast_master_trait }
+								8 = { add_unit_leader_trait = survival_trait }
+								
+								8 = { add_unit_leader_trait = assassination_trait }
+								8 = { add_unit_leader_trait = outlaw_trait }
+								8 = { add_unit_leader_trait = subtlety_trait }
+								
+								9 = { add_unit_leader_trait = elemental_trait }
+								8 = { add_unit_leader_trait = enhancement_trait }
+								8 = { add_unit_leader_trait = restoration_shaman_trait }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	### Red Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = red_dragon_primary_race	} 
+						}
+						ROOT = { add_unit_leader_trait = red_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Blue Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = blue_dragon_primary_race } 
+						}
+						ROOT = { add_unit_leader_trait = blue_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Green Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = green_dragon_primary_race } 
+						}
+						ROOT = { add_unit_leader_trait = green_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Bronze Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = bronze_dragon_primary_race } 
+						}
+						ROOT = { add_unit_leader_trait = bronze_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Black Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = black_dragon_primary_race } 
+						}
+						ROOT = { add_unit_leader_trait = black_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Nightmare Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = nightmare_dragon_primary_race } 
+						}
+						ROOT = { add_unit_leader_trait = nightmare_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Chromatic Dragon
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { 
+							FROM = { has_idea = chromatic_dragon_primary_race } 
+						}
+						ROOT = { add_unit_leader_trait = chromatic_dragon_trait }
+					}
+				}
+			}
+		}
+	}
+	### Bog Beasts
+	on_unit_leader_created = {
+		effect = {
+			character = {
+				if = {
+					limit = { is_army_leader = yes }
+					if = {
+						limit = { FROM = { has_idea = bog_beast_primary_race } }
+						ROOT = { add_unit_leader_trait = bog_beast_trait }
+					}
+				}
+			}
+		}
+	}
+
+	######
+	### Army Leader Class Generation - IDEA
+	######
+	#on_unit_leader_created = {
+	#	effect = {
+	#		character = {
+	#			if = {
+	#				limit = {
+	#					is_army_leader = yes
+	#				}
+	#				if = {
+	#					limit = {
+	#						FROM = { has_idea = FAR_sandfury_tribe } # Put Ideas/Race here to Set Limits
+	#					}
+	#					root = {
+	#						random_list = { # Works like a Normal Random List
+	#							90 = {
+	#								#Its Possible to add another Random List inside here to Limit them to One trait
+	#								#We can use this for Classes
+	#								add_unit_leader_trait = desert_fox
+	#							}
+	#							10 = {
+	#							}
+	#						}
+	#					}
+	#				}
+	#			}
+	#		}
+	#	}
+	#}
+
+	######
+	### Army Leader Class Generation - COUNTRY ORIGIN
+	######
+
+	#on_unit_leader_created = {
+	#	effect = {
+	#		character = {
+	#			if = {
+	#				limit = {
+	#					is_army_leader = yes
+	#				}
+	#				if = {
+	#					limit = {
+	#						FROM = { original_tag = CEN }
+	#					}
+	#					root = {
+	#						random_list = {
+	#							90 = {
+	#								add_unit_leader_trait = druid_trait
+	#								random_list = {
+	#									25 = { add_unit_leader_trait = guardian_druid_trait }
+	#									25 = { add_unit_leader_trait = feral_trait }
+	#									25 = { add_unit_leader_trait = balance_trait }
+	#									25 = { add_unit_leader_trait = restoration_druid_trait }
+	#								}
+	#							}
+	#							10 = {
+	#							}
+	#						}
+	#					}
+	#				}
+	#			}
+	#		}
+	#	}
+	#}
+}

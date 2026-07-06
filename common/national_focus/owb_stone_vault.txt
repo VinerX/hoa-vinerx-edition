@@ -1,0 +1,238 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+    id = owb_stone_vault
+    continuous_focus_position = { x = 100 y = 100}
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = OSV
+		}
+	}
+	default = no
+
+	shared_focus = owb_technology_of_the_future
+	shared_focus = owb_modern_weapons
+
+	focus = {
+		id = owb_stone_vault_the_great_war
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		x = 10
+		y = 0
+
+		completion_reward = { 
+			country_event = owb_shared_events.1
+			hidden_effect = {
+				1580 = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_life_in_the_vault
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		prerequisite = {
+			focus = owb_stone_vault_the_great_war
+		}
+		relative_position_id = owb_stone_vault_the_great_war
+		x = 0
+		y = 1
+
+		completion_reward = { 
+			country_event = owb_shared_events.2
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_emerging_from_the_vault
+		icon = GFX_focus_path_of_the_titans
+		cost = 7
+		prerequisite = {
+			focus = owb_stone_vault_life_in_the_vault
+		}
+		relative_position_id = owb_stone_vault_life_in_the_vault
+		x = 0
+		y = 1
+
+		completion_reward = {
+			create_wargoal = { target = UDA type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_the_surface
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_emerging_from_the_vault
+		}
+		relative_position_id = owb_stone_vault_emerging_from_the_vault
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = DIC type = annex_everything }
+			create_wargoal = { target = MLC type = annex_everything }
+			create_wargoal = { target = THR type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_humanity_survived
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_the_surface
+		}
+		relative_position_id = owb_stone_vault_the_surface
+		x = -1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = STO type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_pesky_vermin
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_humanity_survived
+		}
+		relative_position_id = owb_stone_vault_humanity_survived
+		x = 0
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = RRP type = annex_everything }
+			create_wargoal = { target = ELK type = annex_everything }
+			create_wargoal = { target = RPP type = annex_everything }
+			create_wargoal = { target = GTG type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_more_dwarves
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_the_surface
+		}
+		relative_position_id = owb_stone_vault_the_surface
+		x = 2
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = IRO type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_those_who_remain
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_more_dwarves
+		}
+		relative_position_id = owb_stone_vault_more_dwarves
+		x = -1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = GNO type = annex_everything }
+			create_wargoal = { target = FRT type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_into_the_highlands
+		icon = GFX_goal_generic_position_armies
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_more_dwarves
+		}
+		relative_position_id = owb_stone_vault_more_dwarves
+		x = 1
+		y = 1
+
+		available = {
+			has_war = no
+		}
+
+		completion_reward = {
+			create_wargoal = { target = VMR type = annex_everything }
+			create_wargoal = { target = NRT type = annex_everything }
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_utilizing_our_new_lands
+		icon = GFX_focus_generic_self_management
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_pesky_vermin
+		}
+		prerequisite = {
+			focus = owb_stone_vault_those_who_remain
+		}
+		prerequisite = {
+			focus = owb_stone_vault_into_the_highlands
+		}
+		relative_position_id = owb_stone_vault_those_who_remain
+		x = -1
+		y = 1
+
+		available = {
+			has_war = no
+			has_country_flag = owb_knowledge_from_the_past
+			has_country_flag = owb_a_professional_army
+		}
+
+		completion_reward = {
+			country_event = owb_shared_events.3
+		}
+	}
+
+	focus = {
+		id = owb_stone_vault_our_place_on_azeroth
+		icon = GFX_focus_pick_a_side
+		cost = 30
+		prerequisite = {
+			focus = owb_stone_vault_utilizing_our_new_lands
+		}
+
+		relative_position_id = owb_stone_vault_utilizing_our_new_lands
+		x = 0
+		y = 1
+
+		completion_reward = {
+			load_focus_tree = generic_focus
+		}
+	}
+}

@@ -1,0 +1,40 @@
+on_actions = {
+	#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
+	on_state_control_changed = {	# Conducts removal of BRC_human_resistance and the setting of country flags used for tracking
+		effect = {
+			if = {
+				limit = {
+					FROM.FROM = {
+						has_dynamic_modifier = { modifier = BRC_human_resistance }
+					}
+				}
+				# Removes modifier for humans
+				if = {
+					limit = {
+						ROOT = { has_idea = human_primary_race }
+					}
+					FROM.FROM = {
+						remove_dynamic_modifier = { modifier = BRC_human_resistance }
+					}
+				}
+				# If the modifier is not being removed, set BRC_human_resistance_present_flag
+				else = {
+					ROOT = {
+						set_country_flag = BRC_human_resistance_present_flag	# Used for decision tracking (more performance efficient than recursive any_owned_state checks)
+					}
+				}
+				# Checks if prior owner now no longer has a state with the modifier
+				if = {
+					limit = {
+						FROM = {
+							NOT = {
+								any_owned_state = { has_dynamic_modifier = { modifier = BRC_human_resistance } }
+							}
+						}
+					}
+					clr_country_flag = BRC_human_resistance_present_flag	# Used for decision tracking (more performance efficient than recursive any_owned_state checks)
+				}
+			}
+		}
+	}
+}

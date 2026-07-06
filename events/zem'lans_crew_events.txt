@@ -1,0 +1,802 @@
+﻿###########################
+# Zem'lans Crew
+###########################
+
+add_namespace = zemlan
+
+# The Day the Port Fell (Intro Event 1)
+country_event = {
+	id = zemlan.1
+	title = zemlan.1.t
+	desc = zemlan.1.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.1.option.1
+	}
+
+	option = {
+		name = zemlan.1.option.2
+	}
+}
+
+# The First Time I Died (Intro Event 2)
+country_event = {
+	id = zemlan.2
+	title = zemlan.2.t
+	desc = zemlan.2.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.2.option.1
+	}
+
+	option = {
+		name = zemlan.2.option.2
+	}
+}
+
+# The Golden Isle (Intro Event 3)
+country_event = {
+	id = zemlan.3
+	title = zemlan.3.t
+	desc = zemlan.3.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.3.option.1
+	}
+
+	option = {
+		name = zemlan.3.option.2
+	}
+}
+
+# Of Cartels and Caravans (Cracked Coast Event)
+country_event = {
+	id = zemlan.4
+	title = zemlan.4.t
+	desc = zemlan.4.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Side with the Bilgewater Cartel
+	option = {
+		name = zemlan.4.option.1
+		2027 = {
+			add_compliance = 40
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_state_modifier = {
+				modifier = {
+					resistance_target = 0.1
+					local_manpower = -0.2
+					compliance_growth = -0.5
+				}
+			}
+		}
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+		set_country_flag = ZLC_mutiny_anti_cartel
+	}
+
+	# Side against the Bilgewater Cartel
+	option = {
+		name = zemlan.4.option.2
+		2027 = {
+			add_resource = {
+				type = ores
+				amount = -3
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = supply_node
+				level = 1
+				province = 5088
+				instant_build = yes
+			}
+			build_railway = {
+				level = 1
+				path = { 8705 15144 15150 5088 15168 15186 }
+				start_province = 8705
+				target_province = 15186
+			}
+			add_state_modifier = {
+				modifier = {
+					resistance_target = -0.2
+					local_non_core_manpower = 0.5
+					compliance_growth = 0.2
+				}
+			}
+		}
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+		set_country_flag = ZLC_mutiny_anti_cartel
+	}
+}
+
+# Eyeing Mugamba Cape (Question of the High Isles Event)
+country_event = {
+	id = zemlan.5
+	title = zemlan.5.t
+	desc = zemlan.5.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.5.option.1
+		2136 = {
+			transfer_state_to = ZLC
+			set_compliance = 10
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+		ZAN = {
+			news_event = zemlan.6
+		}
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+		set_country_flag = ZLC_mutiny_took_high_isles
+	}
+
+	option = {
+		name = zemlan.5.option.2
+		add_political_power = 150
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+		set_country_flag = ZLC_mutiny_focused_on_voldun
+	}
+}
+
+# The Invasion of the High Isles (Question of the High Isles News Event for the Zandalari Empire)
+news_event = {
+	id = zemlan.6
+	title = zemlan.6.t
+	desc = zemlan.6.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.6.option.1
+		add_war_support = 0.02
+		add_opinion_modifier = {
+			target = ZLC
+			modifier = ZAN_zuldazar_high_isles_seized
+		}
+	}
+}
+
+# Serpents in the North (True Devotion Event)
+country_event = {
+	id = zemlan.7
+	title = zemlan.7.t
+	desc = zemlan.7.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	# No exceptions for the Sethrak. Land on the Forgotten Marshes and prepare to fight them later
+	option = {
+		name = zemlan.7.option.1
+		add_timed_idea = {
+			idea = ZLC_raiding_parties
+			days = 30
+		}
+		2029 = {
+			OWNER = {
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = take_state_focus
+						generator = { 2029 }
+					}
+				}
+			}
+		}
+		add_opinion_modifier = {
+			target = DEV
+			modifier = ZLC_sethrak_hatred
+		}
+		DEV = {
+			add_opinion_modifier = {
+				target = ZLC
+				modifier = ZLC_raided_the_marsh
+			}
+		}
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+		set_country_flag = ZLC_mutiny_antagonize_devoted
+	}
+
+	# Offer a pact to The Devoted against The Faithless Empire
+	option = {
+		name = zemlan.7.option.2
+		if = {
+			limit = {
+				country_exists = DEV
+			}
+			DEV = {
+				#Offer The Devoted a non-aggression pact
+				country_event = zemlan.8
+			}
+		}
+		else_if = {
+			limit = {
+				any_owned_state = {
+					is_core_of = DEV
+				}
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = DEV
+				}
+				add_compliance = 20
+				add_resistance_target = -20
+				add_state_modifier = {
+					modifier = {
+						local_non_core_manpower = 0.5
+					}
+				}
+			}
+		}
+		else = {
+			add_stability = 0.05
+			add_manpower = 250
+		}
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+		set_country_flag = ZLC_mutiny_ally_devoted
+	}
+}
+
+# An Unexpected Offer (True Devotion Event offering a pact to The Devoted)
+country_event = {
+	id = zemlan.8
+	title = zemlan.8.t
+	desc = zemlan.8.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	# Accept the pact
+	option = {
+		name = zemlan.8.option.1
+		add_state_claim = 2029
+		add_opinion_modifier = {
+			target = ZLC
+			modifier = ZLC_DEV_pact_against_the_faithless
+		}
+		diplomatic_relation = {
+			country = ZLC
+			relation = non_aggression_pact
+			active = yes
+		}
+
+		ZLC = {
+			news_event = zemlan.9
+		}
+		ZLC = {
+			add_opinion_modifier = {
+				target = DEV
+				modifier = ZLC_DEV_pact_against_the_faithless
+			}
+		}
+		FLE = {
+			add_opinion_modifier = {
+				target = DEV
+				modifier = ZLC_conspiring_against_us
+			}
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+
+	# Decline the pact
+	option = {
+		name = zemlan.8.option.2
+		add_political_power = 25
+		ZLC = {
+			news_event = zemlan.10
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				ZLC = {
+					is_ai = no
+				}
+			}
+		}
+	}
+}
+
+# The Devoted Accept the Pact! (You offered the pact in the True Devotion Event and The Devoted accepted)
+news_event = {
+	id = zemlan.9
+	title = zemlan.9.t
+	desc = zemlan.9.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.9.option.1
+		add_war_support = 0.1
+		# Was already granted by the event for The Devoted that triggered this
+		effect_tooltip = {
+			DEV = {
+				add_state_claim = 2029
+			}
+		}
+		add_opinion_modifier = {
+			target = DEV
+			modifier = ZLC_DEV_pact_against_the_faithless
+		}
+		diplomatic_relation = {
+			country = DEV
+			relation = non_aggression_pact
+			active = yes
+		}
+		FLE = {
+			add_opinion_modifier = {
+				target = ZLC
+				modifier = ZLC_conspiring_against_us
+			}
+		}
+	}
+}
+
+# The Devoted Decline the Pact... (You offered the pact in the True Devotion Event and The Devoted declined)
+news_event = {
+	id = zemlan.10
+	title = zemlan.10.t
+	desc = zemlan.10.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.10.option.1
+		add_war_support = -0.05
+		# Pact was already granted by the event for The Devoted that triggered this
+	}
+}
+
+# This Be Mutiny (The Gong of Zem'lan Event, Jamboya challenges Zem'lan)
+country_event = {
+	id = zemlan.11
+	title = zemlan.11.t
+	desc = zemlan.11.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	# Zem'lan Wins
+	option = {
+		name = zemlan.11.option.1
+		complete_national_focus = ZLC_the_troublemakers_foiled # Triggers zemlan.12
+		#TODO Hidden Effect that grants the Faithless another wargoal, ideally through an event
+	}
+
+	# Jamboya Wins
+	option = {
+		name = zemlan.11.option.2
+		complete_national_focus = ZLC_retribution # Triggers zemlan.13
+		#TODO Hidden Effect that grants the Faithless another wargoal, ideally through an event
+	}
+}
+
+# A Fate Worse than Death (The Troublemakers Foiled Event, Zemlan has stopped the mutiny)
+country_event = {
+	id = zemlan.12
+	title = zemlan.12.t
+	desc = zemlan.12.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.12.option.1
+		retire_character = ZLC_jamboya
+		retire_character = ZLC_bosanya
+		retire_character = ZLC_jukanga
+		retire_character = ZLC_tulmac
+		add_political_power = 200
+		add_command_power = 100
+		add_war_support = 0.1
+	}
+}
+
+# Thus Always to Tyrants (Retribution Event, Jamboya defeats Zemlan)
+country_event = {
+	id = zemlan.13
+	title = zemlan.13.t
+	desc = zemlan.13.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.13.option.1
+		kill_country_leader = yes
+		effect_tooltip = {
+			ZLC_jamboya = {
+				promote_character = death_type
+			}
+			add_country_leader_trait = slayer_of_tyrants_trait
+		}
+		hidden_effect = {
+			add_country_leader_trait = slayer_of_tyrants_trait
+		}
+		set_cosmetic_tag = ZLC_jamboya_crew
+		add_war_support = -0.1
+		custom_effect_tooltip = ZLC_flight_to_camp_lastwind_tt
+		add_timed_idea = {
+			idea = ZLC_flight_to_camp_lastwind
+			days = 100
+		}
+	}
+}
+
+# Korthek Marches (Sandstorms in Zul'Ahjin Event)
+country_event = {
+	id = zemlan.14
+	title = zemlan.14.t
+	desc = zemlan.14.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.14.option.1
+		custom_effect_tooltip = ZLC_war_is_imminent_tt
+
+		add_state_claim = 2031
+		add_state_claim = 2032
+		add_state_claim = 2033
+
+		2032 = {
+			OWNER = {
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = take_state_focus
+						generator = { 2032 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Guarding the Seal (Keepers of Atul'Aman Event)
+country_event = {
+	id = zemlan.15
+	title = zemlan.15.t
+	desc = zemlan.15.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.15.option.1
+		#TODO
+	}
+
+	option = {
+		name = zemlan.15.option.2
+		#TODO
+	}
+
+	option = {
+		name = zemlan.15.option.3
+		#TODO
+	}
+}
+
+# Vol'dun's Banished (Loose Ends Event)
+country_event = {
+	id = zemlan.16
+	title = zemlan.16.t
+	desc = zemlan.16.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Ignore them, focus on destroying the remaining Faithless
+		name = zemlan.16.option.1
+		add_political_power = 100
+		2032 = {
+			add_manpower = -560
+			add_state_modifier = {
+				modifier = {
+					resistance_target = 0.1
+					attrition_for_controller = -0.1
+				}
+			}
+		}
+	}
+
+	option = { # Make an example out of the gangs
+		name = zemlan.16.option.2
+		trigger = {
+			has_country_flag = ZLC_mutiny_yard_arm
+		}
+		custom_effect_tooltip = ZLC_mutiny_yard_arm_tt
+		2032 = {
+			add_manpower = -200
+			add_compliance = 20
+			add_state_modifier = {
+				modifier = {
+					resistance_target = -0.05
+				}
+			}
+		}
+	}
+
+	option = { # Use the idol on them
+		name = zemlan.16.option.3
+		trigger = {
+			has_country_flag = ZLC_mutiny_idols
+		}
+		custom_effect_tooltip = ZLC_mutiny_idols_tt
+		add_manpower = 500
+		add_state_core = 2032
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+	}
+}
+
+# No Home to Call Their Own (The Zandalari Exiles Event)
+country_event = {
+	id = zemlan.17
+	title = zemlan.17.t
+	desc = zemlan.17.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # We all have to fend for ourselves
+		name = zemlan.17.option.1
+		add_stability = 0.05
+		add_political_power = 50
+		2032 = {
+			add_state_modifier = {
+				modifier = {
+					local_manpower = -0.2
+					attrition_for_controller = 0.1
+				}
+			}
+		}
+	}
+
+	option = { # Allow them passage to the High Isles
+		name = zemlan.17.option.2
+		trigger = {
+			has_country_leader = {
+				character = ZLC_jamboya
+				ruling_only = yes
+			}
+			has_country_flag = ZLC_mutiny_took_high_isles
+		}
+		custom_effect_tooltip = ZLC_mutiny_took_high_isles_tt
+		add_political_power = -50
+		2136 = {
+			add_manpower = 1000
+			add_core_of = ZLC
+		}
+		2032 = {
+			add_manpower = -1000
+			add_state_modifier = {
+				modifier = {
+					resistance_target = -0.1
+					compliance_growth = 0.1
+				}
+			}
+		}
+	}
+
+	option = { # Help them rebuild the city of Zul'Ahjin
+		name = zemlan.17.option.3
+		trigger = {
+			has_country_leader = {
+				character = ZLC_jamboya
+				ruling_only = yes
+			}
+			has_country_flag = ZLC_mutiny_focused_on_voldun
+		}
+		custom_effect_tooltip = ZLC_mutiny_focused_on_voldun_tt
+		add_manpower = -100
+		add_equipment_to_stockpile = {
+			type = footman_equipment_1
+			amount = -1000
+		}
+		2032 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_state_core = 2032
+	}
+}
+
+# Seeking the Oasis (Clearing Out Whistlebloom Event)
+country_event = {
+	id = zemlan.18
+	title = zemlan.18.t
+	desc = zemlan.18.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.18.option.1
+		#TODO
+	}
+
+	option = {
+		name = zemlan.18.option.2
+		#TODO
+	}
+
+	option = {
+		name = zemlan.18.option.3
+		#TODO
+	}
+}
+
+# The Loa's Usurper (In the Valley of Sorrows Event)
+country_event = {
+	id = zemlan.19
+	title = zemlan.19.t
+	desc = zemlan.19.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.19.option.1
+		922 = {
+			OWNER = {
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = take_state_focus
+						generator = { 922 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# The Thunder Lizard (Jamboya event triggered from an on action that goes off when Disciples of Akunda are capitulated)
+country_event = {
+	id = zemlan.20
+	title = zemlan.20.t
+	desc = zemlan.20.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = zemlan.20.option.1
+		add_country_leader_trait = akunda_savior_trait
+		ZNE_kaja = {
+			set_nationality = ZLC
+		}
+		ZNE_rakera = {
+			set_nationality = ZLC
+		}
+		add_state_core = 922
+	}
+}
+
+# The Poisoned Spring (Zemlan event triggered from an on action that goes off when Disciples of Akunda are capitulated)
+country_event = {
+	id = zemlan.21
+	title = zemlan.21.t
+	desc = zemlan.21.d
+	#picture =
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # The temple is of little concern
+		name = zemlan.21.option.1
+		add_political_power = 10
+	}
+
+	option = { # We could use this
+		name = zemlan.21.option.2
+		trigger = {
+			has_country_flag = ZLC_mutiny_yard_arm
+		}
+		custom_effect_tooltip = ZLC_mutiny_yard_arm_tt
+		add_political_power = -50
+		DOA_akunda_the_exalted = {
+			set_nationality = ZLC
+		}
+		add_ideas = ZLC_lure_of_the_temple
+		add_state_core = 922
+	}
+
+	option = { # Why use the spring when we can lure them to the idols instead
+		name = zemlan.21.option.3
+		trigger = {
+			has_country_flag = ZLC_mutiny_idols
+		}
+		custom_effect_tooltip = ZLC_mutiny_idols_tt
+		922 = {
+			add_manpower = -1650
+		}
+		add_manpower = 500
+		add_ideas = ZLC_lure_of_the_temple_idols
+		add_state_core = 922
+		custom_effect_tooltip = ZLC_mutiny_consequences_tt
+	}
+}
+

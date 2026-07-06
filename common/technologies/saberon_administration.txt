@@ -1,0 +1,2590 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	saberon_savage_den_tech = {
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_alphas_den_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_forager_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 2 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	saberon_alphas_den_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		on_research_complete = {
+			set_technology = { tier_2_tech = 1 }
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = {
+			saberon_tier_2 = 1
+		}
+
+		path = {
+			leads_to_tech = saberon_alphas_lair_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 2 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	saberon_alphas_lair_tech = {
+
+		research_speed_factor = 0.05
+		global_building_slots_factor = 0.1
+
+		on_research_complete = {
+			set_technology = {
+				tier_3_tech = 1
+			}
+		}
+
+		dependencies = {
+			saberon_tier_3 = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 2 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			tier_technology
+		}
+	}
+
+	saberon_forager_tech = {
+
+		enable_subunits = {
+			saberon_forager
+		}
+
+		enable_building = {
+			building = industrial_complex
+			level = 30
+		}
+
+		on_research_complete = {
+			set_technology = {
+				saberon_hunting_trophies_equipment_tech = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_stone_pit_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_magma_tubes_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_hunting_trophies_equipment_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_saberclaw_thicket_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_rylaks_nest_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_hunting_grounds_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 11 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			support_technology
+		}
+	}
+
+	saberon_stone_pit_tech = {
+
+		enable_building = {
+			building = iron_mine
+			level = 3
+		}
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+		
+		on_research_complete = {
+			set_technology = { iron_mine_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_saberon_stone_pit_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_cave_network_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 4 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_stone_pit_tech_1 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_saberon_stone_pit_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 4 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_stone_pit_tech_2 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_saberon_stone_pit_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 4 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_stone_pit_tech_3 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+			set_technology = { construction_tools_4_global = 1 popup = no }
+		}
+
+		path = {
+			leads_to_tech = improved_saberon_stone_pit_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 4 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_stone_pit_tech_4 = {
+
+		production_speed_buildings_factor = 0.1
+		industry_repair_factor = 0.1
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = iron_mine
+				resource = ores
+				amount = 1
+			}
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 4 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_cave_network_tech = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_cave_network_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 6 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	saberon_cave_network_tech_2 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_cave_network_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 6 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	saberon_cave_network_tech_3 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_cave_network_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 6 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	saberon_cave_network_tech_4 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_cave_network_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 6 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	saberon_cave_network_tech_5 = {
+
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.11
+		global_building_slots_factor = 0.16
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 6 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			city_growth_technology
+		}
+	}
+
+	saberon_hunting_trophies_equipment_tech = {
+
+		enable_equipments = {
+			saberon_hunting_trophies_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_forager_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 11 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			peasant_technology
+			support_technology
+		}
+	}
+
+	saberon_forager_training_tech_1 = {
+
+		local_resources_factor = 0.15
+
+		saberon_forager = {
+			entrenchment = 1.5
+			fort = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_forager_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 11 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			support_technology
+		}
+	}
+
+	saberon_forager_training_tech_2 = {
+
+		local_resources_factor = 0.15
+
+		saberon_forager = {
+			entrenchment = 1.5
+			river = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_forager_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 11 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			support_technology
+		}
+	}
+
+	saberon_forager_training_tech_3 = {
+
+		local_resources_factor = 0.15
+
+		saberon_forager = {
+			entrenchment = 1.5
+			city = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_forager_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 11 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			support_technology
+		}
+	}
+
+	saberon_magma_tubes_tech = {
+
+		enable_building = {
+			building = sulfur_mine
+			level = 3
+		}
+		
+		on_research_complete = {
+			set_technology = { sulfur_mine_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_saberon_magma_tubes_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 8 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_magma_tubes_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_saberon_magma_tubes_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 8 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_magma_tubes_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = improved_saberon_magma_tubes_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 8 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_magma_tubes_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = improved_saberon_magma_tubes_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 8 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	improved_saberon_magma_tubes_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = sulfur_mine
+				resource = gunpowder
+				amount = 1
+			}
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 8 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			mine_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_forager_training_tech_4 = {
+
+		local_resources_factor = 0.15
+
+		saberon_forager = {
+			entrenchment = 1.5
+			gateway = {
+				attack = 0.1
+				defence = 0.1
+			}
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 11 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			support_technology
+		}
+	}
+
+	saberon_rylaks_nest_tech = {
+
+		enable_building = {
+			building = nesting_grounds
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { nest_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_improved_thieving_tactics_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 14 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_improved_thieving_tactics_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				add_ideas = air_manufacturing_buff_1
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_improved_thieving_tactics_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 14 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_improved_thieving_tactics_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_2
+					remove_idea = air_manufacturing_buff_1
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_improved_thieving_tactics_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 14 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_improved_thieving_tactics_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_3
+					remove_idea = air_manufacturing_buff_2
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_improved_thieving_tactics_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 14 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_improved_thieving_tactics_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = nesting_grounds
+				resource = eggs
+				amount = 1
+			}
+			hidden_effect = {
+				swap_ideas = {
+					add_idea = air_manufacturing_buff_2
+					remove_idea = air_manufacturing_buff_1
+				}
+			}
+			custom_effect_tooltip = eggs_tech_cheaper_air_tt
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 14 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			nesting_ground_technology
+			resource_building_technology
+		}
+	}
+
+	saberon_saberclaw_thicket_tech = {
+
+		on_research_complete = {
+			set_technology = { lumber_mill_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		enable_building = {
+			building = lumber_mill
+			level = 3
+		}
+
+		path = {
+			leads_to_tech = saberon_shamans_hovel_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_wood_storage_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_palisade_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 20 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+		}
+	}
+
+	saberon_wood_storage_1 = {
+
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_wood_storage_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 20 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+		}
+	}
+
+	saberon_wood_storage_2 = {
+
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_wood_storage_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 20 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+		}
+	}
+
+	saberon_wood_storage_3 = {
+
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_wood_storage_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+		}
+	}
+
+	saberon_wood_storage_4 = {
+
+		production_factory_max_efficiency_factor = 0.025
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = lumber_mill
+				resource = wood
+				amount = 1
+			}
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 20 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			war_mill_technology
+			woodworking_technology
+		}
+	}
+
+	saberon_shamans_hovel_tech = {
+
+		enable_building = {
+			building = arcane_tower
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = {
+				scout_tower_tech_global = 1
+				arcane_tower_tech_global = 1
+				popup = no
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_shamans_hovel_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_shrine_of_fangs_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_shamans_hovel_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		saberon_shaman = {
+			hard_attack = 0.05
+		}
+		saberon_clawshaper = {
+			hard_attack = 0.05
+		}
+
+		path = {
+			leads_to_tech = saberon_shamans_hovel_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 18 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_shamans_hovel_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		saberon_shaman = {
+			hard_attack = 0.05
+		}
+		saberon_clawshaper = {
+			hard_attack = 0.05
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_shamans_hovel_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_shamans_hovel_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		saberon_shaman = {
+			hard_attack = 0.05
+		}
+		saberon_clawshaper = {
+			hard_attack = 0.05
+		}
+
+		path = {
+			leads_to_tech = saberon_shamans_hovel_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 18 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_shamans_hovel_tech_5 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = arcane_tower
+				resource = mana
+				amount = 1
+			}
+		}
+
+		saberon_shaman = {
+			hard_attack = 0.05
+		}
+		saberon_clawshaper = {
+			hard_attack = 0.05
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			scout_tower_technology
+			tower_technology
+			fortification_technology
+			arcane_tower_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_shrine_of_fangs_tech = {
+
+		enable_building = {
+			building = church
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { church_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_tooth_necklaces_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 16 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_tooth_necklaces_tech_1 = {
+
+		country_faith_gain_factor = 0.125
+
+		category_infantry = {
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_tooth_necklaces_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 16 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_tooth_necklaces_tech_2 = {
+
+		country_faith_gain_factor = 0.125
+
+		category_infantry = {
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_tooth_necklaces_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 16 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_tooth_necklaces_tech_3 = {
+
+        country_faith_gain_factor = 0.125
+
+		category_infantry = {
+			max_organisation = 2
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_tooth_necklaces_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 16 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_tooth_necklaces_tech_4 = {
+
+        country_faith_gain_factor = 0.125
+
+		category_infantry = {
+			max_organisation = 2
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 16 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			religion_technology
+		}
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	saberon_palisade_tech = {
+
+		enable_building = {
+			building = bunker
+			level = 2
+		}
+
+		on_research_complete = {
+			set_technology = { bunker_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_palisade_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_prowlers_perch_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 22 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_palisade_technology
+			fortification_technology
+		}
+	}
+
+	saberon_palisade_tech_2 = {
+
+		enable_building = {
+			building = bunker
+			level = 4
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_palisade_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 22 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_palisade_technology
+			fortification_technology
+		}
+	}
+
+	saberon_palisade_tech_3 = {
+
+		enable_building = {
+			building = bunker
+			level = 6
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_palisade_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 22 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_palisade_technology
+			fortification_technology
+		}
+	}
+
+	saberon_palisade_tech_4 = {
+
+		enable_building = {
+			building = bunker
+			level = 8
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_palisade_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 22 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_palisade_technology
+			fortification_technology
+		}
+	}
+
+	saberon_palisade_tech_5 = {
+
+		enable_building = {
+			building = bunker
+			level = 10
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 22 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_palisade_technology
+			fortification_technology
+		}
+	}
+
+	saberon_prowlers_perch_tech = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 1
+		}
+
+		on_research_complete = {
+			set_technology = { guard_tower_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+
+		industry_air_damage_factor = -0.05
+
+		path = {
+			leads_to_tech = saberon_prowlers_perch_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 24 y = 2 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	saberon_prowlers_perch_tech_2 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 2
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_prowlers_perch_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 24 y = 4 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	saberon_prowlers_perch_tech_3 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 3
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_prowlers_perch_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	saberon_prowlers_perch_tech_4 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 4
+		}
+
+		industry_air_damage_factor = -0.05
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		path = {
+			leads_to_tech = saberon_prowlers_perch_tech_5
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 24 y = 8 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	saberon_prowlers_perch_tech_5 = {
+
+		enable_building = {
+			building = anti_air_building
+			level = 5
+		}
+
+		industry_air_damage_factor = -0.05
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		research_cost = 1.25
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			administration_technology
+			guard_tower_technology
+			fortification_technology
+		}
+	}
+
+	saberon_hunting_grounds_tech = {
+
+		enable_building = {
+			building = arms_factory
+			level = 30
+		}
+		enable_building = {
+			building = farm
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { farm_tech_global = 1 popup = no }
+			increase_tech_count_saberon = yes
+		}
+		
+		path = {
+			leads_to_tech = saberon_hunting_grounds_tech_1
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 28 y = 2 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_hunting_grounds_tech_1 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+		
+		path = {
+			leads_to_tech = saberon_hunting_grounds_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_primal_instincts_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_improved_coats_tech
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 28 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_hunting_grounds_tech_2 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+		
+		path = {
+			leads_to_tech = saberon_hunting_grounds_tech_3
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 28 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_hunting_grounds_tech_3 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+		
+		path = {
+			leads_to_tech = saberon_hunting_grounds_tech_4
+			research_cost_coeff = 1
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 28 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_hunting_grounds_tech_4 = {
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = farm
+				resource = wheat
+				amount = 1
+			}
+			increase_tech_count_saberon = yes
+		}
+
+		MONTHLY_POPULATION = 0.25
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 28 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_primal_instincts_tech = {
+
+		saberon_savage = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_mauler = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_warboss = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_blademaster = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		saberon_shaman = {
+			soft_attack = 0.05
+		}
+		saberon_clawshaper = {
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+		
+		path = {
+			leads_to_tech = saberon_primal_instincts_tech_2
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 26 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_primal_instincts_tech_2 = {
+
+		saberon_savage = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_mauler = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_warboss = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_blademaster = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		saberon_shaman = {
+			soft_attack = 0.05
+		}
+		saberon_clawshaper = {
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+		
+		path = {
+			leads_to_tech = saberon_primal_instincts_tech_3
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 26 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_primal_instincts_tech_3 = {
+
+		saberon_savage = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_mauler = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_warboss = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_blademaster = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		saberon_shaman = {
+			soft_attack = 0.05
+		}
+		saberon_clawshaper = {
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+		
+		path = {
+			leads_to_tech = saberon_primal_instincts_tech_4
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 26 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_primal_instincts_tech_4 = {
+
+		saberon_savage = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_mauler = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_warboss = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+		saberon_blademaster = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		saberon_shaman = {
+			soft_attack = 0.05
+		}
+		saberon_clawshaper = {
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 26 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+		}
+	}
+
+	saberon_improved_coats_tech = {
+
+		saberon_savage = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_mauler = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_warboss = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_blademaster = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_shaman = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_clawshaper = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+		
+		path = {
+			leads_to_tech = saberon_improved_coats_tech_2
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = saberon_rugged_furs
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 30 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+		}
+	}
+
+	saberon_improved_coats_tech_2 = {
+
+		saberon_savage = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_mauler = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_warboss = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_blademaster = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_shaman = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_clawshaper = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+		
+		path = {
+			leads_to_tech = saberon_improved_coats_tech_3
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 30 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+		}
+	}
+
+	saberon_improved_coats_tech_3 = {
+
+		saberon_savage = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_mauler = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_warboss = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_blademaster = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_shaman = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_clawshaper = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+		
+		path = {
+			leads_to_tech = saberon_improved_coats_tech_4
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 30 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+		}
+	}
+
+	saberon_improved_coats_tech_4 = {
+
+		saberon_savage = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_mauler = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_warboss = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_blademaster = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_shaman = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+		saberon_clawshaper = {
+			breakthrough = 0.05
+			defense = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 30 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+		}
+	}
+
+	saberon_rugged_furs = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+		
+		path = {
+			leads_to_tech = saberon_rugged_furs_2
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 32 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+			climate_technology
+		}
+	}
+
+	saberon_rugged_furs_2 = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_den_tech = 1 }
+		
+		path = {
+			leads_to_tech = saberon_rugged_furs_3
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 32 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+			climate_technology
+		}
+	}
+
+	saberon_rugged_furs_3 = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+
+		path = {
+			leads_to_tech = saberon_rugged_furs_4
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 32 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+			climate_technology
+		}
+	}
+
+	saberon_rugged_furs_4 = {
+
+		acclimatization_cold_climate_gain_factor = 0.1
+		acclimatization_hot_climate_gain_factor = 0.1
+
+		on_research_complete = {
+			increase_tech_count_saberon = yes
+		}
+
+		dependencies = { saberon_alphas_lair_tech = 1 }
+		
+		research_cost = 1
+		
+		folder = {
+			name = saberon_administration_folder
+			position = { x = 32 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			administration_technology
+			saberon_hunting_grounds_technology
+			leather_armor_technology
+			climate_technology
+		}
+	}
+
+}
+
+#savage den
+	#forager #workshop
+		#hunting trophies/training
+		#improved foraging methods = resource tools
+		#cave network
+			#rock pile (include gunpowder)
+			#improved tunneling methods (building tools)
+			#mating dens (blacksmith)
+				#expanded mating dens = forge/blue prints
+				#thicker coats (armor/weather bonus
+		#rylakk nest
+		#saberclaw thicket = wood
+			#shamans hovel = mana
+				#shrine of fangs 
+			#palisade = wall
+				#prowlers perch = towers/spy
+					#
+		#hunting grounds (farm)
+			#expanded hunting grounds
+			#balance diet = org
+			#primary instincts (attack)
+
+#recovery (send to ground "warmongers roar"

@@ -1,0 +1,1159 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	dwarf_altar_of_stoneborn_kings_tech = {
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_heroic_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mountain_king_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_explorer_tech_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_siege_tank_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 12 y = 0 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_heroic_training_tech_1 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_heroic_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_heroic_training_tech_2 = {
+
+		special_forces_cap = 0.05
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_heroic_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_heroic_training_tech_3 = {
+
+		special_forces_cap = 0.05
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 2
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	dwarf_mountain_king_tech = {
+
+		enable_subunits = {
+			dwarf_mountain_king
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_mountain_king_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mountain_king_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_mountain_king_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_stormbolt_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mountain_king_resilience_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dwarf_mountain_king_stormbolt_tech = {
+
+		dwarf_mountain_king = {
+			hard_attack = 0.10
+			ap_attack = 0.30
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mountain_king_resilience_tech }
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 7 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mountain_king_resilience_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mountain_king_resilience_tech
+			}
+		}
+	}
+
+	dwarf_mountain_king_resilience_tech = {
+
+		dwarf_mountain_king = {
+			defense = 0.10
+			breakthrough = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mountain_king_stormbolt_tech }
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mountain_king_stormbolt_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mountain_king_stormbolt_tech
+			}
+		}
+	}
+
+	dwarf_mountain_king_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_mountain_king_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_thundering_strikes_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_mountain_king_avatar_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_mountain_king_thundering_strikes_tech = {
+
+		dwarf_mountain_king = {
+			soft_attack = 0.20
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mountain_king_avatar_tech }
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 7 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mountain_king_avatar_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mountain_king_avatar_tech
+			}
+		}
+	}
+
+	dwarf_mountain_king_avatar_tech = {
+
+		dwarf_mountain_king = {
+			max_strength = 0.25
+			breakthrough = 0.15
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_mountain_king_thundering_strikes_tech }
+
+		path = {
+			leads_to_tech = dwarf_mountain_king_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_mountain_king_thundering_strikes_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_mountain_king_thundering_strikes_tech
+			}
+		}
+	}
+
+	dwarf_mountain_king_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_mountain_king_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_mountain_king_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+
+	dwarf_explorer_tech_tech = {
+
+		enable_subunits = {
+			dwarf_explorer
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_explorer_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_explorer_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 12 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_explorer_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_explorer_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_explorer_dual_wielding_proficiency_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_explorer_multiple_scopes_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dwarf_explorer_dual_wielding_proficiency_tech = {
+
+		dwarf_explorer = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_explorer_multiple_scopes_tech }
+
+		path = {
+			leads_to_tech = dwarf_explorer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 11 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_explorer_multiple_scopes_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_explorer_multiple_scopes_tech
+			}
+		}
+	}
+
+	dwarf_explorer_multiple_scopes_tech = {
+
+		dwarf_explorer = {
+			defense = 0.15
+			breakthrough = 0.10
+			recon = 0.50
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_explorer_dual_wielding_proficiency_tech }
+
+		path = {
+			leads_to_tech = dwarf_explorer_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 13 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_explorer_dual_wielding_proficiency_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_explorer_dual_wielding_proficiency_tech
+			}
+		}
+	}
+
+	dwarf_explorer_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_explorer_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_explorer_explosive_traps_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_explorer_evasive_tactics_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_explorer_explosive_traps_tech = {
+
+		dwarf_explorer = {
+			soft_attack = 0.25
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_explorer_evasive_tactics_tech }
+
+		path = {
+			leads_to_tech = dwarf_explorer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 11 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_explorer_evasive_tactics_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_explorer_evasive_tactics_tech
+			}
+		}
+	}
+
+	dwarf_explorer_evasive_tactics_tech = {
+
+		dwarf_explorer = {
+			forest = {
+				movement = 0.1
+			}
+			hills = {
+				movement = 0.1
+			}
+			mountain = {
+				movement = 0.1
+			}
+			jungle = {
+				movement = 0.1
+			}
+			marsh = {
+				movement = 0.1
+			}
+			plains = {
+				movement = 0.1
+			}
+			desert = {
+				movement = 0.1
+			}
+			river = {
+				movement = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_explorer_explosive_traps_tech }
+
+		path = {
+			leads_to_tech = dwarf_explorer_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 13 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_explorer_explosive_traps_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_explorer_explosive_traps_tech
+			}
+		}
+	}
+
+	dwarf_explorer_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_explorer_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 12 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_explorer_tech_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_siege_tank_tech = {
+
+		enable_subunits = {
+			dwarf_siege_tank
+		}
+
+		on_research_complete = {
+			set_technology = { dwarf_siege_tank_equipment_tech_1 = 1 }
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_siege_tank_equipment_tech_1 = {
+
+		enable_equipments = {
+			dwarf_siege_tank_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_high_impact_cannon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_siege_tank_layered_plating_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+	}
+
+	dwarf_siege_tank_high_impact_cannon_tech = {
+
+		dwarf_siege_tank = {
+			hard_attack = 0.25
+			fort = {
+				attack = 0.20
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_tank_layered_plating_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_tank_layered_plating_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_tank_layered_plating_tech
+			}
+		}
+	}
+
+	dwarf_siege_tank_layered_plating_tech = {
+
+		dwarf_siege_tank = {
+			defense = 0.10
+			armor_value = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_tank_high_impact_cannon_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 17 y = 6 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_tank_high_impact_cannon_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_tank_high_impact_cannon_tech
+			}
+		}
+	}
+
+	dwarf_siege_tank_equipment_tech_2 = {
+
+		enable_equipments = {
+			dwarf_siege_tank_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		dependencies = { dwarf_hold_tech = 1 }
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_targeting_system_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = dwarf_siege_tank_mobile_repair_bays_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+
+	dwarf_siege_tank_targeting_system_tech = {
+
+		dwarf_siege_tank = {
+			soft_attack = 0.10
+			hard_attack = 0.10
+			breakthrough = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_tank_mobile_repair_bays_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_tank_mobile_repair_bays_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_tank_mobile_repair_bays_tech
+			}
+		}
+	}
+
+	dwarf_siege_tank_mobile_repair_bays_tech = {
+
+		dwarf_siege_tank = {
+			max_organisation = 2
+			max_strength = 0.25
+			reliability = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_dwarf = yes
+		}
+
+		xor = { dwarf_siege_tank_targeting_system_tech }
+
+		path = {
+			leads_to_tech = dwarf_siege_tank_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 17 y = 10 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 0
+				has_tech = dwarf_siege_tank_targeting_system_tech
+			}
+			
+			modifier = {
+				factor = 0
+				is_researching_technology = dwarf_siege_tank_targeting_system_tech
+			}
+		}
+	}
+
+	dwarf_siege_tank_equipment_tech_3 = {
+
+		enable_equipments = {
+			dwarf_siege_tank_equipment_3
+		}
+
+		dependencies = { dwarf_great_hall_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = dwarf_heroic_units_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			altar_technology
+			dwarf_siege_tank_technology
+		}
+
+		ai_will_do = {
+			factor = 300
+
+			modifier = {
+				factor = 1000
+				date > "592.1.1"
+			}
+		}
+
+		special_project_specialization = { specialization_land }
+	}
+}

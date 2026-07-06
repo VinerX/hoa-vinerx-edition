@@ -1,0 +1,85 @@
+# Plans for neutral nations at game start. Contains historical and non_historical.
+neutral_generic_historical = {
+	name = "Generic Neutral Historical"
+	desc = "Historical behavior for neutral nations at game start"
+
+	enable = {
+		is_historical_focus_on = yes
+		neutral > 0.5
+		NOT = {
+			# Excluding nations that have their own plans
+			has_idea = satyr_primary_race
+
+			tag = GRM # Has its own focus branch
+			tag = MAU # Has its own focus branch
+			tag = SHD # Has its own focus branch
+			tag = RHU # Hogger Related
+		}
+	}
+
+	ai_national_focuses = {
+		the_path_forward
+		stay_neutral
+		armed_neutrality
+		promote_neutrality
+		secure_the_nation
+		diplomatic_strategy
+		no_gods_no_masters
+		# No need to go further down
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}
+
+neutral_generic_non_historical = {
+	name = "Generic Neutral Non-Historical"
+	desc = "Non-historical behavior for neutral nations at game start"
+
+	enable = {
+		is_historical_focus_on = no
+		neutral > 0.5
+		NOT = {
+			# Excluding nations that have their own non historical plans
+			has_idea = satyr_primary_race
+			has_idea = silithid_primary_race
+			has_idea = ghost_primary_race
+
+			tag = GRM # Has its own focus branch
+			tag = MAU # Has its own focus branch
+			tag = SHD # Has its own focus branch
+			tag = RHU # Hogger Related
+		}
+	}
+
+	ai_national_focuses = {
+		the_path_forward
+		# No other focuses, we want them to quickly get access to the political paths
+		# but not force them on any particular path to promote non-historical outcomes
+	}
+
+	focus_factors = {
+		# Focuses "ai_will_do" blocks can give more depth to these choices, therefore the
+		# following isn't what entirely decides what paths the AI takes.
+		pick_a_side = 1 # Regular chance
+		support_the_alliance = 1 # Regular chance
+		generic_support_the_horde_focus = 1 # Regular chance
+		stay_neutral = 1.3 # Higher chance
+		serving_higher_powers = 0.8 # Low chance
+		whispers_of_the_old_gods = 0.8 # Low chance
+		promise_of_power = 0.8 # Low chance
+		in_service_of_death = 0.8 # Low chance
+		path_of_the_titans = 0.5 # Very low chance
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}

@@ -1,0 +1,35 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			every_country = {
+				set_variable = { faith_points = 0 }             		# Current Faith
+				set_variable = { faith_gain_base = 10 }         		# base gain 10 per month
+				set_variable = { church_count = 0 }             		# (this is added after multiplication from stability (comes from churches)
+			}
+		}
+	}
+
+	on_monthly = {
+		effect = {
+			set_variable = { church_count = 0 } 											#resets value to 0 incase you lost control of churches
+			every_owned_state = {
+				add_to_variable = { ROOT.church_count = building_level@church } 	#counts number of churches you control
+			}
+			set_temp_variable = { growth = faith_gain_base }								#set growth to 10 (the base gain)
+			multiply_temp_variable = { growth = stability }									#multiply growth by stability (100% = 10 a month etc)
+			multiply_variable = { church_count = 2 }										#each church is worth 2 faith per month
+			add_to_temp_variable = { growth = church_count }								#adds faith per church you own
+			add_to_temp_variable = { growth = modifier@country_faith_gain_flat }			#adds all sources of flat faith gain from modifiers
+			set_temp_variable = { temp_faith_factor = modifier@country_faith_gain_factor }	#pulls percentual faith gain from modifiers
+			add_to_temp_variable = { temp_faith_factor = 1 }								#makes percentual faith gain 1 + the modifier for multiplying
+			multiply_temp_variable = { growth = temp_faith_factor }							#multiplies your total faith gain by all percentual modifiers
+			add_to_variable = { faith_points = growth }										#add growth to your points
+
+			clamp_variable = {
+				var = faith_points
+				min = 0
+				max = 500
+			}
+		}
+	}
+}

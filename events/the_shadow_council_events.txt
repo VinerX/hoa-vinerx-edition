@@ -1,0 +1,790 @@
+﻿###########################
+# The Shadow Council
+###########################
+
+add_namespace = shadow_council
+
+#horde civil war
+country_event = {
+	id = shadow_council.1
+	title = shadow_council.1.t
+	desc = shadow_council.1.d
+	picture = GFX_orc_warlocks_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.1.option.1
+
+		load_oob = "TSC_horde_civil_war"
+	}
+}
+
+#blackrock spire event
+country_event = {
+	id = shadow_council.2
+	title = shadow_council.2.t
+	desc = shadow_council.2.d
+	picture = GFX_blackrock_mountain_2_event
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = TSC
+		any_country = {
+			OR = {
+				is_in_faction_with = TSC
+				tag = TSC
+			}
+			is_neighbor_of = DIC
+			has_start_date > 591.12.31
+			has_start_date < 592.01.02
+		}
+		NOT = {
+			TSC = {
+				is_puppet = yes # Prevent Shadow Council doing certified bad guy stuff if being puppeted after Horde Civil War
+			}
+		}
+		NOT = {
+			BRC = { has_country_flag = doomhammers_horde }
+		}
+	}
+
+    option = {
+        name = shadow_council.2.option.1
+
+		DIC = {	country_event = darkiron.1 }
+
+		ai_chance = {
+			base = 90
+
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+    option = {
+        name = shadow_council.2.option.2
+
+		declare_war_on = { target = DIC type = annex_everything }
+
+		ai_chance = {
+			base = 10
+
+			modifier = {
+				factor = -110
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Dark Iron scedes land
+country_event = {
+	id = shadow_council.3
+	title = shadow_council.3.t
+	desc = shadow_council.3.d
+	picture = GFX_blackrock_mountain_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.3.option.1
+
+		annex_searing_gorge = yes
+		core_searing_gorge = yes
+		annex_eastern_blackrock_mountain = yes
+		core_eastern_blackrock_mountain = yes
+		annex_burning_steppes = yes
+		core_burning_steppes = yes
+
+		# Give back Thorium Brotherhood states that were annexed
+		hidden_effect = {
+			552 = {
+				transfer_state_to = THR
+				remove_core_of = TSC
+			}
+			553 = {
+				transfer_state_to = THR
+				remove_core_of = TSC
+			}
+		}
+
+		### AI has no clue how the hell to deal with 4 Fronts
+		annex_the_badlands = yes
+		hidden_effect = {
+			529 = { transfer_state_to = IRO }
+			1577 = { transfer_state_to = UDA }
+			1578 = { transfer_state_to = UDA }
+			1579 = { transfer_state_to = UDA }
+			1580 = { transfer_state_to = UDA }
+		}
+
+		set_capital = { state = 524 }
+
+		diplomatic_relation = {
+		    country = DIC
+		    relation = non_aggression_pact
+		    active = yes
+		}
+
+		BRC = { country_event = { id = blackrock.17 } }
+
+		BTG = { country_event = { id = black_tooth_grin.4 } }
+
+		if = {
+			limit = {
+				OR = {
+					381 = {	is_owned_by = TSC }
+					382 = { is_owned_by = TSC }
+					785 = { is_owned_by = TSC }
+				}
+			}
+			THC = { country_event = { id = shadow_council.1 } }
+		}
+	}
+}
+
+#dark iron declares war
+country_event = {
+	id = shadow_council.4
+	title = shadow_council.4.t
+	desc = shadow_council.4.d
+	picture = GFX_dark_iron_dwarf_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.4.option.1
+
+	}
+}
+
+#guldans coma
+country_event = {
+	id = shadow_council.5
+	title = shadow_council.5.t
+	desc = shadow_council.5.d
+	picture = GFX_guldan_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.5.option.1
+
+		add_ideas = TSC_guldans_coma_idea
+
+		hidden_effect = {
+			BRC = {
+				if = {
+					limit = {
+						# Prevent this even from happening if the Horde Civil War happened i.e. Gul'dan is not pulling
+						# the strings anymore and Blackhand has either secured his place or got replaced by Doomhammer already
+						NOT = {
+							has_completed_focus = BRC_blackhands_horde
+							has_completed_focus = BRC_doomhammers_horde
+						}
+					}
+					country_event = { id = blackrock.18 days = 1 }
+				}
+			}
+		}
+	}
+}
+
+# Shadow Council struck by Doomhammer
+country_event = {
+	id = shadow_council.6
+	title = shadow_council.6.t
+	desc = shadow_council.6.d
+	picture = GFX_orgrim_doomhammer_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.6.option.1
+
+		custom_effect_tooltip = shadow_council.6.option.1.d
+
+		remove_state_core = 28
+		remove_state_core = 523
+
+		uncore_searing_gorge = yes
+		uncore_burning_steppes = yes
+	}
+}
+
+#Guldan Awakens
+country_event = {
+	id = shadow_council.7
+	title = shadow_council.7.t
+	desc = shadow_council.7.d
+	picture = GFX_guldan_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.7.option.1
+
+	}
+}
+
+# Fate of Gul'dan
+country_event = {
+	id = shadow_council.8
+	title = shadow_council.8.t
+	desc = shadow_council.8.d
+	picture = gfx_guldan_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.8.option.1
+
+		#TSC = {
+		#	leave_faction = yes
+		#}
+
+		SRC = {
+			annex_country = { target = TSC transfer_troops = yes }
+			#set_country_flag = orc_technology
+			change_tag_from = TSC
+			set_politics = {
+				ruling_party = horde
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = horde
+				popularity = 1
+			}
+		}
+
+		SRC = {
+			country_event = {
+				id = stormreaver.1
+				days = 1
+			} 
+		}
+
+		BRC = {
+			country_event = {
+				id = blackrock.20
+				days = 2
+			}
+		}
+	}
+}
+
+# Assault on the Shadow Council is repelled
+country_event = {
+	id = shadow_council.9
+	title = shadow_council.9.t
+	desc = shadow_council.9.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = shadow_council.9.option.1
+
+	}
+}
+
+country_event = { #Altar of Storms
+	id = shadow_council.10
+	title = shadow_council.10.t
+	desc = shadow_council.10.d
+	picture = GFX_hour_of_twilight_event
+
+	trigger = {
+		ROOT = {
+			OR = {
+				is_in_faction_with = SRC
+				is_in_faction_with = TSC
+			}
+			NOT = { has_idea = TSC_altar_of_storms_idea }
+			103 = { is_controlled_by_ROOT_or_ally = yes	}
+			OR = {
+				tag = THC
+				tag = SFC
+				tag = DWC
+				tag = MOG
+			}
+		}
+		has_start_date > 582.1.1
+		has_start_date < 600.1.1
+		OR = {
+			SRC = {
+				has_country_leader = {
+					name = "Gul'dan"
+					ruling_only = yes
+				}
+			}
+			TSC = {
+				has_country_leader = {
+					name = "Gul'dan"
+					ruling_only = yes
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 7
+	}
+	
+	#is_triggered_only = yes
+	
+    option = {
+        name = shadow_council.10.option.1
+		add_ideas = TSC_altar_of_storms_idea
+	}
+}
+
+add_namespace = frostwolf_fate
+
+#Fate of the Frostwolves
+country_event = {
+	id = frostwolf_fate.1
+	title = frostwolf_fate.1.t
+	desc = frostwolf_fate.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Banish
+		name = frostwolf_fate.1.option.1
+		FWC = { country_event = { days = 0 id = frostwolf_fate.2 } }
+
+		ai_chance = {
+			base = 75
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes # Happens historically
+			}
+		}
+	}
+
+	option = { # Attempt to puppet
+		name = frostwolf_fate.1.option.2
+		FWC = { country_event = { days = 0 id = frostwolf_fate.3 } }
+	}
+}
+
+# Shadow Council banish the Frostwolf (historical route) (from frostwolf_fate.1)
+country_event = {
+	id = frostwolf_fate.2
+	title = frostwolf_fate.2.t
+	desc = frostwolf_fate.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Leave for Alterac
+		name = frostwolf_fate.2.option.1
+
+		FWC = { # FWC get Alterac land
+			114 = {
+				add_core_of = FWC
+				transfer_state_to = FWC
+			}
+			761 = {
+				add_core_of = FWC
+				transfer_state_to = FWC
+			}
+			381 = { remove_core_of = FWC }
+			382 = { remove_core_of = FWC }
+			hidden_effect = {
+				785 = { remove_core_of = FWC }	
+			}
+
+			hidden_effect = {
+				every_country = {
+					limit = { has_war_with = FWC }
+					white_peace = FWC
+				}
+			}
+
+			set_capital = { state = 114 }
+
+			leave_faction = yes
+
+			set_politics = {
+				ruling_party = neutral
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = neutral
+				popularity = 1
+			}
+			add_ideas = { primary_religion_shamanism }
+			leave_faction = yes
+
+			every_state = {
+				teleport_armies = {
+					to_province = 1839
+					limit = { tag = FWC }
+				}
+			}
+		}
+
+		# TSC gets FWC lands in Blasted Lands if still here
+		if = {
+			limit = {
+				TSC = { has_full_control_of_state = 379 }
+				NOT = {	has_war_with = TSC }
+			}
+			TSC = {
+				transfer_state = 381
+				transfer_state = 382
+				transfer_state = 785
+			}
+		}
+		# Else given to Twilight Hammer
+
+		# TSC gets FWC lands in Blasted Lands if still here
+		if = {
+			limit = {
+				TSC = { has_full_control_of_state = 379 }
+				NOT = {	has_war_with = TSC }
+			}
+			381 = {
+				transfer_state_to = TSC
+				add_core_of = TSC
+			}
+			382 = {
+				transfer_state_to = TSC
+				add_core_of = TSC
+			}
+			hidden_effect = {
+				785 = {
+					transfer_state_to = TSC
+					add_core_of = TSC
+				}
+			}
+		}
+		# Else given to Twilight Hammer
+		else_if = {
+			limit = {
+				THC = { has_full_control_of_state = 383 }
+				NOT = {	THC = {	is_in_faction_with = MLC } }
+				NOT = {	has_war_with = THC }
+			}
+			381 = {
+				transfer_state_to = THC
+				add_core_of = THC
+			}
+			382 = {
+				transfer_state_to = THC
+				add_core_of = THC
+			}
+			hidden_effect = {
+				785 = {
+					transfer_state_to = THC
+					add_core_of = THC
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				BTG = {	is_puppet_of = BRC }
+			}
+			381 = {
+				add_core_of = BTG
+				transfer_state_to = BTG
+			}
+			hidden_effect = {
+				785 = {
+					add_core_of = BTG
+					transfer_state_to = BTG
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {	BTG = {	is_puppet_of = BRC } }
+			}
+			381 = {
+				add_core_of = BRC
+				transfer_state_to = BRC
+			}
+			hidden_effect = {
+				785 = {
+					add_core_of = BRC
+					transfer_state_to = BRC
+				}
+			}
+		}
+		# Else given to BTG
+		else_if = {
+			limit = {
+				BTG = { has_war_with = THC }
+				NOT = {
+					THC = {
+						controls_state = 383
+						controls_state = 387
+						controls_state = 388
+						controls_state = 2158
+					}
+				}
+			}
+			383 = { transfer_state_to = BTG }
+			387 = { transfer_state_to = BTG }
+			388 = { transfer_state_to = BTG }
+			2158 = { transfer_state_to = BTG }
+		}
+
+		# Event to other horde members informing that the Frostwolf are leaving for "unknown reason"
+		BRC = { country_event = { days = 1 id = frostwolf_fate.5 } }
+		BTG = { country_event = { days = 1 id = frostwolf_fate.5 } }
+		DMC = { country_event = { days = 1 id = frostwolf_fate.5 } }
+		BBC = { country_event = { days = 1 id = frostwolf_fate.5 } }
+		BHC = { country_event = { days = 1 id = frostwolf_fate.5 } }
+
+		if = {
+			limit = {
+				NOT = { THC = { is_in_faction_with = MLC } }
+			}
+			THC = { country_event = { days = 1 id = frostwolf_fate.5 } }
+		}
+
+		#TODO: Alterac gets event asking if they will stand for this
+
+		ai_chance = {
+			base = 90
+			modifier = {
+				factor = 110
+				is_historical_focus_on = yes # Happens historically
+			}
+		}
+	}
+
+	option = { # Denounce Gul'dan
+		name = frostwolf_fate.2.option.2
+		FWC = {
+			leave_faction = yes
+			create_faction = Frostwolf_Horde
+		}
+		BRC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		THC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		BTG = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		DMC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		BBC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		BHC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+
+		add_to_variable = {
+			var = frostwolf_fate_sides
+			value = 6
+		}
+	}
+}
+
+# Shadow Council assassinate Durotan (from frostwolf_fate.1)
+country_event = {
+	id = frostwolf_fate.3
+	title = frostwolf_fate.3.t
+	desc = frostwolf_fate.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Choose Drek'thar as new chieftain and denounce Gul'dan
+		name = frostwolf_fate.3.option.1
+
+		set_variable = {
+			var = frostwolf_fate_sides
+			value = 0
+		}
+		set_variable = {
+			var = frostwolf_fate_sides_returned
+			value = 0
+		}
+		FWC = {
+			leave_faction = yes
+			create_faction = Frostwolf_Horde
+		}
+		BRC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		THC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		BTG = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		DMC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		BBC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+		BHC = { country_event = { days = 2 id = frostwolf_fate.4 } }
+	}
+
+	option = { # Shadow Council install a puppet (Fenris, Durotan's brother)
+		name = frostwolf_fate.3.option.2
+
+		TSC = { puppet = FWC }
+	}
+}
+
+# Frostwolf Clan denounce Gul'dan (from frostwolf_fate.2.option.2 or frostwolf_fate.3.option.1)
+# Send to other Horde members
+country_event = {
+	id = frostwolf_fate.4
+
+	title = { # FWC still has Durotan
+		text = frostwolf_fate.4.t1
+		trigger = {
+			FWC = {
+				has_country_leader = {
+					name = "Durotan"
+				}
+			}
+		}
+	}
+
+	title = { # FWC Durotan murdered
+		text = frostwolf_fate.4.t2
+		trigger = {
+			NOT = {
+				FWC = {
+					has_country_leader = {
+						name = "Durotan"
+					}
+				}
+			}
+		}
+	}
+
+	desc = { # FWC still has Durotan
+		text = frostwolf_fate.4.d1
+		trigger = {
+			FWC = {
+				has_country_leader = {
+					name = "Durotan"
+				}
+			}
+		}
+	}
+
+	desc = { # FWC Durotan murdered
+		text = frostwolf_fate.4.d2
+		trigger = {
+			NOT = {
+				FWC = {
+					has_country_leader = {
+						name = "Durotan"
+					}
+				}
+			}
+		}
+	}
+
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { #Stay with the horde
+		ai_chance = {
+			base = 100
+			modifier = {
+				factor = 0
+				NOT = {
+					tag = THC
+					tag = DMC
+					tag = BHC
+				}
+			}
+		}
+		name = frostwolf_fate.4.option.1
+		add_to_variable = {
+			var = frostwolf_fate_sides_returned
+			value = 1
+		}
+		if = {
+			limit = {
+				check_variable = {
+					var = frostwolf_fate_sides
+					value = frostwolf_fate_sides_returned
+					compare = less_than_or_equals
+				}
+			}
+			TSC = {
+				declare_war_on = {
+					target = FWC
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	option = { #Side with the frostwolfs
+		ai_chance = {
+			base = 100
+			modifier = {
+				factor = 0
+				OR = {
+					tag = THC
+					tag = DMC
+					tag = BHC
+				}
+			}
+		}
+		name = frostwolf_fate.4.option.2
+		FWC = { add_to_faction = ROOT }
+		add_to_variable = {
+			var = frostwolf_fate_sides_returned
+			value = 1
+		}
+		if = {
+			limit = {
+				check_variable = { frostwolf_fate_sides = frostwolf_fate_sides_returned }
+			}
+			TSC = {
+				declare_war_on = {
+					target = FWC
+					type = annex_everything
+				}
+			}
+		}
+	}
+}
+
+# Frostwolf Clan leaves the Horde (from frostwolf_fate.2.option.1)
+# Sent to other Horde members
+country_event = {
+	id = frostwolf_fate.5
+	title = frostwolf_fate.5.t
+	desc = frostwolf_fate.5.d
+	picture = GFX_orgrim_doomhammer_event
+
+	is_triggered_only = yes
+
+	option = { # Nothing, wish them good luck
+		name = frostwolf_fate.5.option.1
+
+	}
+
+	option = { # Nothing, don't care
+		name = frostwolf_fate.5.option.2
+
+	}
+
+}

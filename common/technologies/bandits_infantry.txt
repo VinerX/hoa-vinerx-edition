@@ -1,0 +1,2229 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	bandits_bandit_camp_tech = {
+
+		on_research_complete = {
+			custom_effect_tooltip = allow_intelligence_agency_tooltip
+			set_technology = { spy_tech_global = 1 popup = no }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_bandit_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_harvest_golem_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_brigand_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_pillager_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 16 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	bandits_bandit_tech = {
+
+		enable_subunits = {
+			bandits_bandit
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_bandit_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_bandit_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_taskmaster_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_assassin_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 7 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_bandit_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_bandit_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_ambush_tactics_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_looted_equipment_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_ambush_tactics_tech = {
+
+		bandits_bandit = {
+			breakthrough = 0.1
+			entrenchment = 0.1
+			forest = {
+				attack = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_looted_equipment_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_looted_equipment_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_looted_equipment_tech
+			}
+		}
+	}
+
+	bandits_looted_equipment_tech = {
+
+		bandits_bandit = {
+			soft_attack = 0.10
+			hard_attack = 0.05
+			ap_attack = 0.25
+			reliability = -0.03
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_ambush_tactics_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_ambush_tactics_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_ambush_tactics_tech
+			}
+		}
+	}
+
+	bandits_bandit_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_bandit_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_black_market_connections_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_pillage_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_black_market_connections_tech = {
+
+		bandits_bandit = {
+			hard_attack = 0.35
+			ap_attack = 0.25
+			defense = -0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_pillage_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_pillage_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_pillage_tech
+			}
+		}
+	}
+
+	bandits_pillage_tech = {
+
+		bandits_bandit = {
+			equipment_capture_factor = 0.01
+			city = {
+				attack = 0.1
+			}
+			outpost = {
+				attack = 0.1
+			}
+			fort = {
+				attack = 0.1
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_black_market_connections_tech }
+
+		path = {
+			leads_to_tech = bandits_bandit_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_black_market_connections_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_black_market_connections_tech
+			}
+		}
+	}
+
+	bandits_bandit_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_bandit_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_bandit_technology
+			footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_taskmaster_tech = {
+
+		enable_subunits = {
+			bandits_taskmaster
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_discipline_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = bandits_taskmaster_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 4 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_taskmaster_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_taskmaster_training_tech_1 = {
+
+		bandits_taskmaster = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_taskmaster_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_taskmaster_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_taskmaster_training_tech_2 = {
+
+		bandits_taskmaster = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_taskmaster_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 4 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_taskmaster_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_taskmaster_training_tech_3 = {
+
+		bandits_taskmaster = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_taskmaster_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_taskmaster_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_taskmaster_training_tech_4 = {
+
+		bandits_taskmaster = {
+			initiative = 0.09
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 4 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_taskmaster_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_discipline_training_tech_1 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_discipline_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 2 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	bandits_discipline_training_tech_2 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = {
+			bandits_bandit_holdout_tech = 1
+		}
+
+		path = {
+			leads_to_tech = bandits_discipline_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	bandits_discipline_training_tech_3 = {
+
+		land_reinforce_rate = 0.03
+		coordination_bonus = 0.01
+
+		dependencies = {
+			bandits_bandit_fortress_tech = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			captain_technology
+			banner_technology
+		}
+	}
+
+	bandits_assassin_tech = {
+
+		enable_subunits = {
+			bandits_assassin
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_assassin_training_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_infiltration_tactics_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_assassin_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_assassin_training_tech_1 = {
+
+		bandits_assassin = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_assassin_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_assassin_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_assassin_training_tech_2 = {
+
+		bandits_assassin = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_assassin_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_assassin_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_assassin_training_tech_3 = {
+
+		bandits_assassin = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_assassin_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_assassin_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_assassin_training_tech_4 = {
+
+		bandits_assassin = {
+			recon = 1.5
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_assassin_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_infiltration_tactics_tech_1 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_infiltration_tactics_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			rogues_guild_technology
+			bandits_infiltration_tactics_technology
+		}
+	}
+
+	bandits_infiltration_tactics_tech_2 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = {
+			bandits_bandit_holdout_tech = 1
+		}
+
+		path = {
+			leads_to_tech = bandits_infiltration_tactics_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			rogues_guild_technology
+			bandits_infiltration_tactics_technology
+		}
+	}
+
+	bandits_infiltration_tactics_tech_3 = {
+
+		encryption = 1
+		decryption = 1
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_infiltration_tactics_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			rogues_guild_technology
+			bandits_infiltration_tactics_technology
+		}
+	}
+
+	bandits_infiltration_tactics_4 = {
+
+		encryption = 1
+		decryption = 1
+
+		dependencies = {
+			bandits_bandit_fortress_tech = 1
+		}
+
+		research_cost = 1
+		
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 12 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			rogues_guild_technology
+			bandits_infiltration_tactics_technology
+		}
+	}
+
+	bandits_harvest_golem_tech = {
+
+		enable_subunits = {
+			bandits_harvest_golem
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_harvest_golem_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_harvest_golem_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_harvest_reaper_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_harvest_golem_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_harvest_golem_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_reinforced_plating_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_threshing_blades_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_reinforced_plating_tech = {
+
+		bandits_harvest_golem = {
+			armor_value = 0.25
+			hardness = 0.1
+			max_strength = 0.1
+			maximum_speed = -0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_threshing_blades_tech }
+
+		path = {
+			leads_to_tech = bandits_harvest_golem_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_threshing_blades_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_threshing_blades_tech
+			}
+		}
+	}
+
+	bandits_threshing_blades_tech = {
+
+		bandits_harvest_golem = {
+			soft_attack = 0.25
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_reinforced_plating_tech }
+
+		path = {
+			leads_to_tech = bandits_harvest_golem_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_reinforced_plating_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_reinforced_plating_tech
+			}
+		}
+	}
+
+	bandits_harvest_golem_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_harvest_golem_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_auto_repair_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_arcane_construction_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_auto_repair_tech = {
+
+		bandits_harvest_golem = {
+			max_strength = 0.15
+			defense = 0.25
+			reliability_factor = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_arcane_construction_tech }
+
+		path = {
+			leads_to_tech = bandits_harvest_golem_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_arcane_construction_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_arcane_construction_tech
+			}
+		}
+	}
+
+	bandits_arcane_construction_tech = {
+
+		bandits_harvest_golem = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+			ap_attack = 0.25
+			breakthrough = 0.10
+			max_strength = -0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_auto_repair_tech }
+
+		path = {
+			leads_to_tech = bandits_harvest_golem_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_auto_repair_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_auto_repair_tech
+			}
+		}
+	}
+
+	bandits_harvest_golem_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_harvest_golem_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_golem_technology
+			pikeman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_harvest_reaper_tech = {
+
+		enable_subunits = {
+			bandits_harvest_reaper
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_harvest_reaper_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_reaper_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_harvest_reaper_training_tech_1 = {
+
+		bandits_harvest_reaper = {
+			suppression_factor = 0.10
+		}
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_harvest_reaper_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_reaper_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_harvest_reaper_training_tech_2 = {
+
+		bandits_harvest_reaper = {
+			suppression_factor = 0.10
+		}
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_harvest_reaper_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_reaper_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_harvest_reaper_training_tech_3 = {
+
+		bandits_harvest_reaper = {
+			suppression_factor = 0.10
+		}
+
+		local_resources_factor = 0.025
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_harvest_reaper_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_reaper_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_harvest_reaper_training_tech_4 = {
+
+		bandits_harvest_reaper = {
+			suppression_factor = 0.10
+		}
+
+		local_resources_factor = 0.025
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_harvest_reaper_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_brigand_tech = {
+
+		enable_subunits = {
+			bandits_brigand
+			bandits_brigand_support
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_brigand_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_brigand_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 21 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_brigand_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_brigand_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_poison_tipped_spears_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_barbed_spears_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 21 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_poison_tipped_spears_tech = {
+
+		bandits_brigand = {
+			soft_attack = 0.15
+			hard_attack = 0.05
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_barbed_spears_tech }
+
+		path = {
+			leads_to_tech = bandits_brigand_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 20 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_barbed_spears_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_barbed_spears_tech
+			}
+		}
+	}
+
+	bandits_barbed_spears_tech = {
+
+		bandits_brigand = {
+			hard_attack = 0.15
+			soft_attack = 0.05
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_poison_tipped_spears_tech }
+
+		path = {
+			leads_to_tech = bandits_brigand_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_poison_tipped_spears_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_poison_tipped_spears_tech
+			}
+		}
+	}
+
+	bandits_brigand_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_brigand_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_whistling_strikes_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_camouflaged_cloaks_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 21 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_whistling_strikes_tech = {
+
+		bandits_brigand = {
+			air_attack = 0.75
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_camouflaged_cloaks_tech }
+
+		path = {
+			leads_to_tech = bandits_brigand_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 20 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_camouflaged_cloaks_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_camouflaged_cloaks_tech
+			}
+		}
+	}
+
+	bandits_camouflaged_cloaks_tech = {
+
+		bandits_brigand = {
+			entrenchment = 0.1
+			hills = {
+				attack = 0.1
+				defence = 0.1
+				movement = 0.05
+			}
+			snow_hills = {
+				attack = 0.1
+				defence = 0.1
+				movement = 0.05
+			}
+			forest = {
+				attack = 0.1
+				defence = 0.1
+				movement = 0.05
+			}
+			dense_forest = {
+				attack = 0.1
+				defence = 0.1
+				movement = 0.05
+			}
+			snow_forest = {
+				attack = 0.1
+				defence = 0.1
+				movement = 0.05
+			}
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_whistling_strikes_tech }
+
+		path = {
+			leads_to_tech = bandits_brigand_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_whistling_strikes_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_whistling_strikes_tech
+			}
+		}
+	}
+
+	bandits_brigand_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_brigand_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 21 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_brigand_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	bandits_pillager_tech = {
+
+		enable_subunits = {
+			bandits_pillager
+		}
+
+		on_research_complete = {
+			set_technology = { bandits_pillager_equipment_tech_1 = 1 }
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_pillager_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_envoker_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 25 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	bandits_pillager_equipment_tech_1 = {
+
+		enable_equipments = {
+			bandits_pillager_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_fire_blast_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_fire_ball_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 25 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_fire_blast_tech = {
+
+		bandits_pillager = {
+			hard_attack = 0.15
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_fire_ball_tech }
+
+		path = {
+			leads_to_tech = bandits_pillager_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_fire_ball_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_fire_ball_tech
+			}
+		}
+	}
+
+	bandits_fire_ball_tech = {
+
+		bandits_pillager = {
+			hard_attack = 0.10
+			ap_attack = 0.25
+			anti_air_attack = 0.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_fire_blast_tech }
+
+		path = {
+			leads_to_tech = bandits_pillager_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_fire_blast_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_fire_blast_tech
+			}
+		}
+	}
+
+	bandits_pillager_equipment_tech_2 = {
+
+		enable_equipments = {
+			bandits_pillager_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_blazing_barrier_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = bandits_flame_strike_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 25 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	bandits_blazing_barrier_tech = {
+
+		bandits_pillager = {
+			defense = 0.2
+			max_organisation = 5
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_flame_strike_tech }
+
+		path = {
+			leads_to_tech = bandits_pillager_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_flame_strike_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_flame_strike_tech
+			}
+		}
+	}
+
+	bandits_flame_strike_tech = {
+
+		bandits_pillager = {
+			soft_attack = 0.25
+			breakthrough = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		xor = { bandits_blazing_barrier_tech }
+
+		path = {
+			leads_to_tech = bandits_pillager_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = bandits_blazing_barrier_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = bandits_blazing_barrier_tech
+			}
+		}
+	}
+
+	bandits_pillager_equipment_tech_3 = {
+
+		enable_equipments = {
+			bandits_pillager_equipment_3
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 25 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_pillager_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	bandits_envoker_tech = {
+
+		enable_subunits = {
+			bandits_envoker
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_envoker_training_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 28 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_envoker_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_envoker_training_tech_1 = {
+
+		bandits_envoker = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.025
+			soft_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_envoker_training_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 28 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_envoker_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_envoker_training_tech_2 = {
+
+		bandits_envoker = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		dependencies = { bandits_bandit_holdout_tech = 1 }
+
+		path = {
+			leads_to_tech = bandits_envoker_training_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 28 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_envoker_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_envoker_training_tech_3 = {
+
+		bandits_envoker = {
+			casualty_trickleback = 0.05
+			experience_loss_factor = -0.025
+			hard_attack = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_bandits = yes
+		}
+
+		path = {
+			leads_to_tech = bandits_envoker_training_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 28 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_envoker_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	bandits_envoker_training_tech_4 = {
+
+		bandits_envoker = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { bandits_bandit_fortress_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = bandits_infantry_folder
+			position = { x = 28 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			bandits_envoker_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

@@ -1,0 +1,1316 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	night_elf_druid_wild_grove_tech = {
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_treant_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = night_elf_druid_mountain_giant_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = night_elf_druid_balance_druid_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	night_elf_druid_treant_tech = {
+
+		enable_subunits = {
+			night_elf_druid_treant
+		}
+
+		on_research_complete = {
+			set_technology = { night_elf_druid_treant_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_treant_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 3 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	night_elf_druid_treant_equipment_tech_1 = {
+
+		enable_equipments = {
+			night_elf_druid_treant_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = druid_treant_thorned_bark
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = druid_treant_deeproot_strength
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 3 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	druid_treant_thorned_bark = {
+
+		night_elf_druid_treant = {
+			defense = 0.2
+			breakthrough = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_treant_deeproot_strength }
+
+		path = {
+			leads_to_tech = night_elf_druid_treant_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_treant_deeproot_strength
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_treant_deeproot_strength
+			}
+		}
+	}
+
+	druid_treant_deeproot_strength = {
+
+		night_elf_druid_treant = {
+			max_strength = 0.5
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_treant_thorned_bark }
+
+		path = {
+			leads_to_tech = night_elf_druid_treant_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_treant_thorned_bark
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_treant_thorned_bark
+			}
+		}
+	}
+
+	night_elf_druid_treant_equipment_tech_2 = {
+
+		enable_equipments = {
+			night_elf_druid_treant_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		dependencies = { night_elf_druid_tree_of_ages_tech = 1	}
+
+		path = {
+			leads_to_tech = druid_treant_emerald_vigor
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = druid_treant_ripper_brambles
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 3 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	druid_treant_emerald_vigor = {
+
+		night_elf_druid_treant = {
+			casualty_trickleback = 0.01
+			defense = 0.2
+			armor_value = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_treant_ripper_brambles }
+
+		path = {
+			leads_to_tech = night_elf_druid_treant_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_treant_ripper_brambles
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_treant_ripper_brambles
+			}
+		}
+	}
+
+	druid_treant_ripper_brambles = {
+
+		night_elf_druid_treant = {
+			soft_attack = 0.1
+			hard_attack = 0.2
+			ap_attack = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_treant_emerald_vigor }
+
+		path = {
+			leads_to_tech = night_elf_druid_treant_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_treant_emerald_vigor
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_treant_emerald_vigor
+			}
+		}
+	}
+
+	night_elf_druid_treant_equipment_tech_3 = {
+
+		enable_equipments = {
+			night_elf_druid_treant_equipment_3
+		}
+
+		dependencies = { night_elf_druid_tree_of_eternity_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 3 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_treant_technology
+			melee_infantry_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	night_elf_druid_mountain_giant_tech = {
+
+		enable_subunits = {
+			night_elf_druid_mountain_giant
+		}
+
+		on_research_complete = {
+			set_technology = { night_elf_druid_mountain_giant_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_mountain_giant_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 7 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	night_elf_druid_mountain_giant_equipment_tech_1 = {
+
+		enable_equipments = {
+			night_elf_druid_mountain_giant_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = druid_mountain_giant_boulder_grasp
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = druid_mountain_giant_ancients_bond
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 7 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	druid_mountain_giant_boulder_grasp = {
+
+		night_elf_druid_mountain_giant = {
+			soft_attack = 0.15
+			hard_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_mountain_giant_ancients_bond }
+
+		path = {
+			leads_to_tech = night_elf_druid_mountain_giant_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_mountain_giant_ancients_bond
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_mountain_giant_ancients_bond
+			}
+		}
+	}
+
+	druid_mountain_giant_ancients_bond = {
+
+		night_elf_druid_mountain_giant = {
+			max_organisation = 8
+			default_morale = 0.2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_mountain_giant_boulder_grasp }
+
+		path = {
+			leads_to_tech = night_elf_druid_mountain_giant_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_mountain_giant_boulder_grasp
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_mountain_giant_boulder_grasp
+			}
+		}
+	}
+
+	night_elf_druid_mountain_giant_equipment_tech_2 = {
+
+		enable_equipments = {
+			night_elf_druid_mountain_giant_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		dependencies = { night_elf_druid_tree_of_ages_tech = 1	}
+
+		path = {
+			leads_to_tech = druid_mountain_giant_tree_weaponry
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = druid_mountain_giant_crystalline_hide
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 7 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	druid_mountain_giant_tree_weaponry = {
+
+		night_elf_druid_mountain_giant = {
+			hard_attack = 0.25
+			ap_attack = 0.35
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_mountain_giant_crystalline_hide }
+
+		path = {
+			leads_to_tech = night_elf_druid_mountain_giant_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_mountain_giant_crystalline_hide
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_mountain_giant_crystalline_hide
+			}
+		}
+	}
+
+	druid_mountain_giant_crystalline_hide = {
+
+		night_elf_druid_mountain_giant = {
+			defense = 0.15
+			armor_value = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_mountain_giant_tree_weaponry }
+
+		path = {
+			leads_to_tech = night_elf_druid_mountain_giant_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_mountain_giant_tree_weaponry
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_mountain_giant_tree_weaponry
+			}
+		}
+	}
+
+	night_elf_druid_mountain_giant_equipment_tech_3 = {
+
+		enable_equipments = {
+			night_elf_druid_mountain_giant_equipment_3
+		}
+
+		dependencies = { night_elf_druid_tree_of_eternity_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 7 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_mountain_giant_technology
+			monster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	night_elf_druid_balance_druid_tech = {
+
+		enable_subunits = {
+			night_elf_druid_balance_druid
+		}
+
+		on_research_complete = {
+			set_technology = { night_elf_druid_balance_druid_equipment_tech_1 = 1 }
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_balance_druid_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = night_elf_druid_druid_of_the_talon_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = night_elf_druid_restoration_druid_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 13 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	night_elf_druid_balance_druid_equipment_tech_1 = {
+
+		enable_equipments = {
+			night_elf_druid_balance_druid_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = druid_balance_druid_starlight_wrath
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = druid_balance_druid_moonfury
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 13 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	druid_balance_druid_starlight_wrath = {
+
+		night_elf_druid_balance_druid = {
+			soft_attack = 0.15
+			air_attack = 0.35
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_balance_druid_moonfury }
+
+		path = {
+			leads_to_tech = night_elf_druid_balance_druid_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_balance_druid_moonfury
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_balance_druid_moonfury
+			}
+		}
+	}
+
+	druid_balance_druid_moonfury = {
+
+		night_elf_druid_balance_druid = {
+			hard_attack = 0.15
+			ap_attack = 0.35
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_balance_druid_starlight_wrath }
+
+		path = {
+			leads_to_tech = night_elf_druid_balance_druid_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_balance_druid_starlight_wrath
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_balance_druid_starlight_wrath
+			}
+		}
+	}
+
+	night_elf_druid_balance_druid_equipment_tech_2 = {
+
+		enable_equipments = {
+			night_elf_druid_balance_druid_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		dependencies = { night_elf_druid_tree_of_ages_tech = 1	}
+
+		path = {
+			leads_to_tech = druid_balance_druid_dreamstate
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = druid_balance_druid_wrath_of_cenarius
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 13 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	druid_balance_druid_dreamstate = {
+
+		night_elf_druid_balance_druid = {
+			max_organisation = 5
+			default_morale = 0.4
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_balance_druid_wrath_of_cenarius }
+
+		path = {
+			leads_to_tech = night_elf_druid_balance_druid_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_balance_druid_wrath_of_cenarius
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_balance_druid_wrath_of_cenarius
+			}
+		}
+	}
+
+	druid_balance_druid_wrath_of_cenarius = {
+
+		night_elf_druid_balance_druid = {
+			hard_attack = 0.25
+			soft_attack = 0.25
+			ap_attack = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		xor = { druid_balance_druid_dreamstate }
+
+		path = {
+			leads_to_tech = night_elf_druid_balance_druid_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = druid_balance_druid_dreamstate
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = druid_balance_druid_dreamstate
+			}
+		}
+	}
+
+	night_elf_druid_balance_druid_equipment_tech_3 = {
+
+		enable_equipments = {
+			night_elf_druid_balance_druid_equipment_3
+		}
+
+		dependencies = { night_elf_druid_tree_of_eternity_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 13 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_balance_druid_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	night_elf_druid_druid_of_the_talon_tech = {
+
+		enable_subunits = {
+			night_elf_druid_druid_of_the_talon
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_druid_of_the_talon_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 10 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_of_the_talon_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_druid_of_the_talon_training_1_tech = {
+
+		night_elf_druid_druid_of_the_talon = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_druid_of_the_talon_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_of_the_talon_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_druid_of_the_talon_training_2_tech = {
+
+		night_elf_druid_druid_of_the_talon = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		dependencies = { night_elf_druid_tree_of_ages_tech = 1	}
+
+		path = {
+			leads_to_tech = night_elf_druid_druid_of_the_talon_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_of_the_talon_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_druid_of_the_talon_training_3_tech = {
+
+		night_elf_druid_druid_of_the_talon = {
+			recon = 1.5
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_druid_of_the_talon_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_of_the_talon_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_druid_of_the_talon_training_4_tech = {
+
+		night_elf_druid_druid_of_the_talon = {
+			recon = 1.5
+		}
+
+		dependencies = { night_elf_druid_tree_of_eternity_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 10 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			night_elf_druid_of_the_talon_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_restoration_druid_tech = {
+
+		enable_subunits = {
+			night_elf_druid_restoration_druid
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_restoration_druid_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 16 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			restoration_druid_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_restoration_druid_training_1_tech = {
+
+		night_elf_druid_restoration_druid = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_restoration_druid_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			restoration_druid_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_restoration_druid_training_2_tech = {
+
+		night_elf_druid_restoration_druid = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		dependencies = { night_elf_druid_tree_of_ages_tech = 1	}
+
+		path = {
+			leads_to_tech = night_elf_druid_restoration_druid_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			restoration_druid_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_restoration_druid_training_3_tech = {
+
+		night_elf_druid_restoration_druid = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_night_elf_druid = yes
+		}
+
+		path = {
+			leads_to_tech = night_elf_druid_restoration_druid_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			restoration_druid_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	night_elf_druid_restoration_druid_training_4_tech = {
+
+		night_elf_druid_restoration_druid = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { night_elf_druid_tree_of_eternity_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = night_elf_druid_infantry_folder
+			position = { x = 16 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			restoration_druid_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

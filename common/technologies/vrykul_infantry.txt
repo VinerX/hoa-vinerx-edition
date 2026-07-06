@@ -1,0 +1,2088 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	vrykul_war_hall_tech = {
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_marauder_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpooner_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_hunter_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 11 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	vrykul_marauder_tech = {
+
+		enable_subunits = {
+			vrykul_marauder
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_marauder_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_marauder_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_ironhelm_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_overseer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 5 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_marauder_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_marauder_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_marauder_battle_rage_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_marauder_crippling_slash_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 5 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_marauder_battle_rage_tech = {
+
+		vrykul_marauder = {
+			soft_attack = 0.1
+			max_strength = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_marauder_crippling_slash_tech }
+
+		path = {
+			leads_to_tech = vrykul_marauder_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 4 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_marauder_crippling_slash_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_marauder_crippling_slash_tech
+			}
+		}
+	}
+
+	vrykul_marauder_crippling_slash_tech = {
+
+		vrykul_marauder = {
+			soft_attack = 0.05
+			hard_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_marauder_battle_rage_tech }
+
+		path = {
+			leads_to_tech = vrykul_marauder_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 6 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_marauder_battle_rage_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_marauder_battle_rage_tech
+			}
+		}
+	}
+
+	vrykul_marauder_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_marauder_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_marauder_bloodthirsty_rend_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_marauder_spiked_shield_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 5 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_marauder_bloodthirsty_rend_tech = {
+
+		vrykul_marauder = {
+			casualty_trickleback = 0.02
+			defense = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_marauder_spiked_shield_tech }
+
+		path = {
+			leads_to_tech = vrykul_marauder_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 4 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_marauder_spiked_shield_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_marauder_spiked_shield_tech
+			}
+		}
+	}
+
+	vrykul_marauder_spiked_shield_tech = {
+
+		vrykul_marauder = {
+			maximum_speed = 0.1
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_marauder_bloodthirsty_rend_tech }
+
+		path = {
+			leads_to_tech = vrykul_marauder_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 6 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_marauder_spiked_shield_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_marauder_spiked_shield_tech
+			}
+		}
+	}
+
+	vrykul_marauder_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_marauder_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 5 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_marauder_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_ironhelm_tech = {
+
+		enable_subunits = {
+			vrykul_ironhelm
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_ironhelm_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 2 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_ironhelm_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_ironhelm_training_1_tech = {
+
+		vrykul_ironhelm = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_ironhelm_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 2 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_ironhelm_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_ironhelm_training_2_tech = {
+
+		vrykul_ironhelm = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_ironhelm_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 2 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_ironhelm_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_ironhelm_training_3_tech = {
+
+		vrykul_ironhelm = {
+			initiative = 0.09
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_ironhelm_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 2 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_ironhelm_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_ironhelm_training_4_tech = {
+
+		vrykul_ironhelm = {
+			initiative = 0.09
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 2 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_ironhelm_technology
+			support_technology
+			captain_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_overseer_tech = {
+
+		enable_subunits = {
+			vrykul_overseer
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_overseer_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 8 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_overseer_training_1_tech = {
+
+		vrykul_overseer = {
+			suppression_factor = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_overseer_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 8 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_overseer_training_2_tech = {
+
+		vrykul_overseer = {
+			suppression_factor = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_overseer_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_overseer_training_3_tech = {
+
+		vrykul_overseer = {
+			suppression_factor = 0.10
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_overseer_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 8 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_overseer_training_4_tech = {
+
+		vrykul_overseer = {
+			suppression_factor = 0.10
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 8 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_overseer_technology
+			support_technology
+			guard_technology
+		}
+
+				ai_will_do = { factor = 1 }
+	}
+
+	vrykul_harpooner_tech = {
+
+		enable_subunits = {
+			vrykul_harpooner
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_harpooner_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harpooner_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 11 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_harpooner_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_harpooner_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_harpooner_harpoon_throw_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpooner_slice_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 11 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_harpooner_harpoon_throw_tech = {
+
+		vrykul_harpooner = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpooner_slice_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpooner_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 10 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpooner_slice_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpooner_slice_tech
+			}
+		}
+	}
+
+	vrykul_harpooner_slice_tech = {
+
+		vrykul_harpooner = {
+			defense = 0.05
+			armor_value = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpooner_harpoon_throw_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpooner_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpooner_harpoon_throw_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpooner_harpoon_throw_tech
+			}
+		}
+	}
+
+	vrykul_harpooner_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_harpooner_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_harpooner_spear_leap_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_harpooner_rope_attachment_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 11 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_harpooner_spear_leap_tech = {
+
+		vrykul_harpooner = {
+			entrenchment = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpooner_rope_attachment_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpooner_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 10 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpooner_rope_attachment_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpooner_rope_attachment_tech
+			}
+		}
+	}
+
+	vrykul_harpooner_rope_attachment_tech = {
+
+		vrykul_harpooner = {
+			soft_attack = 0.05
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_harpooner_spear_leap_tech }
+
+		path = {
+			leads_to_tech = vrykul_harpooner_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_harpooner_spear_leap_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_harpooner_spear_leap_tech
+			}
+		}
+	}
+
+	vrykul_harpooner_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_harpooner_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 11 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_harpooner_technology
+			archer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_hunter_tech = {
+
+		enable_subunits = {
+			vrykul_hunter
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_hunter_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_hunter_equipment_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_falconer_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_hunter_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_hunter_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_hunter_one_with_the_wilds_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_hunter_hunting_tactics_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 15 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_hunter_one_with_the_wilds_tech = {
+
+		vrykul_hunter = {
+			soft_attack = 0.15
+		}
+		falconers = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_hunter_hunting_tactics_tech }
+
+		path = {
+			leads_to_tech = vrykul_hunter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 14 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_hunter_hunting_tactics_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_hunter_hunting_tactics_tech
+			}
+		}
+	}
+
+	vrykul_hunter_hunting_tactics_tech = {
+
+		vrykul_hunter = {
+			initiative = 0.05
+			max_organisation = 3
+		}
+		falconers = {
+			initiative = 0.05
+			max_organisation = 3
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_hunter_one_with_the_wilds_tech }
+
+		path = {
+			leads_to_tech = vrykul_hunter_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 16 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_hunter_one_with_the_wilds_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_hunter_one_with_the_wilds_tech
+			}
+		}
+	}
+
+	vrykul_hunter_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_hunter_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_hunter_beast_tracking_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_hunter_net_throw_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 15 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_hunter_beast_tracking_tech = {
+
+		vrykul_hunter = {
+			defense = 0.2
+			max_strength = 0.3
+		}
+		falconers = {
+			defense = 0.2
+			max_strength = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_hunter_net_throw_tech }
+
+		path = {
+			leads_to_tech = vrykul_hunter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 14 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_hunter_net_throw_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_hunter_net_throw_tech
+			}
+		}
+	}
+
+	vrykul_hunter_net_throw_tech = {
+
+		vrykul_hunter = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.25
+		}
+		falconers = {
+			hard_attack = 0.1
+			soft_attack = 0.1
+			ap_attack = 0.25
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_hunter_beast_tracking_tech }
+
+		path = {
+			leads_to_tech = vrykul_hunter_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 16 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+			archer_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_hunter_beast_tracking_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_hunter_beast_tracking_tech
+			}
+		}
+	}
+
+	vrykul_hunter_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_hunter_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 15 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_hunter_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	vrykul_falconer_tech = {
+
+		enable_subunits = {
+			vrykul_falconer
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_falconer_training_1_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_falcon_breeding_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 18 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_falconer_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_falconer_training_1_tech = {
+
+		vrykul_falconer = {
+			recon = 1.5
+		}
+		falconers = {
+			recon = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_falconer_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 18 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_falconer_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_falconer_training_2_tech = {
+
+		vrykul_falconer = {
+			recon = 1.5
+		}
+		falconers = {
+			recon = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_falconer_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 18 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_falconer_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_falconer_training_3_tech = {
+
+		vrykul_falconer = {
+			recon = 1.5
+		}
+		falconers = {
+			recon = 0.3
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_falconer_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 18 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_falconer_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_falconer_training_4_tech = {
+
+		vrykul_falconer = {
+			recon = 1.5
+		}
+		falconers = {
+			recon = 0.3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 18 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_falconer_technology
+			support_technology
+			rogue_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_falcon_breeding_1 = {
+
+		land_night_attack = 0.1
+
+		falconers = {
+			soft_attack = 0.1
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_falcon_breeding_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 20 y = 4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			nights_watch_technology
+		}
+	}
+
+	vrykul_falcon_breeding_2 = {
+
+		land_night_attack = 0.1
+
+		falconers = {
+			soft_attack = 0.1
+			air_attack = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_falcon_breeding_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 20 y = 8 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			nights_watch_technology
+		}
+	}
+
+	vrykul_falcon_breeding_3 = {
+
+		land_night_attack = 0.1
+	
+		falconers = {
+			soft_attack = 0.1
+			air_attack = 0.1
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+		
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 20 y = 12 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+			barracks_technology
+			nights_watch_technology
+		}
+	}
+
+	vrykul_runecasters_hall_tech = {
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_runecaster_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_spiritualist_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 23 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			infantry_technology
+		}
+	}
+
+	vrykul_runecaster_tech = {
+
+		enable_subunits = {
+			vrykul_runecaster
+		}
+
+		on_research_complete = {
+			set_technology = { vrykul_runecaster_equipment_tech_1 = 1 }
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_runecaster_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 23 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_runecaster_equipment_tech_1 = {
+
+		enable_equipments = {
+			vrykul_runecaster_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_runecaster_lightning_bolt_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_runecaster_frost_shock_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 23 y = 4 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_runecaster_lightning_bolt_tech = {
+
+		vrykul_runecaster = {
+			default_morale = 0.5
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_runecaster_frost_shock_tech }
+
+		path = {
+			leads_to_tech = vrykul_runecaster_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 22 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_runecaster_frost_shock_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_runecaster_frost_shock_tech
+			}
+		}
+	}
+
+	vrykul_runecaster_frost_shock_tech = {
+
+		vrykul_runecaster = {
+			ap_attack = 0.05
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_runecaster_lightning_bolt_tech }
+
+		path = {
+			leads_to_tech = vrykul_runecaster_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 24 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_runecaster_lightning_bolt_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_runecaster_lightning_bolt_tech
+			}
+		}
+	}
+
+	vrykul_runecaster_equipment_tech_2 = {
+
+		enable_equipments = {
+			vrykul_runecaster_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_runecaster_runic_mending_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = vrykul_runecaster_rune_of_flame_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 23 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_runecaster_runic_mending_tech = {
+
+		vrykul_runecaster = {
+			max_strength = 0.05
+			experience_loss_factor = 0.03
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_runecaster_rune_of_flame_tech }
+
+		path = {
+			leads_to_tech = vrykul_runecaster_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 22 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_runecaster_rune_of_flame_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_runecaster_rune_of_flame_tech
+			}
+		}
+	}
+
+	vrykul_runecaster_rune_of_flame_tech = {
+
+		vrykul_runecaster = {
+			hard_attack = 0.1
+			breakthrough = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		xor = { vrykul_runecaster_runic_mending_tech }
+
+		path = {
+			leads_to_tech = vrykul_runecaster_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 24 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = vrykul_runecaster_runic_mending_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = vrykul_runecaster_runic_mending_tech
+			}
+		}
+	}
+
+	vrykul_runecaster_equipment_tech_3 = {
+
+		enable_equipments = {
+			vrykul_runecaster_equipment_3
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 23 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_runecaster_technology
+			spellcaster_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_spiritualist_tech = {
+
+		enable_subunits = {
+			vrykul_spiritualist
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_spiritualist_training_1_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 26 y = 2 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_spiritualist_technology
+			support_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_magic }
+	}
+
+	vrykul_spiritualist_training_1_tech = {
+
+		vrykul_spiritualist = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_spiritualist_training_2_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 26 y = 6 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_spiritualist_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_spiritualist_training_2_tech = {
+
+		vrykul_spiritualist = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		dependencies = { vrykul_long_house_tech = 1	}
+
+		path = {
+			leads_to_tech = vrykul_spiritualist_training_3_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 26 y = 8 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_spiritualist_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_spiritualist_training_3_tech = {
+
+		vrykul_spiritualist = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		on_research_complete = {
+			increase_tech_count_vrykul = yes
+		}
+
+		path = {
+			leads_to_tech = vrykul_spiritualist_training_4_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 26 y = 10 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_spiritualist_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	vrykul_spiritualist_training_4_tech = {
+
+		vrykul_spiritualist = {
+			casualty_trickleback = 0.075
+			experience_loss_factor = -0.075
+		}
+
+		dependencies = { vrykul_keep_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = vrykul_infantry_folder
+			position = { x = 26 y = 12 }
+		}
+
+		categories = {
+			infantry_technology
+			vrykul_spiritualist_technology
+			support_technology
+			healer_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+}

@@ -1,0 +1,1488 @@
+﻿###########################
+# Bleeding Hollow
+###########################
+
+add_namespace = bleeding_hollow
+
+# Warchief's Orders
+country_event = {
+	id = bleeding_hollow.1
+	title = bleeding_hollow.1.t
+	desc = bleeding_hollow.1.d
+	picture = GFX_blackhand_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+    option = {
+        name = bleeding_hollow.1.option.1
+
+		add_war_support = 0.05
+
+		hidden_effect = {
+			TSW = { country_event = { id = swampwalkers.1 }	}
+		}
+	}
+}
+
+country_event = { #missing peons
+	id = bleeding_hollow.2
+	title = bleeding_hollow.2.t
+	desc = bleeding_hollow.2.d
+	picture = GFX_bog_beast_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+    option = {
+        name = bleeding_hollow.2.option.1
+
+	}
+
+}
+
+country_event = {
+	id = bleeding_hollow.3
+	title = bleeding_hollow.3.t
+	desc = bleeding_hollow.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = { # Yes
+		name = bleeding_hollow.3.option.1
+		add_political_power = 50
+		SRC = {	country_event = generic_event.1 }
+		323 = { 
+			transfer_state_to = SRC 
+			add_core_of = SRC
+		}
+		1576 = { 
+			transfer_state_to = SRC
+			add_core_of = SRC 
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = { # No
+		name = bleeding_hollow.3.option.2
+		SRC = { country_event = generic_event.2}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+# Blackrock request control over Westfall (from BRC_ask_for_westfall_decision)
+country_event = {
+	id = bleeding_hollow.4
+	title = bleeding_hollow.4.t
+	desc = bleeding_hollow.4.d
+	picture = GFX_moonbrook_event
+
+	is_triggered_only = yes
+
+    option = { # Yes
+        name = bleeding_hollow.4.option.1
+		add_political_power = 150
+		BRC = {
+			annex_westfall = yes
+			country_event = generic_event.1 # Generic accept event
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	option = { # No
+        name = bleeding_hollow.4.option.2
+		BRC = {
+			country_event = generic_event.2 # Generic refuse event
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+# Medivh Death, Guldan Coma, Etc Take South Deadwind Pass
+country_event = {
+	id = bleeding_hollow.5
+	title = bleeding_hollow.5.t
+	desc = bleeding_hollow.5.d
+	picture = GFX_karazhan_event
+	is_triggered_only = yes
+	fire_only_once = yes
+    option = { # Yes
+        name = bleeding_hollow.5.option.1
+
+		BHC = { puppet = DWC }
+
+		DWC = {
+			set_capital = { state = 25 }
+			set_country_flag = ogre_technology
+			298 = {
+				add_core_of = DWC
+				transfer_state_to = DWC
+			}
+			2153 = {
+				add_core_of = DWC
+				transfer_state_to = DWC
+			}
+			25 = {
+				add_core_of = DWC
+				transfer_state_to = DWC
+				remove_building = {
+					type = nuclear_facility
+					level = 1
+					province = 2910
+				}
+				remove_building = {
+					type = arcane_tower
+					level = 2
+				}
+				remove_building = {
+					type = church
+					level = 1
+				}
+				remove_building = {
+					type = radar_station
+					level = 1
+				}
+			}
+
+			hidden_effect = {
+				769 = {
+					add_core_of = DWC
+					transfer_state_to = DWC
+				}
+				297 = {
+					add_core_of = DWC
+					transfer_state_to = DWC
+				}
+			}
+		}
+	}
+}
+
+# Puppet Laughing Skull Clone
+country_event = {
+	id = bleeding_hollow.6
+	title = bleeding_hollow.6.t
+	desc = bleeding_hollow.6.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = { # Yes
+        name = bleeding_hollow.6.option.1
+		BHC = {	puppet = PREV }
+		44 = { add_core_of = PREV }
+		add_popularity = {
+			ideology = death
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = titans
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = old_gods
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = neutral
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = alliance
+			popularity = -0.2
+		}
+		IF = {
+			limit = { overlord = { has_idea = primary_religion_demonology } }
+			add_ideas = primary_religion_demonology
+		}
+		IF = {
+			limit = { overlord = { has_idea = primary_religion_necrolytes } }
+			add_ideas = primary_religion_necrolytes
+		}
+		IF = {
+			limit = { overlord = { has_idea = primary_religion_shamanism } }
+			add_ideas = primary_religion_shamanism
+		}
+		load_oob = BHC_LSC_puppet
+	}
+}
+
+# Deadwind Clan Occupation
+country_event = {
+	id= bleeding_hollow.7
+	title = bleeding_hollow.7.t
+	desc = bleeding_hollow.7.d
+	picture = GFX_karazhan_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = {
+        name = bleeding_hollow.7.option.1
+		add_political_power = 50
+		DWC = {
+			42 = { transfer_state_to = DWC }
+			296 = {	transfer_state_to = DWC	}
+			hidden_effect = {
+				789 = {	transfer_state_to = DWC	}
+			}
+		}
+		ai_chance = {
+			factor = 90
+		}
+	}
+
+	option = {
+        name = bleeding_hollow.7.option.2
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+# Western Duskwood
+country_event = {
+	id= bleeding_hollow.8
+	title = bleeding_hollow.8.t
+	desc = bleeding_hollow.8.d
+	picture = GFX_vulgol_ogre_mound_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = {
+        name = bleeding_hollow.8.option.1
+		add_political_power = 50
+		BHC = { puppet = SFC }
+		SFC = {
+			set_country_flag = ogre_technology
+			303 = {
+				add_core_of = SFC
+				transfer_state_to = SFC
+			}
+			304 = {
+				add_core_of = SFC
+				transfer_state_to = SFC
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+
+	option = {
+        name = bleeding_hollow.8.option.2
+		BHC = {
+			puppet = SFC
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_5 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_5
+					add_idea = BHC_wartime_garrisons_4
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_4 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_4
+					add_idea = BHC_wartime_garrisons_3
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_3 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_3
+					add_idea = BHC_wartime_garrisons_2
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_2 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_2
+					add_idea = BHC_wartime_garrisons_1
+				}
+			}
+			IF = {
+				limit = {has_idea = BHC_wartime_garrisons_1 }
+				remove_ideas = BHC_wartime_garrisons_1
+			}
+		}
+		SFC = {
+			set_country_flag = ogre_technology
+			303 = {
+				add_core_of = SFC
+				transfer_state_to = SFC
+			}
+			304 = {
+				add_core_of = SFC
+				transfer_state_to = SFC
+			}
+			301 = { transfer_state_to = SFC }
+			302 = {	transfer_state_to = SFC	}
+			1599 = { transfer_state_to = SFC }
+			1600 = { transfer_state_to = SFC }
+			2152 = { transfer_state_to = SFC }
+			hidden_effect = {
+				782 = {	
+					transfer_state_to = SFC	
+					add_core_of = SFC
+				}
+			}
+		}
+		ai_chance = {
+			factor = 90
+		}
+	}
+
+	option = {
+        name = bleeding_hollow.8.option.3
+		BHC = {
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_4 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_4
+					add_idea = BHC_wartime_garrisons_5
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_3 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_3
+					add_idea = BHC_wartime_garrisons_4
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_2 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_2
+					add_idea = BHC_wartime_garrisons_3
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_1 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_1
+					add_idea = BHC_wartime_garrisons_2
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+# Eastern Duskwood
+country_event = {
+	id= bleeding_hollow.9
+	title = bleeding_hollow.9.t
+	desc = bleeding_hollow.9.d
+	picture = GFX_darkshire_event
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+        name = bleeding_hollow.9.option.1
+		BHC = {
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_5 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_5
+					add_idea = BHC_wartime_garrisons_4
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_4 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_4
+					add_idea = BHC_wartime_garrisons_3
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_3 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_3
+					add_idea = BHC_wartime_garrisons_2
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_2 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_2
+					add_idea = BHC_wartime_garrisons_1
+				}
+			}
+			IF = {
+				limit = {has_idea = BHC_wartime_garrisons_1 }
+				remove_ideas = BHC_wartime_garrisons_1
+			}
+		}
+		IF = {
+			limit = {
+				has_completed_focus = BHC_ask_for_guldans_help
+				has_country_flag = BHC_ask_for_guldans_help
+			}
+			40 = { transfer_state_to = THC }
+			305 = {	transfer_state_to = THC	}
+			306 = {	transfer_state_to = THC	}
+			307 = {	transfer_state_to = THC	}
+			308 = {	transfer_state_to = THC	}
+			309 = { transfer_state_to = THC }
+			310 = { transfer_state_to = THC }
+			1598 = { transfer_state_to = THC }
+			1601 = { transfer_state_to = THC }
+			1602 = { transfer_state_to = THC }
+			1603 = { transfer_state_to = THC }
+			2151 = { transfer_state_to = THC }
+
+			hidden_effect = {
+				366 = { transfer_state_to = THC	}
+			}
+		}
+
+		IF = {
+			limit = {
+				OR = {
+					has_completed_focus = BHC_stand_with_the_warchief
+					has_country_flag = BHC_stand_with_the_warchief
+				}
+			}
+			40 = { transfer_state_to = DMC }
+			305 = {	transfer_state_to = DMC	}
+			306 = {	transfer_state_to = DMC	}
+			307 = {	transfer_state_to = DMC	}
+			308 = {	transfer_state_to = DMC	}
+			309 = { transfer_state_to = DMC }
+			310 = {	transfer_state_to = DMC	}
+			1598 = { transfer_state_to = DMC }
+			1601 = { transfer_state_to = DMC }
+			1602 = { transfer_state_to = DMC }
+			1603 = { transfer_state_to = DMC }
+			2151 = { transfer_state_to = DMC }
+
+			hidden_effect = {
+				366 = { transfer_state_to = DMC	}
+			}
+		}
+
+		ai_chance = {
+			factor = 10
+		}
+	}
+
+	option = {
+        name = bleeding_hollow.9.option.2
+		BHC = {
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_4 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_4
+					add_idea = BHC_wartime_garrisons_5
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_3 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_3
+					add_idea = BHC_wartime_garrisons_4
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_2 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_2
+					add_idea = BHC_wartime_garrisons_3
+				}
+			}
+			IF = {
+				limit = { has_idea = BHC_wartime_garrisons_1 }
+				swap_ideas = {
+					remove_idea = BHC_wartime_garrisons_1
+					add_idea = BHC_wartime_garrisons_2
+				}
+			}
+		}
+		ai_chance = {
+			factor = 90
+		}
+	}
+}
+
+# Deadwind Clan Occupation
+country_event = {
+	id= bleeding_hollow.10
+	title = bleeding_hollow.10.t
+	desc = bleeding_hollow.10.d
+	picture = GFX_karazhan_event
+	is_triggered_only = yes
+
+    option = {
+        name = bleeding_hollow.10.option.1
+		296 = {
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+		42 = {
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+		298 = {
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+		2153 = {
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+		25 = {
+			set_state_race_to_primary_race = yes
+			set_state_religion_to_primary_religion = yes
+		}
+	}
+}
+
+# Take Over the Loch
+country_event = {
+	id= bleeding_hollow.11
+	title = bleeding_hollow.11.t
+	desc = bleeding_hollow.11.d
+	picture = GFX_loch_modan_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = {
+        name = bleeding_hollow.11.option.1
+		if = {
+			limit = {
+				405 = {	is_capital = yes }
+			}
+			set_capital = {state = 464}
+			464 = {
+				add_core_of = BHC
+				hidden_effect = {
+				 set_state_race_to_primary_race = yes
+				 set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+		BHC = {
+			461 = { transfer_state_to = BHC }
+			462 = { transfer_state_to = BHC }
+			464 = { transfer_state_to = BHC }
+			465 = { transfer_state_to = BHC }
+			466 = { transfer_state_to = BHC }
+			467 = { transfer_state_to = BHC }
+			468 = { transfer_state_to = BHC }
+			469 = { transfer_state_to = BHC }
+			470 = { transfer_state_to = BHC }
+			471 = { transfer_state_to = BHC }
+			472 = { transfer_state_to = BHC }
+			473 = { transfer_state_to = BHC }
+			474 = { transfer_state_to = BHC }
+			679 = { transfer_state_to = BHC }
+			1574 = { transfer_state_to = BHC }
+			2184 = { transfer_state_to = BHC }
+			2185 = { transfer_state_to = BHC }
+			2186 = { transfer_state_to = BHC }
+			2187 = { transfer_state_to = BHC }
+		}
+		hidden_effect = {
+			678 = { transfer_state_to = BHC }
+			454 = {	transfer_state_to = BHC	}
+		}
+		if = {
+			limit = { 2177 = { is_controlled_by = BBC } }
+			529 = { transfer_state_to = BBC }
+		}
+		if = {
+			limit = { 2177 = { is_controlled_by = BRC } }
+			529 = { transfer_state_to = BRC }
+		}
+	}
+}
+
+# Makers Terrance Question
+country_event = {
+	id= bleeding_hollow.12
+	title = bleeding_hollow.12.t
+	desc = bleeding_hollow.12.d
+	picture = GFX_badlands_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = {
+        name = bleeding_hollow.12.option.1
+		BHC = {
+			529 = {	transfer_state_to = BHC	}
+		}
+	}
+	###Give BBC another Option to refuse and give BHC a Wargoal
+}
+
+# Autopeace on Fail Ironforge
+country_event = {
+	id= bleeding_hollow.13
+	title = bleeding_hollow.13.t
+	desc = bleeding_hollow.13.d
+	picture = GFX_ironforge_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = {
+        name = bleeding_hollow.13.option.1
+		add_war_support = -0.05
+		hidden_effect = {
+			IRO = {
+				white_peace = BRC
+				white_peace = BHC
+				white_peace = SRC
+				white_peace = TSC
+				white_peace = BBC
+				white_peace = DMC
+				white_peace = FWC
+				white_peace = BTG
+			}
+			if = {
+				limit = {
+					OR = {
+						BHC = {	is_in_faction_with = FRT }
+						BRC = {	is_in_faction_with = FRT }
+					}
+				}
+				white_peace = FRT
+			}
+		}
+		
+		441 = {	transfer_state_to = BHC }
+		445 = {	transfer_state_to = BHC }
+		446 = {	transfer_state_to = BHC }
+		452 = {	transfer_state_to = BHC }
+		455 = {	transfer_state_to = BHC }
+		456 = {	transfer_state_to = BHC }
+		457 = {	transfer_state_to = BHC }
+		458 = {	transfer_state_to = BHC }
+		459 = {	transfer_state_to = BHC }
+		2188 = { transfer_state_to = BHC }
+		2189 = { transfer_state_to = BHC }
+		2190 = { transfer_state_to = BHC }
+		2191 = { transfer_state_to = BHC }
+
+		hidden_effect = {
+			568 = {	transfer_state_to = BHC }
+			23 = {	transfer_state_to = BHC }
+		}
+
+		if = {
+			limit = {
+				BHC = {	is_in_faction_with = FRT }
+			}
+			440 = { transfer_state_to = FRT }
+			443 = { transfer_state_to = FRT }
+			444 = { transfer_state_to = FRT }
+			447 = { transfer_state_to = FRT }
+			448 = { transfer_state_to = FRT }
+			2192 = { transfer_state_to = FRT }
+			2193 = { transfer_state_to = FRT }
+		}
+
+		if = {
+			limit = {
+				NOT = { BHC = {	is_in_faction_with = FRT } }
+			}
+			440 = { transfer_state_to = BHC }
+			443 = { transfer_state_to = BHC }
+			444 = { transfer_state_to = BHC }
+			447 = { transfer_state_to = BHC }
+			448 = { transfer_state_to = BHC }
+			2192 = { transfer_state_to = BHC }
+			2193 = { transfer_state_to = BHC }
+		}
+
+		every_country = {
+			limit = {
+				has_idea = BHC_besiege_ironforge
+			}
+			remove_ideas = BHC_besiege_ironforge
+		}
+
+	}
+}
+
+# Autopeace on Fail
+country_event = {
+	id= bleeding_hollow.14
+	title = bleeding_hollow.14.t
+	desc = bleeding_hollow.14.d
+	picture = GFX_gnomeregan_event
+	is_triggered_only = yes
+	fire_only_once = no
+    option = {
+        name = bleeding_hollow.14.option.1
+		add_war_support = -0.05
+		hidden_effect = {
+			GNO = {
+				white_peace = BRC
+				white_peace = BHC
+				white_peace = SRC
+				white_peace = TSC
+				white_peace = BBC
+				white_peace = DMC
+				white_peace = FWC
+				white_peace = BTG
+			}
+			if = {
+				limit = {
+					OR = {
+						BHC = {	is_in_faction_with = FRT }
+						BRC = {	is_in_faction_with = FRT }
+					}
+				}
+				white_peace = FRT
+			}
+		}
+
+		if = {
+			limit = {
+				BHC = {	is_in_faction_with = FRT }
+			}
+			437 = { transfer_state_to = BHC }
+			438 = { transfer_state_to = BHC }
+		}
+
+		if = {
+			limit = {
+				NOT = { BHC = {	is_in_faction_with = FRT } }
+			}
+			437 = { transfer_state_to = BHC }
+			438 = { transfer_state_to = BHC }
+		}
+
+		every_country = {
+			limit = {
+				has_idea = BHC_besiege_gnomeregan
+			}
+			remove_ideas = BHC_besiege_gnomeregan
+		}
+
+	}
+}
+
+# unused event ID
+country_event = {
+	id= bleeding_hollow.15
+	title = bleeding_hollow.15.t
+	desc = bleeding_hollow.15.d
+	picture = GFX_report_event_german_parade_paris
+	is_triggered_only = yes
+	fire_only_once = no
+
+	option = {
+        name = bleeding_hollow.15.option.1
+
+	}
+}
+
+# The Horrors Below
+country_event = {
+	id= bleeding_hollow.16
+	title = bleeding_hollow.16.t
+	desc = bleeding_hollow.16.d
+	picture = GFX_bog_beast_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = bleeding_hollow.16.option.1
+
+		declare_war_on = {
+			target = TSW
+			type = take_state_focus
+			generator = { 408 407 }
+		}
+
+		add_ideas = BHC_clearout_the_swamps
+	}
+}
+
+# Clan Learning
+country_event = {
+	id= bleeding_hollow.17
+	title = bleeding_hollow.17.t
+	desc = bleeding_hollow.17.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		trigger = { is_in_faction_with = THC }
+        name = bleeding_hollow.17.option.1
+
+		add_popularity = {
+			ideology = old_gods
+			popularity = 0.05
+		}
+		add_tech_bonus = {
+			name = spellcaster_technology
+			bonus = 0.5
+			uses = 1
+			category = spellcaster_technology
+		}
+		add_breakthrough_progress = {
+			specialization = specialization_magic
+			value = 0.25
+		}
+	}
+
+	option = {
+		trigger = { is_in_faction_with = DMC }
+        name = bleeding_hollow.17.option.2
+
+		add_doctrine_cost_reduction = {
+			name = air_doc_bonus
+			cost_reduction = 0.25
+			uses = 1
+			category = air_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = air }
+			}
+			add_daily_mastery = {
+				name = doctrine_fighter
+				amount = 0.5
+				days = 50
+				track = fighter_aircraft
+			}
+		}
+		else = { air_experience = 15 }
+		add_breakthrough_progress = {
+			specialization = specialization_air
+			value = 0.25
+		}
+	}
+
+	option = {
+		trigger = { is_in_faction_with = BRC }
+        name = bleeding_hollow.17.option.3
+
+		add_popularity = {
+			ideology = horde
+			popularity = 0.05
+		}
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.50
+			uses = 1
+			category = land_doctrine
+		}
+		if = {
+			limit = {
+				ROOT = { has_any_grand_doctrine = land }
+			}
+			add_daily_mastery = {
+				name = doctrine_infantry
+				amount = 0.5
+				days = 50
+				track = infantry
+			}
+		}
+		else = { army_experience = 15 }
+		add_breakthrough_progress = {
+			specialization = specialization_land
+			value = 0.50
+		}
+	}
+
+	option = {
+		trigger = { is_in_faction_with = TSC }
+        name = bleeding_hollow.17.option.4
+
+		add_popularity = {
+			ideology = fel
+			popularity = 0.05
+		}
+		add_tech_bonus = {
+			name = warlock_technology
+			bonus = 0.75
+			uses = 1
+			category = warlock_technology
+		}
+		add_breakthrough_progress = {
+			specialization = specialization_magic
+			value = 0.25
+		}
+	}
+}
+
+# Shattered Hand Demands
+country_event = {
+	id= bleeding_hollow.18
+	title = bleeding_hollow.18.t
+	desc = bleeding_hollow.18.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Submit
+        name = bleeding_hollow.18.option.1
+
+		GUR = {
+			if = {
+				limit = { has_dlc = "Together for Victory" }
+				set_autonomy = {
+					target = DST
+					autonomous_state = autonomy_enslaved
+					freedom_level = 0.20
+				}
+				else = { puppet = DST }
+			}
+			hidden_effect = {
+				DST = {
+					if = {
+						limit = { GUR = { has_government = horde } }
+						set_popularities = {
+							alliance = 0
+							horde = 20
+							death = 0
+							fel = 12
+							old_gods = 0
+							titans = 0
+							neutral = 68
+						}
+					}
+					if = {
+						limit = { GUR = { has_government = fel } }
+						set_popularities = {
+							alliance = 0
+							horde = 12
+							death = 0
+							fel = 20
+							old_gods = 0
+							titans = 0
+							neutral = 68
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = { #Escape
+        name = bleeding_hollow.18.option.2
+
+		292 = {
+			add_core_of = DST
+			add_manpower = 51000
+			hidden_effect = {
+				set_state_race_to_primary_race = yes
+				set_state_religion_to_primary_religion = yes
+			}
+		}
+		add_ideas = DST_overpopulated_1
+		remove_ideas = DST_Stranglehorn_Troubles
+
+		hidden_effect = {
+			284 = {
+				add_manpower = -15600
+				remove_core_of = DST
+				add_compliance = 60
+				transfer_state_to = GUR
+			}
+			287 = {
+				add_manpower = -6000
+				remove_core_of = DST
+				add_compliance = 60
+				transfer_state_to = GUR
+			}
+			288 = {
+				add_manpower = -4800
+				remove_core_of = DST
+				add_compliance = 60
+				transfer_state_to = GUR
+			}
+			289 = {
+				add_manpower = -14400
+				remove_core_of = DST
+				add_compliance = 60
+				transfer_state_to = GUR
+			}
+			2147 = {
+				add_manpower = -10200
+				remove_core_of = DST
+				add_compliance = 60
+				transfer_state_to = GUR
+			}
+			285 = { set_demilitarized_zone = yes }
+			country_event = { id = bleeding_hollow.19 days = 5 }
+			DST = {
+				set_capital = { state = 292 }
+				every_state = {
+					limit = {
+						impassable = no
+						owner = { NOT = { has_war_with = DST } }
+					}
+					teleport_armies = {
+						to_state = 292
+						limit = { tag = DST }
+					}
+				}
+			}
+		}
+	}
+
+	option = { #To War
+        name = bleeding_hollow.18.option.3
+
+		GUR = {
+			declare_war_on = {
+				target = DST
+				type = annex_everything
+			}
+		}
+	}
+}
+
+# Shattered Hand Stragglers
+country_event = {
+	id= bleeding_hollow.19
+	title = bleeding_hollow.19.t
+	desc = bleeding_hollow.19.d
+	picture = GFX_horde_flag_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = bleeding_hollow.19.option.3
+
+		292 = { add_manpower = 7200 }
+
+		declare_war_on = {
+			target = UWT
+			type = annex_everything
+		}
+
+		hidden_effect = {
+			285 = {
+				add_manpower = -7200
+				set_demilitarized_zone = no 
+				remove_core_of = DST
+				add_compliance = 60
+				transfer_state_to = GUR
+			}
+		}
+	}
+}
+
+# Troll War Peace
+country_event = {
+	id = bleeding_hollow.20
+	title = bleeding_hollow.20.t
+	desc = bleeding_hollow.20.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+
+	option = {
+        name = bleeding_hollow.20.option.1
+		remove_ideas = BHC_moshogg_clan
+		277 = {
+			transfer_state_to = MOC
+			add_core_of = MOC
+			remove_core_of = SKU
+		}
+		hidden_effect = {
+			MOC = {
+				#set_country_flag = ogre_technology
+				add_manpower = 1000
+			}
+		}
+
+	}
+}
+
+# Chogall Mocks Kilrogg
+country_event = {
+	id = bleeding_hollow.21
+	title = bleeding_hollow.21.t
+	desc = bleeding_hollow.21.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = bleeding_hollow.21.option.1
+		complete_special_project = sp:sp_eye_of_kilrogg
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.22
+	title = bleeding_hollow.22.t
+	desc = bleeding_hollow.22.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = bleeding_hollow.22.option.1
+		complete_special_project = sp:sp_eye_of_kilrogg
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.23
+	title = bleeding_hollow.23.t
+	desc = bleeding_hollow.23.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_arming_the_pack
+	}
+
+	option = {
+        name = bleeding_hollow.23.option.1
+		complete_national_focus = BHC_rituals_of_dominance
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.24
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.24
+	title = bleeding_hollow.24.t
+	desc = bleeding_hollow.24.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_a_disciplined_mind
+		deactivate_shine_on_focus = BHC_arming_the_pack
+	}
+
+	option = {
+        name = bleeding_hollow.24.option.1
+		complete_national_focus = BHC_a_disciplined_mind
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.25
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.25
+	title = bleeding_hollow.25.t
+	desc = bleeding_hollow.25.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_a_willing_ally
+		deactivate_shine_on_focus = BHC_a_disciplined_mind
+	}
+
+	option = {
+        name = bleeding_hollow.25.option.1
+		complete_national_focus = BHC_a_disciplined_mind
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.26
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.26
+	title = bleeding_hollow.26.t
+	desc = bleeding_hollow.26.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_gorged_and_statisfied
+		deactivate_shine_on_focus = BHC_a_willing_ally
+	}
+
+	option = {
+        name = bleeding_hollow.26.option.1
+		complete_national_focus = BHC_a_willing_ally
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.27
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.27
+	title = bleeding_hollow.27.t
+	desc = bleeding_hollow.27.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		deactivate_shine_on_focus = BHC_gorged_and_statisfied
+	}
+
+	option = {
+        name = bleeding_hollow.27.option.1
+		complete_national_focus = BHC_gorged_and_statisfied
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.28
+	title = bleeding_hollow.28.t
+	desc = bleeding_hollow.28.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_run_them_down
+	}
+
+	option = {
+        name = bleeding_hollow.28.option.1
+		complete_national_focus = BHC_strike_fear
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.29
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.29
+	title = bleeding_hollow.29.t
+	desc = bleeding_hollow.29.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_suppress_darkshire
+		deactivate_shine_on_focus = BHC_run_them_down
+	}
+
+	option = {
+        name = bleeding_hollow.29.option.1
+		complete_national_focus = BHC_run_them_down
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.30
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.30
+	title = bleeding_hollow.30.t
+	desc = bleeding_hollow.30.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_controlled_pillaging
+		deactivate_shine_on_focus = BHC_suppress_darkshire
+	}
+
+	option = {
+        name = bleeding_hollow.30.option.1
+		complete_national_focus = BHC_suppress_darkshire
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.31
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.31
+	title = bleeding_hollow.31.t
+	desc = bleeding_hollow.31.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		activate_shine_on_focus = BHC_midnight_raids
+		deactivate_shine_on_focus = BHC_controlled_pillaging
+	}
+
+	option = {
+        name = bleeding_hollow.31.option.1
+		complete_national_focus = BHC_controlled_pillaging
+		hidden_effect = {
+			country_event = {
+				id = bleeding_hollow.32
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.32
+	title = bleeding_hollow.32.t
+	desc = bleeding_hollow.32.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	hidden = yes
+
+	immediate = {
+		deactivate_shine_on_focus = BHC_midnight_raids
+	}
+
+	option = {
+        name = bleeding_hollow.32.option.1
+		complete_national_focus = BHC_midnight_raids
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.33
+	title = bleeding_hollow.33.t
+	desc = bleeding_hollow.33.d
+	picture = GFX_stranglethorn_event
+	fire_only_once = yes
+
+	trigger = {
+		tag = BHC
+		has_war_with = GUR
+		NOT = { 272 = { is_controlled_by = BHC } }
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+        name = bleeding_hollow.33.option.1
+		add_war_support = -0.02
+		add_political_power = 50
+		complete_national_focus = BHC_stay_true_to_our_deal
+		BHC = {
+			hidden_effect = {
+				clr_country_flag = GUR_little_resistance
+				clr_country_flag = GUR_no_resistance
+			}
+			every_country = {
+				limit = { is_in_faction_with = BHC }
+				white_peace = GUR
+				white_peace = BLO
+				white_peace = SKU	
+			}
+		}
+		GUR = {
+			271 = {	transfer_state_to = GUR	}
+			272 = {	transfer_state_to = GUR	}
+			if = {
+				limit = { GUR = { is_ai = no } }
+				GUR = {
+					create_wargoal = {
+						target = MOC
+						type = annex_everything
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			369 = { transfer_state_to = GUR	}
+		}
+		country_event = bleeding_hollow.20
+		
+		ai_chance = { base = 1 }
+	}
+
+	option = {
+        name = bleeding_hollow.33.option.2
+		add_stability = -0.02
+		add_command_power = 100
+
+		ai_chance = { base = 0 }
+	}
+}
+
+country_event = {
+	id = bleeding_hollow.34
+	title = bleeding_hollow.34.t
+	desc = bleeding_hollow.34.d
+	picture = GFX_stranglethorn_event
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		add_ideas = primary_religion_shamanism
+	}
+
+	option = {
+        name = bleeding_hollow.34.option.1
+		add_to_variable = {
+			var = faith_points
+			value = 50
+			tooltip = add_faith_points_tt
+		}
+		every_core_state = {
+			limit = { is_controlled_by = BHC }
+			set_state_religion_to_primary_religion = yes
+		}
+		hidden_effect = {
+			set_technology = {
+				orc_temple_of_the_damned_tech = 0
+				warlock_tech = 0
+				warlock_equipment_tech_1 = 0
+				warlock_equipment_tech_2 = 0
+				warlock_equipment_tech_3 = 0
+				necrolyte_tech = 0
+				orc_spirit_lodge_tech = 1
+				shaman_tech = 1
+				shaman_equipment_tech_1 = 1
+				shaman_equipment_tech_2 = 1
+				restoration_shaman_tech = 1
+				improved_restoration_shaman_1 = 1
+			}
+		}
+	}
+}

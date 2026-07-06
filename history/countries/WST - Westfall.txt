@@ -1,0 +1,164 @@
+﻿capital = 143
+
+set_convoys = 25
+
+set_research_slots = 3
+
+set_stability = 0.6
+set_war_support = 0.1
+
+set_technology = {
+	town_hall_tech = 1
+	peasants_tech = 1
+	construction_tools_1 = 1
+	harvesting_tools_1 = 1
+	support_equipment_tech = 1
+	militia_tech = 1
+	militia_equipment_tech_1 = 1
+	workshop_tech = 1
+	blacksmith_tech = 1
+	blacksmith_unit_tech_1 = 1
+	farm_tech = 1
+	mines_tech = 1
+	church_tech = 1
+	wall_tech_1 = 1
+	lumber_mill_tech = 1
+
+	barracks_tech = 1
+	footman_tech = 1
+	footman_equipment_tech_1 = 1
+	pikeman_tech = 1
+	pikeman_equipment_tech_1 = 1
+	archer_tech = 1
+	archer_equipment_tech_1 = 1
+
+	mage_tower_tech = 1
+	priest_tech = 1
+
+	stable_tech_1 = 1
+	horse_equipment_tech = 1
+	mounted_footman_tech = 1
+
+	generic_naval_naval_facilities_tech = 1
+	generic_naval_small_frames_tech = 1
+	generic_naval_convoy_tech_1 = 1
+	generic_naval_destroyer_tech_1 = 1
+	generic_naval_light_frigate_tech_1 = 1
+	generic_naval_naval_transport_1_tech = 1
+}
+
+add_ideas = {
+	city_state
+	export_focus
+	recruit_adventurers
+
+	human_primary_race
+	primary_trait_diplomatic
+	primary_trait_human_spirit
+	primary_trait_perception
+
+	primary_religion_the_church_of_the_holy_light
+
+	cooking_guild
+}
+
+set_politics = {
+	ruling_party = alliance
+	last_election = "590.10.27"
+	election_frequency = 48
+	elections_allowed = no
+}
+
+set_popularities = {
+    alliance = 100
+    horde = 0
+    death = 0
+    fel = 0
+    old_gods = 0
+    titans = 0
+    neutral = 0
+}
+
+add_opinion_modifier = {
+	target = GUR
+	modifier = remnants_trollwar
+}
+
+# Disable trade with the orcs
+add_opinion_modifier = {
+	target = BRC
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = BHC
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = TSC
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = FWC
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = THC
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = BBC
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = BTG
+	modifier = trade_disabled
+}
+add_opinion_modifier = {
+	target = DMC
+	modifier = trade_disabled
+}
+
+#Do not exists in lore, made up for the mod
+recruit_character = WST_westfall_governor
+
+616.1.1 = {
+	recruit_character = WST_marshal_gryan_stoutmantle
+}
+
+617.1.1 = {
+	oob = "WST_617"
+
+	retire_character = WST_westfall_governor
+
+	add_ideas = {
+		military_admin
+
+		WST_peoples_militia
+	}
+
+	remove_ideas = {
+		cooking_guild
+	}
+
+	STO = {
+		if = {
+			limit = { has_dlc = "Together for Victory" }
+			set_autonomy = {
+				target = WST
+				autonomous_state = autonomy_personal_union
+				freedom_level = 0.50
+			}
+			else = { puppet = WST }
+		}
+	}
+
+	set_popularities = {
+		alliance = 92
+		horde = 0
+		death = 0
+		fel = 0
+		old_gods = 0
+		titans = 0
+		neutral = 8
+	}
+}

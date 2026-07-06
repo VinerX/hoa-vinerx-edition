@@ -1,0 +1,301 @@
+### Boat Shit
+sp_wyrm_wood = {
+	specialization = specialization_naval
+
+	project_tags = sp_tag_surface_ship
+
+	available = {
+		FROM = { has_tech = generic_naval_reinforced_frames_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = high_elf_sanctum_of_the_magisters_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_naval = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wood = 25
+			mana = 25
+		}
+	}
+	
+	project_output = {
+		equipment_bonus = {
+			destroyer_equipment = {
+				armor_value = 0.10
+			}
+			light_frigate_equipment = {
+				armor_value = 0.10
+			}
+			heavy_frigate_equipment = {
+				armor_value = 0.15
+			}
+			battleship_equipment = {
+				armor_value = 0.15
+			}
+			juggernaught_equipment = {
+				armor_value = 0.15
+			}
+			dreadnaught_equipment = {
+				armor_value = 0.20
+			}
+			carrier_equipment = {
+				armor_value = 0.20
+			}
+			siege_weapons_equipment = {
+				armor_value = 0.10
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_naval_generic_reward_scientist_xp_1
+		sp_naval_generic_reward_scientist_xp_2
+		sp_naval_generic_reward_scientist_xp_3
+		sp_naval_generic_reward_navy_xp_1
+		sp_naval_generic_reward_navy_xp_2
+		sp_naval_generic_reward_navy_xp_3
+		sp_naval_generic_reward_major_progress_1
+		sp_naval_generic_reward_major_progress_2
+		sp_naval_generic_reward_major_progress_3
+		sp_naval_generic_reward_test_failure_1
+		sp_naval_generic_reward_test_failure_2
+		sp_naval_generic_reward_test_failure_3	
+		sp_naval_generic_reward_armor_tech_1
+		sp_naval_generic_reward_armor_tech_2
+		sp_naval_generic_reward_armor_tech_3
+	}
+}
+
+### Feed the Thirst
+sp_feed_the_thirst = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	available = {
+		FROM = { 
+			has_tech = high_elf_arcane_wyrms_tech_3
+			NOT = {
+				has_government = fel
+				has_government = death
+				has_government = old_gods
+			} 
+		}
+	}
+
+	visible = {
+		FROM = { 
+			has_tech = high_elf_sanctum_of_the_magisters_tech
+			NOT = {
+				has_country_flag = fel_alignment
+				has_country_flag = death_alignment
+				has_country_flag = old_alignment
+			} 
+		}
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mana = 120
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			add_ideas = high_elf_feed_the_thirst
+			set_technology = { high_elf_feed_the_thirst = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Unnatural Thirst - For Old Gods/Death/Fel
+sp_unnatural_thirst = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	available = {
+		FROM = { 
+			has_tech = high_elf_arcane_wyrms_tech_3 
+			OR = {
+				has_government = fel
+				has_government = death
+				has_government = old_gods
+			}
+		}
+	}
+
+	visible = {
+		FROM = { 
+			has_tech = high_elf_sanctum_of_the_magisters_tech
+			NOT = {
+				has_country_flag = alliance_alignment
+				has_country_flag = horde_alignment
+				has_country_flag = neutral_alignment
+				has_country_flag = titan_alignment
+			}  
+		}
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_magic = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mana = 180
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			add_ideas = high_elf_unnatural_thirst
+			set_technology = { high_elf_unnatural_thirst = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Compound Bows
+sp_high_elf_compound_bows = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	available = {
+		FROM = { 
+			has_tech = high_elf_farstrider_equipment_tech_2
+			has_tech = high_elf_sunforged_projectiles_tech_3
+			has_tech = high_elf_forest_clearing_tech_2
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = high_elf_sanctum_of_the_magisters_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wood = 40
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { high_elf_compound_bows = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		#sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Uncanny Marksmanship
+sp_high_elf_uncanny_marksmanship = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	available = {
+		FROM = { 
+			has_tech = high_elf_archer_equipment_tech_1
+			has_tech = high_elf_blessing_of_the_sunwell_tech_1
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = high_elf_sanctum_of_the_magisters_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wood = 40
+		}
+	}
+	
+	project_output = {
+		country_effects = {
+			set_technology = { high_elf_uncanny_marksmanship = 1 }
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		#sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}

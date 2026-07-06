@@ -1,0 +1,59 @@
+# Plans for satyr nations at game start. Contains historical and non_historical.
+generic_satyr_historical = {
+	name = "Generic Satyr Historical"
+	desc = "Historical behavior for satyr nations at game start"
+
+	enable = {
+		is_historical_focus_on = yes
+		has_idea = satyr_primary_race
+	}
+
+	ai_national_focuses = {
+		serving_higher_powers
+		promise_of_power
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}
+
+generic_satyr_non_historical = {
+	name = "Generic Satyr Non-Historical"
+	desc = "Non-historical behavior for satyr nations at game start"
+
+	enable = {
+		is_historical_focus_on = no
+		has_idea = satyr_primary_race
+	}
+
+	ai_national_focuses = {
+		the_path_forward
+		# No other focuses, we want them to quickly get access to the political paths
+		# but not force them on any particular path to promote non-historical outcomes
+	}
+
+	focus_factors = {
+		# Focuses "ai_will_do" blocks can give more depth to these choices, therefore the
+		# following isn't what entirely decides what paths the AI takes.
+		pick_a_side = 0.5 # Very low chance
+		support_the_alliance = 0.5 # Very low chance
+		generic_support_the_horde_focus = 0.5 # Very low chance
+		stay_neutral = 0.65 # Low chance
+		serving_higher_powers = 1.75 # Higher chance
+		whispers_of_the_old_gods = 1.75 # Higher chance
+		promise_of_power = 1.75 # Higher chance
+		in_service_of_death = 1 # Normal chance
+		path_of_the_titans = 0.25 # Very low chance
+	}
+
+	weight = {
+		factor = 5.0
+		modifier = {
+			factor = 1.0
+		}
+	}
+}

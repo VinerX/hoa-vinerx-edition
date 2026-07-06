@@ -1,0 +1,3537 @@
+focus_tree = {
+	id = dragonmaw
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = DMC
+		}
+	}
+	default = no
+
+	shortcut = {
+		name = DMC_journey_to_the_seas
+		target = DMC_journey_to_the_seas
+		scroll_wheel_factor = 0.60
+	}
+
+	shortcut = {
+		name = DMC_fuel_the_war_machine
+		target = DMC_fuel_the_war_machine
+		scroll_wheel_factor = 0.9
+	}
+
+	shortcut = {
+		name = DMC_highland_materials
+		target = DMC_highland_materials
+		scroll_wheel_factor = 0.9
+	}
+
+	continuous_focus_position = {
+		x = 2500
+		y = 0
+	}
+
+	focus = {
+		id = DMC_warchief_orders
+		icon = GFX_focus_DMC_generic
+		cost = 21
+		x = 7
+		y = 0
+
+		completion_reward = {
+			country_event = dragonmaw.1
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_invade_the_highlands
+		icon = GFX_focus_spa_the_war_of_vengeance
+		prerequisite = { focus = DMC_zuluheds_vision }
+		cost = 30
+		x = 10
+		y = 7
+
+		will_lead_to_war_with = NRT
+
+		available = {
+			has_completed_focus = DMC_the_first_broken
+			if = {
+				limit = { is_ai = no }
+				has_manpower > 999
+				has_equipment = { infantry_equipment > 749 }
+			}
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = DMC_invasion_of_the_highlands_tt
+			DMC = {
+				transfer_state = 503
+				transfer_state = 171
+			}
+			hidden_effect = {
+				load_oob = DMC_highlands_invasion
+				add_manpower = -1000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -750
+				}
+			}
+			declare_war_on = {
+				target = NRT
+				type = annex_everything
+			}
+			remove_ideas = DMC_build_up_stockpiles_idea
+		}
+	}
+
+	focus = {
+		id = DMC_victory_in_the_highlands
+		icon = GFX_focus_spa_strengthen_the_supreme_reality_of_spain
+		prerequisite = { focus = DMC_invade_the_highlands }
+		cost = 30
+		x = 10
+		y = 8
+
+		available = {
+			171 = { is_fully_controlled_by = DMC }
+			508 = { is_fully_controlled_by = DMC }
+			509 = { is_fully_controlled_by = DMC }
+			515 = { is_fully_controlled_by = DMC }
+			516 = { is_fully_controlled_by = DMC }
+		}
+
+		completion_reward = {
+			hidden_effect = {
+				453 = {
+					add_core_of = DMC
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			504 = {
+				add_core_of = DMC
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			2208 = {
+				add_core_of = DMC
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			509 = {
+				add_core_of = DMC
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_capture_grim_batol
+		icon = GFX_focus_spa_the_spanish_miracle
+		cost = 30
+		prerequisite = { focus = DMC_victory_in_the_highlands }
+		x = 10
+		y = 9
+
+		available = { 514 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			DMC = {
+				transfer_state = 514
+				transfer_state = 500
+				transfer_state = 2200
+				transfer_state = 2201
+				transfer_state = 2202
+				transfer_state = 499
+			}
+			hidden_effect = {
+				777 = {
+					transfer_state_to = DMC
+					add_core_of = DMC
+				}
+			}
+			remove_ideas = DMC_dream_of_dragons
+			swap_ideas = {
+				remove_idea = DMC_lack_of_eggs
+				add_idea = DMC_begin_training
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_rally_the_clan
+		icon = GFX_goal_continuous_suppression
+		cost = 14
+		prerequisite = { focus = DMC_warchief_orders }
+		x = 7
+		y = 1
+
+		completion_reward = {
+			add_manpower = 500
+			add_political_power = 50
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = DMC_clear_out_the_coastline
+		icon = GFX_focus_generic_coastal_fort
+		cost = 21
+		prerequisite = { focus = DMC_warchief_orders }
+		x = -4
+		y = 1
+
+		available = {
+			controls_state = 400
+			controls_state = 401
+		}
+
+		completion_reward = {
+			402 = { add_manpower = 1000	}
+			400 = {
+				add_manpower = 600
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			401 = {
+				add_manpower = 400
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			custom_effect_tooltip = will_convert_race_religion_tt
+		}
+	}
+
+	focus = {
+		id = DMC_fix_the_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 21
+		prerequisite = { focus = DMC_clear_out_the_coastline }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = 0
+		y = 1
+
+		available = {
+			controls_state = 43
+			controls_state = 400
+			controls_state = 401
+		}
+
+		completion_reward = {
+			43 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			400 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			401 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_strike_the_earth
+		icon = GFX_focus_generic_steel
+		cost = 30
+		prerequisite = { focus = DMC_hunt_the_wildlife }
+		prerequisite = { focus = DMC_fix_the_roads }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = -1
+		y = 2
+
+		available = { controls_state = 43 }
+
+		completion_reward = {
+			43 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_hunt_the_wildlife
+		icon = GFX_focus_hol_war_on_pacifism
+		cost = 30
+		prerequisite = { focus = DMC_clear_out_the_coastline }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = -2
+		y = 1
+
+		available = { controls_state = 401 }
+
+		completion_reward = {
+			401 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_build_hatcheries
+		icon = GFX_focus_generic_cryptologic_bomb
+		cost = 30
+		prerequisite = { focus = DMC_fix_the_roads }
+		prerequisite = { focus = DMC_logging_camps }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = 1
+		y = 2
+
+		available = { controls_state = 402 }
+
+		completion_reward = {
+			402 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = nesting_grounds
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_logging_camps
+		icon = GFX_goal_generic_production2
+		cost = 30
+		prerequisite = { focus = DMC_clear_out_the_coastline }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = 2
+		y = 1
+
+		available = {
+			controls_state = 400
+			controls_state = 401
+		}
+
+		completion_reward = {
+			400 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+			401 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_misty_reed_post
+		icon = GFX_focus_POL_develop_polish_shipbuilding
+		cost = 30
+		prerequisite = { focus = DMC_strike_the_earth }
+		prerequisite = { focus = DMC_build_hatcheries }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = 0
+		y = 3
+
+		completion_reward = {
+			402 = {
+				add_manpower = 2500
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 2614
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 2614
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_old_world_eggs
+		icon = GFX_goal_continuous_air_production
+		cost = 30
+		prerequisite = { focus = DMC_misty_reed_post }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = 2
+		y = 4
+
+		available = { has_completed_focus = DMC_first_litter }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DMC_last_eggs_idea
+				days = 180
+			}
+			add_tech_bonus = {
+				name = nesting_ground_technology
+				uses = 1
+				bonus = 0.5
+				category = nesting_ground_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_sanctuary_towers
+		icon = GFX_goal_generic_radar
+		cost = 30
+		prerequisite = { focus = DMC_misty_reed_post }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = -2
+		y = 4
+
+		completion_reward = {
+			402 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = tower_technology
+				uses = 1
+				bonus = 0.5
+				category = tower_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_spirit_enclave
+		icon = GFX_focus_generic_concessions
+		cost = 30
+		prerequisite = { focus = DMC_misty_reed_post }
+		relative_position_id = DMC_clear_out_the_coastline
+		x = 0
+		y = 4
+
+		available = {
+			#OR = {
+			#	has_completed_focus = DMC_embrace_necrolytes
+			#	has_completed_focus = DMC_return_to_shamanism
+			#}
+			has_completed_focus = DMC_embrace_necrolytes
+		}
+
+		completion_reward = {
+			402 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = church
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_zuluheds_vision
+		icon = GFX_goal_continuous_boost_freedom
+		cost = 30
+		prerequisite = {
+			focus = DMC_blackrock_forges
+			focus = DMC_shadow_council_warlocks
+		}
+		x = 7
+		y = 6
+
+		available = { STO = { has_country_flag = STO_REF } }
+
+		completion_reward = {
+			BRC = {	country_event = { id = dragonmaw.5 } }
+		}
+	}
+
+	focus = {
+		id = DMC_dream_of_dragon
+		icon = GFX_goal_continuous_restrict_freedom
+		cost = 30
+		prerequisite = { focus = DMC_zuluheds_vision }
+		x = 4
+		y = 7
+
+		available = { 373 = { is_controlled_by_ROOT_or_ally = yes } }
+
+		completion_reward = {
+			country_event = { id = dragonmaw.6 }
+		}
+	}
+
+	focus = {
+		id = DMC_prepare_for_war
+		icon = GFX_focus_spa_the_war_of_vengeance
+		cost = 30
+		prerequisite = { focus = DMC_zuluheds_vision }
+		x = 7
+		y = 7
+
+		available = { has_completed_focus = DMC_fate_of_the_dragon_soul }
+
+		completion_reward = {
+			army_experience = 10
+			navy_experience = 10
+			air_experience = 10
+		}
+	}
+
+	focus = {
+		id = DMC_build_up_stockpiles
+		icon = GFX_goal_generic_military_sphere
+		cost = 30
+		prerequisite = { focus = DMC_prepare_for_war }
+		x = 7
+		y = 8
+
+		completion_reward = {
+			add_ideas = DMC_build_up_stockpiles_idea
+		}
+	}
+
+	focus = {
+		id = DMC_the_first_broken
+		icon = GFX_focus_red_dragon_flight
+		cost = 30
+		prerequisite = { focus = DMC_build_up_stockpiles }
+		x = 7
+		y = 9
+
+		completion_reward = {
+			hidden_effect = {
+				VMR = {	recruit_character = VMR_alexstraza }
+				RDF = {
+					retire_country_leader = yes
+					add_country_leader_role = {
+						character = RDF_tyranastrasz
+						promote_leader = yes
+						country_leader = {
+							ideology = titans_type
+						}
+					}
+					country_event = reddragonflight.2
+				}
+			}
+
+			set_autonomy = {
+				target = VMR
+				autonomy_state = autonomy_enslaved
+				freedom_level = 0.5
+			}
+			set_technology = {
+				fighter_drake_tech = 1
+				fighter_drake_equipment_tech_1 = 1
+			}
+			add_equipment_to_stockpile = {
+				type = fighter_drake_equipment_1
+				amount = 25
+				producer = RDF
+			}
+			add_ideas = DMC_lack_of_eggs
+		}
+	}
+
+	focus = {
+		id = DMC_the_rylaks_slow_recovery
+		icon = focus_generic_rylak
+		cost = 30
+		prerequisite = { focus = DMC_warchief_orders }
+		x = 1
+		y = 1
+
+		available = { has_completed_focus = DMC_hunt_the_wildlife }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_last_of_the_rylaks_idea_1
+				add_idea = DMC_last_of_the_rylaks_idea_2
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_flight_offensive_1
+		icon = GFX_goal_generic_air_fighter
+		cost = 21
+		prerequisite = { focus = DMC_the_rylaks_slow_recovery }
+		mutually_exclusive = { focus = DMC_flight_defensive_1 }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = -1
+		y = 1
+
+		completion_reward = {
+			air_experience = 5
+			add_tech_bonus = {
+				name = air_offensive_technology
+				uses = 1
+				bonus = 0.25
+				category = air_offensive_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_flight_defensive_1
+		icon = GFX_goal_generic_air_fighter
+		cost = 21
+		prerequisite = { focus = DMC_the_rylaks_slow_recovery }
+		mutually_exclusive = { focus = DMC_flight_offensive_1 }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 1
+		y = 1
+
+		completion_reward = {
+			air_experience = 5
+			add_tech_bonus = {
+				name = air_defensive_technology
+				uses = 1
+				bonus = 0.25
+				category = air_defensive_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_new_tricks
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = {
+			focus = DMC_flight_offensive_1
+			focus = DMC_flight_defensive_1
+		}
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_first_litter
+		icon = focus_generic_rylak
+		cost = 30
+		prerequisite = { focus = DMC_new_tricks }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 0
+		y = 3
+
+		available = { BRC = { has_completed_focus = BRC_send_scouts_north }	}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_last_of_the_rylaks_idea_2
+				add_idea = DMC_last_of_the_rylaks_idea_3
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_flight_offensive_2
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = DMC_first_litter }
+		mutually_exclusive = { focus = DMC_flight_defensive_2 }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = -1
+		y = 4
+
+		completion_reward = {
+			air_experience = 10
+			add_tech_bonus = {
+				name = air_offensive_technology
+				uses = 1
+				bonus = 0.5
+				category = air_offensive_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_flight_defensive_2
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = DMC_first_litter }
+		mutually_exclusive = { focus = DMC_flight_offensive_2 }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 1
+		y = 4
+
+		completion_reward = {
+			air_experience = 10
+			add_tech_bonus = {
+				name = air_defensive_technology
+				uses = 1
+				bonus = 0.5
+				category = air_defensive_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_train_then_young
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = {
+			focus = DMC_flight_offensive_2
+			focus = DMC_flight_defensive_2
+		}
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 0
+		y = 5
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_our_loyal_beasts
+		icon = focus_generic_rylak
+		cost = 30
+		prerequisite = { focus = DMC_train_then_young }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 0
+		y = 6
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_last_of_the_rylaks_idea_3
+				add_idea = DMC_last_of_the_rylaks_idea_4
+			}
+			swap_ideas = {
+				remove_idea = DMC_cry_of_the_beast_idea_1
+				add_idea = DMC_cry_of_the_beast_idea_2
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_free_as_the_skys
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = DMC_our_loyal_beasts }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 0
+		y = 7
+
+		available = {
+			315 = { is_controlled_by_ROOT_or_ally = yes	}
+			312 = { is_controlled_by_ROOT_or_ally = yes	}
+			146 = { is_controlled_by_ROOT_or_ally = yes	}
+			309 = { is_controlled_by_ROOT_or_ally = yes	}
+			361 = { is_controlled_by_ROOT_or_ally = yes	}
+			368 = { is_controlled_by_ROOT_or_ally = yes	}
+		}
+
+		completion_reward = {
+			315 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			312 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			146 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			309 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			361 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			368 = {
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_never_again
+		icon = GFX_focus_generic_aircraft_production
+		cost = 30
+		prerequisite = { focus = DMC_free_as_the_skys }
+		relative_position_id = DMC_the_rylaks_slow_recovery
+		x = 0
+		y = 8
+
+		available = { has_completed_focus = DMC_the_first_broken }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_cry_of_the_beast_idea_2
+				add_idea = DMC_cry_of_the_beast_idea_3
+			}
+			swap_ideas = {
+				remove_idea = DMC_last_of_the_rylaks_idea_4
+				add_idea = DMC_last_of_the_rylaks_idea_5
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_journey_to_the_seas
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 30
+		prerequisite = { focus = DMC_warchief_orders }
+		x = 16
+		y = 1
+
+		completion_reward = {
+			set_technology = {
+				generic_naval_naval_facilities_tech = 1
+				generic_naval_small_frames_tech = 1
+				generic_naval_destroyer_tech_1 = 1
+				generic_naval_naval_transport_1_tech = 1
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_glopgut_schematics
+		icon = GFX_goal_generic_navy_battleship
+		cost = 30
+		prerequisite = { focus = DMC_journey_to_the_seas }
+		x = 16
+		y = 2
+
+		completion_reward = {
+			set_technology = { generic_naval_light_frigate_tech_1 = 1	}
+			add_tech_bonus = {
+				name = naval_technology
+				uses = 3
+				bonus = 0.5
+				category = naval_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_expand_naval_facilities
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 30
+		prerequisite = { focus = DMC_glopgut_schematics	}
+		x = 13
+		y = 3
+
+		available = { NOT = { DMC = { has_war_with = MTT } } }
+
+		completion_reward = {
+			400 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			401 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			402 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_prospect_for_oil
+		icon = GFX_goal_generic_oil_refinery
+		cost = 30
+		prerequisite = { focus = DMC_expand_naval_facilities }
+		x = 13
+		y = 4
+
+		completion_reward = {
+			401 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_ogre_deckhands
+		icon = GFX_goal_generic_build_navy
+		cost = 30
+		prerequisite = { focus = DMC_prospect_for_oil }
+		prerequisite = { focus = DMC_improved_sails	}
+		x = 14
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = deckhand_technology
+				uses = 1
+				bonus = 0.50
+				category = deckhand_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_study_human_boats
+		icon = GFX_goal_continuous_repairments
+		cost = 30
+		prerequisite = { focus = DMC_ogre_deckhands }
+		prerequisite = { focus = DMC_gronns_of_the_sea	}
+		x = 15
+		y = 7
+
+		available = {
+			OR = {
+				318 = {	is_controlled_by_ROOT_or_ally = yes	}
+				5 = { is_controlled_by_ROOT_or_ally = yes }
+				4 = { is_controlled_by_ROOT_or_ally = yes }
+				122 = {	is_controlled_by_ROOT_or_ally = yes	}
+				129 = {	is_controlled_by_ROOT_or_ally = yes	}
+				2228 = { is_controlled_by_ROOT_or_ally = yes }
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = large_frame_technology
+				uses = 1
+				bonus = 0.75
+				category = large_frame_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_refined_spyglasses
+		icon = GFX_goal_continuous_repairments
+		cost = 30
+		prerequisite = { focus = DMC_large_bore_cannons }
+		prerequisite = { focus = DMC_gronns_of_the_sea }
+		x = 17
+		y = 7
+
+		available = {
+			OR = {
+				318 = {	is_controlled_by_ROOT_or_ally = yes	}
+				5 = { is_controlled_by_ROOT_or_ally = yes }
+				4 = { is_controlled_by_ROOT_or_ally = yes }
+				122 = {	is_controlled_by_ROOT_or_ally = yes	}
+				129 = {	is_controlled_by_ROOT_or_ally = yes	}
+				2228 = { is_controlled_by_ROOT_or_ally = yes }
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = spotter_technology
+				uses = 1
+				bonus = 0.75
+				category = spotter_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_carrier_priority
+		icon = GFX_goal_generic_navy_carrier
+		cost = 30
+		prerequisite = { focus = DMC_study_human_boats }
+		x = 14
+		y = 8
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = carrier_technology
+				uses = 1
+				bonus = 0.5
+				category = carrier_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_carrier_experiments
+		icon = GFX_goal_generic_navy_carrier
+		cost = 30
+		prerequisite = { focus = DMC_carrier_priority }
+		x = 14
+		y = 9
+
+		available = { has_navy_experience > 50 }
+
+		completion_reward = {
+			navy_experience = -50
+			add_ideas = DMC_carrier_upgrade
+		}
+	}
+
+	focus = {
+		id = DMC_destroyer_priority
+		icon = GFX_focus_generic_destroyer
+		cost = 30
+		prerequisite = { focus = DMC_study_human_boats }
+		prerequisite = { focus = DMC_refined_spyglasses }
+		x = 16
+		y = 8
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = destroyer_technology
+				uses = 1
+				bonus = 0.5
+				category = destroyer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_destroyer_experiments
+		icon = GFX_focus_generic_destroyer
+		cost = 30
+		prerequisite = { focus = DMC_destroyer_priority }
+		x = 16
+		y = 9
+
+		available = { has_navy_experience > 25 }
+
+		completion_reward = {
+			navy_experience = -25
+			add_ideas = DMC_destroyer_upgrade
+		}
+	}
+
+	focus = {
+		id = DMC_frigate_priority
+		icon = GFX_focus_generic_cruiser2
+		cost = 30
+		prerequisite = { focus = DMC_refined_spyglasses }
+		x = 18
+		y = 8
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = DMC_frigate_priority
+				uses = 1
+				bonus = 0.5
+				category = light_frigate_technology
+				category = heavy_frigate_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_frigate_experiments
+		icon = GFX_focus_generic_cruiser2
+		cost = 30
+		prerequisite = { focus = DMC_frigate_priority }
+		x = 18
+		y = 9
+
+		available = { has_navy_experience > 50 }
+
+		completion_reward = {
+			navy_experience = -50
+			add_ideas = DMC_frigate_upgrade
+		}
+	}
+
+	focus = {
+		id = DMC_the_tidecallers
+		icon = GFX_focus_smiling_buddha
+		cost = 30
+		prerequisite = { focus = DMC_carrier_experiments }
+		prerequisite = { focus = DMC_destroyer_experiments }
+		prerequisite = { focus = DMC_frigate_experiments }
+		x = 16
+		y = 10
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_glopgut_clan
+				add_idea = DMC_glopgut_clan_2
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_strength_in_numbers
+		icon = GFX_focus_generic_destroyer
+		cost = 30
+		prerequisite = { focus = DMC_glopgut_schematics	}
+		x = 16
+		y = 3
+
+		completion_reward = {
+			add_ideas = DMC_strength_in_numbers_idea
+		}
+	}
+
+	focus = {
+		id = DMC_improved_sails
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 30
+		prerequisite = { focus = DMC_strength_in_numbers }
+		x = 15
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = navigator_technology
+				uses = 1
+				bonus = 0.50
+				category = navigator_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_gronns_of_the_sea
+		icon = GFX_focus_generic_navy_battleship2
+		cost = 30
+		prerequisite = { focus = DMC_improved_sails }
+		prerequisite = { focus = DMC_improved_cannons }
+		x = 16
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = battleship_technology
+				uses = 1
+				bonus = 0.50
+				category = battleship_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_improved_cannons
+		icon = GFX_goal_generic_army_artillery
+		cost = 30
+		prerequisite = { focus = DMC_strength_in_numbers }
+		x = 17
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = naval_cannon_technology
+				uses = 1
+				bonus = 0.50
+				category = naval_cannon_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_large_bore_cannons
+		icon = GFX_goal_generic_army_artillery
+		cost = 30
+		prerequisite = { focus = DMC_improved_cannons }
+		prerequisite = { focus = DMC_improved_hulls	}
+		x = 18
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = heavy_cannon_technology
+				uses = 1
+				bonus = 0.50
+				category = heavy_cannon_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_make_it_big
+		icon = GFX_focus_generic_navy_battleship2
+		cost = 30
+		prerequisite = { focus = DMC_glopgut_schematics	}
+		x = 19
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = large_frame_technology
+				uses = 1
+				bonus = 0.50
+				category = large_frame_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_improved_hulls
+		icon = GFX_goal_generic_defence
+		cost = 30
+		prerequisite = { focus = DMC_make_it_big }
+		x = 19
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = reinforced_frames_technology
+				uses = 1
+				bonus = 0.50
+				category = reinforced_frames_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_pride_of_the_horde
+		icon = GFX_goal_generic_navy_battleship
+		cost = 30
+		prerequisite = { focus = DMC_ogre_deckhands }
+		prerequisite = { focus = DMC_large_bore_cannons }
+		prerequisite = { focus = DMC_gronns_of_the_sea }
+		x = 16
+		y = 6
+
+		available = {
+			has_tech = generic_naval_carrier_tech_1
+			NOT = { has_idea = DMC_strength_in_numbers_idea }
+		}
+
+		completion_reward = {
+			add_equipment_production = {
+				equipment = { type = carrier_equipment_1 }
+				requested_factories = 1
+				progress = 0.40
+				amount = 1
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_stand_with_the_warchief
+		icon = GFX_focus_blackrock_banner
+		cost = 14
+		prerequisite = { focus = DMC_rally_the_clan }
+		mutually_exclusive = { focus = DMC_ask_for_guldans_help }
+		x = 5
+		y = 2
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = BRC
+				modifier = horde_loyalty
+			}
+			BRC = { }
+			### Add Flag to Support Orgrims Horde (Civil War)
+		}
+	}
+
+	focus = {
+		id = DMC_frostwolf_riders
+		icon = focus_generic_frostwolf_rider
+		cost = 21
+		prerequisite = { focus = DMC_stand_with_the_warchief }
+		x = 4
+		y = 3
+
+		completion_reward = {
+			FWC = {
+				add_tech_bonus = {
+					name = raider_technology
+					uses = 1
+					bonus = 0.25
+					category = raider_technology
+				}
+			}
+			add_tech_bonus = {
+				name = raider_technology
+				uses = 1
+				bonus = 0.25
+				category = raider_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_black_tooth_grin_scouts
+		icon = GFX_horde_scouts
+		cost = 21
+		prerequisite = { focus = DMC_stand_with_the_warchief }
+		x = 6
+		y = 3
+
+		completion_reward = {
+			BTG = {
+				add_tech_bonus = {
+					name = dire_wolf_technology
+					bonus = 0.25
+					uses = 1
+					category = dire_wolf_technology
+				}
+			}
+			add_tech_bonus = {
+				name = dire_wolf_technology
+				bonus = 0.25
+				uses = 1
+				category = dire_wolf_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_blackrock_warlords
+		icon = GFX_blackrock_warlord
+		cost = 21
+		prerequisite = { focus = DMC_black_tooth_grin_scouts }
+		x = 6
+		y = 4
+
+		completion_reward = {
+			BRC = {
+				add_tech_bonus = {
+					name = warlord_technology
+					uses = 1
+					bonus = 0.25
+					category = warlord_technology
+				}
+			}
+			add_tech_bonus = {
+				name = warlord_technology
+				uses = 1
+				bonus = 0.25
+				category = warlord_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_bleeding_hollow_tactics
+		icon = focus_generic_kilrog_deadeye
+		cost = 21
+		prerequisite = { focus = DMC_frostwolf_riders }
+		x = 4
+		y = 4
+
+		completion_reward = {
+			BHC = {
+				add_doctrine_cost_reduction = {
+					name = land_doc_bonus
+					cost_reduction = 0.25
+					uses = 1
+					category = land_doctrine
+				}	
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = 0.25
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_blackrock_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		cost = 30
+		prerequisite = { focus = DMC_bleeding_hollow_tactics }
+		prerequisite = { focus = DMC_blackrock_warlords	}
+		x = 5
+		y = 5
+
+		completion_reward = {
+			if = {
+				limit = { is_in_faction_with = FWC }
+				FWC = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = BTG }
+				BTG = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = BHC }
+				BHC = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = BRC }
+				BRC = {
+					add_tech_bonus = {
+						name = forge_technology
+						bonus = 0.25
+						uses = 1
+						category = forge_technology
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = forge_technology
+				bonus = 0.25
+				uses = 1
+				category = forge_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_ask_for_guldans_help
+		icon = GFX_goal_generic_attack_allies
+		cost = 14
+		prerequisite = { focus = DMC_rally_the_clan }
+		mutually_exclusive = { focus = DMC_stand_with_the_warchief }
+		x = 9
+		y = 2
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = TSC
+				modifier = horde_loyalty
+			}
+			reverse_add_opinion_modifier = {
+				target = TSC
+				modifier = horde_loyalty
+			}
+			TSC = { }
+			### Add Flag to Support Guldan (Civil War)
+		}
+	}
+
+	focus = {
+		id = DMC_summon_felguards
+		icon = GFX_focus_archimonde_1
+		cost = 21
+		prerequisite = { focus = DMC_burning_blade_masters }
+		x = 8
+		y = 4
+
+		completion_reward = {
+			add_ideas = BHC_summon_felguards
+		}
+	}
+
+	focus = {
+		id = DMC_burning_blade_masters
+		icon = focus_generic_blademaster
+		cost = 21
+		prerequisite = { focus = DMC_ask_for_guldans_help }
+		x = 8
+		y = 3
+
+		completion_reward = {
+			BBC = {
+				add_tech_bonus = {
+					name = blade_master_technology
+					uses = 1
+					bonus = 0.25
+					category = blade_master_technology
+				}
+			}
+			add_tech_bonus = {
+				name = blade_master_technology
+				uses = 1
+				bonus = 0.25
+				category = blade_master_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_twilight_brutes
+		icon = GFX_focus_smiling_buddha
+		cost = 21
+		prerequisite = { focus = DMC_shadow_council_assassins }
+		x = 10
+		y = 4
+
+		completion_reward = {
+			THC = {
+				add_tech_bonus = {
+					name = dire_orc_technology
+					uses = 1
+					bonus = 0.25
+					category = dire_orc_technology
+				}	
+			}
+			add_tech_bonus = {
+				name = dire_orc_technology
+				uses = 1
+				bonus = 0.25
+				category = dire_orc_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_shadow_council_assassins
+		icon = GFX_focus_hun_assassinate_horthy
+		cost = 21
+		prerequisite = { focus = DMC_ask_for_guldans_help }
+		x = 10
+		y = 3
+
+		completion_reward = {
+			TSC = {
+				add_tech_bonus = {
+					name = assassins_den_technology
+					uses = 1
+					bonus = 0.5
+					category = assassins_den_technology
+				}
+			}
+			add_tech_bonus = {
+				name = assassins_den_technology
+				uses = 1
+				bonus = 0.5
+				category = assassins_den_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_shadow_council_warlocks
+		icon = GFX_orc_warlock
+		cost = 30
+		prerequisite = { focus = DMC_twilight_brutes }
+		prerequisite = { focus = DMC_summon_felguards }
+		x = 9
+		y = 5
+
+		completion_reward = {
+			if = {
+				limit = { is_in_faction_with = BBC }
+				BBC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.25
+						category = warlock_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = TSC }
+				TSC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.25
+						category = warlock_technology
+					}
+				}
+			}
+			if = {
+				limit = { is_in_faction_with = THC }
+				THC = {
+					add_tech_bonus = {
+						name = warlock_technology
+						uses = 1
+						bonus = 0.25
+						category = warlock_technology
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = warlock_technology
+				uses = 1
+				bonus = 0.25
+				category = warlock_technology
+			}
+		}
+	}
+
+	#focus = {
+	#	id = DMC_return_to_shamanism
+	#	icon = GFX_focus_generic_anti_fascist_diplomacy
+	#	cost = 30
+	#	x = 4
+	#	y = 6
+
+	#	available = {
+	#		OR = {
+	#			BRC = {	has_completed_focus = BRC_ban_fel_magic }
+	#			BRC = {	has_completed_focus = BRC_embrace_the_fel }
+	#		}
+	#		has_idea = primary_religion_necrolytes
+	#	}
+
+	#	completion_reward = {
+	#		add_tech_bonus = {
+	#			name = shaman_technology
+	#			uses = 2
+	#			bonus = 0.5
+	#			category = shaman_technology
+	#		}
+	#		custom_effect_tooltip = DMC_returned_to_shamanism_tt
+	#		swap_ideas = {
+	#			remove_idea = primary_religion_necrolytes
+	#			add_idea = primary_religion_shamanism
+	#		}
+	#		hidden_effect = {
+	#			set_technology = {
+	#				orc_spirit_lodge_tech = 1
+	#				shaman_tech = 1
+	#				shaman_equipment_tech_1 = 1
+	#				restoration_shaman_tech = 1
+	#				improved_restoration_shaman_1 = 1
+	#			}
+	#		}
+	#	}
+	#}
+
+	focus = {
+		id = DMC_embrace_necrolytes
+		icon = GFX_focus_YUG_pan_slavic_congress
+		cost = 30
+		x = 7
+		y = 5
+
+		available = {
+			OR = {
+				BRC = {	has_completed_focus = BRC_ban_fel_magic }
+				BRC = {	has_completed_focus = BRC_embrace_the_fel }
+			}
+			OR = {
+				has_idea = primary_religion_necrolytes
+				has_idea = primary_religion_demonology
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nectolyte_technology
+				uses = 1
+				bonus = 1
+				category = nectolyte_technology
+			}
+			IF = {
+				limit = { has_idea = BRC_banned_fel_magic }
+				swap_ideas = {
+					remove_idea = BRC_banned_fel_magic
+					add_idea = DMC_embrace_necrolytes_ideas
+				}
+			}
+			IF = {
+				limit = { BRC = { has_completed_focus = BRC_embrace_the_fel } }
+				add_ideas = DMC_embrace_fel_idea
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_the_search_for_orastrasz
+		icon = GFX_DMC_focus_dragon_2
+		cost = 30
+		prerequisite = { focus = DMC_dream_of_dragon }
+		x = 4
+		y = 8
+		###EVENT TRIGGERED
+		available = { always = no }
+
+		completion_reward = {
+			DMC = {	transfer_state = 373 }
+		}
+	}
+
+	focus = {
+		id = DMC_fate_of_the_dragon_soul
+		icon = GFX_focus_legacy_of_the_dragonsoul
+		cost = 30
+		prerequisite = { focus = DMC_the_search_for_orastrasz }
+		x = 4
+		y = 9
+
+		completion_reward = {
+			army_experience = 15
+			air_experience = 5
+			add_manpower = -500
+		}
+	}
+
+	focus = {
+		id = DMC_dragonmaw_port
+		icon = GFX_DMC_focus_dragonmaw_port
+		cost = 30
+		x = -5
+		y = 6
+
+		available = { 503 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			set_capital = { state = 503 }
+			503 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4877
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4875
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 3
+    				instant_build = yes
+				}
+				set_state_name = "Dragonmaw Port"
+				set_province_name = { id = 4873 name = "Dragonmaw Port" }
+				add_victory_points = {
+					province = 4873
+					value = 5
+				}
+				add_core_of = DMC
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_bloodgulch
+		icon = GFX_focus_usa_build_the_pentagon
+		cost = 30
+		x = -3
+		y = 6
+
+		available = { 508 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			508 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 5010
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 5013
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 5019
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 5020
+				}
+				add_core_of = DMC
+				set_state_name = "Bloodgulch"
+				set_province_name = { id = 5010 name = "Bloodgulch" }
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_training_grounds
+		icon = GFX_focus_red_dragon_flight
+		cost = 21
+		prerequisite = {
+			focus = DMC_dragonmaw_port
+			focus = DMC_bloodgulch
+		}
+		x = -4
+		y = 7
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes } 
+			508 = { is_controlled_by_ROOT_or_subject = yes } 
+		}
+
+		completion_reward = {
+			508 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = nesting_grounds
+					level = 1
+					instant_build = yes
+				}
+			}
+			500 = {
+				remove_building = {
+					type = nesting_grounds
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_flight_defensive_3
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = DMC_training_grounds }
+		x = -2
+		y = 8
+
+		completion_reward = {
+			air_experience = 10
+			add_tech_bonus = {
+				name = air_defensive_technology
+				uses = 1
+				bonus = 0.5
+				category = air_defensive_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_flight_offensive_3
+		icon = GFX_goal_generic_air_fighter
+		cost = 30
+		prerequisite = { focus = DMC_training_grounds }
+		x = -6
+		y = 8
+
+		completion_reward = {
+			air_experience = 10
+			add_tech_bonus = {
+				name = air_offensive_technology
+				uses = 1
+				bonus = 0.5
+				category = air_offensive_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_the_bone_yard
+		icon = GFX_focus_GRE_an_orthodox_state
+		cost = 30
+		prerequisite = { focus = DMC_training_grounds }
+		x = -4
+		y = 8
+
+		available = { 2207 = { is_controlled_by_ROOT_or_subject = yes }  }
+
+		completion_reward = {
+			custom_effect_tooltip = DMC_dragon_focus_unlocked_tt
+			2207 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+				add_core_of = DMC
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_pillage_dunwald
+		icon = GFX_focus_shendralar_ruined_city
+		cost = 30
+		prerequisite = { focus = DMC_the_bone_yard }
+		x = -4
+		y = 9
+
+		available = { 517 = { is_controlled_by_ROOT_or_subject = yes }  }
+
+		completion_reward = {
+			517 = {
+				add_core_of = DMC
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+			add_timed_idea = {
+				idea = DMC_sacked_dunwald
+				days = 90
+			}
+			517 = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 3
+				}
+			}
+
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_pillage_thundermar
+		icon = GFX_focus_shendralar_ruined_city
+		cost = 30
+		prerequisite = { focus = DMC_the_bone_yard }
+		x = -2
+		y = 9
+
+		available = { 507 = { is_controlled_by_ROOT_or_subject = yes }  }
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = DMC_sacked_thundermar
+				days = 90
+			}
+			507 = {
+				remove_building = {
+					type = industrial_complex
+					level = 2
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				damage_building = {
+					type = infrastructure
+					damage = 5
+				}
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_vermilion_redoubt
+		icon = GFX_goal_continuous_restrict_freedom
+		cost = 30
+		prerequisite = { focus = DMC_the_bone_yard }
+		x = -6
+		y = 9
+
+		available = { VMR = { is_puppet_of = DMC } }
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = fighter_drake_equipment_1
+				amount = 50
+				producer = VMR
+			}
+			VMR = { give_resource_rights = { receiver = DMC state = 498 } }
+		}
+	}
+
+	focus = {
+		id = DMC_highland_materials
+		icon = GFX_goal_fortify_the_westwall
+		cost = 30
+		x = -1
+		y = 10
+
+		available = {
+			OR = {
+				500 = { is_controlled_by_ROOT_or_subject = yes }
+				522 = { is_controlled_by_ROOT_or_subject = yes }
+				controls_state = 508
+				controls_state = 503
+			}
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = tier_technology
+				uses = 1
+				bonus = 0.5
+				category = tier_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_nesting_materials
+		icon = GFX_focus_generic_cryptologic_bomb
+		prerequisite = { focus = DMC_highland_materials }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nesting_ground_technology
+				uses = 1
+				bonus = 0.5
+				category = nesting_ground_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_ram_horns
+		icon = GFX_focus_generic_cryptologic_bomb
+		prerequisite = { focus = DMC_nesting_materials }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = horn_technology
+				uses = 1
+				bonus = 0.5
+				category = horn_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_broken_wisdom
+		icon = GFX_focus_book_3
+		prerequisite = { focus = DMC_ram_horns }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 3
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes }  
+		}
+
+		completion_reward = {
+			add_ideas = DMC_dragon_knowledge_1
+		}
+	}
+
+	focus = {
+		id = DMC_dragonmen_craftsmen
+		icon = GFX_goal_continuous_repairments
+		prerequisite = { focus = DMC_broken_wisdom }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 4
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes }  
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_dragon_knowledge_1
+				add_idea = DMC_dragon_knowledge_2
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_drakanoid_slaves
+		icon = GFX_focus_YUG_pan_slavic_congress
+		prerequisite = { focus = DMC_dragonmen_craftsmen }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 5
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes }  
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_dragon_knowledge_2
+				add_idea = DMC_dragon_knowledge_3
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_secure_the_queen
+		icon = GFX_focus_red_dragon_flight
+		prerequisite = { focus = DMC_highland_materials }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -3
+		y = 1
+
+		available = {
+			500 = { is_controlled_by_ROOT_or_subject = yes } 
+			has_completed_focus = DMC_the_bone_yard
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_begin_training
+				add_idea = DMC_secure_the_queen_idea
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_enforced_training
+		icon = GFX_focus_red_dragon_flight
+		prerequisite = { focus = DMC_secure_the_queen }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -2
+		y = 2
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes }  }
+
+		completion_reward = {
+			set_technology = {
+				dragon_improved_scales_tech = 1
+				dragon_improved_breath_tech = 1
+				dragon_improved_claws_tech = 1
+				dragon_improved_wings_tech = 1
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_death_from_above
+		icon = GFX_focus_red_dragon_flight
+		prerequisite = { focus = DMC_enforced_training }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -2
+		y = 3
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes }  
+		}
+
+		completion_reward = {
+			set_technology = {
+				bombardment_drake_equipment_tech_1 = 1
+			}
+			swap_ideas = {
+				remove_idea = DMC_secure_the_queen_idea
+				add_idea = DMC_dragon_harnesses
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_dragonriders
+		icon = GFX_DMC_focus_dragon_taming
+		prerequisite = { focus = DMC_death_from_above }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -2
+		y = 4
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes }  
+		}
+
+		completion_reward = {
+			set_technology = {
+				dragon_improved_scales_tech_2 = 1
+				dragon_improved_breath_tech_2 = 1
+				dragon_improved_claws_tech_2 = 1
+				dragon_improved_wings_tech_2 = 1
+			}
+			add_ideas = DMC_dragonriders_idea
+		}
+	}
+
+	focus = {
+		id = DMC_demon_soul_mastery
+		icon = GFX_focus_legacy_of_the_dragonsoul
+		prerequisite = { focus = DMC_dragonriders }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -2
+		y = 5
+
+		available = { 
+			500 = { is_controlled_by_ROOT_or_subject = yes } 
+		}
+
+		completion_reward = {
+			set_technology = {
+				dragon_improved_scales_tech_3 = 1
+				dragon_improved_breath_tech_3 = 1
+				dragon_improved_claws_tech_3 = 1
+				dragon_improved_wings_tech_3 = 1
+				fighter_drake_equipment_tech_2 = 1
+				bombardment_drake_equipment_tech_2 = 1
+			}
+			remove_ideas = DMC_dragon_harnesses
+		}
+	}
+
+	focus = {
+		id = DMC_red_dragon_scales
+		icon = GFX_focus_spr_crush_the_revolution
+		prerequisite = { focus = DMC_secure_the_queen }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -4
+		y = 2
+
+		available = {
+			500 = { is_controlled_by_ROOT_or_subject = yes } 
+			has_completed_focus = DMC_the_bone_yard
+		}
+
+		completion_reward = {
+			add_ideas = DMC_dragon_improvements_1
+		}
+	}
+
+	focus = {
+		id = DMC_red_dragon_blood
+		icon = GFX_DMC_focus_drake
+		prerequisite = { focus = DMC_red_dragon_scales }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -4
+		y = 3
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes }  }
+
+		completion_reward = {
+			set_technology = { DMC_dragon_blood_bandage = 1	}
+			custom_effect_tooltip = DMC_dragon_blood_bandage_tt
+		}
+	}
+
+	focus = {
+		id = DMC_dragon_bone_weaponry
+		icon = GFX_DMC_focus_dragon_poaching
+		prerequisite = { focus = DMC_red_dragon_blood }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -4
+		y = 4
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes }  }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_dragon_improvements_1
+				add_idea = DMC_dragon_improvements_2
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_burn_the_fleet
+		icon = GFX_DMC_focus_drake
+		prerequisite = { focus = DMC_red_dragon_scales }
+		cost = 21
+		relative_position_id = DMC_highland_materials
+		x = -6
+		y = 3
+
+		available = {
+			has_war_with = KUL
+		}
+
+		completion_reward = {
+			KUL = {
+				destroy_ships = {
+					type = destroyer
+    				count = 3
+				}
+				#destroy_ships = {
+				#	type = light_frigate
+    			#	count = 2
+				#}
+				#destroy_ships = {
+				#	type = battleship
+    			#	count = 1
+				#}
+				retire_character = KUL_derek_proudmoore
+				hidden_effect = { retire_character = KUL_derek_proudmoore_navy }
+				add_war_support = -0.05
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_grim_batol_forgeworks
+		icon = GFX_focus_spr_crush_the_revolution
+		prerequisite = { focus = DMC_dragon_bone_weaponry }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -4
+		y = 5
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_dragon_improvements_2
+				add_idea = DMC_dragon_improvements_3
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_pit_fighting
+		icon = GFX_focus_spr_crush_the_revolution
+		prerequisite = { focus = DMC_grim_batol_forgeworks }
+		prerequisite = { focus = DMC_demon_soul_mastery }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = -3
+		y = 6
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_dragon_improvements_3
+				add_idea = DMC_dragon_improvements_4
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_sharpen_the_axes
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = DMC_highland_materials }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 3
+		y = 1
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = orc_weapon_technology
+				uses = 1
+				bonus = 0.5
+				category = orc_weapon_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_elemental_fragments
+		icon = GFX_focus_LAT_the_old_ways
+		prerequisite = { focus = DMC_sharpen_the_axes }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 4
+		y = 2
+
+		available = {
+			has_completed_focus = DMC_delve_deeper
+			522 = { is_controlled_by_ROOT_or_subject = yes }
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = climate_technology
+				uses = 1
+				bonus = 0.75
+				category = climate_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_clear_the_skies
+		icon = GFX_focus_generic_air_defense
+		prerequisite = { focus = DMC_elemental_fragments }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 4
+		y = 3
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ranged_infantry_technology
+				uses = 1
+				bonus = 0.5
+				category = spearman_technology
+				category = spellcaster_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_wildhammer_tactics
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = DMC_clear_the_skies }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 4
+		y = 4
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.25
+			}
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = air_doctrine
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.25
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_elemental_upheaval
+		icon = GFX_focus_generic_annex_country
+		prerequisite = { focus = DMC_wildhammer_tactics }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 4
+		y = 5
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = altar_technology
+				uses = 1
+				bonus = 0.75
+				category = orc_death_knight_technology
+				category = far_seer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_forward_scouts
+		icon = GFX_focus_generic_multi_role_aircraft
+		prerequisite = { focus = DMC_sharpen_the_axes }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = scout_plane_technology
+				uses = 1
+				bonus = 0.75
+				category = scout_plane_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_swift_flight
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = DMC_forward_scouts }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 2
+		y = 3
+
+		available = { has_idea = DMC_last_of_the_rylaks_idea_5 }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_last_of_the_rylaks_idea_5
+				add_idea = DMC_last_of_the_rylaks_idea_6
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_look_to_the_seas
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = DMC_swift_flight }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 2
+		y = 4
+
+		available = {
+			controls_state = 503
+			controls_state = 508
+		}
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DMC_last_of_the_rylaks_idea_6
+				add_idea = DMC_last_of_the_rylaks_idea_7
+			}
+			random_state = {
+				limit = {
+					is_controlled_by = DMC
+					impassable = no
+					is_coastal = yes
+					NOT = {	state = 503	}
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_state = {
+				limit = {
+					is_controlled_by = DMC
+					impassable = no
+					is_coastal = yes
+					NOT = {	state = 503	}
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_state = {
+				limit = {
+					is_controlled_by = DMC
+					impassable = no
+					is_coastal = yes
+					NOT = {	state = 503	}
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_state = {
+				limit = {
+					is_controlled_by_ROOT_or_ally = yes
+					NOT = { is_controlled_by = DMC }
+					impassable = no
+					is_coastal = yes
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_state = {
+				limit = {
+					is_controlled_by_ROOT_or_ally = yes
+					NOT = { is_controlled_by = DMC }
+					impassable = no
+					is_coastal = yes
+				}
+				add_building_construction = {
+    				type = air_base
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_the_next_generation
+		icon = GFX_focus_generic_long_range_aircraft
+		prerequisite = { focus = DMC_look_to_the_seas }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 2
+		y = 5
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = organic_air_technology
+				uses = 1
+				bonus = 1
+				category = organic_air_technology
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_winged_champions
+		icon = GFX_focus_hol_war_on_pacifism
+		prerequisite = { focus = DMC_the_next_generation }
+		prerequisite = { focus = DMC_elemental_upheaval }
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 3
+		y = 6
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+			add_breakthrough_points = {
+				specialization = specialization_air
+				value = 1
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_silvermoon_siege
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		prerequisite = {
+			focus = DMC_demon_soul_mastery
+			focus = DMC_the_next_generation
+		}
+		cost = 30
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 6
+
+		available = { has_war_with = QUE }
+
+		completion_reward = {
+			custom_effect_tooltip = DMC_silvermoon_siege_tt
+			QUE = {
+				if = {
+					limit = {
+						DMC = {
+							has_completed_focus = DMC_demon_soul_mastery
+							500 = { is_controlled_by_ROOT_or_subject = yes }
+						}
+					}
+					add_timed_idea = {
+						idea = DMC_siege_silvermoon_dragon
+						days = 180
+					}
+				}
+				if = {
+					limit = {
+						DMC = { has_completed_focus = DMC_the_next_generation }
+					}
+					add_timed_idea = {
+						idea = DMC_siege_silvermoon_rylak
+						days = 180
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_warchiefs_orders
+		icon = GFX_DMC_focus_dragon
+		prerequisite = { focus = DMC_silvermoon_siege }
+		mutually_exclusive = { focus = DMC_a_dark_pact }
+		mutually_exclusive = { focus = DMC_double_efforts }
+		cost = 14
+		relative_position_id = DMC_highland_materials
+		x = -2
+		y = 7
+
+		available = { 
+			BRC = { has_completed_focus = BRC_doomhammers_horde }
+			has_war_with = QUE 
+			has_country_flag = DMC_failures_punished
+			has_country_leader = {
+				character = DMC_zuluhed_the_whacked
+				ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			country_event = dragonmaw.11
+			BRC = { set_country_flag = DMC_following_orders }
+		}
+	}
+
+	focus = {
+		id = DMC_double_efforts
+		icon = GFX_grunt
+		prerequisite = { focus = DMC_silvermoon_siege }
+		mutually_exclusive = { focus = DMC_a_dark_pact }
+		mutually_exclusive = { focus = DMC_warchiefs_orders }
+		cost = 14
+		relative_position_id = DMC_highland_materials
+		x = 0
+		y = 7
+
+		available = { 
+			has_war_with = QUE 
+			has_country_flag = DMC_failures_punished
+			has_country_leader = {
+				character = DMC_zuluhed_the_whacked
+				ruling_only = yes
+			}
+		}
+
+		completion_reward = {
+			country_event = dragonmaw.13
+		}
+	}
+
+	focus = {
+		id = DMC_a_dark_pact
+		icon = GFX_focus_guldan
+		prerequisite = { focus = DMC_silvermoon_siege }
+		mutually_exclusive = { focus = DMC_warchiefs_orders }
+		mutually_exclusive = { focus = DMC_double_efforts }
+		cost = 14
+		relative_position_id = DMC_highland_materials
+		x = 2
+		y = 7
+
+		available = { 
+			always = no
+			#has_war_with = QUE 
+			#has_country_flag = DMC_failures_punished
+			#has_country_leader = {
+			#	character = DMC_zuluhed_the_whacked
+			#	ruling_only = yes
+			#}
+		}
+
+		completion_reward = {
+			country_event = dragonmaw.12
+		}
+	}
+
+	focus = {
+		id = DMC_dragonmaw_gate
+		icon = GFX_goal_fortify_the_westwall
+		cost = 30
+		x = 7
+		y = 10
+
+		available = { controls_state = 499 }
+
+		completion_reward = {
+			499 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 5971
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 4885
+					instant_build = yes
+				}
+			}
+			add_opinion_modifier = {
+				target = STC
+				modifier = STR_friendly_relations
+			}
+			reverse_add_opinion_modifier = {
+				target = STC
+				modifier = STR_friendly_relations
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_dragonmaw_stronghold
+		icon = GFX_goal_fortify_the_westwall
+		prerequisite = { focus = DMC_dragonmaw_gate }
+		cost = 30
+		x = 7
+		y = 11
+
+		available = { controls_state = 499 }
+
+		completion_reward = {
+			499 = {
+				add_manpower = 2500
+				add_building_construction = {
+					type = bunker
+					level = 4
+					province = 5945
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_old_dark_forges
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = DMC_dragonmaw_stronghold }
+		cost = 30
+		x = 7
+		y = 12
+
+		available = { controls_state = 2200	}
+
+		completion_reward = {
+			2200 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_wolf_dwellings
+		icon = GFX_goal_generic_wolf_pack
+		prerequisite = { focus = DMC_old_dark_forges }
+		cost = 30
+		x = 7
+		y = 13
+
+		available = { controls_state = 2202 }
+
+		completion_reward = {
+			2202 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = stable
+					level = 1
+					instant_build = yes
+				}
+			}
+			hidden_effect = {
+				division_template = {
+					name = "Grim Batol Wolves"
+					priority = 1
+					regiments = {
+						dire_wolf = { x = 0 y = 0 }
+						dire_wolf = { x = 0 y = 1 }
+						dire_wolf = { x = 0 y = 2 }
+						dire_wolf = { x = 0 y = 3 }
+						dire_wolf = { x = 0 y = 4 }
+					}
+					support = {
+						overseer = { x = 0 y = 0 }
+					}
+				}
+
+				2202 = {
+					create_unit = {
+						division = "name = \"Grim Batol Wolves\" division_template = \"Grim Batol Wolves\" start_experience_factor = 0.5 start_equipment_factor = 1"
+						owner = DMC
+						count = 2
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_leech_the_hold
+		icon = GFX_focus_LAT_the_old_ways
+		prerequisite = { focus = DMC_wolf_dwellings }
+		cost = 30
+		x = 7
+		y = 14
+
+		available = { 500 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			500 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arcane_tower
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = spellcaster_technology
+				uses = 1
+				bonus = 0.5
+				category = spellcaster_technology
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_magic
+				value = 0.50
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_search_the_old_tunnels
+		icon = GFX_focus_generic_steel
+		prerequisite = { focus = DMC_leech_the_hold }
+		cost = 30
+		x = 7
+		y = 15
+
+		available = { controls_state = 2201 }
+
+		completion_reward = {
+			500 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			2200 = {
+				add_resource = {
+					type = ores
+					amount = 3
+				}
+			}
+			2201 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_fuel_the_war_machine
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = DMC_dragonmaw_gate }
+		prerequisite = { focus = DMC_highmaw_fortress }
+		cost = 21
+		x = 10
+		y = 11
+
+		available = {
+			controls_state = 502
+			controls_state = 501
+			controls_state = 2210
+		}
+
+		completion_reward = {
+			if = {
+				limit = { country_exists = BHC }
+				502 = {	transfer_state_to = BHC }
+				501 = {	transfer_state_to = BHC }
+				2210 = { transfer_state_to = BHC }
+				add_manpower = 1200
+			}
+			if = {
+				limit = { NOT = { country_exists = BHC } }
+				502 = {	add_manpower = 1000 }
+				501 = {	add_manpower = 1500 }
+				2210 = { add_manpower = 500 }
+				custom_effect_tooltip = DMC_BHC_remnants_tt
+				hidden_effect = {
+					load_oob = DMC_BHC_war_machine
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_butcher_rams
+		icon = GFX_focus_generic_horse_studs
+		prerequisite = { focus = DMC_delve_deeper }
+		cost = 30
+		x = 9
+		y = 13
+
+		available = { controls_state = 519 }
+
+		completion_reward = {
+			519 = {
+				remove_building = {
+					type = stable
+					level = 1
+				}
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_compliance = 10
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_unexpected_relation
+		icon = GFX_focus_GRE_an_orthodox_state
+		prerequisite = { focus = DMC_butcher_rams }
+		prerequisite = { focus = DMC_guard_the_spire }
+		cost = 30
+		x = 10
+		y = 14
+
+		available = {
+			has_war = no
+			NOT = {	country_exists = NRT }
+		}
+
+		completion_reward = {
+			every_owned_state = {
+				limit = { check_variable = { religion = 44 } }
+				add_compliance = 15
+			}
+			every_owned_state = {
+				limit = {
+					check_variable = { religion = 44 }
+					compliance > 84
+				}
+				add_core_of = DMC
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_embrace_traditions
+		icon = GFX_DMC_focus_zuluhed_the_whacked
+		prerequisite = { focus = DMC_unexpected_relation }
+		cost = 21
+		x = 10
+		y = 15
+
+		bypass = {
+			has_idea = primary_religion_shamanism
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = convert_to_shamanism_tt
+			hidden_effect = {
+				remove_ideas = secondary_religion_shamanism
+				meta_effect = {
+					text = {
+						set_variable = { main_religion = [MAIN_RELIGION] }
+					}
+					MAIN_RELIGION = "[ROOT.GetMainReligionVariable]"
+				}
+				meta_effect = {
+					text = {
+						add_ideas = [TARGET_RELIGION_AS_SECONDARY]
+					}
+					TARGET_RELIGION_AS_SECONDARY = "[ROOT.GetSecondaryReligionIdea]"
+				}
+				add_ideas = primary_religion_shamanism
+			}
+			hidden_effect = {
+				every_owned_state = {
+					limit = { is_core_of = DMC }
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_highmaw_fortress
+		icon = GFX_goal_fortify_the_westwall
+		cost = 30
+		x = 13
+		y = 10
+
+		available = { controls_state = 171 }
+
+		completion_reward = {
+			171 = {
+				add_compliance = 10
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 2932
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 395
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_river_garrisons
+		icon = GFX_goal_fortify_the_westwall
+		prerequisite = { focus = DMC_highmaw_fortress }
+		cost = 30
+		x = 13
+		y = 11
+
+		available = { controls_state = 171 }
+
+		completion_reward = {
+			515 = {
+				add_compliance = 10
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4983
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4987
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4969
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4960
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 4963
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_lowland_mill
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = DMC_river_garrisons }
+		cost = 30
+		x = 13
+		y = 12
+
+		available = { controls_state = 2204 }
+
+		completion_reward = {
+			2204 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_delta_settlements
+		icon = GFX_focus_hol_abandon_the_gold_standard
+		prerequisite = { focus = DMC_lowland_mill }
+		cost = 30
+		x = 13
+		y = 13
+
+		available = { controls_state = 2208 }
+
+		completion_reward = {
+			2208 = {
+				add_core_of = DMC
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_manpower = 1500
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_sea_witches
+		icon = GFX_focus_smiling_buddha
+		prerequisite = { focus = DMC_delta_settlements }
+		cost = 30
+		x = 13
+		y = 14
+
+		available = {
+			controls_state = 504
+			has_completed_focus = DMC_the_tidecallers
+			has_manpower > 699
+		}
+
+		completion_reward = {
+			army_experience = 20
+			add_manpower = -700
+			add_tech_bonus = {
+				name = dire_orc_technology
+				uses = 1
+				bonus = 0.50
+				category = dire_orc_technology
+			}
+			add_popularity = {
+				ideology = old_gods
+				popularity = 0.02
+			}
+			swap_ideas = {
+				remove_idea = DMC_glopgut_clan_2
+				add_idea = DMC_glopgut_clan_3
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_highland_roosts
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = DMC_sea_witches }
+		cost = 30
+		x = 13
+		y = 15
+
+		available = { controls_state = 518 }
+
+		completion_reward = {
+			518 = {
+				add_core_of = DMC
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = nesting_grounds
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+				hidden_effect = {
+					set_state_race_to_primary_race = yes
+					set_state_religion_to_primary_religion = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_delve_deeper
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = DMC_fuel_the_war_machine }
+		cost = 30
+		x = 10
+		y = 12
+
+		available = { 522 = { is_controlled_by_ROOT_or_subject = yes } }
+
+		completion_reward = {
+			522 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_guard_the_spire
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = DMC_delve_deeper }
+		cost = 30
+		x = 11
+		y = 13
+
+		available = { controls_state = 2209 }
+
+		completion_reward = {
+			2209 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_to_kill_a_monster
+		icon = GFX_focus_spa_strengthen_the_supreme_reality_of_spain
+		prerequisite = { focus = DMC_embrace_traditions }
+		mutually_exclusive = { focus = DMC_domination_of_all_dragons }
+		cost = 14
+		x = 11
+		y = 16
+
+		available = {
+			always = no
+			has_country_leader = {
+				character = DMC_zuluhed_the_whacked
+				ruling_only = yes
+			}
+		}
+	}
+
+	focus = {
+		id = DMC_domination_of_all_dragons
+		icon = GFX_goal_continuous_restrict_freedom
+		prerequisite = { focus = DMC_embrace_traditions }
+		mutually_exclusive = { focus = DMC_to_kill_a_monster }
+		cost = 14
+		x = 9
+		y = 16
+
+		available = {
+			always = no
+			has_country_leader = {
+				character = DMC_nekros_skullcrusher
+				ruling_only = yes
+			}
+		}
+	}
+}

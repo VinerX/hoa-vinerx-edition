@@ -1,0 +1,587 @@
+### GREAT WEAPON FOOTMEN
+sp_vanguard = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = footman_equipment_tech_1 }
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 6
+			ores = 6
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			vanguard
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Vanguards"
+				priority = 1
+				regiments = {
+					vanguard = { x = 0 y = 0 }
+					vanguard = { x = 0 y = 1 }
+					vanguard = { x = 0 y = 2 }
+					vanguard = { x = 0 y = 3 }
+					vanguard = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Vanguards\" division_template = \"Vanguards\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### SHIELD & FLAIL
+sp_ironclad = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { has_tech = footman_weapons_tech_2 }
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 8
+			ores = 12
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			ironclad
+		}
+		country_effects = {
+			custom_effect_tooltip = general_promoted_tt
+			hidden_effect = {
+				create_corps_commander = {
+					traits = {  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			division_template = {
+				name = "Ironclad"
+				priority = 1
+				regiments = {
+					ironclad = { x = 0 y = 0 }
+					ironclad = { x = 0 y = 1 }
+					ironclad = { x = 0 y = 2 }
+					ironclad = { x = 0 y = 3 }
+					ironclad = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Ironclad\" division_template = \"Ironclad\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Criminal Militia - Manpower Trickle Back due to Escapes, More Soft Attack/Defense
+sp_penal_legion = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = militia_equipment_tech_1 
+			### Either Needs to be Penal Colony - TOL
+			### Needs Mutiny Event
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			wheat = 3
+			wood = 3
+			ores = 3
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			penal_legion
+		}
+		country_effects = {
+			division_template = {
+				name = "Penal Legion"
+				priority = 1
+				regiments = {
+					penal_legion = { x = 0 y = 0 }
+					penal_legion = { x = 0 y = 1 }
+					penal_legion = { x = 0 y = 2 }
+					penal_legion = { x = 0 y = 3 }
+					penal_legion = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Penal Legion\" division_template = \"Penal Legion\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		#sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Just Upgraded Captains
+sp_royal_captains = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = royal_guard_equipment_tech_2 
+			has_tech = improved_captain_2
+			### Will Add the Following additions later on after a trial
+			#has_government = neutral 
+			#has_idea = noble_guild
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 4
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.large
+
+	resource_cost = {
+		resources = {
+			wheat = 14
+			ores = 28
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			royal_captains
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		#sp_land_generic_reward_reliability_bonus_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Support Priests who do Damage
+sp_confessor = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = mage_equipment_tech_1
+			has_tech = improved_priest_2
+			### Will Add the Following additions later on after a trial
+			#has_idea = religious_guild
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+		specialization_magic = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			wheat = 14
+			mana = 14
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			confessor
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Ground Paladins, reduced their Stats a little because they are cheaper
+sp_lights_templars = {
+	specialization = specialization_magic
+
+	project_tags = sp_tag_magic
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = improved_priest_3
+			has_tech = royal_guard_equipment_tech_2
+			#has_idea = religious_guild
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+		specialization_magic = 1
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			wheat = 26
+			mana = 14
+			ores = 24
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			templar
+		}
+		country_effects = {
+			division_template = {
+				name = "Knights Templar"
+				priority = 1
+				regiments = {
+					templar = { x = 0 y = 0 }
+					templar = { x = 0 y = 1 }
+					templar = { x = 0 y = 2 }
+					templar = { x = 0 y = 3 }
+					templar = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Knights Templar\" division_template = \"Knights Templar\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+
+		sp_nuclear_scientist_xp_generic_reward
+		sp_nuclear_minor_progress_generic_reward
+		sp_nuclear_reactor_radioactive_leak_stabilized_reward
+		sp_nuclear_reactor_minor_explosion_reward
+	}
+}
+
+### Mounted Royal Guard - Used to Mix with Paladins for more Org
+sp_mounted_guard = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = royal_guard_equipment_tech_2
+			has_tech = horse_equipment_tech_2 
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+	
+	prototype_time = sp_time.prototype.short
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			mounts = 6
+			wheat = 36
+			ores = 24
+		}
+	}
+	
+	project_output = {
+		enable_subunits = { 
+			mounted_royal_guard
+		}
+		country_effects = {
+			division_template = {
+				name = "Mounted Guard"
+				priority = 1
+				regiments = {
+					mounted_royal_guard = { x = 0 y = 0 }
+					mounted_royal_guard = { x = 0 y = 1 }
+					mounted_royal_guard = { x = 0 y = 2 }
+					mounted_royal_guard = { x = 0 y = 3 }
+					mounted_royal_guard = { x = 1 y = 0 }
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = ROOT
+					impassable = no
+				}
+				create_unit = {
+					division = "name = \"Mounted Guard\" division_template = \"Mounted Guard\" start_experience_factor = 0.4"
+					owner = ROOT
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		#sp_land_generic_reward_infantry_tech_1
+		#sp_land_generic_reward_infantry_tech_2
+		#sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_reliability_bonus_1
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}
+
+### Basic RIfles
+sp_smoothbore_rifles = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry
+
+	allowed = { always = yes }
+
+	available = {
+		FROM = { 
+			has_tech = mine_cart_2
+			has_tech = archer_equipment_tech_2 
+		}
+	}
+
+	visible = {
+		FROM = { has_tech = town_hall_tech }
+	}
+
+	ai_will_do = { base = 1 }
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+	
+	prototype_time = sp_time.prototype.medium
+	complexity = sp_complexity.small
+
+	resource_cost = {
+		resources = { 
+			ores = 24
+			gunpowder = 12
+		}
+	}
+	
+	project_output = {
+		enable_equipments = {
+			smoothbore_rifle_equipment_1
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_resource_scarcity
+	}
+}

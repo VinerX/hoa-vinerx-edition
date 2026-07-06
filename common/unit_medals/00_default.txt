@@ -1,0 +1,643 @@
+# Valid unit modifiers are not exhaustive
+# Currently supported:
+# army_morale
+# army_morale_factor
+# army_org
+# army_org_factor
+# supply_consumption_factor
+# equipment_capture
+# equipment_capture_factor
+# army_fuel_capacity_factor
+# army_fuel_consumption_factor
+# recon_factor
+# recon_factor_while_entrenched
+# transport_capacity (?)
+# breakthrough_factor
+# armor_factor
+# army_strength_factor
+# experience_loss_factor
+# leader_modifier applies unit modifiers to all units under them as a general, similarly to traits.
+# army_attack_factor
+# army_defence_factor
+# max_dig_in
+# max_dig_in_factor
+
+@cost = 30
+
+unit_medals = {
+
+	### STO
+
+	defender_of_stormwind = {
+		
+		available = { should_have_stormwind_medals_trigger = yes }
+		frame = 2
+		icon = "GFX_medal_icon_ger"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.075
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	### Generic alliance
+	
+	alliance_bravery = {
+		
+		available = { 
+			has_government = alliance
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	alliance_military_order = {
+		
+		available = { 
+			has_government = alliance
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	alliance_sword = {
+		
+		available = { 
+			has_government = alliance
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	alliance_virtue = {
+		
+		available = { 
+			has_government = alliance
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+
+	### Generic horde
+	
+	horde_bravery = {
+		
+		available = { 
+			has_government = horde
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	horde_military_order = {
+		
+		available = { 
+			has_government = horde
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	horde_sword = {
+		
+		available = { 
+			has_government = horde
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	horde_virtue = {
+		
+		available = { 
+			has_government = horde
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+
+	### Generic neutral
+	
+	neutral_bravery = {
+		
+		available = { 
+			has_government = neutral
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	neutral_military_order = {
+		
+		available = { 
+			has_government = neutral
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	neutral_sword = {
+		
+		available = { 
+			has_government = neutral
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	neutral_virtue = {
+		
+		available = { 
+			has_government = neutral
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+
+	### Generic old_gods
+	
+	old_gods_bravery = {
+		
+		available = { 
+			has_government = old_gods
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	old_gods_military_order = {
+		
+		available = { 
+			has_government = old_gods
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	old_gods_sword = {
+		
+		available = { 
+			has_government = old_gods
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	old_gods_virtue = {
+		
+		available = { 
+			has_government = old_gods
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+
+	### Generic fel
+	
+	fel_bravery = {
+		
+		available = { 
+			has_government = fel
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	fel_military_order = {
+		
+		available = { 
+			has_government = fel
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	fel_sword = {
+		
+		available = { 
+			has_government = fel
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	fel_virtue = {
+		
+		available = { 
+			has_government = fel
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+
+	### Generic death
+	
+	death_bravery = {
+		
+		available = { 
+			has_government = death
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	death_military_order = {
+		
+		available = { 
+			has_government = death
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	death_sword = {
+		
+		available = { 
+			has_government = death
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	death_virtue = {
+		
+		available = { 
+			has_government = death
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+
+	### Generic titans
+	
+	titans_bravery = {
+		
+		available = { 
+			has_government = titans
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 1
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_defence_factor = 0.05
+			max_dig_in_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	titans_military_order = {
+		
+		available = { 
+			has_government = titans
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 2
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			supply_consumption_factor = -0.15
+			army_morale_factor = 0.1
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	titans_sword = {
+		
+		available = { 
+			has_government = titans
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 3
+		icon = "GFX_medal_icon_default"
+		
+		cost = @cost
+		
+		unit_modifiers = {
+			army_attack_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+	titans_virtue = {
+		
+		available = { 
+			has_government = titans
+			should_have_any_unique_medals_trigger = no
+		}
+		frame = 4
+		icon = "GFX_medal_icon_default"
+	
+		cost = @cost
+		
+		unit_modifiers = {
+			experience_loss_factor = -0.2
+			army_morale_factor = 0.05
+		}
+		
+		one_time_effect = {
+			add_divisional_commander_xp = 100
+		}
+	}
+	
+}

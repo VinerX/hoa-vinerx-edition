@@ -1,0 +1,868 @@
+#!gfx:interface\hoa_Technologies.gfx
+technologies = {
+
+	undead_haunted_stable_tech = {
+
+		enable_building = {
+			building = stable
+			level = 3
+		}
+
+		on_research_complete = {
+			set_technology = { stable_tech_global = 1 popup = yes }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_plague_hound_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_risen_mounts_tech_1
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_skeletal_knight_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 12 y = 0 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+		}
+	}
+
+	undead_plague_hound_tech = {
+
+		enable_subunits = {
+			undead_plague_hound
+		}
+
+		on_research_complete = {
+			set_technology = { undead_plague_hound_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_plague_hound_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 9 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_plague_hound_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_plague_hound_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_plague_hound_infected_wound_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_plague_hound_pack_mentality_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 9 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_plague_hound_infected_wound_tech = {
+
+		undead_plague_hound = {
+			soft_attack = 0.15
+		}
+		undead_skeletal_hounds = {
+			soft_attack = 0.15
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_plague_hound_pack_mentality_tech }
+
+		path = {
+			leads_to_tech = undead_plague_hound_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 8 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_plague_hound_pack_mentality_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_plague_hound_pack_mentality_tech
+			}
+		}
+	}
+
+	undead_plague_hound_pack_mentality_tech = {
+
+		undead_plague_hound = {
+			max_organisation = 5
+			initiative = 0.05
+		}
+		undead_skeletal_hounds = {
+			max_organisation = 5
+			initiative = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_plague_hound_infected_wound_tech }
+
+		path = {
+			leads_to_tech = undead_plague_hound_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 10 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_plague_hound_infected_wound_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_plague_hound_infected_wound_tech
+			}
+		}
+	}
+
+	undead_plague_hound_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_plague_hound_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_plague_hound_killer_instinct_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_plague_hound_unholy_regeneration_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 9 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_plague_hound_killer_instinct_tech = {
+
+		undead_plague_hound = {
+			maximum_speed = 0.05
+			breakthrough = 0.1
+		}
+		undead_skeletal_hounds = {
+			maximum_speed = 0.05
+			breakthrough = 0.1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_plague_hound_unholy_regeneration_tech }
+
+		path = {
+			leads_to_tech = undead_plague_hound_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 8 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_plague_hound_unholy_regeneration_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_plague_hound_unholy_regeneration_tech
+			}
+		}
+	}
+
+	undead_plague_hound_unholy_regeneration_tech = {
+
+		undead_plague_hound = {
+			casualty_trickleback = 0.02
+			experience_loss_factor = -0.02
+		}
+		undead_skeletal_hounds = {
+			casualty_trickleback = 0.02
+			experience_loss_factor = -0.02
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_plague_hound_killer_instinct_tech }
+
+		path = {
+			leads_to_tech = undead_plague_hound_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 10 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_plague_hound_killer_instinct_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_plague_hound_killer_instinct_tech
+			}
+		}
+	}
+
+	undead_plague_hound_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_plague_hound_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 9 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_plague_hound_technology
+			mounted_footman_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_risen_mounts_tech_1 = {
+
+		undead_plague_hound = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_undead = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = undead_risen_mounts_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 12 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+
+	}
+
+	undead_risen_mounts_tech_2 = {
+
+		undead_plague_hound = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_undead = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_risen_mounts_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 12 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+	}
+
+	undead_risen_mounts_tech_3 = {
+
+		undead_plague_hound = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+			increase_tech_count_undead = yes
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		path = {
+			leads_to_tech = undead_risen_mounts_tech_4
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 12 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+	}
+
+	undead_risen_mounts_tech_4 = {
+
+		undead_plague_hound = {
+			soft_attack = 0.05
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			modify_building_resources = {
+				building = stable
+				resource = mounts
+				amount = 1
+			}
+		}
+
+		category_cavalry = {
+			default_morale = 0.02
+			maximum_speed = 0.02
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 2.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 12 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			resource_building_technology
+			horse_technology
+		}
+	}
+
+	undead_skeletal_knight_tech = {
+
+		enable_subunits = {
+			undead_skeletal_knight
+		}
+
+		on_research_complete = {
+			set_technology = { undead_skeletal_knight_equipment_tech_1 = 1 }
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_equipment_tech_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 15 y = 0 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+		
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_skeletal_knight_equipment_tech_1 = {
+
+		enable_equipments = {
+			undead_skeletal_knight_equipment_1
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_unholy_charge_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_skeletal_knight_bone_rage_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 15 y = 2 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+
+	undead_skeletal_knight_unholy_charge_tech = {
+
+		undead_skeletal_knight = {
+			breakthrough = 0.1
+			maximum_speed = 0.05
+		}
+		undead_the_headless = {
+			breakthrough = 0.1
+			maximum_speed = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_skeletal_knight_bone_rage_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 14 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_skeletal_knight_bone_rage_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_skeletal_knight_bone_rage_tech
+			}
+		}
+	}
+
+	undead_skeletal_knight_bone_rage_tech = {
+
+		undead_skeletal_knight = {
+			breakthrough = 0.1
+			soft_attack = 0.05
+		}
+		undead_the_headless = {
+			breakthrough = 0.1
+			soft_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_skeletal_knight_unholy_charge_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_equipment_tech_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 16 y = 4 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_skeletal_knight_unholy_charge_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_skeletal_knight_unholy_charge_tech
+			}
+		}
+	}
+
+	undead_skeletal_knight_equipment_tech_2 = {
+
+		enable_equipments = {
+			undead_skeletal_knight_equipment_2
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		dependencies = { undead_halls_of_the_dead_tech = 1 }
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_serrated_bone_spear_tech
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = undead_skeletal_knight_bonespike_armor_tech
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 15 y = 6 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+
+	undead_skeletal_knight_serrated_bone_spear_tech = {
+
+		undead_skeletal_knight = {
+			ap_attack = 0.1
+			hard_attack = 0.05
+		}
+		undead_the_headless = {
+			ap_attack = 0.1
+			hard_attack = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_skeletal_knight_bonespike_armor_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 14 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_skeletal_knight_bonespike_armor_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_skeletal_knight_bonespike_armor_tech
+			}
+		}
+	}
+
+	undead_skeletal_knight_bonespike_armor_tech = {
+
+		undead_skeletal_knight = {
+			armor_value = 0.05
+			hardness = 0.05
+		}
+		undead_the_headless = {
+			armor_value = 0.05
+			hardness = 0.05
+		}
+
+		on_research_complete = {
+			increase_tech_count_undead = yes
+		}
+
+		xor = { undead_skeletal_knight_serrated_bone_spear_tech }
+
+		path = {
+			leads_to_tech = undead_skeletal_knight_equipment_tech_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 16 y = 8 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 0
+				has_tech = undead_skeletal_knight_serrated_bone_spear_tech
+			}
+
+			modifier = {
+				factor = 0
+				is_researching_technology = undead_skeletal_knight_serrated_bone_spear_tech
+			}
+		}
+	}
+
+	undead_skeletal_knight_equipment_tech_3 = {
+
+		enable_equipments = {
+			undead_skeletal_knight_equipment_3
+		}
+
+		dependencies = { undead_black_citadel_tech = 1 }
+
+		research_cost = 1.5
+
+		folder = {
+			name = undead_cavalry_folder
+			position = { x = 15 y = 10 }
+		}
+
+		categories = {
+			cavalry_technology
+			undead_skeletal_knight_technology
+			knight_technology
+		}
+
+		ai_will_do = { factor = 1 }
+
+		special_project_specialization = { specialization_land }
+	}
+}

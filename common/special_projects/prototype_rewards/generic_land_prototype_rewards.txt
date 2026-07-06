@@ -1,0 +1,834 @@
+@base_reward_weight = 2 #Base Reward weight value
+@reward_weight_factor_theme = 0.25 # Applied to factor - Used to reduce chances of repeating the same reward theme within the same project (ie. Failure 1 & Failure 2)
+
+#Low Scientist XP gain
+sp_land_generic_reward_scientist_xp_1 = {
+
+	fire_only_once = yes
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_scientist_xp_flag
+		}
+		modifier = {
+			factor = 0
+			var:scientist = {
+				has_scientist_level = {
+					level > 4
+					specialization = specialization_land
+				}
+			}
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_scientist_xp
+		
+		iteration_output = {
+			scientist_effects = {
+				add_scientist_xp = {
+					#experience = constant:sp_scientist_xp_gain.low
+					experience = 25
+					specialization = specialization_land
+				}
+				FROM = { set_project_flag = sp_land_generic_reward_scientist_xp_flag }
+			}
+		}
+	}
+}
+
+#Medium Scientist XP gain
+sp_land_generic_reward_scientist_xp_2 = {
+
+	fire_only_once = yes
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_scientist_xp_flag
+		}
+		modifier = {
+			factor = 0
+			var:scientist = {
+				has_scientist_level = {
+					level > 4
+					specialization = specialization_land
+				}
+			}
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_scientist_xp
+		
+		iteration_output = {
+			scientist_effects = {
+				if = {
+					limit = {
+						has_scientist_level = {
+							level < 5
+							specialization = specialization_land
+						}
+					}
+					add_scientist_xp = {
+						#experience = constant:sp_scientist_xp_gain.medium
+						experience = 50
+						specialization = specialization_land
+					}
+				}
+				FROM = { set_project_flag = sp_land_generic_reward_scientist_xp_flag }
+			}
+		}
+	}
+}
+
+#High Scientist XP gain
+sp_land_generic_reward_scientist_xp_3 = {
+
+	fire_only_once = yes
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_scientist_xp_flag
+		}
+		modifier = {
+			factor = 0
+			var:scientist = {
+				has_scientist_level = {
+					level > 4
+					specialization = specialization_land
+				}
+			}
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_scientist_xp
+		
+		iteration_output = {
+			scientist_effects = {
+				if = {
+					limit = {
+						has_scientist_level = {
+							level < 5
+							specialization = specialization_land
+						}
+					}
+					add_scientist_xp = {
+						#experience = constant:sp_scientist_xp_gain.high
+						experience = 75
+						specialization = specialization_land
+					}
+				}
+				FROM = { set_project_flag = sp_land_generic_reward_scientist_xp_flag }
+			}
+
+			country_effects = {
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = sp_breakthrough_progress.medium
+				}
+			}
+		}
+	}
+}
+
+#Low Army XP
+sp_land_generic_reward_army_xp_1 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+	
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_army_xp_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_army_xp
+		
+		iteration_output = {
+			country_effects = {
+				#army_experience = constant:sp_military_xp_gain.low
+				army_experience = 5
+				FROM = { set_project_flag = sp_land_generic_reward_army_xp_flag }
+			}
+		}
+	}
+}
+
+#medium Army XP
+sp_land_generic_reward_army_xp_2 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+	
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_army_xp_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_army_xp
+		
+		iteration_output = {
+			country_effects = {
+				#army_experience = constant:sp_military_xp_gain.medium
+				army_experience = 10
+				FROM = { set_project_flag = sp_land_generic_reward_army_xp_flag }
+			}
+		}
+	}
+}
+
+#High Army XP
+sp_land_generic_reward_army_xp_3 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_army_xp_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_army_xp
+		
+		iteration_output = {
+			country_effects = {
+				#army_experience = constant:sp_military_xp_gain.high
+				army_experience = 15
+				
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = sp_breakthrough_progress.medium
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_army_xp_flag }
+			}
+		}
+	}
+}
+
+#Low Extra Progress
+sp_land_generic_reward_major_progress_1 = {
+	fire_only_once = yes
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+	
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_major_progress_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_major_breakthrough
+		
+		iteration_output = {
+			country_effects = {
+				FROM = {
+					#add_project_progress_ratio = constant:sp_progress.gain.low	
+					add_project_progress_ratio = 0.1			
+					
+					set_project_flag = sp_land_generic_reward_major_progress_flag
+				}
+			}
+
+			scientist_effects = {
+				if = {
+					limit = {
+						has_scientist_level = {
+							level < 5
+							specialization = specialization_land
+						}
+					}
+					add_scientist_xp = {
+						#experience = constant:sp_scientist_xp_gain.low
+						experience = 25
+						specialization = specialization_land
+					}
+				}
+			}
+		}
+	}
+}
+
+#Medium Extra Progress
+sp_land_generic_reward_major_progress_2 = {
+	fire_only_once = yes
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_major_progress_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_major_breakthrough
+		
+		iteration_output = {
+			country_effects = {
+				FROM = {
+					#add_project_progress_ratio = constant:sp_progress.gain.medium
+					add_project_progress_ratio = 0.15				
+					
+					set_project_flag = sp_land_generic_reward_major_progress_flag
+				}
+			}
+
+			scientist_effects = {
+				if = {
+					limit = {
+						has_scientist_level = {
+							level < 5
+							specialization = specialization_land
+						}
+					}
+					add_scientist_xp = {
+						#experience = constant:sp_scientist_xp_gain.low
+						experience = 25
+						specialization = specialization_land
+					}
+				}
+			}
+		}
+	}
+}
+
+#High Extra Progress
+sp_land_generic_reward_major_progress_3 = {
+	fire_only_once = yes
+
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_major_progress_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_major_breakthrough
+		
+		iteration_output = {
+			country_effects = {
+				FROM = {
+					#add_project_progress_ratio = constant:sp_progress.gain.high				
+					add_project_progress_ratio = 0.2
+					set_project_flag = sp_land_generic_reward_major_progress_flag
+				}
+
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = sp_breakthrough_progress.medium
+				}
+			}
+
+			scientist_effects = {
+				if = {
+					limit = {
+						has_scientist_level = {
+							level < 5
+							specialization = specialization_land
+						}
+					}
+					add_scientist_xp = {
+						#experience = constant:sp_scientist_xp_gain.low
+						experience = 25
+						specialization = specialization_land
+					}
+				}
+			}
+		}
+	}
+}
+
+#Low Tech Bonus
+sp_land_generic_reward_infantry_tech_1 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_infantry_tech_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_infantry_tech
+		
+		iteration_output = {
+			country_effects = { 
+				add_tech_bonus = {
+					name = infantry_technology
+					bonus = 0.25
+					uses = 1
+					category = infantry_technology
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_infantry_tech_flag }
+			}
+		}
+	}
+}
+
+#Medium Tech Bonus
+sp_land_generic_reward_infantry_tech_2 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_infantry_tech_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_armor_tech
+		
+		iteration_output = {
+			country_effects = { 
+				add_tech_bonus = {
+					name = infantry_technology
+					bonus = 0.5
+					uses = 1
+					category = infantry_technology
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_infantry_tech_flag }
+			}
+		}
+	}
+}
+
+#High Tech Bonus
+sp_land_generic_reward_infantry_tech_3 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_infantry_tech_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_infantry_tech
+		
+		iteration_output = {
+			country_effects = { 
+				add_tech_bonus = {
+					name = infantry_technology
+					bonus = 0.75
+					uses = 1
+					category = infantry_technology
+				}
+
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = sp_breakthrough_progress.medium
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_infantry_tech_flag }
+			}
+		}
+	}
+}
+
+#Low Tech Bonus
+sp_land_generic_reward_siege_engine_tech_1 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_siege_engine_tech_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_siege_engine_tech
+		
+		iteration_output = {
+			country_effects = { 
+				add_tech_bonus = {
+					name = dwarf_siege_engine_technology
+					bonus = 0.25
+					uses = 1
+					category = dwarf_siege_engine_technology
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_siege_engine_tech_flag }
+			}
+		}
+	}
+}
+
+#Medium Tech Bonus
+sp_land_generic_reward_siege_engine_tech_2 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_siege_engine_tech_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_armor_tech
+		
+		iteration_output = {
+			country_effects = { 
+				add_tech_bonus = {
+					name = dwarf_siege_engine_technology
+					bonus = 0.5
+					uses = 1
+					category = dwarf_siege_engine_technology
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_siege_engine_tech_flag }
+			}
+		}
+	}
+}
+
+#High Tech Bonus
+sp_land_generic_reward_siege_engine_tech_3 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 0
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_siege_engine_tech_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_siege_engine_tech
+		
+		iteration_output = {
+			country_effects = { 
+				add_tech_bonus = {
+					name = dwarf_siege_engine_technology
+					bonus = 0.75
+					uses = 1
+					category = dwarf_siege_engine_technology
+				}
+
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = sp_breakthrough_progress.medium
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_siege_engine_tech_flag }
+			}
+		}
+	}
+}
+
+#Armor Bonus
+sp_land_generic_reward_armor_bonus_1 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_armor_bonus_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_armor_bonus
+		
+		iteration_output = {
+			equipment_bonus = {
+				infantry_equipment = {
+					armor_value = 0.02
+				}
+			}
+			
+			country_effects = {
+				FROM = { set_project_flag = sp_land_generic_reward_armor_bonus_flag }
+			}
+		}
+	}
+}
+
+#Hardness Bonus
+sp_land_generic_reward_armor_bonus_2 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_armor_bonus_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_armor_bonus
+		
+		iteration_output = {
+			equipment_bonus = {
+				infantry_equipment = {
+					hardness = 0.02
+				}
+			}
+			
+			country_effects = {
+				FROM = { set_project_flag = sp_land_generic_reward_armor_bonus_flag }
+			}
+		}
+	}
+}
+
+#Armor + Hardness Bonus
+sp_land_generic_reward_armor_bonus_3 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_armor_bonus_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_armor_bonus
+		
+		iteration_output = {
+			equipment_bonus = {
+				infantry_equipment = {
+					armor_value = 0.02
+					hardness = 0.02
+				}
+			}
+			
+			country_effects = {
+				add_breakthrough_progress = {
+					specialization = specialization_land
+					value = sp_breakthrough_progress.medium
+				}
+
+				FROM = { set_project_flag = sp_land_generic_reward_armor_bonus_flag }
+			}
+		}
+	}
+}
+
+#Reliability
+sp_land_generic_reward_reliability_bonus_1 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_reliability_bonus_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_reliability_bonus
+		
+		iteration_output = {
+			equipment_bonus = {
+				mounts_equipment = {
+					reliability = 0.03
+				}
+				combat_animals_equipment = {
+					reliability = 0.03
+				}
+				heroic_combat_animals_equipment = {
+					reliability = 0.03
+				}
+			}
+
+			country_effects = {
+				FROM = { set_project_flag = sp_land_generic_reward_reliability_bonus_flag }
+			}
+		}
+	}
+}
+
+sp_land_generic_reward_reliability_bonus_2 = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 50
+		max = 100
+	}
+
+	weight = {
+		base = @base_reward_weight
+		modifier = {
+			factor = @reward_weight_factor_theme
+			has_project_flag = sp_land_generic_reward_reliability_bonus_flag
+		}
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_reliability_bonus
+		
+		iteration_output = {
+			equipment_bonus = {
+				infantry_equipment = {
+					reliability = 0.03
+				}
+				heroic_infantry_equipment = {
+					reliability = 0.03
+				}
+			}
+
+			country_effects = {
+				FROM = { set_project_flag = sp_land_generic_reward_reliability_bonus_flag }
+			}
+		}
+	}
+}
+
+sp_land_generic_reward_resource_scarcity = {
+	fire_only_once = yes
+	
+	threshold = {
+		min = 25
+		max = 80
+	}
+
+	weight = {
+		base = 0.5
+	}
+	
+	option = {
+		token = sp_land_generic_reward_option_resource_scarcity
+		
+		iteration_output = {
+			country_effects = { 
+				FROM = { 
+					#add_project_progress_ratio = constant:sp_progress.loss.low
+					add_project_progress_ratio = -0.1 
+				}
+			}
+
+			scientist_effects = {
+				add_scientist_xp = {
+					#experience = constant:sp_scientist_xp_gain.low
+					experience = 25
+					specialization = specialization_land
+				}
+			}
+		}
+	}
+}

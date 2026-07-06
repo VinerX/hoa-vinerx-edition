@@ -1,0 +1,353 @@
+﻿
+###########################
+#twilights_hammer
+###########################
+
+add_namespace = twilights_hammer_rise
+
+country_event = {
+	id = twilights_hammer_rise.1
+	title = twilights_hammer_rise.1.t
+	desc = twilights_hammer_rise.1.d
+	#picture = GFX_guldan_event
+
+	trigger = {
+		tag = THC
+		has_country_flag = old_alignment
+		THC = {
+			NOT = { THC_chogall = { has_trait = old_gods_devotee_trait } }
+		}
+	}
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer_rise.1.option.1
+
+		THC = {
+			add_ideas = THC_understand_the_void
+		}
+
+		hidden_effect = {
+            country_event = { id = twilights_hammer_rise.2 days = 7 }
+		}
+	}
+}
+
+country_event = {
+	id = twilights_hammer_rise.2
+	title = twilights_hammer_rise.2.t
+	desc = twilights_hammer_rise.2.d
+	#picture = GFX_guldan_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer_rise.2.option.1
+
+		THC = {
+			THC_chogall = {
+				add_country_leader_trait = old_gods_devotee_trait 
+				#add_trait = { trait = old_gods_devotee_trait }
+			}
+		}
+
+		hidden_effect = {
+            country_event = { id = twilights_hammer_rise.3 days = 14 }
+		}
+	}
+}
+
+country_event = {
+	id = twilights_hammer_rise.3
+	title = twilights_hammer_rise.3.t
+	desc = twilights_hammer_rise.3.d
+	#picture = GFX_guldan_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer_rise.3.option.1
+
+		THC = {
+			swap_ideas = {
+				remove_idea = THC_understand_the_void
+				add_idea = THC_the_pale_idea
+			}
+			add_ideas = pale_orc_secondary_race
+		}
+
+		hidden_effect = {
+            country_event = { id = twilights_hammer_rise.4 days = 14 }
+		}
+	}
+}
+
+country_event = {
+	id = twilights_hammer_rise.4
+	title = twilights_hammer_rise.4.t
+	desc = twilights_hammer_rise.4.d
+	#picture = GFX_guldan_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer_rise.4.option.1
+
+		THC = {
+			drop_cosmetic_tag = yes
+			swap_ideas = {
+				remove_idea = THC_highmaul_exiles
+				add_idea = THC_twilight_clan
+			}
+			swap_ideas = {
+				remove_idea = primary_religion_arcane_studies
+				add_idea = primary_religion_the_hour_of_twilight
+			}
+			add_ideas = {
+				secondary_trait_call_of_the_void
+				secondary_trait_night_dwellers
+				secondary_trait_bloodfury	
+			}
+			1022 = {
+				add_manpower = 12000
+			}
+		}
+	}
+}
+
+##########
+###First War
+##########
+
+add_namespace = twilights_hammer
+
+country_event = {
+	id = twilights_hammer.1
+	title = twilights_hammer.1.t
+	desc = twilights_hammer.1.d
+	picture = GFX_guldan_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.1.option.1
+
+		381 = {
+			transfer_state_to = THC
+			add_core_of = THC
+			remove_core_of = TSC
+		}
+		
+		382 = {
+			add_core_of = THC
+			transfer_state_to = THC
+			remove_core_of = TSC
+		}
+
+		hidden_effect = {
+			785 = {
+				transfer_state_to = THC
+				add_core_of = THC
+				remove_core_of = TSC
+			}
+		}
+	}
+}
+
+country_event = { #keep cho'gall busy
+	id = twilights_hammer.2
+	title = twilights_hammer.2.t
+	desc = twilights_hammer.2.d
+	picture = GFX_horde_flag_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.2.option.1
+		
+		add_timed_idea = {
+			idea = THC_keep_chogall_busy_idea
+			days = 365
+		}
+	}
+}
+
+country_event = { #the call of the old ones
+	id = twilights_hammer.3
+	title = twilights_hammer.3.t
+	desc = twilights_hammer.3.d
+	picture = GFX_black_empire_event
+
+	fire_only_once = yes
+
+    trigger = {
+        tag = THC
+        has_start_date > 591.12.31
+		has_start_date < 592.01.02
+        date > 592.01.07
+    }
+	
+    option = {
+        name = twilights_hammer.3.option.1
+		swap_ideas = {
+			remove_idea = THC_the_pale_idea
+			add_idea = THC_the_pale_idea_2
+		}
+	}
+}
+
+country_event = { #warchiefs orders
+	id = twilights_hammer.4
+	title = twilights_hammer.4.t
+	desc = twilights_hammer.4.d
+	picture = GFX_blackhand_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.4.option.1
+        hidden_effect = {
+            country_event = {
+                id = twilights_hammer.5
+                days = 7
+            }
+        }
+	}
+}
+
+country_event = { #call of C'thun
+	id = twilights_hammer.5
+	title = twilights_hammer.5.t
+	desc = twilights_hammer.5.d
+	picture = GFX_cthun_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.5.option.1
+		add_ideas = {
+			THC_the_call_of_cthun_idea
+		}
+        hidden_effect = {
+            country_event = {
+                id = twilights_hammer.6
+                days = 7
+            }
+        }		
+	}
+}
+
+country_event = { #Yogg
+	id = twilights_hammer.6
+	title = twilights_hammer.6.t
+	desc = twilights_hammer.6.d
+	picture = GFX_yogg_saron_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.6.option.1
+		add_ideas = {
+			THC_blessings_of_yogg_saron_idea
+		}
+        hidden_effect = {
+            country_event = {
+                id = twilights_hammer.7
+                days = 7
+            }
+        }		
+	}
+}
+
+country_event = { #whispers from N'zoth
+	id = twilights_hammer.7
+	title = twilights_hammer.7.t
+	desc = twilights_hammer.7.d
+	picture = GFX_nzoth_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.7.option.1
+		add_ideas = {
+			THC_visions_of_nzoth_idea
+		}
+        hidden_effect = {
+            country_event = {
+                id = twilights_hammer.8
+                days = 7
+            }
+        }		
+	}
+}
+
+country_event = { #faint whispers from the south west
+	id = twilights_hammer.8
+	title = twilights_hammer.8.t
+	desc = twilights_hammer.8.d
+	picture = GFX_yshaarj_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.8.option.1
+		add_ideas = {
+			THC_whispers_of_the_sha_idea
+		}
+        hidden_effect = {
+            country_event = {
+                id = twilights_hammer.9
+                days = 7
+            }
+        }		
+	}
+}
+
+country_event = { #the Twilight Canticle
+	id = twilights_hammer.9
+	title = twilights_hammer.9.t
+	desc = twilights_hammer.9.d
+	picture = GFX_hour_of_twilight_event
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+    option = {
+        name = twilights_hammer.9.option.1
+		add_ideas = THC_the_twilight_canticle_idea
+		swap_ideas = {
+			remove_idea = THC_the_pale_idea_2
+			add_idea = THC_the_pale_idea_3
+		}
+		remove_ideas = { 
+			THC_the_call_of_cthun_idea
+			THC_blessings_of_yogg_saron_idea
+			THC_visions_of_nzoth_idea
+			THC_whispers_of_the_sha_idea
+		}
+	}
+}
