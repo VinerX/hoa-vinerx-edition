@@ -20,7 +20,7 @@ focus_tree = {
 	shared_focus = arming_the_nation
 
 	# ============================================================
-	# Row y=0: Start
+	# y=0: Start (unchanged)
 	# ============================================================
 
 	focus = {
@@ -46,7 +46,7 @@ focus_tree = {
 	}
 
 	# ============================================================
-	# Row y=1: Three branches
+	# y=2: Existing 3 branches + new branch roots
 	# ============================================================
 
 	focus = {
@@ -149,7 +149,490 @@ focus_tree = {
 	}
 
 	# ============================================================
-	# Row y=2: Expanding each branch
+	# NEW BRANCH: Land Forces (x=45–49, even y)
+	# ============================================================
+
+	focus = {
+		id = KUL_sw_mobilize_marines
+		icon = GFX_goal_generic_amphibious_assault
+		cost = 10
+		prerequisite = { focus = KUL_sw_daelins_call }
+		relative_position_id = KUL_sw_daelins_call
+		x = 7
+		y = 2
+
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = {
+				name = footman_technology
+				bonus = 0.5
+				uses = 1
+				category = footman_technology
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = KUL_sw_marine_training_grounds
+		icon = GFX_goal_generic_military_deal
+		cost = 10
+		prerequisite = { focus = KUL_sw_mobilize_marines }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = 0
+		y = 2
+
+		completion_reward = {
+			army_experience = 20
+			add_manpower = 800
+		}
+	}
+
+	focus = {
+		id = KUL_sw_boralus_garrison
+		icon = GFX_goal_generic_construct_military
+		cost = 10
+		prerequisite = { focus = KUL_sw_mobilize_marines }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = -2
+		y = 2
+
+		completion_reward = {
+			add_ideas = KUL_sw_boralus_garrison_idea
+			capital_scope = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_drustvar_rangers
+		icon = GFX_focus_generic_air_defense
+		cost = 10
+		prerequisite = { focus = KUL_sw_mobilize_marines }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_ideas = KUL_sw_drustvar_rangers_idea
+			add_tech_bonus = {
+				name = archer_technology
+				bonus = 0.5
+				uses = 1
+				category = archer_technology
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_amphibious_warfare_doctrine
+		icon = GFX_goal_generic_navy_battleship
+		cost = 14
+		prerequisite = { focus = KUL_sw_marine_training_grounds }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = 0
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = amphibious_technology
+				bonus = 0.5
+				uses = 1
+				category = amphibious_technology
+			}
+			navy_experience = 15
+		}
+	}
+
+	focus = {
+		id = KUL_sw_marine_officer_school
+		icon = GFX_goal_generic_military_academy
+		cost = 14
+		prerequisite = { focus = KUL_sw_boralus_garrison }
+		prerequisite = { focus = KUL_sw_marine_training_grounds }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = -2
+		y = 4
+
+		completion_reward = {
+			army_experience = 20
+			add_command_power = 30
+			random_army_leader = {
+				gain_xp = 200
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_naval_bombardment_corps
+		icon = GFX_goal_generic_army_artillery2
+		cost = 14
+		prerequisite = { focus = KUL_sw_drustvar_rangers }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = 2
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = catapult_technology
+				bonus = 0.5
+				uses = 1
+				category = catapult_technology
+			}
+			navy_experience = 15
+		}
+	}
+
+	focus = {
+		id = KUL_sw_marine_command
+		icon = GFX_goal_generic_amphibious_assault
+		cost = 21
+		prerequisite = { focus = KUL_sw_marine_officer_school }
+		prerequisite = { focus = KUL_sw_amphibious_warfare_doctrine }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = -1
+		y = 6
+
+		completion_reward = {
+			add_ideas = KUL_sw_marine_command_idea
+			add_command_power = 50
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = KUL_sw_shore_batteries
+		icon = GFX_focus_generic_coastal_fort
+		cost = 21
+		prerequisite = { focus = KUL_sw_boralus_garrison }
+		prerequisite = { focus = KUL_sw_naval_bombardment_corps }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = 1
+		y = 6
+
+		completion_reward = {
+			add_ideas = KUL_sw_coastal_defense_idea
+			5 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+			8 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_marine_expeditionary_force
+		icon = GFX_focus_generic_major_war
+		cost = 21
+		prerequisite = { focus = KUL_sw_marine_command }
+		prerequisite = { focus = KUL_sw_shore_batteries }
+		relative_position_id = KUL_sw_mobilize_marines
+		x = 2
+		y = 8
+
+		completion_reward = {
+			add_ideas = KUL_sw_marine_expeditionary_idea
+			army_experience = 30
+			navy_experience = 20
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus_marines
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	# ============================================================
+	# NEW BRANCH: House Politics (x=43–49, odd y)
+	# ============================================================
+
+	focus = {
+		id = KUL_sw_council_of_four_houses
+		icon = GFX_focus_alliance_prove_our_strength
+		cost = 10
+		prerequisite = { focus = KUL_sw_proudmoore_legacy }
+		relative_position_id = KUL_sw_daelins_call
+		x = 5
+		y = 1
+
+		completion_reward = {
+			country_event = { id = kul_sw_exp.1 }
+		}
+	}
+
+	focus = {
+		id = KUL_sw_house_waycrest
+		icon = GFX_goal_generic_construct_military
+		cost = 10
+		prerequisite = { focus = KUL_sw_council_of_four_houses }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = -2
+		y = 2
+
+		completion_reward = {
+			add_ideas = KUL_sw_house_waycrest_idea
+			add_stability = 0.03
+			add_manpower = 600
+		}
+	}
+
+	focus = {
+		id = KUL_sw_house_ashvane
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 10
+		prerequisite = { focus = KUL_sw_council_of_four_houses }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_ideas = KUL_sw_house_ashvane_idea
+			add_political_power = 30
+			capital_scope = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_house_stormsong
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 10
+		prerequisite = { focus = KUL_sw_council_of_four_houses }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_ideas = KUL_sw_house_stormsong_idea
+			navy_experience = 15
+			add_tech_bonus = {
+				name = naval_technology
+				bonus = 0.5
+				uses = 1
+				category = naval_technology
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_drustvar_militia
+		icon = GFX_goal_generic_military_academy
+		cost = 14
+		prerequisite = { focus = KUL_sw_house_waycrest }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = -2
+		y = 4
+
+		completion_reward = {
+			add_manpower = 1000
+			army_experience = 15
+			add_war_support = 0.03
+		}
+	}
+
+	focus = {
+		id = KUL_sw_waycrest_manor
+		icon = GFX_goal_generic_fortify_country
+		cost = 14
+		prerequisite = { focus = KUL_sw_house_waycrest }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 0
+		y = 4
+
+		completion_reward = {
+			add_political_power = 30
+			add_stability = 0.03
+			capital_scope = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_witch_hunters
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		cost = 21
+		prerequisite = { focus = KUL_sw_drustvar_militia }
+		prerequisite = { focus = KUL_sw_waycrest_manor }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = -1
+		y = 6
+
+		completion_reward = {
+			country_event = { id = kul_sw_exp.3 }
+		}
+	}
+
+	focus = {
+		id = KUL_sw_ashvane_shipwrights
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 14
+		prerequisite = { focus = KUL_sw_house_ashvane }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 2
+		y = 4
+
+		completion_reward = {
+			5 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			navy_experience = 15
+		}
+	}
+
+	focus = {
+		id = KUL_sw_privateer_contracts
+		icon = GFX_goal_generic_navy_submarine
+		cost = 14
+		prerequisite = { focus = KUL_sw_house_ashvane }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 4
+		y = 4
+
+		completion_reward = {
+			navy_experience = 20
+			add_tech_bonus = {
+				name = convoy_technology
+				bonus = 0.5
+				uses = 1
+				category = convoy_technology
+			}
+			add_war_support = 0.03
+		}
+	}
+
+	focus = {
+		id = KUL_sw_ashvane_monopoly
+		icon = GFX_goal_generic_production2
+		cost = 21
+		prerequisite = { focus = KUL_sw_ashvane_shipwrights }
+		prerequisite = { focus = KUL_sw_privateer_contracts }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 3
+		y = 6
+
+		completion_reward = {
+			add_ideas = KUL_sw_ashvane_monopoly_idea
+			add_political_power = 50
+			5 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_tidesage_conclave
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 14
+		prerequisite = { focus = KUL_sw_house_stormsong }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 6
+		y = 4
+
+		completion_reward = {
+			add_ideas = KUL_sw_tidesage_conclave_idea
+			stability = 0.03
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus_stormsong
+				cost_reduction = 0.25
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_blessed_ship_hulls
+		icon = GFX_goal_generic_navy_battleship
+		cost = 14
+		prerequisite = { focus = KUL_sw_house_stormsong }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 8
+		y = 4
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = large_frame_technology
+				bonus = 0.5
+				uses = 1
+				category = large_frame_technology
+			}
+			navy_experience = 15
+		}
+	}
+
+	focus = {
+		id = KUL_sw_tidesage_ascendancy
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 21
+		prerequisite = { focus = KUL_sw_tidesage_conclave }
+		prerequisite = { focus = KUL_sw_blessed_ship_hulls }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 7
+		y = 6
+
+		completion_reward = {
+			navy_experience = 25
+			add_daily_mastery = {
+				name = doctrine_screens
+				amount = 0.5
+				days = 50
+				track = screens
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = KUL_sw_united_admiralty
+		icon = GFX_goal_generic_major_alliance
+		cost = 21
+		prerequisite = { focus = KUL_sw_witch_hunters }
+		prerequisite = { focus = KUL_sw_ashvane_monopoly }
+		prerequisite = { focus = KUL_sw_tidesage_ascendancy }
+		relative_position_id = KUL_sw_council_of_four_houses
+		x = 3
+		y = 8
+
+		completion_reward = {
+			country_event = { id = kul_sw_exp.4 }
+		}
+	}
+
+	# ============================================================
+	# Existing y=4: Row 2 expanding each branch
 	# ============================================================
 
 	focus = {
@@ -319,7 +802,7 @@ focus_tree = {
 	}
 
 	# ============================================================
-	# Row y=3: Mid-tree
+	# Existing y=6: Mid-tree + new trade branch
 	# ============================================================
 
 	focus = {
@@ -472,7 +955,154 @@ focus_tree = {
 	}
 
 	# ============================================================
-	# Row y=4: Deep naval war
+	# NEW BRANCH: Trade & Commerce (x=43–47, odd y after y=5)
+	# ============================================================
+
+	focus = {
+		id = KUL_sw_sea_trade_routes
+		icon = GFX_goal_generic_consumer_goods
+		cost = 14
+		prerequisite = { focus = KUL_sw_alliance_naval_council }
+		relative_position_id = KUL_sw_daelins_call
+		x = 7
+		y = 5
+
+		completion_reward = {
+			add_political_power = 30
+			5 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_war_support = 0.03
+		}
+	}
+
+	focus = {
+		id = KUL_sw_merchant_guild
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 14
+		prerequisite = { focus = KUL_sw_sea_trade_routes }
+		relative_position_id = KUL_sw_sea_trade_routes
+		x = 0
+		y = 2
+
+		completion_reward = {
+			add_ideas = KUL_sw_merchant_guild_idea
+			capital_scope = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_convoy_protection
+		icon = GFX_goal_generic_navy_destroyer
+		cost = 14
+		prerequisite = { focus = KUL_sw_sea_trade_routes }
+		relative_position_id = KUL_sw_sea_trade_routes
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = convoy_technology
+				bonus = 0.5
+				uses = 1
+				category = convoy_technology
+			}
+			navy_experience = 10
+		}
+	}
+
+	focus = {
+		id = KUL_sw_ironforge_trade
+		icon = GFX_goal_generic_iron_mine
+		cost = 21
+		prerequisite = { focus = KUL_sw_merchant_guild }
+		relative_position_id = KUL_sw_sea_trade_routes
+		x = -1
+		y = 4
+
+		available = {
+			IRO = { exists = yes }
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			IRO = {
+				add_opinion_modifier = {
+					target = KUL
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = IRO
+					modifier = medium_increase
+				}
+			}
+			add_tech_bonus = {
+				name = mine_technology
+				bonus = 0.5
+				uses = 1
+				category = mine_technology
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_gilnean_agreement
+		icon = GFX_focus_GIL_generic
+		cost = 21
+		prerequisite = { focus = KUL_sw_convoy_protection }
+		relative_position_id = KUL_sw_sea_trade_routes
+		x = 2
+		y = 4
+
+		available = {
+			GIL = { exists = yes }
+		}
+
+		completion_reward = {
+			add_political_power = 30
+			add_war_support = 0.05
+			GIL = {
+				add_opinion_modifier = {
+					target = KUL
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = GIL
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_export_monopolies
+		icon = GFX_goal_generic_build_navy
+		cost = 21
+		prerequisite = { focus = KUL_sw_ironforge_trade }
+		prerequisite = { focus = KUL_sw_gilnean_agreement }
+		relative_position_id = KUL_sw_sea_trade_routes
+		x = 0
+		y = 6
+
+		completion_reward = {
+			add_ideas = KUL_sw_export_monopoly_idea
+			add_political_power = 50
+			add_war_support = 0.03
+		}
+	}
+
+	# ============================================================
+	# Existing y=8: Fleet Blockade + Derek + Gryphon
 	# ============================================================
 
 	focus = {
@@ -521,6 +1151,20 @@ focus_tree = {
 	}
 
 	focus = {
+		id = KUL_sw_dereks_first_command
+		icon = GFX_goal_generic_navy_destroyer
+		cost = 10
+		prerequisite = { focus = KUL_sw_fleet_blockade }
+		relative_position_id = KUL_sw_fleet_blockade
+		x = 2
+		y = 0
+
+		completion_reward = {
+			country_event = { id = kul_sw_exp.2 }
+		}
+	}
+
+	focus = {
 		id = KUL_sw_gryphon_wing
 		icon = GFX_focus_gryphons
 		cost = 21
@@ -561,6 +1205,533 @@ focus_tree = {
 		}
 	}
 
+	# ============================================================
+	# NEW BRANCH: Air Forces (x=43–47, even y after y=8)
+	# ============================================================
+
+	focus = {
+		id = KUL_sw_wild_gryphons
+		icon = GFX_focus_gryphons
+		cost = 14
+		prerequisite = { focus = KUL_sw_gryphon_wing }
+		relative_position_id = KUL_sw_gryphon_wing
+		x = 2
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = organic_flight_technology
+				bonus = 0.5
+				uses = 1
+				category = organic_flight_technology
+			}
+			add_manpower = 300
+			air_experience = 15
+		}
+	}
+
+	focus = {
+		id = KUL_sw_aerial_reconnaissance
+		icon = GFX_goal_generic_radar
+		cost = 14
+		prerequisite = { focus = KUL_sw_gryphon_wing }
+		relative_position_id = KUL_sw_gryphon_wing
+		x = 4
+		y = 2
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = decryption_technology
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+			add_tech_bonus = {
+				name = encryption_technology
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_fleet_air_cover
+		icon = GFX_goal_generic_air_fighter
+		cost = 21
+		prerequisite = { focus = KUL_sw_wild_gryphons }
+		prerequisite = { focus = KUL_sw_aerial_reconnaissance }
+		relative_position_id = KUL_sw_gryphon_wing
+		x = 3
+		y = 4
+
+		completion_reward = {
+			navy_experience = 20
+			air_experience = 20
+			add_war_support = 0.05
+			add_doctrine_cost_reduction = {
+				name = air_doc_cover
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+		}
+	}
+
+	# ============================================================
+	# NEW BRANCH: Regional Development (x=50–56, even y)
+	# ============================================================
+
+	focus = {
+		id = KUL_sw_develop_boralus
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 10
+		prerequisite = { focus = KUL_sw_daelins_call }
+		relative_position_id = KUL_sw_daelins_call
+		x = 12
+		y = 2
+
+		completion_reward = {
+			5 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			8 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_boralus_trade_port
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 14
+		prerequisite = { focus = KUL_sw_develop_boralus }
+		relative_position_id = KUL_sw_develop_boralus
+		x = -2
+		y = 2
+
+		completion_reward = {
+			country_event = { id = kul_sw_exp.5 }
+		}
+	}
+
+	focus = {
+		id = KUL_sw_admiralty_docks
+		icon = GFX_goal_generic_build_navy
+		cost = 14
+		prerequisite = { focus = KUL_sw_develop_boralus }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 0
+		y = 2
+
+		completion_reward = {
+			5 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_boralus_lighthouse
+		icon = GFX_goal_generic_radar
+		cost = 14
+		prerequisite = { focus = KUL_sw_develop_boralus }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 2
+		y = 2
+
+		completion_reward = {
+			5 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			navy_experience = 10
+		}
+	}
+
+	focus = {
+		id = KUL_sw_drustvar_lumber_camps
+		icon = GFX_generic_focus_lumbermill
+		cost = 14
+		prerequisite = { focus = KUL_sw_boralus_trade_port }
+		relative_position_id = KUL_sw_develop_boralus
+		x = -2
+		y = 4
+
+		completion_reward = {
+			8 = {
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_stormsong_farms
+		icon = GFX_focus_shendralar_restore_gardens
+		cost = 14
+		prerequisite = { focus = KUL_sw_admiralty_docks }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 0
+		y = 4
+
+		completion_reward = {
+			100 = {
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = farm
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_coastal_watchtowers
+		icon = GFX_goal_generic_radar
+		cost = 14
+		prerequisite = { focus = KUL_sw_boralus_lighthouse }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 2
+		y = 4
+
+		completion_reward = {
+			7 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			8 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			navy_experience = 10
+		}
+	}
+
+	focus = {
+		id = KUL_sw_ship_timber_plantations
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 21
+		prerequisite = { focus = KUL_sw_drustvar_lumber_camps }
+		relative_position_id = KUL_sw_develop_boralus
+		x = -2
+		y = 6
+
+		completion_reward = {
+			8 = {
+				add_building_construction = {
+					type = lumber_mill
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = lumber_mill_technology
+				bonus = 0.5
+				uses = 1
+				category = lumber_mill_technology
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_mountain_supply_routes
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 21
+		prerequisite = { focus = KUL_sw_drustvar_lumber_camps }
+		prerequisite = { focus = KUL_sw_stormsong_farms }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 0
+		y = 6
+
+		completion_reward = {
+			8 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			100 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.03
+		}
+	}
+
+	focus = {
+		id = KUL_sw_stormsong_shrine
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		cost = 21
+		prerequisite = { focus = KUL_sw_stormsong_farms }
+		prerequisite = { focus = KUL_sw_coastal_watchtowers }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 2
+		y = 6
+
+		completion_reward = {
+			add_ideas = KUL_sw_stormsong_shrine_idea
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = KUL_sw_drustvar_mines
+		icon = GFX_goal_generic_iron_mine
+		cost = 21
+		prerequisite = { focus = KUL_sw_mountain_supply_routes }
+		relative_position_id = KUL_sw_develop_boralus
+		x = 0
+		y = 8
+
+		completion_reward = {
+			add_ideas = KUL_sw_drustvar_mines_idea
+			8 = {
+				add_building_construction = {
+					type = iron_mine
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# ============================================================
+	# NEW BRANCH: Alliance Diplomacy (x=50–56, odd y)
+	# ============================================================
+
+	focus = {
+		id = KUL_sw_fleet_for_lordaeron
+		icon = GFX_focus_LOR_generic
+		cost = 14
+		prerequisite = { focus = KUL_sw_grand_alliance_fleet }
+		relative_position_id = KUL_sw_daelins_call
+		x = 10
+		y = 7
+
+		available = {
+			is_in_faction_with = LOR
+		}
+
+		completion_reward = {
+			LOR = {
+				add_tech_bonus = {
+					name = naval_technology
+					bonus = 0.5
+					uses = 1
+					category = naval_technology
+				}
+				add_opinion_modifier = {
+					target = KUL
+					modifier = medium_increase
+				}
+			}
+			reverse_add_opinion_modifier = {
+				target = LOR
+				modifier = medium_increase
+			}
+			navy_experience = 20
+		}
+	}
+
+	focus = {
+		id = KUL_sw_stromgarde_steel
+		icon = GFX_focus_STR_generic
+		cost = 14
+		prerequisite = { focus = KUL_sw_grand_alliance_fleet }
+		relative_position_id = KUL_sw_daelins_call
+		x = 14
+		y = 7
+
+		available = {
+			is_in_faction_with = STR
+		}
+
+		completion_reward = {
+			STR = {
+				add_opinion_modifier = {
+					target = KUL
+					modifier = medium_increase
+				}
+			}
+			reverse_add_opinion_modifier = {
+				target = STR
+				modifier = medium_increase
+			}
+			add_tech_bonus = {
+				name = sword_technology
+				bonus = 0.5
+				uses = 1
+				category = sword_technology
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_elven_shipwrights
+		icon = GFX_goal_generic_diplomatic_treaty
+		cost = 14
+		prerequisite = { focus = KUL_sw_grand_alliance_fleet }
+		relative_position_id = KUL_sw_daelins_call
+		x = 16
+		y = 7
+
+		available = {
+			is_in_faction_with = QUE
+		}
+
+		bypass = {
+			QUE = { exists = no }
+		}
+
+		completion_reward = {
+			QUE = {
+				add_opinion_modifier = {
+					target = KUL
+					modifier = medium_increase
+				}
+			}
+			reverse_add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+			add_doctrine_cost_reduction = {
+				name = naval_doc_elven
+				cost_reduction = 0.25
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_grand_fleet_coordination
+		icon = GFX_goal_generic_major_alliance
+		cost = 21
+		prerequisite = { focus = KUL_sw_fleet_for_lordaeron }
+		prerequisite = { focus = KUL_sw_elven_shipwrights }
+		relative_position_id = KUL_sw_daelins_call
+		x = 13
+		y = 9
+
+		completion_reward = {
+			navy_experience = 30
+			add_war_support = 0.05
+			alliance_unity_raise = yes
+			add_doctrine_cost_reduction = {
+				name = fleet_doctrine_coordination
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = KUL_sw_support_stormwind_refugees
+		icon = GFX_focus_alliance_footman
+		cost = 14
+		prerequisite = { focus = KUL_sw_grand_alliance_fleet }
+		relative_position_id = KUL_sw_daelins_call
+		x = 15
+		y = 9
+
+		available = {
+			STO = { exists = yes }
+		}
+
+		completion_reward = {
+			STO = {
+				add_opinion_modifier = {
+					target = KUL
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = STO
+					modifier = medium_increase
+				}
+			}
+			add_political_power = 30
+			add_stability = 0.03
+		}
+	}
+
+	focus = {
+		id = KUL_sw_alliance_naval_dominance
+		icon = GFX_focus_alliance_kultiran_fleet
+		cost = 24
+		prerequisite = { focus = KUL_sw_grand_fleet_coordination }
+		prerequisite = { focus = KUL_sw_support_stormwind_refugees }
+		relative_position_id = KUL_sw_daelins_call
+		x = 14
+		y = 11
+
+		available = {
+			is_fighting_second_war_horde = yes
+		}
+
+		completion_reward = {
+			navy_experience = 40
+			add_war_support = 0.10
+			alliance_unity_raise = yes
+			add_daily_mastery = {
+				name = doctrine_fleet_auxiliary
+				amount = 0.5
+				days = 100
+				track = fleet_auxiliary
+			}
+		}
+	}
+
+	# ============================================================
+	# Existing: Tiran Marine Corps
+	# ============================================================
+
 	focus = {
 		id = KUL_sw_tiran_marine_corps
 		icon = GFX_goal_generic_amphibious_assault
@@ -594,16 +1765,16 @@ focus_tree = {
 	}
 
 	# ============================================================
-	# Row y=5-6: Derek's tragedy chain
+	# Existing: Derek's Fate and post-war chain
 	# ============================================================
 
 	focus = {
 		id = KUL_sw_dereks_fate
 		icon = GFX_focus_generic_major_war
 		cost = 14
-		prerequisite = { focus = KUL_sw_fleet_blockade }
+		prerequisite = { focus = KUL_sw_dereks_first_command }
 		relative_position_id = KUL_sw_fleet_blockade
-		x = 1
+		x = 2
 		y = 2
 
 		available = {
@@ -640,10 +1811,6 @@ focus_tree = {
 			}
 		}
 	}
-
-	# ============================================================
-	# Row y=7-8: Post-war branches
-	# ============================================================
 
 	focus = {
 		id = KUL_sw_revenge_of_the_admiral
