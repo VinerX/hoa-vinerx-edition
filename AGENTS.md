@@ -145,6 +145,17 @@ Reuse the generic **non-political backbone** — pull in the shared branches
 buildup) via `shared_focus = …`, and only hand-author the nation's political/story branch.
 Full skeleton + per-tree/per-focus/localisation checklist: **`docs/FOCUS_CHECKLIST.md`**.
 
+**Placement rule**: political branches must start at **x ≥ 28** (to the right of
+`develop_the_country` which ends around x=28). This avoids visual overlap with both
+`arming_the_nation` (naval branch extends to x=18) and `develop_the_country` (spans
+x=20-28).
+
+**HOI4 modding reference** (check these before asking about syntax/mechanics):
+- HOI4 modding wiki: https://hoi4.paradoxwikis.com/Modding
+- Modding category (all topics): https://hoi4.paradoxwikis.com/Category:Modding
+- `continuous_focus_position` is in **pixels** (not the focus x/y grid), so the
+  validator does not check it for overlap. Set it far enough from your focuses.
+
 ## Validate, then commit (git)
 
 - **Branch model:** the live playable folder `C:/Games/Hearts of Azeroth VinerX Editon` is
