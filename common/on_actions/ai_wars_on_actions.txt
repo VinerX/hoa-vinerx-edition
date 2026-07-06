@@ -1,0 +1,110 @@
+on_actions = {
+	
+	on_monthly = {
+		effect = {
+			if = {
+				limit = { 
+					is_ai = yes
+				}
+				random_neighbor_country = { 
+					if = {
+						limit = { 
+							ROOT = { can_declare_war_on = PREV }
+						}
+						ROOT = {
+
+							set_temp_variable = { war_chance = 0 }
+
+							
+
+							if = {
+								limit = {
+									has_war = yes
+								}
+								subtract_from_temp_variable = { war_chance = 50 }
+							}
+
+							if = {
+								limit = {
+									has_opinion = { target = PREV value < 0 }
+								}
+								add_to_temp_variable = { war_chance = 10 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value < -10 }
+								}
+								add_to_temp_variable = { war_chance = 10 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value < -20 }
+								}
+								add_to_temp_variable = { war_chance = 10 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value < -40 }
+								}
+								add_to_temp_variable = { war_chance = 30 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value > 0 }
+								}
+								subtract_from_temp_variable = { war_chance = 10 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value > 10 }
+								}
+								subtract_from_temp_variable = { war_chance = 10 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value > 20 }
+								}
+								subtract_from_temp_variable = { war_chance = 10 }
+							}
+							if = {
+								limit = {
+									has_opinion = { target = PREV value > 40 }
+								}
+								subtract_from_temp_variable = { war_chance = 30 }
+							}
+
+							if = {
+								limit = {
+									has_war_support < 0.5
+								}
+								subtract_from_temp_variable = { war_chance = 10 }
+							}
+							else = {
+								add_to_temp_variable = { war_chance = 10 }
+							}
+
+							set_temp_variable = { world_tension = var:threat }
+							multiply_temp_variable = { world_tension = 50 }
+							add_to_temp_variable = { war_chance = var:world_tension }
+
+							clamp_temp_variable = {
+								var = war_chance
+								min = 0
+								max = 80
+							}
+
+							random = {
+								chance = var:war_chance
+								create_wargoal = {
+									target = PREV
+									type = take_state_focus
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
