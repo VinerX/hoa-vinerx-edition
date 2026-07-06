@@ -66,6 +66,16 @@ focus_tree = {
 			# Lordaeron becomes the political heart of the coalition.
 			add_ideas = LOR_the_alliance_of_lordaeron
 			add_command_power = 50
+			remove_ideas = LOR_courts_of_lordaeron_1
+			# Fallback: if the 596 bookmark auto-completed the first focus,
+			# swap the peacetime spirit here so it doesn't linger.
+			if = {
+				limit = { has_idea = LOR_era_of_peace }
+				swap_ideas = {
+					remove_idea = LOR_era_of_peace
+					add_idea = LOR_a_looming_threat_idea
+				}
+			}
 			country_event = { id = lordaeron_second_war_proto.2 }
 		}
 	}
@@ -173,6 +183,8 @@ focus_tree = {
 			add_war_support = 0.03
 			# Coalition logistics come online — and the front-line realms are resupplied.
 			add_ideas = LOR_allied_war_logistics
+			# Logistics reform prunes administrative waste.
+			remove_ideas = LOR_poor_administration_1
 			every_country = {
 				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
 				add_equipment_to_stockpile = { type = footman_equipment_1 amount = 200 }
@@ -352,6 +364,10 @@ focus_tree = {
 			add_command_power = 50
 			add_manpower = 5000
 			LOR_second_war_proto_raise_overextension = yes
+			# Full mobilisation: the mothballed fleet is reactivated and
+			# the local civil guards are folded into the regular army.
+			remove_ideas = LOR_mothballed_fleet
+			remove_ideas = LOR_civil_guard_1
 		}
 	}
 
