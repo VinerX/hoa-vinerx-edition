@@ -1,0 +1,40 @@
+﻿add_namespace = blackrock_climax
+
+country_event = {
+	id = blackrock_climax.1
+	title = blackrock_climax.1.t
+	desc = blackrock_climax.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event blackrock_climax.1 (Lothar vs Doomhammer duel)" }
+
+	option = {
+		name = blackrock_climax.1.a
+		ai_chance = { factor = 50 }
+		LOR = {
+			add_stability = -0.05
+			kill_country_leader = yes
+		}
+		STO = { kill_country_leader = yes }
+		set_country_flag = lothar_fallen
+		set_global_flag = lothar_slain_at_blackrock
+		add_war_support = 0.10
+		every_country = {
+			limit = { is_in_faction_with = ROOT }
+			add_timed_idea = { idea = alliance_coordinated_offensive days = 180 }
+		}
+	}
+	option = {
+		name = blackrock_climax.1.b
+		ai_chance = { factor = 50 }
+		add_war_support = 0.10
+		set_country_flag = doomhammer_captured
+		set_global_flag = doomhammer_defeated_at_blackrock
+		every_country = {
+			limit = { is_in_faction_with = ROOT }
+			add_timed_idea = { idea = alliance_coordinated_offensive days = 180 }
+		}
+	}
+}
