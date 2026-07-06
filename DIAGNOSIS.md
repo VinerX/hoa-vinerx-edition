@@ -23,7 +23,14 @@ diffed vs vanilla 1.18.3) is added **additively** to `common/defines/HOA_defines
   `COMBAT_MIN_HIT_CHANCE` 0.005→0.02, `NAVAL_INVASION_PREPARE_DAYS` 60→35,
   `BASE_NAVAL_INVASION_DIVISION_CAP` 4→5.
 
-### Crash B — `EXCEPTION_ACCESS_VIOLATION`, HOA-only, at/just after Second War start  [OPEN]
+### Crash B — `EXCEPTION_ACCESS_VIOLATION`, at/just after Second War start  [NOT REPRODUCED on rebuild build]
+UPDATE: after switching to the clean single-mod rebuild build (workshop HOA + the three
+outdated submods disabled, naval intent folded in), the user confirmed surviving the
+**Second War start** — no new crash dump produced. Not root-caused, but no longer
+reproducing; likely the incompatible submod stack (esp. the naval defines override) was
+the real trigger. Watch for it recurring later in the campaign.
+
+Original observation (pre-fix):
 Fresh game on the Second War bookmark (596.1.1.12). Runs ~16 real-time minutes into
 596.1.1–596.1.2, then AV. Reproduces across 4 HOA-only runs. The text logs do NOT
 name a file/line for the AV (it is a runtime memory fault). HOI4 ships no PDB symbols,
