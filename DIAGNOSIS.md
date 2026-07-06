@@ -56,6 +56,9 @@ actually playing the Second War.
 - Many missing textures / GUI faceplates (cosmetic).
 
 ## Integration decisions (per user)
-- Merge into a single HOA mod (no load order). Target 1.18.3.
-- Integrate INTENT of: AI Wars (2956996260), Simple Peace Deals (3711217109),
-  Naval Domination Rework (3734272971 — done, see Crash A). Do NOT use VinerX's Azeroth (outdated).
+- Merge into a single HOA mod (no load order). Target 1.18.3. Do NOT use VinerX's Azeroth (outdated).
+- Naval Domination Rework (3734272971) — DONE (see Crash A): 6 naval defines added to HOA_defines.lua.
+- AI Wars (2956996260) — DONE: `common/on_actions/ai_wars_on_actions.txt` (on_monthly AI war chance).
+- Simple Peace Deals (3711217109) — DONE: diplomatic action + supporting files added; AI ideology
+  modifiers remapped from vanilla (democratic/fascism/communism/nazism) to HOA ideologies
+  (alliance willing; death/fel/old_gods unwilling). English loc only (Russian falls back to English).
