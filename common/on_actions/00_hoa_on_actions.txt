@@ -1509,7 +1509,7 @@ on_actions = {
 		}
 	}
 
-	# Alliance Unity — sync spirits when a country joins or leaves the faction
+	# Alliance Unity / Warchief Authority — sync spirits when a country joins or leaves a faction
 	on_faction_joined = {
 		effect = {
 			if = {
@@ -1519,6 +1519,15 @@ on_actions = {
 				ROOT = {
 					alliance_unity_remove_all_ideas = yes
 					alliance_unity_apply_spirit = yes
+				}
+			}
+			if = {
+				limit = {
+					FROM = { is_in_faction_with = BRC }
+				}
+				ROOT = {
+					horde_authority_remove_all_ideas = yes
+					horde_authority_apply_spirit = yes
 				}
 			}
 		}
@@ -1532,6 +1541,14 @@ on_actions = {
 				}
 				ROOT = {
 					alliance_unity_remove_all_ideas = yes
+				}
+			}
+			if = {
+				limit = {
+					FROM = { is_in_faction_with = BRC }
+				}
+				ROOT = {
+					horde_authority_remove_all_ideas = yes
 				}
 			}
 		}
