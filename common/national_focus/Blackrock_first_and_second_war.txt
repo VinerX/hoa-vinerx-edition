@@ -722,10 +722,14 @@ focus_tree = {
 		#instead the opposite focus is the one that can be bypassed
 
 		available = {
-			#Changed (VinerX): require Stormwind (STO) to have capitulated instead of being at peace.
-			#Does NOT require Stormwind's whole alliance to fall. "or not exists" guards against STO being fully annexed.
+			#Changed (VinerX): gate on the FALL OF STORMWIND CITY, not on peace/capitulation.
+			#When Stormwind falls it white-peaces and reforms in the north as refugees (still tag STO,
+			#cosmetic STO_REF), so has_capitulated / annexation checks are unreliable. Robust signal:
+			#Stormwind Keep (state 22, the capital) is no longer controlled by Stormwind.
+			#At the Second War start it is already held by the Horde (SRC). Does NOT require the alliance to fall.
 			OR = {
-				STO = { has_capitulated = yes }
+				NOT = { 22 = { is_controlled_by = STO } }
+				STO = { has_country_flag = STO_REF }
 				NOT = { STO = { exists = yes } }
 			}
 			TSC = {
@@ -794,10 +798,14 @@ focus_tree = {
 		y = 2
 
 		available = {
-			#Changed (VinerX): gate on Stormwind (STO) capitulation instead of the fall_of_stormwind
-			#peace-conference flag. Does NOT require Stormwind's whole alliance to fall.
+			#Changed (VinerX): gate on the FALL OF STORMWIND CITY, not the fall_of_stormwind flag
+			#(which is only set on BRC via history/First-War peace, not reliable in every start).
+			#Robust signal: Stormwind Keep (state 22) is no longer controlled by Stormwind. When Stormwind
+			#falls it reforms in the north as refugees (still tag STO), so tag checks are unreliable.
+			#Does NOT require Stormwind's whole alliance to fall.
 			OR = {
-				STO = { has_capitulated = yes }
+				NOT = { 22 = { is_controlled_by = STO } }
+				STO = { has_country_flag = STO_REF }
 				NOT = { STO = { exists = yes } }
 			}
 			is_neighbor_of = 28.owner
