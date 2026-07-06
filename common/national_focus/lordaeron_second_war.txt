@@ -549,4 +549,404 @@ focus_tree = {
 			}
 		}
 	}
+
+	# ============================================================
+	# THE KNIGHTS OF THE SILVER HAND — Faol's holy order
+	# ============================================================
+
+	focus = {
+		id = LOR_the_knights_of_the_silver_hand
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = LOR_the_council_of_lordaeron }
+		relative_position_id = LOR_the_council_of_lordaeron
+		x = -4
+		y = 1
+		cost = 10
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# Archbishop Faol forges warrior-priests of the Holy Light.
+			add_ideas = LOR_knights_of_the_silver_hand
+			army_experience = 20
+			add_political_power = 40
+		}
+	}
+
+	focus = {
+		id = LOR_archbishop_faol
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = LOR_the_knights_of_the_silver_hand }
+		relative_position_id = LOR_the_knights_of_the_silver_hand
+		x = -2
+		y = 1
+		cost = 10
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_political_power = 40
+		}
+	}
+
+	focus = {
+		id = LOR_uther_the_lightbringer
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_the_knights_of_the_silver_hand }
+		relative_position_id = LOR_the_knights_of_the_silver_hand
+		x = 0
+		y = 1
+		cost = 10
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# The first paladin takes the field.
+			custom_effect_tooltip = LOR_uther_the_lightbringer_tt
+			army_experience = 25
+			add_command_power = 40
+		}
+	}
+
+	focus = {
+		id = LOR_libram_of_holy_light
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = LOR_archbishop_faol }
+		prerequisite = { focus = LOR_uther_the_lightbringer }
+		relative_position_id = LOR_the_knights_of_the_silver_hand
+		x = -1
+		y = 2
+		cost = 10
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# The Light disperses the necromancers' fog and steadies the ranks.
+			add_ideas = LOR_the_holy_light
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = LOR_paladins_of_the_alliance
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_libram_of_holy_light }
+		relative_position_id = LOR_the_knights_of_the_silver_hand
+		x = -1
+		y = 3
+		cost = 12
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Paladins ride out to every front of the coalition.
+			every_country = {
+				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
+				add_war_support = 0.03
+				army_experience = 10
+			}
+			alliance_unity_raise_medium = yes
+		}
+	}
+
+	# ============================================================
+	# SUPREME COMMAND — Lothar and the Council of Seven Nations
+	# ============================================================
+
+	focus = {
+		id = LOR_the_council_of_seven_nations
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_the_council_of_lordaeron }
+		relative_position_id = LOR_the_council_of_lordaeron
+		x = 4
+		y = 1
+		cost = 10
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# Persuade the reluctant kings — Greymane and Perenolde — to commit.
+			add_political_power = 50
+			alliance_unity_raise_medium = yes
+			every_country = {
+				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
+				add_opinion_modifier = { target = LOR modifier = small_increase }
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_supreme_commander_lothar
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		prerequisite = { focus = LOR_the_council_of_seven_nations }
+		relative_position_id = LOR_the_council_of_seven_nations
+		x = 2
+		y = 1
+		cost = 12
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# Anduin Lothar is named Supreme Commander of the Alliance host.
+			add_ideas = LOR_supreme_command
+			custom_effect_tooltip = LOR_supreme_commander_lothar_tt
+			set_country_flag = lothar_supreme_commander
+			add_command_power = 50
+		}
+	}
+
+	focus = {
+		id = LOR_marshal_the_kingdoms
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = LOR_supreme_commander_lothar }
+		relative_position_id = LOR_the_council_of_seven_nations
+		x = 1
+		y = 2
+		cost = 10
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_command_power = 30
+			}
+		}
+	}
+
+	# ============================================================
+	# LIBERATION OF KHAZ MODAN — the retreat through the dwarven lands
+	# ============================================================
+
+	focus = {
+		id = LOR_cross_the_thandol_span
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_relieve_khaz_modan }
+		relative_position_id = LOR_relieve_khaz_modan
+		x = 2
+		y = 1
+		cost = 12
+
+		available = { has_country_flag = lor_counteroffensive_begun }
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Force the Thandol Span and pursue the Horde into Khaz Modan.
+			add_war_support = 0.05
+			add_command_power = 30
+			add_timed_idea = { idea = alliance_coordinated_offensive days = 120 }
+		}
+	}
+
+	focus = {
+		id = LOR_liberate_dun_modr
+		icon = GFX_goal_generic_defence
+		prerequisite = { focus = LOR_cross_the_thandol_span }
+		relative_position_id = LOR_cross_the_thandol_span
+		x = 0
+		y = 1
+		cost = 12
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Dun Modr, Dun Algaz and Tol Barad are retaken.
+			add_war_support = 0.05
+			army_experience = 20
+		}
+	}
+
+	focus = {
+		id = LOR_the_dwarves_rise
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = LOR_liberate_dun_modr }
+		relative_position_id = LOR_cross_the_thandol_span
+		x = 0
+		y = 2
+		cost = 12
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Ironforge and Gnomeregan emerge from the sieges with fresh armies.
+			if = {
+				limit = { IRO = { exists = yes } }
+				IRO = { add_manpower = 4000 add_command_power = 30 }
+			}
+			if = {
+				limit = { GNO = { exists = yes } }
+				GNO = { add_manpower = 2500 }
+			}
+			alliance_unity_raise_medium = yes
+		}
+	}
+
+	# ============================================================
+	# THE ASSAULT ON BLACKROCK SPIRE — the climax of the war
+	# ============================================================
+
+	focus = {
+		id = LOR_the_siege_of_blackrock_spire
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_the_road_to_blackrock }
+		prerequisite = { focus = LOR_liberate_the_south }
+		relative_position_id = LOR_the_road_to_blackrock
+		x = -2
+		y = 1
+		cost = 18
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# The united host of humans, dwarves, elves and gnomes closes on the Spire.
+			add_war_support = 0.10
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 200 }
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_doomhammers_sortie
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_the_siege_of_blackrock_spire }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = 0
+		y = 1
+		cost = 14
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Doomhammer hurls the Horde out of the mountain gates in a desperate sortie.
+			add_war_support = 0.05
+			add_stability = -0.05
+			army_experience = 20
+		}
+	}
+
+	focus = {
+		id = LOR_the_duel_at_blackrock
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		prerequisite = { focus = LOR_doomhammers_sortie }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = 0
+		y = 2
+		cost = 14
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Lothar and Doomhammer meet in single combat. The outcome is not fixed.
+			country_event = { id = blackrock_climax.1 }
+		}
+	}
+
+	focus = {
+		id = LOR_turalyons_rally
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_the_duel_at_blackrock }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = 0
+		y = 3
+		cost = 14
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# Turalyon raises Lothar's broken blade and rallies the shaken host.
+			add_ideas = LOR_turalyons_command
+			add_war_support = 0.10
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 150 }
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_shatter_the_horde
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_turalyons_rally }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = 0
+		y = 4
+		cost = 16
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# The Horde is broken at the foot of the Spire.
+			add_war_support = 0.10
+			add_command_power = 60
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_coordinated_offensive days = 180 }
+			}
+		}
+	}
+
+	focus = {
+		id = LOR_pursuit_to_the_dark_portal
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_shatter_the_horde }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = -2
+		y = 5
+		cost = 14
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Harry the fleeing Horde across the Black Morass to the gateway itself.
+			add_war_support = 0.05
+			army_experience = 25
+		}
+	}
+
+	focus = {
+		id = LOR_seal_the_dark_portal
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = LOR_shatter_the_horde }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = 0
+		y = 5
+		cost = 16
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			# Khadgar and the Kirin Tor tear the rift apart.
+			add_political_power = 60
+			set_global_flag = dark_portal_sealed
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = LOR_the_second_war_won
+		icon = GFX_focus_generic_self_management
+		prerequisite = { focus = LOR_pursuit_to_the_dark_portal }
+		prerequisite = { focus = LOR_seal_the_dark_portal }
+		relative_position_id = LOR_the_siege_of_blackrock_spire
+		x = -1
+		y = 6
+		cost = 18
+
+		ai_will_do = { base = 10 }
+
+		completion_reward = {
+			# The Second War is won. The realm turns, warily, toward peace.
+			add_ideas = LOR_second_war_victory
+			add_political_power = 100
+			add_stability = 0.10
+			set_country_flag = lor_second_war_won
+		}
+	}
 }
