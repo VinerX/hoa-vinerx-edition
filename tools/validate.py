@@ -330,7 +330,7 @@ def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
 
 
 
-def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings: list[str]) -> None:
+def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings: list[str], file_filter: str | None = None) -> None:
     """
     Parse all focus_tree blocks, resolve absolute (x,y) for every focus
     in each tree (including shared_focus subtrees), and report overlaps.
@@ -339,6 +339,10 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
     if not os.path.isdir(national_focus_dir):
         return
     focus_files = list(iter_files(national_focus_dir, SCRIPT_EXT))
+
+    if file_filter is not None:
+        _ff_re = re.compile(file_filter.replace("*", ".*").replace("?", "."))
+        focus_files = [f for f in focus_files if _ff_re.search(f)]
 
     focus_data: dict[str, dict] = {}
 
@@ -765,8 +769,36 @@ def main() -> int:
         default=45,
         help="seconds to wait before terminating hoi4.exe during --hoi4-smoke",
     )
+    ap.add_argument(
+        "--focus-file",
+        default=None,
+        help="glob pattern to filter focus tree files (e.g. '*second_war*')",
+    )
+    ap.add_argument(
+        "--category",
+        nargs="*",
+        default=None,
+        choices=["loc", "focus-ref", "collision", "encoding", "braces", "event-ref", "ideology", "scripted"],
+        help="only run specific check categories (default: all)",
+    )
     args = ap.parse_args()
     root = args.path
+
+    _active_categories = set(args.category) if args.category else None
+
+    def _cat_active(name: str) -> bool:
+        return _active_categories is None or name in _active_categories
+
+    _focus_file_filter: str | None = args.focus_file
+    if _focus_file_filter is not None:
+        _focus_re = re.compile(
+            _focus_file_filter.replace("*", ".*").replace("?", ".")
+        )
+
+    def _focus_file_ok(path: str) -> bool:
+        if _focus_file_filter is None:
+            return True
+        return bool(_focus_re.search(path))
 
     errors: list[str] = []
     warnings: list[str] = []
@@ -788,23 +820,24 @@ def main() -> int:
         r = rel(root, path)
         loaded = load_text(path)
         if loaded is None:
-            errors.append(f"[encoding] {r}: not valid UTF-8")
+            if _cat_active("encoding"):
+                errors.append(f"[encoding] {r}: not valid UTF-8")
             continue
         raw, text = loaded
         clean = strip_comments_and_strings(text)
 
-        if path.lower().endswith(".yml"):
+        if path.lower().endswith(".yml") and _cat_active("loc"):
             for key in RE_LOC_KEY.findall(text):
                 if key != "l_english":
                     loc_defs.setdefault(key.strip(), []).append(r)
 
         top = r.split("/", 1)[0]
-        if path.lower().endswith(SCRIPT_EXT) and top in SCRIPT_DIRS:
+        if path.lower().endswith(SCRIPT_EXT) and top in SCRIPT_DIRS and _cat_active("braces"):
             o, c = clean.count("{"), clean.count("}")
             if o != c:
                 errors.append(f"[braces]   {r}: {{={o} }}={c} (diff {o - c})")
 
-        if "/national_focus/" in "/" + r:
+        if "/national_focus/" in "/" + r and _focus_file_ok(r):
             for m in re.finditer(r"\bfocus_tree\s*=\s*\{", text):
                 seg = text[m.end():m.end() + 2000]
                 idm = RE_ID.search(seg)
@@ -817,20 +850,22 @@ def main() -> int:
                     fid = idm.group(1)
                     focus_defs.setdefault(fid, []).append(r)
                     focus_loc_expected.setdefault(r, set()).update({fid, f"{fid}_desc"})
-            for m in RE_FOCUS_REF.finditer(text):
-                focus_refs.append((m.group(1), "focus", r))
-            for m in RE_RELPOS.finditer(text):
-                focus_refs.append((m.group(1), "relative_position_id", r))
-            for m in RE_SHARED.finditer(text):
-                focus_refs.append((m.group(1), "shared_focus", r))
-            for m in RE_TOOLTIP_REF.finditer(text):
-                tooltip_loc_expected.setdefault(r, set()).add(m.group(1))
+            if _cat_active("focus-ref"):
+                for m in RE_FOCUS_REF.finditer(text):
+                    focus_refs.append((m.group(1), "focus", r))
+                for m in RE_RELPOS.finditer(text):
+                    focus_refs.append((m.group(1), "relative_position_id", r))
+                for m in RE_SHARED.finditer(text):
+                    focus_refs.append((m.group(1), "shared_focus", r))
+            if _cat_active("loc"):
+                for m in RE_TOOLTIP_REF.finditer(text):
+                    tooltip_loc_expected.setdefault(r, set()).add(m.group(1))
 
-        if "/history/countries/" in "/" + r:
+        if "/history/countries/" in "/" + r and _cat_active("focus-ref"):
             for m in RE_FOCUS_TREE_REF.finditer(clean):
                 focus_refs.append((m.group(1), "load_focus_tree", r))
 
-        if "/events/" in "/" + r:
+        if "/events/" in "/" + r and _cat_active("event-ref"):
             for m in RE_ADD_NS.finditer(text):
                 event_namespaces.setdefault(m.group(1), []).append(r)
             for m in RE_EVENT_ID.finditer(text):
@@ -846,9 +881,10 @@ def main() -> int:
                 tooltip_loc_expected.setdefault(r, set()).add(m.group(1))
 
         for m in RE_EVENT_REF.finditer(text):
-            event_refs.append((m.group(1), r))
+            if _cat_active("event-ref"):
+                event_refs.append((m.group(1), r))
 
-        if path.lower().endswith(SCRIPT_EXT):
+        if path.lower().endswith(SCRIPT_EXT) and _cat_active("ideology"):
             for ideology in RE_IDEOLOGY.findall(clean):
                 if ideology in INVALID_IDEOLOGY_TOKENS:
                     errors.append(
@@ -856,8 +892,10 @@ def main() -> int:
                         f"(use HOA ideologies: {', '.join(sorted(VALID_IDEOLOGIES))}; leader ideologies may use *_type)"
                     )
 
-    validate_scripted_constructs(root, errors, known_effect_keys, known_trigger_keys)
-    validate_focus_coordinate_collisions(root, errors, warnings)
+    if _cat_active("scripted"):
+        validate_scripted_constructs(root, errors, known_effect_keys, known_trigger_keys)
+    if _cat_active("collision"):
+        validate_focus_coordinate_collisions(root, errors, warnings, _focus_file_filter)
     if args.hoi4_smoke:
         run_hoi4_smoke(
             hoi4_exe=args.hoi4_exe,
@@ -873,59 +911,62 @@ def main() -> int:
         else:
             warnings.append(f"[hoi4-log] {args.hoi4_error_log}: file not found")
 
-    for fid, files in sorted(focus_defs.items()):
-        if len(files) > 1:
-            errors.append(f"[focus-dup] '{fid}' defined {len(files)}x: {', '.join(sorted(set(files)))}")
+    if _cat_active("focus-ref"):
+        for fid, files in sorted(focus_defs.items()):
+            if len(files) > 1:
+                errors.append(f"[focus-dup] '{fid}' defined {len(files)}x: {', '.join(sorted(set(files)))}")
 
-    for tid, files in sorted(focus_tree_defs.items()):
-        if len(files) > 1:
-            errors.append(f"[focus-tree-dup] '{tid}' defined {len(files)}x: {', '.join(sorted(set(files)))}")
+        for tid, files in sorted(focus_tree_defs.items()):
+            if len(files) > 1:
+                errors.append(f"[focus-tree-dup] '{tid}' defined {len(files)}x: {', '.join(sorted(set(files)))}")
 
-    known_focus_ids = set(focus_defs) | set(focus_tree_defs)
-    seen_focus_ref = set()
-    for fid, kind, file_name in focus_refs:
-        if fid in FOCUS_REF_NOISE:
-            continue
-        if fid not in known_focus_ids and (fid, file_name) not in seen_focus_ref:
-            seen_focus_ref.add((fid, file_name))
-            errors.append(f"[focus-ref] {file_name}: {kind} -> unknown focus '{fid}'")
+        known_focus_ids = set(focus_defs) | set(focus_tree_defs)
+        seen_focus_ref = set()
+        for fid, kind, file_name in focus_refs:
+            if fid in FOCUS_REF_NOISE:
+                continue
+            if fid not in known_focus_ids and (fid, file_name) not in seen_focus_ref:
+                seen_focus_ref.add((fid, file_name))
+                errors.append(f"[focus-ref] {file_name}: {kind} -> unknown focus '{fid}'")
 
-    for eid, files in sorted(event_defs.items()):
-        if len(files) > 1:
-            warnings.append(f"[event-dup] '{eid}' defined {len(files)}x: {', '.join(sorted(set(files)))}")
+    if _cat_active("event-ref"):
+        for eid, files in sorted(event_defs.items()):
+            if len(files) > 1:
+                warnings.append(f"[event-dup] '{eid}' defined {len(files)}x: {', '.join(sorted(set(files)))}")
 
-    for ns, files in sorted(event_namespaces.items()):
-        unique_files = sorted(set(files))
-        if len(unique_files) > 1:
-            warnings.append(f"[namespace] '{ns}' declared in multiple files: {', '.join(unique_files)}")
+        for ns, files in sorted(event_namespaces.items()):
+            unique_files = sorted(set(files))
+            if len(unique_files) > 1:
+                warnings.append(f"[namespace] '{ns}' declared in multiple files: {', '.join(unique_files)}")
 
-    seen_event_ref = set()
-    for eid, file_name in event_refs:
-        if eid not in event_defs and (eid, file_name) not in seen_event_ref:
-            seen_event_ref.add((eid, file_name))
-            warnings.append(f"[event-ref] {file_name}: -> undefined event '{eid}'")
+        seen_event_ref = set()
+        for eid, file_name in event_refs:
+            if eid not in event_defs and (eid, file_name) not in seen_event_ref:
+                seen_event_ref.add((eid, file_name))
+                warnings.append(f"[event-ref] {file_name}: -> undefined event '{eid}'")
 
-    for key, files in sorted(loc_defs.items()):
-        unique_files = sorted(set(files))
-        if len(files) > len(unique_files):
-            warnings.append(f"[loc-dup] '{key}' repeated within file(s): {', '.join(unique_files)}")
-        elif len(unique_files) > 1:
-            warnings.append(f"[loc-dup] '{key}' defined in multiple files: {', '.join(unique_files)}")
+    if _cat_active("loc"):
+        for key, files in sorted(loc_defs.items()):
+            unique_files = sorted(set(files))
+            if len(files) > len(unique_files):
+                warnings.append(f"[loc-dup] '{key}' repeated within file(s): {', '.join(unique_files)}")
+            elif len(unique_files) > 1:
+                warnings.append(f"[loc-dup] '{key}' defined in multiple files: {', '.join(unique_files)}")
 
-    for file_name, keys in sorted(focus_loc_expected.items()):
-        for key in sorted(keys):
-            if key not in loc_defs:
-                warnings.append(f"[focus-loc] {file_name}: missing localisation key '{key}'")
+        for file_name, keys in sorted(focus_loc_expected.items()):
+            for key in sorted(keys):
+                if key not in loc_defs:
+                    warnings.append(f"[focus-loc] {file_name}: missing localisation key '{key}'")
 
-    for file_name, keys in sorted(event_loc_expected.items()):
-        for key in sorted(keys):
-            if key not in loc_defs:
-                warnings.append(f"[event-loc] {file_name}: missing localisation key '{key}'")
+        for file_name, keys in sorted(event_loc_expected.items()):
+            for key in sorted(keys):
+                if key not in loc_defs:
+                    warnings.append(f"[event-loc] {file_name}: missing localisation key '{key}'")
 
-    for file_name, keys in sorted(tooltip_loc_expected.items()):
-        for key in sorted(keys):
-            if key not in loc_defs:
-                warnings.append(f"[tooltip-loc] {file_name}: missing localisation key '{key}'")
+        for file_name, keys in sorted(tooltip_loc_expected.items()):
+            for key in sorted(keys):
+                if key not in loc_defs:
+                    warnings.append(f"[tooltip-loc] {file_name}: missing localisation key '{key}'")
 
     if not args.quiet:
         for w in warnings:
