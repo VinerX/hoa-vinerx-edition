@@ -12,12 +12,12 @@ from four shared-focus roots defined in `common/national_focus/generic_shared_fo
 | shared root | kind | covers |
 |---|---|---|
 | `our_nation` | political base | `our_people`, `how_we_fight` (early identity focuses) |
-| `the_path_forward` | political | `pick_a_side` → ideology/alignment branch (Alliance/Horde/…) |
-| **`develop_the_country`** | **non-political (economy)** | `blacksmith_1`, `build_roads`→`prospect_the_soil`, `workshop_1`, `improved_forges` — industry, infrastructure, resources, research bonuses |
-| **`arming_the_nation`** | **non-political (military)** | `army_training`→`infantry/cavalry_training`→`train_archers/knights/spellcasters/mounted_footmen`→`support_units` — army/navy/air XP, unit tech bonuses, doctrine cost |
+| `the_path_forward` | political | `pick_a_side` -> ideology/alignment branch (Alliance/Horde/...) |
+| **`develop_the_country`** | **non-political (economy)** | `blacksmith_1`, `build_roads`->`prospect_the_soil`, `workshop_1`, `improved_forges` - industry, infrastructure, resources, research bonuses |
+| **`arming_the_nation`** | **non-political (military)** | `army_training`->`infantry/cavalry_training`->`train_archers/knights/spellcasters/mounted_footmen`->`support_units` - army/navy/air XP, unit tech bonuses, doctrine cost |
 
 **Rule of thumb:** a new nation tree should pull in `develop_the_country` and
-`arming_the_nation` (and usually `our_nation`) via `shared_focus = …`, so every nation gets
+`arming_the_nation` (and usually `our_nation`) via `shared_focus = ...`, so every nation gets
 a consistent non-political base for free. Then author the nation's own political/story
 branch. Only fork a shared branch if this nation genuinely needs different economy/military
 focuses.
@@ -42,12 +42,12 @@ focus_tree = {
     # --- nation-specific political / story branch (author below) ---
     focus = {
         id = XXX_first_focus
-        icon = GFX_goal_generic_…
+        icon = GFX_goal_generic_...
         cost = 10                        # 10 = ~70 days
         x = 5  y = 0                     # or relative_position_id + x/y
         available = { }                  # optional gate
         completion_reward = {
-            # add_political_power / add_ideas / country_event = ns.n / create_wargoal / …
+            # add_political_power / add_ideas / country_event = ns.n / create_wargoal / ...
         }
     }
 }
@@ -55,7 +55,7 @@ focus_tree = {
 
 ## Per-tree checklist
 
-- [ ] `focus_tree` has a **unique `id`** and a `country = { … }` rule that selects your TAG.
+- [ ] `focus_tree` has a **unique `id`** and a `country = { ... }` rule that selects your TAG.
 - [ ] `default = no` (only `generic_focus` is `default = yes`).
 - [ ] Included the non-political shared branches you want (`develop_the_country`,
       `arming_the_nation`, and usually `our_nation`) instead of re-authoring economy/army focuses.
@@ -65,25 +65,40 @@ focus_tree = {
 
 ## Per-focus checklist
 
-- [ ] Unique `id` (globally unique across ALL focus files — the validator flags dups).
-- [ ] `icon = GFX_…` that exists (reuse existing sprites; you can't add art).
-- [ ] `cost` (in weeks×… ; 10 ≈ 70 days) and a position: `x`/`y`, or
+- [ ] Unique `id` (globally unique across ALL focus files - the validator flags dups).
+- [ ] `icon = GFX_...` that exists.
+- [ ] `cost` (in weeks*... ; 10 ~= 70 days) and a position: `x`/`y`, or
       `relative_position_id = <other focus>` + `x`/`y`.
-- [ ] Links resolve: every `prerequisite = { focus = … }`, `mutually_exclusive`,
+- [ ] Links resolve: every `prerequisite = { focus = ... }`, `mutually_exclusive`,
       `relative_position_id`, `shared_focus` points at a **defined** focus id.
 - [ ] Gating as needed: `available = { }`, `bypass = { }`, `will_lead_to_war_with = TAG`.
 - [ ] `completion_reward = { }` present (effects, and/or `country_event = ns.n`).
 - [ ] War focuses: prefer robust triggers (e.g. control of a state) over `has_capitulated`
-      for nations that reform as refugees — see the Stormwind note in `AGENTS.md`.
+      for nations that reform as refugees - see the Stormwind note in `AGENTS.md`.
 
-## Placeholder icons (fine for now — no art needed)
+## Focus art spec
 
-You cannot add new sprites, but a focus `icon` just needs to reference an **existing**
-`GFX_*` sprite. A wrong/missing icon is **non-fatal** — the game shows a blank square and
-logs a texture warning, nothing crashes — so never block on icons; use a placeholder and
-move on. Known-good keys (defined in `interface/hoa_focus.gfx` or vanilla):
+For this project, new custom focus icons should currently target:
 
-- `GFX_goal_placeholder` — explicit placeholder (safest default).
+- `140x140` canvas for focus icons
+- final file format: `.dds`
+- scripted tree placement still uses the normal focus grid:
+  `x +1 = 96 px`, `y +1 = 130 px`
+
+Practical art rules:
+
+- keep one centered subject
+- do not bake a decorative border into the icon itself
+- leave enough empty margin so the in-game frame does not visually clip the subject
+
+## Placeholder icons (fine for now - no art needed)
+
+A focus `icon` just needs to reference an existing `GFX_*` sprite. A wrong/missing icon is
+non-fatal - the game shows a blank square and logs a texture warning, nothing crashes - so
+never block on icons if you are only scripting. Known-good keys (defined in
+`interface/hoa_focus.gfx` or vanilla):
+
+- `GFX_goal_placeholder` - explicit placeholder (safest default).
 - Military: `GFX_focus_generic_golden_sword`, `GFX_focus_generic_orc_warrior`.
 - Economy/build: `GFX_focus_generic_construction_green` (`_blue` / `_brown` variants exist).
 - Nation flavour: `GFX_focus_stormwind_generic`.
@@ -95,16 +110,18 @@ To find more, grep existing sprites: `grep -rhoE 'name = "GFX_(goal|focus)_[a-z_
 ## Localisation checklist
 
 For every focus id, add to a `localisation/english/<yourbatch>_l_english.yml`:
+
 ```yml
 l_english:
  XXX_first_focus:0 "Focus Title"
  XXX_first_focus_desc:0 "Tooltip/flavour. \n for newlines, [XXX.GetLeader] scopes."
 ```
+
 - [ ] Title (`<id>:0`) and description (`<id>_desc:0`) for each new focus.
 - [ ] Any `custom_effect_tooltip`/`custom_trigger_tooltip` keys used are defined too.
 
 ## Before commit
 
-- [ ] `python tools/validate.py --quiet` → `ERRORS: 0` (catches dup ids + dangling focus refs).
+- [ ] `python tools/validate.py --quiet` -> `ERRORS: 0` (catches dup ids + dangling focus refs).
 - [ ] No vanilla ideology tokens; no full-file vanilla overrides (see `AGENTS.md`).
 - [ ] New file + unique namespace if you also added events (parallel-agent etiquette).

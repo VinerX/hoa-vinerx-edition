@@ -35,14 +35,14 @@ import sys
 from PIL import Image
 
 PRESETS = {
-    "focus": (88, 88),
+    "focus": (140, 140),
     "leader": (156, 210),
     "idea": (64, 64),
     "advisor": (65, 67),
 }
 
 SAFE_PADDING = {
-    "focus": 6,
+    "focus": 12,
     "leader": 0,
     "idea": 8,
     "advisor": 6,

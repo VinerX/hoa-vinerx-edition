@@ -23,7 +23,7 @@
 
 | Пресет    | Размер     | Куда кладём                     | Пример из мода |
 |-----------|-----------|----------------------------------|----------------|
-| `focus`   | 88 × 88   | `gfx/interface/focus_tree/`      | `ALT_generic_focus.dds` |
+| `focus`   | 140 × 140 | `gfx/interface/focus_tree/`      | custom focus icon |
 | `leader`  | 156 × 210 | `gfx/leaders/<TAG>/`             | `Aiden_Perenolde.dds` |
 | `idea`    | 64 × 64   | `gfx/interface/ideas/`           | `alliance_idea.dds` |
 | `advisor` | 65 × 67   | `gfx/interface/advisors/`        | `advisor_generic.dds` |
@@ -110,6 +110,25 @@ python convert.py focus  "raw/*.png" --out out/focus  --fit contain
 python convert.py leader raw/        --out out/leaders --focus-top
 python convert.py custom art.png     --out out --size 200x260
 ```
+
+### Текущая рабочая спецификация по проекту
+
+Ниже зафиксированы практические размеры, которые мы используем в этом проекте
+для нового пайплайна арта:
+
+| Тип | Размер | Примечание |
+|-----|--------|------------|
+| Focus icon | `140x140` | базовый целевой размер для новых иконок фокусов |
+| National spirit / advisor-style icon | `64x64` / `65x67` | идеи и советники идут отдельными пресетами |
+| Leader portrait | `156x210` | портреты лидеров |
+
+Дополнительно:
+
+- итоговый формат: `.dds`;
+- для фокусов сетка дерева по скрипту остаётся отдельной темой:
+  `x +1 = 96 px`, `y +1 = 130 px`;
+- `PPI` для самой игры не является ключевым параметром загрузки DDS, но
+  исходники имеет смысл держать детальными и без артефактов до финальной конвертации.
 
 ### Рекомендуемый процесс для иконок идей (`64x64`)
 
