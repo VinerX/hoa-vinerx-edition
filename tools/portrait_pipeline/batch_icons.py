@@ -74,6 +74,10 @@ def process_manifest(manifest_path, out_dir):
     preview_png = bool(manifest.get("preview_png", True))
     prefix = manifest.get("prefix", "")
     vbias = convert.parse_anchor(manifest.get("anchor", "center"), False)
+    use_texconv = bool(manifest.get("texconv", False))
+    texconv_path = manifest.get("texconv_path", convert.TEXCONV_DEFAULT)
+    texconv_format = manifest.get("texconv_format", fmt)
+    mip_levels = int(manifest.get("mip_levels", 1))
 
     sheet_path = Path(manifest["sheet"])
     if not sheet_path.is_file():
@@ -97,7 +101,10 @@ def process_manifest(manifest_path, out_dir):
 
         final = render_icon(crop, preset, size, fit, vbias, safe_pad)
         dds_path = out_dir / f"{stem}.dds"
-        final.save(dds_path, pixel_format=fmt)
+        if use_texconv:
+            convert.save_with_texconv(final, str(dds_path), texconv_path, texconv_format, mip_levels)
+        else:
+            final.save(dds_path, pixel_format=fmt)
         if preview_png:
             final.save(out_dir / f"{stem}.png")
         written.append((item["slot"], stem, dds_path.name))
@@ -113,6 +120,9 @@ def write_template(path):
         "fit": "contain",
         "safe_pad": 8,
         "format": "DXT5",
+        "texconv": True,
+        "texconv_format": "DXT1",
+        "mip_levels": 1,
         "preview_png": True,
         "prefix": "GNO_",
         "items": [

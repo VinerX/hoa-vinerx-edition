@@ -30,7 +30,10 @@ Fit modes:
 import argparse
 import glob
 import os
+import shutil
+import subprocess
 import sys
+import time
 
 from PIL import Image
 
@@ -49,6 +52,7 @@ SAFE_PADDING = {
 }
 
 EXTS = (".png", ".jpg", ".jpeg", ".webp", ".bmp", ".dds", ".tga")
+TEXCONV_DEFAULT = os.path.join(os.path.dirname(__file__), "bin", "texconv.exe")
 
 
 def collect_inputs(arg):
@@ -119,6 +123,40 @@ def target_size(args):
     return PRESETS[args.preset]
 
 
+def save_with_texconv(im, dst_path, texconv_path, texconv_format, mip_levels):
+    if not os.path.isfile(texconv_path):
+        sys.exit(f"texconv not found: {texconv_path}")
+
+    out_dir = os.path.dirname(dst_path)
+    stem = os.path.splitext(os.path.basename(dst_path))[0]
+
+    workspace_tmp = os.path.join(os.getcwd(), "tmp", "texconv_work")
+    temp_dir = os.path.join(workspace_tmp, f"{stem}_{os.getpid()}_{int(time.time() * 1000)}")
+    os.makedirs(temp_dir, exist_ok=True)
+    src_png = os.path.join(temp_dir, stem + ".png")
+    im.save(src_png)
+    cmd = [
+        texconv_path,
+        "-nologo",
+        "-y",
+        "-ft",
+        "dds",
+        "-f",
+        texconv_format,
+        "-m",
+        str(mip_levels),
+        "-dx9",
+        "-o",
+        out_dir or ".",
+        src_png,
+    ]
+    subprocess.run(cmd, check=True)
+    produced = os.path.join(out_dir, stem + ".dds")
+    if not os.path.isfile(produced):
+        sys.exit(f"texconv did not produce expected output: {produced}")
+    return produced
+
+
 def main():
     ap = argparse.ArgumentParser(description="Convert images to HOI4 .dds sprites.")
     ap.add_argument("preset", choices=list(PRESETS) + ["custom"])
@@ -161,6 +199,27 @@ def main():
         action="store_true",
         help="also save a PNG preview next to the DDS output",
     )
+    ap.add_argument(
+        "--texconv",
+        action="store_true",
+        help="use Microsoft texconv.exe for final DDS output instead of Pillow",
+    )
+    ap.add_argument(
+        "--texconv-path",
+        default=TEXCONV_DEFAULT,
+        help=f"path to texconv.exe (default: {TEXCONV_DEFAULT})",
+    )
+    ap.add_argument(
+        "--texconv-format",
+        default=None,
+        help="format passed to texconv, e.g. DXT1, DXT5, BC1_UNORM, BC3_UNORM",
+    )
+    ap.add_argument(
+        "--mip-levels",
+        type=int,
+        default=1,
+        help="mip levels for texconv output (default: 1)",
+    )
     args = ap.parse_args()
 
     size = target_size(args)
@@ -193,13 +252,20 @@ def main():
 
             stem = os.path.splitext(os.path.basename(src))[0] + args.suffix
             dds_path = os.path.join(args.out, stem + ".dds")
-            im.save(dds_path, pixel_format=args.fmt)
+            if args.texconv:
+                tex_fmt = args.texconv_format or args.fmt
+                save_with_texconv(im, dds_path, args.texconv_path, tex_fmt, args.mip_levels)
+            else:
+                im.save(dds_path, pixel_format=args.fmt)
             if args.preview_png:
                 im.save(os.path.join(args.out, stem + ".png"))
 
             print(
                 f"  {os.path.basename(src)}  ->  {stem}.dds  "
-                f"{size[0]}x{size[1]} {args.fmt} fit={args.fit} pad={args.safe_pad or 0}"
+                f"{size[0]}x{size[1]} "
+                f"{(args.texconv_format or args.fmt) if args.texconv else args.fmt} "
+                f"fit={args.fit} pad={args.safe_pad or 0} "
+                f"{'texconv' if args.texconv else 'pillow'}"
             )
             ok += 1
         except Exception as exc:
