@@ -1,0 +1,739 @@
+add_namespace = kaelthas_expansion
+
+# Prince Kael'thas receives formal authority from Anasterian
+country_event = {
+	id = kaelthas_expansion.1
+	title = kaelthas_expansion.1.t
+	desc = kaelthas_expansion.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.1" }
+
+	option = {
+		name = kaelthas_expansion.1.option.1
+		add_political_power = 40
+		add_war_support = 0.05
+		add_stability = 0.02
+		add_timed_idea = {
+			idea = QUE_sw_kaelthas_influence
+			days = 365
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Kael'thas strengthens ties with the Kirin Tor
+country_event = {
+	id = kaelthas_expansion.2
+	title = kaelthas_expansion.2.t
+	desc = kaelthas_expansion.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.2" }
+
+	option = {
+		name = kaelthas_expansion.2.option.1
+		add_political_power = 30
+		add_stability = 0.03
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		DAL = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		reverse_add_opinion_modifier = {
+			target = DAL
+			modifier = medium_increase
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Kirin Tor sends magisters to assist Quel'Thalas
+country_event = {
+	id = kaelthas_expansion.3
+	title = kaelthas_expansion.3.t
+	desc = kaelthas_expansion.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.3" }
+
+	option = {
+		name = kaelthas_expansion.3.option.1
+		add_war_support = 0.05
+		army_experience = 25
+		add_manpower = 300
+		DAL = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Silver Covenant is formed — arcane unity across nations
+country_event = {
+	id = kaelthas_expansion.4
+	title = kaelthas_expansion.4.t
+	desc = kaelthas_expansion.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.4" }
+
+	option = {
+		name = kaelthas_expansion.4.option.1
+		add_stability = 0.05
+		add_war_support = 0.03
+		add_political_power = 40
+		add_ideas = { QUE_sw_silver_covenant }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Dragonhawk Riders — air force modernization
+country_event = {
+	id = kaelthas_expansion.5
+	title = kaelthas_expansion.5.t
+	desc = kaelthas_expansion.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.5" }
+
+	option = {
+		name = kaelthas_expansion.5.option.1
+		air_experience = 30
+		add_war_support = 0.05
+		add_ideas = { QUE_sw_dragonhawk_riders }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Houses of Silvermoon debate the realm's direction
+country_event = {
+	id = kaelthas_expansion.10
+	title = kaelthas_expansion.10.t
+	desc = kaelthas_expansion.10.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.10" }
+
+	option = {
+		name = kaelthas_expansion.10.option.1
+		add_political_power = 30
+		add_stability = 0.05
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = kaelthas_expansion.10.option.2
+		add_political_power = 15
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Runestone debate — power the Ban'dinoriel or invest in army
+country_event = {
+	id = kaelthas_expansion.11
+	title = kaelthas_expansion.11.t
+	desc = kaelthas_expansion.11.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.11" }
+
+	option = {
+		name = kaelthas_expansion.11.option.1
+		add_stability = 0.03
+		add_political_power = 20
+		add_popularity = {
+			ideology = neutral
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = kaelthas_expansion.11.option.2
+		add_war_support = 0.08
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Modernize the Convocation — centralize elven governance
+country_event = {
+	id = kaelthas_expansion.12
+	title = kaelthas_expansion.12.t
+	desc = kaelthas_expansion.12.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.12" }
+
+	option = {
+		name = kaelthas_expansion.12.option.1
+		add_political_power = 50
+		add_stability = -0.03
+		add_war_support = 0.05
+		add_timed_idea = {
+			idea = QUE_sw_convocation_reform
+			days = 365
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Sideline the Magisters — Kael'thas seizes military command
+country_event = {
+	id = kaelthas_expansion.13
+	title = kaelthas_expansion.13.t
+	desc = kaelthas_expansion.13.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.13" }
+
+	option = {
+		name = kaelthas_expansion.13.option.1
+		add_political_power = 30
+		add_stability = -0.05
+		add_war_support = 0.10
+		add_command_power = 50
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Loa Hunting — striking at Amani spiritual power
+country_event = {
+	id = kaelthas_expansion.20
+	title = kaelthas_expansion.20.t
+	desc = kaelthas_expansion.20.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.20" }
+
+	option = {
+		name = kaelthas_expansion.20.option.1
+		add_war_support = 0.08
+		army_experience = 30
+		add_ideas = { QUE_sw_loa_hunters }
+		AMA = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Sunwell Guardianship — military control of sacred site
+country_event = {
+	id = kaelthas_expansion.21
+	title = kaelthas_expansion.21.t
+	desc = kaelthas_expansion.21.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.21" }
+
+	option = {
+		name = kaelthas_expansion.21.option.1
+		add_stability = 0.03
+		add_war_support = 0.05
+		add_ideas = { QUE_sw_military_sunwell }
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Dwarven Engineering pact
+country_event = {
+	id = kaelthas_expansion.40
+	title = kaelthas_expansion.40.t
+	desc = kaelthas_expansion.40.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.40" }
+
+	option = {
+		name = kaelthas_expansion.40.option.1
+		add_political_power = 25
+		army_experience = 20
+		IRO = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		reverse_add_opinion_modifier = {
+			target = IRO
+			modifier = medium_increase
+		}
+		add_ideas = { QUE_sw_dwarven_engineers }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Stromgarde's Legacy — Thoradin's bloodline alliance
+country_event = {
+	id = kaelthas_expansion.41
+	title = kaelthas_expansion.41.t
+	desc = kaelthas_expansion.41.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.41" }
+
+	option = {
+		name = kaelthas_expansion.41.option.1
+		add_stability = 0.05
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		STR = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		reverse_add_opinion_modifier = {
+			target = STR
+			modifier = medium_increase
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Thalassian Marines established
+country_event = {
+	id = kaelthas_expansion.50
+	title = kaelthas_expansion.50.t
+	desc = kaelthas_expansion.50.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.50" }
+
+	option = {
+		name = kaelthas_expansion.50.option.1
+		navy_experience = 20
+		army_experience = 15
+		add_war_support = 0.05
+		add_ideas = { QUE_sw_thalassian_marines }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Elven Battlefleet commissioned
+country_event = {
+	id = kaelthas_expansion.51
+	title = kaelthas_expansion.51.t
+	desc = kaelthas_expansion.51.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.51" }
+
+	option = {
+		name = kaelthas_expansion.51.option.1
+		navy_experience = 30
+		add_war_support = 0.05
+		add_ideas = { QUE_sw_elven_battlefleet }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Counter-raid into Zul'Aman
+country_event = {
+	id = kaelthas_expansion.60
+	title = kaelthas_expansion.60.t
+	desc = kaelthas_expansion.60.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.60" }
+
+	option = {
+		name = kaelthas_expansion.60.option.1
+		add_war_support = 0.08
+		army_experience = 25
+		AMA = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# ===========================================================================
+# KAEL'THAS DESTINY — three-way choice
+# ===========================================================================
+
+country_event = {
+	id = kaelthas_expansion.30
+	title = kaelthas_expansion.30.t
+	desc = kaelthas_expansion.30.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.30" }
+
+	# Option 1: Kael'thas returns and takes the throne
+	option = {
+		name = kaelthas_expansion.30.option.1
+		add_stability = -0.10
+		add_war_support = 0.10
+		add_political_power = 100
+		retire_country_leader = yes
+		recruit_character = QUE_kaelthas_sunstrider
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.10
+		}
+		set_country_flag = QUE_kaelthas_leader_flag
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	# Option 2: Kael'thas stays as advisor — Anasterian remains, Kael'thas leads military
+	option = {
+		name = kaelthas_expansion.30.option.2
+		add_stability = 0.03
+		add_war_support = 0.08
+		add_political_power = 50
+		recruit_character = QUE_kaelthas_sunstrider
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		set_country_flag = QUE_kaelthas_advisor_flag
+		ai_chance = {
+			base = 2
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	# Option 3: Kael'thas remains in Dalaran (historical default)
+	option = {
+		name = kaelthas_expansion.30.option.3
+		add_political_power = 30
+		add_stability = 0.05
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.03
+		}
+		set_country_flag = QUE_kaelthas_dalaran_flag
+		DAL = {
+			if = {
+				limit = { exists = yes }
+				add_opinion_modifier = {
+					target = QUE
+					modifier = large_increase
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# The Phoenix Prince — Kael'thas's coronation/regency
+country_event = {
+	id = kaelthas_expansion.31
+	title = kaelthas_expansion.31.t
+	desc = kaelthas_expansion.31.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.31" }
+
+	option = {
+		name = kaelthas_expansion.31.option.1
+		add_stability = 0.05
+		add_war_support = 0.10
+		add_political_power = 50
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.10
+		}
+		add_ideas = { QUE_sw_kaelthas_leader }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Prince's Council — Kael'thas unites the realm
+country_event = {
+	id = kaelthas_expansion.32
+	title = kaelthas_expansion.32.t
+	desc = kaelthas_expansion.32.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.32" }
+
+	option = {
+		name = kaelthas_expansion.32.option.1
+		add_stability = 0.08
+		add_political_power = 50
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.05
+		}
+		add_ideas = { QUE_sw_united_council }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Scholar of Dalaran — Kael'thas commits to the Kirin Tor
+country_event = {
+	id = kaelthas_expansion.33
+	title = kaelthas_expansion.33.t
+	desc = kaelthas_expansion.33.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.33" }
+
+	option = {
+		name = kaelthas_expansion.33.option.1
+		add_stability = 0.05
+		add_war_support = -0.03
+		add_political_power = 30
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus_kirin
+			cost_reduction = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		add_ideas = { QUE_sw_kirin_tor_path }
+		DAL = {
+			if = {
+				limit = { exists = yes }
+				add_opinion_modifier = {
+					target = QUE
+					modifier = large_increase
+				}
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# Scars of the War — post-war recovery
+country_event = {
+	id = kaelthas_expansion.70
+	title = kaelthas_expansion.70.t
+	desc = kaelthas_expansion.70.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.70" }
+
+	option = {
+		name = kaelthas_expansion.70.option.1
+		add_manpower = 500
+		add_stability = 0.05
+		add_timed_idea = {
+			idea = QUE_sw_post_war_recovery
+			days = 365
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# A Place in the Alliance — permanent commitment
+country_event = {
+	id = kaelthas_expansion.71
+	title = kaelthas_expansion.71.t
+	desc = kaelthas_expansion.71.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.71" }
+
+	option = {
+		name = kaelthas_expansion.71.option.1
+		add_political_power = 40
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = alliance
+			popularity = 0.10
+		}
+		alliance_unity_raise = yes
+		LOR = {
+			add_opinion_modifier = {
+				target = QUE
+				modifier = medium_increase
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# The Sunwell's Warning — foreshadowing Third War
+country_event = {
+	id = kaelthas_expansion.72
+	title = kaelthas_expansion.72.t
+	desc = kaelthas_expansion.72.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kaelthas_expansion.72" }
+
+	option = {
+		name = kaelthas_expansion.72.option.1
+		add_stability = -0.03
+		add_war_support = 0.03
+		add_timed_idea = {
+			idea = QUE_sw_sunwell_disturbance
+			days = 730
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
