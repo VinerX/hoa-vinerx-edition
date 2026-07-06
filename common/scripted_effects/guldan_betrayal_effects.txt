@@ -1,0 +1,82 @@
+# ============================================================
+# Gul'dan's Betrayal — systemic resolution (Second War)
+#
+# Hooked into stormreaver.23 (fires in BRC scope) the moment Stormreaver
+# abandons the Horde to seek the Tomb of Sargeras. Instead of only removing
+# SRC, this ties the betrayal to Warchief Authority and Alliance Unity:
+#   * low authority => more clans follow Gul'dan out
+#   * the remaining Horde suffers a front crisis scaled by how bad it got
+#   * the betrayal itself damages the Warchief's authority (compounding)
+#   * the Alliance gets an exploitable window scaled by its Unity
+# ============================================================
+
+# The clan in scope abandons the Horde and turns inward (no longer wages war).
+guldan_defect_clan = {
+	if = {
+		limit = { exists = yes is_horde_member = yes }
+		leave_faction = yes
+		add_timed_idea = { idea = guldan_clan_infighting days = 365 }
+		set_country_flag = followed_guldan
+		# Sour relations with the Warchief's loyalists.
+		BRC = { add_opinion_modifier = { target = PREV modifier = large_decrease } }
+	}
+}
+
+# Master resolution. Runs in BRC scope (ROOT = BRC). SRC has already left via
+# the base stormreaver.23 event; this cascades everything else.
+guldan_betrayal_resolve = {
+	# Authority is read BEFORE the betrayal's own hit, so it reflects the
+	# Warchief's standing at the moment Gul'dan breaks away.
+	if = {
+		limit = { horde_authority_high = yes }
+		# Orgrim's grip holds — only Stormreaver breaks away. A mild shock.
+		every_country = {
+			limit = { is_horde_member = yes }
+			add_timed_idea = { idea = horde_the_horde_divided_mild days = 120 }
+		}
+	}
+	else_if = {
+		limit = { horde_authority_medium = yes }
+		# Historical: Cho'gall's Twilight's Hammer follows Gul'dan.
+		THC = { guldan_defect_clan = yes }
+		every_country = {
+			limit = { is_horde_member = yes }
+			add_timed_idea = { idea = horde_the_horde_divided_moderate days = 180 }
+		}
+	}
+	else_if = {
+		# Checked before the broader "low" range (which also covers <20).
+		limit = { horde_authority_defied = yes }
+		# The Warchief is openly defied — the Horde fractures. Twilight's Hammer
+		# and Dragonmaw break away, Gul'dan's Shadow Council scatters, and even
+		# the Bleeding Hollow lose faith.
+		THC = { guldan_defect_clan = yes }
+		DMC = { guldan_defect_clan = yes }
+		TSC = { guldan_defect_clan = yes }
+		BHC = { guldan_defect_clan = yes }
+		every_country = {
+			limit = { is_horde_member = yes }
+			add_timed_idea = { idea = horde_the_horde_divided_severe days = 270 }
+		}
+	}
+	else = {
+		# Contested authority (20–39): Twilight's Hammer breaks away and
+		# Dragonmaw drags its feet.
+		THC = { guldan_defect_clan = yes }
+		DMC = { guldan_defect_clan = yes }
+		every_country = {
+			limit = { is_horde_member = yes }
+			add_timed_idea = { idea = horde_the_horde_divided_moderate days = 210 }
+		}
+	}
+
+	# The betrayal itself shakes the Warchief's authority (compounds the crisis).
+	horde_authority_lower_major = yes
+
+	# Open the Alliance's window of opportunity, scaled later by its Unity.
+	set_global_flag = the_horde_divided
+	if = {
+		limit = { LOR = { exists = yes } }
+		LOR = { country_event = { id = guldan_betrayal.1 hours = 12 } }
+	}
+}

@@ -1,0 +1,57 @@
+add_namespace = guldan_betrayal
+
+# ============================================================
+# Gul'dan's Betrayal — Alliance opportunity window
+#
+# Fired to Lordaeron when Gul'dan (and possibly more clans) abandon the Horde.
+# The strength of the Alliance's reaction scales with Alliance Unity:
+#   high   -> the whole coalition surges forward
+#   medium -> Lordaeron and Stormwind exploit the opening
+#   low    -> only a brief, local push; the window can be squandered
+# ============================================================
+
+country_event = {
+	id = guldan_betrayal.1
+	title = guldan_betrayal.1.t
+	desc = guldan_betrayal.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event guldan_betrayal.1 (the Horde is divided)" }
+
+	option = { # Exploit the Horde's Crisis
+		name = guldan_betrayal.1.a
+		ai_chance = { base = 90 }
+		add_war_support = 0.05
+		if = {
+			limit = { alliance_unity_high = yes }
+			# The whole coalition is coordinated enough to surge together.
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_timed_idea = { idea = alliance_the_enemy_is_divided days = 180 }
+			}
+		}
+		else_if = {
+			limit = { alliance_unity_medium = yes }
+			# Lordaeron and Stormwind press the advantage.
+			add_timed_idea = { idea = alliance_the_enemy_is_divided days = 120 }
+			if = {
+				limit = { STO = { exists = yes is_in_faction_with = ROOT } }
+				STO = { add_timed_idea = { idea = alliance_the_enemy_is_divided days = 120 } }
+			}
+		}
+		else = {
+			# A fractured Alliance manages only a brief local push.
+			add_timed_idea = { idea = alliance_the_enemy_is_divided days = 60 }
+		}
+	}
+
+	option = { # Consolidate first — the window may pass
+		name = guldan_betrayal.1.b
+		ai_chance = { base = 10 }
+		add_political_power = 50
+		add_stability = 0.03
+	}
+}
