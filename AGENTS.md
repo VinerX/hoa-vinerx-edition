@@ -63,6 +63,19 @@ Existing Second War content to extend / not collide with:
 - `events/stormwind_events.txt`, `common/national_focus/*first_and_second_war.txt`,
   `common/national_focus/stormwind_second_war.txt`, `common/bookmarks/the_second_war.txt`.
 
+## Prior author content (mine for ideas, don't load)
+
+The user's earlier submod **"VinerX's Azeroth"** (workshop id 3232564516) is at
+`C:\SteamLibrary\steamapps\workshop\content\394360\3232564516`. Use it as a **source of
+story/design ideas** when building content — do NOT load or copy it wholesale: it targets
+HOA 0.6.6a / HOI4 1.14 and uses the old whole-dir `replace_path="2643760708/…"` format that
+breaks on this build. Re-author fresh inside the merged mod. It contains:
+- **Amani Tribe (AMA, Zul'jin)** — events (call for tribes, unification, Zul'jin captured,
+  attack on Quel'Thalas), AMA focus tree, ideas, characters, peace conference.
+- **Quel'Thalas (QUE)** — focus tree (first & second war), decisions, ideas, modifiers, characters.
+- **Third War** — Lordaeron third-war focus tree, cult_of_the_damned, third_war events, Old Gods events.
+- Blackrock focus edits, custom units/equipment.
+
 ## Where things live
 
 ```
