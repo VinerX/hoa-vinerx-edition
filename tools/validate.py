@@ -52,6 +52,10 @@ SCRIPTED_EFFECTS_DIR = "common/scripted_effects"
 SCRIPTED_TRIGGERS_DIR = "common/scripted_triggers"
 BUILDINGS_DIR = "common/buildings"
 IDEAS_DIR = "common/ideas"
+BOOKMARKS_DIR = "common/bookmarks"
+CHARACTERS_DIR = "common/characters"
+SCIENTIST_TRAITS_DIR = "common/scientist_traits"
+UNIT_LEADER_DIR = "common/unit_leader"
 DECISION_CATEGORIES_DIR = "common/decisions/categories"
 OPINION_MODIFIERS_DIR = "common/opinion_modifiers"
 DEFAULT_REFERENCE_ROOTS = (
@@ -83,6 +87,10 @@ RE_BAD_TRANSFER_EQUIPMENT = re.compile(r"\btransfer_equipment\s*=")
 RE_BAD_REMOVE_COUNTRY_LEADER = re.compile(r"\bremove_country_leader\s*=")
 RE_BAD_SET_VARIABLE_VALUE = re.compile(r"\bset_variable\s*=\s*\{\s*([A-Za-z0-9_@.:\'-]+)\s+value\s*=")
 RE_BAD_IDEA_REMOVAL = re.compile(r"^\s*removal\s*=", re.MULTILINE)
+RE_BAD_LEADER_ROLE_MILITARY = re.compile(
+    r"\badd_country_leader_role\s*=\s*\{(?:[^{}]|\{[^{}]*\})*?\b(corps_commander|field_marshal|navy_leader)\s*=",
+    re.DOTALL,
+)
 RE_UNIT_RATIO_BLOCK = re.compile(r"\bai_strategy\s*=\s*\{([^{}]*\btype\s*=\s*unit_ratio[^{}]*)\}", re.DOTALL)
 RE_AI_STRATEGY_ID = re.compile(r"\bid\s*=\s*([A-Za-z0-9_@.:\'-]+)")
 RE_OPINION_MODIFIER_REF = re.compile(
@@ -92,6 +100,25 @@ RE_OPINION_MODIFIER_REF = re.compile(
 RE_IDEA_REF = re.compile(
     r"\b(?:add_ideas|remove_idea|has_idea|idea)\s*=\s*([A-Za-z0-9_.']+)"
 )
+RE_HISTORY_VARIANT_TYPE = re.compile(r"\btype\s*=\s*([A-Za-z0-9_.']+)")
+RE_HISTORY_VARIANT_PARENT = re.compile(r"\bparent\s*=\s*([A-Za-z0-9_.']+)")
+RE_HISTORY_VARIANT_UPGRADE = re.compile(r"\bupgrade\s*=\s*\{")
+RE_HISTORY_VARIANT_UPGRADES_BLOCK = re.compile(r"\bupgrades\s*=\s*\{")
+RE_SET_NAVAL_OOB = re.compile(r"\bset_naval_oob\s*=\s*([A-Za-z0-9_.']+|\"[^\"]+\")")
+RE_OOB_EQUIPMENT = re.compile(
+    r"\bequipment\s*=\s*\{\s*([A-Za-z0-9_.']+)\s*=\s*\{[^{}]*?\bowner\s*=\s*([A-Z0-9]{2,4})\b",
+    re.DOTALL,
+)
+RE_OOB_CARRIER_EQUIPMENT = re.compile(
+    r"\bequipment\s*=\s*\{\s*(carrier_equipment_[0-9]+)\s*=\s*\{[^{}]*?\bowner\s*=\s*([A-Z0-9]{2,4})\b",
+    re.DOTALL,
+)
+RE_HISTORY_CHARACTER_REF = re.compile(r"\b(?:recruit_character|retire_character|kill_character)\s*=\s*([A-Za-z0-9_.']+)")
+RE_DIRECT_CAPITAL = re.compile(r"^\s*capital\s*=\s*(\d+)", re.MULTILINE)
+RE_DIRECT_SET_CAPITAL = re.compile(r"\bset_capital\s*=\s*\{\s*state\s*=\s*(\d+)\s*\}")
+RE_BOOKMARK_DATE = re.compile(r"\bdate\s*=\s*(\d+\.\d+\.\d+(?:\.\d+)?)")
+RE_SCRIPT_DATE = re.compile(r"^\d+\.\d+\.\d+(?:\.\d+)?$")
+RE_REQUIRED_PROVINCES = re.compile(r"\brequired_provinces\s*=\s*\{([^}]*)\}", re.DOTALL)
 
 BUILTIN_OPINION_MODIFIERS = {
     "small_increase",
@@ -373,6 +400,14 @@ def validate_runtime_antipatterns(
                 f"[runtime-antipattern] {r}:{line}: malformed set_variable syntax for '{var_name}' (expected '{var_name} = <value>')"
             )
 
+        for m in RE_BAD_LEADER_ROLE_MILITARY.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            role = m.group(1)
+            errors.append(
+                f"[runtime-antipattern] {r}:{line}: '{role}' is not a valid effect inside add_country_leader_role "
+                f"(add_country_leader_role only takes a country_leader block); to add a general use recruit_character on a character that defines a {role} block"
+            )
+
     ideas_root = os.path.join(root, IDEAS_DIR)
     if os.path.isdir(ideas_root):
         for path in iter_files(ideas_root, SCRIPT_EXT):
@@ -482,6 +517,545 @@ def validate_data_vocab(
                 )
 
 
+def country_tag_from_history_path(path: str) -> str | None:
+    base = os.path.basename(path)
+    if " - " in base:
+        tag = base.split(" - ", 1)[0]
+    else:
+        tag = os.path.splitext(base)[0]
+    if 2 <= len(tag) <= 4 and tag.isupper() and tag.isalpha():
+        return tag
+    return None
+
+
+def parse_script_date(raw: str) -> tuple[int, int, int, int]:
+    parts = [int(p) for p in raw.split(".")]
+    while len(parts) < 4:
+        parts.append(0)
+    return tuple(parts[:4])
+
+
+def build_state_owner_timelines(root: str) -> dict[int, list[tuple[tuple[int, int, int, int], str]]]:
+    state_root = os.path.join(root, "history", "states")
+    timelines: dict[int, list[tuple[tuple[int, int, int, int], str]]] = {}
+    if not os.path.isdir(state_root):
+        return timelines
+
+    for path in iter_files(state_root, SCRIPT_EXT):
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        state_id_match = re.search(r"\bid\s*=\s*(\d+)", clean)
+        if not state_id_match:
+            continue
+
+        state_id = int(state_id_match.group(1))
+        timeline: list[tuple[tuple[int, int, int, int], str]] = []
+        for history_body, _line in extract_named_blocks(clean, "history"):
+            top_history = blank_nested_braces(history_body)
+            owner_match = re.search(r"\bowner\s*=\s*([A-Z0-9]{2,4})", top_history)
+            if owner_match:
+                timeline.append(((0, 0, 0, 0), owner_match.group(1)))
+
+            for block_name, block_body, _block_line in extract_top_level_definitions(history_body):
+                if not RE_SCRIPT_DATE.match(block_name):
+                    continue
+                top_block = blank_nested_braces(block_body)
+                owner_match = re.search(r"\bowner\s*=\s*([A-Z0-9]{2,4})", top_block)
+                if owner_match:
+                    timeline.append((parse_script_date(block_name), owner_match.group(1)))
+
+        timelines[state_id] = sorted(timeline)
+
+    return timelines
+
+
+def owner_for_state_on_date(
+    state_owner_timelines: dict[int, list[tuple[tuple[int, int, int, int], str]]],
+    state_id: int,
+    date_value: tuple[int, int, int, int],
+) -> str | None:
+    owner = None
+    for owner_date, owner_tag in state_owner_timelines.get(state_id, []):
+        if owner_date <= date_value:
+            owner = owner_tag
+        else:
+            break
+    return owner
+
+
+def collect_bookmark_dates(root: str) -> list[tuple[str, tuple[int, int, int, int]]]:
+    bookmarks_root = os.path.join(root, BOOKMARKS_DIR)
+    results: list[tuple[str, tuple[int, int, int, int]]] = []
+    if not os.path.isdir(bookmarks_root):
+        return results
+
+    for path in iter_files(bookmarks_root, SCRIPT_EXT):
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        r = rel(root, path)
+        for match in RE_BOOKMARK_DATE.finditer(clean):
+            raw_date = match.group(1)
+            results.append((f"{r}:{clean.count(chr(10), 0, match.start()) + 1}", parse_script_date(raw_date)))
+
+    return sorted(results, key=lambda item: item[1])
+
+
+def build_character_ids(root: str) -> set[str]:
+    characters_root = os.path.join(root, CHARACTERS_DIR)
+    character_ids: set[str] = set()
+    if not os.path.isdir(characters_root):
+        return character_ids
+
+    for path in iter_files(characters_root, SCRIPT_EXT):
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        for characters_body, _line in extract_named_blocks(clean, "characters"):
+            for character_id, _character_body, _character_line in extract_top_level_definitions(characters_body):
+                character_ids.add(character_id)
+    return character_ids
+
+
+def build_scientist_traits(root: str) -> set[str]:
+    scientist_traits: set[str] = set()
+
+    def _collect(base_root: str) -> None:
+        scientist_root = os.path.join(base_root, SCIENTIST_TRAITS_DIR)
+        if not os.path.isdir(scientist_root):
+            return
+        for path in iter_files(scientist_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for trait_id, _trait_body, _trait_line in extract_top_level_definitions(clean):
+                scientist_traits.add(trait_id)
+
+    for ref_root in DEFAULT_REFERENCE_ROOTS:
+        if os.path.isdir(ref_root):
+            _collect(ref_root)
+    _collect(root)
+    return scientist_traits
+
+
+def build_unit_leader_traits(root: str) -> set[str]:
+    """Collect unit-leader trait ids (field marshal / corps commander / navy leader).
+
+    Traits live nested inside `leader_traits = { trait = { ... } }` blocks under
+    common/unit_leader/. Case-sensitive, like all HOI4 tokens.
+    """
+    traits: set[str] = set()
+
+    def _collect(base_root: str) -> None:
+        ul_root = os.path.join(base_root, UNIT_LEADER_DIR)
+        if not os.path.isdir(ul_root):
+            return
+        for path in iter_files(ul_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for lt_body, _lt_line in extract_named_blocks(clean, "leader_traits"):
+                for trait_id, _body, _line in extract_top_level_definitions(lt_body):
+                    traits.add(trait_id)
+
+    for ref_root in DEFAULT_REFERENCE_ROOTS:
+        if os.path.isdir(ref_root):
+            _collect(ref_root)
+    _collect(root)
+    return traits
+
+
+def parse_state_buildings_snapshot(body: str) -> tuple[dict[str, int], dict[tuple[int, str], int]]:
+    state_levels: dict[str, int] = {}
+    province_levels: dict[tuple[int, str], int] = {}
+    for key, _line in extract_direct_keys(body):
+        if key.isdigit():
+            continue
+        match = re.search(rf"\b{re.escape(key)}\s*=\s*(-?\d+)", body)
+        if match:
+            state_levels[key] = int(match.group(1))
+    for key, nested_body, _line in extract_top_level_definitions(body):
+        if key.isdigit():
+            province_id = int(key)
+            nested_top = blank_nested_braces(nested_body)
+            for nested_key, rel_line in extract_direct_keys(nested_body):
+                match = re.search(rf"\b{re.escape(nested_key)}\s*=\s*(-?\d+)", nested_top)
+                if match:
+                    province_levels[(province_id, nested_key)] = int(match.group(1))
+            continue
+        match = re.search(rf"\b{re.escape(key)}\s*=\s*(-?\d+)", body)
+        if match:
+            state_levels[key] = int(match.group(1))
+    return state_levels, province_levels
+
+
+def collect_bookmark_start_dates(root: str) -> set[tuple[int, int, int, int]]:
+    return {date_value for _source, date_value in collect_bookmark_dates(root)}
+
+
+def validate_adjacency_rules(root: str, errors: list[str]) -> None:
+    path = os.path.join(root, "map", "adjacency_rules.txt")
+    if not os.path.isfile(path):
+        return
+    loaded = load_text(path)
+    if loaded is None:
+        return
+    _raw, text = loaded
+    clean = strip_comments_and_strings(text)
+    r = rel(root, path)
+    province_to_rules: dict[int, list[tuple[str, int]]] = {}
+    for rule_body, rule_line in extract_named_blocks(clean, "adjacency_rule"):
+        top_rule = blank_nested_braces(rule_body)
+        name_match = re.search(r'\bname\s*=\s*"([^"]+)"', top_rule)
+        rule_name = name_match.group(1) if name_match else "<unnamed>"
+        for prov_match in RE_REQUIRED_PROVINCES.finditer(top_rule):
+            rel_line = rule_body.count("\n", 0, prov_match.start()) + 1
+            for token in prov_match.group(1).split():
+                if not token.isdigit():
+                    continue
+                province_to_rules.setdefault(int(token), []).append((rule_name, rule_line + rel_line - 1))
+    for province_id, refs in sorted(province_to_rules.items()):
+        rule_names = sorted({name for name, _line in refs})
+        if len(refs) > 1:
+            locations = ", ".join(f"{name}@{line}" for name, line in refs)
+            errors.append(
+                f"[adjacency-rule] {r}: province {province_id} is reused by multiple required_provinces entries ({locations})"
+            )
+
+
+def validate_dated_state_buildings(root: str, warnings: list[str]) -> None:
+    state_root = os.path.join(root, "history", "states")
+    if not os.path.isdir(state_root):
+        return
+
+    for path in iter_files(state_root, SCRIPT_EXT):
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        r = rel(root, path)
+
+        for history_body, history_line in extract_named_blocks(clean, "history"):
+            baseline_state: dict[str, int] = {}
+            baseline_province: dict[tuple[int, str], int] = {}
+
+            for buildings_body, buildings_line in extract_named_blocks(history_body, "buildings"):
+                baseline_state, baseline_province = parse_state_buildings_snapshot(buildings_body)
+                break
+
+            for block_name, block_body, block_line in extract_top_level_definitions(history_body):
+                if not RE_SCRIPT_DATE.match(block_name):
+                    continue
+                date_value = parse_script_date(block_name)
+
+                buildings_blocks = extract_named_blocks(block_body, "buildings")
+                if not buildings_blocks:
+                    continue
+                buildings_body, buildings_line = buildings_blocks[0]
+                current_state, current_province = parse_state_buildings_snapshot(buildings_body)
+
+                for key, prior_value in sorted(baseline_state.items()):
+                    current_value = current_state.get(key, 0)
+                    if current_value < prior_value:
+                        line = block_line + buildings_line - 1
+                        warnings.append(
+                            f"[dated-buildings] {r}:{line}: dated buildings snapshot at {block_name} reduces state building '{key}' from {prior_value} to {current_value}; use explicit add/remove deltas instead"
+                        )
+                for (province_id, building_type), prior_value in sorted(baseline_province.items()):
+                    current_value = current_province.get((province_id, building_type), 0)
+                    if current_value < prior_value:
+                        line = block_line + buildings_line - 1
+                        warnings.append(
+                            f"[dated-buildings] {r}:{line}: dated buildings snapshot at {block_name} reduces province {province_id} building '{building_type}' from {prior_value} to {current_value}; use explicit add/remove deltas instead"
+                        )
+
+                baseline_state = dict(current_state)
+                baseline_province = dict(current_province)
+
+
+def validate_history_naval_variants(root: str, errors: list[str]) -> None:
+    country_root = os.path.join(root, "history", "countries")
+    units_root = os.path.join(root, "history", "units")
+    if not os.path.isdir(country_root) or not os.path.isdir(units_root):
+        return
+
+    variants_by_tag: dict[str, set[str]] = {}
+    country_files_by_tag: dict[str, str] = {}
+    referenced_naval_oobs: set[str] = set()
+    known_upgrade_keys: set[str] = set()
+    state_owner_timelines = build_state_owner_timelines(root)
+    bookmark_dates = collect_bookmark_dates(root)
+    known_character_ids = build_character_ids(root)
+    known_scientist_traits = build_scientist_traits(root)
+    known_unit_leader_traits = build_unit_leader_traits(root)
+    equipment_unlock_techs = build_equipment_unlock_techs(root)
+    naval_oob_bookmark_techs: dict[str, list[tuple[str, str, set[str]]]] = {}
+
+    upgrades_root = os.path.join(root, "common", "units", "equipment", "upgrades")
+    if os.path.isdir(upgrades_root):
+        for path in iter_files(upgrades_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for upgrades_body, _line in extract_named_blocks(clean, "upgrades"):
+                known_upgrade_keys.update(key for key, _ in extract_direct_keys(upgrades_body))
+
+    for path in iter_files(country_root, SCRIPT_EXT):
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        r = rel(root, path)
+        tag = country_tag_from_history_path(path)
+        if tag is None:
+            continue
+
+        country_files_by_tag[tag] = r
+        variant_types = variants_by_tag.setdefault(tag, set())
+        top_clean = blank_nested_braces(clean)
+        base_techs: set[str] = set()
+        active_oob_name: str | None = None
+
+        for tech_body, _tech_line in extract_named_blocks(top_clean, "set_technology"):
+            for tech_key, _rel_line in extract_direct_keys(tech_body):
+                match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", tech_body)
+                if match and int(match.group(1)) > 0:
+                    base_techs.add(tech_key)
+
+        for oob_match in RE_SET_NAVAL_OOB.finditer(top_clean):
+            active_oob_name = oob_match.group(1).strip("\"'")
+
+        for char_match in RE_HISTORY_CHARACTER_REF.finditer(clean):
+            character_id = char_match.group(1)
+            if character_id in known_character_ids:
+                continue
+            line = clean.count("\n", 0, char_match.start(1)) + 1
+            errors.append(
+                f"[history-character] {r}:{line}: unknown character '{character_id}' referenced from country history"
+            )
+
+        for oob_match in RE_SET_NAVAL_OOB.finditer(clean):
+            raw_name = oob_match.group(1).strip("\"'")
+            referenced_naval_oobs.add(raw_name)
+
+        for body, block_line in extract_named_blocks(clean, "create_equipment_variant"):
+            type_match = RE_HISTORY_VARIANT_TYPE.search(body)
+            if type_match:
+                variant_types.add(type_match.group(1))
+
+            parent_match = RE_HISTORY_VARIANT_PARENT.search(body)
+            if parent_match:
+                rel_line = body.count("\n", 0, parent_match.start()) + 1
+                errors.append(
+                    f"[history-variant] {r}:{block_line + rel_line - 1}: create_equipment_variant in country history does not support 'parent = ...'"
+                )
+
+            upgrade_match = RE_HISTORY_VARIANT_UPGRADE.search(body)
+            if upgrade_match:
+                rel_line = body.count("\n", 0, upgrade_match.start()) + 1
+                errors.append(
+                    f"[history-variant] {r}:{block_line + rel_line - 1}: use 'upgrades = {{ ... }}' in country history, not 'upgrade = {{ ... }}'"
+                )
+
+            for upgrades_body, upgrades_line in extract_named_blocks(body, "upgrades"):
+                for key, rel_line in extract_direct_keys(upgrades_body):
+                    if key not in known_upgrade_keys:
+                        errors.append(
+                            f"[history-variant] {r}:{block_line + upgrades_line + rel_line - 2}: unknown equipment upgrade '{key}' in create_equipment_variant"
+                        )
+
+        for block_name, block_body, block_line in extract_top_level_definitions(clean):
+            if not RE_SCRIPT_DATE.match(block_name):
+                continue
+            date_value = parse_script_date(block_name)
+            top_block = blank_nested_braces(block_body)
+
+            for capital_match in RE_DIRECT_CAPITAL.finditer(top_block):
+                state_id = int(capital_match.group(1))
+                line = block_line + top_block.count("\n", 0, capital_match.start(1))
+                owner_tag = owner_for_state_on_date(state_owner_timelines, state_id, date_value)
+                if owner_tag != tag:
+                    errors.append(
+                        f"[history-capital] {r}:{line}: {block_name} capital state {state_id} is owned by {owner_tag or 'nobody'} instead of {tag}"
+                    )
+                for bookmark_src, bookmark_date in bookmark_dates:
+                    if bookmark_date < date_value:
+                        continue
+                    bookmark_owner = owner_for_state_on_date(state_owner_timelines, state_id, bookmark_date)
+                    if bookmark_owner != tag:
+                        errors.append(
+                            f"[history-capital] {r}:{line}: {block_name} capital state {state_id} will be invalid by bookmark {bookmark_src} (owner {bookmark_owner or 'nobody'})"
+                    )
+                        break
+
+            for capital_match in RE_DIRECT_SET_CAPITAL.finditer(top_block):
+                state_id = int(capital_match.group(1))
+                line = block_line + top_block.count("\n", 0, capital_match.start(1))
+                owner_tag = owner_for_state_on_date(state_owner_timelines, state_id, date_value)
+                if owner_tag != tag:
+                    errors.append(
+                        f"[history-capital] {r}:{line}: {block_name} set_capital state {state_id} is owned by {owner_tag or 'nobody'} instead of {tag}"
+                    )
+                for bookmark_src, bookmark_date in bookmark_dates:
+                    if bookmark_date < date_value:
+                        continue
+                    bookmark_owner = owner_for_state_on_date(state_owner_timelines, state_id, bookmark_date)
+                    if bookmark_owner != tag:
+                        errors.append(
+                            f"[history-capital] {r}:{line}: {block_name} set_capital state {state_id} will be invalid by bookmark {bookmark_src} (owner {bookmark_owner or 'nobody'})"
+                        )
+                        break
+
+        dated_blocks = [
+            (parse_script_date(block_name), block_name, block_body)
+            for block_name, block_body, _block_line in extract_top_level_definitions(clean)
+            if RE_SCRIPT_DATE.match(block_name)
+        ]
+        dated_blocks.sort(key=lambda item: item[0])
+
+        for bookmark_src, bookmark_date in bookmark_dates:
+            current_techs = set(base_techs)
+            current_oob_name = active_oob_name
+            for block_date, _block_name, block_body in dated_blocks:
+                if block_date > bookmark_date:
+                    break
+                top_block = blank_nested_braces(block_body)
+                for tech_body, _tech_line in extract_named_blocks(top_block, "set_technology"):
+                    for tech_key, _rel_line in extract_direct_keys(tech_body):
+                        match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", tech_body)
+                        if match and int(match.group(1)) > 0:
+                            current_techs.add(tech_key)
+                for oob_match in RE_SET_NAVAL_OOB.finditer(top_block):
+                    current_oob_name = oob_match.group(1).strip("\"'")
+            if current_oob_name:
+                naval_oob_bookmark_techs.setdefault(current_oob_name, []).append(
+                    (tag, bookmark_src, set(current_techs))
+                )
+
+    characters_root = os.path.join(root, CHARACTERS_DIR)
+    if os.path.isdir(characters_root):
+        for path in iter_files(characters_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            r = rel(root, path)
+
+            for characters_body, characters_line in extract_named_blocks(clean, "characters"):
+                for _character_id, character_body, character_line in extract_top_level_definitions(characters_body):
+                    for scientist_body, scientist_line in extract_named_blocks(character_body, "scientist"):
+                        for traits_body, traits_line in extract_named_blocks(scientist_body, "traits"):
+                            for trait_match in re.finditer(r"\b([A-Za-z0-9_@.:\'-]+)\b", traits_body):
+                                trait_id = trait_match.group(1)
+                                if trait_id in known_scientist_traits:
+                                    continue
+                                line = characters_line + character_line + scientist_line + traits_line + traits_body.count("\n", 0, trait_match.start()) - 3
+                                errors.append(
+                                    f"[scientist-trait] {r}:{line}: unknown scientist trait '{trait_id}'"
+                                )
+                    # Military-role traits must resolve against common/unit_leader
+                    # (case-sensitive). A typo here crashes at recruit / game start,
+                    # e.g. 'infinite_dragon_trait' vs defined 'Infinite_dragon_trait'.
+                    for role in ("field_marshal", "corps_commander", "navy_leader", "general", "admiral"):
+                        for role_body, role_line in extract_named_blocks(character_body, role):
+                            for traits_body, traits_line in extract_named_blocks(role_body, "traits"):
+                                for trait_match in re.finditer(r"\b([A-Za-z0-9_@.:\'-]+)\b", traits_body):
+                                    trait_id = trait_match.group(1)
+                                    if trait_id in known_unit_leader_traits:
+                                        continue
+                                    line = characters_line + character_line + role_line + traits_line + traits_body.count("\n", 0, trait_match.start()) - 3
+                                    errors.append(
+                                        f"[unit-leader-trait] {r}:{line}: unknown unit_leader trait '{trait_id}' in {role} (tokens are case-sensitive)"
+                                    )
+
+    seen_oob_requirements: set[tuple[str, str, str]] = set()
+    for path in iter_files(units_root, SCRIPT_EXT):
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        r = rel(root, path)
+        oob_name = os.path.splitext(os.path.basename(path))[0]
+        if oob_name not in referenced_naval_oobs:
+            continue
+
+        for match in RE_OOB_CARRIER_EQUIPMENT.finditer(clean):
+            equipment_type = match.group(1)
+            owner_tag = match.group(2)
+            if owner_tag not in country_files_by_tag:
+                continue
+            if equipment_type in variants_by_tag.get(owner_tag, set()):
+                continue
+
+            dedupe_key = (r, owner_tag, equipment_type)
+            if dedupe_key in seen_oob_requirements:
+                continue
+            seen_oob_requirements.add(dedupe_key)
+
+            line = clean.count("\n", 0, match.start(1)) + 1
+            errors.append(
+                f"[history-oob] {r}:{line}: {owner_tag} naval OOB uses {equipment_type} but {country_files_by_tag[owner_tag]} does not create a matching equipment variant"
+            )
+
+        for match in RE_OOB_EQUIPMENT.finditer(clean):
+            equipment_type = match.group(1)
+            owner_tag = match.group(2)
+            unlock_techs = equipment_unlock_techs.get(equipment_type)
+            if not unlock_techs:
+                continue
+            line = clean.count("\n", 0, match.start(1)) + 1
+            for bookmark_tag, bookmark_src, known_techs in naval_oob_bookmark_techs.get(oob_name, []):
+                if bookmark_tag != owner_tag:
+                    continue
+                if unlock_techs.isdisjoint(known_techs):
+                    errors.append(
+                        f"[history-oob-tech] {r}:{line}: {owner_tag} naval OOB '{oob_name}' uses {equipment_type} but {country_files_by_tag[owner_tag]} has none of the required techs by bookmark {bookmark_src} ({', '.join(sorted(unlock_techs))})"
+                    )
+                    break
+
+
+def build_equipment_unlock_techs(root: str) -> dict[str, set[str]]:
+    unlocks: dict[str, set[str]] = {}
+
+    def _collect(base_root: str) -> None:
+        tech_root = os.path.join(base_root, "common", "technologies")
+        if not os.path.isdir(tech_root):
+            return
+        for path in iter_files(tech_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for tech_name, tech_body, _line in extract_top_level_definitions(clean):
+                for enable_body, _enable_line in extract_named_blocks(tech_body, "enable_equipments"):
+                    for equipment_type, _rel_line in extract_direct_list_tokens(enable_body):
+                        unlocks.setdefault(equipment_type, set()).add(tech_name)
+
+    for ref_root in DEFAULT_REFERENCE_ROOTS:
+        if os.path.isdir(ref_root):
+            _collect(ref_root)
+    _collect(root)
+    return unlocks
+
+
 def extract_direct_keys(block_text: str) -> list[tuple[str, int]]:
     """
     Return direct child keys for a block, line-based and depth-aware.
@@ -496,6 +1070,18 @@ def extract_direct_keys(block_text: str) -> list[tuple[str, int]]:
                 keys.append((m.group(1), lineno))
         depth += line.count("{") - line.count("}")
     return keys
+
+
+def extract_direct_list_tokens(block_text: str) -> list[tuple[str, int]]:
+    tokens: list[tuple[str, int]] = []
+    depth = 0
+    for lineno, line in enumerate(block_text.splitlines(), start=1):
+        if depth == 0:
+            m = re.match(r"^\s*([A-Za-z0-9_@.:\'-]+)\s*$", line)
+            if m:
+                tokens.append((m.group(1), lineno))
+        depth += line.count("{") - line.count("}")
+    return tokens
 
 
 def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
@@ -1119,7 +1705,7 @@ def main() -> int:
         "--category",
         nargs="*",
         default=None,
-        choices=["loc", "focus-ref", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab"],
+        choices=["loc", "focus-ref", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab", "history"],
         help="only run specific check categories (default: all)",
     )
     args = ap.parse_args()
@@ -1249,6 +1835,10 @@ def main() -> int:
             known_opinion_modifiers,
             known_ideas,
         )
+    if _cat_active("history"):
+        validate_history_naval_variants(root, errors)
+        validate_adjacency_rules(root, errors)
+        validate_dated_state_buildings(root, warnings)
     if _cat_active("collision"):
         validate_focus_coordinate_collisions(root, errors, warnings, _focus_file_filter)
     if args.hoi4_smoke:
