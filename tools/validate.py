@@ -82,6 +82,9 @@ RE_BAD_LOAD_NAVAL_OOB = re.compile(r"\bload_naval_oob\s*=")
 RE_BAD_TRANSFER_EQUIPMENT = re.compile(r"\btransfer_equipment\s*=")
 RE_BAD_REMOVE_COUNTRY_LEADER = re.compile(r"\bremove_country_leader\s*=")
 RE_BAD_SET_VARIABLE_VALUE = re.compile(r"\bset_variable\s*=\s*\{\s*([A-Za-z0-9_@.:\'-]+)\s+value\s*=")
+RE_BAD_IDEA_REMOVAL = re.compile(r"^\s*removal\s*=", re.MULTILINE)
+RE_UNIT_RATIO_BLOCK = re.compile(r"\bai_strategy\s*=\s*\{([^{}]*\btype\s*=\s*unit_ratio[^{}]*)\}", re.DOTALL)
+RE_AI_STRATEGY_ID = re.compile(r"\bid\s*=\s*([A-Za-z0-9_@.:\'-]+)")
 RE_OPINION_MODIFIER_REF = re.compile(
     r"\b(?:add_opinion_modifier|reverse_add_opinion_modifier)\s*=\s*\{[^{}]*?\bmodifier\s*=\s*([A-Za-z0-9_.']+)",
     re.DOTALL,
@@ -153,6 +156,26 @@ SCRIPT_RUNTIME_DIR_HINTS = (
     "/common/decisions/",
     "/common/national_focus/",
 )
+
+VALID_UNIT_RATIO_IDS = {
+    "fighter",
+    "cas",
+    "tactical_bomber",
+    "naval_bomber",
+    "carrier",
+    "capital_ship",
+    "submarine",
+    "screen_ship",
+    "convoy",
+    "infantry",
+    "infantry_special",
+    "motorized",
+    "artillery",
+    "support",
+    "cavalry",
+    "mountaineers",
+    "armor",
+}
 
 
 # --- helpers ---------------------------------------------------------------
@@ -330,6 +353,44 @@ def validate_runtime_antipatterns(
             errors.append(
                 f"[runtime-antipattern] {r}:{line}: malformed set_variable syntax for '{var_name}' (expected '{var_name} = <value>')"
             )
+
+    ideas_root = os.path.join(root, IDEAS_DIR)
+    if os.path.isdir(ideas_root):
+        for path in iter_files(ideas_root, SCRIPT_EXT):
+            r = rel(root, path)
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+
+            for m in RE_BAD_IDEA_REMOVAL.finditer(clean):
+                line = clean.count("\n", 0, m.start()) + 1
+                errors.append(
+                    f"[runtime-antipattern] {r}:{line}: unsupported 'removal = ...' inside idea definitions; use add_timed_idea/add_dynamic_modifier duration on the caller side"
+                )
+
+    ai_strategy_root = os.path.join(root, "common", "ai_strategy")
+    if os.path.isdir(ai_strategy_root):
+        for path in iter_files(ai_strategy_root, SCRIPT_EXT):
+            r = rel(root, path)
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+
+            for m in RE_UNIT_RATIO_BLOCK.finditer(clean):
+                block = m.group(1)
+                id_match = RE_AI_STRATEGY_ID.search(block)
+                if id_match is None:
+                    continue
+                unit_id = id_match.group(1)
+                if unit_id not in VALID_UNIT_RATIO_IDS:
+                    line = clean.count("\n", 0, m.start()) + 1
+                    errors.append(
+                        f"[runtime-antipattern] {r}:{line}: suspicious unit_ratio id '{unit_id}' (expected vanilla ai ratio bucket such as infantry/cavalry/fighter/screen_ship)"
+                    )
 
 
 def validate_data_vocab(
