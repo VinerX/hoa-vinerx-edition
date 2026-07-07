@@ -262,6 +262,25 @@ def find_matching_brace(text: str, open_idx: int) -> int:
     return -1
 
 
+def blank_nested_braces(body: str) -> str:
+    """Replace the content of every nested { ... } block with spaces, keeping
+    only top-level tokens. Lets us read a focus block's own x/y/id/relpos
+    without matching identically-named keys inside effect/trigger sub-blocks
+    (e.g. `id =` in create_unit, `x =` in set_variable)."""
+    out = []
+    depth = 0
+    for ch in body:
+        if ch == "{":
+            depth += 1
+            out.append(" ")
+        elif ch == "}":
+            depth -= 1
+            out.append(" ")
+        else:
+            out.append(ch if depth == 0 else (" " if ch != "\n" else "\n"))
+    return "".join(out)
+
+
 def extract_top_level_definitions(text: str) -> list[tuple[str, str, int]]:
     """
     Return top-level `name = { ... }` blocks as (name, body_without_outer_braces, line).
@@ -664,6 +683,7 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
         if loaded is None:
             continue
         _raw, text = loaded
+        text = strip_comments_and_strings(text)
         r = rel(root, path)
 
         for m in re.finditer(r"\b(?:focus|shared_focus)\s*=\s*\{", text):
@@ -674,8 +694,9 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
             if close_idx == -1:
                 continue
             body = text[open_idx + 1 : close_idx]
+            top = blank_nested_braces(body)
 
-            idm = RE_ID.search(body)
+            idm = RE_ID.search(top)
             if not idm:
                 continue
             fid = idm.group(1)
@@ -686,13 +707,13 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
             relpos = None
             prereqs: list[str] = []
 
-            xm = re.search(r"\bx\s*=\s*(-?\d+)", body)
+            xm = re.search(r"\bx\s*=\s*(-?\d+)", top)
             if xm:
                 x = int(xm.group(1))
-            ym = re.search(r"\by\s*=\s*(-?\d+)", body)
+            ym = re.search(r"\by\s*=\s*(-?\d+)", top)
             if ym:
                 y = int(ym.group(1))
-            rm = RE_RELPOS.search(body)
+            rm = RE_RELPOS.search(top)
             if rm:
                 relpos = rm.group(1)
             pm = re.search(r"\bprerequisite\s*=\s*\{([^}]*)\}", body)
@@ -743,6 +764,7 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
         if loaded is None:
             continue
         _raw, text = loaded
+        text = strip_comments_and_strings(text)
         r = rel(root, path)
 
         for tree_m in re.finditer(r"\bfocus_tree\s*=\s*\{", text):
@@ -794,35 +816,28 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
                 if fid in abs_positions:
                     tree_foci_list.append((fid, abs_positions[fid]))
 
-            reported_pairs: set[tuple[str, str]] = set()
+            # Severity model (default HOI4 focus grid: ~90px column / ~100px row,
+            # icon roughly one slot wide):
+            #   dx==0, dy==0  -> true overlap, icons stacked on the same cell (ERROR)
+            #   dx==1, dy==0  -> same row, adjacent columns: icons touch/overlap
+            #                    by a few px, usually a layout mistake (WARN)
+            #   dx==0, dy==1  -> normal vertical prerequisite spacing (OK)
+            #   dx==1, dy==1  -> standard diagonal offset used for sibling /
+            #                    mutually_exclusive branches (OK)
             for i in range(len(tree_foci_list)):
                 for j in range(i + 1, len(tree_foci_list)):
                     fid_a, (xa, ya) = tree_foci_list[i]
                     fid_b, (xb, yb) = tree_foci_list[j]
-                    if abs(xa - xb) <= 1 and abs(ya - yb) <= 1 and not (xa == xb and abs(ya - yb) == 1):
-                        reported_pairs.add((fid_a, fid_b))
+                    dx, dy = abs(xa - xb), abs(ya - yb)
+                    if dx == 0 and dy == 0:
                         errors.append(
                             f"[focus-collision] {r}: focus tree '{tree_id}' overlapping at "
                             f"(x={xa}, y={ya}) '{fid_a}' and (x={xb}, y={yb}) '{fid_b}'"
                         )
-
-            # WARN on cross-file near-collisions not already caught above
-            for fid_a in tree_foci:
-                for fid_b in tree_foci:
-                    if fid_a >= fid_b:
-                        continue
-                    if fid_a not in abs_positions or fid_b not in abs_positions:
-                        continue
-                    if focus_data.get(fid_a, {}).get("file") == focus_data.get(fid_b, {}).get("file"):
-                        continue
-                    if (fid_a, fid_b) in reported_pairs:
-                        continue
-                    pa, pb = abs_positions[fid_a], abs_positions[fid_b]
-                    if abs(pa[0] - pb[0]) <= 1 and abs(pa[1] - pb[1]) <= 1 and not (pa[0] == pb[0] and abs(pa[1] - pb[1]) == 1):
+                    elif dx == 1 and dy == 0:
                         warnings.append(
-                            f"[focus-nearby] {r}: focus tree '{tree_id}' nearby at "
-                            f"(x={pa[0]}, y={pa[1]}) '{fid_a}' and "
-                            f"(x={pb[0]}, y={pb[1]}) '{fid_b}'"
+                            f"[focus-nearby] {r}: focus tree '{tree_id}' adjacent in same row at "
+                            f"(x={xa}, y={ya}) '{fid_a}' and (x={xb}, y={yb}) '{fid_b}'"
                         )
 
 
@@ -1054,6 +1069,19 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--path", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument(
+        "--summary",
+        action="store_true",
+        help="condensed report: group findings by check type with counts and a few "
+             "examples instead of printing every line (keeps output small)",
+    )
+    ap.add_argument(
+        "--summary-examples",
+        type=int,
+        default=2,
+        metavar="N",
+        help="number of example lines to show per check in --summary mode (default: 2)",
+    )
     ap.add_argument(
         "--hoi4-error-log",
         nargs="?",
@@ -1295,11 +1323,39 @@ def main() -> int:
                 if key not in loc_defs:
                     warnings.append(f"[tooltip-loc] {file_name}: missing localisation key '{key}'")
 
-    if not args.quiet:
-        for w in warnings:
-            print("WARN  " + w)
-    for e in errors:
-        print("ERROR " + e)
+    if args.summary:
+        def _tag(line: str) -> str:
+            m = re.match(r"\s*\[([^\]]+)\]", line)
+            return m.group(1) if m else "other"
+
+        def _group(items: list[str]) -> dict[str, list[str]]:
+            groups: dict[str, list[str]] = {}
+            for it in items:
+                groups.setdefault(_tag(it), []).append(it)
+            return groups
+
+        rows: list[tuple[str, str, int, list[str]]] = []
+        for sev, items in (("ERROR", errors), ("WARN", warnings)):
+            if sev == "WARN" and args.quiet:
+                continue
+            for tag, lst in _group(items).items():
+                rows.append((sev, tag, len(lst), lst))
+        # errors first, then by count desc
+        rows.sort(key=lambda r: (r[0] != "ERROR", -r[2]))
+        print("-" * 60)
+        print("SUMMARY (grouped by check)")
+        for sev, tag, count, lst in rows:
+            print(f"  {sev:<5} {tag:<20} {count}")
+            for ex in lst[: max(0, args.summary_examples)]:
+                print(f"        e.g. {ex}")
+            if count > args.summary_examples > 0:
+                print(f"        ... +{count - args.summary_examples} more")
+    else:
+        if not args.quiet:
+            for w in warnings:
+                print("WARN  " + w)
+        for e in errors:
+            print("ERROR " + e)
 
     print("-" * 60)
     print(

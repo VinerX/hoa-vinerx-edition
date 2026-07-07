@@ -55,13 +55,15 @@ def resolve_size(manifest):
     return preset, convert.PRESETS[preset]
 
 
-def render_icon(crop, preset, size, fit, vbias, safe_pad):
+def render_icon(crop, preset, size, fit, vbias, safe_pad, focus_mask, mask_feather):
     if fit == "cover":
         out = convert.fit_cover(crop, size, vbias)
     else:
         out = convert.fit_contain(crop, size)
     if safe_pad:
         out = convert.add_safe_padding(out, safe_pad)
+    if preset == "focus" and focus_mask != "none":
+        out = convert.apply_focus_mask(out, focus_mask, mask_feather)
     return out
 
 
@@ -74,10 +76,17 @@ def process_manifest(manifest_path, out_dir):
     preview_png = bool(manifest.get("preview_png", True))
     prefix = manifest.get("prefix", "")
     vbias = convert.parse_anchor(manifest.get("anchor", "center"), False)
+    focus_mask = manifest.get("focus_mask", "none")
+    mask_feather = float(manifest.get("mask_feather", 1.5))
     use_texconv = bool(manifest.get("texconv", False))
     texconv_path = manifest.get("texconv_path", convert.TEXCONV_DEFAULT)
     texconv_format = manifest.get("texconv_format", fmt)
     mip_levels = int(manifest.get("mip_levels", 1))
+    chroma_key = manifest.get("chroma_key")
+    chroma_threshold = float(manifest.get("chroma_threshold", 0.10))
+    chroma_softness = float(manifest.get("chroma_softness", 0.03))
+    despill = float(manifest.get("despill", 0.75))
+    chroma_rgb = convert.parse_hex_color(chroma_key) if chroma_key else None
 
     sheet_path = Path(manifest["sheet"])
     if not sheet_path.is_file():
@@ -95,11 +104,19 @@ def process_manifest(manifest_path, out_dir):
     for item in manifest["items"]:
         row, col = normalize_slot(item["slot"], cols)
         crop = crop_slot(sheet, row, col, rows, cols)
+        if chroma_rgb:
+            crop = convert.apply_chroma_key(
+                crop,
+                chroma_rgb,
+                chroma_threshold,
+                chroma_softness,
+                despill,
+            )
         stem = prefix + item["name"]
         crop_path = tmp_dir / f"{stem}__crop.png"
         crop.save(crop_path)
 
-        final = render_icon(crop, preset, size, fit, vbias, safe_pad)
+        final = render_icon(crop, preset, size, fit, vbias, safe_pad, focus_mask, mask_feather)
         dds_path = out_dir / f"{stem}.dds"
         if use_texconv:
             convert.save_with_texconv(final, str(dds_path), texconv_path, texconv_format, mip_levels)
@@ -119,10 +136,16 @@ def write_template(path):
         "grid": {"rows": 2, "cols": 4},
         "fit": "contain",
         "safe_pad": 8,
+        "focus_mask": "medallion",
+        "mask_feather": 1.5,
         "format": "DXT5",
         "texconv": True,
         "texconv_format": "DXT1",
         "mip_levels": 1,
+        "chroma_key": "#00FFF0",
+        "chroma_threshold": 0.10,
+        "chroma_softness": 0.03,
+        "despill": 0.75,
         "preview_png": True,
         "prefix": "GNO_",
         "items": [

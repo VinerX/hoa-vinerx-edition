@@ -41,6 +41,21 @@ def find_matching_brace(text: str, open_idx: int) -> int:
     return -1
 
 
+def blank_nested_braces(body: str) -> str:
+    """Blank the content of nested { ... } blocks, preserving length so string
+    offsets stay valid. Keeps only the focus block's own top-level tokens, so we
+    never match an `x =` / `id =` that lives inside an effect or trigger."""
+    out = []
+    depth = 0
+    for ch in body:
+        if ch in "{}":
+            depth += 1 if ch == "{" else -1
+            out.append(" ")
+        else:
+            out.append(ch if depth == 0 else (" " if ch != "\n" else "\n"))
+    return "".join(out)
+
+
 def parse_focuses(text: str) -> list[dict]:
     focuses: list[dict] = []
     for m in RE_FOCUS_START.finditer(text):
@@ -51,13 +66,14 @@ def parse_focuses(text: str) -> list[dict]:
         if close_idx == -1:
             continue
         body = text[open_idx + 1 : close_idx]
+        top = blank_nested_braces(body)
 
-        id_m = RE_ID.search(body)
+        id_m = RE_ID.search(top)
         if not id_m:
             continue
         fid = id_m.group(1)
 
-        relpos_m = RE_RELPOS.search(body)
+        relpos_m = RE_RELPOS.search(top)
         relpos = relpos_m.group(1) if relpos_m else None
 
         prereqs: list[str] = []
@@ -70,6 +86,7 @@ def parse_focuses(text: str) -> list[dict]:
             "relpos": relpos,
             "prereqs": prereqs,
             "body": body,
+            "top": top,
             "body_start": open_idx + 1,  # position after opening '{'
             "body_end": close_idx,       # position of closing '}'
         })
@@ -120,7 +137,7 @@ def shift_subtree(text: str, dependent_ids: set[str], id_to_data: dict[str, dict
             continue
 
         # Find x = <num> within the body, searching line by line
-        xm = RE_X_IN_BODY.search(f["body"])
+        xm = RE_X_IN_BODY.search(f["top"])
         if not xm:
             continue
 
@@ -188,7 +205,7 @@ def main() -> int:
         if f["relpos"] is not None:
             print(f"  SKIP {fid} (uses relative_position_id = {f['relpos']})")
             continue
-        xm = RE_X_IN_BODY.search(f["body"])
+        xm = RE_X_IN_BODY.search(f["top"])
         if xm:
             old_x = int(xm.group(1))
             print(f"  SHIFT {fid}: x {old_x} -> {old_x + args.offset}")

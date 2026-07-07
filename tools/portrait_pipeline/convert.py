@@ -2,10 +2,11 @@
 """
 convert.py - resize arbitrary PNG/JPG images into HOI4-ready .dds sprites.
 
-No external binaries required: uses Pillow's built-in DXT (BC1/BC3) encoder.
+Supports both Pillow DDS output and texconv-based export for better control over
+final DDS settings.
 
 Presets carry the exact canvas sizes used by Hearts of Azeroth:
-    focus    88 x 88    -> gfx/interface/focus_tree/
+    focus    140 x 140  -> gfx/interface/focus_tree/
     leader   156 x 210  -> gfx/leaders/<TAG>/
     idea      64 x 64   -> gfx/interface/ideas/
     advisor   65 x 67   -> gfx/interface/advisors/
@@ -29,13 +30,14 @@ Fit modes:
 """
 import argparse
 import glob
+import math
 import os
 import shutil
 import subprocess
 import sys
 import time
 
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFilter
 
 PRESETS = {
     "focus": (140, 140),
@@ -100,6 +102,85 @@ def add_safe_padding(im, pad):
     canvas = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
     canvas.paste(inner, (pad, pad), inner)
     return canvas
+
+
+def apply_focus_mask(im, mask_kind, feather):
+    if not mask_kind or mask_kind == "none":
+        return im
+
+    w, h = im.size
+    mask = Image.new("L", (w, h), 0)
+    draw = ImageDraw.Draw(mask)
+
+    if mask_kind == "circle":
+        margin = max(4, round(min(w, h) * 0.10))
+        draw.ellipse((margin, margin, w - margin - 1, h - margin - 1), fill=255)
+    elif mask_kind == "medallion":
+        inset_x = max(6, round(w * 0.08))
+        inset_y = max(4, round(h * 0.06))
+        draw.rounded_rectangle(
+            (inset_x, inset_y, w - inset_x - 1, h - inset_y - 1),
+            radius=max(10, round(min(w, h) * 0.18)),
+            fill=255,
+        )
+    else:
+        sys.exit(f"unsupported focus mask: {mask_kind}")
+
+    if feather > 0:
+        mask = mask.filter(ImageFilter.GaussianBlur(radius=feather))
+
+    out = im.copy()
+    current_alpha = out.getchannel("A")
+    combined_alpha = Image.new("L", (w, h), 0)
+    combined_alpha = Image.composite(current_alpha, combined_alpha, mask)
+    out.putalpha(combined_alpha)
+    return out
+
+
+def parse_hex_color(text):
+    value = text.strip().lstrip("#")
+    if len(value) != 6:
+        sys.exit("--chroma-key must be a 6-digit hex color like #00FFF0")
+    try:
+        return tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
+    except ValueError:
+        sys.exit("--chroma-key must be a valid hex color like #00FFF0")
+
+
+def apply_chroma_key(im, key_rgb, threshold, softness, despill):
+    src = im.convert("RGBA")
+    pixels = src.load()
+    w, h = src.size
+    kr, kg, kb = key_rgb
+    max_dist = math.sqrt(255 * 255 * 3)
+    edge_start = max(0.0, threshold - softness)
+    edge_end = threshold + softness
+
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = pixels[x, y]
+            dist = math.sqrt((r - kr) ** 2 + (g - kg) ** 2 + (b - kb) ** 2) / max_dist
+            if dist <= edge_start:
+                alpha = 0
+            elif dist >= edge_end:
+                alpha = a
+            else:
+                t = (dist - edge_start) / max(1e-6, (edge_end - edge_start))
+                alpha = round(a * t)
+
+            if despill > 0 and alpha < 255:
+                blend = (255 - alpha) / 255.0
+                spill_reduce = min(1.0, blend * despill)
+                r = round(r + (r - kr) * spill_reduce)
+                g = round(g + (g - kg) * spill_reduce)
+                b = round(b + (b - kb) * spill_reduce)
+                r = max(0, min(255, r))
+                g = max(0, min(255, g))
+                b = max(0, min(255, b))
+
+            pixels[x, y] = (r, g, b, alpha)
+
+    return src
 
 
 def parse_anchor(anchor_value, focus_top):
@@ -200,6 +281,40 @@ def main():
         help="also save a PNG preview next to the DDS output",
     )
     ap.add_argument(
+        "--chroma-key",
+        help="remove a solid background color before resizing, e.g. #00FFF0",
+    )
+    ap.add_argument(
+        "--chroma-threshold",
+        type=float,
+        default=0.10,
+        help="distance threshold for chroma key removal (default: 0.10)",
+    )
+    ap.add_argument(
+        "--chroma-softness",
+        type=float,
+        default=0.03,
+        help="soft edge width around the chroma threshold (default: 0.03)",
+    )
+    ap.add_argument(
+        "--despill",
+        type=float,
+        default=0.75,
+        help="reduce key color spill on semi-transparent edges (default: 0.75)",
+    )
+    ap.add_argument(
+        "--focus-mask",
+        choices=["none", "circle", "medallion"],
+        default="none",
+        help="apply an alpha mask for focus icons to soften/cut the outer silhouette",
+    )
+    ap.add_argument(
+        "--mask-feather",
+        type=float,
+        default=1.5,
+        help="blur radius for focus mask edge softening (default: 1.5)",
+    )
+    ap.add_argument(
         "--texconv",
         action="store_true",
         help="use Microsoft texconv.exe for final DDS output instead of Pillow",
@@ -241,14 +356,25 @@ def main():
 
     os.makedirs(args.out, exist_ok=True)
     fit = fit_cover if args.fit == "cover" else fit_contain
+    chroma_rgb = parse_hex_color(args.chroma_key) if args.chroma_key else None
 
     ok = 0
     for src in files:
         try:
             im = Image.open(src).convert("RGBA")
+            if chroma_rgb:
+                im = apply_chroma_key(
+                    im,
+                    chroma_rgb,
+                    args.chroma_threshold,
+                    args.chroma_softness,
+                    args.despill,
+                )
             im = fit(im, size, vbias) if fit is fit_cover else fit(im, size)
             if args.safe_pad:
                 im = add_safe_padding(im, args.safe_pad)
+            if args.preset == "focus" and args.focus_mask != "none":
+                im = apply_focus_mask(im, args.focus_mask, args.mask_feather)
 
             stem = os.path.splitext(os.path.basename(src))[0] + args.suffix
             dds_path = os.path.join(args.out, stem + ".dds")
