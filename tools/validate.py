@@ -1047,6 +1047,18 @@ def validate_history_naval_variants(root: str, errors: list[str], warnings: list
         # NOTE: scan comment-stripped raw text — strip_comments_and_strings
         # deletes quoted owner tags ('owner = "KUL"' -> 'owner = ').
         wings_text = re.sub(r"#[^\n]*", "", text)
+
+        # SHIP-MOUNTED air wings are a guaranteed CTD in this mod's DLC set
+        # (no Man the Guns / By Blood Alone => no cv_ carrier plane types, so
+        # the wing's carrier-version lookup derefs null at OOB load). This
+        # crashed the 596 Second War bookmark via KUL's flagship even WITH the
+        # plane tech researched. Flag every air_wings inside a ship block.
+        for ship_body, ship_line in extract_named_blocks(wings_text, "ship"):
+            for _wb, wing_rel_line in extract_named_blocks(ship_body, "air_wings"):
+                errors.append(
+                    f"[oob-ship-air-wing] {r}:{ship_line + wing_rel_line - 1}: air_wings on a ship (carrier deck) — CTD at OOB load with this DLC set; remove the block (see KUL_581_naval precedent)"
+                )
+
         for wings_body, wings_line in extract_named_blocks(wings_text, "air_wings"):
             for wing_match in RE_OOB_AIR_WING.finditer(wings_body):
                 equipment_type = wing_match.group(1)

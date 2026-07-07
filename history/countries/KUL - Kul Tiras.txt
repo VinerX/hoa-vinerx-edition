@@ -93,6 +93,7 @@ set_technology = {
 	organic_flight = 1
 	support_breeds = 1
 	scouting_breeds_1 = 1
+	fighter_breeds_1 = 1 # unlocks organic_fighter_equipment_1 — must be known BEFORE KUL_596_naval loads (carrier air_wings of un-researched equipment = CTD); root block applies before dated blocks
 }
 
 set_grand_doctrine = new_fleet_in_being
@@ -128,17 +129,21 @@ set_popularities = {
 596.1.1 = {
 
 	load_focus_tree = kultiras_second_war
-	set_naval_oob = "KUL_596_naval"
 
+	# Techs and variants MUST precede set_naval_oob: history effects apply in
+	# file order, and loading the OOB before the enabling tech/variant exists
+	# crashes (null deref on the carrier air wing).
 	set_technology = {
 		generic_naval_carrier_tech_2 = 1
-		fighter_breeds_1 = 1 # unlocks organic_fighter_equipment_1 — REQUIRED for the flagship's air_wings in KUL_596_naval (un-researched air wing equipment in a naval OOB = CTD)
+		fighter_breeds_1 = 1 # unlocks organic_fighter_equipment_1 for the flagship's air_wings
 	}
 
 	create_equipment_variant = {
 		name = "Proudmoore Flagship"
 		type = carrier_equipment_2
 	}
+
+	set_naval_oob = "KUL_596_naval"
 
 	set_stability = 0.70
 	set_war_support = 0.4
