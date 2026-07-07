@@ -120,8 +120,79 @@ l_english:
 - [ ] Title (`<id>:0`) and description (`<id>_desc:0`) for each new focus.
 - [ ] Any `custom_effect_tooltip`/`custom_trigger_tooltip` keys used are defined too.
 
+## Visual Layout Rules
+
+Focus tree layout must prioritise **functional readability** over symmetry. The player
+must immediately understand prerequisites from the tree layout. Use the layout pipeline
+(`tools/focus_layout/`) to audit and preview.
+
+### Priority order (highest first)
+
+1. **Readability of prerequisite edges** — player must see what leads to what
+2. **Readability of mutually exclusive choices** — obvious where the fork is
+3. **Chronology** — early above, late below. Standard step: **y + 1**
+4. **Thematic columns** — politics left, war story centre, special mechanics right
+5. **Symmetry and aesthetics** — only after the first four
+
+### Hard rules
+
+- [ ] **Anchor rule**: `relative_position_id` must be one of the focus's `prerequisite`
+      entries (the visual anchor should trace the logical dependency). Exception: pure
+      convergence nodes where a third anchor makes geometric sense.
+- [ ] **Standard step**: **y + 1** between consecutive focuses. Use **y + 2** only for
+      major act transitions (new phase of the war).
+- [ ] **Sibling row**: focuses sharing a prerequisite must be on the **same y row**.
+- [ ] **Convergence centring**: a focus with exactly 2 prerequisites must be **x-centred**
+      between them (offset <= 2 columns).
+- [ ] **Gateway pattern**: a focus with 3+ incoming prerequisite edges should be
+      preceded by a gateway focus that collects them. Avoid spaghetti.
+- [ ] **No backward edges**: child.y must be > parent.y (except deliberate convergence
+      diamonds).
+- [ ] **Max edge span**: prerequisite edges should not exceed Δx=4 or Δy=3.
+- [ ] **Max relpos chain**: no more than 3-4 generations of `relative_position_id`
+      before anchoring to absolute x/y.
+- [ ] **Political zone**: hand-authored political/story focuses must start at
+      **x >= 28** (to the right of `develop_the_country` and `arming_the_nation`).
+- [ ] **Continuous focus position**: set to a pixel position that does not overlap the
+      focus tree visually. Must not be empty.
+
+### Thematic column guidelines
+
+| x range | Zone |
+|---|---|
+| x < 9 | Reserved for `arming_the_nation` shared backbone |
+| x = 9-27 | Reserved for `develop_the_country` shared backbone |
+| x = 28-34 | Internal politics / diplomacy |
+| x = 35-44 | **Main war story spine** (central narrative axis) |
+| x = 45-55 | Special mechanics / side content / economic branches |
+
+### Pipeline tools
+
+```bash
+# Audit a tree for layout issues
+python tools/focus_layout/audit.py --tree <tree_id>
+
+# Generate SVG preview
+python tools/focus_layout/preview.py --tree <tree_id>
+
+# Full pipeline: graph -> audit -> preview
+python tools/focus_layout/graph.py --all
+python tools/focus_layout/audit.py --tree <tree_id>
+python tools/focus_layout/preview.py --tree <tree_id>
+```
+
+See `tools/focus_layout/README.md` for full documentation.
+
+### Pre-commit layout check
+
+- [ ] `python tools/focus_layout/audit.py --tree <tree_id> --errors-only --quiet`
+      → no ERRORs (0 overlaps, 0 broken refs).
+- [ ] Anchor mismatches fixed or intentionally justified.
+- [ ] No prerequisite lines crossing unrelated branches (check preview SVG).
+
 ## Before commit
 
 - [ ] `python tools/validate.py --quiet` -> `ERRORS: 0` (catches dup ids + dangling focus refs).
+- [ ] `python tools/focus_layout/audit.py --tree <tree_id> --errors-only` -> 0 errors.
 - [ ] No vanilla ideology tokens; no full-file vanilla overrides (see `AGENTS.md`).
 - [ ] New file + unique namespace if you also added events (parallel-agent etiquette).
