@@ -36,9 +36,29 @@ How to read the output (this is the whole technique):
    ships no PDB, so those frames are nearest-export guesses and actively
    mislead (they made this crash look like PHYSFS recursion for hours).
 
+**Level 2 — when the stack has no useful strings** (typical for worker-thread
+crashes): disassemble the exe at the crash offset and read Paradox's own
+assert strings. Release hoi4.exe keeps source paths and assert texts in
+.rdata; RIP-relative `lea` references within ±0x800 bytes of the crash site
+name the exact subsystem:
+
+```python
+pip install capstone pefile
+# disasm data at rva_to_off(crash_offset); for each lea/mov with 'rip' in
+# op_str, resolve target rva and read the ASCII string there
+```
+
+This cracked crash #2: offsets 0xe437ab/0xe482c0 both sat next to
+`...\source\special_projects\projects\program_status.cpp` and asserts like
+"province is listened by program status but has no facility" → a state
+history `remove_building` of an air_facility left program status listening
+to a province with no facility → null deref at world init. Also compare the
+register dump across crash instances (crashdump can be extended to print the
+thread CONTEXT): byte-identical registers = same deterministic code path.
+
 Workflow: crashdump.py → classify (null deref vs overflow) → grep the stack
-tokens in the mod → fix → add the failure class to validate.py so it can never
-come back silently.
+tokens in the mod; if no tokens, disasm + assert strings → fix → add the
+failure class to validate.py so it can never come back silently.
 
 ## validate.py - pre-launch script linter
 
