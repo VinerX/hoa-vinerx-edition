@@ -1009,6 +1009,19 @@ def main() -> int:
     ap.add_argument("--path", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument(
+        "--summary",
+        action="store_true",
+        help="condensed report: group findings by check type with counts and a few "
+             "examples instead of printing every line (keeps output small)",
+    )
+    ap.add_argument(
+        "--summary-examples",
+        type=int,
+        default=2,
+        metavar="N",
+        help="number of example lines to show per check in --summary mode (default: 2)",
+    )
+    ap.add_argument(
         "--hoi4-error-log",
         nargs="?",
         const=DEFAULT_HOI4_ERROR_LOG,
@@ -1249,11 +1262,39 @@ def main() -> int:
                 if key not in loc_defs:
                     warnings.append(f"[tooltip-loc] {file_name}: missing localisation key '{key}'")
 
-    if not args.quiet:
-        for w in warnings:
-            print("WARN  " + w)
-    for e in errors:
-        print("ERROR " + e)
+    if args.summary:
+        def _tag(line: str) -> str:
+            m = re.match(r"\s*\[([^\]]+)\]", line)
+            return m.group(1) if m else "other"
+
+        def _group(items: list[str]) -> dict[str, list[str]]:
+            groups: dict[str, list[str]] = {}
+            for it in items:
+                groups.setdefault(_tag(it), []).append(it)
+            return groups
+
+        rows: list[tuple[str, str, int, list[str]]] = []
+        for sev, items in (("ERROR", errors), ("WARN", warnings)):
+            if sev == "WARN" and args.quiet:
+                continue
+            for tag, lst in _group(items).items():
+                rows.append((sev, tag, len(lst), lst))
+        # errors first, then by count desc
+        rows.sort(key=lambda r: (r[0] != "ERROR", -r[2]))
+        print("-" * 60)
+        print("SUMMARY (grouped by check)")
+        for sev, tag, count, lst in rows:
+            print(f"  {sev:<5} {tag:<20} {count}")
+            for ex in lst[: max(0, args.summary_examples)]:
+                print(f"        e.g. {ex}")
+            if count > args.summary_examples > 0:
+                print(f"        ... +{count - args.summary_examples} more")
+    else:
+        if not args.quiet:
+            for w in warnings:
+                print("WARN  " + w)
+        for e in errors:
+            print("ERROR " + e)
 
     print("-" * 60)
     print(
