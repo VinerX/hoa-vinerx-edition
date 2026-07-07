@@ -1,0 +1,165 @@
+# ============================================================
+# Strategic Initiative — scripted triggers
+# All read LOR's master variable "strategic_initiative_score".
+# ============================================================
+
+# --- Tier checks (exact tier) ---
+si_tier_horde_decisive = {
+	LOR = { check_variable = { strategic_initiative_score < -5 } }
+}
+si_tier_horde_initiative = {
+	LOR = {
+		check_variable = { strategic_initiative_score > -6 }
+		check_variable = { strategic_initiative_score < -3 }
+	}
+}
+si_tier_horde_advantage = {
+	LOR = {
+		check_variable = { strategic_initiative_score > -4 }
+		check_variable = { strategic_initiative_score < -1 }
+	}
+}
+si_tier_contested = {
+	LOR = {
+		check_variable = { strategic_initiative_score > -2 }
+		check_variable = { strategic_initiative_score < 2 }
+	}
+}
+si_tier_alliance_advantage = {
+	LOR = {
+		check_variable = { strategic_initiative_score > 1 }
+		check_variable = { strategic_initiative_score < 4 }
+	}
+}
+si_tier_alliance_initiative = {
+	LOR = {
+		check_variable = { strategic_initiative_score > 3 }
+		check_variable = { strategic_initiative_score < 6 }
+	}
+}
+si_tier_alliance_decisive = {
+	LOR = { check_variable = { strategic_initiative_score > 5 } }
+}
+
+# --- Ranged checks (at or above/below threshold) ---
+si_horde_has_advantage = {
+	LOR = { check_variable = { strategic_initiative_score < -1 } }
+}
+si_horde_has_initiative = {
+	LOR = { check_variable = { strategic_initiative_score < -3 } }
+}
+si_horde_has_decisive = {
+	LOR = { check_variable = { strategic_initiative_score < -5 } }
+}
+si_alliance_has_advantage = {
+	LOR = { check_variable = { strategic_initiative_score > 1 } }
+}
+si_alliance_has_initiative = {
+	LOR = { check_variable = { strategic_initiative_score > 3 } }
+}
+si_alliance_has_decisive = {
+	LOR = { check_variable = { strategic_initiative_score > 5 } }
+}
+
+# --- Window of opportunity ---
+si_window_active = {
+	LOR = { check_variable = { si_window_days > 0 } }
+}
+si_window_horde = {
+	si_window_active = yes
+	si_horde_has_advantage = yes
+}
+si_window_alliance = {
+	si_window_active = yes
+	si_alliance_has_advantage = yes
+}
+
+# --- Theater status for decorative decisions ---
+
+# Sea of Blood
+si_soa_horde_advantage = {
+	LOR = { check_variable = { si_sea_of_blood < 0 } }
+}
+si_soa_contested = {
+	LOR = { check_variable = { si_sea_of_blood = 0 } }
+}
+si_soa_alliance_advantage = {
+	LOR = { check_variable = { si_sea_of_blood > 0 } }
+}
+si_soa_horde_command = {
+	LOR = { check_variable = { si_sea_of_blood < -1 } }
+}
+si_soa_alliance_command = {
+	LOR = { check_variable = { si_sea_of_blood > 1 } }
+}
+
+# Khaz Modan
+si_khaz_horde_advantage = {
+	LOR = { check_variable = { si_khaz_modan < 0 } }
+}
+si_khaz_contested = {
+	LOR = { check_variable = { si_khaz_modan = 0 } }
+}
+si_khaz_alliance_advantage = {
+	LOR = { check_variable = { si_khaz_modan > 0 } }
+}
+si_khaz_horde_severe = {
+	LOR = { check_variable = { si_khaz_modan < -1 } }
+}
+si_khaz_alliance_relief = {
+	LOR = { check_variable = { si_khaz_modan > 1 } }
+}
+
+# Northern War
+si_nw_horde_advantage = {
+	LOR = { check_variable = { si_northern_war < 0 } }
+}
+si_nw_stable = {
+	LOR = { check_variable = { si_northern_war = 0 } }
+}
+si_nw_alliance_advantage = {
+	LOR = { check_variable = { si_northern_war > 0 } }
+}
+si_nw_horde_breakthrough = {
+	LOR = { check_variable = { si_northern_war < -1 } }
+}
+si_nw_alliance_secure = {
+	LOR = { check_variable = { si_northern_war > 1 } }
+}
+
+# Central Front
+si_cf_horde_advantage = {
+	LOR = { check_variable = { si_central_front < 0 } }
+}
+si_cf_contested = {
+	LOR = { check_variable = { si_central_front = 0 } }
+}
+si_cf_alliance_advantage = {
+	LOR = { check_variable = { si_central_front > 0 } }
+}
+si_cf_horde_severe = {
+	LOR = { check_variable = { si_central_front < -1 } }
+}
+si_cf_alliance_returned = {
+	LOR = { check_variable = { si_central_front > 1 } }
+}
+
+# --- Unity / Authority gating ---
+si_unity_for_operations = {
+	LOR = { check_variable = { alliance_unity > 39 } }
+}
+si_unity_for_major_operations = {
+	LOR = { check_variable = { alliance_unity > 54 } }
+}
+si_unity_for_grand_operations = {
+	LOR = { check_variable = { alliance_unity > 69 } }
+}
+si_authority_for_operations = {
+	BRC = { check_variable = { warchief_authority > 39 } }
+}
+si_authority_for_major_operations = {
+	BRC = { check_variable = { warchief_authority > 54 } }
+}
+si_authority_for_grand_operations = {
+	BRC = { check_variable = { warchief_authority > 69 } }
+}

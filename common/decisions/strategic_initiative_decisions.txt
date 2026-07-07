@@ -1,0 +1,450 @@
+# ============================================================
+# Strategic Initiative — decision panel
+#
+# Decorative rows show overall + 4 theater statuses.
+# Operations are faction-gated and spend Unity / Authority.
+# ============================================================
+
+strategic_initiative = {
+
+	# ============================================================
+	# 1. DECORATIVE — Overall strategic situation (7 tiers)
+	# ============================================================
+
+	si_overall_horde_decisive = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_horde_decisive = yes }
+	}
+	si_overall_horde_initiative = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_horde_initiative = yes }
+	}
+	si_overall_horde_advantage = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_horde_advantage = yes }
+	}
+	si_overall_contested = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_contested = yes }
+	}
+	si_overall_alliance_advantage = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_alliance_advantage = yes }
+	}
+	si_overall_alliance_initiative = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_alliance_initiative = yes }
+	}
+	si_overall_alliance_decisive = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_tier_alliance_decisive = yes }
+	}
+
+	# ============================================================
+	# 2. DECORATIVE — Sea of Blood theater (5 variants)
+	# ============================================================
+
+	si_theater_soa_horde_command = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { si_soa_horde_command = yes }
+	}
+	si_theater_soa_horde_advantage = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			si_soa_horde_advantage = yes
+			NOT = { si_soa_horde_command = yes }
+		}
+	}
+	si_theater_soa_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { si_soa_contested = yes }
+	}
+	si_theater_soa_alliance_advantage = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			si_soa_alliance_advantage = yes
+			NOT = { si_soa_alliance_command = yes }
+		}
+	}
+	si_theater_soa_alliance_command = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { si_soa_alliance_command = yes }
+	}
+
+	# ============================================================
+	# 3. DECORATIVE — Khaz Modan theater (5 variants)
+	# ============================================================
+
+	si_theater_khaz_horde_severe = {
+		icon = generic_army
+		available = { always = no }
+		visible = { si_khaz_horde_severe = yes }
+	}
+	si_theater_khaz_horde_advantage = {
+		icon = generic_army
+		available = { always = no }
+		visible = {
+			si_khaz_horde_advantage = yes
+			NOT = { si_khaz_horde_severe = yes }
+		}
+	}
+	si_theater_khaz_contested = {
+		icon = generic_army
+		available = { always = no }
+		visible = { si_khaz_contested = yes }
+	}
+	si_theater_khaz_alliance_advantage = {
+		icon = generic_army
+		available = { always = no }
+		visible = {
+			si_khaz_alliance_advantage = yes
+			NOT = { si_khaz_alliance_relief = yes }
+		}
+	}
+	si_theater_khaz_alliance_relief = {
+		icon = generic_army
+		available = { always = no }
+		visible = { si_khaz_alliance_relief = yes }
+	}
+
+	# ============================================================
+	# 4. DECORATIVE — Northern War theater (5 variants)
+	# ============================================================
+
+	si_theater_nw_horde_breakthrough = {
+		icon = generic_construction
+		available = { always = no }
+		visible = { si_nw_horde_breakthrough = yes }
+	}
+	si_theater_nw_horde_advantage = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			si_nw_horde_advantage = yes
+			NOT = { si_nw_horde_breakthrough = yes }
+		}
+	}
+	si_theater_nw_stable = {
+		icon = generic_construction
+		available = { always = no }
+		visible = { si_nw_stable = yes }
+	}
+	si_theater_nw_alliance_advantage = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			si_nw_alliance_advantage = yes
+			NOT = { si_nw_alliance_secure = yes }
+		}
+	}
+	si_theater_nw_alliance_secure = {
+		icon = generic_construction
+		available = { always = no }
+		visible = { si_nw_alliance_secure = yes }
+	}
+
+	# ============================================================
+	# 5. DECORATIVE — Central Front theater (5 variants)
+	# ============================================================
+
+	si_theater_cf_horde_severe = {
+		icon = generic_production
+		available = { always = no }
+		visible = { si_cf_horde_severe = yes }
+	}
+	si_theater_cf_horde_advantage = {
+		icon = generic_production
+		available = { always = no }
+		visible = {
+			si_cf_horde_advantage = yes
+			NOT = { si_cf_horde_severe = yes }
+		}
+	}
+	si_theater_cf_contested = {
+		icon = generic_production
+		available = { always = no }
+		visible = { si_cf_contested = yes }
+	}
+	si_theater_cf_alliance_advantage = {
+		icon = generic_production
+		available = { always = no }
+		visible = {
+			si_cf_alliance_advantage = yes
+			NOT = { si_cf_alliance_returned = yes }
+		}
+	}
+	si_theater_cf_alliance_returned = {
+		icon = generic_production
+		available = { always = no }
+		visible = { si_cf_alliance_returned = yes }
+	}
+
+	# ============================================================
+	# 6. DECORATIVE — Unity / Authority display
+	# ============================================================
+
+	si_unity_panel = {
+		icon = generic_politics
+		available = { always = no }
+		visible = { is_in_faction_with = LOR }
+	}
+	si_authority_panel = {
+		icon = generic_politics
+		available = { always = no }
+		visible = { is_in_faction_with = BRC }
+	}
+
+	# ============================================================
+	# 7. DECORATIVE — Window of opportunity
+	# ============================================================
+
+	si_window_active_panel = {
+		icon = generic_government
+		available = { always = no }
+		visible = { si_window_active = yes }
+	}
+
+	# ============================================================
+	# 8. HORDE OPERATIONS
+	# ============================================================
+
+	# Exploit the Breakthrough — Horde Advantage+, Authority 40+
+	si_horde_operation_exploit_breakthrough = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = BRC
+			si_horde_has_advantage = yes
+			si_authority_for_operations = yes
+			NOT = { has_idea = si_op_exploit_breakthrough }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 50
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_horde_exploit_breakthrough_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_exploit_breakthrough days = 90 }
+				horde_authority_spend_small = yes
+			}
+		}
+	}
+
+	# Concentrate the Clans — Horde Initiative+, Authority 55+
+	si_horde_operation_concentrate_clans = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = BRC
+			si_horde_has_initiative = yes
+			si_authority_for_major_operations = yes
+			NOT = { has_idea = si_op_concentrate_clans }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 75
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_horde_concentrate_clans_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_concentrate_clans days = 120 }
+				horde_authority_spend_medium = yes
+			}
+		}
+	}
+
+	# Open Another Front — Horde Advantage+, Authority 40+
+	si_horde_operation_open_front = {
+		icon = generic_navy_doctrine
+		available = {
+			is_in_faction_with = BRC
+			si_horde_has_advantage = yes
+			si_authority_for_operations = yes
+			NOT = { has_idea = si_op_open_front }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 50
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_horde_open_front_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_open_front days = 120 }
+				horde_authority_spend_small = yes
+			}
+		}
+	}
+
+	# Crush the Alliance Before It Recovers — Decisive Horde, Authority 70+
+	si_horde_operation_crush_alliance = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = BRC
+			si_horde_has_decisive = yes
+			si_authority_for_grand_operations = yes
+			NOT = { has_idea = si_op_crush_alliance }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 100
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_horde_crush_alliance_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_crush_alliance days = 120 }
+				horde_authority_spend_large = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# 9. ALLIANCE OPERATIONS
+	# ============================================================
+
+	# Stabilize the Front — Alliance Advantage+, Unity 40+
+	si_alliance_operation_stabilize = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = LOR
+			si_alliance_has_advantage = yes
+			si_unity_for_operations = yes
+			NOT = { has_idea = si_op_stabilize_front }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 50
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_alliance_stabilize_front_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_stabilize_front days = 180 }
+				alliance_unity_lower = yes
+			}
+		}
+	}
+
+	# Coordinate Allied Reinforcements — Alliance Initiative+, Unity 55+
+	si_alliance_operation_coordinate = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = LOR
+			si_alliance_has_initiative = yes
+			si_unity_for_major_operations = yes
+			NOT = { has_idea = si_op_coordinate }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 75
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_alliance_coordinate_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_coordinate days = 120 }
+				alliance_unity_lower_medium = yes
+			}
+		}
+	}
+
+	# Prepare a Counterstroke — Alliance Advantage+, Unity 40+
+	si_alliance_operation_counterstroke = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = LOR
+			si_alliance_has_advantage = yes
+			si_unity_for_operations = yes
+			NOT = { has_idea = si_op_counterstroke }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 50
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_alliance_counterstroke_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_counterstroke days = 120 }
+				alliance_unity_lower = yes
+			}
+		}
+	}
+
+	# Grand Alliance Counteroffensive — Decisive Alliance, Unity 70+
+	si_alliance_operation_grand_counteroffensive = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = LOR
+			si_alliance_has_decisive = yes
+			si_unity_for_grand_operations = yes
+			NOT = { has_idea = si_op_grand_counteroffensive }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 100
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_alliance_grand_counteroffensive_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_grand_counteroffensive days = 120 }
+				alliance_unity_lower_major = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# 10. WINDOW OF OPPORTUNITY OPERATIONS
+	# ============================================================
+
+	# Horde: Ruthless Advance (during any window, cheaper)
+	si_horde_window_ruthless_advance = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = BRC
+			si_window_horde = yes
+			NOT = { has_idea = si_op_ruthless_advance }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 25
+		is_good = yes
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_horde_ruthless_advance_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_ruthless_advance days = 90 }
+				horde_authority_spend_small = yes
+			}
+		}
+	}
+
+	# Alliance: Seize the Moment (during any window, cheaper)
+	si_alliance_window_seize_moment = {
+		icon = generic_army
+		available = {
+			is_in_faction_with = LOR
+			si_window_alliance = yes
+			NOT = { has_idea = si_op_seize_moment }
+			is_fighting_second_war_horde = yes
+		}
+		cost = 25
+		is_good = yes
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = si_alliance_seize_moment_tt
+			hidden_effect = {
+				add_timed_idea = { idea = si_op_seize_moment days = 90 }
+				alliance_unity_lower = yes
+			}
+		}
+	}
+}
