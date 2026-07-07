@@ -1,0 +1,302 @@
+# ============================================================
+# Sea of Blood — decision panel
+#
+# Shows status of all 7 island nodes, overall faction control,
+# and provides missions for securing maritime dominance.
+# ============================================================
+
+sea_of_blood = {
+
+	# ------------------------------------------------------------
+	# ISLAND STATUS DECISIONS (decorative — not clickable)
+	# Each island has 3 variants: Alliance / Horde / Contested
+	# ------------------------------------------------------------
+
+	# --- Tol Barad (state 13) ---
+	sob_tol_barad_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 13 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_tol_barad_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 13 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_tol_barad_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 13 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 13 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- Crestfall (state 6) ---
+	sob_crestfall_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 6 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_crestfall_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 6 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_crestfall_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 6 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 6 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- Zul'Dare (state 7) ---
+	sob_zuldare_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 7 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_zuldare_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 7 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_zuldare_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 7 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 7 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- Purgation Isle (state 8) ---
+	sob_purgation_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 8 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_purgation_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 8 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_purgation_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 8 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 8 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- Channel Island (state 9) ---
+	sob_channel_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 9 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_channel_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 9 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_channel_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 9 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 9 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- Balor (state 323) ---
+	sob_balor_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 323 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_balor_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 323 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_balor_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 323 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 323 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- The Bite (state 2093) ---
+	sob_bite_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 2093 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_bite_horde = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 2093 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_bite_contested = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = {
+			NOT = { 2093 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 2093 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# ------------------------------------------------------------
+	# ALLIANCE MISSIONS
+	# ------------------------------------------------------------
+
+	# Secure a Foothold — hold 3+ islands for 180 days
+	sob_alliance_secure_foothold = {
+		icon = generic_navy_doctrine
+		allowed = {
+			is_in_faction_with = LOR
+			NOT = { has_country_flag = sob_alliance_foothold_complete }
+		}
+		available = {
+			sob_alliance_has_foothold = yes
+			is_fighting_second_war_horde = yes
+		}
+		days_mission_timeout = 180
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = sob_alliance_foothold_reward_tt
+			hidden_effect = {
+				set_country_flag = sob_alliance_foothold_complete
+				alliance_unity_raise_medium = yes
+			}
+		}
+	}
+
+	# Command of the Sea — hold 6+ islands for 90 days
+	sob_alliance_command_sea = {
+		icon = generic_navy_doctrine
+		allowed = {
+			is_in_faction_with = LOR
+			NOT = { has_country_flag = sob_alliance_command_complete }
+		}
+		available = {
+			sob_alliance_has_command = yes
+			is_fighting_second_war_horde = yes
+		}
+		days_mission_timeout = 90
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = sob_alliance_command_reward_tt
+			hidden_effect = {
+				set_country_flag = sob_alliance_command_complete
+				alliance_unity_raise_heroic = yes
+			}
+		}
+	}
+
+	# ------------------------------------------------------------
+	# HORDE MISSIONS
+	# ------------------------------------------------------------
+
+	# Break the Island Chain — hold 4+ islands for 180 days
+	sob_horde_break_chain = {
+		icon = generic_navy_doctrine
+		allowed = {
+			is_in_faction_with = BRC
+			NOT = { has_country_flag = sob_horde_break_chain_complete }
+		}
+		available = {
+			sob_horde_has_advantage = yes
+			is_fighting_second_war_horde = yes
+		}
+		days_mission_timeout = 180
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = sob_horde_break_chain_reward_tt
+			hidden_effect = {
+				set_country_flag = sob_horde_break_chain_complete
+				horde_authority_raise_major = yes
+			}
+		}
+	}
+
+	# Command of the Sea — hold 6+ islands for 90 days
+	sob_horde_command_sea = {
+		icon = generic_navy_doctrine
+		allowed = {
+			is_in_faction_with = BRC
+			NOT = { has_country_flag = sob_horde_command_complete }
+		}
+		available = {
+			sob_horde_has_command = yes
+			is_fighting_second_war_horde = yes
+		}
+		days_mission_timeout = 90
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = sob_horde_command_reward_tt
+			hidden_effect = {
+				set_country_flag = sob_horde_command_complete
+				horde_authority_raise_heroic = yes
+			}
+		}
+	}
+
+	# ------------------------------------------------------------
+	# SPECIAL OPERATIONS (clickable, cost-based)
+	# ------------------------------------------------------------
+
+	# Horde: Unleash the Red Dragons
+	sob_horde_dragon_strike = {
+		icon = generic_navy_doctrine
+		allowed = { is_in_faction_with = BRC }
+		available = {
+			sob_horde_has_advantage = yes
+			is_fighting_second_war_horde = yes
+			NOT = { has_idea = soa_dragonfire_raids }
+			DMC = { has_country_flag = DMC_dragons_subjugated_flag }
+		}
+		fire_only_once = yes
+		cost = 50
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = sob_dragon_strike_effect_tt
+			hidden_effect = {
+				add_ideas = soa_dragonfire_raids
+				horde_authority_spend_medium = yes
+			}
+		}
+	}
+
+	# Alliance: Kul Tiran Amphibious Assault
+	sob_alliance_amphibious = {
+		icon = generic_navy_doctrine
+		allowed = { tag = KUL }
+		available = {
+			sob_alliance_has_advantage = yes
+			is_fighting_second_war_horde = yes
+			NOT = { has_idea = soa_kul_tiran_amphibious }
+		}
+		fire_only_once = yes
+		cost = 50
+		is_good = yes
+
+		complete_effect = {
+			custom_effect_tooltip = sob_amphibious_effect_tt
+			hidden_effect = {
+				add_ideas = soa_kul_tiran_amphibious
+			}
+		}
+	}
+}

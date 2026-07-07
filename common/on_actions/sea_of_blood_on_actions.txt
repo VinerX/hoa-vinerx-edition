@@ -1,0 +1,28 @@
+on_actions = {
+
+	on_startup = {
+		effect = {
+			init_sea_of_blood = yes
+		}
+	}
+
+	on_monthly = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						is_in_faction_with = LOR
+						is_in_faction_with = BRC
+					}
+				}
+				country_event = sea_of_blood.1
+			}
+		}
+	}
+
+	on_faction_left = {
+		effect = {
+			ROOT = { sob_remove_sea_of_blood_ideas = yes }
+		}
+	}
+}

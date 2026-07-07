@@ -1,0 +1,246 @@
+# ============================================================
+# Sea of Blood — maritime control mechanic (0–7 islands)
+#
+# LOR holds alliance_sea_control (0–7)
+# BRC holds horde_sea_control (0–7)
+#
+# Tiers: 0-1 Disputed | 2 Weak | 3 Contested
+#        4 Advantage | 5 Initiative | 6 Command | 7 Total Control
+# ============================================================
+
+# ------------------------------------------------------------
+# Initialize — called once at game start
+# ------------------------------------------------------------
+init_sea_of_blood = {
+	LOR = {
+		set_variable = { alliance_sea_control = 0 }
+	}
+	BRC = {
+		set_variable = { horde_sea_control = 0 }
+	}
+	update_sea_of_blood = yes
+}
+
+# ------------------------------------------------------------
+# Main update — counts 7 islands and syncs both factions
+# ------------------------------------------------------------
+update_sea_of_blood = {
+	LOR = {
+		set_variable = { alliance_sea_control = 0 }
+		if = { limit = { 13 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 6 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 7 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 8 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 9 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 323 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 2093 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+	}
+	BRC = {
+		set_variable = { horde_sea_control = 0 }
+		if = { limit = { 13 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 6 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 7 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 8 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 9 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 323 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 2093 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+	}
+	sob_alliance_sync_faction = yes
+	sob_horde_sync_faction = yes
+	update_sob_island_bonuses = yes
+}
+
+# ------------------------------------------------------------
+# Alliance — sync sea-of-blood tier spirit to faction
+# ------------------------------------------------------------
+
+sob_alliance_remove_all_ideas = {
+	if = { limit = { has_idea = soa_alliance_disputed }		remove_ideas = soa_alliance_disputed }
+	if = { limit = { has_idea = soa_alliance_weak }			remove_ideas = soa_alliance_weak }
+	if = { limit = { has_idea = soa_alliance_contested }		remove_ideas = soa_alliance_contested }
+	if = { limit = { has_idea = soa_alliance_advantage }		remove_ideas = soa_alliance_advantage }
+	if = { limit = { has_idea = soa_alliance_initiative }		remove_ideas = soa_alliance_initiative }
+	if = { limit = { has_idea = soa_alliance_command }			remove_ideas = soa_alliance_command }
+	if = { limit = { has_idea = soa_alliance_total }			remove_ideas = soa_alliance_total }
+}
+
+sob_alliance_apply_spirit = {
+	LOR = {
+		if = {
+			limit = { check_variable = { alliance_sea_control < 2 } }
+			PREV = { add_ideas = soa_alliance_disputed }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_sea_control = 2 } }
+			PREV = { add_ideas = soa_alliance_weak }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_sea_control = 3 } }
+			PREV = { add_ideas = soa_alliance_contested }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_sea_control = 4 } }
+			PREV = { add_ideas = soa_alliance_advantage }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_sea_control = 5 } }
+			PREV = { add_ideas = soa_alliance_initiative }
+		}
+		else_if = {
+			limit = { check_variable = { alliance_sea_control = 6 } }
+			PREV = { add_ideas = soa_alliance_command }
+		}
+		else = {
+			PREV = { add_ideas = soa_alliance_total }
+		}
+	}
+}
+
+sob_alliance_sync_faction = {
+	sob_alliance_remove_all_ideas = yes
+	sob_alliance_apply_spirit = yes
+	every_country = {
+		limit = { is_in_faction_with = PREV }
+		sob_alliance_remove_all_ideas = yes
+		sob_alliance_apply_spirit = yes
+	}
+}
+
+# ------------------------------------------------------------
+# Horde — sync sea-of-blood tier spirit to faction
+# ------------------------------------------------------------
+
+sob_horde_remove_all_ideas = {
+	if = { limit = { has_idea = soa_horde_disputed }		remove_ideas = soa_horde_disputed }
+	if = { limit = { has_idea = soa_horde_weak }			remove_ideas = soa_horde_weak }
+	if = { limit = { has_idea = soa_horde_contested }		remove_ideas = soa_horde_contested }
+	if = { limit = { has_idea = soa_horde_advantage }		remove_ideas = soa_horde_advantage }
+	if = { limit = { has_idea = soa_horde_initiative }		remove_ideas = soa_horde_initiative }
+	if = { limit = { has_idea = soa_horde_command }			remove_ideas = soa_horde_command }
+	if = { limit = { has_idea = soa_horde_total }			remove_ideas = soa_horde_total }
+}
+
+sob_horde_apply_spirit = {
+	BRC = {
+		if = {
+			limit = { check_variable = { horde_sea_control < 2 } }
+			PREV = { add_ideas = soa_horde_disputed }
+		}
+		else_if = {
+			limit = { check_variable = { horde_sea_control = 2 } }
+			PREV = { add_ideas = soa_horde_weak }
+		}
+		else_if = {
+			limit = { check_variable = { horde_sea_control = 3 } }
+			PREV = { add_ideas = soa_horde_contested }
+		}
+		else_if = {
+			limit = { check_variable = { horde_sea_control = 4 } }
+			PREV = { add_ideas = soa_horde_advantage }
+		}
+		else_if = {
+			limit = { check_variable = { horde_sea_control = 5 } }
+			PREV = { add_ideas = soa_horde_initiative }
+		}
+		else_if = {
+			limit = { check_variable = { horde_sea_control = 6 } }
+			PREV = { add_ideas = soa_horde_command }
+		}
+		else = {
+			PREV = { add_ideas = soa_horde_total }
+		}
+	}
+}
+
+sob_horde_sync_faction = {
+	sob_horde_remove_all_ideas = yes
+	sob_horde_apply_spirit = yes
+	every_country = {
+		limit = { is_in_faction_with = PREV }
+		sob_horde_remove_all_ideas = yes
+		sob_horde_apply_spirit = yes
+	}
+}
+
+# ------------------------------------------------------------
+# Local island strategic bonuses — applied to controller
+# Tol Barad: spotting + invasion defence
+# Crestfall: invasion prep speed + capacity
+# Zul'Dare: ship recovery (horde: +raiding)
+# Balor: convoy escort + naval range
+# ------------------------------------------------------------
+update_sob_island_bonuses = {
+	# --- Tol Barad (state 13) ---
+	13 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 13 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_tol_barad
+			}
+			else_if = {
+				limit = { 13 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_tol_barad
+			}
+		}
+	}
+	# --- Crestfall (state 6) ---
+	6 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 6 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_crestfall
+			}
+			else_if = {
+				limit = { 6 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_crestfall
+			}
+		}
+	}
+	# --- Zul'Dare (state 7) ---
+	7 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 7 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_zuldare_alliance
+			}
+			else_if = {
+				limit = { 7 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_zuldare_horde
+			}
+		}
+	}
+	# --- Balor (state 323) ---
+	323 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 323 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_balor
+			}
+			else_if = {
+				limit = { 323 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_balor
+			}
+		}
+	}
+}
+
+sob_remove_all_island_bonuses = {
+	if = { limit = { has_idea = soa_island_tol_barad }		remove_ideas = soa_island_tol_barad }
+	if = { limit = { has_idea = soa_island_crestfall }			remove_ideas = soa_island_crestfall }
+	if = { limit = { has_idea = soa_island_zuldare_alliance }	remove_ideas = soa_island_zuldare_alliance }
+	if = { limit = { has_idea = soa_island_zuldare_horde }		remove_ideas = soa_island_zuldare_horde }
+	if = { limit = { has_idea = soa_island_balor }				remove_ideas = soa_island_balor }
+}
+
+# ------------------------------------------------------------
+# Remove Sea of Blood ideas from a country leaving a faction
+# ------------------------------------------------------------
+sob_remove_sea_of_blood_ideas = {
+	sob_alliance_remove_all_ideas = yes
+	sob_horde_remove_all_ideas = yes
+	sob_remove_all_island_bonuses = yes
+}
