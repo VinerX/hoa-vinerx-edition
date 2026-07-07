@@ -63,13 +63,15 @@ northern_war_que_category = {
 		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 40
 		complete_effect = {
-			184 = { set_state_flag = nw_runestone_reinforced }
+			184 = {
+				set_state_flag = nw_runestone_reinforced
+				add_extra_state_shared_building_slots = 1
+			}
 			subtract_from_variable = { QUE_mana_reserve = 10 }
 			if = {
 				limit = { check_variable = { QUE_mana_reserve < 0 } }
 				set_variable = { QUE_mana_reserve = 0 }
 			}
-			add_extra_state_shared_building_slots = 1
 		}
 		ai_will_do = { factor = 50 }
 	}
@@ -93,13 +95,15 @@ northern_war_que_category = {
 		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 40
 		complete_effect = {
-			185 = { set_state_flag = nw_runestone_reinforced }
+			185 = {
+				set_state_flag = nw_runestone_reinforced
+				add_extra_state_shared_building_slots = 1
+			}
 			subtract_from_variable = { QUE_mana_reserve = 10 }
 			if = {
 				limit = { check_variable = { QUE_mana_reserve < 0 } }
 				set_variable = { QUE_mana_reserve = 0 }
 			}
-			add_extra_state_shared_building_slots = 1
 		}
 		ai_will_do = { factor = 50 }
 	}
@@ -123,13 +127,15 @@ northern_war_que_category = {
 		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 40
 		complete_effect = {
-			189 = { set_state_flag = nw_runestone_reinforced }
+			189 = {
+				set_state_flag = nw_runestone_reinforced
+				add_extra_state_shared_building_slots = 1
+			}
 			subtract_from_variable = { QUE_mana_reserve = 10 }
 			if = {
 				limit = { check_variable = { QUE_mana_reserve < 0 } }
 				set_variable = { QUE_mana_reserve = 0 }
 			}
-			add_extra_state_shared_building_slots = 1
 		}
 		ai_will_do = { factor = 50 }
 	}
@@ -146,11 +152,11 @@ northern_war_que_category = {
 			NOT = { has_country_flag = QUE_patrols_deployed }
 		}
 		cost = 50
-		cost_command_power = 30
+		command_power = 30
 		complete_effect = {
 			set_country_flag = QUE_patrols_deployed
 			add_timed_idea = { idea = QUE_farstrider_patrols days = 180 }
-			add_army_experience = 15
+			army_experience = 15
 		}
 		ai_will_do = { factor = 60 }
 	}
@@ -168,7 +174,7 @@ northern_war_que_category = {
 			NOT = { 183 = { has_state_flag = nw_evacuated } }
 		}
 		cost = 30
-		cost_command_power = 20
+		command_power = 20
 		complete_effect = {
 			183 = { set_state_flag = nw_evacuated }
 			add_manpower = 5000
@@ -190,7 +196,7 @@ northern_war_que_category = {
 			NOT = { 107 = { has_state_flag = nw_evacuated } }
 		}
 		cost = 30
-		cost_command_power = 20
+		command_power = 20
 		complete_effect = {
 			107 = { set_state_flag = nw_evacuated }
 			add_manpower = 5000
@@ -240,7 +246,7 @@ northern_war_que_category = {
 		available = {
 			controls_state = 33
 			NOT = { has_country_flag = QUE_channeling_sunwell }
-			stability > 0.4
+			has_stability > 0.4
 		}
 		cost = 50
 		complete_effect = {

@@ -148,18 +148,60 @@ def parse_hex_color(text):
 
 
 def apply_chroma_key(im, key_rgb, threshold, softness, despill):
+    """HSV-based chroma key: match on hue angle + saturation, ignoring value.
+    Much more robust than RGB distance, especially for AI-generated cyan/green
+    screens where the background varies in brightness."""
+
+    def _rgb_to_hue(r, g, b):
+        rf, gf, bf = r / 255.0, g / 255.0, b / 255.0
+        cmax = max(rf, gf, bf)
+        cmin = min(rf, gf, bf)
+        delta = cmax - cmin
+        if delta < 1e-7:
+            return -1.0
+        if cmax == rf:
+            h = 60.0 * (((gf - bf) / delta) % 6)
+        elif cmax == gf:
+            h = 60.0 * ((bf - rf) / delta + 2.0)
+        else:
+            h = 60.0 * ((rf - gf) / delta + 4.0)
+        return h % 360.0
+
+    def _rgb_to_saturation(r, g, b):
+        cmax = max(r, g, b) / 255.0
+        cmin = min(r, g, b) / 255.0
+        delta = cmax - cmin
+        if cmax < 1e-7:
+            return 0.0
+        return delta / cmax
+
+    key_h = _rgb_to_hue(*key_rgb)
+    key_s = _rgb_to_saturation(*key_rgb)
+
+    hue_range = threshold * 360.0
+    transition = softness * 360.0
+    sat_min = 0.15
+
+    edge_start = max(0.0, hue_range - transition)
+    edge_end = hue_range + transition
+
     src = im.convert("RGBA")
     pixels = src.load()
     w, h = src.size
     kr, kg, kb = key_rgb
-    max_dist = math.sqrt(255 * 255 * 3)
-    edge_start = max(0.0, threshold - softness)
-    edge_end = threshold + softness
 
     for y in range(h):
         for x in range(w):
             r, g, b, a = pixels[x, y]
-            dist = math.sqrt((r - kr) ** 2 + (g - kg) ** 2 + (b - kb) ** 2) / max_dist
+            hue = _rgb_to_hue(r, g, b)
+            sat = _rgb_to_saturation(r, g, b)
+
+            if sat < sat_min or hue < 0:
+                pixels[x, y] = (r, g, b, a)
+                continue
+
+            dist = min(abs(hue - key_h), 360.0 - abs(hue - key_h))
+
             if dist <= edge_start:
                 alpha = 0
             elif dist >= edge_end:
@@ -180,7 +222,23 @@ def apply_chroma_key(im, key_rgb, threshold, softness, despill):
 
             pixels[x, y] = (r, g, b, alpha)
 
-    return src
+    # Single-pixel alpha erosion to clean residual fringe on edges.
+    eroded = src.copy()
+    eroded_pixels = eroded.load()
+    for y in range(h):
+        for x in range(w):
+            _, _, _, a = pixels[x, y]
+            if a > 0:
+                continue
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    ny, nx = y + dy, x + dx
+                    if 0 <= ny < h and 0 <= nx < w:
+                        _, _, _, na = pixels[nx, ny]
+                        if na > 0 and na < 255:
+                            r2, g2, b2, _ = pixels[nx, ny]
+                            eroded_pixels[nx, ny] = (r2, g2, b2, 0)
+    return eroded
 
 
 def parse_anchor(anchor_value, focus_top):

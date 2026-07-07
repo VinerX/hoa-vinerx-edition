@@ -43,7 +43,7 @@ DAL_ap_portal_network = {
 	modifier = {
 		supply_consumption_factor = -0.10
 		army_speed_factor = 0.10
-		reinf_attack = 0.05
+		land_reinforce_rate = 0.05
 	}
 }
 
@@ -81,7 +81,6 @@ DAL_ap_shield_allies = {
 	picture = generic_army_bonus
 	allowed = { original_tag = DAL }
 	modifier = {
-		alliance_unity_raise = 0
 	}
 }
 
@@ -91,7 +90,7 @@ DAL_ap_warning_network = {
 	modifier = {
 		intel_network_gain = 0.10
 		decryption_power_factor = 0.10
-		army_detection_factor = 0.15
+		army_intel_factor = 0.15
 	}
 }
 
@@ -100,7 +99,7 @@ DAL_ap_scry_horde = {
 	picture = generic_intel
 	allowed = { original_tag = DAL }
 	modifier = {
-		army_intel_to_enemies_factor = 0.15
+		army_intel_to_others = 15
 		planning_speed = 0.05
 	}
 }
@@ -109,8 +108,8 @@ DAL_ap_watch_sea = {
 	picture = generic_navy
 	allowed = { original_tag = DAL }
 	modifier = {
-		navy_intel_to_enemies_factor = 0.15
-		navy_detection_factor = 0.10
+		navy_intel_to_others = 15
+		naval_detection = 0.10
 	}
 }
 
@@ -121,7 +120,7 @@ DAL_ap_dragon_observations = {
 	modifier = {
 		army_bonus_air_superiority_factor = 0.05
 		enemy_army_bonus_air_superiority_factor = -0.05
-		air_detection_factor = 0.10
+		air_detection = 0.10
 	}
 }
 
@@ -169,6 +168,15 @@ DAL_ap_soul_research = {
 		allowed = { original_tag = DAL }
 		modifier = {
 			political_power_factor = -0.05
+		}
+	}
+
+	portal_congestion = {
+		picture = generic_danger
+		allowed = { always = yes }
+		modifier = {
+			land_reinforce_rate = -0.20
+			army_speed_factor = -0.15
 		}
 	}
 

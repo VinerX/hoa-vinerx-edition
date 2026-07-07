@@ -75,6 +75,7 @@ RE_EVENT_REF = re.compile(
 RE_TOOLTIP_REF = re.compile(r"\bcustom_(?:effect|trigger)_tooltip\s*=\s*([A-Za-z0-9_.']+)")
 RE_LOC_KEY = re.compile(r"^\s*([^\s:#][^:]*?)\s*:\d+\s", re.MULTILINE)
 RE_IDEOLOGY = re.compile(r"\b(?:ruling_party|ideology)\s*=\s*([A-Za-z_]+)")
+RE_FOCUS_ICON = re.compile(r"\bicon\s*=\s*([A-Za-z0-9_]+)")
 RE_FOCUS_COORD = re.compile(r"\b(x|y)\s*=\s*(-?\d+)")
 RE_FOCUS_PREREQ = re.compile(r"\bprerequisite\s*=\s*\{([^}]*)\}")
 RE_BAD_HAS_TECHNOLOGY = re.compile(r"\bhas_technology\s*=")
@@ -105,6 +106,15 @@ BUILTIN_OPINION_MODIFIERS = {
 VALID_IDEOLOGIES = {"alliance", "horde", "death", "fel", "old_gods", "titans", "neutral"}
 INVALID_IDEOLOGY_TOKENS = {"democratic", "fascism", "communism", "neutrality", "nazism", "despotic"}
 FOCUS_REF_NOISE = {"focus", "yes", "no"}
+
+GENERIC_ICON_PLACEHOLDERS = {
+    "GFX_goal_placeholder",
+}
+GENERIC_ICON_PREFIXES = (
+    "GFX_goal_generic_",
+    "GFX_focus_generic_",
+)
+RE_GFX_SPRITE_NAME = re.compile(r'name\s*=\s*"([A-Za-z0-9_]+)"')
 
 ALLOWED_SCOPE_KEYS = {
     "ROOT",
@@ -661,7 +671,24 @@ def build_data_vocab(mod_root: str) -> tuple[set[str], set[str], set[str], set[s
     return idea_modifier_keys, decision_categories, opinion_modifiers, ideas
 
 
+def build_gfx_sprite_registry(mod_root: str) -> set[str]:
+    """Parse all .gfx files (mod + vanilla) and collect SpriteType name= registry."""
+    sprites: set[str] = set()
+    roots = [mod_root, *DEFAULT_REFERENCE_ROOTS]
 
+    for root in roots:
+        iface = os.path.join(root, "interface")
+        if not os.path.isdir(iface):
+            continue
+        for path in iter_files(iface, (".gfx",)):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            sprites.update(m.group(1) for m in RE_GFX_SPRITE_NAME.finditer(text))
+
+    return sprites
 def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings: list[str], file_filter: str | None = None) -> None:
     """
     Parse all focus_tree blocks, resolve absolute (x,y) for every focus
@@ -1119,7 +1146,7 @@ def main() -> int:
         "--category",
         nargs="*",
         default=None,
-        choices=["loc", "focus-ref", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab"],
+        choices=["loc", "focus-ref", "focus-icon", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab"],
         help="only run specific check categories (default: all)",
     )
     args = ap.parse_args()
@@ -1157,6 +1184,9 @@ def main() -> int:
 
     known_effect_keys, known_trigger_keys = build_scripted_vocab(root)
     known_idea_modifier_keys, known_decision_categories, known_opinion_modifiers, known_ideas = build_data_vocab(root)
+    known_gfx_sprites: set[str] = set()
+    if _cat_active("focus-icon"):
+        known_gfx_sprites = build_gfx_sprite_registry(root)
 
     for path in iter_files(root, TEXT_EXT):
         r = rel(root, path)
@@ -1194,6 +1224,26 @@ def main() -> int:
                     fid = idm.group(1)
                     focus_defs.setdefault(fid, []).append(r)
                     focus_loc_expected.setdefault(r, set()).update({fid, f"{fid}_desc"})
+                if _cat_active("focus-icon"):
+                    icon_m = RE_FOCUS_ICON.search(seg)
+                    if icon_m:
+                        icon_name = icon_m.group(1)
+                        if icon_name in GENERIC_ICON_PLACEHOLDERS:
+                            warnings.append(
+                                f"[focus-icon-missing] {r}: focus '{fid}' has placeholder icon (no art)"
+                            )
+                        elif icon_name.startswith(GENERIC_ICON_PREFIXES):
+                            warnings.append(
+                                f"[focus-icon-generic] {r}: focus '{fid}' uses vanilla generic icon '{icon_name}'"
+                            )
+                        elif icon_name.endswith("_generic"):
+                            warnings.append(
+                                f"[focus-icon-faction-generic] {r}: focus '{fid}' uses faction-generic placeholder '{icon_name}'"
+                            )
+                        elif not icon_name.startswith("GFX_goal_") and icon_name not in known_gfx_sprites:
+                            errors.append(
+                                f"[focus-icon-unknown] {r}: focus '{fid}' references unknown sprite '{icon_name}' (not found in any .gfx registry)"
+                            )
             if _cat_active("focus-ref"):
                 for m in RE_FOCUS_REF.finditer(text):
                     focus_refs.append((m.group(1), "focus", r))
