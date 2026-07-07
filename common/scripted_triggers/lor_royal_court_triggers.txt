@@ -1,0 +1,36 @@
+# Royal Court of Lordaeron — scripted triggers
+
+# Court orientation checks (on LOR)
+lor_court_is_royal_administration = {
+	check_variable = { lor_court_orientation = 0 }
+}
+
+lor_court_is_alliance_war_cabinet = {
+	check_variable = { lor_court_orientation = 1 }
+}
+
+lor_court_is_church_mobilisation = {
+	check_variable = { lor_court_orientation = 2 }
+}
+
+lor_court_can_switch = {
+	NOT = { has_country_flag = lor_court_cooldown_active }
+}
+
+# Church Influence tier checks
+lor_court_church_influence_low = {
+	check_variable = { lor_church_influence < 30 }
+}
+
+lor_court_church_influence_medium = {
+	check_variable = { lor_church_influence > 29 }
+	check_variable = { lor_church_influence < 60 }
+}
+
+lor_court_church_influence_high = {
+	check_variable = { lor_church_influence > 59 }
+}
+
+lor_court_church_influence_critical = {
+	check_variable = { lor_church_influence > 79 }
+}

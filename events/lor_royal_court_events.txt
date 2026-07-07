@@ -1,0 +1,440 @@
+add_namespace = lor_royal_court
+
+# ============================================================
+# Royal Court of Lordaeron — courtroom events
+# ============================================================
+
+# 1: Choose Court Orientation (triggered by Convene the Royal Council decision)
+country_event = {
+	id = lor_royal_court.1
+	title = lor_royal_court.1.t
+	desc = lor_royal_court.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.1 (choose orientation)" }
+
+	option = {
+		name = lor_royal_court.1.option.1
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 5
+				LOR_second_war_proto_heavily_overextended = yes
+			}
+		}
+		lor_court_set_royal_administration = yes
+	}
+
+	option = {
+		name = lor_royal_court.1.option.2
+		ai_chance = {
+			base = 3
+			modifier = {
+				factor = 3
+				alliance_unity_high = yes
+			}
+		}
+		lor_court_set_alliance_war_cabinet = yes
+	}
+
+	option = {
+		name = lor_royal_court.1.option.3
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 3
+				has_manpower < 5000
+			}
+			modifier = {
+				factor = 2
+				has_war_support < 0.4
+			}
+		}
+		lor_court_set_church_mobilisation = yes
+	}
+}
+
+# 2: Nobles object to continued foreign commitments
+country_event = {
+	id = lor_royal_court.2
+	title = lor_royal_court.2.t
+	desc = lor_royal_court.2.d
+	picture = GFX_report_event_generic_treaty
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.2 (nobles object)" }
+
+	option = {
+		name = lor_royal_court.2.option.1
+		ai_chance = { factor = 60 }
+		add_stability = -0.03
+		alliance_unity_lower = yes
+		add_political_power = 20
+	}
+
+	option = {
+		name = lor_royal_court.2.option.2
+		ai_chance = { factor = 40 }
+		add_political_power = -25
+		add_stability = 0.02
+	}
+}
+
+# 3: Clergy offer to take over relief work (triggers at church_influence 50)
+country_event = {
+	id = lor_royal_court.3
+	title = lor_royal_court.3.t
+	desc = lor_royal_court.3.d
+	picture = GFX_report_event_generic_fascist_split
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.3 (clergy relief offer)" }
+
+	option = {
+		name = lor_royal_court.3.option.1
+		ai_chance = {
+			base = 70
+			modifier = {
+				factor = 3
+				LOR_second_war_proto_heavily_overextended = yes
+			}
+		}
+		LOR_second_war_proto_lower_overextension = yes
+		lor_court_raise_church_influence = yes
+		add_political_power = -15
+	}
+
+	option = {
+		name = lor_royal_court.3.option.2
+		ai_chance = { factor = 30 }
+		add_political_power = 15
+		alliance_unity_lower = yes
+	}
+}
+
+# 4: Faol requests resources for the Silver Hand (triggers at church_influence 80)
+country_event = {
+	id = lor_royal_court.4
+	title = lor_royal_court.4.t
+	desc = lor_royal_court.4.d
+	picture = GFX_report_event_generic_fascist_split
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.4 (Faol requests)" }
+
+	option = {
+		name = lor_royal_court.4.option.1
+		ai_chance = {
+			base = 60
+			modifier = {
+				factor = 3
+				has_idea = LOR_knights_of_the_silver_hand
+			}
+		}
+		add_timed_idea = {
+			idea = LOR_silver_hand_strengthened
+			days = 365
+		}
+		add_political_power = -30
+		add_manpower = 750
+		lor_court_raise_church_influence = yes
+	}
+
+	option = {
+		name = lor_royal_court.4.option.2
+		ai_chance = { factor = 40 }
+		add_political_power = 25
+		lor_court_lower_church_influence = yes
+		add_stability = -0.03
+	}
+}
+
+# 5: Alliance command requests reinforcements
+country_event = {
+	id = lor_royal_court.5
+	title = lor_royal_court.5.t
+	desc = lor_royal_court.5.d
+	picture = GFX_report_event_war_plan
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.5 (reinforcements requested)" }
+
+	option = {
+		name = lor_royal_court.5.option.1
+		ai_chance = {
+			base = 60
+			modifier = {
+				factor = 3
+				lor_court_is_alliance_war_cabinet = yes
+			}
+		}
+		LOR_second_war_proto_raise_overextension = yes
+		alliance_unity_raise = yes
+		add_political_power = -25
+		add_command_power = 30
+	}
+
+	option = {
+		name = lor_royal_court.5.option.2
+		ai_chance = {
+			base = 40
+			modifier = {
+				factor = 3
+				lor_court_is_royal_administration = yes
+			}
+		}
+		alliance_unity_lower = yes
+		add_political_power = 25
+		add_war_support = -0.03
+	}
+}
+
+# 6: Ally publicly praises Lordaeron's leadership
+country_event = {
+	id = lor_royal_court.6
+	title = lor_royal_court.6.t
+	desc = lor_royal_court.6.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.6 (ally praise)" }
+
+	option = {
+		name = lor_royal_court.6.option.1
+		alliance_unity_raise = yes
+		add_political_power = 15
+		add_stability = 0.02
+	}
+}
+
+# 7: Major defeat causes arguments in court
+country_event = {
+	id = lor_royal_court.7
+	title = lor_royal_court.7.t
+	desc = lor_royal_court.7.d
+	picture = GFX_report_event_coup
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.7 (court arguments)" }
+
+	option = {
+		name = lor_royal_court.7.option.1
+		ai_chance = { factor = 55 }
+		add_stability = -0.05
+		add_political_power = -20
+		alliance_unity_lower = yes
+	}
+
+	option = {
+		name = lor_royal_court.7.option.2
+		ai_chance = { factor = 45 }
+		add_war_support = -0.03
+		add_political_power = -40
+		set_country_flag = lor_court_cooldown_active
+	}
+}
+
+# 8: React to Khaz Modan siege (from decision)
+country_event = {
+	id = lor_royal_court.8
+	title = lor_royal_court.8.t
+	desc = lor_royal_court.8.d
+	picture = GFX_report_event_defend
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.8 (Khaz Modan siege)" }
+
+	option = {
+		name = lor_royal_court.8.option.1
+		ai_chance = {
+			base = 55
+			modifier = {
+				factor = 3
+				lor_court_is_alliance_war_cabinet = yes
+			}
+		}
+		if = {
+			limit = { IRO = { exists = yes } }
+			IRO = {
+				add_timed_idea = { idea = allied_engineer_support days = 120 }
+			}
+		}
+		if = {
+			limit = { GNO = { exists = yes } }
+			GNO = {
+				add_timed_idea = { idea = allied_engineer_support days = 120 }
+			}
+		}
+		alliance_unity_raise = yes
+		LOR_second_war_proto_raise_overextension = yes
+		add_political_power = -25
+	}
+
+	option = {
+		name = lor_royal_court.8.option.2
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 3
+				lor_court_is_church_mobilisation = yes
+			}
+		}
+		if = {
+			limit = { IRO = { exists = yes } }
+			IRO = {
+				add_timed_idea = { idea = allied_emergency_supplies days = 90 }
+			}
+		}
+		if = {
+			limit = { GNO = { exists = yes } }
+			GNO = {
+				add_timed_idea = { idea = allied_emergency_supplies days = 90 }
+			}
+		}
+		alliance_unity_raise = yes
+		add_political_power = -15
+	}
+
+	option = {
+		name = lor_royal_court.8.option.3
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 3
+				lor_court_is_royal_administration = yes
+			}
+		}
+		add_political_power = 20
+		alliance_unity_lower = yes
+	}
+}
+
+# 9: React to Quel'Thalas under pressure (from decision)
+country_event = {
+	id = lor_royal_court.9
+	title = lor_royal_court.9.t
+	desc = lor_royal_court.9.d
+	picture = GFX_report_event_defend
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.9 (Quel'Thalas pressure)" }
+
+	option = {
+		name = lor_royal_court.9.option.1
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 3
+				lor_court_is_alliance_war_cabinet = yes
+			}
+		}
+		QUE = {
+			add_timed_idea = { idea = allied_emergency_supplies days = 90 }
+			add_war_support = 0.03
+		}
+		alliance_unity_raise = yes
+		LOR_second_war_proto_raise_overextension = yes
+		add_political_power = -25
+	}
+
+	option = {
+		name = lor_royal_court.9.option.2
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 2
+				DAL = { exists = yes is_in_faction_with = LOR }
+			}
+		}
+		DAL = {
+			if = {
+				limit = { exists = yes }
+				add_timed_idea = { idea = allied_engineer_support days = 90 }
+			}
+		}
+		alliance_unity_raise = yes
+		add_political_power = -15
+	}
+
+	option = {
+		name = lor_royal_court.9.option.3
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 3
+				lor_court_is_royal_administration = yes
+			}
+		}
+		add_political_power = 15
+		alliance_unity_lower = yes
+	}
+}
+
+# 10: Respond to refugee crisis (from decision)
+country_event = {
+	id = lor_royal_court.10
+	title = lor_royal_court.10.t
+	desc = lor_royal_court.10.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lor_royal_court.10 (refugee crisis)" }
+
+	option = {
+		name = lor_royal_court.10.option.1
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 3
+				lor_court_is_royal_administration = yes
+			}
+		}
+		LOR_second_war_proto_lower_overextension = yes
+		add_timed_idea = {
+			idea = LOR_refugee_administration
+			days = 240
+		}
+		add_political_power = -30
+		add_stability = 0.03
+	}
+
+	option = {
+		name = lor_royal_court.10.option.2
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 3
+				lor_court_is_church_mobilisation = yes
+			}
+		}
+		LOR_second_war_proto_lower_overextension = yes
+		lor_court_raise_church_influence = yes
+		add_timed_idea = {
+			idea = LOR_parish_relief
+			days = 240
+		}
+		add_political_power = -20
+		add_stability = 0.02
+	}
+
+	option = {
+		name = lor_royal_court.10.option.3
+		ai_chance = { factor = 20 }
+		add_manpower = 1500
+		add_stability = -0.05
+		add_political_power = -10
+	}
+}

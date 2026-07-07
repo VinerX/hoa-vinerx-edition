@@ -1,0 +1,637 @@
+# ============================================================
+# Royal Court of Lordaeron — decision category lor_royal_court
+#
+# The Royal Court represents King Terenas II and his government.
+# Three orientations: Crown Administration / Alliance War Cabinet / Church Mobilisation
+# ============================================================
+
+lor_royal_court = {
+
+	# ------------------------------------------------------------
+	# CONVENE THE ROYAL COUNCIL — switch orientation
+	# ------------------------------------------------------------
+	convene_the_royal_council = {
+		icon = generic_political_support
+
+		available = {
+			lor_court_can_switch = yes
+			has_political_power > 49
+		}
+
+		visible = {
+			always = yes
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			country_event = { id = lor_royal_court.1 }
+		}
+
+		ai_will_do = {
+			base = 0
+		}
+	}
+
+	# ============================================================
+	# ROYAL ADMINISTRATION decisions (orientation = 0)
+	# ============================================================
+
+	expand_refugee_administration = {
+		icon = generic_agrarian_reform
+
+		available = {
+			lor_court_is_royal_administration = yes
+			has_political_power > 24
+		}
+
+		visible = {
+			lor_court_is_royal_administration = yes
+			always = yes
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			LOR_second_war_proto_lower_overextension = yes
+			alliance_unity_lower = yes
+			add_timed_idea = {
+				idea = LOR_refugee_administration
+				days = 180
+			}
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 3
+				LOR_second_war_proto_overextended = yes
+			}
+			modifier = {
+				factor = 5
+				LOR_second_war_proto_heavily_overextended = yes
+			}
+		}
+	}
+
+	audit_military_requisitions = {
+		icon = generic_construction
+
+		available = {
+			lor_court_is_royal_administration = yes
+			has_political_power > 19
+		}
+
+		visible = {
+			lor_court_is_royal_administration = yes
+			always = yes
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = LOR_audited_requisitions
+				days = 120
+			}
+			add_command_power = -10
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 3
+				LOR_second_war_proto_heavily_overextended = yes
+			}
+		}
+	}
+
+	preserve_the_northern_reserve = {
+		icon = generic_morale_bonus
+
+		available = {
+			lor_court_is_royal_administration = yes
+			has_political_power > 19
+		}
+
+		visible = {
+			lor_court_is_royal_administration = yes
+			always = yes
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = LOR_northern_reserve_ready
+				days = 150
+			}
+			alliance_unity_lower = yes
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 3
+				has_war_with = BRC
+				any_state = {
+					is_controlled_by = ROOT
+					is_core_of = ROOT
+					any_neighbor_state = {
+						OR = {
+							is_controlled_by = BRC
+							is_controlled_by = BHC
+							is_controlled_by = DMC
+						}
+					}
+				}
+			}
+		}
+	}
+
+	empower_the_royal_bureaucracy = {
+		icon = generic_political_support
+
+		available = {
+			lor_court_is_royal_administration = yes
+			has_political_power > 34
+		}
+
+		visible = {
+			lor_court_is_royal_administration = yes
+			always = yes
+		}
+
+		cost = 35
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = LOR_empowered_bureaucracy
+				days = 180
+			}
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	# ============================================================
+	# ALLIANCE WAR CABINET decisions (orientation = 1)
+	# ============================================================
+
+	support_the_southern_front = {
+		icon = alliance_idea
+
+		available = {
+			lor_court_is_alliance_war_cabinet = yes
+			has_political_power > 34
+			STR = {
+				exists = yes
+				is_in_faction_with = LOR
+			}
+		}
+
+		visible = {
+			lor_court_is_alliance_war_cabinet = yes
+			STR = {
+				exists = yes
+				is_in_faction_with = LOR
+			}
+		}
+
+		cost = 35
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			alliance_unity_raise_medium = yes
+			LOR_second_war_proto_raise_overextension = yes
+			STR = {
+				add_timed_idea = {
+					idea = LOR_stromgarde_reinforcements_received
+					days = 120
+				}
+				add_war_support = 0.03
+			}
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 3
+				STR = { has_war = yes }
+			}
+		}
+	}
+
+	send_engineers_to_khaz_modan = {
+		icon = generic_construction
+
+		available = {
+			lor_court_is_alliance_war_cabinet = yes
+			has_political_power > 24
+			OR = {
+				IRO = { exists = yes }
+				GNO = { exists = yes }
+			}
+		}
+
+		visible = {
+			lor_court_is_alliance_war_cabinet = yes
+			OR = {
+				IRO = { exists = yes }
+				GNO = { exists = yes }
+			}
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			alliance_unity_raise = yes
+			LOR_second_war_proto_raise_overextension = yes
+			if = {
+				limit = { IRO = { exists = yes } }
+				IRO = {
+					add_timed_idea = {
+						idea = allied_engineer_support
+						days = 120
+					}
+				}
+			}
+			if = {
+				limit = { GNO = { exists = yes } }
+				GNO = {
+					add_timed_idea = {
+						idea = allied_engineer_support
+						days = 120
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 3
+				IRO = { has_war = yes }
+			}
+		}
+	}
+
+	emergency_convoys_to_ally = {
+		icon = generic_construction
+
+		available = {
+			lor_court_is_alliance_war_cabinet = yes
+			has_political_power > 19
+			any_country = {
+				is_in_faction_with = LOR
+				NOT = { tag = LOR }
+				has_war = yes
+				is_major = no
+			}
+		}
+
+		visible = {
+			lor_court_is_alliance_war_cabinet = yes
+			any_country = {
+				is_in_faction_with = LOR
+				NOT = { tag = LOR }
+				has_war = yes
+				is_major = no
+			}
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			alliance_unity_raise = yes
+			random_country = {
+				limit = {
+					is_in_faction_with = LOR
+					NOT = { tag = LOR }
+					has_war = yes
+					is_major = no
+				}
+				add_war_support = 0.03
+				add_timed_idea = {
+					idea = allied_emergency_supplies
+					days = 90
+				}
+			}
+			LOR_second_war_proto_raise_overextension = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 3
+				any_country = {
+					is_in_faction_with = LOR
+					NOT = { tag = LOR }
+					has_war = yes
+					has_war_support < 0.3
+				}
+			}
+		}
+	}
+
+	coordinate_allied_reserves = {
+		icon = alliance_idea
+
+		available = {
+			lor_court_is_alliance_war_cabinet = yes
+			has_political_power > 44
+			alliance_unity_high = yes
+		}
+
+		visible = {
+			lor_court_is_alliance_war_cabinet = yes
+			always = yes
+		}
+
+		cost = 45
+		fire_only_once = no
+		days_re_enable = 240
+
+		complete_effect = {
+			alliance_unity_lower = yes
+			every_country = {
+				limit = { is_in_faction_with = LOR }
+				add_timed_idea = {
+					idea = alliance_coordinated_offensive
+					days = 90
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 3
+				alliance_unity_max = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# CHURCH MOBILISATION decisions (orientation = 2)
+	# ============================================================
+
+	organize_relief_through_parishes = {
+		icon = generic_construction
+
+		available = {
+			lor_court_is_church_mobilisation = yes
+			has_political_power > 24
+		}
+
+		visible = {
+			lor_court_is_church_mobilisation = yes
+			always = yes
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			LOR_second_war_proto_lower_overextension = yes
+			lor_court_raise_church_influence = yes
+			add_timed_idea = {
+				idea = LOR_parish_relief
+				days = 180
+			}
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 3
+				LOR_second_war_proto_overextended = yes
+			}
+		}
+	}
+
+	expand_battlefield_chaplaincy = {
+		icon = generic_morale_bonus
+
+		available = {
+			lor_court_is_church_mobilisation = yes
+			has_political_power > 19
+		}
+
+		visible = {
+			lor_court_is_church_mobilisation = yes
+			always = yes
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = LOR_battlefield_chaplains
+				days = 180
+			}
+			lor_court_raise_church_influence = yes
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	support_the_silver_hand = {
+		icon = generic_morale_bonus
+
+		available = {
+			lor_court_is_church_mobilisation = yes
+			has_political_power > 34
+			has_idea = LOR_knights_of_the_silver_hand
+		}
+
+		visible = {
+			lor_court_is_church_mobilisation = yes
+			always = yes
+		}
+
+		cost = 35
+		fire_only_once = no
+		days_re_enable = 240
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = LOR_silver_hand_strengthened
+				days = 240
+			}
+			lor_court_raise_church_influence = yes
+			add_manpower = 500
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 2
+				has_war_with = BRC
+			}
+		}
+	}
+
+	appeal_for_sacred_contribution = {
+		icon = generic_political_support
+
+		available = {
+			lor_court_is_church_mobilisation = yes
+			has_political_power > 14
+		}
+
+		visible = {
+			lor_court_is_church_mobilisation = yes
+			always = yes
+		}
+
+		cost = 15
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			add_manpower = 1000
+			lor_court_raise_church_influence = yes
+			add_political_power = -10
+			add_stability = -0.03
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 5
+				has_manpower < 2000
+			}
+			modifier = {
+				factor = 3
+				has_war_support < 0.3
+			}
+		}
+	}
+
+	# ============================================================
+	# REACTIVE WAR-STATE DECISIONS
+	# ============================================================
+
+	# Khaz Modan under severe siege
+	react_to_khaz_modan_siege = {
+		icon = alliance_idea
+
+		available = {
+			OR = {
+				IRO = { exists = yes }
+				GNO = { exists = yes }
+			}
+			has_political_power > 19
+		}
+
+		visible = {
+			OR = {
+				IRO = {
+					exists = yes
+					check_variable = { ironforge_siege_state > 1 }
+				}
+				GNO = {
+					exists = yes
+					check_variable = { gnomeregan_siege_state > 1 }
+				}
+			}
+			always = yes
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			country_event = { id = lor_royal_court.8 }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	# Quel'Thalas under major pressure
+	react_to_queldorei_pressure = {
+		icon = alliance_idea
+
+		available = {
+			QUE = { exists = yes }
+			has_political_power > 19
+		}
+
+		visible = {
+			QUE = {
+				exists = yes
+				has_war = yes
+			}
+			always = yes
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			country_event = { id = lor_royal_court.9 }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	# Major refugee crisis
+	respond_to_refugee_crisis = {
+		icon = generic_agrarian_reform
+
+		available = {
+			LOR_second_war_proto_heavily_overextended = yes
+			has_political_power > 19
+		}
+
+		visible = {
+			LOR_second_war_proto_heavily_overextended = yes
+			always = yes
+		}
+
+		cost = 20
+		fire_only_once = no
+		days_re_enable = 240
+
+		complete_effect = {
+			country_event = { id = lor_royal_court.10 }
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 3
+				check_variable = { lordaeron_overextension > 3 }
+			}
+		}
+	}
+}
