@@ -1,0 +1,1572 @@
+###########################
+# Second War Global News Events
+# namespace: second_war_news (IDs 1-50)
+###########################
+
+add_namespace = second_war_news
+
+##############################################################
+# PHASE 1: PRELUDE
+##############################################################
+
+# 1 — Steamwheedle Cartel joins the Horde
+news_event = {
+	id = second_war_news.1
+	title = second_war_news.1.t
+	desc = second_war_news.1.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_goblins_join_horde
+	}
+
+	option = {
+		name = second_war_news.1.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = SRC
+				original_tag = DMC
+				original_tag = BHC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.1.b
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = SRC
+				original_tag = DMC
+				original_tag = BHC
+			}
+		}
+	}
+}
+
+# 2 — First Death Knight created
+news_event = {
+	id = second_war_news.2
+	title = second_war_news.2.t
+	desc = second_war_news.2.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_first_death_knight
+	}
+
+	option = {
+		name = second_war_news.2.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = SRC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.2.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.2.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = SRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 3 — Alexstrasza enslaved
+news_event = {
+	id = second_war_news.3
+	title = second_war_news.3.t
+	desc = second_war_news.3.d
+	picture = GFX_news_event_alexstrasza
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_alexstrasza_enslaved
+	}
+
+	option = {
+		name = second_war_news.3.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = DMC
+				original_tag = SRC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.3.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.3.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = DMC
+				original_tag = SRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 2: NAVAL WAR
+##############################################################
+
+# 4 — Sea of Blood begins (first naval clash)
+news_event = {
+	id = second_war_news.4
+	title = second_war_news.4.t
+	desc = second_war_news.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_sea_of_blood_begins
+	}
+
+	option = {
+		name = second_war_news.4.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = LOR
+				original_tag = KUL
+			}
+		}
+	}
+	option = {
+		name = second_war_news.4.b
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+				original_tag = KUL
+			}
+		}
+	}
+}
+
+# 5 — Horde fleet sets sail
+news_event = {
+	id = second_war_news.5
+	title = second_war_news.5.t
+	desc = second_war_news.5.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_horde_fleet_sets_sail
+	}
+
+	option = {
+		name = second_war_news.5.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.5.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.5.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 6 — Horde lands in Hillsbrad
+news_event = {
+	id = second_war_news.6
+	title = second_war_news.6.t
+	desc = second_war_news.6.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_other_country = {
+			original_tag = BRC
+			controls_state = 32
+			has_war_with = LOR
+		}
+		32 = { is_owned_by = STO }
+		BRC = { has_war_with = LOR }
+		NOT = { has_global_flag = news_horde_lands_hillsbrad }
+	}
+
+	immediate = {
+		set_global_flag = news_horde_lands_hillsbrad
+	}
+
+	option = {
+		name = second_war_news.6.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.6.b
+		trigger = {
+			NOT = { original_tag = BRC }
+		}
+	}
+}
+
+##############################################################
+# PHASE 3: KHAZ MODAN SIEGES
+##############################################################
+
+# 7 — Siege of Ironforge begins
+news_event = {
+	id = second_war_news.7
+	title = second_war_news.7.t
+	desc = second_war_news.7.d
+	picture = GFX_news_event_ironforge
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_ironforge_siege_begins
+	}
+
+	option = {
+		name = second_war_news.7.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = BHC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.7.b
+		trigger = {
+			original_tag = IRO
+		}
+	}
+	option = {
+		name = second_war_news.7.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = BHC
+				original_tag = IRO
+			}
+		}
+	}
+}
+
+# 8 — Ironforge siege enters critical phase
+news_event = {
+	id = second_war_news.8
+	title = second_war_news.8.t
+	desc = second_war_news.8.d
+	picture = GFX_news_event_ironforge
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_ironforge_siege_desperate
+	}
+
+	option = {
+		name = second_war_news.8.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = BHC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.8.b
+		trigger = {
+			original_tag = IRO
+		}
+	}
+	option = {
+		name = second_war_news.8.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = BHC
+				original_tag = IRO
+			}
+		}
+	}
+}
+
+# 9 — Siege of Gnomeregan begins
+news_event = {
+	id = second_war_news.9
+	title = second_war_news.9.t
+	desc = second_war_news.9.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_gnomeregan_siege_begins
+	}
+
+	option = {
+		name = second_war_news.9.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = BHC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.9.b
+		trigger = {
+			original_tag = GNO
+		}
+	}
+	option = {
+		name = second_war_news.9.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = BHC
+				original_tag = GNO
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 4: EASTERN FRONT
+##############################################################
+
+# 10 — Zul'jin rescued from Durnholde
+news_event = {
+	id = second_war_news.10
+	title = second_war_news.10.t
+	desc = second_war_news.10.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_other_country = {
+			original_tag = BRC
+			controls_state = 35
+			has_war_with = LOR
+		}
+		35 = { is_owned_by = STO }
+		NOT = { has_global_flag = news_zuljin_rescued }
+	}
+
+	immediate = {
+		set_global_flag = news_zuljin_rescued
+	}
+
+	option = {
+		name = second_war_news.10.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = AMA
+			}
+		}
+	}
+	option = {
+		name = second_war_news.10.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.10.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = AMA
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 11 — Amani joins the Horde
+news_event = {
+	id = second_war_news.11
+	title = second_war_news.11.t
+	desc = second_war_news.11.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_amani_joins_horde
+	}
+
+	option = {
+		name = second_war_news.11.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = AMA
+			}
+		}
+	}
+	option = {
+		name = second_war_news.11.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.11.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = AMA
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 12 — Wildhammer joins the Alliance
+news_event = {
+	id = second_war_news.12
+	title = second_war_news.12.t
+	desc = second_war_news.12.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_wildhammer_joins_alliance
+	}
+
+	option = {
+		name = second_war_news.12.a
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.12.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.12.c
+		trigger = {
+			NOT = {
+				original_tag = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 5: THANDOL SPAN
+##############################################################
+
+# 14 — Thandol Span falls to the Horde
+news_event = {
+	id = second_war_news.14
+	title = second_war_news.14.t
+	desc = second_war_news.14.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_other_country = {
+			original_tag = BRC
+			controls_state = 130
+			has_war_with = LOR
+		}
+		130 = { is_owned_by = STR }
+		NOT = { has_global_flag = news_thandol_span_falls }
+	}
+
+	immediate = {
+		set_global_flag = news_thandol_span_falls
+	}
+
+	option = {
+		name = second_war_news.14.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.14.b
+		trigger = {
+			original_tag = STR
+		}
+	}
+	option = {
+		name = second_war_news.14.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = STR
+			}
+		}
+	}
+}
+
+# 15 — Thandol Span recaptured by the Alliance
+news_event = {
+	id = second_war_news.15
+	title = second_war_news.15.t
+	desc = second_war_news.15.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = news_thandol_span_falls
+		OR = {
+			LOR = { controls_state = 130 }
+			STR = { controls_state = 130 }
+		}
+		NOT = {
+			BRC = { controls_state = 130 }
+		}
+		NOT = { has_global_flag = news_thandol_span_recaptured }
+	}
+
+	immediate = {
+		set_global_flag = news_thandol_span_recaptured
+	}
+
+	option = {
+		name = second_war_news.15.a
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.15.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.15.c
+		trigger = {
+			NOT = {
+				original_tag = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 6: QUEL'THALAS FRONT
+##############################################################
+
+# 16 — Horde invades Quel'Thalas
+news_event = {
+	id = second_war_news.16
+	title = second_war_news.16.t
+	desc = second_war_news.16.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_other_country = {
+			original_tag = BRC
+			controls_state = 175
+			has_war_with = QUE
+		}
+		175 = { is_owned_by = QUE }
+		NOT = { has_global_flag = news_horde_invades_quelthalas }
+	}
+
+	immediate = {
+		set_global_flag = news_horde_invades_quelthalas
+	}
+
+	option = {
+		name = second_war_news.16.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = AMA
+			}
+		}
+	}
+	option = {
+		name = second_war_news.16.b
+		trigger = {
+			original_tag = QUE
+		}
+	}
+	option = {
+		name = second_war_news.16.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = AMA
+				original_tag = QUE
+			}
+		}
+	}
+}
+
+# 17 — Quel'Thalas fully mobilizes
+news_event = {
+	id = second_war_news.17
+	title = second_war_news.17.t
+	desc = second_war_news.17.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_quelthalas_mobilizes
+	}
+
+	option = {
+		name = second_war_news.17.a
+		trigger = {
+			original_tag = QUE
+		}
+	}
+	option = {
+		name = second_war_news.17.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.17.c
+		trigger = {
+			NOT = {
+				original_tag = QUE
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+# 18 — Eversong Woods burn
+news_event = {
+	id = second_war_news.18
+	title = second_war_news.18.t
+	desc = second_war_news.18.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_eversong_burns
+	}
+
+	option = {
+		name = second_war_news.18.a
+		trigger = {
+			OR = {
+				original_tag = BRC
+				original_tag = DMC
+			}
+		}
+	}
+	option = {
+		name = second_war_news.18.b
+		trigger = {
+			original_tag = QUE
+		}
+	}
+	option = {
+		name = second_war_news.18.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = DMC
+				original_tag = QUE
+			}
+		}
+	}
+}
+
+# 19 — Sunwell Shield raised
+news_event = {
+	id = second_war_news.19
+	title = second_war_news.19.t
+	desc = second_war_news.19.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_sunwell_shield
+	}
+
+	option = {
+		name = second_war_news.19.a
+		trigger = {
+			original_tag = QUE
+		}
+	}
+	option = {
+		name = second_war_news.19.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.19.c
+		trigger = {
+			NOT = {
+				original_tag = QUE
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 7: BETRAYALS
+##############################################################
+
+# 20 — Gul'dan abandons the Horde
+news_event = {
+	id = second_war_news.20
+	title = second_war_news.20.t
+	desc = second_war_news.20.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_guldan_betrayal
+	}
+
+	option = {
+		name = second_war_news.20.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.20.b
+		trigger = {
+			original_tag = SRC
+		}
+	}
+	option = {
+		name = second_war_news.20.c
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.20.d
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = SRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 21 — Gul'dan perishes at the Tomb of Sargeras
+news_event = {
+	id = second_war_news.21
+	title = second_war_news.21.t
+	desc = second_war_news.21.d
+	picture = GFX_news_event_guldans_village
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_guldan_dead
+	}
+
+	option = {
+		name = second_war_news.21.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.21.b
+		trigger = {
+			original_tag = SRC
+		}
+	}
+	option = {
+		name = second_war_news.21.c
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.21.d
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = SRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 22 — Alterac betrays the Alliance
+news_event = {
+	id = second_war_news.22
+	title = second_war_news.22.t
+	desc = second_war_news.22.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_alterac_betrayal
+	}
+
+	option = {
+		name = second_war_news.22.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.22.b
+		trigger = {
+			original_tag = ALT
+		}
+	}
+	option = {
+		name = second_war_news.22.c
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.22.d
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = ALT
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 23 — Alterac occupied by the Alliance
+news_event = {
+	id = second_war_news.23
+	title = second_war_news.23.t
+	desc = second_war_news.23.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_alterac_occupied
+	}
+
+	option = {
+		name = second_war_news.23.a
+		trigger = {
+			original_tag = STR
+		}
+	}
+	option = {
+		name = second_war_news.23.b
+		trigger = {
+			original_tag = ALT
+		}
+	}
+	option = {
+		name = second_war_news.23.c
+		trigger = {
+			NOT = {
+				original_tag = STR
+				original_tag = ALT
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 8: SIEGE OF CAPITAL CITY
+##############################################################
+
+# 24 — Siege of Capital City begins
+news_event = {
+	id = second_war_news.24
+	title = second_war_news.24.t
+	desc = second_war_news.24.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_other_country = {
+			original_tag = BRC
+			controls_state = 10
+			has_war_with = LOR
+		}
+		10 = { is_owned_by = LOR }
+		NOT = { has_global_flag = news_siege_capital_city }
+	}
+
+	immediate = {
+		set_global_flag = news_siege_capital_city
+	}
+
+	option = {
+		name = second_war_news.24.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.24.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.24.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 25 — Siege of Capital City broken
+news_event = {
+	id = second_war_news.25
+	title = second_war_news.25.t
+	desc = second_war_news.25.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_global_flag = news_siege_capital_city
+		LOR = { controls_state = 10 }
+		NOT = {
+			BRC = { controls_state = 10 }
+		}
+		NOT = { has_global_flag = news_capital_city_saved }
+	}
+
+	immediate = {
+		set_global_flag = news_capital_city_saved
+	}
+
+	option = {
+		name = second_war_news.25.a
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.25.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.25.c
+		trigger = {
+			NOT = {
+				original_tag = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 9: RETREAT + NAVAL FINAL
+##############################################################
+
+# 26 — Khaz Modan liberated
+news_event = {
+	id = second_war_news.26
+	title = second_war_news.26.t
+	desc = second_war_news.26.d
+	picture = GFX_news_event_ironforge
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_khaz_modan_liberated
+	}
+
+	option = {
+		name = second_war_news.26.a
+		trigger = {
+			original_tag = IRO
+		}
+	}
+	option = {
+		name = second_war_news.26.b
+		trigger = {
+			original_tag = GNO
+		}
+	}
+	option = {
+		name = second_war_news.26.c
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.26.d
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.26.e
+		trigger = {
+			NOT = {
+				original_tag = IRO
+				original_tag = GNO
+				original_tag = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+# 27 — Battle of Crestfall
+news_event = {
+	id = second_war_news.27
+	title = second_war_news.27.t
+	desc = second_war_news.27.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_battle_of_crestfall
+	}
+
+	option = {
+		name = second_war_news.27.a
+		trigger = {
+			original_tag = KUL
+		}
+	}
+	option = {
+		name = second_war_news.27.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.27.c
+		trigger = {
+			NOT = {
+				original_tag = KUL
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 10: DRENOR CLANS
+##############################################################
+
+# 28 — Warsong Clan arrives from Draenor
+news_event = {
+	id = second_war_news.28
+	title = second_war_news.28.t
+	desc = second_war_news.28.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_warsong_arrives
+	}
+
+	option = {
+		name = second_war_news.28.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.28.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.28.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 29 — Shadowmoon Clan arrives from Draenor
+news_event = {
+	id = second_war_news.29
+	title = second_war_news.29.t
+	desc = second_war_news.29.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_shadowmoon_arrives
+	}
+
+	option = {
+		name = second_war_news.29.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.29.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.29.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 30 — Shattered Hand Clan arrives from Draenor
+news_event = {
+	id = second_war_news.30
+	title = second_war_news.30.t
+	desc = second_war_news.30.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_shattered_hand_arrives
+	}
+
+	option = {
+		name = second_war_news.30.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.30.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.30.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 31 — Thunderlord Clan arrives from Draenor
+news_event = {
+	id = second_war_news.31
+	title = second_war_news.31.t
+	desc = second_war_news.31.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_thunderlord_arrives
+	}
+
+	option = {
+		name = second_war_news.31.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.31.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.31.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 32 — Laughing Skull Clan arrives from Draenor
+news_event = {
+	id = second_war_news.32
+	title = second_war_news.32.t
+	desc = second_war_news.32.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_laughing_skull_arrives
+	}
+
+	option = {
+		name = second_war_news.32.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.32.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.32.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+# 33 — Bonechewer Clan arrives from Draenor
+news_event = {
+	id = second_war_news.33
+	title = second_war_news.33.t
+	desc = second_war_news.33.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_bonechewer_arrives
+	}
+
+	option = {
+		name = second_war_news.33.a
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.33.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.33.c
+		trigger = {
+			NOT = {
+				original_tag = BRC
+				original_tag = LOR
+			}
+		}
+	}
+}
+
+##############################################################
+# PHASE 11: FINAL
+##############################################################
+
+# 34 — Death of Anduin Lothar
+news_event = {
+	id = second_war_news.34
+	title = second_war_news.34.t
+	desc = second_war_news.34.d
+	picture = GFX_news_event_generic_rally
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_lothar_falls
+	}
+
+	option = {
+		name = second_war_news.34.a
+		trigger = {
+			original_tag = STO
+		}
+	}
+	option = {
+		name = second_war_news.34.b
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.34.c
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.34.d
+		trigger = {
+			NOT = {
+				original_tag = STO
+				original_tag = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+# 35 — Battle of Blackrock Mountain
+news_event = {
+	id = second_war_news.35
+	title = second_war_news.35.t
+	desc = second_war_news.35.d
+	picture = GFX_horde_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_other_country = {
+			is_in_faction_with = LOR
+			controls_state = 561
+			has_war_with = BRC
+		}
+		561 = { is_owned_by = BRC }
+		NOT = { has_global_flag = news_blackrock_battle }
+	}
+
+	immediate = {
+		set_global_flag = news_blackrock_battle
+	}
+
+	option = {
+		name = second_war_news.35.a
+		trigger = {
+			original_tag = LOR
+		}
+	}
+	option = {
+		name = second_war_news.35.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.35.c
+		trigger = {
+			NOT = {
+				original_tag = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}
+
+# 36 — Dark Portal destroyed; Second War ends
+news_event = {
+	id = second_war_news.36
+	title = second_war_news.36.t
+	desc = second_war_news.36.d
+	picture = GFX_news_event_nuke
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_dark_portal_destroyed
+	}
+
+	option = {
+		name = second_war_news.36.a
+		trigger = {
+			is_in_faction_with = LOR
+		}
+	}
+	option = {
+		name = second_war_news.36.b
+		trigger = {
+			is_in_faction_with = BRC
+		}
+	}
+	option = {
+		name = second_war_news.36.c
+		trigger = {
+			NOT = {
+				is_in_faction_with = LOR
+				is_in_faction_with = BRC
+			}
+		}
+	}
+}
+
+# 37 — Alliance Victory: Second War ends
+news_event = {
+	id = second_war_news.37
+	title = second_war_news.37.t
+	desc = second_war_news.37.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_alliance_victory_second_war
+	}
+
+	option = {
+		name = second_war_news.37.a
+		trigger = {
+			is_in_faction_with = LOR
+		}
+	}
+	option = {
+		name = second_war_news.37.b
+		trigger = {
+			is_in_faction_with = BRC
+		}
+	}
+	option = {
+		name = second_war_news.37.c
+		trigger = {
+			NOT = {
+				is_in_faction_with = LOR
+				is_in_faction_with = BRC
+			}
+		}
+	}
+}
+
+# 38 — Orc internment camps established
+news_event = {
+	id = second_war_news.38
+	title = second_war_news.38.t
+	desc = second_war_news.38.d
+	picture = GFX_news_event_alliance_flag
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = news_internment_camps
+	}
+
+	option = {
+		name = second_war_news.38.a
+		trigger = {
+			is_in_faction_with = LOR
+		}
+	}
+	option = {
+		name = second_war_news.38.b
+		trigger = {
+			original_tag = BRC
+		}
+	}
+	option = {
+		name = second_war_news.38.c
+		trigger = {
+			NOT = {
+				is_in_faction_with = LOR
+				original_tag = BRC
+			}
+		}
+	}
+}

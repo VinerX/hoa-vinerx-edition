@@ -1,0 +1,995 @@
+####################################
+# Draenor Clan Reinforcement Decisions
+# For BRC (Blackrock Clan) — Second War
+####################################
+
+BRC_draenor_reinforcements_category = {
+
+# ----------- EXPEDITIONARY FORCE DECISIONS -----------
+
+# Warsong (WSC) — Wolf Cavalry
+BRC_call_warsong_expedition = {
+
+	priority = 7
+	cost = 150
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_wsc_available = yes
+		NOT = { has_country_flag = BRC_WSC_expedition_sent }
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+	}
+
+	available = {
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+		reinforcement_wsc_available = yes
+		NOT = { has_country_flag = BRC_WSC_expedition_sent }
+		WSC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = BRC_WSC_expedition_sent
+			set_country_flag = queued_expedition_WSC
+			set_country_flag = queued_clan_WSC
+			country_event = { id = draenor_reinforcements.3 hours = 1 }
+		}
+		custom_effect_tooltip = BRC_call_warsong_expedition.tt
+	}
+
+	ai_will_do = {
+		factor = 30
+		modifier = {
+			factor = 2.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_defied = yes
+		}
+		modifier = {
+			factor = 0.5
+			portal_route_threatened = yes
+		}
+		modifier = {
+			factor = 3.0
+			has_country_flag = guldan_betrayed
+		}
+	}
+}
+
+# Shadowmoon (SMC) — Mystics/Warlocks
+BRC_call_shadowmoon_expedition = {
+
+	priority = 6
+	cost = 120
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_smc_available = yes
+		NOT = { has_country_flag = BRC_SMC_expedition_sent }
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+	}
+
+	available = {
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+		reinforcement_smc_available = yes
+		NOT = { has_country_flag = BRC_SMC_expedition_sent }
+		SMC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = BRC_SMC_expedition_sent
+			set_country_flag = queued_expedition_SMC
+			set_country_flag = queued_clan_SMC
+			country_event = { id = draenor_reinforcements.3 hours = 1 }
+		}
+		custom_effect_tooltip = BRC_call_shadowmoon_expedition.tt
+	}
+
+	ai_will_do = {
+		factor = 20
+		modifier = {
+			factor = 2.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_defied = yes
+		}
+		modifier = {
+			factor = 0.5
+			portal_route_threatened = yes
+		}
+		modifier = {
+			factor = 2.0
+			has_country_flag = guldan_betrayed
+		}
+	}
+}
+
+# Thunderlord (TLC) — Ogre Hunters + Wolf Packs
+BRC_call_thunderlord_expedition = {
+
+	priority = 5
+	cost = 110
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_tlc_available = yes
+		NOT = { has_country_flag = BRC_TLC_expedition_sent }
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+	}
+
+	available = {
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+		reinforcement_tlc_available = yes
+		NOT = { has_country_flag = BRC_TLC_expedition_sent }
+		TLC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = BRC_TLC_expedition_sent
+			set_country_flag = queued_expedition_TLC
+			set_country_flag = queued_clan_TLC
+			country_event = { id = draenor_reinforcements.3 hours = 1 }
+		}
+		custom_effect_tooltip = BRC_call_thunderlord_expedition.tt
+	}
+
+	ai_will_do = {
+		factor = 20
+		modifier = {
+			factor = 2.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_defied = yes
+		}
+		modifier = {
+			factor = 0.5
+			portal_route_threatened = yes
+		}
+		modifier = {
+			factor = 2.0
+			has_country_flag = guldan_betrayed
+		}
+	}
+}
+
+# Shattered Hand (SHC) — Gladiator Slave-Soldiers
+BRC_call_shattered_hand_expedition = {
+
+	priority = 5
+	cost = 110
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_shc_available = yes
+		NOT = { has_country_flag = BRC_SHC_expedition_sent }
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+	}
+
+	available = {
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+		reinforcement_shc_available = yes
+		NOT = { has_country_flag = BRC_SHC_expedition_sent }
+		SHC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = BRC_SHC_expedition_sent
+			set_country_flag = queued_expedition_SHC
+			set_country_flag = queued_clan_SHC
+			country_event = { id = draenor_reinforcements.3 hours = 1 }
+		}
+		custom_effect_tooltip = BRC_call_shattered_hand_expedition.tt
+	}
+
+	ai_will_do = {
+		factor = 15
+		modifier = {
+			factor = 2.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_defied = yes
+		}
+	}
+}
+
+# Laughing Skull (LSC) — Mad Berserkers
+BRC_call_laughing_skull_expedition = {
+
+	priority = 4
+	cost = 100
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_lsc_available = yes
+		NOT = { has_country_flag = BRC_LSC_expedition_sent }
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+	}
+
+	available = {
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+		reinforcement_lsc_available = yes
+		NOT = { has_country_flag = BRC_LSC_expedition_sent }
+		LSC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = BRC_LSC_expedition_sent
+			set_country_flag = queued_expedition_LSC
+			set_country_flag = queued_clan_LSC
+			country_event = { id = draenor_reinforcements.3 hours = 1 }
+		}
+		custom_effect_tooltip = BRC_call_laughing_skull_expedition.tt
+	}
+
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 2.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_defied = yes
+		}
+		modifier = {
+			factor = 2.0
+			has_country_flag = guldan_betrayed
+		}
+	}
+}
+
+# Bonechewer (BCC) — Cannibal Raiders
+BRC_call_bonechewer_expedition = {
+
+	priority = 6
+	cost = 120
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_bcc_available = yes
+		NOT = { has_country_flag = BRC_BCC_expedition_sent }
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+	}
+
+	available = {
+		OR = {
+			portal_route_secure = yes
+			portal_route_threatened = yes
+		}
+		reinforcement_bcc_available = yes
+		NOT = { has_country_flag = BRC_BCC_expedition_sent }
+		BCC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = BRC_BCC_expedition_sent
+			set_country_flag = queued_expedition_BCC
+			set_country_flag = queued_clan_BCC
+			country_event = { id = draenor_reinforcements.3 hours = 1 }
+		}
+		custom_effect_tooltip = BRC_call_bonechewer_expedition.tt
+	}
+
+	ai_will_do = {
+		factor = 25
+		modifier = {
+			factor = 2.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_defied = yes
+		}
+		modifier = {
+			factor = 0.3
+			portal_route_threatened = yes
+		}
+	}
+}
+
+# ----------- FULL CLAN INTEGRATION DECISIONS -----------
+
+# Warsong Integration
+BRC_integrate_warsong = {
+
+	priority = 7
+	cost = 250
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_wsc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_WSC }
+		NOT = { is_integration_cooldown_active = yes }
+		OR = {
+			has_country_flag = BRC_WSC_expedition_sent
+			date > 596.7.1
+		}
+	}
+
+	available = {
+		portal_route_secure = yes
+		reinforcement_wsc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_WSC }
+		NOT = { is_integration_cooldown_active = yes }
+		WSC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	days_remove = 30
+	days_re_enable = 30
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = queued_clan_WSC
+			country_event = { id = draenor_reinforcements.1 days = 1 }
+		}
+		horde_authority_spend_medium = yes
+		custom_effect_tooltip = BRC_integrate_warsong.tt
+	}
+
+	ai_will_do = {
+		factor = 25
+		modifier = {
+			factor = 3.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_low = yes
+		}
+		modifier = {
+			factor = 2.0
+			has_country_flag = guldan_betrayed
+		}
+	}
+}
+
+# Shadowmoon Integration
+BRC_integrate_shadowmoon = {
+
+	priority = 6
+	cost = 200
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_smc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_SMC }
+		NOT = { is_integration_cooldown_active = yes }
+		OR = {
+			has_country_flag = BRC_SMC_expedition_sent
+			date > 596.7.1
+		}
+	}
+
+	available = {
+		portal_route_secure = yes
+		reinforcement_smc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_SMC }
+		NOT = { is_integration_cooldown_active = yes }
+		SMC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	days_remove = 30
+	days_re_enable = 30
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = queued_clan_SMC
+			country_event = { id = draenor_reinforcements.1 days = 1 }
+		}
+		horde_authority_spend_medium = yes
+		custom_effect_tooltip = BRC_integrate_shadowmoon.tt
+	}
+
+	ai_will_do = {
+		factor = 15
+		modifier = {
+			factor = 3.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_low = yes
+		}
+	}
+}
+
+# Thunderlord Integration
+BRC_integrate_thunderlord = {
+
+	priority = 5
+	cost = 200
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_tlc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_TLC }
+		NOT = { is_integration_cooldown_active = yes }
+		OR = {
+			has_country_flag = BRC_TLC_expedition_sent
+			date > 596.7.1
+		}
+	}
+
+	available = {
+		portal_route_secure = yes
+		reinforcement_tlc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_TLC }
+		NOT = { is_integration_cooldown_active = yes }
+		TLC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	days_remove = 30
+	days_re_enable = 30
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = queued_clan_TLC
+			country_event = { id = draenor_reinforcements.1 days = 1 }
+		}
+		horde_authority_spend_medium = yes
+		custom_effect_tooltip = BRC_integrate_thunderlord.tt
+	}
+
+	ai_will_do = {
+		factor = 15
+		modifier = {
+			factor = 3.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_low = yes
+		}
+	}
+}
+
+# Shattered Hand Integration
+BRC_integrate_shattered_hand = {
+
+	priority = 5
+	cost = 200
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_shc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_SHC }
+		NOT = { is_integration_cooldown_active = yes }
+		OR = {
+			has_country_flag = BRC_SHC_expedition_sent
+			date > 596.7.1
+		}
+	}
+
+	available = {
+		portal_route_secure = yes
+		reinforcement_shc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_SHC }
+		NOT = { is_integration_cooldown_active = yes }
+		SHC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	days_remove = 30
+	days_re_enable = 30
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = queued_clan_SHC
+			country_event = { id = draenor_reinforcements.1 days = 1 }
+		}
+		horde_authority_spend_medium = yes
+		custom_effect_tooltip = BRC_integrate_shattered_hand.tt
+	}
+
+	ai_will_do = {
+		factor = 15
+		modifier = {
+			factor = 3.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_low = yes
+		}
+	}
+}
+
+# Laughing Skull Integration
+BRC_integrate_laughing_skull = {
+
+	priority = 4
+	cost = 150
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_lsc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_LSC }
+		NOT = { is_integration_cooldown_active = yes }
+		OR = {
+			has_country_flag = BRC_LSC_expedition_sent
+			date > 596.7.1
+		}
+	}
+
+	available = {
+		portal_route_secure = yes
+		reinforcement_lsc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_LSC }
+		NOT = { is_integration_cooldown_active = yes }
+		LSC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	days_remove = 30
+	days_re_enable = 30
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = queued_clan_LSC
+			country_event = { id = draenor_reinforcements.1 days = 1 }
+		}
+		horde_authority_spend_medium = yes
+		custom_effect_tooltip = BRC_integrate_laughing_skull.tt
+	}
+
+	ai_will_do = {
+		factor = 10
+		modifier = {
+			factor = 3.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_low = yes
+		}
+		modifier = {
+			factor = 2.0
+			has_country_flag = guldan_betrayed
+		}
+	}
+}
+
+# Bonechewer Integration
+BRC_integrate_bonechewer = {
+
+	priority = 6
+	cost = 200
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		can_call_draenor_reinforcements = yes
+		reinforcement_bcc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_BCC }
+		NOT = { is_integration_cooldown_active = yes }
+		OR = {
+			has_country_flag = BRC_BCC_expedition_sent
+			date > 596.7.1
+		}
+	}
+
+	available = {
+		portal_route_secure = yes
+		reinforcement_bcc_available = yes
+		NOT = { has_country_flag = draenor_clan_summoned_BCC }
+		NOT = { is_integration_cooldown_active = yes }
+		BCC = {
+			NOT = { has_war_with = BRC }
+		}
+	}
+
+	days_remove = 30
+	days_re_enable = 30
+
+	complete_effect = {
+		hidden_effect = {
+			set_country_flag = queued_clan_BCC
+			country_event = { id = draenor_reinforcements.1 days = 1 }
+		}
+		horde_authority_spend_medium = yes
+		custom_effect_tooltip = BRC_integrate_bonechewer.tt
+	}
+
+	ai_will_do = {
+		factor = 20
+		modifier = {
+			factor = 3.0
+			horde_authority_high = yes
+		}
+		modifier = {
+			factor = 0
+			horde_authority_low = yes
+		}
+	}
+}
+
+# ----------- LAND TRANSFER DECISIONS -----------
+# Temporary per-state decisions visible during BRC_clan_transfer_in_progress.
+# Each transfers one Azeroth state to the active arriving clan.
+# States: Blasted Lands (26,74) + Redridge Mountains (360,361,362) + Swamp of Sorrows (392)
+
+BRC_transfer_state_26_to_clan = {
+	priority = 12
+	cost = 0
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		26 = { is_owned_by = BRC }
+	}
+
+	complete_effect = {
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			26 = { transfer_state_to = WSC add_core_of = WSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			26 = { transfer_state_to = SMC add_core_of = SMC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			26 = { transfer_state_to = TLC add_core_of = TLC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			26 = { transfer_state_to = SHC add_core_of = SHC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			26 = { transfer_state_to = LSC add_core_of = LSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			26 = { transfer_state_to = BCC add_core_of = BCC remove_core_of = BRC }
+		}
+	}
+
+	ai_will_do = { factor = 0 }
+}
+
+BRC_transfer_state_74_to_clan = {
+	priority = 12
+	cost = 0
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		74 = { is_owned_by = BRC }
+	}
+
+	complete_effect = {
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			74 = { transfer_state_to = WSC add_core_of = WSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			74 = { transfer_state_to = SMC add_core_of = SMC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			74 = { transfer_state_to = TLC add_core_of = TLC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			74 = { transfer_state_to = SHC add_core_of = SHC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			74 = { transfer_state_to = LSC add_core_of = LSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			74 = { transfer_state_to = BCC add_core_of = BCC remove_core_of = BRC }
+		}
+	}
+
+	ai_will_do = { factor = 0 }
+}
+
+BRC_transfer_state_360_to_clan = {
+	priority = 12
+	cost = 0
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		360 = { is_owned_by = BRC }
+	}
+
+	complete_effect = {
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			360 = { transfer_state_to = WSC add_core_of = WSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			360 = { transfer_state_to = SMC add_core_of = SMC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			360 = { transfer_state_to = TLC add_core_of = TLC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			360 = { transfer_state_to = SHC add_core_of = SHC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			360 = { transfer_state_to = LSC add_core_of = LSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			360 = { transfer_state_to = BCC add_core_of = BCC remove_core_of = BRC }
+		}
+	}
+
+	ai_will_do = { factor = 0 }
+}
+
+BRC_transfer_state_361_to_clan = {
+	priority = 12
+	cost = 0
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		361 = { is_owned_by = BRC }
+	}
+
+	complete_effect = {
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			361 = { transfer_state_to = WSC add_core_of = WSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			361 = { transfer_state_to = SMC add_core_of = SMC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			361 = { transfer_state_to = TLC add_core_of = TLC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			361 = { transfer_state_to = SHC add_core_of = SHC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			361 = { transfer_state_to = LSC add_core_of = LSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			361 = { transfer_state_to = BCC add_core_of = BCC remove_core_of = BRC }
+		}
+	}
+
+	ai_will_do = { factor = 0 }
+}
+
+BRC_transfer_state_362_to_clan = {
+	priority = 12
+	cost = 0
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		362 = { is_owned_by = BRC }
+	}
+
+	complete_effect = {
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			362 = { transfer_state_to = WSC add_core_of = WSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			362 = { transfer_state_to = SMC add_core_of = SMC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			362 = { transfer_state_to = TLC add_core_of = TLC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			362 = { transfer_state_to = SHC add_core_of = SHC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			362 = { transfer_state_to = LSC add_core_of = LSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			362 = { transfer_state_to = BCC add_core_of = BCC remove_core_of = BRC }
+		}
+	}
+
+	ai_will_do = { factor = 0 }
+}
+
+BRC_transfer_state_392_to_clan = {
+	priority = 12
+	cost = 0
+	fire_only_once = yes
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		392 = { is_owned_by = BRC }
+	}
+
+	complete_effect = {
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			392 = { transfer_state_to = WSC add_core_of = WSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			392 = { transfer_state_to = SMC add_core_of = SMC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			392 = { transfer_state_to = TLC add_core_of = TLC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			392 = { transfer_state_to = SHC add_core_of = SHC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			392 = { transfer_state_to = LSC add_core_of = LSC remove_core_of = BRC }
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			392 = { transfer_state_to = BCC add_core_of = BCC remove_core_of = BRC }
+		}
+	}
+
+	ai_will_do = { factor = 0 }
+}
+
+# ----------- FINISH LAND TRANSFER -----------
+
+BRC_finish_land_transfer = {
+
+	priority = 20
+	cost = 0
+
+	allowed = { original_tag = BRC }
+	visible = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	available = {
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+
+	days_remove = 1
+
+	complete_effect = {
+		country_event = { id = draenor_reinforcements.60 days = 1 }
+	}
+
+	ai_will_do = {
+		factor = 0
+	}
+}
+}

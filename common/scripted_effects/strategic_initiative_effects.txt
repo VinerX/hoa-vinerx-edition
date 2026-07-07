@@ -1,0 +1,533 @@
+# ============================================================
+# Strategic Initiative — shared war-state mechanic (-7..+7)
+#
+# LOR holds the master variable "strategic_initiative_score".
+# Negative = Horde advantage, Positive = Alliance advantage.
+#
+# Tiers: -7..-6 Decisive Horde | -5..-4 Horde Initiative
+#        -3..-2 Horde Advantage | -1..1 Contested
+#         2..3 Alliance Advantage | 4..5 Alliance Initiative
+#         6..7 Decisive Alliance
+# ============================================================
+
+# ------------------------------------------------------------
+# Initialize — called once at game start
+# ------------------------------------------------------------
+si_init = {
+	LOR = {
+		set_variable = { strategic_initiative_score = 0 }
+		set_variable = { si_sea_of_blood = 0 }
+		set_variable = { si_khaz_modan = 0 }
+		set_variable = { si_northern_war = 0 }
+		set_variable = { si_central_front = 0 }
+		set_variable = { si_window_days = 0 }
+		set_variable = { si_window_tier = -1 }
+	}
+	si_recalc_full = yes
+}
+
+# ------------------------------------------------------------
+# Full recalculation — monthly pulse
+# ------------------------------------------------------------
+si_recalc_full = {
+	si_recalc_theaters = yes
+	si_recalc_overall = yes
+}
+
+# ------------------------------------------------------------
+# Recalculate theater contributions from game state
+# ------------------------------------------------------------
+si_recalc_theaters = {
+	# --- Sea of Blood ---
+	si_calc_sea_of_blood = yes
+
+	# --- Khaz Modan ---
+	si_calc_khaz_modan = yes
+
+	# --- Northern War ---
+	si_calc_northern_war = yes
+
+	# --- Central Front ---
+	si_calc_central_front = yes
+}
+
+# ------------------------------------------------------------
+# Sea of Blood — diff between horde and alliance islands
+# ------------------------------------------------------------
+si_calc_sea_of_blood = {
+	LOR = {
+		set_variable = { si_sea_of_blood = 0 }
+		set_variable = { si_calc_sob_horde = 0 }
+		set_variable = { si_calc_sob_ally = 0 }
+		13 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		6 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		7 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		8 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		9 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		323 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		2093 = {
+			if = { limit = { is_island_controlled_by_horde = yes } PREV = { add_to_variable = { si_calc_sob_horde = 1 } } }
+			if = { limit = { is_island_controlled_by_alliance = yes } PREV = { add_to_variable = { si_calc_sob_ally = 1 } } }
+		}
+		# Convert to theater contribution
+		if = {
+			limit = { check_variable = { si_calc_sob_horde > 4 } }
+			set_variable = { si_sea_of_blood = -2 }
+		}
+		else_if = {
+			limit = { check_variable = { si_calc_sob_horde > 2 } }
+			set_variable = { si_sea_of_blood = -1 }
+		}
+		else_if = {
+			limit = { check_variable = { si_calc_sob_ally > 4 } }
+			set_variable = { si_sea_of_blood = 2 }
+		}
+		else_if = {
+			limit = { check_variable = { si_calc_sob_ally > 2 } }
+			set_variable = { si_sea_of_blood = 1 }
+		}
+		else = {
+			set_variable = { si_sea_of_blood = 0 }
+		}
+	}
+}
+
+# ------------------------------------------------------------
+# Khaz Modan — siege states for Ironforge and Gnomeregan
+# ------------------------------------------------------------
+si_calc_khaz_modan = {
+	LOR = {
+		set_variable = { si_khaz_modan = 0 }
+		# Check IRO siege state
+		if = {
+			limit = {
+				IRO = { exists = yes }
+				OR = {
+					IRO = { iro_at_war_with_horde = yes }
+					IRO = { has_war = no }
+				}
+			}
+			IRO = {
+				if = {
+					limit = { check_variable = { ironforge_siege_state > 2 } }
+					PREV = { add_to_variable = { si_khaz_modan = -2 } }
+				}
+				else_if = {
+					limit = { check_variable = { ironforge_siege_state > 0 } }
+					PREV = { add_to_variable = { si_khaz_modan = -1 } }
+				}
+			}
+		}
+		# Check GNO siege state — only adds if worse than IRO
+		if = {
+			limit = {
+				GNO = { exists = yes }
+				OR = {
+					GNO = { gno_at_war_with_horde = yes }
+					GNO = { has_war = no }
+				}
+			}
+			GNO = {
+				if = {
+					limit = { check_variable = { gnomeregan_siege_state > 2 } }
+					PREV = { add_to_variable = { si_khaz_modan = -1 } }
+				}
+			}
+		}
+		# Relief bonus: Alliance retook Loch Modan
+		if = {
+			limit = {
+				OR = {
+					IRO = { khaz_modan_relief_condition = yes }
+				}
+			}
+			add_to_variable = { si_khaz_modan = 1 }
+		}
+		# Clamp
+		if = { limit = { check_variable = { si_khaz_modan < -2 } } set_variable = { si_khaz_modan = -2 } }
+		if = { limit = { check_variable = { si_khaz_modan > 2 } } set_variable = { si_khaz_modan = 2 } }
+	}
+}
+
+# ------------------------------------------------------------
+# Northern War — AMA vs QUE zone control
+# ------------------------------------------------------------
+si_calc_northern_war = {
+	LOR = {
+		set_variable = { si_northern_war = 0 }
+	}
+	if = {
+		limit = {
+			QUE = { exists = yes }
+			AMA = { exists = yes }
+			QUE = { has_war_with = AMA }
+		}
+		# Barrier active: hold the line
+		if = {
+			limit = { QUE = { nw_barrier_active = yes } }
+			LOR = { set_variable = { si_northern_war = 0 } }
+		}
+		# AMA at the gates of Silvermoon
+		else_if = {
+			limit = { AMA = { nw_controls_zone_approaches = yes } }
+			LOR = { set_variable = { si_northern_war = -2 } }
+		}
+		# AMA controls multiple zones
+		else_if = {
+			limit = { AMA = { nw_controls_zone_runestone = yes nw_controls_zone_farstrider = yes } }
+			LOR = { set_variable = { si_northern_war = -1 } }
+		}
+		else_if = {
+			limit = { AMA = { nw_controls_zone_runestone = yes } }
+			LOR = { set_variable = { si_northern_war = -1 } }
+		}
+		# AMA controls southern zone only
+		else_if = {
+			limit = { AMA = { nw_controls_zone_southern = yes } }
+			LOR = { set_variable = { si_northern_war = 0 } }
+		}
+		# QUE controls farstrider (pushing back)
+		else_if = {
+			limit = { QUE = { nw_controls_zone_farstrider = yes } }
+			LOR = { set_variable = { si_northern_war = 1 } }
+		}
+		else = {
+			LOR = { set_variable = { si_northern_war = 0 } }
+		}
+	}
+}
+
+# ------------------------------------------------------------
+# Central Front — key territory control + betrayal flags
+# ------------------------------------------------------------
+si_calc_central_front = {
+	LOR = {
+		set_variable = { si_central_front = 0 }
+		# Stormwind Keep (22) — Horde control
+		if = {
+			limit = {
+				22 = {
+					NOT = { is_controlled_by = LOR }
+					NOT = { is_controlled_by = STO }
+				}
+			}
+			add_to_variable = { si_central_front = -1 }
+		}
+		# Stromgarde (28) — Horde control
+		if = {
+			limit = {
+				28 = {
+					NOT = { is_controlled_by = LOR }
+					NOT = { is_controlled_by = STR }
+				}
+			}
+			add_to_variable = { si_central_front = -1 }
+		}
+		# Alterac betrayal
+		if = {
+			limit = { has_global_flag = ALT_betrayed_alliance }
+			add_to_variable = { si_central_front = -1 }
+		}
+		# Alliance retook Stormwind
+		if = {
+			limit = {
+				OR = {
+					22 = { is_controlled_by = LOR }
+					22 = { is_controlled_by = STO }
+				}
+			}
+			add_to_variable = { si_central_front = 2 }
+		}
+		# Alliance holds Arathi + Hinterlands
+		if = {
+			limit = {
+				28 = {
+					OR = {
+						is_controlled_by = LOR
+						is_controlled_by = STR
+					}
+				}
+				32 = {
+					OR = {
+						is_controlled_by = LOR
+						is_controlled_by = STR
+					}
+				}
+			}
+			add_to_variable = { si_central_front = 1 }
+		}
+		# Clamp
+		if = { limit = { check_variable = { si_central_front < -2 } } set_variable = { si_central_front = -2 } }
+		if = { limit = { check_variable = { si_central_front > 2 } } set_variable = { si_central_front = 2 } }
+	}
+}
+
+# ------------------------------------------------------------
+# Recalculate overall score — theaters + milestones + clamp
+# ------------------------------------------------------------
+si_recalc_overall = {
+	LOR = {
+		set_variable = { strategic_initiative_score = 0 }
+
+		# Theater contributions
+		if = { limit = { has_variable = si_sea_of_blood } add_to_variable = { strategic_initiative_score = si_sea_of_blood } }
+		if = { limit = { has_variable = si_khaz_modan } add_to_variable = { strategic_initiative_score = si_khaz_modan } }
+		if = { limit = { has_variable = si_northern_war } add_to_variable = { strategic_initiative_score = si_northern_war } }
+		if = { limit = { has_variable = si_central_front } add_to_variable = { strategic_initiative_score = si_central_front } }
+
+		# Milestone flags
+		if = { limit = { has_global_flag = si_fall_of_stormwind_milestone } add_to_variable = { strategic_initiative_score = -2 } }
+		if = { limit = { has_global_flag = si_alterac_betrayal_milestone } add_to_variable = { strategic_initiative_score = -1 } }
+		if = { limit = { has_global_flag = si_guldan_betrayal_milestone } add_to_variable = { strategic_initiative_score = 2 } }
+		if = { limit = { has_global_flag = si_turalyon_rally_milestone } add_to_variable = { strategic_initiative_score = 1 } }
+		if = { limit = { has_global_flag = si_horde_splinters_milestone } add_to_variable = { strategic_initiative_score = 1 } }
+		if = { limit = { has_global_flag = si_lothar_death_milestone } add_to_variable = { strategic_initiative_score = -1 } }
+
+		# Clamp
+		if = { limit = { check_variable = { strategic_initiative_score < -7 } } set_variable = { strategic_initiative_score = -7 } }
+		if = { limit = { check_variable = { strategic_initiative_score > 7 } } set_variable = { strategic_initiative_score = 7 } }
+	}
+	# Detect tier change and manage window
+	si_detect_tier_change = yes
+	# Sync spirits to both factions
+	si_sync_both_factions = yes
+}
+
+# ------------------------------------------------------------
+# Detect tier change and manage window of opportunity
+# ------------------------------------------------------------
+si_detect_tier_change = {
+	LOR = {
+		if = {
+			limit = { check_variable = { strategic_initiative_score < -5 } }
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 0 } } }
+				set_variable = { si_window_tier = 0 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < -3 } }
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 1 } } }
+				set_variable = { si_window_tier = 1 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < -1 } }
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 2 } } }
+				set_variable = { si_window_tier = 2 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < 2 } }
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 3 } } }
+				set_variable = { si_window_tier = 3 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < 4 } }
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 4 } } }
+				set_variable = { si_window_tier = 4 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < 6 } }
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 5 } } }
+				set_variable = { si_window_tier = 5 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+		else = {
+			if = {
+				limit = { NOT = { check_variable = { si_window_tier = 6 } } }
+				set_variable = { si_window_tier = 6 }
+				set_variable = { si_window_days = 120 }
+			}
+		}
+	}
+}
+
+# ------------------------------------------------------------
+# Tick window timer down each month
+# ------------------------------------------------------------
+si_tick_window = {
+	LOR = {
+		if = {
+			limit = { check_variable = { si_window_days > 0 } }
+			subtract_from_variable = { si_window_days = 30 }
+			if = {
+				limit = { check_variable = { si_window_days < 0 } }
+				set_variable = { si_window_days = 0 }
+			}
+		}
+	}
+}
+
+# ------------------------------------------------------------
+# Milestone effects — call from existing events
+# ------------------------------------------------------------
+si_milestone_fall_of_stormwind = {
+	set_global_flag = si_fall_of_stormwind_milestone
+	si_recalc_overall = yes
+}
+si_milestone_alterac_betrayal = {
+	set_global_flag = si_alterac_betrayal_milestone
+	si_recalc_overall = yes
+}
+si_milestone_guldan_betrayal = {
+	set_global_flag = si_guldan_betrayal_milestone
+	si_recalc_overall = yes
+}
+si_milestone_turalyon_rally = {
+	set_global_flag = si_turalyon_rally_milestone
+	si_recalc_overall = yes
+}
+si_milestone_horde_splinters = {
+	set_global_flag = si_horde_splinters_milestone
+	si_recalc_overall = yes
+}
+si_milestone_lothar_death = {
+	set_global_flag = si_lothar_death_milestone
+	si_recalc_overall = yes
+}
+
+# ------------------------------------------------------------
+# Sync initiative spirits to both factions
+# ------------------------------------------------------------
+si_sync_both_factions = {
+	LOR = {
+		si_remove_all_spirits = yes
+		si_apply_spirit = yes
+		every_country = {
+			limit = { is_in_faction_with = PREV }
+			si_remove_all_spirits = yes
+			si_apply_spirit = yes
+		}
+	}
+	BRC = {
+		si_remove_all_spirits = yes
+		si_apply_spirit = yes
+		every_country = {
+			limit = { AND = { is_in_faction_with = PREV is_fighting_second_war_horde = yes } }
+			si_remove_all_spirits = yes
+			si_apply_spirit = yes
+		}
+	}
+}
+
+# ------------------------------------------------------------
+# Remove all strategic initiative spirits from ROOT
+# ------------------------------------------------------------
+si_remove_all_spirits = {
+	if = { limit = { has_idea = si_spirit_ally_decisive }		remove_ideas = si_spirit_ally_decisive }
+	if = { limit = { has_idea = si_spirit_ally_initiative }	remove_ideas = si_spirit_ally_initiative }
+	if = { limit = { has_idea = si_spirit_ally_advantage }		remove_ideas = si_spirit_ally_advantage }
+	if = { limit = { has_idea = si_spirit_contested }			remove_ideas = si_spirit_contested }
+	if = { limit = { has_idea = si_spirit_horde_advantage }		remove_ideas = si_spirit_horde_advantage }
+	if = { limit = { has_idea = si_spirit_horde_initiative }	remove_ideas = si_spirit_horde_initiative }
+	if = { limit = { has_idea = si_spirit_horde_decisive }		remove_ideas = si_spirit_horde_decisive }
+}
+
+# ------------------------------------------------------------
+# Apply the correct initiative spirit based on tier and faction
+# ------------------------------------------------------------
+si_apply_spirit = {
+	LOR = {
+		if = {
+			limit = { check_variable = { strategic_initiative_score < -5 } }
+			if = {
+				limit = { PREV = { is_in_faction_with = LOR } }
+				PREV = { add_ideas = si_spirit_horde_decisive }
+			}
+			if = {
+				limit = { PREV = { is_in_faction_with = BRC } }
+				PREV = { add_ideas = si_spirit_horde_decisive }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < -3 } }
+			if = {
+				limit = { PREV = { is_in_faction_with = LOR } }
+				PREV = { add_ideas = si_spirit_horde_initiative }
+			}
+			if = {
+				limit = { PREV = { is_in_faction_with = BRC } }
+				PREV = { add_ideas = si_spirit_horde_initiative }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < -1 } }
+			if = {
+				limit = { PREV = { is_in_faction_with = LOR } }
+				PREV = { add_ideas = si_spirit_horde_advantage }
+			}
+			if = {
+				limit = { PREV = { is_in_faction_with = BRC } }
+				PREV = { add_ideas = si_spirit_horde_advantage }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < 2 } }
+			PREV = { add_ideas = si_spirit_contested }
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < 4 } }
+			if = {
+				limit = { PREV = { is_in_faction_with = LOR } }
+				PREV = { add_ideas = si_spirit_ally_advantage }
+			}
+			if = {
+				limit = { PREV = { is_in_faction_with = BRC } }
+				PREV = { add_ideas = si_spirit_ally_advantage }
+			}
+		}
+		else_if = {
+			limit = { check_variable = { strategic_initiative_score < 6 } }
+			if = {
+				limit = { PREV = { is_in_faction_with = LOR } }
+				PREV = { add_ideas = si_spirit_ally_initiative }
+			}
+			if = {
+				limit = { PREV = { is_in_faction_with = BRC } }
+				PREV = { add_ideas = si_spirit_ally_initiative }
+			}
+		}
+		else = {
+			if = {
+				limit = { PREV = { is_in_faction_with = LOR } }
+				PREV = { add_ideas = si_spirit_ally_decisive }
+			}
+			if = {
+				limit = { PREV = { is_in_faction_with = BRC } }
+				PREV = { add_ideas = si_spirit_ally_decisive }
+			}
+		}
+	}
+}

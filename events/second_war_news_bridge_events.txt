@@ -1,0 +1,126 @@
+###########################
+# Second War News Bridge Events
+# namespace: second_war_news_bridge
+# Fires global news events for story beats that need conditional triggers
+###########################
+
+add_namespace = second_war_news_bridge
+
+# --- Eversong Woods burn ---
+# Fires when QUE is at war with BRC and has lost 2+ Eversong states
+country_event = {
+	id = second_war_news_bridge.1
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		tag = QUE
+		has_war_with = BRC
+		NOT = { controls_state = 175 }
+		NOT = { has_global_flag = news_eversong_burns }
+		OR = {
+			NOT = { controls_state = 179 }
+			NOT = { controls_state = 330 }
+		}
+	}
+
+	mean_time_to_happen = { days = 7 }
+
+	immediate = { log = "[GetDateText]: Eversong Woods burn — news trigger" }
+
+	option = {
+		name = second_war_news_bridge.1.option.1
+		news_event = { id = second_war_news.18 hours = 6 }
+	}
+}
+
+# --- Sunwell Shield raised ---
+# Fires when Silvermoon (state 17) is threatened but QUE holds it
+country_event = {
+	id = second_war_news_bridge.2
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		tag = QUE
+		has_war_with = BRC
+		controls_state = 17
+		NOT = { has_global_flag = news_sunwell_shield }
+		BRC = {
+			controls_state = 175
+		}
+		OR = {
+			BRC = { controls_state = 179 }
+			BRC = { controls_state = 194 }
+			BRC = { controls_state = 330 }
+		}
+	}
+
+	mean_time_to_happen = { days = 14 }
+
+	immediate = { log = "[GetDateText]: Sunwell Shield raised — news trigger" }
+
+	option = {
+		name = second_war_news_bridge.2.option.1
+		news_event = { id = second_war_news.19 hours = 6 }
+	}
+}
+
+# --- Death of Anduin Lothar + Battle of Blackrock Mountain ---
+# Fires when Alliance takes Blackrock Stronghold (state 561) while at war with BRC
+country_event = {
+	id = second_war_news_bridge.3
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		any_other_country = {
+			is_in_faction_with = LOR
+			controls_state = 561
+			has_war_with = BRC
+		}
+		561 = { is_owned_by = BRC }
+		NOT = { has_global_flag = news_lothar_falls }
+	}
+
+	mean_time_to_happen = { days = 3 }
+
+	immediate = { log = "[GetDateText]: Lothar falls — news trigger" }
+
+	option = {
+		name = second_war_news_bridge.3.option.1
+		news_event = { id = second_war_news.34 hours = 6 }
+		news_event = { id = second_war_news.35 hours = 12 }
+	}
+}
+
+# --- Alliance Victory trigger ---
+# Auto-detects BRC defeat during Second War timeframe
+country_event = {
+	id = second_war_news_bridge.6
+	hidden = yes
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = BRC
+		OR = {
+			has_capitulated = yes
+			NOT = { exists = yes }
+		}
+		has_start_date > 591.12.31
+		has_start_date < 610.01.01
+		NOT = { has_global_flag = news_alliance_victory_second_war }
+		LOR = { exists = yes }
+	}
+
+	mean_time_to_happen = { days = 14 }
+
+	immediate = { log = "[GetDateText]: BRC defeated — Alliance victory news chain" }
+
+	option = {
+		name = second_war_news_bridge.6.option.1
+		news_event = { id = second_war_news.37 hours = 6 }
+		news_event = { id = second_war_news.36 hours = 18 }
+		news_event = { id = second_war_news.38 hours = 48 }
+	}
+}

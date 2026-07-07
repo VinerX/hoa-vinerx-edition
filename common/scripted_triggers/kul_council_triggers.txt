@@ -1,0 +1,68 @@
+# ============================================================
+# Kul Tiras — Council of the Great Houses scripted triggers
+# ============================================================
+
+# Proudmoore is established
+kul_house_proudmoore_established = {
+	check_variable = { kul_house_proudmoore > 0 }
+}
+
+# Proudmoore is influential
+kul_house_proudmoore_influential = {
+	check_variable = { kul_house_proudmoore > 1 }
+}
+
+# Proudmoore is dominant
+kul_house_proudmoore_dominant = {
+	check_variable = { kul_house_proudmoore > 2 }
+}
+
+# Waycrest
+kul_house_waycrest_established = {
+	check_variable = { kul_house_waycrest > 0 }
+}
+kul_house_waycrest_influential = {
+	check_variable = { kul_house_waycrest > 1 }
+}
+kul_house_waycrest_dominant = {
+	check_variable = { kul_house_waycrest > 2 }
+}
+
+# Ashvane
+kul_house_ashvane_established = {
+	check_variable = { kul_house_ashvane > 0 }
+}
+kul_house_ashvane_influential = {
+	check_variable = { kul_house_ashvane > 1 }
+}
+kul_house_ashvane_dominant = {
+	check_variable = { kul_house_ashvane > 2 }
+}
+
+# Stormsong
+kul_house_stormsong_established = {
+	check_variable = { kul_house_stormsong > 0 }
+}
+kul_house_stormsong_influential = {
+	check_variable = { kul_house_stormsong > 1 }
+}
+kul_house_stormsong_dominant = {
+	check_variable = { kul_house_stormsong > 2 }
+}
+
+# Any house is dominant
+kul_any_house_dominant = {
+	OR = {
+		check_variable = { kul_house_proudmoore > 2 }
+		check_variable = { kul_house_waycrest > 2 }
+		check_variable = { kul_house_ashvane > 2 }
+		check_variable = { kul_house_stormsong > 2 }
+	}
+}
+
+# Council is active
+kul_council_is_active = {
+	original_tag = KUL
+	has_completed_focus = KUL_sw_council_of_four_houses
+	is_in_faction_with = LOR
+}

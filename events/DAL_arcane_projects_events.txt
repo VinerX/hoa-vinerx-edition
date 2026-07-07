@@ -1,0 +1,663 @@
+################################################################################
+# The Arcane Projects of the Kirin Tor — events
+# Namespace: arcane_projects
+################################################################################
+
+add_namespace = arcane_projects
+
+# ============================================================
+# Emergency Teleportation Results
+# ============================================================
+
+# QUE — Arcane support arrives at Quel'Thalas
+country_event = {
+	id = arcane_projects.1
+	title = arcane_projects.1.t
+	desc = arcane_projects.1.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.1" }
+
+	option = {
+		name = arcane_projects.1.option.1
+		add_war_support = 0.03
+		add_timed_idea = { idea = DAL_sw_arcane_support_received days = 60 }
+	}
+}
+
+# IRO — Dalaran sends magical reinforcements to Khaz Modan
+country_event = {
+	id = arcane_projects.2
+	title = arcane_projects.2.t
+	desc = arcane_projects.2.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.2" }
+
+	option = {
+		name = arcane_projects.2.option.1
+		add_timed_idea = { idea = DAL_sw_arcane_support_received days = 60 }
+		add_war_support = 0.03
+	}
+}
+
+# ============================================================
+# Shield Allied Strongholds
+# ============================================================
+
+# DAL — Project launched, notify faction members
+country_event = {
+	id = arcane_projects.3
+	title = arcane_projects.3.t
+	desc = arcane_projects.3.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.3" }
+
+	option = {
+		name = arcane_projects.3.option.1
+		every_allied_country = {
+			limit = { has_war_with = BRC }
+			add_timed_idea = { idea = DAL_sw_arcane_support_received days = 90 }
+		}
+	}
+}
+
+# DAL — Project completion, alliance unity bonus
+country_event = {
+	id = arcane_projects.4
+	title = arcane_projects.4.t
+	desc = arcane_projects.4.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.4" }
+
+	option = {
+		name = arcane_projects.4.option.1
+		add_political_power = 15
+		if = {
+			limit = {
+				is_in_faction_with = LOR
+				LOR = { alliance_unity_high = yes }
+			}
+			LOR = { alliance_unity_raise = yes }
+		}
+	}
+}
+
+# ============================================================
+# Arcane Warning Network — Krasus bonus
+# ============================================================
+
+# DAL — Krasus provides additional insight
+country_event = {
+	id = arcane_projects.5
+	title = arcane_projects.5.t
+	desc = arcane_projects.5.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.5" }
+
+	option = {
+		name = arcane_projects.5.option.1
+		add_political_power = 25
+		BRC = { add_intel = { civilian_intel = 5 army_intel = 5 } }
+		if = {
+			limit = { dap_dragon_escalation = yes }
+			DMC = { add_intel = { civilian_intel = 5 } }
+		}
+	}
+}
+
+# ============================================================
+# Locate Hidden Warlock Activity
+# ============================================================
+
+# DAL — Investigation launched
+country_event = {
+	id = arcane_projects.6
+	title = arcane_projects.6.t
+	desc = arcane_projects.6.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.6" }
+
+	option = {
+		name = arcane_projects.6.option.1
+		SRC = { add_intel = { civilian_intel = 5 } }
+	}
+}
+
+# DAL — Warlock investigation results
+country_event = {
+	id = arcane_projects.7
+	title = arcane_projects.7.t
+	desc = arcane_projects.7.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.7" }
+
+	option = {
+		name = arcane_projects.7.option.1
+		add_political_power = 20
+		SRC = { add_intel = { army_intel = 10 } }
+		if = {
+			limit = { dap_faction_modera = yes }
+			add_political_power = 15
+		}
+	}
+}
+
+# ============================================================
+# Watch the Great Sea — dragon alert
+# ============================================================
+
+# DAL — Dragon movements detected
+country_event = {
+	id = arcane_projects.8
+	title = arcane_projects.8.t
+	desc = arcane_projects.8.d
+	picture = GFX_news_event_alexstrasza
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.8" }
+
+	option = {
+		name = arcane_projects.8.option.1
+		add_political_power = 20
+		DMC = { add_intel = { civilian_intel = 5 army_intel = 5 } }
+		if = {
+			limit = { dap_faction_krasus = yes }
+			DMC = { add_intel = { army_intel = 5 } }
+		}
+	}
+}
+
+# ============================================================
+# Dragon Research Chain
+# ============================================================
+
+# DAL — Dragon attack study complete
+country_event = {
+	id = arcane_projects.9
+	title = arcane_projects.9.t
+	desc = arcane_projects.9.d
+	picture = GFX_news_event_alexstrasza
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.9" }
+
+	option = {
+		name = arcane_projects.9.option.1
+		add_political_power = 25
+		add_war_support = 0.02
+		if = {
+			limit = { dap_faction_krasus = yes }
+			add_political_power = 20
+			DMC = { add_intel = { civilian_intel = 10 } }
+		}
+	}
+}
+
+# DAL — Binding magic analysis complete
+country_event = {
+	id = arcane_projects.10
+	title = arcane_projects.10.t
+	desc = arcane_projects.10.d
+	picture = GFX_news_event_alexstrasza
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.10" }
+
+	option = {
+		name = arcane_projects.10.option.1
+		add_political_power = 30
+		set_country_flag = DAL_ap_binding_analysis_complete
+		DMC = { add_intel = { civilian_intel = 10 army_intel = 10 } }
+		if = {
+			limit = { dap_faction_krasus = yes }
+			country_event = { id = arcane_projects.20 days = 1 }
+		}
+	}
+}
+
+# DAL — Source traced to Grim Batol
+country_event = {
+	id = arcane_projects.11
+	title = arcane_projects.11.t
+	desc = arcane_projects.11.d
+	picture = GFX_news_event_alexstrasza
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.11" }
+
+	option = {
+		name = arcane_projects.11.option.1
+		add_political_power = 40
+		add_war_support = 0.05
+		set_country_flag = DAL_ap_grim_batol_revealed
+		DMC = { add_intel = { civilian_intel = 15 army_intel = 10 } }
+		if = {
+			limit = { dap_faction_krasus = yes }
+			country_event = { id = arcane_projects.21 days = 1 }
+		}
+	}
+}
+
+# ============================================================
+# Forbidden Research Consequences
+# ============================================================
+
+# DAL — Necromancy study causes council debate
+country_event = {
+	id = arcane_projects.12
+	title = arcane_projects.12.t
+	desc = arcane_projects.12.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.12" }
+
+	option = {
+		name = arcane_projects.12.option.1
+		add_stability = -0.02
+		add_political_power = 15
+	}
+
+	option = {
+		name = arcane_projects.12.option.2
+		trigger = { dap_faction_kelthuzad = yes }
+		add_stability = -0.03
+		add_political_power = 35
+		add_war_support = 0.03
+	}
+}
+
+# DAL — Fel artifact controversy
+country_event = {
+	id = arcane_projects.13
+	title = arcane_projects.13.t
+	desc = arcane_projects.13.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.13" }
+
+	option = {
+		name = arcane_projects.13.option.1
+		add_stability = -0.02
+		add_political_power = 10
+	}
+
+	option = {
+		name = arcane_projects.13.option.2
+		trigger = { dap_faction_antonidas = yes }
+		add_stability = 0.02
+		add_political_power = 15
+		LOR = { add_opinion_modifier = { target = DAL modifier = DAL_arcane_support_modifier } }
+	}
+}
+
+# DAL — Soul research crisis
+country_event = {
+	id = arcane_projects.14
+	title = arcane_projects.14.t
+	desc = arcane_projects.14.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.14" }
+
+	option = {
+		name = arcane_projects.14.option.1
+		add_stability = -0.05
+		add_political_power = 15
+		dap_add_strain = yes
+	}
+
+	option = {
+		name = arcane_projects.14.option.2
+		trigger = { dap_faction_kelthuzad = yes }
+		add_stability = -0.08
+		add_political_power = 50
+		add_war_support = 0.05
+	}
+}
+
+# ============================================================
+# Council Events — periodic debates during projects
+# ============================================================
+
+# Krasus reveals additional dragonflight intelligence
+country_event = {
+	id = arcane_projects.20
+	title = arcane_projects.20.t
+	desc = arcane_projects.20.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.20" }
+
+	option = {
+		name = arcane_projects.20.option.1
+		add_political_power = 30
+		add_war_support = 0.03
+		DMC = {
+			add_intel = { army_intel = 10 }
+		}
+	}
+}
+
+# Krasus's personal knowledge of Grim Batol / Dragonmaw
+country_event = {
+	id = arcane_projects.21
+	title = arcane_projects.21.t
+	desc = arcane_projects.21.d
+	picture = GFX_news_event_alexstrasza
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.21" }
+
+	option = {
+		name = arcane_projects.21.option.1
+		add_political_power = 35
+		add_war_support = 0.05
+		set_country_flag = DAL_ap_krasus_dragon_reveal
+		RDF = { add_opinion_modifier = { target = DAL modifier = DAL_arcane_support_modifier } }
+	}
+}
+
+# Council debates military demands
+country_event = {
+	id = arcane_projects.22
+	title = arcane_projects.22.t
+	desc = arcane_projects.22.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.22" }
+
+	option = {
+		name = arcane_projects.22.option.1
+		add_political_power = 25
+		add_war_support = 0.03
+		dap_add_strain = yes
+	}
+
+	option = {
+		name = arcane_projects.22.option.2
+		add_political_power = 10
+		add_stability = 0.02
+	}
+}
+
+# Council debates dangerous research — triggered from monthly pulse
+country_event = {
+	id = arcane_projects.23
+	title = arcane_projects.23.t
+	desc = arcane_projects.23.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.23" }
+
+	option = {
+		name = arcane_projects.23.option.1
+		trigger = { dap_faction_antonidas = yes }
+		add_stability = 0.03
+		add_political_power = 20
+		dap_reduce_strain = yes
+	}
+
+	option = {
+		name = arcane_projects.23.option.2
+		add_stability = -0.01
+		add_political_power = 15
+	}
+
+	option = {
+		name = arcane_projects.23.option.3
+		trigger = { dap_faction_kelthuzad = yes }
+		add_stability = -0.03
+		add_political_power = 35
+		add_war_support = 0.03
+	}
+}
+
+# Quel'Thalas requests magical support
+country_event = {
+	id = arcane_projects.24
+	title = arcane_projects.24.t
+	desc = arcane_projects.24.d
+	picture = GFX_dalaran_event
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.24" }
+
+	option = {
+		name = arcane_projects.24.option.1
+		add_political_power = -15
+		QUE = {
+			add_timed_idea = { idea = DAL_sw_arcane_support_received days = 90 }
+			add_opinion_modifier = { target = DAL modifier = DAL_arcane_support_modifier }
+		}
+	}
+
+	option = {
+		name = arcane_projects.24.option.2
+		add_political_power = 10
+		add_stability = -0.01
+		QUE = { add_opinion_modifier = { target = DAL modifier = DAL_arcane_disappointed } }
+	}
+}
+
+# Strain critical alert — dangerous instability
+country_event = {
+	id = arcane_projects.25
+	title = arcane_projects.25.t
+	desc = arcane_projects.25.d
+	picture = generic_crisis
+
+	trigger = {
+		tag = DAL
+		dap_strain_critical_trigger = yes
+		NOT = { has_country_flag = DAL_ap_critical_alert_sent }
+	}
+	mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.25" }
+
+	option = {
+		name = arcane_projects.25.option.1
+		add_stability = -0.03
+		set_country_flag = DAL_ap_critical_alert_sent
+		dap_add_strain = yes
+	}
+}
+
+# Modera demands battlefield application of research
+country_event = {
+	id = arcane_projects.26
+	title = arcane_projects.26.t
+	desc = arcane_projects.26.d
+	picture = GFX_dalaran_event
+
+	trigger = {
+		tag = DAL
+		dap_faction_modera = yes
+		dap_war_with_horde = yes
+		check_variable = { DAL_active_projects > 0 }
+		NOT = { has_country_flag = DAL_ap_modera_demand_done }
+	}
+	mean_time_to_happen = { days = 120 }
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.26" }
+
+	option = {
+		name = arcane_projects.26.option.1
+		add_political_power = 25
+		add_war_support = 0.03
+		set_country_flag = DAL_ap_modera_demand_done
+	}
+
+	option = {
+		name = arcane_projects.26.option.2
+		add_stability = -0.02
+		add_political_power = 10
+		set_country_flag = DAL_ap_modera_demand_done
+	}
+}
+
+# Kel'Thuzad argues conventional restrictions are obsolete
+country_event = {
+	id = arcane_projects.27
+	title = arcane_projects.27.t
+	desc = arcane_projects.27.d
+	picture = GFX_report_event_german_parade_paris
+
+	trigger = {
+		tag = DAL
+		dap_faction_kelthuzad = yes
+		dap_war_with_horde = yes
+		NOT = { has_country_flag = DAL_ap_kt_argument_done }
+	}
+	mean_time_to_happen = { days = 100 }
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.27" }
+
+	option = {
+		name = arcane_projects.27.option.1
+		add_stability = -0.03
+		add_political_power = 30
+		add_war_support = 0.03
+		set_country_flag = DAL_ap_kt_argument_done
+	}
+
+	option = {
+		name = arcane_projects.27.option.2
+		trigger = { dap_faction_antonidas = yes }
+		add_stability = 0.02
+		add_political_power = 15
+		set_country_flag = DAL_ap_kt_argument_done
+	}
+}
+
+# Antonidas blocks reckless experimentation — council tension
+country_event = {
+	id = arcane_projects.28
+	title = arcane_projects.28.t
+	desc = arcane_projects.28.d
+	picture = GFX_dalaran_event
+
+	trigger = {
+		tag = DAL
+		dap_faction_antonidas = yes
+		dap_strain_stretched_trigger = yes
+		NOT = { has_country_flag = DAL_ap_antonidas_block_done }
+	}
+	mean_time_to_happen = { days = 90 }
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.28" }
+
+	option = {
+		name = arcane_projects.28.option.1
+		add_stability = 0.03
+		add_political_power = 20
+		dap_reduce_strain = yes
+		set_country_flag = DAL_ap_antonidas_block_done
+	}
+
+	option = {
+		name = arcane_projects.28.option.2
+		add_stability = -0.02
+		add_political_power = 30
+		add_war_support = 0.02
+		set_country_flag = DAL_ap_antonidas_block_done
+	}
+}
+
+# Alliance high command demands more magical support
+country_event = {
+	id = arcane_projects.29
+	title = arcane_projects.29.t
+	desc = arcane_projects.29.d
+	picture = GFX_dalaran_event
+
+	trigger = {
+		tag = DAL
+		dap_war_with_horde = yes
+		dap_alliance_initiative_bad = yes
+		is_in_faction_with = LOR
+		NOT = { has_country_flag = DAL_ap_command_demand_done }
+		has_political_power > 0
+	}
+	mean_time_to_happen = { days = 60 }
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event arcane_projects.29" }
+
+	option = {
+		name = arcane_projects.29.option.1
+		add_political_power = -25
+		add_war_support = 0.03
+		LOR = { alliance_unity_raise = yes }
+		set_country_flag = DAL_ap_command_demand_done
+	}
+
+	option = {
+		name = arcane_projects.29.option.2
+		add_political_power = 10
+		add_stability = -0.01
+		LOR = { alliance_unity_lower = yes }
+		set_country_flag = DAL_ap_command_demand_done
+	}
+}

@@ -1,0 +1,108 @@
+# ============================================================
+# Kul Tiras — Council of the Great Houses scripted effects
+# ============================================================
+
+# ------------------------------------------------------------
+# Sync all council spirits based on current variable values
+# ------------------------------------------------------------
+kul_council_sync_spirits = {
+	# Remove old spirits
+	if = { limit = { has_idea = kul_council_balance_idea } remove_ideas = kul_council_balance_idea }
+	if = { limit = { has_idea = kul_dominant_proudmoore_idea } remove_ideas = kul_dominant_proudmoore_idea }
+	if = { limit = { has_idea = kul_dominant_waycrest_idea } remove_ideas = kul_dominant_waycrest_idea }
+	if = { limit = { has_idea = kul_dominant_ashvane_idea } remove_ideas = kul_dominant_ashvane_idea }
+	if = { limit = { has_idea = kul_dominant_stormsong_idea } remove_ideas = kul_dominant_stormsong_idea }
+
+	# Add council balance spirit
+	if = {
+		limit = {
+			OR = {
+				check_variable = { kul_house_proudmoore > 0 }
+				check_variable = { kul_house_waycrest > 0 }
+				check_variable = { kul_house_ashvane > 0 }
+				check_variable = { kul_house_stormsong > 0 }
+			}
+		}
+		add_ideas = kul_council_balance_idea
+	}
+
+	# Dominance check — only one can be dominant
+	if = {
+		limit = {
+			check_variable = { kul_house_proudmoore > 2 }
+			NOT = { has_idea = kul_dominant_proudmoore_idea }
+		}
+		if = { limit = { has_idea = kul_dominant_waycrest_idea } remove_ideas = kul_dominant_waycrest_idea }
+		if = { limit = { has_idea = kul_dominant_ashvane_idea } remove_ideas = kul_dominant_ashvane_idea }
+		if = { limit = { has_idea = kul_dominant_stormsong_idea } remove_ideas = kul_dominant_stormsong_idea }
+		add_ideas = kul_dominant_proudmoore_idea
+	}
+	else_if = {
+		limit = {
+			check_variable = { kul_house_waycrest > 2 }
+			NOT = { has_idea = kul_dominant_waycrest_idea }
+		}
+		if = { limit = { has_idea = kul_dominant_proudmoore_idea } remove_ideas = kul_dominant_proudmoore_idea }
+		if = { limit = { has_idea = kul_dominant_ashvane_idea } remove_ideas = kul_dominant_ashvane_idea }
+		if = { limit = { has_idea = kul_dominant_stormsong_idea } remove_ideas = kul_dominant_stormsong_idea }
+		add_ideas = kul_dominant_waycrest_idea
+	}
+	else_if = {
+		limit = {
+			check_variable = { kul_house_ashvane > 2 }
+			NOT = { has_idea = kul_dominant_ashvane_idea }
+		}
+		if = { limit = { has_idea = kul_dominant_proudmoore_idea } remove_ideas = kul_dominant_proudmoore_idea }
+		if = { limit = { has_idea = kul_dominant_waycrest_idea } remove_ideas = kul_dominant_waycrest_idea }
+		if = { limit = { has_idea = kul_dominant_stormsong_idea } remove_ideas = kul_dominant_stormsong_idea }
+		add_ideas = kul_dominant_ashvane_idea
+	}
+	else_if = {
+		limit = {
+			check_variable = { kul_house_stormsong > 2 }
+			NOT = { has_idea = kul_dominant_stormsong_idea }
+		}
+		if = { limit = { has_idea = kul_dominant_proudmoore_idea } remove_ideas = kul_dominant_proudmoore_idea }
+		if = { limit = { has_idea = kul_dominant_waycrest_idea } remove_ideas = kul_dominant_waycrest_idea }
+		if = { limit = { has_idea = kul_dominant_ashvane_idea } remove_ideas = kul_dominant_ashvane_idea }
+		add_ideas = kul_dominant_stormsong_idea
+	}
+}
+
+# ------------------------------------------------------------
+# Sync admiralty stance spirit
+# ------------------------------------------------------------
+kul_council_sync_stance = {
+	# Remove old stance spirits
+	if = { limit = { has_idea = kul_admiralty_stance_protect_idea } remove_ideas = kul_admiralty_stance_protect_idea }
+	if = { limit = { has_idea = kul_admiralty_stance_battle_idea } remove_ideas = kul_admiralty_stance_battle_idea }
+	if = { limit = { has_idea = kul_admiralty_stance_amphibious_idea } remove_ideas = kul_admiralty_stance_amphibious_idea }
+
+	# Apply current stance
+	if = {
+		limit = { check_variable = { kul_admiralty_stance = 1 } }
+		add_ideas = kul_admiralty_stance_protect_idea
+	}
+	else_if = {
+		limit = { check_variable = { kul_admiralty_stance = 2 } }
+		add_ideas = kul_admiralty_stance_battle_idea
+	}
+	else_if = {
+		limit = { check_variable = { kul_admiralty_stance = 3 } }
+		add_ideas = kul_admiralty_stance_amphibious_idea
+	}
+}
+
+# ------------------------------------------------------------
+# Council cleanup — remove all council ideas
+# ------------------------------------------------------------
+kul_council_remove_all = {
+	if = { limit = { has_idea = kul_council_balance_idea } remove_ideas = kul_council_balance_idea }
+	if = { limit = { has_idea = kul_dominant_proudmoore_idea } remove_ideas = kul_dominant_proudmoore_idea }
+	if = { limit = { has_idea = kul_dominant_waycrest_idea } remove_ideas = kul_dominant_waycrest_idea }
+	if = { limit = { has_idea = kul_dominant_ashvane_idea } remove_ideas = kul_dominant_ashvane_idea }
+	if = { limit = { has_idea = kul_dominant_stormsong_idea } remove_ideas = kul_dominant_stormsong_idea }
+	if = { limit = { has_idea = kul_admiralty_stance_protect_idea } remove_ideas = kul_admiralty_stance_protect_idea }
+	if = { limit = { has_idea = kul_admiralty_stance_battle_idea } remove_ideas = kul_admiralty_stance_battle_idea }
+	if = { limit = { has_idea = kul_admiralty_stance_amphibious_idea } remove_ideas = kul_admiralty_stance_amphibious_idea }
+}

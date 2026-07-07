@@ -1,0 +1,57 @@
+on_actions = {
+
+	on_startup = {
+		effect = {
+			# Initialise zone state flags on the map
+			QUE = { nw_init_zones = yes }
+
+			# Initialise variables
+			QUE = {
+				set_variable = { QUE_mana_reserve = 100 }
+				set_variable = { nw_runestones_destroyed = 0 }
+			}
+
+			AMA = {
+				nw_recalc_zone_control = yes
+			}
+			QUE = {
+				nw_recalc_zone_control = yes
+			}
+		}
+	}
+
+	on_monthly = {
+		effect = {
+			# Recalculate zone control for both sides
+			if = {
+				limit = {
+					QUE = {
+						has_war_with = AMA
+					}
+				}
+				AMA = { nw_recalc_zone_control = yes }
+				QUE = { nw_recalc_zone_control = yes }
+			}
+
+			# Apply northern war monthly effects
+			QUE = {
+				if = {
+					limit = {
+						has_war_with = AMA
+					}
+					country_event = northern_war.2
+				}
+			}
+
+			AMA = {
+				if = {
+					limit = {
+						has_war_with = QUE
+					}
+					country_event = northern_war.3
+				}
+			}
+		}
+	}
+
+}

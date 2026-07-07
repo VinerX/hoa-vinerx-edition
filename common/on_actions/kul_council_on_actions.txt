@@ -1,0 +1,31 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			KUL = {
+				if = {
+					limit = { has_completed_focus = KUL_sw_council_of_four_houses }
+					set_variable = { kul_house_proudmoore = 0 }
+					set_variable = { kul_house_waycrest = 0 }
+					set_variable = { kul_house_ashvane = 0 }
+					set_variable = { kul_house_stormsong = 0 }
+					set_variable = { kul_admiralty_stance = 0 }
+					kul_council_sync_spirits = yes
+				}
+			}
+		}
+	}
+
+	on_monthly = {
+		effect = {
+			KUL = {
+				if = {
+					limit = {
+						has_completed_focus = KUL_sw_council_of_four_houses
+						is_in_faction_with = LOR
+					}
+					country_event = kul_council.1
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+# ============================================================
+# Royal Court of Lordaeron — courtroom orientation effects
+#
+# LOR holds master variables:
+#   lor_court_orientation    0=Royal Administration, 1=Alliance War Cabinet, 2=Church Mobilisation
+#   lor_church_influence     0–100 (Church of the Holy Light's political weight)
+# ============================================================
+
+# Initialize the court system — called at game start for LOR
+lor_court_init = {
+	set_variable = { lor_court_orientation = 1 }
+	set_variable = { lor_church_influence = 20 }
+	lor_court_sync = yes
+}
+
+# Sync: remove all orientation spirits, apply the correct one
+lor_court_remove_orientation_ideas = {
+	if = { limit = { has_idea = LOR_royal_administration } remove_ideas = LOR_royal_administration }
+	if = { limit = { has_idea = LOR_alliance_war_cabinet }  remove_ideas = LOR_alliance_war_cabinet }
+	if = { limit = { has_idea = LOR_church_mobilisation }   remove_ideas = LOR_church_mobilisation }
+}
+
+lor_court_sync = {
+	lor_court_remove_orientation_ideas = yes
+
+	if = {
+		limit = { check_variable = { lor_court_orientation = 2 } }
+		add_ideas = LOR_church_mobilisation
+	}
+	else_if = {
+		limit = { check_variable = { lor_court_orientation = 1 } }
+		add_ideas = LOR_alliance_war_cabinet
+	}
+	else = {
+		add_ideas = LOR_royal_administration
+	}
+}
+
+# Switch to Royal Administration
+lor_court_set_royal_administration = {
+	set_variable = { lor_court_orientation = 0 }
+	set_country_flag = lor_court_cooldown_active
+	lor_court_sync = yes
+}
+
+# Switch to Alliance War Cabinet
+lor_court_set_alliance_war_cabinet = {
+	set_variable = { lor_court_orientation = 1 }
+	set_country_flag = lor_court_cooldown_active
+	lor_court_sync = yes
+}
+
+# Switch to Church Mobilisation
+lor_court_set_church_mobilisation = {
+	set_variable = { lor_court_orientation = 2 }
+	set_country_flag = lor_court_cooldown_active
+	lor_court_sync = yes
+}
+
+# ------------------------------------------------------------
+# Church Influence change effects
+# ------------------------------------------------------------
+
+# +5 church influence — called by Church Mobilisation decisions
+lor_court_raise_church_influence = {
+	add_to_variable = { lor_church_influence = 5 }
+	if = {
+		limit = { check_variable = { lor_church_influence > 100 } }
+		set_variable = { lor_church_influence = 100 }
+	}
+	if = {
+		limit = {
+			check_variable = { lor_church_influence > 49 }
+			NOT = { has_country_flag = lor_church_influence_50_reached }
+		}
+		set_country_flag = lor_church_influence_50_reached
+		country_event = { id = lor_royal_court.3 hours = 12 }
+	}
+	if = {
+		limit = {
+			check_variable = { lor_church_influence > 79 }
+			NOT = { has_country_flag = lor_church_influence_80_reached }
+		}
+		set_country_flag = lor_church_influence_80_reached
+		country_event = { id = lor_royal_court.4 hours = 12 }
+	}
+}
+
+# -5 church influence — used when suppressing church demands
+lor_court_lower_church_influence = {
+	subtract_from_variable = { lor_church_influence = 5 }
+	if = {
+		limit = { check_variable = { lor_church_influence < 0 } }
+		set_variable = { lor_church_influence = 0 }
+	}
+}

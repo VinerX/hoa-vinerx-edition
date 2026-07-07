@@ -1,0 +1,76 @@
+################################################################################
+# DAL Arcane Projects — scripted effects
+################################################################################
+
+# ——— Slot management ———
+dap_take_slot = {
+	add_to_variable = { DAL_active_projects = 1 }
+}
+
+dap_release_slot = {
+	subtract_from_variable = { DAL_active_projects = 1 }
+	set_country_flag = DAL_project_slot_cooldown
+}
+
+# ——— Strain escalation ———
+# Called when a risky project completes
+dap_add_strain = {
+	if = {
+		limit = { dap_strain_stable = yes }
+		set_country_flag = DAL_strain_stretched
+		add_timed_idea = { idea = DAL_arcane_strain_mild days = 180 }
+	}
+	else_if = {
+		limit = { dap_strain_stretched_trigger = yes }
+		clr_country_flag = DAL_strain_stretched
+		set_country_flag = DAL_strain_overload
+		remove_ideas = DAL_arcane_strain_mild
+		add_timed_idea = { idea = DAL_arcane_strain_severe days = 365 }
+	}
+	else_if = {
+		limit = { dap_strain_overload_trigger = yes }
+		clr_country_flag = DAL_strain_overload
+		set_country_flag = DAL_strain_critical
+		remove_ideas = DAL_arcane_strain_severe
+		add_timed_idea = { idea = DAL_arcane_strain_critical days = 365 }
+	}
+}
+
+# ——— Strain reduction ———
+dap_reduce_strain = {
+	if = {
+		limit = { dap_strain_critical_trigger = yes }
+		clr_country_flag = DAL_strain_critical
+		set_country_flag = DAL_strain_overload
+		remove_ideas = DAL_arcane_strain_critical
+		add_timed_idea = { idea = DAL_arcane_strain_severe days = 365 }
+	}
+	else_if = {
+		limit = { dap_strain_overload_trigger = yes }
+		clr_country_flag = DAL_strain_overload
+		set_country_flag = DAL_strain_stretched
+		remove_ideas = DAL_arcane_strain_severe
+		add_timed_idea = { idea = DAL_arcane_strain_mild days = 180 }
+	}
+	else_if = {
+		limit = { dap_strain_stretched_trigger = yes }
+		clr_country_flag = DAL_strain_stretched
+		remove_ideas = DAL_arcane_strain_mild
+	}
+}
+
+# ——— Leader modifier: PP cost adjustment ———
+dap_leader_pp_discount = {
+	if = {
+		limit = { dap_faction_antonidas = yes }
+		add_political_power = 15
+	}
+}
+
+# ——— Leader modifier: strain reduction for Antonidas ———
+dap_antonidas_strain_reduction = {
+	if = {
+		limit = { dap_faction_antonidas = yes }
+		dap_reduce_strain = yes
+	}
+}

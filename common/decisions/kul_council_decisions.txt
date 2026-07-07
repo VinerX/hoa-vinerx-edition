@@ -1,0 +1,614 @@
+# ============================================================
+# Kul Tiras — Council of the Great Houses decisions
+# ============================================================
+kul_council_category = {
+
+	# ----------------------------------------------------------
+	# House Influence decisions
+	# ----------------------------------------------------------
+
+	kul_council_grant_ashvane_contracts = {
+		icon = generic_construction
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			check_variable = { kul_house_ashvane < 3 }
+			has_completed_focus = KUL_sw_council_of_four_houses
+			OR = {
+				has_idea = KUL_sw_house_ashvane_idea
+				has_completed_focus = KUL_sw_house_ashvane
+			}
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			add_to_variable = { kul_house_ashvane = 1 }
+			log = "[GetDateText]: [Root.GetName]: Ashvane contracts granted"
+			add_timed_idea = {
+				idea = kul_emergency_ashvane_contracts_idea
+				days = 180
+			}
+			if = {
+				limit = { check_variable = { kul_house_ashvane > 2 } }
+				custom_effect_tooltip = kul_council_dominant_ashvane_tt_text
+				set_country_flag = KUL_council_ashvane_warning
+			}
+		}
+	}
+
+	kul_council_consult_tidesages = {
+		icon = generic_naval_intel
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			check_variable = { kul_house_stormsong < 3 }
+			has_completed_focus = KUL_sw_council_of_four_houses
+			OR = {
+				has_idea = KUL_sw_house_stormsong_idea
+				has_completed_focus = KUL_sw_house_stormsong
+			}
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			add_to_variable = { kul_house_stormsong = 1 }
+			log = "[GetDateText]: [Root.GetName]: Tidesages consulted"
+			add_timed_idea = {
+				idea = kul_tidesage_campaign_idea
+				days = 180
+			}
+			if = {
+				limit = { check_variable = { kul_house_stormsong > 2 } }
+				custom_effect_tooltip = kul_council_dominant_stormsong_tt_text
+				set_country_flag = KUL_council_stormsong_warning
+			}
+		}
+	}
+
+	kul_council_call_waycrest_levies = {
+		icon = generic_infantry
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			check_variable = { kul_house_waycrest < 3 }
+			has_completed_focus = KUL_sw_council_of_four_houses
+			OR = {
+				has_war_with = BRC
+				has_completed_focus = KUL_sw_dragonfire_crisis
+			}
+			OR = {
+				has_idea = KUL_sw_house_waycrest_idea
+				has_completed_focus = KUL_sw_house_waycrest
+			}
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			add_to_variable = { kul_house_waycrest = 1 }
+			log = "[GetDateText]: [Root.GetName]: Waycrest levies called"
+			add_manpower = 1000
+			add_timed_idea = {
+				idea = kul_waycrest_mobilisation_idea
+				days = 180
+			}
+			if = {
+				limit = { check_variable = { kul_house_waycrest > 2 } }
+				custom_effect_tooltip = kul_council_dominant_waycrest_tt_text
+				set_country_flag = KUL_council_waycrest_warning
+			}
+		}
+	}
+
+	kul_council_expand_admiralty = {
+		icon = generic_fleet_command
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			check_variable = { kul_house_proudmoore < 3 }
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			add_to_variable = { kul_house_proudmoore = 1 }
+			log = "[GetDateText]: [Root.GetName]: Admiralty authority expanded"
+			add_timed_idea = {
+				idea = kul_admiralty_emergency_idea
+				days = 180
+			}
+			navy_experience = 25
+			if = {
+				limit = { check_variable = { kul_house_proudmoore > 2 } }
+				custom_effect_tooltip = kul_council_dominant_proudmoore_tt_text
+				set_country_flag = KUL_council_proudmoore_warning
+			}
+		}
+	}
+
+	kul_council_rebalance = {
+		icon = generic_council
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			OR = {
+				check_variable = { kul_house_proudmoore > 2 }
+				check_variable = { kul_house_waycrest > 2 }
+				check_variable = { kul_house_ashvane > 2 }
+				check_variable = { kul_house_stormsong > 2 }
+			}
+		}
+
+		cost = 75
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Council rebalanced"
+			add_stability = -0.05
+			add_political_power = -25
+			if = {
+				limit = { check_variable = { kul_house_proudmoore > 2 } }
+				set_variable = { kul_house_proudmoore = 2 }
+			}
+			if = {
+				limit = { check_variable = { kul_house_waycrest > 2 } }
+				set_variable = { kul_house_waycrest = 2 }
+			}
+			if = {
+				limit = { check_variable = { kul_house_ashvane > 2 } }
+				set_variable = { kul_house_ashvane = 2 }
+			}
+			if = {
+				limit = { check_variable = { kul_house_stormsong > 2 } }
+				set_variable = { kul_house_stormsong = 2 }
+			}
+			clr_country_flag = KUL_council_proudmoore_warning
+			clr_country_flag = KUL_council_waycrest_warning
+			clr_country_flag = KUL_council_ashvane_warning
+			clr_country_flag = KUL_council_stormsong_warning
+		}
+	}
+
+	# ----------------------------------------------------------
+	# Admiralty Stance decisions (cooldown via days_re_enable)
+	# ----------------------------------------------------------
+
+	kul_stance_return = {
+		icon = generic_navy
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			NOT = { check_variable = { kul_admiralty_stance = 0 } }
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Admiralty returns to normal disposition"
+			set_variable = { kul_admiralty_stance = 0 }
+			kul_council_sync_stance = yes
+		}
+	}
+
+	kul_stance_protect_sea_lanes = {
+		icon = generic_convoy_escort
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			NOT = { check_variable = { kul_admiralty_stance = 1 } }
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Admiralty stance: Protect the Sea Lanes"
+			set_variable = { kul_admiralty_stance = 1 }
+			kul_council_sync_stance = yes
+		}
+	}
+
+	kul_stance_seek_battle = {
+		icon = generic_ships_at_war
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			NOT = { check_variable = { kul_admiralty_stance = 2 } }
+			has_war_with = BRC
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Admiralty stance: Seek Decisive Battle"
+			set_variable = { kul_admiralty_stance = 2 }
+			kul_council_sync_stance = yes
+		}
+	}
+
+	kul_stance_amphibious = {
+		icon = generic_amphibious
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			NOT = { check_variable = { kul_admiralty_stance = 3 } }
+			has_war_with = BRC
+			sob_alliance_has_foothold = yes
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Admiralty stance: Amphibious Warfare"
+			set_variable = { kul_admiralty_stance = 3 }
+			kul_council_sync_stance = yes
+		}
+	}
+
+	# ----------------------------------------------------------
+	# Context-sensitive Emergency decisions
+	# ----------------------------------------------------------
+
+	kul_emergency_convoy_protection = {
+		icon = generic_convoy_escort
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			check_variable = { kul_house_stormsong > 0 }
+			OR = {
+				has_idea = KUL_sw_dragonfire_crisis_idea
+				check_variable = { kul_house_stormsong > 1 }
+			}
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Emergency convoy protection enacted"
+			add_timed_idea = {
+				idea = kul_tidesage_campaign_idea
+				days = 90
+			}
+			if = {
+				limit = { has_idea = KUL_sw_dragonfire_crisis_idea }
+				remove_ideas = KUL_sw_dragonfire_crisis_idea
+			}
+		}
+	}
+
+	kul_emergency_naval_contracts = {
+		icon = generic_construction
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			OR = {
+				has_idea = KUL_sw_dragonfire_emergency_idea
+				num_of_controlled_states < 12
+			}
+			OR = {
+				has_idea = KUL_sw_house_ashvane_idea
+				has_completed_focus = KUL_sw_ashvane_shipwrights
+			}
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Emergency Ashvane contracts issued"
+			add_to_variable = { kul_house_ashvane = 1 }
+			add_timed_idea = {
+				idea = kul_emergency_ashvane_contracts_idea
+				days = 365
+			}
+			if = {
+				limit = { check_variable = { kul_house_ashvane > 2 } }
+				set_country_flag = KUL_council_ashvane_warning
+			}
+		}
+	}
+
+	kul_emergency_coastal_mobilisation = {
+		icon = generic_infantry
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			OR = {
+				has_idea = KUL_sw_dragonfire_crisis_idea
+				num_of_controlled_states < 12
+			}
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Coastal mobilisation ordered"
+			add_to_variable = { kul_house_waycrest = 1 }
+			add_manpower = 2000
+			add_timed_idea = {
+				idea = kul_waycrest_mobilisation_idea
+				days = 180
+			}
+			if = {
+				limit = { check_variable = { kul_house_waycrest > 2 } }
+				set_country_flag = KUL_council_waycrest_warning
+			}
+		}
+	}
+
+	kul_demand_contributions = {
+		icon = generic_oppression
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			political_power < 100
+		}
+
+		cost = 0
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Contributions demanded from Houses"
+			add_political_power = 75
+			add_stability = -0.05
+			random_list = {
+				25 = {
+					add_timed_idea = {
+						idea = kul_emergency_ashvane_contracts_idea
+						days = 90
+					}
+				}
+				25 = {
+					add_timed_idea = {
+						idea = kul_waycrest_mobilisation_idea
+						days = 90
+					}
+				}
+				50 = {
+				}
+			}
+		}
+	}
+
+	# ----------------------------------------------------------
+	# Alliance Commitment decisions
+	# ----------------------------------------------------------
+
+	kul_prepare_major_landing = {
+		icon = generic_amphibious
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			check_variable = { kul_admiralty_stance = 3 }
+			sob_alliance_has_advantage = yes
+		}
+
+		cost = 100
+		fire_only_once = no
+		days_re_enable = 720
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Major landing preparation begun"
+			add_timed_idea = {
+				idea = kul_admiralty_stance_amphibious_idea
+				days = 365
+			}
+			add_stability = -0.03
+			add_to_variable = { kul_house_proudmoore = 1 }
+			alliance_unity_raise = yes
+			set_country_flag = KUL_major_landing_prepared
+			if = {
+				limit = { check_variable = { kul_house_proudmoore > 2 } }
+				set_country_flag = KUL_council_proudmoore_warning
+			}
+		}
+	}
+
+	kul_escort_allied_shipping = {
+		icon = generic_convoy_escort
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Allied escort commitment"
+			add_timed_idea = {
+				idea = kul_allied_escort_idea
+				days = 180
+			}
+			alliance_unity_raise = yes
+		}
+	}
+
+	kul_disperse_fleet = {
+		icon = generic_coastal_defense_ships
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			OR = {
+				has_idea = KUL_sw_dragonfire_crisis_idea
+				has_idea = KUL_sw_dragonfire_emergency_idea
+			}
+			has_war_with = BRC
+		}
+
+		cost = 25
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Fleet dispersed to anchorages"
+			add_timed_idea = {
+				idea = kul_fleet_dispersed_idea
+				days = 180
+			}
+			if = {
+				limit = { has_idea = KUL_sw_dragonfire_crisis_idea }
+				remove_ideas = KUL_sw_dragonfire_crisis_idea
+			}
+			if = {
+				limit = { has_idea = KUL_sw_dragonfire_emergency_idea }
+				remove_ideas = KUL_sw_dragonfire_emergency_idea
+			}
+			set_country_flag = KUL_fleet_dispersed
+		}
+	}
+
+	kul_fortify_anchorages = {
+		icon = generic_coastal_defense
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+		}
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Anchorages fortified"
+			add_timed_idea = {
+				idea = kul_fortified_anchorages_idea
+				days = 365
+			}
+		}
+	}
+
+	kul_forward_repair_base = {
+		icon = generic_naval_base
+
+		allowed = {
+			original_tag = KUL
+		}
+
+		available = {
+			has_completed_focus = KUL_sw_council_of_four_houses
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			sob_alliance_has_advantage = yes
+		}
+
+		cost = 75
+		fire_only_once = no
+		days_re_enable = 720
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Forward repair base established"
+			add_timed_idea = {
+				idea = kul_forward_repair_base_idea
+				days = 365
+			}
+			alliance_unity_raise = yes
+			add_stability = -0.02
+		}
+	}
+}

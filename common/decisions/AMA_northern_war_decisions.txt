@@ -1,0 +1,243 @@
+# ============================================================
+# Amani Tribe — Northern War / Eversong War decisions
+# ============================================================
+
+northern_war_amani_category = {
+
+	# --- DESTROY RUNESTONE AT THAS'ALAH ---
+	AMA_destroy_runestone_thasalah = {
+		icon = GFX_decision_generic_explosion
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			184 = { is_controlled_by = AMA }
+			NOT = { 184 = { has_state_flag = nw_runestone_destroyed } }
+		}
+		available = {
+			controls_state = 184
+		}
+		cost = 50
+		complete_effect = {
+			184 = { set_state_flag = nw_runestone_destroyed }
+			QUE = { country_event = northern_war.11 }
+			AMA = { country_event = northern_war.10 }
+			if = {
+				limit = { DMC = { is_in_faction_with = AMA } }
+				DMC = { country_event = northern_war.40 }
+			}
+			if = {
+				limit = { DAL = { has_war_with = AMA } }
+				DAL = { country_event = northern_war.60 }
+			}
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	# --- DESTROY RUNESTONE AT SANCTUM OF THE MOON ---
+	AMA_destroy_runestone_moon = {
+		icon = GFX_decision_generic_explosion
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			185 = { is_controlled_by = AMA }
+			NOT = { 185 = { has_state_flag = nw_runestone_destroyed } }
+		}
+		available = {
+			controls_state = 185
+		}
+		cost = 50
+		complete_effect = {
+			185 = { set_state_flag = nw_runestone_destroyed }
+			QUE = { country_event = northern_war.11 }
+			AMA = { country_event = northern_war.10 }
+			if = {
+				limit = { DMC = { is_in_faction_with = AMA } }
+				DMC = { country_event = northern_war.40 }
+			}
+			if = {
+				limit = { DAL = { has_war_with = AMA } }
+				DAL = { country_event = northern_war.60 }
+			}
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	# --- DESTROY RUNESTONE AT SANCTUM OF THE SUN ---
+	AMA_destroy_runestone_sun = {
+		icon = GFX_decision_generic_explosion
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			189 = { is_controlled_by = AMA }
+			NOT = { 189 = { has_state_flag = nw_runestone_destroyed } }
+		}
+		available = {
+			controls_state = 189
+		}
+		cost = 50
+		complete_effect = {
+			189 = { set_state_flag = nw_runestone_destroyed }
+			QUE = { country_event = northern_war.11 }
+			AMA = { country_event = northern_war.10 }
+			if = {
+				limit = { DMC = { is_in_faction_with = AMA } }
+				DMC = { country_event = northern_war.40 }
+			}
+			if = {
+				limit = { DAL = { has_war_with = AMA } }
+				DAL = { country_event = northern_war.60 }
+			}
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	# --- DESTROY CAER DARROW RUNESTONE ---
+	AMA_destroy_runestone_caerdarrow = {
+		icon = GFX_decision_generic_explosion
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			103 = {
+				is_controlled_by = AMA
+				has_state_flag = nw_runestone_caer_darrow_intact
+			}
+		}
+		available = {
+			controls_state = 103
+		}
+		cost = 75
+		complete_effect = {
+			AMA = { country_event = northern_war.80 }
+		}
+		ai_will_do = { factor = 40 }
+	}
+
+	# --- CALL UPON THE LOA ---
+	AMA_call_loa = {
+		icon = GFX_decision_generic_ritual
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+		}
+		available = {
+			controls_state = 18
+			controls_state = 196
+			controls_state = 197
+			NOT = { has_country_flag = AMA_loa_on_cooldown }
+		}
+		cost = 100
+		complete_effect = {
+			country_event = northern_war.50
+			set_variable = { AMA_loa_cooldown = 365 }
+			set_country_flag = AMA_loa_on_cooldown
+		}
+		ai_will_do = { factor = 30 }
+	}
+
+	# --- CORRUPT LEY LINE — FARSTRIDER ROUTES ---
+	AMA_corrupt_leyline = {
+		icon = GFX_decision_generic_magic
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			OR = {
+				controls_state = 186
+				controls_state = 187
+				controls_state = 188
+			}
+		}
+		available = {
+			NOT = { has_country_flag = AMA_leyline_cooldown }
+		}
+		cost = 60
+		complete_effect = {
+			add_timed_idea = { idea = AMA_farstrider_ambush days = 120 }
+			add_war_support = 0.02
+			set_variable = { AMA_leyline_cooldown = 180 }
+			set_country_flag = AMA_leyline_cooldown
+		}
+		ai_will_do = { factor = 25 }
+	}
+
+	# --- OPEN PATH FOR THE HORDE ---
+	AMA_open_path = {
+		icon = GFX_decision_generic_army
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			is_in_faction_with = BRC
+		}
+		available = {
+			controls_state = 34
+			controls_state = 181
+			NOT = { has_country_flag = AMA_path_opened }
+		}
+		cost = 75
+		complete_effect = {
+			set_country_flag = AMA_path_opened
+			if = {
+				limit = { BRC = { is_faction_leader = yes } }
+				BRC = {
+					country_event = northern_war.70
+				}
+			}
+		}
+		ai_will_do = { factor = 60 }
+	}
+
+	# --- LOOT MAGICAL VAULT AT RUNESTONE SHAN'DOR ---
+	AMA_loot_shandor = {
+		icon = GFX_decision_generic_loot
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			757 = { is_controlled_by = AMA }
+			NOT = { has_country_flag = AMA_shandor_looted }
+		}
+		available = {
+			controls_state = 757
+		}
+		cost = 40
+		complete_effect = {
+			set_country_flag = AMA_shandor_looted
+			add_political_power = 50
+			add_war_support = 0.03
+			QUE = {
+				subtract_from_variable = { QUE_mana_reserve = 15 }
+				if = {
+					limit = { check_variable = { QUE_mana_reserve < 0 } }
+					set_variable = { QUE_mana_reserve = 0 }
+				}
+			}
+		}
+		ai_will_do = { factor = 45 }
+	}
+
+	# --- LOOT MAGICAL VAULT AT RUNESTONE FALITHAS ---
+	AMA_loot_falithas = {
+		icon = GFX_decision_generic_loot
+		allowed = { original_tag = AMA }
+		visible = {
+			has_war_with = QUE
+			2245 = { is_controlled_by = AMA }
+			NOT = { has_country_flag = AMA_falithas_looted }
+		}
+		available = {
+			controls_state = 2245
+		}
+		cost = 40
+		complete_effect = {
+			set_country_flag = AMA_falithas_looted
+			add_political_power = 50
+			add_war_support = 0.03
+			QUE = {
+				subtract_from_variable = { QUE_mana_reserve = 15 }
+				if = {
+					limit = { check_variable = { QUE_mana_reserve < 0 } }
+					set_variable = { QUE_mana_reserve = 0 }
+				}
+			}
+		}
+		ai_will_do = { factor = 45 }
+	}
+}

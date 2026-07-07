@@ -1,0 +1,691 @@
+################################################################################
+# The Arcane Projects of the Kirin Tor
+#
+# Dalaran (DAL) decision panel — limited-attention magical research system.
+# 2 active project slots. Projects are timed ideas that produce effects on
+# completion. Strain escalates from risky research and emergency projects.
+################################################################################
+
+DAL_arcane_projects = {
+
+	# ============================================================
+	# DECORATIVE — Project slot status
+	# ============================================================
+
+	DAL_ap_decoration_free = {
+		icon = generic_research
+		available = { always = no }
+		visible = {
+			check_variable = { DAL_active_projects < 1 }
+			NOT = { has_country_flag = DAL_project_slot_cooldown }
+		}
+	}
+	DAL_ap_decoration_one = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			check_variable = { DAL_active_projects = 1 }
+		}
+	}
+	DAL_ap_decoration_two = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			check_variable = { DAL_active_projects > 1 }
+		}
+	}
+	DAL_ap_decoration_cooldown = {
+		icon = generic_crisis
+		available = { always = no }
+		visible = {
+			has_country_flag = DAL_project_slot_cooldown
+		}
+	}
+
+	# ============================================================
+	# DECORATIVE — Strain level
+	# ============================================================
+	DAL_ap_strain_stable_display = {
+		icon = generic_research
+		available = { always = no }
+		visible = { dap_strain_stable = yes }
+	}
+	DAL_ap_strain_stretched_display = {
+		icon = generic_danger
+		available = { always = no }
+		visible = { dap_strain_stretched_trigger = yes }
+	}
+	DAL_ap_strain_overload_display = {
+		icon = generic_crisis
+		available = { always = no }
+		visible = { dap_strain_overload_trigger = yes }
+	}
+	DAL_ap_strain_critical_display = {
+		icon = generic_crisis
+		available = { always = no }
+		visible = { dap_strain_critical_trigger = yes }
+	}
+
+	# ============================================================
+	# STABILIZATION DECISION
+	# ============================================================
+	DAL_ap_stabilize = {
+		icon = generic_political_reform
+		available = {
+			NOT = { dap_strain_stable = yes }
+			NOT = { has_country_flag = DAL_project_slot_cooldown }
+			has_political_power > 39
+		}
+		visible = {
+			NOT = { dap_strain_stable = yes }
+		}
+		cost = 40
+		days_re_enable = 90
+		complete_effect = {
+			dap_reduce_strain = yes
+			set_country_flag = DAL_project_slot_cooldown
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_strain_critical_trigger = yes
+			}
+			modifier = {
+				factor = 0.5
+				dap_strain_overload_trigger = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# FAMILY 1: BATTLEFIELD MAGIC (3 projects)
+	# ============================================================
+
+	DAL_ap_battlefield_portals = {
+		icon = generic_army_bonus
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 74
+		}
+		visible = {
+			always = yes
+		}
+		cost = 75
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_portal_network days = 90 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor launches Battlefield Portal Network project"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			add_political_power = 10
+			dap_leader_pp_discount = yes
+			log = "[GetDateText]: [Root.GetName]: Battlefield Portal Network project complete"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_alliance_initiative_good = yes
+				dap_war_with_horde = yes
+			}
+		}
+	}
+
+	DAL_ap_arcane_artillery = {
+		icon = generic_army_bonus
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 49
+		}
+		visible = {
+			always = yes
+		}
+		cost = 50
+		days_remove = 60
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_arcane_artillery days = 60 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor launches Arcane Artillery Coordination project"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			if = {
+				limit = { dap_faction_modera = yes }
+				add_army_experience = 10
+			}
+			log = "[GetDateText]: [Root.GetName]: Arcane Artillery Coordination project complete"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_war_with_horde = yes
+			}
+			modifier = {
+				factor = 2
+				dap_faction_modera = yes
+				dap_war_with_horde = yes
+			}
+		}
+	}
+
+	DAL_ap_emergency_teleportation = {
+		icon = generic_defense
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 59
+			OR = {
+				dap_ally_in_crisis = yes
+				dap_alliance_initiative_bad = yes
+				dap_northern_war_active = yes
+				dap_khaz_modan_under_siege = yes
+			}
+		}
+		visible = {
+			dap_war_with_horde = yes
+		}
+		cost = 60
+		days_remove = 30
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_emergency_portals days = 30 }
+			add_war_support = 0.03
+			add_stability = 0.02
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor activates Emergency Teleportation"
+			if = {
+				limit = { dap_northern_war_active = yes }
+				QUE = { country_event = { id = arcane_projects.1 days = 1 } }
+			}
+			if = {
+				limit = { dap_khaz_modan_under_siege = yes }
+				IRO = { country_event = { id = arcane_projects.2 days = 1 } }
+			}
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			dap_add_strain = yes
+			add_political_power = -20
+			log = "[GetDateText]: [Root.GetName]: Emergency Teleportation complete — magical strain incurred"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 2
+				dap_alliance_initiative_bad = yes
+			}
+			modifier = {
+				factor = 1
+				dap_khaz_modan_under_siege = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# FAMILY 2: DEFENSIVE MAGIC (3 projects)
+	# ============================================================
+
+	DAL_ap_strengthen_wards = {
+		icon = generic_defense
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			has_political_power > 49
+		}
+		visible = {
+			always = yes
+		}
+		cost = 50
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_city_wards days = 90 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor strengthens city wards"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			add_stability = 0.02
+			if = {
+				limit = { dap_faction_antonidas = yes }
+				add_political_power = 20
+			}
+			log = "[GetDateText]: [Root.GetName]: City wards reinforcement complete"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_faction_antonidas = yes
+			}
+			modifier = {
+				factor = 0.5
+				dap_war_with_horde = yes
+			}
+		}
+	}
+
+	DAL_ap_shield_strongholds = {
+		icon = generic_alliance
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 49
+			is_in_faction = yes
+		}
+		visible = {
+			dap_war_with_horde = yes
+		}
+		cost = 50
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			country_event = { id = arcane_projects.3 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor dispatches ward teams to Allied strongholds"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			country_event = { id = arcane_projects.4 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Allied stronghold wards project complete"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_alliance_initiative_bad = yes
+			}
+		}
+	}
+
+	DAL_ap_warning_network = {
+		icon = generic_intel
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			has_political_power > 59
+		}
+		visible = {
+			always = yes
+		}
+		cost = 60
+		days_remove = 120
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_warning_network days = 120 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor establishes Arcane Warning Network"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			add_political_power = 15
+			if = {
+				limit = { dap_faction_krasus = yes }
+				country_event = { id = arcane_projects.5 days = 1 }
+			}
+			log = "[GetDateText]: [Root.GetName]: Arcane Warning Network operational"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_war_with_horde = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# FAMILY 3: INTELLIGENCE & SCRYING (3 projects)
+	# ============================================================
+
+	DAL_ap_scry_horde = {
+		icon = generic_intel
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			has_war_with = BRC
+			has_political_power > 49
+		}
+		visible = {
+			has_war_with = BRC
+		}
+		cost = 50
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_scry_horde days = 90 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor begins scrying the Horde high command"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			BRC = {
+				add_intel = { civilian_intel = 5 army_intel = 10 }
+			}
+			add_political_power = 15
+			if = {
+				limit = { dap_faction_krasus = yes }
+				BRC = { add_intel = { army_intel = 5 } }
+			}
+			log = "[GetDateText]: [Root.GetName]: Horde scrying complete — actionable intelligence gathered"
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	DAL_ap_locate_warlocks = {
+		icon = generic_fort
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_stormreaver_alive = yes
+			dap_war_with_horde = yes
+			has_political_power > 39
+		}
+		visible = {
+			dap_stormreaver_alive = yes
+			dap_war_with_horde = yes
+		}
+		cost = 40
+		days_remove = 60
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			country_event = { id = arcane_projects.6 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor attempts to locate hidden warlock activity"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			country_event = { id = arcane_projects.7 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Warlock investigation complete"
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	DAL_ap_watch_sea = {
+		icon = generic_navy
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 49
+			OR = {
+				DMC = { has_country_flag = DMC_enslaved_dragons }
+				has_global_flag = news_alexstrasza_enslaved
+			}
+		}
+		visible = {
+			dap_war_with_horde = yes
+		}
+		cost = 50
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_watch_sea days = 90 }
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor scries the Great Sea for dragon movements"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			if = {
+				limit = { dap_dragon_escalation = yes }
+				country_event = { id = arcane_projects.8 days = 1 }
+			}
+			add_political_power = 10
+			log = "[GetDateText]: [Root.GetName]: Great Sea observation complete"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 1
+				dap_dragon_escalation = yes
+			}
+		}
+	}
+
+	# ============================================================
+	# FAMILY 4: DRAGON RESEARCH (3 projects, progressive)
+	# ============================================================
+
+	DAL_ap_study_dragons = {
+		icon = generic_air_bonus
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_dragon_escalation = yes
+			has_political_power > 69
+			NOT = { has_country_flag = DAL_ap_dragon_study_complete }
+		}
+		visible = {
+			dap_dragon_escalation = yes
+		}
+		cost = 70
+		fire_only_once = yes
+		days_remove = 90
+		days_re_enable = 30
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_dragon_observations days = 90 }
+			set_country_flag = DAL_ap_dragon_study_ongoing
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor begins studying dragon attack patterns"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			set_country_flag = DAL_ap_dragon_study_complete
+			clr_country_flag = DAL_ap_dragon_study_ongoing
+			country_event = { id = arcane_projects.9 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Dragon attack study complete"
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	DAL_ap_analyze_binding = {
+		icon = generic_research
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			has_country_flag = DAL_ap_dragon_study_complete
+			dap_dragon_escalation = yes
+			has_political_power > 79
+		}
+		visible = {
+			has_country_flag = DAL_ap_dragon_study_complete
+		}
+		cost = 80
+		fire_only_once = yes
+		days_remove = 120
+		days_re_enable = 30
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_binding_analysis days = 120 }
+			set_country_flag = DAL_ap_binding_analysis_ongoing
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor analyzes the dragon binding magic"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			clr_country_flag = DAL_ap_binding_analysis_ongoing
+			country_event = { id = arcane_projects.10 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Dragon binding analysis complete"
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	DAL_ap_trace_source = {
+		icon = generic_fort
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			has_country_flag = DAL_ap_binding_analysis_complete
+			dap_dragon_escalation = yes
+			has_political_power > 99
+		}
+		visible = {
+			has_country_flag = DAL_ap_dragon_study_complete
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 150
+		days_re_enable = 30
+		complete_effect = {
+			dap_take_slot = yes
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor traces the source of dragon control magic"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			country_event = { id = arcane_projects.11 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Dragon source tracing complete — Grim Batol revealed"
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	# ============================================================
+	# FAMILY 5: FORBIDDEN RESEARCH (3 projects)
+	# ============================================================
+
+	DAL_ap_study_necromancy = {
+		icon = generic_danger
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 49
+		}
+		visible = {
+			dap_war_with_horde = yes
+		}
+		cost = 50
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_orc_necromancy days = 90 }
+			add_stability = -0.02
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor begins classified study of orcish necromancy"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			dap_add_strain = yes
+			add_stability = -0.03
+			add_political_power = 20
+			country_event = { id = arcane_projects.12 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Orcish necromancy study complete — Council alerted"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0.3
+				dap_faction_kelthuzad = yes
+			}
+			modifier = {
+				factor = 0.1
+				always = yes
+			}
+		}
+	}
+
+	DAL_ap_examine_fel = {
+		icon = generic_danger
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_war_with_horde = yes
+			has_political_power > 39
+		}
+		visible = {
+			dap_war_with_horde = yes
+		}
+		cost = 40
+		days_remove = 90
+		days_re_enable = 15
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_fel_artifacts days = 90 }
+			add_stability = -0.02
+			log = "[GetDateText]: [Root.GetName]: Kirin Tor examines captured fel artifacts"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			dap_add_strain = yes
+			add_stability = -0.02
+			add_political_power = 15
+			if = {
+				limit = { dap_faction_kelthuzad = yes }
+				add_political_power = 25
+			}
+			country_event = { id = arcane_projects.13 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Fel artifact examination complete — controversy ensues"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0.5
+				dap_faction_kelthuzad = yes
+			}
+			modifier = {
+				factor = 0.05
+				dap_alliance_initiative_bad = yes
+			}
+		}
+	}
+
+	DAL_ap_soul_research = {
+		icon = generic_danger
+		available = {
+			dap_has_free_slot = yes
+			dap_no_cooldown = yes
+			dap_faction_kelthuzad = yes
+			dap_war_with_horde = yes
+			has_political_power > 79
+		}
+		visible = {
+			dap_faction_kelthuzad = yes
+		}
+		cost = 80
+		days_remove = 120
+		days_re_enable = 30
+		complete_effect = {
+			dap_take_slot = yes
+			add_timed_idea = { idea = DAL_ap_soul_research days = 120 }
+			add_stability = -0.05
+			log = "[GetDateText]: [Root.GetName]: Kel'Thuzad begins experimental soul research"
+		}
+		remove_effect = {
+			dap_release_slot = yes
+			dap_add_strain = yes
+			dap_add_strain = yes
+			add_stability = -0.05
+			add_political_power = 30
+			country_event = { id = arcane_projects.14 days = 1 }
+			log = "[GetDateText]: [Root.GetName]: Soul research complete — Council in crisis"
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0.3
+				dap_faction_kelthuzad = yes
+			}
+		}
+	}
+}

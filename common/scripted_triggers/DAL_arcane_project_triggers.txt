@@ -1,0 +1,110 @@
+################################################################################
+# DAL Arcane Projects — scripted triggers
+################################################################################
+
+# ——— Slot availability ———
+dap_has_free_slot = {
+	check_variable = { DAL_active_projects < 2 }
+}
+
+dap_no_cooldown = {
+	NOT = { has_country_flag = DAL_project_slot_cooldown }
+}
+
+# ——— Strain states ———
+dap_strain_stable = {
+	NOT = { has_country_flag = DAL_strain_stretched }
+	NOT = { has_country_flag = DAL_strain_overload }
+	NOT = { has_country_flag = DAL_strain_critical }
+}
+
+dap_strain_stretched_trigger = {
+	has_country_flag = DAL_strain_stretched
+	NOT = { has_country_flag = DAL_strain_overload }
+	NOT = { has_country_flag = DAL_strain_critical }
+}
+
+dap_strain_overload_trigger = {
+	has_country_flag = DAL_strain_overload
+	NOT = { has_country_flag = DAL_strain_critical }
+}
+
+dap_strain_critical_trigger = {
+	has_country_flag = DAL_strain_critical
+}
+
+# ——— Leader path checks ———
+dap_faction_antonidas = {
+	has_country_flag = DAL_faction_antonidas
+}
+
+dap_faction_krasus = {
+	has_country_flag = DAL_faction_krasus
+}
+
+dap_faction_modera = {
+	has_country_flag = DAL_faction_modera
+}
+
+dap_faction_kelthuzad = {
+	has_country_flag = DAL_faction_kelthuzad
+}
+
+# ——— War / crisis conditions ———
+dap_war_with_horde = {
+	OR = {
+		has_war_with = BRC
+		has_war_with = SRC
+		has_war_with = BHC
+		has_war_with = DMC
+		has_war_with = AMA
+	}
+}
+
+dap_northern_war_active = {
+	QUE = { has_war_with = AMA }
+}
+
+dap_dragon_escalation = {
+	OR = {
+		has_global_flag = news_alexstrasza_enslaved
+		DMC = { has_country_flag = DMC_enslaved_dragons }
+	}
+}
+
+dap_stormreaver_alive = {
+	country_exists = SRC
+}
+
+dap_khaz_modan_under_siege = {
+	OR = {
+		IRO = { check_variable = { ironforge_siege_state > 1 } }
+		GNO = { check_variable = { gnomeregan_siege_state > 1 } }
+	}
+}
+
+dap_alliance_initiative_bad = {
+	LOR = { check_variable = { strategic_initiative_score < -2 } }
+}
+
+dap_alliance_initiative_good = {
+	LOR = { check_variable = { strategic_initiative_score > 2 } }
+}
+
+dap_alliance_initiative_neutral = {
+	LOR = {
+		check_variable = { strategic_initiative_score > -3 }
+		check_variable = { strategic_initiative_score < 3 }
+	}
+}
+
+dap_ally_in_crisis = {
+	any_allied_country = {
+		OR = {
+			surrender_progress > 0.2
+			has_country_flag = QUE_ban_dinoriel_shattered
+			check_variable = { ironforge_siege_state > 2 }
+			check_variable = { gnomeregan_siege_state > 2 }
+		}
+	}
+}

@@ -1,0 +1,408 @@
+# ===========================================================
+# Khaz Modan Siege — Events
+# ===========================================================
+add_namespace = khaz_modan_siege
+
+# --- Weekly synchronisation event (hidden) ---
+country_event = {
+	id = khaz_modan_siege.1
+	hidden = yes
+	is_triggered_only = yes
+
+	trigger = {
+		has_war = yes
+		OR = {
+			tag = IRO
+			tag = GNO
+			tag = BHC
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { tag = IRO }
+			khaz_modan_ironforge_weekly = yes
+		}
+		if = {
+			limit = { tag = GNO }
+			khaz_modan_gnomeregan_weekly = yes
+		}
+		if = {
+			limit = { tag = BHC }
+			khaz_modan_bhc_weekly = yes
+		}
+	}
+}
+
+# ===========================================================
+# IRONFORGE SIEGE EVENTS
+# ===========================================================
+
+# .10 — The Mountain Stands Alone (siege begins)
+country_event = {
+	id = khaz_modan_siege.10
+	title = khaz_modan_siege.10.t
+	desc = khaz_modan_siege.10.d
+	picture = GFX_report_event_german_parade_paris
+	fire_only_once = yes
+
+	trigger = {
+		tag = IRO
+		has_war = yes
+	}
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Ironforge siege has begun"
+		khaz_modan_clear_iro_siege_flags = yes
+		set_variable = { var = ironforge_siege_days value = 0 }
+	}
+
+	option = {
+		name = khaz_modan_siege.10.option.1
+		add_war_support = 0.10
+		add_stability = 0.05
+		custom_effect_tooltip = KMS_iro_siege_begin_tooltip
+	}
+
+	option = {
+		name = khaz_modan_siege.10.option.2
+		add_stability = -0.03
+		add_manpower = 2000
+		custom_effect_tooltip = KMS_iro_siege_conscript_tooltip
+		news_event = { id = second_war_news.7 hours = 6 }
+	}
+}
+
+# .11 — Week 12: Rationing
+country_event = {
+	id = khaz_modan_siege.11
+	title = khaz_modan_siege.11.t
+	desc = khaz_modan_siege.11.d
+	picture = GFX_report_event_memorial_day
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.11.option.1
+		ai_chance = { factor = 75 }
+		add_stability = -0.03
+		add_war_support = 0.05
+	}
+
+	option = {
+		name = khaz_modan_siege.11.option.2
+		ai_chance = { factor = 25 }
+		add_stability = -0.07
+		add_war_support = -0.03
+		add_manpower = 1500
+	}
+}
+
+# .12 — Week 24: Magni's Address
+country_event = {
+	id = khaz_modan_siege.12
+	title = khaz_modan_siege.12.t
+	desc = khaz_modan_siege.12.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.12.option.1
+		add_stability = 0.10
+		add_war_support = 0.10
+		custom_effect_tooltip = KMS_magni_speech_tooltip
+	}
+}
+
+# .13 — Week 39: The Siege Drags On (state 4 reached)
+country_event = {
+	id = khaz_modan_siege.13
+	title = khaz_modan_siege.13.t
+	desc = khaz_modan_siege.13.d
+	picture = GFX_report_event_german_soviet_treaty
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.13.option.1
+		add_stability = -0.05
+		add_war_support = 0.05
+		custom_effect_tooltip = KMS_siege_desperate_tooltip
+	}
+
+	option = {
+		name = khaz_modan_siege.13.option.2
+		add_stability = -0.10
+		add_war_support = -0.05
+		add_political_power = 100
+		news_event = { id = second_war_news.8 hours = 6 }
+	}
+}
+
+# .14 — Week 52: A Year Under Siege
+country_event = {
+	id = khaz_modan_siege.14
+	title = khaz_modan_siege.14.t
+	desc = khaz_modan_siege.14.d
+	picture = GFX_report_event_czechoslovakian_war
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.14.option.1
+		add_stability = 0.05
+		add_war_support = -0.03
+		if = {
+			limit = {
+				khaz_modan_tunnel_intact = yes
+			}
+			GNO = {
+				add_timed_idea = {
+					idea = KMS_tunnel_corps
+					days = 180
+				}
+			}
+		}
+	}
+
+	option = {
+		name = khaz_modan_siege.14.option.2
+		add_stability = -0.05
+		add_war_support = 0.10
+		add_manpower = 3000
+		custom_effect_tooltip = KMS_militia_mobilization_tooltip
+	}
+}
+
+# .15 — Week 64: The Mountain Cannot Fall
+country_event = {
+	id = khaz_modan_siege.15
+	title = khaz_modan_siege.15.t
+	desc = khaz_modan_siege.15.d
+	picture = GFX_report_event_czechoslovakian_war
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.15.option.1
+		ai_chance = { factor = 90 }
+		add_stability = 0.15
+		add_war_support = 0.15
+		add_surrender_limit = -0.10
+		custom_effect_tooltip = KMS_never_surrender_tooltip
+	}
+
+	option = {
+		name = khaz_modan_siege.15.option.2
+		ai_chance = { factor = 10 }
+		add_stability = -0.20
+		add_war_support = -0.20
+		add_surrender_limit = 0.10
+	}
+}
+
+# .20 — Siege lifted (fired from update when state drops below 3)
+country_event = {
+	id = khaz_modan_siege.20
+	title = khaz_modan_siege.20.t
+	desc = khaz_modan_siege.20.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.20.option.1
+		add_stability = 0.15
+		add_war_support = 0.15
+		remove_ideas = KMS_ironforge_mountain_holdout
+		remove_ideas = KMS_ironforge_desperate_siege
+		khaz_modan_clear_iro_siege_flags = yes
+		news_event = { id = second_war_news.26 hours = 6 }
+	}
+}
+
+# ===========================================================
+# GNOMEREGAN SIEGE EVENTS
+# ===========================================================
+
+# .30 — Gnomeregan Besieged
+country_event = {
+	id = khaz_modan_siege.30
+	title = khaz_modan_siege.30.t
+	desc = khaz_modan_siege.30.d
+	picture = GFX_report_event_german_parade_paris
+	fire_only_once = yes
+
+	trigger = {
+		tag = GNO
+		has_war = yes
+	}
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: Gnomeregan siege has begun"
+		khaz_modan_clear_gno_siege_flags = yes
+		set_variable = { var = gnomeregan_siege_days value = 0 }
+	}
+
+	option = {
+		name = khaz_modan_siege.30.option.1
+		add_war_support = 0.10
+		add_stability = 0.05
+		custom_effect_tooltip = KMS_gno_iron_gate_tooltip
+	}
+
+	option = {
+		name = khaz_modan_siege.30.option.2
+		add_war_support = -0.03
+		add_stability = -0.03
+		add_manpower = 1000
+		news_event = { id = second_war_news.9 hours = 6 }
+	}
+}
+
+# .31 — Week 12: Gnomish Ingenuity
+country_event = {
+	id = khaz_modan_siege.31
+	title = khaz_modan_siege.31.t
+	desc = khaz_modan_siege.31.d
+	picture = GFX_report_event_memorial_day
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.31.option.1
+		ai_chance = { factor = 80 }
+		add_war_support = 0.05
+		add_stability = -0.03
+	}
+
+	option = {
+		name = khaz_modan_siege.31.option.2
+		ai_chance = { factor = 20 }
+		add_political_power = 60
+		add_war_support = -0.03
+		add_research_bonus = {
+			bonus = 0.5
+			uses = 1
+		}
+	}
+}
+
+# .32 — Week 26: Gearworks Overdrive
+country_event = {
+	id = khaz_modan_siege.32
+	title = khaz_modan_siege.32.t
+	desc = khaz_modan_siege.32.d
+	picture = GFX_report_event_german_soviet_treaty
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.32.option.1
+		add_stability = 0.05
+		add_war_support = 0.05
+		custom_effect_tooltip = KMS_gearworks_tooltip
+	}
+
+	option = {
+		name = khaz_modan_siege.32.option.2
+		add_stability = -0.05
+		add_manpower = 2000
+		add_war_support = 0.03
+	}
+}
+
+# .33 — Week 43: Desperate Measures
+country_event = {
+	id = khaz_modan_siege.33
+	title = khaz_modan_siege.33.t
+	desc = khaz_modan_siege.33.d
+	picture = GFX_report_event_czechoslovakian_war
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.33.option.1
+		ai_chance = { factor = 85 }
+		add_stability = 0.10
+		add_war_support = 0.10
+		add_surrender_limit = -0.05
+	}
+
+	option = {
+		name = khaz_modan_siege.33.option.2
+		ai_chance = { factor = 15 }
+		add_stability = -0.15
+		add_war_support = -0.15
+	}
+}
+
+# .40 — Gnomeregan siege lifted
+country_event = {
+	id = khaz_modan_siege.40
+	title = khaz_modan_siege.40.t
+	desc = khaz_modan_siege.40.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = khaz_modan_siege.40.option.1
+		add_stability = 0.15
+		add_war_support = 0.10
+		remove_ideas = KMS_gnomeregan_under_siege
+		khaz_modan_clear_gno_siege_flags = yes
+		news_event = { id = second_war_news.26 hours = 6 }
+	}
+}
+
+# ===========================================================
+# HORDE EVENTS (fired when dwarves/gnomes bottled up)
+# ===========================================================
+
+# .50 — Horde: Ironforge under siege (notification for Horde faction leader)
+country_event = {
+	id = khaz_modan_siege.50
+	title = khaz_modan_siege.50.t
+	desc = khaz_modan_siege.50.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	option = {
+		name = khaz_modan_siege.50.option.1
+		custom_effect_tooltip = KMS_horde_extraction_tooltip
+	}
+
+	option = {
+		name = khaz_modan_siege.50.option.2
+		add_political_power = 25
+	}
+}
+
+# .51 — Horde: Khaz Modan resources flowing
+country_event = {
+	id = khaz_modan_siege.51
+	title = khaz_modan_siege.51.t
+	desc = khaz_modan_siege.51.d
+	picture = GFX_report_event_german_soviet_treaty
+
+	is_triggered_only = yes
+
+	option = {
+		name = khaz_modan_siege.51.option.1
+		add_political_power = 50
+		add_manpower = 500
+	}
+}
