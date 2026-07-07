@@ -1,8 +1,9 @@
 # Portrait / Focus-icon Pipeline
 
 Инструменты для полу-автоматической подготовки артов (портреты лидеров, иконки
-фокусов, идей, советников) в формат, который ест HOI4 — **без внешних бинарников**.
-Всё работает на Python 3 + Pillow, которые уже установлены (`Pillow 12`, `requests`).
+фокусов, идей, советников) в формат, который ест HOI4. Базовый путь работает на
+Python 3 + Pillow, а для совместимого с игрой финального DDS можно использовать
+встроенный в репозиторий `texconv.exe`.
 
 Два скрипта:
 
@@ -13,9 +14,9 @@
 | `batch_icons.py` | режет контактный лист по слотам в любой UI-пресет (`focus`, `idea`, `advisor`, `leader`) |
 | `batch_ideas.py` | режет контактный лист по слотам и сразу выпускает пачку `.dds` идей |
 
-Генерация нейросетью пока НЕ входит в пайплайн (сознательно опущено). Если позже
-захочется — `convert.py` одинаково хорошо жуёт и сгенерированные картинки: он
-последнее звено в любом случае.
+Генерация нейросетью в сам пайплайн не встроена, но пайплайн под неё уже
+заточен: можно генерить PNG в любом внешнем чатботе, а потом прогонять через
+`convert.py` / `batch_icons.py` до итогового игрового формата.
 
 ---
 
@@ -28,8 +29,12 @@
 | `idea`    | 64 × 64   | `gfx/interface/ideas/`           | `alliance_idea.dds` |
 | `advisor` | 65 × 67   | `gfx/interface/advisors/`        | `advisor_generic.dds` |
 
-Формат файла: `.dds`, кодек **DXT5** (BC3, с альфой) — по умолчанию.
-`DXT1` (BC1) меньше по размеру, но альфа 1-битная (только вкл/выкл прозрачность).
+Формат файла: `.dds`. Для HOI4-иконок в этом проекте сейчас практический рабочий
+вариант такой:
+
+- `DXT1` + `1 mip level` через `texconv` — основной путь для фокусов, где нужна
+  жёсткая прозрачность без полутонов;
+- `DXT5` (BC3) остаётся запасным вариантом, если нужна мягкая альфа.
 
 > **Мипмапы:** Pillow пишет DDS без мип-уровней. Для UI-спрайтов HOI4 это
 > нормально — интерфейс не масштабирует их в даль. Если когда-нибудь понадобятся
@@ -111,6 +116,170 @@ python convert.py leader raw/        --out out/leaders --focus-top
 python convert.py custom art.png     --out out --size 200x260
 ```
 
+### Генерация вне пайплайна -> нарезка внутри пайплайна
+
+Рабочая схема для постановки на поток:
+
+1. Генерируешь PNG в любом внешнем чатботе / генераторе.
+2. Просишь сразу делать либо одиночную иконку, либо контактный лист `2x3`,
+   `3x3`, `4x2` с жёстко зафиксированным порядком слотов.
+3. Фон делаешь хромакейным, чтобы потом не вырезать вручную:
+   `#00FFF0` или другой цвет, который гарантированно не встречается в арте.
+4. Дальше даже агент без распознавания картинки может просто взять готовый PNG,
+   манифест слотов и прогнать `batch_icons.py` / `convert.py`.
+
+Ключевая мысль: агенту не нужно “понимать” изображение, если генератор уже
+выдал лист в правильной сетке и с правильным фоном.
+
+### Шаблоны промтов для внешнего чатбота
+
+Ниже шаблоны не под конкретную модель, а под задачу. Их можно копировать почти
+как есть и менять только тему, предмет и список позиций.
+
+#### 1. Одиночная иконка фокуса
+
+Использовать, когда нужна одна заметная иконка под фокус.
+
+```text
+Create a single fantasy strategy-game focus icon.
+Subject: [КРАТКОЕ ОПИСАНИЕ].
+Composition: one main centered object, large readable silhouette, no tiny edge details.
+Background: solid chroma key background #00FFF0, perfectly flat and uniform.
+Style: polished Warcraft-inspired fantasy prop art, high contrast, readable at small size.
+Constraints: no frame, no border, no text, no UI elements, no cropped object, keep clear padding around the object, no cyan reflections or cyan glow on the object.
+Output: square image, high resolution.
+```
+
+#### 2. Одиночная иконка идеи / нацдуха
+
+Использовать, когда нужен символ, который потом ужмётся до `64x64`.
+
+```text
+Create a single fantasy national spirit icon for a strategy game.
+Subject: [КРАТКОЕ ОПИСАНИЕ].
+Composition: one dominant centered symbol only, simple silhouette, minimal clutter, large empty margins around the object.
+Background: solid chroma key background #00FFF0, perfectly uniform.
+Style: high-contrast fantasy icon art, readable at 64x64, no scene, no secondary objects.
+Constraints: no frame, no border, no text, no cropped edges, no cyan spill, no fog overlapping the silhouette.
+Output: square image, high resolution.
+```
+
+#### 3. Дух / магический шар / лоа
+
+Это частный шаблон под духи, где важна сферическая композиция.
+
+```text
+Create a fantasy spirit icon for a strategy game.
+Subject: [НАЗВАНИЕ ДУХА ИЛИ СУЩНОСТИ].
+Composition: spherical composition, glowing orb or circular magical core, centered face / mask / spirit essence inside the sphere, strong readable silhouette.
+Background: solid chroma key background #00FFF0, perfectly flat.
+Style: Warcraft-inspired mystical artifact icon, high contrast, readable at small size.
+Constraints: no frame, no text, no cropped edges, keep generous empty padding around the sphere, no cyan glow on the subject.
+Output: square image, high resolution.
+```
+
+#### 4. Контактный лист под пакетную нарезку
+
+Использовать, когда хочешь сразу пачку иконок.
+
+```text
+Create a [ROWS]x[COLS] contact sheet of separate fantasy strategy-game icons.
+Each cell must contain exactly one centered icon on a solid chroma key background #00FFF0.
+All cells must have identical size and spacing, arranged in a strict grid.
+Do not merge icons across cells. Keep padding inside each cell so the object does not touch the edges.
+No frame, no text, no labels, no UI.
+Style: polished Warcraft-inspired fantasy icon art, high contrast, readable at small size.
+Slot order, left to right and top to bottom:
+1. [IDEA / FOCUS 1]
+2. [IDEA / FOCUS 2]
+3. [IDEA / FOCUS 3]
+4. [IDEA / FOCUS 4]
+5. [IDEA / FOCUS 5]
+6. [IDEA / FOCUS 6]
+```
+
+Если нужен лист для фокусов, полезно прямо дописывать:
+
+```text
+Each icon should fit comfortably inside a square crop and remain readable after reduction to a small in-game focus icon.
+```
+
+### Что обязательно говорить генератору
+
+Это важнее стилистики. Если это не проговорить, потом начинаются проблемы на
+краях и при прозрачности.
+
+- `solid chroma key background #00FFF0`
+- `no frame, no border, no text`
+- `one object per cell`
+- `keep padding around the object`
+- `do not touch edges`
+- `no cyan spill / no cyan glow / no cyan reflections`
+- `readable at small size`
+- `strict grid layout` для контактных листов
+
+### Handoff-пакет для агента без распознавания
+
+Чтобы другой агент мог дорезать лист до игры вообще без визуального анализа,
+ему достаточно передать вот такой пакет данных:
+
+```text
+1. Путь к PNG:
+   C:\art\gnome_focus_sheet_01.png
+
+2. Что это:
+   focus icons
+
+3. Сетка:
+   2 rows, 3 cols
+
+4. Цвет фона:
+   #00FFF0
+
+5. Порядок слотов:
+   1 = mechanical_defenses
+   2 = gnomish_ingenuity
+   3 = flying_machines
+   4 = gyrocopter_squadrons
+   5 = spider_tank_development
+   6 = mechanical_warfare
+
+6. Финальный формат:
+   DDS via texconv, DXT1, 1 mip level
+```
+
+После этого агент может механически выполнить пайплайн.
+
+Пример для фокусов:
+
+```bash
+python batch_icons.py manifest.json --out out/focus ^
+  --preset focus ^
+  --safe-pad 10 ^
+  --chroma-key "#00FFF0" ^
+  --chroma-threshold 36 ^
+  --chroma-softness 10 ^
+  --despill 0.25 ^
+  --texconv ^
+  --texconv-format DXT1 ^
+  --mip-levels 1
+```
+
+Пример для идей:
+
+```bash
+python batch_icons.py manifest.json --out out/ideas ^
+  --preset idea ^
+  --icon-safe ^
+  --chroma-key "#00FFF0" ^
+  --chroma-threshold 36 ^
+  --chroma-softness 10 ^
+  --despill 0.25 ^
+  --texconv ^
+  --texconv-format DXT1 ^
+  --mip-levels 1
+```
+
 ### Текущая рабочая спецификация по проекту
 
 Ниже зафиксированы практические размеры, которые мы используем в этом проекте
@@ -125,6 +294,8 @@ python convert.py custom art.png     --out out --size 200x260
 Дополнительно:
 
 - итоговый формат: `.dds`;
+- для новых фокусов и иконок, где тестируем жёсткую прозрачность, основной
+  экспортный путь сейчас: `texconv` -> `DXT1` -> `1 mip level`;
 - для фокусов сетка дерева по скрипту остаётся отдельной темой:
   `x +1 = 96 px`, `y +1 = 130 px`;
 - `PPI` для самой игры не является ключевым параметром загрузки DDS, но
