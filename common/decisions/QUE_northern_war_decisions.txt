@@ -19,7 +19,7 @@ northern_war_que_category = {
 		ai_will_do = { factor = 0 }
 	}
 
-	# --- ACTIVATE BAN'DINORIEL BARRIER ---
+	# --- ACTIVATE BAN'DINORIEL BARRIER (costs 40 mana) ---
 	QUE_activate_barrier = {
 		icon = GFX_decision_generic_defense
 		allowed = { original_tag = QUE }
@@ -28,11 +28,15 @@ northern_war_que_category = {
 			check_variable = { nw_approaches_enemy > 1 }
 		}
 		available = {
-			check_variable = { QUE_mana_reserve > 39 }
 			NOT = { has_country_flag = QUE_ban_dinoriel_active }
 			NOT = { has_country_flag = QUE_ban_dinoriel_cooldown }
 			controls_state = 33
 		}
+		custom_cost_trigger = {
+			set_temp_variable = { temp_mana_cost = 40 }
+			check_variable = { QUE_mana_reserve > temp_mana_cost }
+		}
+		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 150
 		complete_effect = {
 			country_event = northern_war.20
@@ -40,7 +44,7 @@ northern_war_que_category = {
 		ai_will_do = { factor = 80 }
 	}
 
-	# --- REINFORCE RUNESTONE AT THAS'ALAH ---
+	# --- REINFORCE RUNESTONE AT THAS'ALAH (costs 10 mana) ---
 	QUE_reinforce_thasalah = {
 		icon = GFX_decision_generic_defense
 		allowed = { original_tag = QUE }
@@ -50,9 +54,13 @@ northern_war_que_category = {
 			NOT = { 184 = { has_state_flag = nw_runestone_destroyed } }
 		}
 		available = {
-			check_variable = { QUE_mana_reserve > 9 }
 			NOT = { 184 = { has_state_flag = nw_runestone_reinforced } }
 		}
+		custom_cost_trigger = {
+			set_temp_variable = { temp_mana_cost = 10 }
+			check_variable = { QUE_mana_reserve > temp_mana_cost }
+		}
+		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 40
 		complete_effect = {
 			184 = { set_state_flag = nw_runestone_reinforced }
@@ -61,13 +69,12 @@ northern_war_que_category = {
 				limit = { check_variable = { QUE_mana_reserve < 0 } }
 				set_variable = { QUE_mana_reserve = 0 }
 			}
-			# Add bunker
 			add_extra_state_shared_building_slots = 1
 		}
 		ai_will_do = { factor = 50 }
 	}
 
-	# --- REINFORCE RUNESTONE AT SANCTUM OF THE MOON ---
+	# --- REINFORCE RUNESTONE AT SANCTUM OF THE MOON (costs 10 mana) ---
 	QUE_reinforce_moon = {
 		icon = GFX_decision_generic_defense
 		allowed = { original_tag = QUE }
@@ -77,9 +84,13 @@ northern_war_que_category = {
 			NOT = { 185 = { has_state_flag = nw_runestone_destroyed } }
 		}
 		available = {
-			check_variable = { QUE_mana_reserve > 9 }
 			NOT = { 185 = { has_state_flag = nw_runestone_reinforced } }
 		}
+		custom_cost_trigger = {
+			set_temp_variable = { temp_mana_cost = 10 }
+			check_variable = { QUE_mana_reserve > temp_mana_cost }
+		}
+		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 40
 		complete_effect = {
 			185 = { set_state_flag = nw_runestone_reinforced }
@@ -93,7 +104,7 @@ northern_war_que_category = {
 		ai_will_do = { factor = 50 }
 	}
 
-	# --- REINFORCE RUNESTONE AT SANCTUM OF THE SUN ---
+	# --- REINFORCE RUNESTONE AT SANCTUM OF THE SUN (costs 10 mana) ---
 	QUE_reinforce_sun = {
 		icon = GFX_decision_generic_defense
 		allowed = { original_tag = QUE }
@@ -103,9 +114,13 @@ northern_war_que_category = {
 			NOT = { 189 = { has_state_flag = nw_runestone_destroyed } }
 		}
 		available = {
-			check_variable = { QUE_mana_reserve > 9 }
 			NOT = { 189 = { has_state_flag = nw_runestone_reinforced } }
 		}
+		custom_cost_trigger = {
+			set_temp_variable = { temp_mana_cost = 10 }
+			check_variable = { QUE_mana_reserve > temp_mana_cost }
+		}
+		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 40
 		complete_effect = {
 			189 = { set_state_flag = nw_runestone_reinforced }
@@ -184,7 +199,7 @@ northern_war_que_category = {
 		ai_will_do = { factor = 40 }
 	}
 
-	# --- SET MAGICAL TRAP IN APPROACHES ---
+	# --- SET MAGICAL TRAP IN APPROACHES (costs 5 mana) ---
 	QUE_magical_trap = {
 		icon = GFX_decision_generic_magic
 		allowed = { original_tag = QUE }
@@ -193,9 +208,13 @@ northern_war_que_category = {
 			check_variable = { nw_approaches_enemy > 0 }
 		}
 		available = {
-			check_variable = { QUE_mana_reserve > 4 }
 			NOT = { has_country_flag = QUE_trap_cooldown }
 		}
+		custom_cost_trigger = {
+			set_temp_variable = { temp_mana_cost = 5 }
+			check_variable = { QUE_mana_reserve > temp_mana_cost }
+		}
+		custom_cost_text = QUE_nw_mana_cost_text
 		cost = 30
 		complete_effect = {
 			subtract_from_variable = { QUE_mana_reserve = 5 }
@@ -210,7 +229,7 @@ northern_war_que_category = {
 		ai_will_do = { factor = 35 }
 	}
 
-	# --- CHANNEL THE SUNWELL ---
+	# --- CHANNEL THE SUNWELL (gives +30 mana) ---
 	QUE_channel_sunwell = {
 		icon = GFX_decision_generic_ritual
 		allowed = { original_tag = QUE }
@@ -263,5 +282,20 @@ northern_war_que_category = {
 			}
 		}
 		ai_will_do = { factor = 45 }
+	}
+
+	# --- BARRIER STATUS DISPLAY (never clickable) ---
+	QUE_nw_barrier_display = {
+		icon = GFX_decision_generic_defense
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+		}
+		available = {
+			always = no
+		}
+		cost = 0
+		complete_effect = {}
+		ai_will_do = { factor = 0 }
 	}
 }
