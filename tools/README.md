@@ -2,6 +2,46 @@
 
 Helper scripts for the HOA VinerX rebuild. The game never reads this folder.
 
+## crashdump.py - read the minidump when error.log is silent
+
+HOI4's hardest crashes (CTD during load, nothing in `error.log`) still leave a
+`minidump.dmp` in the crash folder under
+`Documents/Paradox Interactive/Hearts of Iron IV/crashes/hoi4_YYYYMMDD_HHMMSS/`.
+No Windows debugger is required — the script parses the dump with pure Python:
+
+```bash
+pip install minidump
+python tools/crashdump.py "C:/Users/<user>/Documents/Paradox Interactive/Hearts of Iron IV/crashes/hoi4_20260707_214804"
+```
+
+How to read the output (this is the whole technique):
+
+1. **Exception params `[op, addr]`** — op `0x0`=read / `0x1`=write, addr = the
+   faulting address. If addr is **tiny** (`0x0`–`0x1000`), it is a **null-pointer
+   deref reading a member at offset +addr**: some lookup by name returned null.
+   That means a broken *data reference* (equipment / tech / variant / idea /
+   character), not corruption. If addr is near the stack limit instead, think
+   stack overflow → recursion in scripted effects / focus positions.
+2. **Crash thread stack strings** — parsers keep the tokens they are currently
+   processing on the stack, so the strings name the dying subsystem and often
+   the exact token. Example that solved the 596 Second War crash:
+   `carrier_equipment_2`, `air_wings`, `task_force`, `fleet`, `units/` →
+   the naval OOB loader died on a carrier air wing → grep those tokens in
+   `history/units/` → `KUL_596_naval.txt` wing of `organic_fighter_equipment_1`
+   which KUL had no tech for (an air wing of un-researched equipment in any
+   OOB is a guaranteed silent CTD).
+3. **A stable crash address across runs** = same deterministic code path: keep
+   hunting one data bug, don't suspect RAM/drivers.
+4. **Ignore `exception.txt`'s call stack** (`PHYSFS_swapULE64` etc.). Paradox
+   ships no PDB, so those frames are nearest-export guesses and actively
+   mislead (they made this crash look like PHYSFS recursion for hours).
+
+Workflow: crashdump.py → classify (null deref vs overflow) → grep the stack
+tokens in the mod → fix → add the failure class to validate.py so it can never
+come back silently.
+
+## validate.py - pre-launch script linter
+
 ## validate.py - pre-launch script linter
 
 Catches common crash and parse mistakes without launching HOI4, which is still the
