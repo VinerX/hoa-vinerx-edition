@@ -1,0 +1,450 @@
+# -----------------------------------------------------------
+# Khaz Modan Siege — scripted effects
+# -----------------------------------------------------------
+
+# Initialise siege variables on startup
+khaz_modan_init_siege_vars = {
+	if = {
+		limit = { tag = IRO }
+		set_variable = { var = ironforge_siege_state value = 0 }
+		set_variable = { var = ironforge_siege_days value = 0 }
+		set_variable = { var = ironforge_supply value = 100 }
+	}
+	if = {
+		limit = { tag = GNO }
+		set_variable = { var = gnomeregan_siege_state value = 0 }
+		set_variable = { var = gnomeregan_siege_days value = 0 }
+		set_variable = { var = gnomeregan_supply value = 100 }
+	}
+	if = {
+		limit = { tag = BHC }
+		set_variable = { var = khaz_modan_extraction value = 0 }
+	}
+}
+
+# Count how many outer Dun Morogh states IRO still controls
+khaz_modan_count_iro_outer = {
+	set_temp_variable = { var = iro_outer_count value = 0 }
+	if = { limit = { 445 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 446 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 447 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 448 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 449 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 450 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 451 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 452 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 456 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 457 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 458 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 459 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 460 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+	if = { limit = { 461 = { is_controlled_by = IRO } } add_to_temp_variable = { var = iro_outer_count value = 1 } }
+}
+
+# Calculate Ironforge siege state and update variables
+khaz_modan_update_ironforge_siege = {
+	if = {
+		limit = { NOT = { has_war = yes } }
+		if = {
+			limit = {
+				check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+			}
+			country_event = khaz_modan_siege.20
+		}
+		set_variable = { var = ironforge_siege_state value = 0 }
+		set_variable = { var = ironforge_siege_days value = 0 }
+	}
+	else_if = {
+		limit = { NOT = { iro_at_war_with_horde = yes } }
+		if = {
+			limit = {
+				check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+			}
+			country_event = khaz_modan_siege.20
+		}
+		set_variable = { var = ironforge_siege_state value = 0 }
+		set_variable = { var = ironforge_siege_days value = 0 }
+	}
+	else = {
+		khaz_modan_count_iro_outer = yes
+		if = {
+			limit = {
+				check_variable = { var = iro_outer_count value = 10 compare = greater_than_or_equals }
+			}
+			set_variable = { var = ironforge_siege_state value = 1 }
+			set_variable = { var = ironforge_siege_days value = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { var = iro_outer_count value = 6 compare = greater_than_or_equals }
+			}
+			set_variable = { var = ironforge_siege_state value = 2 }
+			set_variable = { var = ironforge_siege_days value = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { var = iro_outer_count value = 1 compare = greater_than_or_equals }
+			}
+			set_variable = { var = ironforge_siege_state value = 2 }
+			set_variable = { var = ironforge_siege_days value = 0 }
+		}
+		else_if = {
+			limit = {
+				iro_controls_mountain_core = yes
+				iro_enemy_in_dun_morogh = yes
+			}
+			if = {
+				limit = {
+					check_variable = { var = ironforge_siege_state value = 3 compare = less_than }
+				}
+				country_event = khaz_modan_siege.10
+				set_variable = { var = ironforge_siege_days value = 0 }
+			}
+			set_variable = { var = ironforge_siege_state value = 3 }
+		}
+		else = {
+			if = {
+				limit = {
+					check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+				}
+				country_event = khaz_modan_siege.20
+			}
+			set_variable = { var = ironforge_siege_state value = 0 }
+		}
+	}
+}
+
+# Apply Ironforge siege ideas based on state
+khaz_modan_apply_iro_siege_ideas = {
+	if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 0 compare = greater_than }
+		}
+		remove_ideas = KMS_ironforge_outer_defense
+		remove_ideas = KMS_ironforge_valley_contested
+		remove_ideas = KMS_ironforge_mountain_holdout
+		remove_ideas = KMS_ironforge_desperate_siege
+	}
+	if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 1 compare = equals }
+		}
+		remove_ideas = KMS_ironforge_valley_contested
+		remove_ideas = KMS_ironforge_mountain_holdout
+		remove_ideas = KMS_ironforge_desperate_siege
+		add_ideas = KMS_ironforge_outer_defense
+	}
+	else_if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 2 compare = equals }
+		}
+		remove_ideas = KMS_ironforge_outer_defense
+		remove_ideas = KMS_ironforge_mountain_holdout
+		remove_ideas = KMS_ironforge_desperate_siege
+		add_ideas = KMS_ironforge_valley_contested
+	}
+	else_if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 3 compare = equals }
+		}
+		remove_ideas = KMS_ironforge_outer_defense
+		remove_ideas = KMS_ironforge_valley_contested
+		remove_ideas = KMS_ironforge_desperate_siege
+		add_ideas = KMS_ironforge_mountain_holdout
+	}
+	else_if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 4 compare = equals }
+		}
+		remove_ideas = KMS_ironforge_outer_defense
+		remove_ideas = KMS_ironforge_valley_contested
+		remove_ideas = KMS_ironforge_mountain_holdout
+		add_ideas = KMS_ironforge_desperate_siege
+	}
+}
+
+# Update Horde extraction level based on controlled Khaz Modan states
+khaz_modan_update_extraction = {
+	set_temp_variable = { var = kms_extract_count value = 0 }
+	if = { limit = { 445 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 3 } }
+	if = { limit = { 456 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 3 } }
+	if = { limit = { 464 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 3 } }
+	if = { limit = { 468 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 2 } }
+	if = { limit = { 469 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 2 } }
+	if = { limit = { 476 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 2 } }
+	if = { limit = { 482 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 1 } }
+	if = { limit = { 437 = { is_controlled_by = BHC } } add_to_temp_variable = { var = kms_extract_count value = 2 } }
+	set_variable = { var = khaz_modan_extraction value = kms_extract_count }
+	if = {
+		limit = { has_variable = khaz_modan_extraction }
+		clamp_variable = { var = khaz_modan_extraction min = 0 max = 20 }
+	}
+}
+
+# Apply BHC extraction ideas based on extraction level
+khaz_modan_apply_bhc_extraction_ideas = {
+	if = {
+		limit = {
+			check_variable = { var = khaz_modan_extraction value = 10 compare = greater_than_or_equals }
+		}
+		remove_ideas = KMS_horde_light_extraction
+		add_ideas = KMS_horde_heavy_extraction
+	}
+	else_if = {
+		limit = {
+			check_variable = { var = khaz_modan_extraction value = 3 compare = greater_than_or_equals }
+		}
+		remove_ideas = KMS_horde_heavy_extraction
+		add_ideas = KMS_horde_light_extraction
+	}
+	else = {
+		remove_ideas = KMS_horde_light_extraction
+		remove_ideas = KMS_horde_heavy_extraction
+	}
+}
+
+# Count Gnomeregan outer states controlled by GNO
+khaz_modan_count_gno_outer = {
+	set_temp_variable = { var = gno_outer_count value = 0 }
+	if = { limit = { 428 = { is_controlled_by = GNO } } add_to_temp_variable = { var = gno_outer_count value = 1 } }
+	if = { limit = { 429 = { is_controlled_by = GNO } } add_to_temp_variable = { var = gno_outer_count value = 1 } }
+	if = { limit = { 437 = { is_controlled_by = GNO } } add_to_temp_variable = { var = gno_outer_count value = 1 } }
+	if = { limit = { 438 = { is_controlled_by = GNO } } add_to_temp_variable = { var = gno_outer_count value = 1 } }
+}
+
+# Calculate Gnomeregan siege state
+khaz_modan_update_gnomeregan_siege = {
+	if = {
+		limit = { NOT = { has_war = yes } }
+		if = {
+			limit = {
+				check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+			}
+			country_event = khaz_modan_siege.40
+		}
+		set_variable = { var = gnomeregan_siege_state value = 0 }
+		set_variable = { var = gnomeregan_siege_days value = 0 }
+	}
+	else_if = {
+		limit = { NOT = { gno_at_war_with_horde = yes } }
+		if = {
+			limit = {
+				check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+			}
+			country_event = khaz_modan_siege.40
+		}
+		set_variable = { var = gnomeregan_siege_state value = 0 }
+		set_variable = { var = gnomeregan_siege_days value = 0 }
+	}
+	else = {
+		khaz_modan_count_gno_outer = yes
+		if = {
+			limit = {
+				check_variable = { var = gno_outer_count value = 3 compare = greater_than_or_equals }
+			}
+			set_variable = { var = gnomeregan_siege_state value = 1 }
+			set_variable = { var = gnomeregan_siege_days value = 0 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { var = gno_outer_count value = 1 compare = greater_than_or_equals }
+				NOT = { 437 = { is_controlled_by = GNO } }
+			}
+			set_variable = { var = gnomeregan_siege_state value = 2 }
+			set_variable = { var = gnomeregan_siege_days value = 0 }
+		}
+		else_if = {
+			limit = {
+				gno_controls_inner_city = yes
+				gno_enemy_at_gates = yes
+			}
+			if = {
+				limit = {
+					check_variable = { var = gnomeregan_siege_state value = 3 compare = less_than }
+				}
+				country_event = khaz_modan_siege.30
+				set_variable = { var = gnomeregan_siege_days value = 0 }
+			}
+			set_variable = { var = gnomeregan_siege_state value = 3 }
+		}
+		else = {
+			if = {
+				limit = {
+					check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+				}
+				country_event = khaz_modan_siege.40
+			}
+			set_variable = { var = gnomeregan_siege_state value = 0 }
+		}
+	}
+}
+
+# Apply Gnomeregan siege ideas based on state
+khaz_modan_apply_gno_siege_ideas = {
+	if = {
+		limit = {
+			check_variable = { var = gnomeregan_siege_state value = 0 compare = greater_than }
+		}
+		remove_ideas = KMS_gnomeregan_outer_skirmish
+		remove_ideas = KMS_gnomeregan_at_gates
+		remove_ideas = KMS_gnomeregan_under_siege
+	}
+	if = {
+		limit = {
+			check_variable = { var = gnomeregan_siege_state value = 1 compare = equals }
+		}
+		remove_ideas = KMS_gnomeregan_at_gates
+		remove_ideas = KMS_gnomeregan_under_siege
+		add_ideas = KMS_gnomeregan_outer_skirmish
+	}
+	else_if = {
+		limit = {
+			check_variable = { var = gnomeregan_siege_state value = 2 compare = equals }
+		}
+		remove_ideas = KMS_gnomeregan_outer_skirmish
+		remove_ideas = KMS_gnomeregan_under_siege
+		add_ideas = KMS_gnomeregan_at_gates
+	}
+	else_if = {
+		limit = {
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = equals }
+		}
+		remove_ideas = KMS_gnomeregan_outer_skirmish
+		remove_ideas = KMS_gnomeregan_at_gates
+		add_ideas = KMS_gnomeregan_under_siege
+	}
+}
+
+# Increase siege day counter for both cities
+khaz_modan_tick_siege_days = {
+	if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 3 compare = less_than }
+			check_variable = { var = ironforge_siege_state value = 0 compare = greater_than }
+		}
+		khaz_modan_clear_iro_siege_flags = yes
+		set_variable = { var = ironforge_siege_days value = 0 }
+	}
+	if = {
+		limit = {
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		add_to_variable = { var = ironforge_siege_days value = 7 }
+		set_temp_variable = { var = kms_if_days value = ironforge_siege_days }
+		if = {
+			limit = {
+				check_variable = { var = kms_if_days value = 84 compare = greater_than_or_equals }
+				has_country_flag = ironforge_siege_week_12 = no
+			}
+			set_country_flag = ironforge_siege_week_12
+			country_event = khaz_modan_siege.11
+		}
+		if = {
+			limit = {
+				check_variable = { var = kms_if_days value = 168 compare = greater_than_or_equals }
+				has_country_flag = ironforge_siege_week_24 = no
+			}
+			set_country_flag = ironforge_siege_week_24
+			country_event = khaz_modan_siege.12
+		}
+		if = {
+			limit = {
+				check_variable = { var = kms_if_days value = 270 compare = greater_than_or_equals }
+				has_country_flag = ironforge_siege_week_39 = no
+			}
+			set_country_flag = ironforge_siege_week_39
+			set_variable = { var = ironforge_siege_state value = 4 }
+			country_event = khaz_modan_siege.13
+		}
+		if = {
+			limit = {
+				check_variable = { var = kms_if_days value = 365 compare = greater_than_or_equals }
+				has_country_flag = ironforge_siege_week_52 = no
+			}
+			set_country_flag = ironforge_siege_week_52
+			country_event = khaz_modan_siege.14
+		}
+		if = {
+			limit = {
+				check_variable = { var = kms_if_days value = 450 compare = greater_than_or_equals }
+				has_country_flag = ironforge_siege_week_64 = no
+			}
+			set_country_flag = ironforge_siege_week_64
+			country_event = khaz_modan_siege.15
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = less_than }
+			check_variable = { var = gnomeregan_siege_state value = 0 compare = greater_than }
+		}
+		khaz_modan_clear_gno_siege_flags = yes
+		set_variable = { var = gnomeregan_siege_days value = 0 }
+	}
+	if = {
+		limit = {
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		add_to_variable = { var = gnomeregan_siege_days value = 7 }
+		set_temp_variable = { var = kms_gno_days value = gnomeregan_siege_days }
+		if = {
+			limit = {
+				check_variable = { var = kms_gno_days value = 84 compare = greater_than_or_equals }
+				has_country_flag = gnomeregan_siege_week_12 = no
+			}
+			set_country_flag = gnomeregan_siege_week_12
+			country_event = khaz_modan_siege.31
+		}
+		if = {
+			limit = {
+				check_variable = { var = kms_gno_days value = 180 compare = greater_than_or_equals }
+				has_country_flag = gnomeregan_siege_week_26 = no
+			}
+			set_country_flag = gnomeregan_siege_week_26
+			country_event = khaz_modan_siege.32
+		}
+		if = {
+			limit = {
+				check_variable = { var = kms_gno_days value = 300 compare = greater_than_or_equals }
+				has_country_flag = gnomeregan_siege_week_43 = no
+			}
+			set_country_flag = gnomeregan_siege_week_43
+			country_event = khaz_modan_siege.33
+		}
+	}
+}
+
+# Full weekly update for Ironforge
+khaz_modan_ironforge_weekly = {
+	khaz_modan_update_ironforge_siege = yes
+	khaz_modan_apply_iro_siege_ideas = yes
+	khaz_modan_tick_siege_days = yes
+}
+
+# Full weekly update for Gnomeregan
+khaz_modan_gnomeregan_weekly = {
+	khaz_modan_update_gnomeregan_siege = yes
+	khaz_modan_apply_gno_siege_ideas = yes
+	khaz_modan_tick_siege_days = yes
+}
+
+# Full weekly update for BHC extraction
+khaz_modan_bhc_weekly = {
+	khaz_modan_update_extraction = yes
+	khaz_modan_apply_bhc_extraction_ideas = yes
+}
+
+# Clear all siege flags when siege ends (state drops below 3)
+khaz_modan_clear_iro_siege_flags = {
+	clr_country_flag = ironforge_siege_week_12
+	clr_country_flag = ironforge_siege_week_24
+	clr_country_flag = ironforge_siege_week_39
+	clr_country_flag = ironforge_siege_week_52
+	clr_country_flag = ironforge_siege_week_64
+}
+
+khaz_modan_clear_gno_siege_flags = {
+	clr_country_flag = gnomeregan_siege_week_12
+	clr_country_flag = gnomeregan_siege_week_26
+	clr_country_flag = gnomeregan_siege_week_43
+}

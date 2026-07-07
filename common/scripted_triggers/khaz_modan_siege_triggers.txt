@@ -1,0 +1,117 @@
+# -----------------------------------------------------------
+# Khaz Modan Siege — scripted triggers
+# -----------------------------------------------------------
+
+# Ironforge mountain core states: 430, 431, 432, 433, 434, 435, 436, 440, 441
+# Outer Dun Morogh (valley): 445, 446, 447, 448, 449, 450, 451, 452, 456, 457, 458, 459, 460, 461
+
+# True when IRO is at war with any Horde-aligned country
+iro_at_war_with_horde = {
+	tag = IRO
+	has_war = yes
+	any_enemy_country = {
+		OR = {
+			original_tag = BRC
+			original_tag = BHC
+			original_tag = DMC
+			original_tag = SRC
+			original_tag = THC
+		}
+	}
+}
+
+# True when GNO is at war with any Horde-aligned country
+gno_at_war_with_horde = {
+	tag = GNO
+	has_war = yes
+	any_enemy_country = {
+		OR = {
+			original_tag = BRC
+			original_tag = BHC
+			original_tag = DMC
+			original_tag = SRC
+			original_tag = THC
+		}
+	}
+}
+
+# True when an enemy controls ANY Dun Morogh outer state
+iro_enemy_in_dun_morogh = {
+	any_enemy_country = {
+		any_controlled_state = {
+			is_owned_by = IRO
+			OR = {
+				state = 445
+				state = 446
+				state = 447
+				state = 448
+				state = 449
+				state = 450
+				state = 451
+				state = 452
+				state = 456
+				state = 457
+				state = 458
+				state = 459
+				state = 460
+				state = 461
+			}
+		}
+	}
+}
+
+# True when IRO controls at least its mountain core states
+iro_controls_mountain_core = {
+	430 = { is_controlled_by = IRO }
+	431 = { is_controlled_by = IRO }
+	432 = { is_controlled_by = IRO }
+	433 = { is_controlled_by = IRO }
+}
+
+# True when an enemy controls ANY Gnomeregan outer state
+gno_enemy_at_gates = {
+	any_enemy_country = {
+		any_controlled_state = {
+			is_owned_by = GNO
+			OR = {
+				state = 428
+				state = 429
+				state = 437
+				state = 438
+			}
+		}
+	}
+}
+
+# True when GNO controls its inner city states
+gno_controls_inner_city = {
+	422 = { is_controlled_by = GNO }
+	423 = { is_controlled_by = GNO }
+	424 = { is_controlled_by = GNO }
+}
+
+# True when Loch Modan is mostly under Alliance control (relief condition)
+khaz_modan_relief_condition = {
+	if = {
+		limit = { tag = IRO }
+		464 = { is_controlled_by = IRO }
+		468 = { is_controlled_by = IRO }
+	}
+	if = {
+		limit = { tag = LOR }
+		464 = { is_controlled_by = LOR }
+		468 = { is_controlled_by = LOR }
+	}
+}
+
+# True when Ironforge-Gnomeregan tunnel is intact (both hold key states)
+khaz_modan_tunnel_intact = {
+	if = {
+		limit = { tag = IRO }
+		GNO = { 422 = { is_controlled_by = GNO } }
+	}
+	if = {
+		limit = { tag = GNO }
+		IRO = { 430 = { is_controlled_by = IRO } }
+	}
+}

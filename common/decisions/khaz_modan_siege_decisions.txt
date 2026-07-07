@@ -1,0 +1,317 @@
+# ===========================================================
+# Khaz Modan Siege — Decisions
+# ===========================================================
+
+khaz_modan_siege = {
+
+	# --- IRONFORGE ---
+
+	iro_mobilize_breweries = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 50
+		days_remove = 90
+
+		available = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		visible = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+
+		complete_effect = {
+			add_stability = -0.03
+			add_war_support = -0.02
+			add_political_power = 30
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	iro_forgemaster_conscription = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 75
+		days_remove = 120
+
+		available = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		visible = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+
+		complete_effect = {
+			add_manpower = 2500
+			add_stability = -0.05
+			add_war_support = 0.03
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	iro_deep_tunnel_sortie = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 100
+		days_remove = 180
+
+		available = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		visible = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+
+		complete_effect = {
+			add_manpower = -500
+			custom_effect_tooltip = KMS_deep_tunnel_sortie_tooltip
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	iro_send_for_aid = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 50
+		days_remove = 30
+		fire_only_once = yes
+
+		available = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+			LOR = { has_war_with = BRC }
+			LOR = { exists = yes }
+		}
+		visible = {
+			tag = IRO
+			check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+		}
+
+		complete_effect = {
+			LOR = { country_event = khaz_modan_siege.50 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	# --- GNOMEREGAN ---
+
+	gno_tech_improvisation = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 50
+		days_remove = 180
+
+		available = {
+			tag = GNO
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		visible = {
+			tag = GNO
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+		}
+
+		complete_effect = {
+			add_research_bonus = {
+				bonus = 0.5
+				uses = 1
+			}
+			add_stability = -0.03
+		}
+
+		ai_will_do = {
+			factor = 12
+		}
+	}
+
+	gno_gearworks_conscription = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 75
+		days_remove = 120
+
+		available = {
+			tag = GNO
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+		}
+		visible = {
+			tag = GNO
+			check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+		}
+
+		complete_effect = {
+			add_manpower = 1500
+			add_stability = -0.05
+			add_war_support = 0.03
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	gno_gate_reinforcements = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 75
+		days_remove = 90
+
+		available = {
+			tag = GNO
+			check_variable = { var = gnomeregan_siege_state value = 2 compare = greater_than_or_equals }
+			428 = { is_controlled_by = GNO }
+		}
+		visible = {
+			tag = GNO
+			check_variable = { var = gnomeregan_siege_state value = 2 compare = greater_than_or_equals }
+			428 = { is_controlled_by = GNO }
+		}
+
+		complete_effect = {
+			428 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_war_support = 0.03
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	# --- BLEEDING HOLLOW ---
+
+	bhc_containment_order = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 50
+		days_remove = 90
+
+		available = {
+			original_tag = BHC
+			has_war_with = IRO
+		}
+		visible = {
+			original_tag = BHC
+			has_war_with = IRO
+			any_enemy_country = {
+				OR = {
+					tag = IRO
+					tag = GNO
+				}
+			}
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = KMS_bhc_containment_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	bhc_intensify_siege = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 100
+		days_remove = 180
+
+		available = {
+			original_tag = BHC
+			has_war_with = IRO
+			any_enemy_country = {
+				OR = {
+					tag = IRO
+					tag = GNO
+				}
+			}
+		}
+		visible = {
+			original_tag = BHC
+			has_war_with = IRO
+		}
+
+		complete_effect = {
+			add_manpower = -2000
+			IRO = {
+				if = {
+					limit = {
+						check_variable = { var = ironforge_siege_state value = 3 compare = greater_than_or_equals }
+					}
+					add_war_support = -0.05
+				}
+			}
+			GNO = {
+				if = {
+					limit = {
+						check_variable = { var = gnomeregan_siege_state value = 3 compare = greater_than_or_equals }
+					}
+					add_war_support = -0.03
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	bhc_abandon_siege = {
+		icon = GFX_decision_hoa_22
+		allowed = { always = no }
+		cost = 150
+		days_remove = 30
+
+		available = {
+			original_tag = BHC
+			has_war_with = IRO
+		}
+		visible = {
+			original_tag = BHC
+			has_war_with = IRO
+			NOT = {
+				any_controlled_state = {
+					is_owned_by = IRO
+					OR = {
+						state = 430
+						state = 431
+						state = 432
+					}
+				}
+			}
+		}
+
+		complete_effect = {
+			remove_ideas = KMS_horde_light_extraction
+			remove_ideas = KMS_horde_heavy_extraction
+			set_variable = { var = khaz_modan_extraction value = 0 }
+			custom_effect_tooltip = KMS_bhc_abandon_tooltip
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+}
