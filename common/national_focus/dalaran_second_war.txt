@@ -1,4 +1,4 @@
-﻿#!gfx:interface\hoa_focus.gfx
+#!gfx:interface\hoa_focus.gfx
 focus_tree = {
 	id = dalaran_second_war
 	country = {
@@ -269,8 +269,8 @@ focus_tree = {
 	}
 
 	focus = {
-		id = DAL_sw_jaina_proudmoore
-		icon = GFX_focus_book_2
+		id = DAL_sw_kaelthas_council
+		icon = GFX_focus_NET_high_elf
 		prerequisite = { focus = DAL_sw_teleportation_research }
 		relative_position_id = DAL_sw_teleportation_research
 		x = 0
@@ -293,7 +293,7 @@ focus_tree = {
 				modifier = STR_friendly_relations
 			}
 			DAL = {
-				set_country_flag = DAL_jaina_student
+				set_country_flag = DAL_kaelthas_council
 			}
 		}
 	}
@@ -389,8 +389,8 @@ focus_tree = {
 	focus = {
 		id = DAL_sw_arcane_ally
 		icon = GFX_focus_alliance_support_the_alliance
-		prerequisite = { focus = DAL_sw_jaina_proudmoore }
-		relative_position_id = DAL_sw_jaina_proudmoore
+		prerequisite = { focus = DAL_sw_kaelthas_council }
+		relative_position_id = DAL_sw_kaelthas_council
 		x = 1
 		y = 2
 		cost = 7
@@ -687,4 +687,955 @@ focus_tree = {
 			add_research_slot = 1
 		}
 	}
+
+	#########################################################
+	# Council of Six вЂ” Faction Paths (mutually exclusive)
+	#########################################################
+
+	focus = {
+		id = DAL_sw_antonidas_path
+		icon = GFX_focus_DAL_generic
+		prerequisite = { focus = DAL_sw_council_of_six }
+		relative_position_id = DAL_sw_council_of_six
+		x = -10
+		y = 1
+		cost = 7
+		mutually_exclusive = yes
+
+		available = {
+			NOT = { has_country_flag = DAL_faction_krasus }
+			NOT = { has_country_flag = DAL_faction_modera }
+			NOT = { has_country_flag = DAL_faction_kelthuzad }
+		}
+
+		ai_will_do = { base = 10 }
+
+		completion_reward = {
+			DAL = { set_country_flag = DAL_faction_antonidas }
+			add_stability = 0.05
+			add_political_power = 60
+			add_ideas = DAL_sw_antonidas_leadership
+			custom_effect_tooltip = DAL_sw_antonidas_path_tt
+		}
+	}
+
+	focus = {
+		id = DAL_sw_krasus_path
+		icon = GFX_focus_red_dragon_flight
+		prerequisite = { focus = DAL_sw_council_of_six }
+		relative_position_id = DAL_sw_council_of_six
+		x = -5
+		y = 1
+		cost = 7
+		mutually_exclusive = yes
+
+		available = {
+			NOT = { has_country_flag = DAL_faction_antonidas }
+			NOT = { has_country_flag = DAL_faction_modera }
+			NOT = { has_country_flag = DAL_faction_kelthuzad }
+		}
+
+		ai_will_do = { base = 7 }
+
+		completion_reward = {
+			DAL = { set_country_flag = DAL_faction_krasus }
+			add_war_support = 0.05
+			add_political_power = 50
+			add_ideas = DAL_sw_krasus_intervention
+			custom_effect_tooltip = DAL_sw_krasus_path_tt
+		}
+	}
+
+	focus = {
+		id = DAL_sw_modera_path
+		icon = GFX_focus_scroll_1
+		prerequisite = { focus = DAL_sw_council_of_six }
+		relative_position_id = DAL_sw_council_of_six
+		x = 7
+		y = 1
+		cost = 7
+		mutually_exclusive = yes
+
+		available = {
+			NOT = { has_country_flag = DAL_faction_antonidas }
+			NOT = { has_country_flag = DAL_faction_krasus }
+			NOT = { has_country_flag = DAL_faction_kelthuzad }
+		}
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			DAL = { set_country_flag = DAL_faction_modera }
+			add_stability = 0.03
+			add_war_support = 0.03
+			add_political_power = 50
+			add_ideas = DAL_sw_modera_purity
+			custom_effect_tooltip = DAL_sw_modera_path_tt
+		}
+	}
+
+	focus = {
+		id = DAL_sw_kelthuzad_path
+		icon = GFX_focus_SRG_kelthuzad
+		prerequisite = { focus = DAL_sw_council_of_six }
+		relative_position_id = DAL_sw_council_of_six
+		x = 9
+		y = 1
+		cost = 7
+		mutually_exclusive = yes
+
+		available = {
+			NOT = { has_country_flag = DAL_faction_antonidas }
+			NOT = { has_country_flag = DAL_faction_krasus }
+			NOT = { has_country_flag = DAL_faction_modera }
+		}
+
+		ai_will_do = { base = 3 }
+
+		completion_reward = {
+			DAL = { set_country_flag = DAL_faction_kelthuzad }
+			add_stability = -0.05
+			add_war_support = 0.03
+			add_political_power = 70
+			add_ideas = DAL_sw_kelthuzad_faction
+			custom_effect_tooltip = DAL_sw_kelthuzad_path_tt
+		}
+	}
+
+	#########################################################
+	# Antonidas Sub-Branch вЂ” column 48, y=5,7,9
+	#########################################################
+
+	focus = {
+		id = DAL_sw_diplomatic_corps
+		icon = GFX_focus_book_2
+		prerequisite = { focus = DAL_sw_antonidas_path }
+		relative_position_id = DAL_sw_antonidas_path
+		x = 18
+		y = 2
+		cost = 7
+		ai_will_do = { base = 9 }
+		completion_reward = {
+			add_political_power = 70
+			add_stability = 0.05
+			add_opinion_modifier = { target = LOR modifier = small_increase }
+			add_opinion_modifier = { target = STO modifier = small_increase }
+			add_opinion_modifier = { target = STR modifier = small_increase }
+			alliance_unity_raise = yes
+		}
+	}
+
+	focus = {
+		id = DAL_sw_arcane_conservation
+		icon = GFX_focus_book_3
+		prerequisite = { focus = DAL_sw_diplomatic_corps }
+		relative_position_id = DAL_sw_diplomatic_corps
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_political_power = 80
+			add_research_slot = 1
+			add_tech_bonus = { name = general_research_bonus_dal bonus = 1.0 uses = 2 category = mage_tech }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_dalaran_mentors
+		icon = GFX_focus_alliance_support_the_alliance
+		prerequisite = { focus = DAL_sw_diplomatic_corps }
+		relative_position_id = DAL_sw_diplomatic_corps
+		x = 3
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_political_power = 60
+			add_war_support = 0.05
+			country_event = { id = dalaran_second_war.10 }
+		}
+	}
+
+	#########################################################
+	# Krasus Sub-Branch вЂ” column 51, y=5,7,9
+	#########################################################
+
+	focus = {
+		id = DAL_sw_dragonflight_embassy
+		icon = GFX_focus_legacy_of_the_dragonsoul
+		prerequisite = { focus = DAL_sw_krasus_path }
+		relative_position_id = DAL_sw_krasus_path
+		x = 16
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_political_power = 50
+			add_opinion_modifier = { target = RDF modifier = medium_increase }
+			reverse_add_opinion_modifier = { target = RDF modifier = medium_increase }
+			DAL = { set_country_flag = DAL_dragonflight_embassy }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_dragon_riders
+		icon = GFX_focus_alliance_footman
+		prerequisite = { focus = DAL_sw_dragonflight_embassy }
+		relative_position_id = DAL_sw_dragonflight_embassy
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_faction_krasus }
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.08
+			air_experience = 40
+			add_timed_idea = { idea = DAL_sw_dragon_riders days = 730 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_red_flight_war
+		icon = GFX_focus_red_dragon_flight
+		prerequisite = { focus = DAL_sw_dragonflight_embassy }
+		relative_position_id = DAL_sw_dragonflight_embassy
+		x = -3
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_faction_krasus }
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.10
+			army_experience = 30
+			RDF = { add_opinion_modifier = { target = BRC modifier = hostile_relations } }
+			RDF = { add_opinion_modifier = { target = DMC modifier = hostile_relations } }
+		}
+	}
+
+	#########################################################
+	# Modera Sub-Branch вЂ” column 54, y=5,7,9
+	#########################################################
+
+	focus = {
+		id = DAL_sw_arcane_purity_doctrine
+		icon = GFX_focus_alliance_guard_against_the_darkness
+		prerequisite = { focus = DAL_sw_modera_path }
+		relative_position_id = DAL_sw_modera_path
+		x = 7
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.03
+			add_political_power = 60
+			add_ideas = DAL_sw_arcane_purity
+		}
+	}
+
+	focus = {
+		id = DAL_sw_forbidden_knowledge_vault
+		icon = GFX_focus_book_1
+		prerequisite = { focus = DAL_sw_arcane_purity_doctrine }
+		relative_position_id = DAL_sw_arcane_purity_doctrine
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_faction_modera }
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_research_slot = 1
+			add_stability = -0.03
+			add_war_support = 0.02
+			DAL = { set_country_flag = DAL_forbidden_vault_secured }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_arcane_vault_guardians
+		icon = GFX_focus_alliance_world_tree_guardians
+		prerequisite = { focus = DAL_sw_arcane_purity_doctrine }
+		relative_position_id = DAL_sw_arcane_purity_doctrine
+		x = 6
+		y = 2
+		cost = 7
+		available = { has_country_flag = DAL_faction_modera }
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			add_decryption = 1.0
+			add_timed_idea = { idea = DAL_sw_vault_guardians days = 365 }
+		}
+	}
+
+	#########################################################
+	# Kel'Thuzad Sub-Branch вЂ” column 57, y=5,7,9,11
+	#########################################################
+
+	focus = {
+		id = DAL_sw_dark_bargain
+		icon = GFX_focus_fel_blood
+		prerequisite = { focus = DAL_sw_kelthuzad_path }
+		relative_position_id = DAL_sw_kelthuzad_path
+		x = 8
+		y = 2
+		cost = 7
+		ai_will_do = { base = 5 }
+		completion_reward = {
+			add_stability = -0.07
+			add_war_support = 0.05
+			add_political_power = 80
+			add_research_slot = 1
+			DAL = { set_country_flag = DAL_dark_bargain_made }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_secret_coven
+		icon = GFX_focus_old_god_zealots
+		prerequisite = { focus = DAL_sw_dark_bargain }
+		relative_position_id = DAL_sw_dark_bargain
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_faction_kelthuzad }
+		ai_will_do = { base = 3 }
+		completion_reward = {
+			add_stability = -0.10
+			add_war_support = 0.05
+			add_political_power = 100
+			DAL = { set_country_flag = DAL_secret_coven_formed }
+			country_event = { id = dalaran_second_war.11 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_undead_legions
+		icon = GFX_focus_in_service_of_death
+		prerequisite = { focus = DAL_sw_secret_coven }
+		relative_position_id = DAL_sw_secret_coven
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_secret_coven_formed }
+		ai_will_do = { base = 2 }
+		completion_reward = {
+			add_stability = -0.10
+			add_manpower = 5000
+			add_war_support = 0.10
+			army_experience = 30
+		}
+	}
+
+	focus = {
+		id = DAL_sw_service_of_death
+		icon = GFX_focus_CAE_lich_kings_gift
+		prerequisite = { focus = DAL_sw_undead_legions }
+		relative_position_id = DAL_sw_undead_legions
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_secret_coven_formed }
+		ai_will_do = { base = 1 }
+		completion_reward = {
+			add_stability = -0.15
+			add_war_support = 0.15
+			add_political_power = 200
+			DAL = { set_country_flag = DAL_serves_death }
+			country_event = { id = dalaran_second_war.12 }
+		}
+	}
+
+	#########################################################
+	# Military вЂ” branches from Battle Mages(41,6) to x=49,52 / y=8,10,12
+	#########################################################
+
+	focus = {
+		id = DAL_sw_arcane_golems
+		icon = GFX_focus_alliance_mount_and_blade
+		prerequisite = { focus = DAL_sw_battle_mages }
+		relative_position_id = DAL_sw_battle_mages
+		x = 11
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			add_tech_bonus = { name = golem_tech_bonus bonus = 1.0 uses = 1 category = siege_tech }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_war_golems
+		icon = GFX_focus_fel_morag_engineer
+		prerequisite = { focus = DAL_sw_arcane_golems }
+		relative_position_id = DAL_sw_arcane_golems
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.08
+			army_experience = 35
+			add_ideas = DAL_sw_war_golems_spirit
+		}
+	}
+
+	focus = {
+		id = DAL_sw_spellbreakers
+		icon = GFX_focus_alliance_paladin
+		prerequisite = { focus = DAL_sw_battle_mages }
+		relative_position_id = DAL_sw_battle_mages
+		x = 14
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 20
+			add_tech_bonus = { name = spellbreaker_tech_bonus bonus = 1.0 uses = 1 category = footman_tech }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_kirin_tor_guard
+		icon = GFX_focus_alliance_footman
+		prerequisite = { focus = DAL_sw_spellbreakers }
+		relative_position_id = DAL_sw_spellbreakers
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.10
+			army_experience = 40
+			add_ideas = DAL_sw_kirin_tor_guard_spirit
+		}
+	}
+
+	focus = {
+		id = DAL_sw_portal_logistics
+		icon = GFX_focus_fel_dark_portal
+		prerequisite = { focus = DAL_sw_teleportation_research }
+		relative_position_id = DAL_sw_teleportation_research
+		x = 17
+		y = 2
+		cost = 10
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = 60
+			add_ideas = DAL_sw_portal_network
+		}
+	}
+
+	focus = {
+		id = DAL_sw_arcane_cannons
+		icon = GFX_focus_alliance_kultiran_fleet
+		prerequisite = { focus = DAL_sw_arcane_arsenal }
+		relative_position_id = DAL_sw_arcane_arsenal
+		x = 21
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			add_tech_bonus = { name = cannon_tech_bonus bonus = 1.0 uses = 1 category = catapault_tech }
+		}
+	}
+
+	#########################################################
+	# Scrying вЂ” from Scrying(39,4) to x=57,60 / y=6,8,10
+	#########################################################
+
+	focus = {
+		id = DAL_sw_scrying_network
+		icon = GFX_focus_old_god_eye
+		prerequisite = { focus = DAL_sw_scrying_the_horde }
+		relative_position_id = DAL_sw_scrying_the_horde
+		x = 18
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_political_power = 60
+			add_decryption = 1.5
+			DAL = { set_country_flag = DAL_scrying_network_active }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_blackrock_surveillance
+		icon = GFX_focus_old_god_within_their_ranks
+		prerequisite = { focus = DAL_sw_scrying_network }
+		relative_position_id = DAL_sw_scrying_network
+		x = 0
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = 50
+			BRC = { add_intel = { civilian_intel = 15 army_intel = 10 navy_intel = 5 airforce_intel = 5 } }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_alterac_suspicion
+		icon = GFX_focus_old_god_faceless_minipulator
+		prerequisite = { focus = DAL_sw_scrying_network }
+		relative_position_id = DAL_sw_scrying_network
+		x = 3
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_political_power = 50
+			add_decryption = 0.5
+			ALT = { add_intel = { civilian_intel = 20 army_intel = 10 navy_intel = 5 airforce_intel = 5 } }
+			DAL = { set_country_flag = DAL_alterac_monitored }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_warlock_infiltration
+		icon = GFX_focus_fel_imp
+		prerequisite = { focus = DAL_sw_blackrock_surveillance }
+		relative_position_id = DAL_sw_blackrock_surveillance
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 5 }
+		completion_reward = {
+			add_war_support = 0.08
+			add_political_power = 80
+			add_decryption = 1.0
+			country_event = { id = dalaran_second_war.13 }
+		}
+	}
+
+	#########################################################
+	# Diplomacy вЂ” from Kael'thas(43,6) to x=63,66 / y=8,10
+	#########################################################
+
+	focus = {
+		id = DAL_sw_quelthalas_treaty
+		icon = GFX_focus_NET_high_elf
+		prerequisite = { focus = DAL_sw_kaelthas_council }
+		relative_position_id = DAL_sw_kaelthas_council
+		x = 20
+		y = 2
+		cost = 10
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_political_power = 80
+			add_stability = 0.05
+			add_opinion_modifier = { target = QUE modifier = medium_increase }
+			reverse_add_opinion_modifier = { target = QUE modifier = medium_increase }
+			alliance_unity_raise = yes
+			DAL = { set_country_flag = DAL_quelthalas_treaty }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_united_arcane_front
+		icon = GFX_focus_alliance_wartime_alliance
+		prerequisite = { focus = DAL_sw_quelthalas_treaty }
+		relative_position_id = DAL_sw_quelthalas_treaty
+		x = 0
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.10
+			add_political_power = 80
+			QUE = { add_timed_idea = { idea = DAL_sw_arcane_support_received days = 180 } }
+			country_event = { id = dalaran_second_war.14 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_lordaeron_mages
+		icon = GFX_focus_alliance_prove_our_strength
+		prerequisite = { focus = DAL_sw_arcane_ally }
+		relative_position_id = DAL_sw_arcane_ally
+		x = 22
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = 60
+			LOR = { add_timed_idea = { idea = DAL_sw_arcane_support_received days = 180 } }
+		}
+	}
+
+	#########################################################
+	# Economy вЂ” Ley Lines (relative to War Council at 40,12)
+	#########################################################
+
+	focus = {
+		id = DAL_sw_ley_line_network
+		icon = GFX_focus_NET_archmage_thasranan
+		prerequisite = { focus = DAL_sw_kirin_tor_war_council }
+		relative_position_id = DAL_sw_kirin_tor_war_council
+		x = -5
+		y = 2
+		cost = 10
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 80
+			add_ideas = DAL_sw_ley_line_harvesting
+		}
+	}
+
+	focus = {
+		id = DAL_sw_enchantment_workshops
+		icon = GFX_focus_magic_infused_weapons
+		prerequisite = { focus = DAL_sw_ley_line_network }
+		relative_position_id = DAL_sw_ley_line_network
+		x = 0
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = 60
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_arcane_battery
+		icon = GFX_focus_scroll_2
+		prerequisite = { focus = DAL_sw_ley_line_network }
+		relative_position_id = DAL_sw_ley_line_network
+		x = 3
+		y = 2
+		cost = 10
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_research_slot = 1
+			add_stability = -0.03
+			add_political_power = 70
+		}
+	}
+
+	focus = {
+		id = DAL_sw_arcane_sanctum
+		icon = GFX_focus_scroll_3
+		prerequisite = { focus = DAL_sw_dalaran_arcane_crystal }
+		prerequisite = { focus = DAL_sw_arcane_battery }
+		relative_position_id = DAL_sw_dalaran_arcane_crystal
+		x = -5
+		y = 2
+		cost = 10
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_research_slot = 1
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = DAL_sw_eye_of_dalaran
+		icon = GFX_focus_old_god_eye
+		prerequisite = { focus = DAL_sw_arcane_sanctum }
+		relative_position_id = DAL_sw_arcane_sanctum
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 6 }
+		completion_reward = {
+			add_war_support = 0.10
+			add_political_power = 120
+			add_decryption = 2.0
+			add_ideas = DAL_sw_eye_of_dalaran_spirit
+		}
+	}
+
+	#########################################################
+	# Northern Flank (relative to Wards 42,10)
+	#########################################################
+
+	focus = {
+		id = DAL_sw_northern_vigil
+		icon = GFX_focus_alliance_guard_against_the_darkness
+		prerequisite = { focus = DAL_sw_wards_of_protection }
+		relative_position_id = DAL_sw_wards_of_protection
+		x = -13
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			DAL = { set_country_flag = DAL_northern_vigil }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_anti_troll_wards
+		icon = GFX_focus_spellcaster_support
+		prerequisite = { focus = DAL_sw_northern_vigil }
+		relative_position_id = DAL_sw_northern_vigil
+		x = 0
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = 60
+			add_timed_idea = { idea = DAL_sw_anti_troll_wards days = 365 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_aid_quelthalas
+		icon = GFX_focus_NET_high_elf
+		prerequisite = { focus = DAL_sw_anti_troll_wards }
+		relative_position_id = DAL_sw_anti_troll_wards
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 6 }
+		completion_reward = {
+			add_war_support = 0.08
+			add_political_power = 80
+			add_opinion_modifier = { target = QUE modifier = medium_increase }
+			army_experience = 20
+			country_event = { id = dalaran_second_war.15 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_northern_bastion
+		icon = GFX_focus_alliance_stormwind_city
+		prerequisite = { focus = DAL_sw_anti_troll_wards }
+		relative_position_id = DAL_sw_anti_troll_wards
+		x = 5
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.05
+			add_political_power = 60
+			add_ideas = DAL_sw_northern_bastion_spirit
+		}
+	}
+
+	#########################################################
+	# Active War (from War Council 40,12)
+	#########################################################
+
+	focus = {
+		id = DAL_sw_mobilize_mages
+		icon = GFX_focus_alliance_wartime_alliance
+		prerequisite = { focus = DAL_sw_kirin_tor_war_council }
+		relative_position_id = DAL_sw_kirin_tor_war_council
+		x = 12
+		y = 2
+		cost = 7
+		ai_will_do = { base = 9 }
+		completion_reward = {
+			add_war_support = 0.08
+			army_experience = 25
+			add_manpower = 2000
+		}
+	}
+
+	focus = {
+		id = DAL_sw_war_of_mages
+		icon = GFX_focus_spellcaster_support
+		prerequisite = { focus = DAL_sw_mobilize_mages }
+		relative_position_id = DAL_sw_mobilize_mages
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.10
+			army_experience = 35
+			add_ideas = DAL_sw_war_of_mages_spirit
+		}
+	}
+
+	focus = {
+		id = DAL_sw_siege_breakers
+		icon = GFX_focus_alliance_footman
+		prerequisite = { focus = DAL_sw_mobilize_mages }
+		relative_position_id = DAL_sw_mobilize_mages
+		x = 3
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			add_tech_bonus = { name = siege_tech_bonus bonus = 1.0 uses = 1 category = siege_tech }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_scorched_wards
+		icon = GFX_focus_scroll_4
+		prerequisite = { focus = DAL_sw_war_of_mages }
+		relative_position_id = DAL_sw_war_of_mages
+		x = -3
+		y = 2
+		cost = 7
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.05
+			add_ideas = DAL_sw_scorched_wards_spirit
+		}
+	}
+
+	#########################################################
+	# Post-War (from Victory at 42,18)
+	#########################################################
+
+	focus = {
+		id = DAL_sw_rebuild_dalaran
+		icon = GFX_focus_alliance_foundations
+		prerequisite = { focus = DAL_sw_kirin_tor_victory }
+		relative_position_id = DAL_sw_kirin_tor_victory
+		x = 0
+		y = 2
+		cost = 7
+		ai_will_do = { base = 10 }
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 80
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_internment_camps
+		icon = GFX_focus_alliance_peace_time_preperations
+		prerequisite = { focus = DAL_sw_rebuild_dalaran }
+		relative_position_id = DAL_sw_rebuild_dalaran
+		x = -3
+		y = 2
+		cost = 10
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.03
+			add_political_power = 100
+			DAL = { set_country_flag = DAL_internment_camps }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_study_the_orcs
+		icon = GFX_focus_book_3
+		prerequisite = { focus = DAL_sw_internment_camps }
+		relative_position_id = DAL_sw_internment_camps
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_political_power = 80
+			add_war_support = 0.05
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = DAL_sw_nethergarde_keep
+		icon = GFX_focus_alliance_guard_against_the_darkness
+		prerequisite = { focus = DAL_sw_rebuild_dalaran }
+		relative_position_id = DAL_sw_rebuild_dalaran
+		x = 3
+		y = 2
+		cost = 10
+		ai_will_do = { base = 8 }
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 80
+			add_ideas = DAL_sw_nethergarde_garrison
+		}
+	}
+
+	focus = {
+		id = DAL_sw_dark_portal_vigil
+		icon = GFX_focus_fel_dark_portal
+		prerequisite = { focus = DAL_sw_nethergarde_keep }
+		relative_position_id = DAL_sw_nethergarde_keep
+		x = 0
+		y = 2
+		cost = 7
+		ai_will_do = { base = 7 }
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.03
+			add_political_power = 60
+		}
+	}
+
+	focus = {
+		id = DAL_sw_shadows_of_northrend
+		icon = GFX_focus_in_service_of_death
+		prerequisite = { focus = DAL_sw_rebuild_dalaran }
+		relative_position_id = DAL_sw_rebuild_dalaran
+		x = 6
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_kelthuzad_exiled }
+		ai_will_do = { base = 5 }
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.05
+			add_political_power = 60
+			country_event = { id = dalaran_second_war.20 }
+		}
+	}
+
+	focus = {
+		id = DAL_sw_detect_the_plague
+		icon = GFX_focus_old_god_within_their_ranks
+		prerequisite = { focus = DAL_sw_shadows_of_northrend }
+		relative_position_id = DAL_sw_shadows_of_northrend
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_kelthuzad_exiled }
+		ai_will_do = { base = 5 }
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_political_power = 80
+		}
+	}
+
+	focus = {
+		id = DAL_sw_prepare_for_darkness
+		icon = GFX_focus_alliance_symbol
+		prerequisite = { focus = DAL_sw_detect_the_plague }
+		relative_position_id = DAL_sw_detect_the_plague
+		x = 0
+		y = 2
+		cost = 10
+		available = { has_country_flag = DAL_kelthuzad_exiled }
+		ai_will_do = { base = 5 }
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.10
+			add_political_power = 100
+			add_ideas = DAL_sw_prepare_for_darkness_spirit
+		}
+	}
+
 }

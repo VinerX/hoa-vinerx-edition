@@ -1,0 +1,124 @@
+add_namespace = kul_sw_exp
+
+# Council of Four Houses — Daelin summons the great houses
+country_event = {
+	id = kul_sw_exp.1
+	title = kul_sw_exp.1.t
+	desc = kul_sw_exp.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kul_sw_exp.1" }
+
+	option = {
+		name = kul_sw_exp.1.option.a
+		add_political_power = 50
+		add_stability = 0.05
+		add_timed_idea = {
+			idea = KUL_sw_proudmoore_legacy_idea
+			days = 365
+		}
+	}
+}
+
+# Derek's First Command — Derek takes his first patrol
+country_event = {
+	id = kul_sw_exp.2
+	title = kul_sw_exp.2.t
+	desc = kul_sw_exp.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kul_sw_exp.2" }
+
+	option = {
+		name = kul_sw_exp.2.option.a
+		navy_experience = 25
+		KUL_derek_proudmoore = {
+			add_unit_leader_trait = blockade_runner
+		}
+		add_war_support = 0.05
+	}
+}
+
+# Witch Hunters of Drustvar — Waycrest's secret
+country_event = {
+	id = kul_sw_exp.3
+	title = kul_sw_exp.3.t
+	desc = kul_sw_exp.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kul_sw_exp.3" }
+
+	option = {
+		name = kul_sw_exp.3.option.a
+		add_ideas = KUL_sw_witch_hunters_idea
+		set_country_flag = KUL_witch_hunters_active
+		add_stability = 0.05
+		add_war_support = 0.03
+	}
+}
+
+# United Admiralty — the houses are bound
+country_event = {
+	id = kul_sw_exp.4
+	title = kul_sw_exp.4.t
+	desc = kul_sw_exp.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kul_sw_exp.4" }
+
+	option = {
+		name = kul_sw_exp.4.option.a
+		swap_ideas = {
+			remove_idea = KUL_sw_house_waycrest_idea
+			remove_idea = KUL_sw_house_ashvane_idea
+			remove_idea = KUL_sw_house_stormsong_idea
+		}
+		add_ideas = KUL_sw_united_admiralty_idea
+		add_political_power = 100
+		add_stability = 0.10
+		add_war_support = 0.05
+		set_country_flag = KUL_united_admiralty_flag
+	}
+}
+
+# The Boralus Port — trade and commerce flourish
+country_event = {
+	id = kul_sw_exp.5
+	title = kul_sw_exp.5.t
+	desc = kul_sw_exp.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event kul_sw_exp.5" }
+
+	option = {
+		name = kul_sw_exp.5.option.a
+		add_ideas = KUL_sw_boralus_port_idea
+		5 = {
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
