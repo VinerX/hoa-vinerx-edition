@@ -1,0 +1,176 @@
+# ============================================================
+# Northern War (Eversong War) — scripted effects
+# ============================================================
+
+# --- Initialise zone state flags (called once on_startup) ---
+
+nw_init_zones = {
+	# Southern Forests zone
+	34 = { set_state_flag = nw_zone_southern }
+	181 = { set_state_flag = nw_zone_southern }
+	757 = { set_state_flag = nw_zone_southern }
+
+	# Runestone Line zone
+	184 = { set_state_flag = nw_zone_runestone }
+	185 = { set_state_flag = nw_zone_runestone }
+	189 = { set_state_flag = nw_zone_runestone }
+
+	# Farstrider Routes zone
+	183 = { set_state_flag = nw_zone_farstrider }
+	186 = { set_state_flag = nw_zone_farstrider }
+	187 = { set_state_flag = nw_zone_farstrider }
+	188 = { set_state_flag = nw_zone_farstrider }
+
+	# Approaches to Silvermoon zone
+	17 = { set_state_flag = nw_zone_approaches }
+	107 = { set_state_flag = nw_zone_approaches }
+	175 = { set_state_flag = nw_zone_approaches }
+	180 = { set_state_flag = nw_zone_approaches }
+
+	# Amani Sacred Grounds zone
+	18 = { set_state_flag = nw_zone_sacred }
+	196 = { set_state_flag = nw_zone_sacred }
+	197 = { set_state_flag = nw_zone_sacred }
+
+	# Caer Darrow runestone
+	103 = { set_state_flag = nw_runestone_caer_darrow_intact }
+}
+
+# --- Recalculate zone control variables for a country ---
+# Use: QUE = { nw_recalc_zone_control = yes } or AMA = { nw_recalc_zone_control = yes }
+
+nw_recalc_zone_control = {
+	# Southern zone: count states controlled
+	set_variable = { nw_southern_control = 0 }
+	34 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_southern_control = 1 } } }
+	181 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_southern_control = 1 } } }
+	757 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_southern_control = 1 } } }
+
+	# Runestone zone
+	set_variable = { nw_runestone_control = 0 }
+	184 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_runestone_control = 1 } } }
+	185 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_runestone_control = 1 } } }
+	189 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_runestone_control = 1 } } }
+
+	# Farstrider zone
+	set_variable = { nw_farstrider_control = 0 }
+	183 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_farstrider_control = 1 } } }
+	186 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_farstrider_control = 1 } } }
+	187 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_farstrider_control = 1 } } }
+	188 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_farstrider_control = 1 } } }
+
+	# Approaches zone
+	set_variable = { nw_approaches_control = 0 }
+	17 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_approaches_control = 1 } } }
+	107 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_approaches_control = 1 } } }
+	175 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_approaches_control = 1 } } }
+	180 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_approaches_control = 1 } } }
+
+	# Sacred zone
+	set_variable = { nw_sacred_control = 0 }
+	18 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_sacred_control = 1 } } }
+	196 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_sacred_control = 1 } } }
+	197 = { if = { limit = { is_controlled_by = ROOT } add_to_variable = { nw_sacred_control = 1 } } }
+
+	# Count enemy-controlled states in approaches (for threat check)
+	set_variable = { nw_approaches_enemy = 0 }
+	17 = { if = { limit = { NOT = { is_controlled_by = ROOT } } add_to_variable = { nw_approaches_enemy = 1 } } }
+	107 = { if = { limit = { NOT = { is_controlled_by = ROOT } } add_to_variable = { nw_approaches_enemy = 1 } } }
+	175 = { if = { limit = { NOT = { is_controlled_by = ROOT } } add_to_variable = { nw_approaches_enemy = 1 } } }
+	180 = { if = { limit = { NOT = { is_controlled_by = ROOT } } add_to_variable = { nw_approaches_enemy = 1 } } }
+}
+
+# --- Mana regeneration tick ---
+
+nw_mana_regen = {
+	if = {
+		limit = {
+			nw_sunwell_controlled = yes
+		}
+		add_to_variable = { QUE_mana_reserve = 5 }
+	}
+	# Bonus from Caer Darrow runestone if intact
+	if = {
+		limit = {
+			103 = {
+				is_controlled_by = ROOT
+				has_state_flag = nw_runestone_caer_darrow_intact
+			}
+		}
+		add_to_variable = { QUE_mana_reserve = 3 }
+	}
+	# Bonus from intact runestone line
+	if = {
+		limit = {
+			check_variable = { nw_runestones_destroyed = 0 }
+		}
+		add_to_variable = { QUE_mana_reserve = 2 }
+	}
+	# Cap at 100
+	if = {
+		limit = {
+			check_variable = { QUE_mana_reserve > 100 }
+		}
+		set_variable = { QUE_mana_reserve = 100 }
+	}
+}
+
+# --- Mana drain for barrier maintenance ---
+
+nw_barrier_drain = {
+	subtract_from_variable = { QUE_mana_reserve = 10 }
+	if = {
+		limit = {
+			check_variable = { QUE_mana_reserve < 0 }
+		}
+		set_variable = { QUE_mana_reserve = 0 }
+	}
+}
+
+# --- Destroy a runestone ---
+
+nw_destroy_runestone = {
+	add_to_variable = { nw_runestones_destroyed = 1 }
+	subtract_from_variable = { QUE_mana_reserve = 30 }
+	if = {
+		limit = {
+			check_variable = { QUE_mana_reserve < 0 }
+		}
+		set_variable = { QUE_mana_reserve = 0 }
+	}
+}
+
+# --- Destroy Caer Darrow runestone ---
+
+nw_destroy_caer_darrow_runestone = {
+	103 = {
+		remove_state_flag = nw_runestone_caer_darrow_intact
+		set_state_flag = nw_runestone_caer_darrow_destroyed
+	}
+}
+
+# --- Transfer Quel'Thalas provinces to Horde clans (Doomhammer's campaign) ---
+
+nw_transfer_to_src = {
+	# SRC gets runestone states
+	transfer_state = 184
+	transfer_state = 185
+	transfer_state = 189
+	transfer_state = 181
+	transfer_state = 757
+}
+
+nw_transfer_to_dmc = {
+	# DMC gets coastal staging areas
+	transfer_state = 183
+	transfer_state = 180
+}
+
+nw_transfer_to_ama = {
+	# AMA gets the rest of Ghostlands
+	transfer_state = 34
+	transfer_state = 182
+	transfer_state = 186
+	transfer_state = 187
+	transfer_state = 188
+}

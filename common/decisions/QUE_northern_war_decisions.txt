@@ -1,0 +1,267 @@
+# ============================================================
+# Quel'Thalas — Northern War / Eversong War decisions
+# ============================================================
+
+northern_war_que_category = {
+
+	# --- MANA STATUS DISPLAY (never clickable) ---
+	QUE_nw_mana_display = {
+		icon = GFX_decision_generic_magic
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+		}
+		available = {
+			always = no
+		}
+		cost = 0
+		complete_effect = {}
+		ai_will_do = { factor = 0 }
+	}
+
+	# --- ACTIVATE BAN'DINORIEL BARRIER ---
+	QUE_activate_barrier = {
+		icon = GFX_decision_generic_defense
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			check_variable = { nw_approaches_enemy > 1 }
+		}
+		available = {
+			check_variable = { QUE_mana_reserve > 39 }
+			NOT = { has_country_flag = QUE_ban_dinoriel_active }
+			NOT = { has_country_flag = QUE_ban_dinoriel_cooldown }
+			controls_state = 33
+		}
+		cost = 150
+		complete_effect = {
+			country_event = northern_war.20
+		}
+		ai_will_do = { factor = 80 }
+	}
+
+	# --- REINFORCE RUNESTONE AT THAS'ALAH ---
+	QUE_reinforce_thasalah = {
+		icon = GFX_decision_generic_defense
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			controls_state = 184
+			NOT = { 184 = { has_state_flag = nw_runestone_destroyed } }
+		}
+		available = {
+			check_variable = { QUE_mana_reserve > 9 }
+			NOT = { 184 = { has_state_flag = nw_runestone_reinforced } }
+		}
+		cost = 40
+		complete_effect = {
+			184 = { set_state_flag = nw_runestone_reinforced }
+			subtract_from_variable = { QUE_mana_reserve = 10 }
+			if = {
+				limit = { check_variable = { QUE_mana_reserve < 0 } }
+				set_variable = { QUE_mana_reserve = 0 }
+			}
+			# Add bunker
+			add_extra_state_shared_building_slots = 1
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	# --- REINFORCE RUNESTONE AT SANCTUM OF THE MOON ---
+	QUE_reinforce_moon = {
+		icon = GFX_decision_generic_defense
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			controls_state = 185
+			NOT = { 185 = { has_state_flag = nw_runestone_destroyed } }
+		}
+		available = {
+			check_variable = { QUE_mana_reserve > 9 }
+			NOT = { 185 = { has_state_flag = nw_runestone_reinforced } }
+		}
+		cost = 40
+		complete_effect = {
+			185 = { set_state_flag = nw_runestone_reinforced }
+			subtract_from_variable = { QUE_mana_reserve = 10 }
+			if = {
+				limit = { check_variable = { QUE_mana_reserve < 0 } }
+				set_variable = { QUE_mana_reserve = 0 }
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	# --- REINFORCE RUNESTONE AT SANCTUM OF THE SUN ---
+	QUE_reinforce_sun = {
+		icon = GFX_decision_generic_defense
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			controls_state = 189
+			NOT = { 189 = { has_state_flag = nw_runestone_destroyed } }
+		}
+		available = {
+			check_variable = { QUE_mana_reserve > 9 }
+			NOT = { 189 = { has_state_flag = nw_runestone_reinforced } }
+		}
+		cost = 40
+		complete_effect = {
+			189 = { set_state_flag = nw_runestone_reinforced }
+			subtract_from_variable = { QUE_mana_reserve = 10 }
+			if = {
+				limit = { check_variable = { QUE_mana_reserve < 0 } }
+				set_variable = { QUE_mana_reserve = 0 }
+			}
+			add_extra_state_shared_building_slots = 1
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	# --- DEPLOY FARSTRIDER PATROLS ---
+	QUE_farstrider_patrols = {
+		icon = GFX_decision_generic_recon
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+		}
+		available = {
+			check_variable = { nw_farstrider_control > 1 }
+			NOT = { has_country_flag = QUE_patrols_deployed }
+		}
+		cost = 50
+		cost_command_power = 30
+		complete_effect = {
+			set_country_flag = QUE_patrols_deployed
+			add_timed_idea = { idea = QUE_farstrider_patrols days = 180 }
+			add_army_experience = 15
+		}
+		ai_will_do = { factor = 60 }
+	}
+
+	# --- EVACUATE WINDRUNNER VILLAGE ---
+	QUE_evacuate_windrunner = {
+		icon = GFX_decision_generic_refugees
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			controls_state = 183
+			check_variable = { nw_farstrider_control < 2 }
+		}
+		available = {
+			NOT = { 183 = { has_state_flag = nw_evacuated } }
+		}
+		cost = 30
+		cost_command_power = 20
+		complete_effect = {
+			183 = { set_state_flag = nw_evacuated }
+			add_manpower = 5000
+			17 = { add_manpower = 10000 }
+		}
+		ai_will_do = { factor = 45 }
+	}
+
+	# --- EVACUATE FAIRBREEZE VILLAGE ---
+	QUE_evacuate_fairbreeze = {
+		icon = GFX_decision_generic_refugees
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			controls_state = 107
+			check_variable = { nw_approaches_enemy > 0 }
+		}
+		available = {
+			NOT = { 107 = { has_state_flag = nw_evacuated } }
+		}
+		cost = 30
+		cost_command_power = 20
+		complete_effect = {
+			107 = { set_state_flag = nw_evacuated }
+			add_manpower = 5000
+			17 = { add_manpower = 10000 }
+		}
+		ai_will_do = { factor = 40 }
+	}
+
+	# --- SET MAGICAL TRAP IN APPROACHES ---
+	QUE_magical_trap = {
+		icon = GFX_decision_generic_magic
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			check_variable = { nw_approaches_enemy > 0 }
+		}
+		available = {
+			check_variable = { QUE_mana_reserve > 4 }
+			NOT = { has_country_flag = QUE_trap_cooldown }
+		}
+		cost = 30
+		complete_effect = {
+			subtract_from_variable = { QUE_mana_reserve = 5 }
+			if = {
+				limit = { check_variable = { QUE_mana_reserve < 0 } }
+				set_variable = { QUE_mana_reserve = 0 }
+			}
+			set_variable = { QUE_trap_cooldown_days = 90 }
+			set_country_flag = QUE_trap_cooldown
+			add_timed_idea = { idea = QUE_approaches_threatened days = 90 }
+		}
+		ai_will_do = { factor = 35 }
+	}
+
+	# --- CHANNEL THE SUNWELL ---
+	QUE_channel_sunwell = {
+		icon = GFX_decision_generic_ritual
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			check_variable = { QUE_mana_reserve < 60 }
+		}
+		available = {
+			controls_state = 33
+			NOT = { has_country_flag = QUE_channeling_sunwell }
+			stability > 0.4
+		}
+		cost = 50
+		complete_effect = {
+			set_variable = { QUE_channel_cooldown = 365 }
+			set_country_flag = QUE_channeling_sunwell
+			add_stability = -0.05
+			add_to_variable = { QUE_mana_reserve = 30 }
+		}
+		ai_will_do = { factor = 55 }
+	}
+
+	# --- CLAIM CAER DARROW RUNESTONE ---
+	QUE_claim_caer_darrow = {
+		icon = GFX_decision_generic_diplomacy
+		allowed = { original_tag = QUE }
+		visible = {
+			has_war_with = AMA
+			103 = {
+				has_state_flag = nw_runestone_caer_darrow_intact
+			}
+		}
+		available = {
+			OR = {
+				controls_state = 103
+				AND = {
+					is_in_faction_with = LOR
+					LOR = { controls_state = 103 }
+				}
+			}
+			NOT = { has_country_flag = QUE_claimed_caer_darrow }
+		}
+		cost = 75
+		complete_effect = {
+			set_country_flag = QUE_claimed_caer_darrow
+			add_political_power = 25
+			if = {
+				limit = { LOR = { controls_state = 103 } }
+				LOR = { country_event = northern_war.82 }
+			}
+		}
+		ai_will_do = { factor = 45 }
+	}
+}

@@ -1,0 +1,726 @@
+################################################################################
+# Northern War / Eversong War — events
+# AMA vs QUE woodland campaign with runestones, barrier & mana mechanics
+################################################################################
+
+add_namespace = northern_war
+
+################################################################################
+# STARTUP
+################################################################################
+
+# Initialise all variables (hidden, fires via on_startup)
+country_event = {
+	id = northern_war.1
+	title = northern_war.1.t
+	desc = northern_war.1.d
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: northern_war.1 startup" }
+
+	option = {
+		name = northern_war.1.option
+		set_variable = { nw_southern_control = 0 }
+		set_variable = { nw_runestone_control = 0 }
+		set_variable = { nw_farstrider_control = 0 }
+		set_variable = { nw_approaches_control = 0 }
+		set_variable = { nw_sacred_control = 0 }
+		set_variable = { nw_approaches_enemy = 0 }
+	}
+}
+
+################################################################################
+# MONTHLY PULSE — QUE
+################################################################################
+country_event = {
+	id = northern_war.2
+	title = northern_war.2.t
+	desc = northern_war.2.d
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: northern_war.2 monthly pulse" }
+
+	option = {
+		name = northern_war.2.option
+
+		# Cooldown clearing
+		if = {
+			limit = { has_country_flag = QUE_trap_cooldown }
+			add_to_variable = { QUE_trap_cooldown_days = -1 }
+			if = {
+				limit = { check_variable = { QUE_trap_cooldown_days < 1 } }
+				clr_country_flag = QUE_trap_cooldown
+			}
+		}
+		if = {
+			limit = { has_country_flag = QUE_channeling_sunwell }
+			add_to_variable = { QUE_channel_cooldown = -1 }
+			if = {
+				limit = { check_variable = { QUE_channel_cooldown < 1 } }
+				clr_country_flag = QUE_channeling_sunwell
+			}
+		}
+
+		# Mana regeneration
+		nw_mana_regen = yes
+
+		# Barrier maintenance drain
+		if = {
+			limit = { has_country_flag = QUE_ban_dinoriel_active }
+			nw_barrier_drain = yes
+		}
+
+		# Barrier cooldown tick
+		if = {
+			limit = {
+				has_country_flag = QUE_ban_dinoriel_cooldown
+				has_country_flag = QUE_ban_dinoriel_shattered
+			}
+			add_to_variable = { QUE_barrier_cooldown_remaining = -1 }
+			if = {
+				limit = {
+					check_variable = { QUE_barrier_cooldown_remaining < 1 }
+				}
+				country_event = northern_war.23
+			}
+		}
+
+		# Barrier falls if mana hits zero
+		if = {
+			limit = {
+				has_country_flag = QUE_ban_dinoriel_active
+				check_variable = { QUE_mana_reserve < 1 }
+			}
+			country_event = northern_war.22
+		}
+
+		# Mana display range flags (for decision panel indicator)
+		clr_country_flag = QUE_mana_range_high
+		clr_country_flag = QUE_mana_range_medium
+		clr_country_flag = QUE_mana_range_low
+		clr_country_flag = QUE_mana_range_critical
+		if = {
+			limit = { check_variable = { QUE_mana_reserve > 59 } }
+			set_country_flag = QUE_mana_range_high
+		}
+		else_if = {
+			limit = { check_variable = { QUE_mana_reserve > 29 } }
+			set_country_flag = QUE_mana_range_medium
+		}
+		else_if = {
+			limit = { check_variable = { QUE_mana_reserve > 9 } }
+			set_country_flag = QUE_mana_range_low
+		}
+		else = {
+			set_country_flag = QUE_mana_range_critical
+		}
+
+		# Zone modifier updates — remove old, apply new based on control
+		# Southern zone
+		if = {
+			limit = { check_variable = { nw_southern_control > 1 } }
+			if = { limit = { NOT = { has_idea = QUE_southern_defense } } add_timed_idea = { idea = QUE_southern_defense days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = QUE_southern_defense } remove_ideas = QUE_southern_defense }
+		}
+
+		# Runestone zone
+		if = {
+			limit = { check_variable = { nw_runestone_control > 1 } }
+			if = { limit = { NOT = { has_idea = QUE_runestone_bastion } } add_timed_idea = { idea = QUE_runestone_bastion days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = QUE_runestone_bastion } remove_ideas = QUE_runestone_bastion }
+		}
+
+		# Farstrider zone
+		if = {
+			limit = { check_variable = { nw_farstrider_control > 2 } }
+			if = { limit = { NOT = { has_idea = QUE_farstrider_patrols } } add_timed_idea = { idea = QUE_farstrider_patrols days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = QUE_farstrider_patrols } remove_ideas = QUE_farstrider_patrols }
+		}
+
+		# Approaches — evacuation logic
+		if = {
+			limit = { check_variable = { nw_approaches_enemy > 1 } }
+			if = { limit = { NOT = { has_idea = QUE_approaches_threatened } } add_timed_idea = { idea = QUE_approaches_threatened days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = QUE_approaches_threatened } remove_ideas = QUE_approaches_threatened }
+		}
+	}
+}
+
+################################################################################
+# MONTHLY PULSE — AMA
+################################################################################
+country_event = {
+	id = northern_war.3
+	title = northern_war.3.t
+	desc = northern_war.3.d
+	picture = GFX_report_event_generic_factory
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: northern_war.3 monthly pulse" }
+
+	option = {
+		name = northern_war.3.option
+
+		# Cooldown clearing
+		if = {
+			limit = { has_country_flag = AMA_loa_on_cooldown }
+			add_to_variable = { AMA_loa_cooldown = -1 }
+			if = {
+				limit = { check_variable = { AMA_loa_cooldown < 1 } }
+				clr_country_flag = AMA_loa_on_cooldown
+			}
+		}
+		if = {
+			limit = { has_country_flag = AMA_leyline_cooldown }
+			add_to_variable = { AMA_leyline_cooldown = -1 }
+			if = {
+				limit = { check_variable = { AMA_leyline_cooldown < 1 } }
+				clr_country_flag = AMA_leyline_cooldown
+			}
+		}
+
+		# Southern zone ambush
+		if = {
+			limit = { check_variable = { nw_southern_control > 0 } }
+			if = { limit = { NOT = { has_idea = AMA_southern_ambush } } add_timed_idea = { idea = AMA_southern_ambush days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = AMA_southern_ambush } remove_ideas = AMA_southern_ambush }
+		}
+
+		# Runestone zone
+		if = {
+			limit = { check_variable = { nw_runestone_control > 0 } }
+			if = { limit = { NOT = { has_idea = AMA_runestone_assault } } add_timed_idea = { idea = AMA_runestone_assault days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = AMA_runestone_assault } remove_ideas = AMA_runestone_assault }
+		}
+
+		# Farstrider zone
+		if = {
+			limit = { check_variable = { nw_farstrider_control > 1 } }
+			if = { limit = { NOT = { has_idea = AMA_farstrider_ambush } } add_timed_idea = { idea = AMA_farstrider_ambush days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = AMA_farstrider_ambush } remove_ideas = AMA_farstrider_ambush }
+		}
+
+		# Approaches zone
+		if = {
+			limit = { check_variable = { nw_approaches_control > 0 } }
+			if = { limit = { NOT = { has_idea = AMA_approaches_siege } } add_timed_idea = { idea = AMA_approaches_siege days = 45 } }
+		}
+		else = {
+			if = { limit = { has_idea = AMA_approaches_siege } remove_ideas = AMA_approaches_siege }
+		}
+	}
+}
+
+################################################################################
+# RUNESTONE DESTROYED (triggered by AMA decision)
+################################################################################
+country_event = {
+	id = northern_war.10
+	title = northern_war.10.t
+	desc = northern_war.10.d
+	picture = GFX_report_event_generic_explosion
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: runestone destroyed" }
+
+	option = {
+		name = northern_war.10.option
+		add_political_power = 30
+		add_war_support = 0.03
+	}
+
+	option = {
+		name = northern_war.10.option.2
+		ai_chance = { factor = 0 }
+	}
+}
+
+# QUE is notified of runestone destruction
+country_event = {
+	id = northern_war.11
+	title = northern_war.11.t
+	desc = northern_war.11.d
+	picture = GFX_report_event_generic_explosion
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: runestone destroyed notification" }
+
+	option = {
+		name = northern_war.11.option
+		nw_destroy_runestone = yes
+		add_stability = -0.03
+	}
+}
+
+# DMC notified of runestone power
+country_event = {
+	id = northern_war.40
+	title = northern_war.40.t
+	desc = northern_war.40.d
+	picture = GFX_report_event_generic_research
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: runestone power detected" }
+
+	option = {
+		name = northern_war.40.option
+		if = {
+			limit = { NOT = { has_idea = DMC_runestone_power } }
+			add_timed_idea = { idea = DMC_runestone_power days = 365 }
+		}
+		add_political_power = 20
+	}
+}
+
+# DAL arcane crisis
+country_event = {
+	id = northern_war.60
+	title = northern_war.60.t
+	desc = northern_war.60.d
+	picture = GFX_report_event_generic_danger
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: arcane anomaly detected" }
+
+	option = {
+		name = northern_war.60.option
+		if = {
+			limit = { NOT = { has_idea = DAL_arcane_crisis } }
+			add_timed_idea = { idea = DAL_arcane_crisis days = 365 }
+		}
+		add_stability = -0.02
+	}
+}
+
+################################################################################
+# BAN'DINORIEL BARRIER — ACTIVATION
+################################################################################
+country_event = {
+	id = northern_war.20
+	title = northern_war.20.t
+	desc = northern_war.20.d
+	picture = GFX_report_event_generic_defense
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Ban'dinoriel activated" }
+
+	option = {
+		name = northern_war.20.option
+		subtract_from_variable = { QUE_mana_reserve = 40 }
+		set_country_flag = QUE_ban_dinoriel_active
+		add_timed_idea = { idea = QUE_ban_dinoriel_barrier days = 365 }
+		add_stability = 0.05
+		add_war_support = 0.05
+
+		# Notify AMA
+		AMA = { country_event = northern_war.24 }
+
+		# Notify DMC
+		if = {
+			limit = { DMC = { is_in_faction_with = AMA } }
+			DMC = { country_event = northern_war.42 }
+		}
+	}
+}
+
+# AMA notified barrier is up
+country_event = {
+	id = northern_war.24
+	title = northern_war.24.t
+	desc = northern_war.24.d
+	picture = GFX_report_event_generic_defense
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: informed of Ban'dinoriel" }
+
+	option = {
+		name = northern_war.24.option
+		add_war_support = -0.02
+	}
+}
+
+# DMC notified barrier is up
+country_event = {
+	id = northern_war.42
+	title = northern_war.42.t
+	desc = northern_war.42.d
+	picture = GFX_report_event_generic_defense
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: informed of Ban'dinoriel" }
+
+	option = {
+		name = northern_war.42.option
+	}
+}
+
+################################################################################
+# BAN'DINORIEL SHATTERED — mana depleted
+################################################################################
+country_event = {
+	id = northern_war.22
+	title = northern_war.22.t
+	desc = northern_war.22.d
+	picture = GFX_report_event_generic_danger
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Ban'dinoriel mana depleted" }
+
+	option = {
+		name = northern_war.22.option
+		clr_country_flag = QUE_ban_dinoriel_active
+		set_country_flag = QUE_ban_dinoriel_shattered
+		set_country_flag = QUE_ban_dinoriel_cooldown
+		set_variable = { QUE_barrier_cooldown_remaining = 180 }
+		if = { limit = { has_idea = QUE_ban_dinoriel_barrier } remove_ideas = QUE_ban_dinoriel_barrier }
+		if = { limit = { NOT = { has_idea = QUE_ban_dinoriel_shattered } } add_timed_idea = { idea = QUE_ban_dinoriel_shattered days = 180 } }
+		add_stability = -0.1
+		add_war_support = -0.05
+
+		# Notify AMA
+		AMA = { country_event = northern_war.25 }
+
+		# Notify DMC
+		if = {
+			limit = { DMC = { is_in_faction_with = AMA } }
+			DMC = { country_event = northern_war.43 }
+		}
+
+		# Notify DAL
+		if = {
+			limit = { DAL = { has_war_with = AMA } }
+			DAL = { country_event = northern_war.61 }
+		}
+	}
+}
+
+# Ban'dinoriel shattered — manually (decision or event)
+country_event = {
+	id = northern_war.21
+	title = northern_war.21.t
+	desc = northern_war.21.d
+	picture = GFX_report_event_generic_danger
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Ban'dinoriel shattered" }
+
+	option = {
+		name = northern_war.21.option
+		clr_country_flag = QUE_ban_dinoriel_active
+		set_country_flag = QUE_ban_dinoriel_shattered
+		set_country_flag = QUE_ban_dinoriel_cooldown
+		set_variable = { QUE_barrier_cooldown_remaining = 180 }
+		if = { limit = { has_idea = QUE_ban_dinoriel_barrier } remove_ideas = QUE_ban_dinoriel_barrier }
+		if = { limit = { NOT = { has_idea = QUE_ban_dinoriel_shattered } } add_timed_idea = { idea = QUE_ban_dinoriel_shattered days = 180 } }
+		add_stability = -0.1
+		add_war_support = -0.05
+
+		AMA = { country_event = northern_war.25 }
+		if = {
+			limit = { DMC = { is_in_faction_with = AMA } }
+			DMC = { country_event = northern_war.43 }
+		}
+		if = {
+			limit = { DAL = { has_war_with = AMA } }
+			DAL = { country_event = northern_war.61 }
+		}
+	}
+}
+
+# AMA notified barrier is down
+country_event = {
+	id = northern_war.25
+	title = northern_war.25.t
+	desc = northern_war.25.d
+	picture = GFX_report_event_generic_attack
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Ban'dinoriel fallen" }
+
+	option = {
+		name = northern_war.25.option
+		add_war_support = 0.05
+		add_political_power = 40
+	}
+}
+
+# DMC notified barrier is down
+country_event = {
+	id = northern_war.43
+	title = northern_war.43.t
+	desc = northern_war.43.d
+	picture = GFX_report_event_generic_attack
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Ban'dinoriel fallen" }
+
+	option = {
+		name = northern_war.43.option
+		add_war_support = 0.03
+	}
+}
+
+# DAL arcane catastrophe
+country_event = {
+	id = northern_war.61
+	title = northern_war.61.t
+	desc = northern_war.61.d
+	picture = GFX_report_event_generic_danger
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: arcane catastrophe" }
+
+	option = {
+		name = northern_war.61.option
+		add_stability = -0.05
+		if = {
+			limit = { NOT = { has_idea = DAL_shattered_barrier } }
+			add_timed_idea = { idea = DAL_shattered_barrier days = 365 }
+		}
+	}
+}
+
+################################################################################
+# BAN'DINORIEL COOLDOWN EXPIRED
+################################################################################
+country_event = {
+	id = northern_war.23
+	title = northern_war.23.t
+	desc = northern_war.23.d
+	picture = GFX_report_event_generic_defense
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Ban'dinoriel cooldown expired" }
+
+	option = {
+		name = northern_war.23.option
+		clr_country_flag = QUE_ban_dinoriel_cooldown
+		clr_country_flag = QUE_ban_dinoriel_shattered
+	}
+}
+
+################################################################################
+# AMA: LOA EMPOWERMENT (triggered by decision)
+################################################################################
+country_event = {
+	id = northern_war.50
+	title = northern_war.50.t
+	desc = northern_war.50.d
+	picture = GFX_report_event_generic_ritual
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: loa summoned" }
+
+	option = {
+		name = northern_war.50.option
+		add_timed_idea = { idea = AMA_loa_empowered days = 90 }
+		add_political_power = 30
+		add_war_support = 0.05
+	}
+}
+
+################################################################################
+# BRC: DOOMHAMMER ORDERS QUEL'THALAS CAMPAIGN
+################################################################################
+country_event = {
+	id = northern_war.70
+	title = northern_war.70.t
+	desc = northern_war.70.d
+	picture = GFX_report_event_generic_war_plan
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Quel'Thalas campaign begins" }
+
+	option = {
+		name = northern_war.70.option
+		set_country_flag = BRC_quelthalas_campaign
+
+		# Transfer provinces to Horde members
+		if = {
+			limit = {
+				SRC = {
+					is_in_faction_with = ROOT
+					NOT = { has_country_flag = SRC_betrayed_horde }
+				}
+			}
+			SRC = { nw_transfer_to_src = yes }
+		}
+		if = {
+			limit = {
+				DMC = { is_in_faction_with = ROOT }
+			}
+			DMC = { nw_transfer_to_dmc = yes }
+		}
+		if = {
+			limit = {
+				AMA = { is_in_faction_with = ROOT }
+			}
+			AMA = { nw_transfer_to_ama = yes }
+		}
+	}
+}
+
+################################################################################
+# SRC BETRAYAL — provinces reassigned
+################################################################################
+country_event = {
+	id = northern_war.71
+	title = northern_war.71.t
+	desc = northern_war.71.d
+	picture = GFX_report_event_generic_betrayal
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: SRC betrayel — reassign provinces" }
+
+	option = {
+		name = northern_war.71.option
+
+		# SRC-held runestone states go to DMC and AMA
+		if = {
+			limit = { DMC = { is_in_faction_with = ROOT } }
+			DMC = {
+				if = {
+					limit = { 184 = { is_owned_by = SRC } }
+					transfer_state = 184
+				}
+				if = {
+					limit = { 185 = { is_owned_by = SRC } }
+					transfer_state = 185
+				}
+				if = {
+					limit = { 189 = { is_owned_by = SRC } }
+					transfer_state = 189
+				}
+			}
+		}
+		if = {
+			limit = { AMA = { is_in_faction_with = ROOT } }
+			AMA = {
+				if = {
+					limit = { 181 = { is_owned_by = SRC } }
+					transfer_state = 181
+				}
+				if = {
+					limit = { 757 = { is_owned_by = SRC } }
+					transfer_state = 757
+				}
+				if = {
+					limit = { 183 = { is_owned_by = SRC } }
+					transfer_state = 183
+				}
+				if = {
+					limit = { 180 = { is_owned_by = SRC } }
+					transfer_state = 180
+				}
+			}
+		}
+	}
+}
+
+################################################################################
+# CAER DARROW RUNESTONE DESTROYED
+################################################################################
+country_event = {
+	id = northern_war.80
+	title = northern_war.80.t
+	desc = northern_war.80.d
+	picture = GFX_report_event_generic_explosion
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Caer Darrow runestone destroyed" }
+
+	option = {
+		name = northern_war.80.option
+		nw_destroy_caer_darrow_runestone = yes
+		add_political_power = 30
+
+		QUE = { country_event = northern_war.81 }
+		DMC = { country_event = northern_war.40 }
+		DAL = { country_event = northern_war.60 }
+	}
+}
+
+country_event = {
+	id = northern_war.81
+	title = northern_war.81.t
+	desc = northern_war.81.d
+	picture = GFX_report_event_generic_explosion
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Caer Darrow runestone lost" }
+
+	option = {
+		name = northern_war.81.option
+		add_stability = -0.02
+	}
+}
+
+################################################################################
+# LOR: CAER DARROW RUNESTONE CLAIMED BY QUEL'THALAS
+################################################################################
+country_event = {
+	id = northern_war.82
+	title = northern_war.82.t
+	desc = northern_war.82.d
+	picture = GFX_report_event_generic_diplomacy
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Caer Darrow runestone claimed by Quel'Thalas" }
+
+	option = {
+		name = northern_war.82.option
+		# LOR supports QUE research into the ancient runestone
+		QUE = { add_opinion_modifier = { target = LOR modifier = LOR_quelthalas_runestone_aid } }
+		add_political_power = 20
+	}
+	option = {
+		name = northern_war.82.option.2
+		# Refuse — keep the runestone for our own scholars
+		ai_chance = { factor = 0 }
+		add_political_power = 50
+		QUE = { add_opinion_modifier = { target = LOR modifier = LOR_quelthalas_runestone_refused } }
+	}
+}
