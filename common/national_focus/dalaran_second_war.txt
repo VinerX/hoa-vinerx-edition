@@ -700,7 +700,11 @@ focus_tree = {
 		x = -10
 		y = 1
 		cost = 7
-		mutually_exclusive = yes
+		mutually_exclusive = {
+			focus = DAL_sw_krasus_path
+			focus = DAL_sw_modera_path
+			focus = DAL_sw_kelthuzad_path
+		}
 
 		available = {
 			NOT = { has_country_flag = DAL_faction_krasus }
@@ -727,7 +731,11 @@ focus_tree = {
 		x = -5
 		y = 1
 		cost = 7
-		mutually_exclusive = yes
+		mutually_exclusive = {
+			focus = DAL_sw_antonidas_path
+			focus = DAL_sw_modera_path
+			focus = DAL_sw_kelthuzad_path
+		}
 
 		available = {
 			NOT = { has_country_flag = DAL_faction_antonidas }
@@ -754,7 +762,11 @@ focus_tree = {
 		x = 7
 		y = 1
 		cost = 7
-		mutually_exclusive = yes
+		mutually_exclusive = {
+			focus = DAL_sw_antonidas_path
+			focus = DAL_sw_krasus_path
+			focus = DAL_sw_kelthuzad_path
+		}
 
 		available = {
 			NOT = { has_country_flag = DAL_faction_antonidas }
@@ -782,7 +794,11 @@ focus_tree = {
 		x = 9
 		y = 1
 		cost = 7
-		mutually_exclusive = yes
+		mutually_exclusive = {
+			focus = DAL_sw_antonidas_path
+			focus = DAL_sw_krasus_path
+			focus = DAL_sw_modera_path
+		}
 
 		available = {
 			NOT = { has_country_flag = DAL_faction_antonidas }
@@ -837,7 +853,7 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = 80
 			add_research_slot = 1
-			add_tech_bonus = { name = general_research_bonus_dal bonus = 1.0 uses = 2 category = mage_tech }
+			add_tech_bonus = { name = general_research_bonus_dal bonus = 1.0 uses = 2 category = mage_technology }
 		}
 	}
 
@@ -908,8 +924,8 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.10
 			army_experience = 30
-			RDF = { add_opinion_modifier = { target = BRC modifier = hostile_relations } }
-			RDF = { add_opinion_modifier = { target = DMC modifier = hostile_relations } }
+			RDF = { add_opinion_modifier = { target = BRC modifier = medium_decrease } }
+			RDF = { add_opinion_modifier = { target = DMC modifier = medium_decrease } }
 		}
 	}
 
@@ -965,7 +981,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.05
 			army_experience = 25
-			add_decryption = 1.0
+			add_tech_bonus = { name = decryption_technology bonus = 0.5 uses = 1 category = decryption_technology }
 			add_timed_idea = { idea = DAL_sw_vault_guardians days = 365 }
 		}
 	}
@@ -1064,7 +1080,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.05
 			army_experience = 25
-			add_tech_bonus = { name = golem_tech_bonus bonus = 1.0 uses = 1 category = siege_tech }
+			add_tech_bonus = { name = golem_tech_bonus bonus = 1.0 uses = 1 category = catapult_technology }
 		}
 	}
 
@@ -1096,7 +1112,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.05
 			army_experience = 20
-			add_tech_bonus = { name = spellbreaker_tech_bonus bonus = 1.0 uses = 1 category = footman_tech }
+			add_tech_bonus = { name = spellbreaker_tech_bonus bonus = 1.0 uses = 1 category = footman_technology }
 		}
 	}
 
@@ -1144,7 +1160,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.05
 			army_experience = 25
-			add_tech_bonus = { name = cannon_tech_bonus bonus = 1.0 uses = 1 category = catapault_tech }
+			add_tech_bonus = { name = cannon_tech_bonus bonus = 1.0 uses = 1 category = catapult_technology }
 		}
 	}
 
@@ -1163,7 +1179,7 @@ focus_tree = {
 		ai_will_do = { base = 8 }
 		completion_reward = {
 			add_political_power = 60
-			add_decryption = 1.5
+			add_tech_bonus = { name = decryption_technology bonus = 0.75 uses = 2 category = decryption_technology }
 			DAL = { set_country_flag = DAL_scrying_network_active }
 		}
 	}
@@ -1195,7 +1211,7 @@ focus_tree = {
 		ai_will_do = { base = 7 }
 		completion_reward = {
 			add_political_power = 50
-			add_decryption = 0.5
+			add_tech_bonus = { name = decryption_technology bonus = 0.5 uses = 1 category = decryption_technology }
 			ALT = { add_intel = { civilian_intel = 20 army_intel = 10 navy_intel = 5 airforce_intel = 5 } }
 			DAL = { set_country_flag = DAL_alterac_monitored }
 		}
@@ -1213,7 +1229,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.08
 			add_political_power = 80
-			add_decryption = 1.0
+			add_tech_bonus = { name = decryption_technology bonus = 0.5 uses = 1 category = decryption_technology }
 			country_event = { id = dalaran_second_war.13 }
 		}
 	}
@@ -1356,7 +1372,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.10
 			add_political_power = 120
-			add_decryption = 2.0
+			add_tech_bonus = { name = decryption_technology bonus = 1.0 uses = 2 category = decryption_technology }
 			add_ideas = DAL_sw_eye_of_dalaran_spirit
 		}
 	}
@@ -1480,7 +1496,7 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.05
 			army_experience = 25
-			add_tech_bonus = { name = siege_tech_bonus bonus = 1.0 uses = 1 category = siege_tech }
+			add_tech_bonus = { name = siege_tech_bonus bonus = 1.0 uses = 1 category = catapult_technology }
 		}
 	}
 
