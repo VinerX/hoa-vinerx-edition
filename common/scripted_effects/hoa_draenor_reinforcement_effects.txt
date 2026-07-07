@@ -1,0 +1,87 @@
+# ============================================================
+# Draenor Clan Reinforcement Scripted Effects
+# ============================================================
+
+# Portal Congestion — applied after each major clan transfer
+apply_portal_congestion = {
+	BRC = {
+		add_timed_idea = {
+			idea = portal_congestion
+			days = 90
+		}
+	}
+}
+
+# Mark a specific clan as summoned (prevents double-integration)
+mark_wsc_summoned = { set_country_flag = draenor_clan_summoned_WSC }
+mark_smc_summoned = { set_country_flag = draenor_clan_summoned_SMC }
+mark_tlc_summoned = { set_country_flag = draenor_clan_summoned_TLC }
+mark_shc_summoned = { set_country_flag = draenor_clan_summoned_SHC }
+mark_lsc_summoned = { set_country_flag = draenor_clan_summoned_LSC }
+mark_bcc_summoned = { set_country_flag = draenor_clan_summoned_BCC }
+
+# Clan gains Invasion_Clan flag, joins Horde faction
+clan_wsc_integrate = {
+	WSC = {
+		set_country_flag = Invasion_Clan
+	}
+	BRC = {
+		add_to_faction = WSC
+	}
+}
+clan_smc_integrate = {
+	SMC = {
+		set_country_flag = Invasion_Clan
+	}
+	BRC = {
+		add_to_faction = SMC
+	}
+}
+clan_tlc_integrate = {
+	TLC = {
+		set_country_flag = Invasion_Clan
+	}
+	BRC = {
+		add_to_faction = TLC
+	}
+}
+clan_shc_integrate = {
+	SHC = {
+		set_country_flag = Invasion_Clan
+	}
+	BRC = {
+		add_to_faction = SHC
+	}
+}
+clan_lsc_integrate = {
+	LSC = {
+		set_country_flag = Invasion_Clan
+	}
+	BRC = {
+		add_to_faction = LSC
+	}
+}
+clan_bcc_integrate = {
+	BCC = {
+		set_country_flag = Invasion_Clan
+	}
+	BRC = {
+		add_to_faction = BCC
+	}
+}
+
+# Draenor depletion — clan loses manpower on Draenor after transfer
+deplete_wsc_draenor = { WSC = { add_manpower = -2000 } }
+deplete_smc_draenor = { SMC = { add_manpower = -2000 } }
+deplete_tlc_draenor = { TLC = { add_manpower = -2000 } }
+deplete_shc_draenor = { SHC = { add_manpower = -2000 } }
+deplete_lsc_draenor = { LSC = { add_manpower = -1500 } }
+deplete_bcc_draenor = { BCC = { add_manpower = -2000 } }
+
+# WSC has draenor_clan_transferred flag
+flag_wsc_transferred = { WSC = { set_country_flag = draenor_clan_transferred } }
+flag_smc_transferred = { SMC = { set_country_flag = draenor_clan_transferred } }
+flag_tlc_transferred = { TLC = { set_country_flag = draenor_clan_transferred } }
+flag_shc_transferred = { SHC = { set_country_flag = draenor_clan_transferred } }
+flag_lsc_transferred = { LSC = { set_country_flag = draenor_clan_transferred } }
+flag_bcc_transferred = { BCC = { set_country_flag = draenor_clan_transferred } }

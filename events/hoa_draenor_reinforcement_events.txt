@@ -1,0 +1,1255 @@
+###########################
+# Draenor Clan Reinforcements
+# namespace: draenor_reinforcements
+###########################
+
+add_namespace = draenor_reinforcements
+
+# ============================================================
+# Division Template Setup & Expeditionary Spawn (hidden, fires from expedition decisions)
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.3
+	title = draenor_reinforcements.3.t
+	desc = draenor_reinforcements.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Expeditionary forces arrive" }
+
+	option = {
+		name = draenor_reinforcements.3.option.1
+		if = {
+			limit = { has_country_flag = queued_expedition_WSC }
+			division_template = {
+				name = "Warsong Wolf Riders"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					raider = { x = 0 y = 1 }
+					raider = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					raider = { x = 1 y = 1 }
+				}
+			}
+			random_owned_state = {
+				limit = { state = 377 }
+				create_unit = {
+					division = "name = \"Warsong Wolf Riders\" division_template = \"Warsong Wolf Riders\" start_experience_factor = 0.4"
+					owner = BRC
+					count = 3
+				}
+			}
+			clr_country_flag = queued_expedition_WSC
+		}
+		else_if = {
+			limit = { has_country_flag = queued_expedition_SMC }
+			division_template = {
+				name = "Shadowmoon Necrolytes"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					warlock = { x = 0 y = 1 }
+					warlock = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					shaman = { x = 1 y = 1 }
+				}
+			}
+			random_owned_state = {
+				limit = { state = 377 }
+				create_unit = {
+					division = "name = \"Shadowmoon Necrolytes\" division_template = \"Shadowmoon Necrolytes\" start_experience_factor = 0.4"
+					owner = BRC
+					count = 2
+				}
+			}
+			clr_country_flag = queued_expedition_SMC
+		}
+		else_if = {
+			limit = { has_country_flag = queued_expedition_TLC }
+			division_template = {
+				name = "Thunderlord Wolf Riders"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					raider = { x = 0 y = 1 }
+					raider = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					grunt = { x = 1 y = 1 }
+				}
+			}
+			division_template = {
+				name = "Thunderlord Grunts"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					grunt = { x = 0 y = 1 }
+					grunt = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					grunt = { x = 1 y = 1 }
+					grunt = { x = 1 y = 2 }
+				}
+			}
+			random_owned_state = {
+				limit = { state = 377 }
+				create_unit = {
+					division = "name = \"Thunderlord Wolf Riders\" division_template = \"Thunderlord Wolf Riders\" start_experience_factor = 0.35"
+					owner = BRC
+					count = 2
+				}
+				create_unit = {
+					division = "name = \"Thunderlord Grunts\" division_template = \"Thunderlord Grunts\" start_experience_factor = 0.3"
+					owner = BRC
+					count = 1
+				}
+			}
+			clr_country_flag = queued_expedition_TLC
+		}
+		else_if = {
+			limit = { has_country_flag = queued_expedition_SHC }
+			division_template = {
+				name = "Shattered Hand Gladiators"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					grunt = { x = 0 y = 1 }
+					grunt = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					grunt = { x = 1 y = 1 }
+					grunt = { x = 1 y = 2 }
+				}
+			}
+			random_owned_state = {
+				limit = { state = 377 }
+				create_unit = {
+					division = "name = \"Shattered Hand Gladiators\" division_template = \"Shattered Hand Gladiators\" start_experience_factor = 0.35"
+					owner = BRC
+					count = 3
+				}
+			}
+			clr_country_flag = queued_expedition_SHC
+		}
+		else_if = {
+			limit = { has_country_flag = queued_expedition_LSC }
+			division_template = {
+				name = "Laughing Skull Berserkers"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					grunt = { x = 0 y = 1 }
+					grunt = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					grunt = { x = 1 y = 1 }
+				}
+			}
+			random_owned_state = {
+				limit = { state = 377 }
+				create_unit = {
+					division = "name = \"Laughing Skull Berserkers\" division_template = \"Laughing Skull Berserkers\" start_experience_factor = 0.3"
+					owner = BRC
+					count = 2
+				}
+			}
+			clr_country_flag = queued_expedition_LSC
+		}
+		else_if = {
+			limit = { has_country_flag = queued_expedition_BCC }
+			division_template = {
+				name = "Bonechewer Cannibal Riders"
+				priority = 1
+				regiments = {
+					grunt = { x = 0 y = 0 }
+					raider = { x = 0 y = 1 }
+					raider = { x = 0 y = 2 }
+					grunt = { x = 1 y = 0 }
+					raider = { x = 1 y = 1 }
+					grunt = { x = 1 y = 2 }
+				}
+			}
+			random_owned_state = {
+				limit = { state = 377 }
+				create_unit = {
+					division = "name = \"Bonechewer Cannibal Riders\" division_template = \"Bonechewer Cannibal Riders\" start_experience_factor = 0.4"
+					owner = BRC
+					count = 2
+				}
+			}
+			clr_country_flag = queued_expedition_BCC
+		}
+	}
+}
+
+# ============================================================
+# 4.1 — The Warchief Sends the Call (wrapper)
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.1
+	title = draenor_reinforcements.1.t
+	desc = draenor_reinforcements.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.1" }
+
+	option = {
+		name = draenor_reinforcements.1.option.1
+		hidden_effect = {
+			country_event = { id = draenor_reinforcements.2 hours = 6 }
+		}
+	}
+}
+
+# ============================================================
+# 4.2 — Clan Specific Negotiation (dispatch)
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.2
+	title = draenor_reinforcements.2.t
+	desc = draenor_reinforcements.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Clan negotiation dispatch" }
+
+	option = {
+		name = draenor_reinforcements.2.option.1
+		if = {
+			limit = {
+				reinforcement_wsc_available = yes
+				has_country_flag = queued_clan_WSC
+			}
+			WSC = { country_event = { id = draenor_reinforcements.10 hours = 12 } }
+			clr_country_flag = queued_clan_WSC
+		}
+		else_if = {
+			limit = {
+				reinforcement_smc_available = yes
+				has_country_flag = queued_clan_SMC
+			}
+			SMC = { country_event = { id = draenor_reinforcements.11 hours = 12 } }
+			clr_country_flag = queued_clan_SMC
+		}
+		else_if = {
+			limit = {
+				reinforcement_tlc_available = yes
+				has_country_flag = queued_clan_TLC
+			}
+			TLC = { country_event = { id = draenor_reinforcements.12 hours = 12 } }
+			clr_country_flag = queued_clan_TLC
+		}
+		else_if = {
+			limit = {
+				reinforcement_shc_available = yes
+				has_country_flag = queued_clan_SHC
+			}
+			SHC = { country_event = { id = draenor_reinforcements.13 hours = 12 } }
+			clr_country_flag = queued_clan_SHC
+		}
+		else_if = {
+			limit = {
+				reinforcement_lsc_available = yes
+				has_country_flag = queued_clan_LSC
+			}
+			LSC = { country_event = { id = draenor_reinforcements.14 hours = 12 } }
+			clr_country_flag = queued_clan_LSC
+		}
+		else_if = {
+			limit = {
+				reinforcement_bcc_available = yes
+				has_country_flag = queued_clan_BCC
+			}
+			BCC = { country_event = { id = draenor_reinforcements.15 hours = 12 } }
+			clr_country_flag = queued_clan_BCC
+		}
+		else = {
+			# Clan not available (edge case)
+			BRC = { country_event = { id = draenor_reinforcements.90 days = 1 } }
+		}
+	}
+}
+
+# ============================================================
+# 4.3 — Clan Response Events (draenor_reinforcements.10–15)
+# ============================================================
+
+# Warsong (WSC) — Grom Hellscream
+country_event = {
+	id = draenor_reinforcements.10
+	title = draenor_reinforcements.10.t
+	desc = draenor_reinforcements.10.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [WSC.GetName]: event draenor_reinforcements.10" }
+
+	# Route threatened = additional narrative risk
+	trigger = {
+		exists = yes
+		tag = WSC
+	}
+
+	option = {
+		name = draenor_reinforcements.10.option.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 2
+				BRC = { horde_authority_high = yes }
+			}
+			modifier = {
+				factor = 0.3
+				BRC = { horde_authority_defied = yes }
+			}
+		}
+		# Warsong accepts — demands command role
+		BRC = {
+			if = {
+				limit = { horde_authority_high = yes }
+				# High authority: accepts immediately
+				country_event = { id = draenor_reinforcements.30 hours = 6 }
+				set_country_flag = clan_accepted_wsc
+			}
+			else_if = {
+				limit = { horde_authority_medium = yes }
+				# Medium: demands command role, costs authority
+				country_event = { id = draenor_reinforcements.20 hours = 6 }
+				set_country_flag = clan_negotiating_wsc
+				set_country_flag = demand_offensive_command
+			}
+			else_if = {
+				limit = { horde_authority_low = yes }
+				# Low: may refuse (50% chance)
+				random_list = {
+					50 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_wsc
+						set_country_flag = demand_offensive_command
+					}
+					50 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+			else = {
+				# Defied: likely refuses
+				random_list = {
+					30 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_wsc
+						set_country_flag = demand_offensive_command
+					}
+					70 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Shadowmoon (SMC) — Ner'zhul
+country_event = {
+	id = draenor_reinforcements.11
+	title = draenor_reinforcements.11.t
+	desc = draenor_reinforcements.11.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [SMC.GetName]: event draenor_reinforcements.11" }
+
+	trigger = {
+		exists = yes
+		tag = SMC
+	}
+
+	option = {
+		name = draenor_reinforcements.11.option.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 2
+				BRC = { horde_authority_high = yes }
+			}
+			modifier = {
+				factor = 0.3
+				BRC = { horde_authority_defied = yes }
+			}
+		}
+		BRC = {
+			if = {
+				limit = { horde_authority_high = yes }
+				country_event = { id = draenor_reinforcements.30 hours = 6 }
+				set_country_flag = clan_accepted_smc
+			}
+			else_if = {
+				limit = { horde_authority_medium = yes }
+				country_event = { id = draenor_reinforcements.20 hours = 6 }
+				set_country_flag = clan_negotiating_smc
+				set_country_flag = demand_necrolyte_freedom
+			}
+			else_if = {
+				limit = { horde_authority_low = yes }
+				random_list = {
+					50 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_smc
+						set_country_flag = demand_necrolyte_freedom
+					}
+					50 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					30 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_smc
+						set_country_flag = demand_necrolyte_freedom
+					}
+					70 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Thunderlord (TLC) — Fenris Wolfbrother
+country_event = {
+	id = draenor_reinforcements.12
+	title = draenor_reinforcements.12.t
+	desc = draenor_reinforcements.12.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [TLC.GetName]: event draenor_reinforcements.12" }
+
+	trigger = {
+		exists = yes
+		tag = TLC
+	}
+
+	option = {
+		name = draenor_reinforcements.12.option.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 2
+				BRC = { horde_authority_high = yes }
+			}
+			modifier = {
+				factor = 0.3
+				BRC = { horde_authority_defied = yes }
+			}
+		}
+		BRC = {
+			if = {
+				limit = { horde_authority_high = yes }
+				country_event = { id = draenor_reinforcements.30 hours = 6 }
+				set_country_flag = clan_accepted_tlc
+			}
+			else_if = {
+				limit = { horde_authority_medium = yes }
+				country_event = { id = draenor_reinforcements.20 hours = 6 }
+				set_country_flag = clan_negotiating_tlc
+				set_country_flag = demand_equipment_wolves
+			}
+			else_if = {
+				limit = { horde_authority_low = yes }
+				random_list = {
+					50 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_tlc
+						set_country_flag = demand_equipment_wolves
+					}
+					50 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					30 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_tlc
+						set_country_flag = demand_equipment_wolves
+					}
+					70 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Shattered Hand (SHC) — Kargath Bladefist
+country_event = {
+	id = draenor_reinforcements.13
+	title = draenor_reinforcements.13.t
+	desc = draenor_reinforcements.13.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [SHC.GetName]: event draenor_reinforcements.13" }
+
+	trigger = {
+		exists = yes
+		tag = SHC
+	}
+
+	option = {
+		name = draenor_reinforcements.13.option.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 2
+				BRC = { horde_authority_high = yes }
+			}
+			modifier = {
+				factor = 0.3
+				BRC = { horde_authority_defied = yes }
+			}
+		}
+		BRC = {
+			if = {
+				limit = { horde_authority_high = yes }
+				country_event = { id = draenor_reinforcements.30 hours = 6 }
+				set_country_flag = clan_accepted_shc
+			}
+			else_if = {
+				limit = { horde_authority_medium = yes }
+				country_event = { id = draenor_reinforcements.20 hours = 6 }
+				set_country_flag = clan_negotiating_shc
+				set_country_flag = demand_slaves
+			}
+			else_if = {
+				limit = { horde_authority_low = yes }
+				random_list = {
+					50 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_shc
+						set_country_flag = demand_slaves
+					}
+					50 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					30 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_shc
+						set_country_flag = demand_slaves
+					}
+					70 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Laughing Skull (LSC) — Mogor
+country_event = {
+	id = draenor_reinforcements.14
+	title = draenor_reinforcements.14.t
+	desc = draenor_reinforcements.14.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [LSC.GetName]: event draenor_reinforcements.14" }
+
+	trigger = {
+		exists = yes
+		tag = LSC
+	}
+
+	option = {
+		name = draenor_reinforcements.14.option.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 2
+				BRC = { horde_authority_high = yes }
+			}
+			modifier = {
+				factor = 0.3
+				BRC = { horde_authority_defied = yes }
+			}
+		}
+		BRC = {
+			if = {
+				limit = { horde_authority_high = yes }
+				country_event = { id = draenor_reinforcements.30 hours = 6 }
+				set_country_flag = clan_accepted_lsc
+			}
+			else_if = {
+				limit = { horde_authority_medium = yes }
+				country_event = { id = draenor_reinforcements.20 hours = 6 }
+				set_country_flag = clan_negotiating_lsc
+				set_country_flag = demand_autonomy
+			}
+			else_if = {
+				limit = { horde_authority_low = yes }
+				random_list = {
+					50 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_lsc
+						set_country_flag = demand_autonomy
+					}
+					50 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					30 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_lsc
+						set_country_flag = demand_autonomy
+					}
+					70 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Bonechewer (BCC) — Hurkan Skullsplinter
+country_event = {
+	id = draenor_reinforcements.15
+	title = draenor_reinforcements.15.t
+	desc = draenor_reinforcements.15.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [BCC.GetName]: event draenor_reinforcements.15" }
+
+	trigger = {
+		exists = yes
+		tag = BCC
+	}
+
+	option = {
+		name = draenor_reinforcements.15.option.1
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 2
+				BRC = { horde_authority_high = yes }
+			}
+			modifier = {
+				factor = 0.3
+				BRC = { horde_authority_defied = yes }
+			}
+		}
+		BRC = {
+			if = {
+				limit = { horde_authority_high = yes }
+				country_event = { id = draenor_reinforcements.30 hours = 6 }
+				set_country_flag = clan_accepted_bcc
+			}
+			else_if = {
+				limit = { horde_authority_medium = yes }
+				country_event = { id = draenor_reinforcements.20 hours = 6 }
+				set_country_flag = clan_negotiating_bcc
+				set_country_flag = demand_draenor_protection
+			}
+			else_if = {
+				limit = { horde_authority_low = yes }
+				random_list = {
+					50 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_bcc
+						set_country_flag = demand_draenor_protection
+					}
+					50 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+			else = {
+				random_list = {
+					30 = {
+						country_event = { id = draenor_reinforcements.20 hours = 6 }
+						set_country_flag = clan_negotiating_bcc
+						set_country_flag = demand_draenor_protection
+					}
+					70 = {
+						country_event = { id = draenor_reinforcements.91 hours = 6 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# ============================================================
+# 4.4 — BRC Responds to Clan Demands
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.20
+	title = draenor_reinforcements.20.t
+	desc = draenor_reinforcements.20.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.20" }
+
+	option = { # Accept demands
+		name = draenor_reinforcements.20.option.1
+		ai_chance = { factor = 65 }
+		custom_effect_tooltip = draenor_reinforcements.20.option.1.tt
+		if = {
+			limit = { has_country_flag = demand_offensive_command }
+			add_political_power = -50
+			horde_authority_spend_small = yes
+			set_country_flag = clan_accepted_wsc
+		}
+		else_if = {
+			limit = { has_country_flag = demand_necrolyte_freedom }
+			add_political_power = -75
+			add_manpower = -1500
+			horde_authority_spend_small = yes
+			set_country_flag = clan_accepted_smc
+		}
+		else_if = {
+			limit = { has_country_flag = demand_equipment_wolves }
+			add_political_power = -50
+			horde_authority_spend_small = yes
+			set_country_flag = clan_accepted_tlc
+		}
+		else_if = {
+			limit = { has_country_flag = demand_slaves }
+			add_political_power = -75
+			add_manpower = -3000
+			horde_authority_spend_small = yes
+			set_country_flag = clan_accepted_shc
+		}
+		else_if = {
+			limit = { has_country_flag = demand_autonomy }
+			add_political_power = -100
+			add_stability = -0.10
+			horde_authority_spend_small = yes
+			set_country_flag = clan_accepted_lsc
+		}
+		else_if = {
+			limit = { has_country_flag = demand_draenor_protection }
+			add_political_power = -50
+			horde_authority_spend_small = yes
+			set_country_flag = clan_accepted_bcc
+		}
+	}
+	option = { # Refuse demands
+		name = draenor_reinforcements.20.option.2
+		ai_chance = { factor = 15 }
+		custom_effect_tooltip = draenor_reinforcements.20.option.2.tt
+		horde_authority_lower = yes
+		country_event = { id = draenor_reinforcements.91 hours = 24 }
+	}
+	option = { # Counter-offer
+		name = draenor_reinforcements.20.option.3
+		ai_chance = { factor = 20 }
+		custom_effect_tooltip = draenor_reinforcements.20.option.3.tt
+		random_list = {
+			60 = {
+				add_political_power = -25
+				set_country_flag = clan_accepted_negotiated
+			}
+			40 = {
+				horde_authority_lower = yes
+				country_event = { id = draenor_reinforcements.91 hours = 24 }
+			}
+		}
+		if = {
+			limit = { has_country_flag = clan_accepted_negotiated }
+			country_event = { id = draenor_reinforcements.30 hours = 12 }
+		}
+	}
+}
+
+# ============================================================
+# 4.5 — Transfer Begins: Forces Cross the Dark Portal
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.30
+	title = draenor_reinforcements.30.t
+	desc = draenor_reinforcements.30.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.30" }
+
+	option = {
+		name = draenor_reinforcements.30.option.1
+		# Determine which clan was accepted and add to faction
+		if = {
+			limit = { OR = { has_country_flag = clan_accepted_wsc has_country_flag = clan_accepted_negotiated has_country_flag = queued_clan_WSC } }
+			WSC = { country_event = { id = draenor_reinforcements.31 hours = 6 } }
+			set_country_flag = active_transfer_wsc
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_accepted_smc has_country_flag = queued_clan_SMC } }
+			SMC = { country_event = { id = draenor_reinforcements.31 hours = 6 } }
+			set_country_flag = active_transfer_smc
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_accepted_tlc has_country_flag = queued_clan_TLC } }
+			TLC = { country_event = { id = draenor_reinforcements.31 hours = 6 } }
+			set_country_flag = active_transfer_tlc
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_accepted_shc has_country_flag = queued_clan_SHC } }
+			SHC = { country_event = { id = draenor_reinforcements.31 hours = 6 } }
+			set_country_flag = active_transfer_shc
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_accepted_lsc has_country_flag = queued_clan_LSC } }
+			LSC = { country_event = { id = draenor_reinforcements.31 hours = 6 } }
+			set_country_flag = active_transfer_lsc
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_accepted_bcc has_country_flag = queued_clan_BCC } }
+			BCC = { country_event = { id = draenor_reinforcements.31 hours = 6 } }
+			set_country_flag = active_transfer_bcc
+		}
+	}
+
+	option = {
+		name = draenor_reinforcements.30.option.2
+		# Cancel the transfer (Authority hit)
+		horde_authority_lower = yes
+		hidden_effect = {
+			country_event = { id = draenor_reinforcements.91 hours = 24 }
+		}
+	}
+}
+
+# Clan-specific transfer (clan scope)
+country_event = {
+	id = draenor_reinforcements.31
+	title = draenor_reinforcements.31.t
+	desc = draenor_reinforcements.31.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.31" }
+
+	option = {
+		name = draenor_reinforcements.31.option.1
+		# Check for portal route threat
+		BRC = {
+			if = {
+				limit = { portal_route_threatened = yes }
+				# Threatened route: possible losses (10% chance to lose some strength)
+				random_list = {
+					10 = {
+						add_manpower = -500
+						set_country_flag = transfer_ambushed
+					}
+					90 = {}
+				}
+			}
+			# Apply portal congestion
+			apply_portal_congestion = yes
+		}
+		BRC = { add_to_faction = ROOT }
+		set_country_flag = Invasion_Clan
+		# Notify BRC of arrival
+		BRC = { country_event = { id = draenor_reinforcements.40 hours = 24 } }
+	}
+}
+
+# ============================================================
+# 4.6 — Arrival in Azeroth
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.40
+	title = draenor_reinforcements.40.t
+	desc = draenor_reinforcements.40.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.40" }
+
+	option = {
+		name = draenor_reinforcements.40.option.1
+		# Clan has arrived, prompt land transfer
+		country_event = { id = draenor_reinforcements.50 hours = 12 }
+	}
+}
+
+# ============================================================
+# 4.7 — Land Transfer Prompt
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.50
+	title = draenor_reinforcements.50.t
+	desc = draenor_reinforcements.50.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.50" }
+
+	option = {
+		name = draenor_reinforcements.50.option.1
+		# Beginning land transfer phase — decisions enabled by flag
+		set_country_flag = BRC_clan_transfer_in_progress
+		custom_effect_tooltip = draenor_reinforcements.50.option.1.tt
+	}
+}
+
+# ============================================================
+# 4.8 — Integration Complete
+# ============================================================
+
+country_event = {
+	id = draenor_reinforcements.60
+	title = draenor_reinforcements.60.t
+	desc = draenor_reinforcements.60.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.60" }
+
+	option = {
+		name = draenor_reinforcements.60.option.1
+		clr_country_flag = BRC_clan_transfer_in_progress
+		set_country_flag = BRC_clan_integration_cooldown
+
+		# Mark the active transfer clan as fully integrated
+		if = {
+			limit = { has_country_flag = active_transfer_wsc }
+			set_country_flag = draenor_clan_summoned_WSC
+			WSC = {
+				set_country_flag = draenor_clan_transferred
+				add_manpower = -2000
+			}
+			clr_country_flag = active_transfer_wsc
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_smc }
+			set_country_flag = draenor_clan_summoned_SMC
+			SMC = {
+				set_country_flag = draenor_clan_transferred
+				add_manpower = -2000
+			}
+			clr_country_flag = active_transfer_smc
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_tlc }
+			set_country_flag = draenor_clan_summoned_TLC
+			TLC = {
+				set_country_flag = draenor_clan_transferred
+				add_manpower = -2000
+			}
+			clr_country_flag = active_transfer_tlc
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_shc }
+			set_country_flag = draenor_clan_summoned_SHC
+			SHC = {
+				set_country_flag = draenor_clan_transferred
+				add_manpower = -2000
+			}
+			clr_country_flag = active_transfer_shc
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_lsc }
+			set_country_flag = draenor_clan_summoned_LSC
+			LSC = {
+				set_country_flag = draenor_clan_transferred
+				add_manpower = -1500
+			}
+			clr_country_flag = active_transfer_lsc
+		}
+		else_if = {
+			limit = { has_country_flag = active_transfer_bcc }
+			set_country_flag = draenor_clan_summoned_BCC
+			BCC = {
+				set_country_flag = draenor_clan_transferred
+				add_manpower = -2000
+			}
+			clr_country_flag = active_transfer_bcc
+		}
+
+		clr_country_flag = BRC_clan_transfer_in_progress
+	}
+}
+
+# ============================================================
+# 4.9 — Edge Case Events
+# ============================================================
+
+# Clan refuses permanently
+country_event = {
+	id = draenor_reinforcements.90
+	title = draenor_reinforcements.90.t
+	desc = draenor_reinforcements.90.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.90" }
+
+	# Mark which clan was refused
+	option = {
+		name = draenor_reinforcements.90.option.1
+		if = {
+			limit = { OR = { has_country_flag = clan_negotiating_wsc has_country_flag = queued_clan_WSC } }
+			clr_country_flag = clan_negotiating_wsc
+			clr_country_flag = queued_clan_WSC
+			set_country_flag = draenor_clan_summoned_WSC
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_negotiating_smc has_country_flag = queued_clan_SMC } }
+			clr_country_flag = clan_negotiating_smc
+			clr_country_flag = queued_clan_SMC
+			set_country_flag = draenor_clan_summoned_SMC
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_negotiating_tlc has_country_flag = queued_clan_TLC } }
+			clr_country_flag = clan_negotiating_tlc
+			clr_country_flag = queued_clan_TLC
+			set_country_flag = draenor_clan_summoned_TLC
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_negotiating_shc has_country_flag = queued_clan_SHC } }
+			clr_country_flag = clan_negotiating_shc
+			clr_country_flag = queued_clan_SHC
+			set_country_flag = draenor_clan_summoned_SHC
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_negotiating_lsc has_country_flag = queued_clan_LSC } }
+			clr_country_flag = clan_negotiating_lsc
+			clr_country_flag = queued_clan_LSC
+			set_country_flag = draenor_clan_summoned_LSC
+		}
+		else_if = {
+			limit = { OR = { has_country_flag = clan_negotiating_bcc has_country_flag = queued_clan_BCC } }
+			clr_country_flag = clan_negotiating_bcc
+			clr_country_flag = queued_clan_BCC
+			set_country_flag = draenor_clan_summoned_BCC
+		}
+	}
+}
+
+# Portal lost / clan refuses
+country_event = {
+	id = draenor_reinforcements.91
+	title = draenor_reinforcements.91.t
+	desc = draenor_reinforcements.91.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.91" }
+
+	option = {
+		name = draenor_reinforcements.91.option.1
+		horde_authority_lower = yes
+		# Mark the clan as permanently refused
+		country_event = { id = draenor_reinforcements.90 days = 1 }
+	}
+}
+
+# Transfer intercepted by Alliance (future hook)
+country_event = {
+	id = draenor_reinforcements.92
+	title = draenor_reinforcements.92.t
+	desc = draenor_reinforcements.92.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.92" }
+
+	option = {
+		name = draenor_reinforcements.92.option.1
+		horde_authority_lower_medium = yes
+		country_event = { id = draenor_reinforcements.90 days = 1 }
+	}
+}
+
+# Clan demands not met — damages authority
+country_event = {
+	id = draenor_reinforcements.93
+	title = draenor_reinforcements.93.t
+	desc = draenor_reinforcements.93.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.93" }
+
+	option = {
+		name = draenor_reinforcements.93.option.1
+		horde_authority_lower_medium = yes
+	}
+}
+
+# Civil war threat — a Horde clan whose land was taken demands it back
+country_event = {
+	id = draenor_reinforcements.94
+	title = draenor_reinforcements.94.t
+	desc = draenor_reinforcements.94.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event draenor_reinforcements.94" }
+
+	option = { # Appease the clan
+		name = draenor_reinforcements.94.option.1
+		ai_chance = { factor = 60 }
+		add_political_power = -75
+		horde_authority_lower = yes
+		BRC = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = large_increase
+			}
+		}
+	}
+	option = { # Let them declare war (civil war risk)
+		name = draenor_reinforcements.94.option.2
+		ai_chance = { factor = 15 }
+		horde_authority_lower_major = yes
+		random_list = {
+			40 = {
+				# They actually declare war
+				declare_war_on = {
+					target = BRC
+					type = annex_everything
+				}
+			}
+			60 = {
+				# They back down
+				leave_faction = yes
+			}
+		}
+		BRC = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = large_decrease
+			}
+		}
+	}
+	option = { # Buy their loyalty
+		name = draenor_reinforcements.94.option.3
+		ai_chance = { factor = 25 }
+		add_political_power = -150
+		horde_authority_spend_small = yes
+		BRC = {
+			country_event = { id = draenor_reinforcements.93 days = 30 }
+		}
+	}
+}
+
+# ============================================================
+# 4.10 — Dated Events (cleanup, cooldown management)
+# ============================================================
+
+# Clear integration cooldown after 120 days
+country_event = {
+	id = draenor_reinforcements.95
+	title = draenor_reinforcements.95.t
+	desc = draenor_reinforcements.95.d
+	picture = GFX_report_event_german_parade_paris
+
+	hidden = yes
+
+	trigger = {
+		has_country_flag = BRC_clan_integration_cooldown
+	}
+
+	fire_only_once = yes
+	mean_time_to_happen = { days = 120 }
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Integration cooldown cleared" }
+
+	option = {
+		name = draenor_reinforcements.95.option.1
+		clr_country_flag = BRC_clan_integration_cooldown
+	}
+}
+
+# Check if portal was lost during active transfer
+country_event = {
+	id = draenor_reinforcements.96
+	title = draenor_reinforcements.96.t
+	desc = draenor_reinforcements.96.d
+	picture = GFX_report_event_german_parade_paris
+
+	hidden = yes
+
+	trigger = {
+		has_country_flag = BRC_clan_transfer_in_progress
+		portal_route_cut_off = yes
+	}
+
+	fire_only_once = yes
+	mean_time_to_happen = { days = 7 }
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: Portal lost during transfer" }
+
+	option = {
+		name = draenor_reinforcements.96.option.1
+		clr_country_flag = BRC_clan_transfer_in_progress
+		horde_authority_lower_medium = yes
+		# The clan being transferred is stranded on Draenor side
+		country_event = { id = draenor_reinforcements.91 days = 1 }
+	}
+}

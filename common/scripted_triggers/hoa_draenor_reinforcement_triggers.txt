@@ -1,0 +1,147 @@
+# ============================================================
+# Draenor Clan Reinforcement Triggers
+# Tracks Dark Portal status and clan availability for summoning
+# ============================================================
+
+# ----------- Portal Status -----------
+
+# BRC controls province 2854 (the portal) AND state 377, no enemy controls either
+portal_route_secure = {
+	BRC = {
+		controls_state = 377
+		NOT = {
+			any_enemy_country = {
+				controls_state = 377
+			}
+		}
+	}
+	NOT = { has_global_flag = dark_portal_sealed }
+}
+
+# BRC controls 2854 but enemy controls any state bordering 377
+portal_route_threatened = {
+	BRC = {
+		controls_state = 377
+		any_enemy_country = {
+			any_controlled_state = {
+				is_owned_by = BRC
+				OR = {
+					state = 376
+					state = 378
+					state = 379
+					state = 380
+				}
+			}
+		}
+	}
+	NOT = { has_global_flag = dark_portal_sealed }
+}
+
+# BRC does NOT control state 377, OR dark_portal_sealed flag is set
+portal_route_cut_off = {
+	OR = {
+		BRC = {
+			NOT = { controls_state = 377 }
+		}
+		has_global_flag = dark_portal_sealed
+	}
+}
+
+# ----------- Clan Availability -----------
+
+reinforcement_wsc_available = {
+	WSC = { exists = yes }
+	NOT = { has_country_flag = draenor_clan_summoned_WSC }
+	NOT = { WSC = { is_in_faction_with = BRC } }
+	WSC = {
+		NOT = { has_country_flag = followed_guldan }
+	}
+}
+
+reinforcement_smc_available = {
+	SMC = { exists = yes }
+	NOT = { has_country_flag = draenor_clan_summoned_SMC }
+	NOT = { SMC = { is_in_faction_with = BRC } }
+	SMC = {
+		NOT = { has_country_flag = followed_guldan }
+	}
+}
+
+reinforcement_tlc_available = {
+	TLC = { exists = yes }
+	NOT = { has_country_flag = draenor_clan_summoned_TLC }
+	NOT = { TLC = { is_in_faction_with = BRC } }
+	TLC = {
+		NOT = { has_country_flag = followed_guldan }
+	}
+}
+
+reinforcement_shc_available = {
+	SHC = { exists = yes }
+	NOT = { has_country_flag = draenor_clan_summoned_SHC }
+	NOT = { SHC = { is_in_faction_with = BRC } }
+	SHC = {
+		NOT = { has_country_flag = followed_guldan }
+	}
+}
+
+reinforcement_lsc_available = {
+	LSC = { exists = yes }
+	NOT = { has_country_flag = draenor_clan_summoned_LSC }
+	NOT = { LSC = { is_in_faction_with = BRC } }
+	LSC = {
+		NOT = { has_country_flag = followed_guldan }
+	}
+}
+
+reinforcement_bcc_available = {
+	BCC = { exists = yes }
+	NOT = { has_country_flag = draenor_clan_summoned_BCC }
+	NOT = { BCC = { is_in_faction_with = BRC } }
+	BCC = {
+		NOT = { has_country_flag = followed_guldan }
+	}
+}
+
+# ----------- General -----------
+
+# BRC can call reinforcements: is faction leader, Second War era, portal not cut off
+can_call_draenor_reinforcements = {
+	original_tag = BRC
+	is_faction_leader = yes
+	NOT = { has_start_date > 609.1.1 }
+	NOT = { has_start_date < 591.1.1 }
+	NOT = { portal_route_cut_off = yes }
+}
+
+# Any Draenor clan has outstanding expedition
+has_any_pending_expedition = {
+	OR = {
+		has_country_flag = BRC_WSC_expedition_sent
+		has_country_flag = BRC_SMC_expedition_sent
+		has_country_flag = BRC_TLC_expedition_sent
+		has_country_flag = BRC_SHC_expedition_sent
+		has_country_flag = BRC_LSC_expedition_sent
+		has_country_flag = BRC_BCC_expedition_sent
+	}
+}
+
+# Any Draenor clan fully integrated
+has_any_clan_integrated = {
+	OR = {
+		has_country_flag = draenor_clan_summoned_WSC
+		has_country_flag = draenor_clan_summoned_SMC
+		has_country_flag = draenor_clan_summoned_TLC
+		has_country_flag = draenor_clan_summoned_SHC
+		has_country_flag = draenor_clan_summoned_LSC
+		has_country_flag = draenor_clan_summoned_BCC
+	}
+}
+
+# Integration cooldown active
+is_integration_cooldown_active = {
+	OR = {
+		has_country_flag = BRC_clan_integration_cooldown
+		has_country_flag = BRC_clan_transfer_in_progress
+	}
+}
