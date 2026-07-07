@@ -113,6 +113,10 @@ RE_OOB_CARRIER_EQUIPMENT = re.compile(
     r"\bequipment\s*=\s*\{\s*(carrier_equipment_[0-9]+)\s*=\s*\{[^{}]*?\bowner\s*=\s*([A-Z0-9]{2,4})\b",
     re.DOTALL,
 )
+RE_OOB_AIR_WING = re.compile(
+    r"\b([A-Za-z0-9_.']+)\s*=\s*\{[^{}]*?\bowner\s*=\s*\"?([A-Z0-9]{2,4})\"?[^{}]*?\bamount\s*=",
+    re.DOTALL,
+)
 RE_HISTORY_CHARACTER_REF = re.compile(r"\b(?:recruit_character|retire_character|kill_character)\s*=\s*([A-Za-z0-9_.']+)")
 RE_DIRECT_CAPITAL = re.compile(r"^\s*capital\s*=\s*(\d+)", re.MULTILINE)
 RE_DIRECT_SET_CAPITAL = re.compile(r"\bset_capital\s*=\s*\{\s*state\s*=\s*(\d+)\s*\}")
@@ -785,7 +789,7 @@ def validate_dated_state_buildings(root: str, warnings: list[str]) -> None:
                 baseline_province = dict(current_province)
 
 
-def validate_history_naval_variants(root: str, errors: list[str]) -> None:
+def validate_history_naval_variants(root: str, errors: list[str], warnings: list[str]) -> None:
     country_root = os.path.join(root, "history", "countries")
     units_root = os.path.join(root, "history", "units")
     if not os.path.isdir(country_root) or not os.path.isdir(units_root):
@@ -802,6 +806,27 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
     known_unit_leader_traits = build_unit_leader_traits(root)
     equipment_unlock_techs = build_equipment_unlock_techs(root)
     naval_oob_bookmark_techs: dict[str, list[tuple[str, str, set[str]]]] = {}
+    all_techs_by_tag: dict[str, set[str]] = {}
+
+    # Techs granted at runtime via set_technology in focuses/events/effects/decisions.
+    # Used to avoid false positives when an OOB is loaded by an effect that also
+    # grants the enabling tech (e.g. HED haunted carriers focus).
+    effect_granted_techs: set[str] = set()
+    for effect_dir in ("common/national_focus", "events", "common/scripted_effects", "common/decisions"):
+        effect_root = os.path.join(root, *effect_dir.split("/"))
+        if not os.path.isdir(effect_root):
+            continue
+        for path in iter_files(effect_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            for tech_body, _tech_line in extract_named_blocks(clean, "set_technology"):
+                for tech_key, _rel_line in extract_direct_keys(tech_body):
+                    match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", tech_body)
+                    if match and int(match.group(1)) > 0:
+                        effect_granted_techs.add(tech_key)
 
     upgrades_root = os.path.join(root, "common", "units", "equipment", "upgrades")
     if os.path.isdir(upgrades_root):
@@ -828,16 +853,35 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
         country_files_by_tag[tag] = r
         variant_types = variants_by_tag.setdefault(tag, set())
         top_clean = blank_nested_braces(clean)
+        # strip_comments_and_strings deletes quoted values, so
+        # 'set_naval_oob = "KUL_596_naval"' loses its name in `clean`.
+        # OOB-name scans must run on comment-only-stripped text.
+        text_nc = re.sub(r"#[^\n]*", "", text)
+        top_text_nc = blank_nested_braces(text_nc)
         base_techs: set[str] = set()
         active_oob_name: str | None = None
 
-        for tech_body, _tech_line in extract_named_blocks(top_clean, "set_technology"):
-            for tech_key, _rel_line in extract_direct_keys(tech_body):
-                match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", tech_body)
+        # NOTE: do not extract set_technology from blank_nested_braces output —
+        # blanking erases the block bodies, so every tech list parses empty.
+        # Instead walk top-level definitions and take non-dated set_technology.
+        for block_name, block_body, _block_line in extract_top_level_definitions(text_nc):
+            if block_name != "set_technology":
+                continue
+            for tech_key, _rel_line in extract_direct_keys(block_body):
+                match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", block_body)
                 if match and int(match.group(1)) > 0:
                     base_techs.add(tech_key)
 
-        for oob_match in RE_SET_NAVAL_OOB.finditer(top_clean):
+        # Union of every tech granted anywhere in this tag's history (any date),
+        # for the air-wing check on OOBs loaded outside bookmark flow.
+        tag_all_techs = all_techs_by_tag.setdefault(tag, set())
+        for tech_body, _tech_line in extract_named_blocks(clean, "set_technology"):
+            for tech_key, _rel_line in extract_direct_keys(tech_body):
+                match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", tech_body)
+                if match and int(match.group(1)) > 0:
+                    tag_all_techs.add(tech_key)
+
+        for oob_match in RE_SET_NAVAL_OOB.finditer(top_text_nc):
             active_oob_name = oob_match.group(1).strip("\"'")
 
         for char_match in RE_HISTORY_CHARACTER_REF.finditer(clean):
@@ -849,7 +893,7 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
                 f"[history-character] {r}:{line}: unknown character '{character_id}' referenced from country history"
             )
 
-        for oob_match in RE_SET_NAVAL_OOB.finditer(clean):
+        for oob_match in RE_SET_NAVAL_OOB.finditer(text_nc):
             raw_name = oob_match.group(1).strip("\"'")
             referenced_naval_oobs.add(raw_name)
 
@@ -923,7 +967,7 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
 
         dated_blocks = [
             (parse_script_date(block_name), block_name, block_body)
-            for block_name, block_body, _block_line in extract_top_level_definitions(clean)
+            for block_name, block_body, _block_line in extract_top_level_definitions(text_nc)
             if RE_SCRIPT_DATE.match(block_name)
         ]
         dated_blocks.sort(key=lambda item: item[0])
@@ -934,13 +978,14 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
             for block_date, _block_name, block_body in dated_blocks:
                 if block_date > bookmark_date:
                     break
-                top_block = blank_nested_braces(block_body)
-                for tech_body, _tech_line in extract_named_blocks(top_block, "set_technology"):
+                # Use the raw dated-block body: blank_nested_braces would erase
+                # the set_technology contents (see note above).
+                for tech_body, _tech_line in extract_named_blocks(block_body, "set_technology"):
                     for tech_key, _rel_line in extract_direct_keys(tech_body):
                         match = re.search(rf"\b{re.escape(tech_key)}\s*=\s*(-?\d+)", tech_body)
                         if match and int(match.group(1)) > 0:
                             current_techs.add(tech_key)
-                for oob_match in RE_SET_NAVAL_OOB.finditer(top_block):
+                for oob_match in RE_SET_NAVAL_OOB.finditer(block_body):
                     current_oob_name = oob_match.group(1).strip("\"'")
             if current_oob_name:
                 naval_oob_bookmark_techs.setdefault(current_oob_name, []).append(
@@ -993,6 +1038,49 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
         clean = strip_comments_and_strings(text)
         r = rel(root, path)
         oob_name = os.path.splitext(os.path.basename(path))[0]
+
+        # Air wings (carrier decks and air bases): an air wing whose equipment
+        # the owner has never researched is a hard CTD at OOB load with no
+        # error.log entry (null deref; this was the 596 Second War crash —
+        # KUL flagship carrier wing of organic_fighter_equipment_1 without
+        # fighter_breeds_1). Applies to ALL oob files, not just naval ones.
+        # NOTE: scan comment-stripped raw text — strip_comments_and_strings
+        # deletes quoted owner tags ('owner = "KUL"' -> 'owner = ').
+        wings_text = re.sub(r"#[^\n]*", "", text)
+        for wings_body, wings_line in extract_named_blocks(wings_text, "air_wings"):
+            for wing_match in RE_OOB_AIR_WING.finditer(wings_body):
+                equipment_type = wing_match.group(1)
+                owner_tag = wing_match.group(2)
+                unlock_techs = equipment_unlock_techs.get(equipment_type)
+                if not unlock_techs:
+                    continue
+                line = wings_line + wings_body.count("\n", 0, wing_match.start(1))
+                dedupe_key = (r, owner_tag, "wing:" + equipment_type)
+                if dedupe_key in seen_oob_requirements:
+                    continue
+                # Bookmark-accurate check when this OOB is set as a naval oob.
+                flagged = False
+                for bookmark_tag, bookmark_src, known_techs in naval_oob_bookmark_techs.get(oob_name, []):
+                    if bookmark_tag != owner_tag:
+                        continue
+                    if unlock_techs.isdisjoint(known_techs):
+                        seen_oob_requirements.add(dedupe_key)
+                        errors.append(
+                            f"[oob-air-wing-tech] {r}:{line}: {owner_tag} air wing uses {equipment_type} but has none of the enabling techs by bookmark {bookmark_src} ({', '.join(sorted(unlock_techs))}) — CTD at OOB load"
+                        )
+                        flagged = True
+                        break
+                if flagged:
+                    continue
+                # Otherwise: owner must receive an enabling tech SOMEWHERE
+                # (any history date, or a set_technology in focuses/events/effects).
+                owner_techs = all_techs_by_tag.get(owner_tag, set())
+                if unlock_techs.isdisjoint(owner_techs) and unlock_techs.isdisjoint(effect_granted_techs):
+                    seen_oob_requirements.add(dedupe_key)
+                    errors.append(
+                        f"[oob-air-wing-tech] {r}:{line}: {owner_tag} air wing uses {equipment_type} but {owner_tag} never receives any enabling tech ({', '.join(sorted(unlock_techs))}) — CTD at OOB load"
+                    )
+
         if oob_name not in referenced_naval_oobs:
             continue
 
@@ -1020,12 +1108,18 @@ def validate_history_naval_variants(root: str, errors: list[str]) -> None:
             unlock_techs = equipment_unlock_techs.get(equipment_type)
             if not unlock_techs:
                 continue
+            dedupe_key = (r, owner_tag, "tech:" + equipment_type)
+            if dedupe_key in seen_oob_requirements:
+                continue
+            seen_oob_requirements.add(dedupe_key)
             line = clean.count("\n", 0, match.start(1)) + 1
             for bookmark_tag, bookmark_src, known_techs in naval_oob_bookmark_techs.get(oob_name, []):
                 if bookmark_tag != owner_tag:
                     continue
                 if unlock_techs.isdisjoint(known_techs):
-                    errors.append(
+                    # Ship hulls without the enabling tech load without crashing
+                    # (unlike air wings), so this is a warning, not an error.
+                    warnings.append(
                         f"[history-oob-tech] {r}:{line}: {owner_tag} naval OOB '{oob_name}' uses {equipment_type} but {country_files_by_tag[owner_tag]} has none of the required techs by bookmark {bookmark_src} ({', '.join(sorted(unlock_techs))})"
                     )
                     break
@@ -1044,10 +1138,14 @@ def build_equipment_unlock_techs(root: str) -> dict[str, set[str]]:
                 continue
             _raw, text = loaded
             clean = strip_comments_and_strings(text)
-            for tech_name, tech_body, _line in extract_top_level_definitions(clean):
-                for enable_body, _enable_line in extract_named_blocks(tech_body, "enable_equipments"):
-                    for equipment_type, _rel_line in extract_direct_list_tokens(enable_body):
-                        unlocks.setdefault(equipment_type, set()).add(tech_name)
+            # Tech files wrap everything in 'technologies = { ... }' — descend
+            # into the wrapper, otherwise every equipment maps to the pseudo-tech
+            # 'technologies' and the disjoint checks misfire.
+            for wrapper_body, _wrapper_line in extract_named_blocks(clean, "technologies"):
+                for tech_name, tech_body, _line in extract_top_level_definitions(wrapper_body):
+                    for enable_body, _enable_line in extract_named_blocks(tech_body, "enable_equipments"):
+                        for equipment_type, _rel_line in extract_direct_list_tokens(enable_body):
+                            unlocks.setdefault(equipment_type, set()).add(tech_name)
 
     for ref_root in DEFAULT_REFERENCE_ROOTS:
         if os.path.isdir(ref_root):
@@ -1836,7 +1934,7 @@ def main() -> int:
             known_ideas,
         )
     if _cat_active("history"):
-        validate_history_naval_variants(root, errors)
+        validate_history_naval_variants(root, errors, warnings)
         validate_adjacency_rules(root, errors)
         validate_dated_state_buildings(root, warnings)
     if _cat_active("collision"):

@@ -1532,7 +1532,11 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = HED_haunted_carriers_TT
-			hidden_effect = { load_oob = HED_haunted_carriers_oob }
+			hidden_effect = {
+				# fighter_breeds_1 unlocks organic_fighter_equipment_1 used by the oob's air_wings — loading an oob with un-researched wing equipment is a CTD
+				set_technology = { fighter_breeds_1 = 1 }
+				load_oob = HED_haunted_carriers_oob
+			}
 		}
 	}
 	
