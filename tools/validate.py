@@ -24,6 +24,15 @@ Checks:
                        malformed constructs that otherwise only surface in HOI4 logs.
   9. Data vocab      - unknown decision categories, opinion modifiers, and idea
                        modifier keys that HOI4 otherwise rejects at load time.
+ 10. Double-equals   - syntax mistakes like `has_country_flag = X = no` (ERROR).
+ 11. Decision props  - invalid decision-level keys like `cost_command_power`,
+                       `on_remove`, `color` at top level (ERROR).
+ 12. On-actions wrap - root-level `on_monthly`/`on_weekly` missing `on_actions={}`
+                       wrapper (ERROR).
+ 13. YAML key colon  - embedded colons in localisation key names (ERROR).
+ 14. Naked variables - bare `var:` / `@var:` tokens outside `check_variable` (ERROR).
+ 15. Effect/trigger  - unknown effect/trigger names in events, decisions, and focus
+                       trees checked against vanilla+mod vocabulary (ERROR).
 
 Usage:
   python tools/validate.py
@@ -93,6 +102,175 @@ RE_OPINION_MODIFIER_REF = re.compile(
 RE_IDEA_REF = re.compile(
     r"\b(?:add_ideas|remove_idea|has_idea|idea)\s*=\s*([A-Za-z0-9_.']+)"
 )
+
+# --- New check regexes (checks 10-15) -----------------------------------------
+
+RE_DOUBLE_EQUALS = re.compile(
+    r"^\s*([A-Za-z0-9_]+)\s*=\s*([A-Za-z0-9_]+)\s*=\s*(yes|no|true|false|always|never|high|medium|low)\b",
+    re.MULTILINE,
+)
+RE_DECISION_COST_MISTAKE = re.compile(r"\bcost_(command_power|manpower|political_power|stability)\s*=")
+RE_ON_ACTION_TOP = re.compile(
+    r"^\s*(on_(?:startup|daily|weekly|bi_yearly|monthly|yearly|two_year|five_year|"
+    r"actions|peaceconference_ended|civil_war_end|faction_left|faction_joined"
+    r"|nuke_dropped|state_changed_owner|unit_captured|unit_destroyed"
+    r"|technology_stolen|operative_discovered|naval_combat|air_combat"
+    r"|land_combat|supply_node_captured|state_repairing_sabotaged_infrastructure"
+    r"|government_change|election|random_event_window|release|release_puppet"
+    r"|puppet_level|puppet|lost_puppet|removed_puppet|autonomy_state_change"
+    r"|autonomy_level_change|autonomy_set_state|on_army_war|on_civil_war_end"
+    r"|on_paradrop|on_capitulation|on_capitulation_start|on_declared_war"
+    r"|on_guarantee|on_nation_formed|on_nuke_launched|on_send_volunteers"
+    r"|on_volunteer_deployment_start|on_volunteer_deployment_end"
+    r"|on_new_term_election|on_annex|on_diplomatic_action|on_focus_completed"
+    r"|on_decision|on_building_complete|on_combatant_declared_war"
+    r"|on_military_industrial_organization_level_up))\s*=\s*\{",
+    re.MULTILINE,
+)
+RE_YAML_KEY_COLON = re.compile(r"^\s*([^\s:#][^#]*?[A-Za-z_]:[A-Za-z_][^:\n]*):\d+\s", re.MULTILINE)
+RE_NAKED_VAR = re.compile(r"\b(?:var:|@var:)([A-Za-z0-9_]+)")
+RE_CHECK_VARIABLE = re.compile(r"\bcheck_variable\s*=\s*\{")
+
+
+EFFECT_BLOCK_NAMES = {
+    "effect",
+    "hidden_effect",
+    "complete_effect",
+    "remove_effect",
+    "immediate",
+    "ai_will_do",
+    "on_complete",
+    "on_start",
+    "on_remove",
+    "on_add",
+    "after",
+    "cancel",
+    "on_cancel",
+}
+
+INVALID_DECISION_KEYS = {
+    "on_remove",
+    "color",
+    "allowed_civil_war",
+}
+
+ON_ACTIONS_DIR = "common/on_actions"
+
+ALLOWED_EFFECT_META_KEYS = {
+    "if",
+    "else_if",
+    "else",
+    "add_namespace",
+    "country_event",
+    "news_event",
+    "state_event",
+    "unit_leader_event",
+    "operative_leader_event",
+    "hidden_trigger",
+    "custom_effect_tooltip",
+    "custom_trigger_tooltip",
+    "set_temp_variable",
+    "set_variable",
+    "add_to_temp_variable",
+    "add_to_variable",
+    "subtract_from_temp_variable",
+    "subtract_from_variable",
+    "multiply_variable",
+    "divide_variable",
+    "multiply_temp_variable",
+    "divide_temp_variable",
+    "check_variable",
+    "random_list",
+    "random",
+    "random_owned_controlled_state",
+    "random_owned_state",
+    "random_state",
+    "random_country",
+    "every_country",
+    "every_enemy_country",
+    "every_allied_country",
+    "every_neighbor_country",
+    "every_state",
+    "every_owned_state",
+    "every_controlled_state",
+    "every_core_state",
+    "every_neighbor_state",
+    "every_unit_leader",
+    "every_operative",
+    "every_army",
+    "every_navy",
+    "every_sub_army",
+    "every_combatant",
+    "random_other_country",
+    "random_enemy_country",
+    "random_allied_country",
+    "any_country",
+    "any_state",
+    "any_enemy_country",
+    "any_allied_country",
+    "any_neighbor_country",
+    "all_country",
+    "all_state",
+    "all_enemy_country",
+    "all_allied_country",
+    "all_neighbor_country",
+    "log",
+    "save_event_target_as",
+    "save_global_event_target_as",
+    "clear_saved_event_target",
+    "clear_global_event_target",
+    "event_target:",
+    "clr_country_flag",
+    "set_country_flag",
+    "exclusive",
+    "option",
+    "name",
+    "ai_chance",
+    "add_equipment_to_stockpile",
+    "transfer_state",
+    "set_state_controller",
+    "create_unit",
+    "add_manpower",
+    "add_political_power",
+    "add_stability",
+    "add_war_support",
+    "add_command_power",
+    "army_experience",
+    "air_experience",
+    "navy_experience",
+    "hidden_effect",
+} | {'create_country_leader', 'add_country_leader_role', 'set_national_unity',
+   'swap_ideas', 'add_timed_idea', 'remove_ideas', 'add_ideas',
+   'add_opinion_modifier', 'remove_opinion_modifier', 'reverse_add_opinion_modifier',
+   'add_relation_modifier', 'remove_relation_modifier',
+   'declare_war_on', 'white_peace', 'add_to_faction', 'remove_from_faction',
+   'create_faction', 'leave_faction', 'join_faction',
+   'puppet', 'release', 'release_puppet', 'add_autonomy_ratio',
+   'set_technology', 'add_tech_bonus', 'add_research_slot',
+   'set_politics', 'set_political_party', 'set_rule',
+   'start_civil_war', 'add_civil_war', 'remove_unit_leader',
+   'create_equipment_variant', 'add_equipment_production',
+   'set_country_flag', 'set_global_flag', 'clr_global_flag',
+   'set_state_flag', 'clr_state_flag',
+   'load_oob', 'create_operative_leader', 'recruit_character',
+   'set_focus', 'complete_national_focus', 'unlock_national_focus',
+   'add_to_template', 'set_template_name', 'set_division_template_lock',
+   'add_extra_state_shared_building_slots', 'set_state_name', 'set_state_category',
+   'set_cosmetic_tag', 'drop_cosmetic_tag',
+   'annex_country', 'add_core_of', 'remove_core_of',
+   'set_capital', 'add_state_core', 'remove_state_core',
+   'send_volunteers', 'recall_volunteers', 'send_equipment',
+   'add_scaled_equipment', 'damage_building', 'add_building_construction',
+   'set_building_level', 'add_offsite_building',
+   'spawn_weather', 'end_weather', 'set_province_name', 'set_province_controller',
+   'change_terrain', 'create_dynamic_country', 'set_autonomy',
+   'add_to_tech_sharing_group', 'remove_from_tech_sharing_group',
+   'start_operative_mission', 'set_operative_leader',
+   # from existing vocabulary patterns
+   'END_OF_CUSTOM_EFFECTS'}
+
+# Remove the sentinel
+ALLOWED_EFFECT_META_KEYS.discard('END_OF_CUSTOM_EFFECTS')
 
 BUILTIN_OPINION_MODIFIERS = {
     "small_increase",
@@ -1090,6 +1268,272 @@ def run_hoi4_smoke(
         warnings.append(f"[hoi4-smoke] {error_log_path}: no tracked parser/capital issues in new lines")
 
 
+# ---------------------------------------------------------------------------
+# Check 10: Double-equals syntax (high priority)
+# ---------------------------------------------------------------------------
+
+def validate_double_equals(root: str, errors: list[str]) -> None:
+    for path in iter_files(root, SCRIPT_EXT):
+        r = rel(root, path)
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        for m in RE_DOUBLE_EQUALS.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            errors.append(
+                f"[double-equals] {r}:{line}: malformed assign '{m.group(0).strip()}' "
+                f"(double-equals pattern 'X = Y = val' detected; did you mean "
+                f"NOT = {{ {m.group(1)} = {m.group(2)} }}?)"
+            )
+
+
+# ---------------------------------------------------------------------------
+# Check 11: Decision cost mistakes (high priority)
+# ---------------------------------------------------------------------------
+
+def validate_decision_costs(root: str, errors: list[str]) -> None:
+    decisions_root = os.path.join(root, "common", "decisions")
+    if not os.path.isdir(decisions_root):
+        return
+    for path in iter_files(decisions_root, SCRIPT_EXT):
+        r = rel(root, path)
+        if "/common/decisions/categories/" in "/" + r:
+            continue
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        for m in RE_DECISION_COST_MISTAKE.finditer(clean):
+            line = clean.count("\n", 0, m.start()) + 1
+            errors.append(
+                f"[decision-cost] {r}:{line}: invalid '{m.group(0).strip()}' at decision level; "
+                f"use '{m.group(1)} = <value>' directly (e.g., 'command_power = 30')"
+            )
+
+    # Also catch invalid top-level decision keys
+    for path in iter_files(decisions_root, SCRIPT_EXT):
+        r = rel(root, path)
+        if "/common/decisions/categories/" in "/" + r:
+            continue
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        for _name, body, def_line in extract_top_level_definitions(clean):
+            blank_body = blank_nested_braces(body)
+            for key, rel_line in extract_direct_keys(blank_body):
+                if key in INVALID_DECISION_KEYS:
+                    errors.append(
+                        f"[decision-property] {r}:{def_line + rel_line - 1}: "
+                        f"invalid decision property '{key}' (not supported in HOI4 1.18.3)"
+                    )
+
+
+# ---------------------------------------------------------------------------
+# Check 12: On-actions wrapper (high priority)
+# ---------------------------------------------------------------------------
+
+def validate_on_actions_wrapper(root: str, errors: list[str]) -> None:
+    on_actions_root = os.path.join(root, ON_ACTIONS_DIR)
+    if not os.path.isdir(on_actions_root):
+        return
+    for path in iter_files(on_actions_root, SCRIPT_EXT):
+        r = rel(root, path)
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+        definitions = extract_top_level_definitions(clean)
+        def_names = [n for n, _b, _l in definitions]
+        if not def_names:
+            continue
+        # If the first definition is NOT 'on_actions', or there are root-level
+        # on_* blocks alongside on_actions, flag it.
+        has_on_actions_wrapper = any(n == "on_actions" for n in def_names)
+        has_root_on_blocks = any(
+            RE_ON_ACTION_TOP.match(clean[clean.find(n):])
+            for n in def_names
+            if n != "on_actions"
+        )
+        bare_on_blocks = []
+        for m in RE_ON_ACTION_TOP.finditer(clean):
+            candidate = m.group(0).split("=")[0].strip()
+            if candidate == "on_actions":
+                continue
+            if candidate not in bare_on_blocks:
+                bare_on_blocks.append(candidate)
+        if not has_on_actions_wrapper and bare_on_blocks:
+            errors.append(
+                f"[on-actions-wrapper] {r}: missing 'on_actions = {{ }}' wrapper "
+                f"(root-level blocks found: {', '.join(bare_on_blocks[:4])})"
+            )
+        elif has_root_on_blocks and has_on_actions_wrapper:
+            # Mixed: root-level on_* blocks outside the wrapper
+            # Collect top-level def lines that are bare on_* blocks
+            for _name, _body, def_line in definitions:
+                if _name in bare_on_blocks:
+                    errors.append(
+                        f"[on-actions-wrapper] {r}:{def_line}: root-level "
+                        f"'{_name}' block outside 'on_actions = {{ }}' wrapper"
+                    )
+
+
+# ---------------------------------------------------------------------------
+# Check 13: YAML key with embedded colon (high priority)
+# ---------------------------------------------------------------------------
+
+def validate_yaml_key_colons(root: str, errors: list[str]) -> None:
+    for path in iter_files(root, (".yml",)):
+        r = rel(root, path)
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+
+        for m in RE_YAML_KEY_COLON.finditer(text):
+            line = text.count("\n", 0, m.start()) + 1
+            full_key = m.group(0).strip().split(":0")[0] if ":0" in m.group(0) else m.group(0).split(":")[0]
+            # Extract just the malformed key for the error message
+            raw_line = text.splitlines()[line - 1] if line - 1 < len(text.splitlines()) else ""
+            errors.append(
+                f"[yaml-key-colon] {r}:{line}: localisation key with embedded colon; "
+                f"HOA's RE_LOC_KEY silently skips keys containing ':' "
+                f"(raw: '{raw_line.strip()[:80]}')"
+            )
+
+
+# ---------------------------------------------------------------------------
+# Check 14: Naked variables (medium priority)
+# ---------------------------------------------------------------------------
+
+def validate_naked_variables(root: str, errors: list[str]) -> None:
+    for path in iter_files(root, SCRIPT_EXT):
+        r = rel(root, path)
+        if not any(
+            hint in "/" + r
+            for hint in ("/events/", "/common/decisions/", "/common/national_focus/",
+                         "/common/scripted_effects/", "/common/scripted_triggers/")
+        ):
+            continue
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+
+        for m in RE_NAKED_VAR.finditer(clean):
+            var_name = m.group(1)
+            start_pos = m.start()
+            # Find the nearest opening brace before this position
+            line = clean.count("\n", 0, start_pos) + 1
+
+            # Check if we're inside a check_variable block by scanning backwards
+            prefix = clean[max(0, start_pos - 2000):start_pos]
+            # Simple heuristic: count check_variable={ openings and } closings in prefix
+            cv_depth = 0
+            brace_depth = 0  # overall brace depth
+            in_check_variable = False
+
+            i = 0
+            while i < len(prefix):
+                c = prefix[i]
+                if c == "{":
+                    brace_depth += 1
+                elif c == "}":
+                    brace_depth -= 1
+                    if cv_depth > 0 and brace_depth < cv_depth:
+                        cv_depth -= 1
+                # Check if we've entered a check_variable block
+                cv_match = re.match(r"\bcheck_variable\s*=\s*\{", prefix[i:])
+                if cv_match:
+                    cv_depth = brace_depth + 1
+                i += 1
+
+            if cv_depth > 0:
+                continue  # inside check_variable — OK
+
+            # Also skip if it's inside a set_variable = { var_name = ... } construct
+            # or similar variable-value assignment (where var: prefix is the value, not a key)
+            setvar_match = re.search(
+                r"\bset_(?:temp_)?variable\s*=\s*\{\s*"
+                + re.escape(var_name)
+                + r"\s*=",
+                prefix[-500:],
+            )
+            if setvar_match:
+                continue
+
+            errors.append(
+                f"[naked-var] {r}:{line}: bare 'var:{var_name}' "
+                f"outside 'check_variable = {{ }}' wrapper"
+            )
+
+
+# ---------------------------------------------------------------------------
+# Check 15: Unknown effects/triggers in events, decisions, focus trees (medium)
+# ---------------------------------------------------------------------------
+
+def validate_runtime_effects_triggers(
+    root: str,
+    errors: list[str],
+    known_effect_keys: set[str],
+    known_trigger_keys: set[str],
+) -> None:
+    for path in iter_files(root, SCRIPT_EXT):
+        r = rel(root, path)
+        if not any(
+            hint in "/" + r
+            for hint in ("/events/", "/common/decisions/", "/common/national_focus/")
+        ):
+            continue
+        loaded = load_text(path)
+        if loaded is None:
+            continue
+        _raw, text = loaded
+        clean = strip_comments_and_strings(text)
+
+        # --- Check effects in effect-context blocks ---
+        for eff_block_name in EFFECT_BLOCK_NAMES:
+            for body, block_line in extract_named_blocks(clean, eff_block_name):
+                for key, rel_line in extract_direct_keys(body):
+                    if key in known_effect_keys:
+                        continue
+                    if key in ALLOWED_EFFECT_META_KEYS:
+                        continue
+                    if is_scope_like_key(key) or is_country_tag_like_key(key):
+                        continue
+                    if key.endswith("_target") or key.startswith("event_target:"):
+                        continue
+                    line = block_line + rel_line - 1
+                    errors.append(
+                        f"[unknown-effect] {r}:{line}: unknown effect '{key}' "
+                        f"inside '{eff_block_name}' block"
+                    )
+
+        # --- Check triggers in trigger-context blocks ---
+        for trig_block_name in TRIGGER_BLOCK_NAMES:
+            for body, block_line in extract_named_blocks(clean, trig_block_name):
+                for key, rel_line in extract_direct_keys(body):
+                    if key in known_trigger_keys:
+                        continue
+                    if key in ALLOWED_TRIGGER_META_KEYS:
+                        continue
+                    if is_scope_like_key(key) or is_country_tag_like_key(key):
+                        continue
+                    if key.endswith("_target"):
+                        continue
+                    line = block_line + rel_line - 1
+                    errors.append(
+                        f"[unknown-trigger] {r}:{line}: unknown trigger '{key}' "
+                        f"inside '{trig_block_name}' block"
+                    )
+
+
 # --- main ------------------------------------------------------------------
 
 def main() -> int:
@@ -1146,7 +1590,7 @@ def main() -> int:
         "--category",
         nargs="*",
         default=None,
-        choices=["loc", "focus-ref", "focus-icon", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab"],
+        choices=["loc", "focus-ref", "focus-icon", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab", "double-equals", "decision-cost", "on-actions", "yaml-key", "naked-var", "runtime-effect-trigger"],
         help="only run specific check categories (default: all)",
     )
     args = ap.parse_args()
@@ -1218,6 +1662,10 @@ def main() -> int:
                 if idm:
                     focus_tree_defs.setdefault(idm.group(1), []).append(r)
             for m in re.finditer(r"\b(?:focus|shared_focus)\s*=\s*\{", text):
+                # Skip commented-out focus blocks.
+                line_start = text.rfind("\n", 0, m.start()) + 1
+                if text[line_start:].lstrip().startswith("#"):
+                    continue
                 seg = text[m.end():m.end() + 4000]
                 idm = RE_ID.search(seg)
                 if idm:
@@ -1299,6 +1747,18 @@ def main() -> int:
             known_opinion_modifiers,
             known_ideas,
         )
+    if _cat_active("double-equals"):
+        validate_double_equals(root, errors)
+    if _cat_active("decision-cost"):
+        validate_decision_costs(root, errors)
+    if _cat_active("on-actions"):
+        validate_on_actions_wrapper(root, errors)
+    if _cat_active("yaml-key"):
+        validate_yaml_key_colons(root, errors)
+    if _cat_active("naked-var"):
+        validate_naked_variables(root, errors)
+    if _cat_active("runtime-effect-trigger"):
+        validate_runtime_effects_triggers(root, errors, known_effect_keys, known_trigger_keys)
     if _cat_active("collision"):
         validate_focus_coordinate_collisions(root, errors, warnings, _focus_file_filter)
     if args.hoi4_smoke:
