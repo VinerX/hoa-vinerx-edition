@@ -29,17 +29,19 @@ state={
 		
 		592.1.1 = {
 			owner = SHC
-			add_core_of = SHC		
+			add_core_of = SHC
 			remove_core_of = SKR
 
-			remove_building = {
-				type = air_facility
-				province = 10514
-				level = 1
-			}
+			# DO NOT remove_building the air_facility here: special-project
+			# program status keeps listening to province 10514 and null-derefs
+			# at world init once the facility is gone (silent CTD on any
+			# start date >= 592, e.g. the Second War bookmark). The removal
+			# only started actually working on 2026-07-07 when 'province ='
+			# was added to fix the error.log warning — and immediately
+			# introduced the crash. The facility simply stays under SHC.
 
 			add_dynamic_modifier = { modifier = GEN_dying_world }
-		}	
+		}
 
 		610.1.1 = {
 			owner = ZZD

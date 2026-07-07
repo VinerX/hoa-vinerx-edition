@@ -1137,6 +1137,77 @@ def validate_history_naval_variants(root: str, errors: list[str], warnings: list
                     break
 
 
+def validate_dds_formats(root: str, errors: list[str], warnings: list[str]) -> None:
+    """
+    Sanity checks on gfx DDS files. NOTE: uncompressed 16/24bpp DDS is FINE —
+    the original mod ships ~1400 such portraits that load correctly, so no
+    format-based errors here. Only structurally broken files are flagged:
+    too-short files (error) and non-DDS payloads like renamed PNGs (warning —
+    the engine tolerates them, the texture just fails to load).
+    """
+    gfx_root = os.path.join(root, "gfx")
+    if not os.path.isdir(gfx_root):
+        return
+    for dirpath, _dirnames, filenames in os.walk(gfx_root):
+        for name in filenames:
+            if not name.lower().endswith(".dds"):
+                continue
+            path = os.path.join(dirpath, name)
+            r = rel(root, path)
+            try:
+                with open(path, "rb") as handle:
+                    header = handle.read(132)
+            except OSError as exc:
+                warnings.append(f"[gfx-dds] {r}: unreadable ({exc})")
+                continue
+            if len(header) < 128:
+                errors.append(f"[gfx-dds] {r}: file too small to be a DDS")
+                continue
+            if header[:4] != b"DDS ":
+                if header[:8] == b"\x89PNG\r\n\x1a\n":
+                    warnings.append(f"[gfx-dds] {r}: PNG data with .dds extension (texture will not load)")
+                else:
+                    warnings.append(f"[gfx-dds] {r}: not a DDS file (bad magic)")
+
+
+def validate_facility_removals(root: str, errors: list[str], warnings: list[str]) -> None:
+    """
+    remove_building of a special-project facility (air_facility,
+    naval_facility, land_facility, nuclear_facility) crashes: program status
+    keeps listening to the province and null-derefs once the facility is gone
+    (2026-07-07 Second War crash #2 — Skyreach 592.1.1 air_facility removal;
+    CTD at world init on any start date past the removal, nothing in
+    error.log). A remove_building WITHOUT 'province =' silently does nothing
+    for provincial buildings, so that form is only a warning.
+    """
+    scan_roots = ("history", "events", "common")
+    for scan in scan_roots:
+        scan_root = os.path.join(root, scan)
+        if not os.path.isdir(scan_root):
+            continue
+        for path in iter_files(scan_root, SCRIPT_EXT):
+            loaded = load_text(path)
+            if loaded is None:
+                continue
+            _raw, text = loaded
+            clean = strip_comments_and_strings(text)
+            if "remove_building" not in clean:
+                continue
+            r = rel(root, path)
+            for body, line in extract_named_blocks(clean, "remove_building"):
+                type_match = re.search(r"\btype\s*=\s*(\w*_facility)\b", body)
+                if not type_match:
+                    continue
+                if re.search(r"\bprovince\s*=", body):
+                    errors.append(
+                        f"[facility-removal] {r}:{line}: remove_building of {type_match.group(1)} — program status null-derefs after the facility is gone (silent CTD); leave the facility in place"
+                    )
+                else:
+                    warnings.append(
+                        f"[facility-removal] {r}:{line}: remove_building of {type_match.group(1)} without 'province =' silently does nothing — and adding province would CTD; drop the block"
+                    )
+
+
 def build_equipment_unlock_techs(root: str) -> dict[str, set[str]]:
     unlocks: dict[str, set[str]] = {}
 
@@ -1949,6 +2020,10 @@ def main() -> int:
         validate_history_naval_variants(root, errors, warnings)
         validate_adjacency_rules(root, errors)
         validate_dated_state_buildings(root, warnings)
+    if _cat_active("gfx"):
+        validate_dds_formats(root, errors, warnings)
+    if _cat_active("history"):
+        validate_facility_removals(root, errors, warnings)
     if _cat_active("collision"):
         validate_focus_coordinate_collisions(root, errors, warnings, _focus_file_filter)
     if args.hoi4_smoke:
