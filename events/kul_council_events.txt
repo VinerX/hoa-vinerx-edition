@@ -1,0 +1,590 @@
+add_namespace = kul_council
+
+# ============================================================
+# Event .1 — Monthly pulse (hidden, syncs spirits, triggers events)
+# ============================================================
+country_event = {
+	id = kul_council.1
+	title = kul_council.1.t
+	desc = kul_council.1.d
+	picture = GFX_report_event_generic_generic
+	hidden = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.1 (monthly)"
+
+		if = { limit = { NOT = { has_variable = kul_house_proudmoore } } set_variable = { kul_house_proudmoore = 0 } }
+		if = { limit = { NOT = { has_variable = kul_house_waycrest } } set_variable = { kul_house_waycrest = 0 } }
+		if = { limit = { NOT = { has_variable = kul_house_ashvane } } set_variable = { kul_house_ashvane = 0 } }
+		if = { limit = { NOT = { has_variable = kul_house_stormsong } } set_variable = { kul_house_stormsong = 0 } }
+		if = { limit = { NOT = { has_variable = kul_admiralty_stance } } set_variable = { kul_admiralty_stance = 0 } }
+
+		# Clamp house influence
+		if = { limit = { check_variable = { kul_house_proudmoore > 3 } } set_variable = { kul_house_proudmoore = 3 } }
+		if = { limit = { check_variable = { kul_house_waycrest > 3 } } set_variable = { kul_house_waycrest = 3 } }
+		if = { limit = { check_variable = { kul_house_ashvane > 3 } } set_variable = { kul_house_ashvane = 3 } }
+		if = { limit = { check_variable = { kul_house_stormsong > 3 } } set_variable = { kul_house_stormsong = 3 } }
+
+		# Sync spirits
+		kul_council_sync_spirits = yes
+		kul_council_sync_stance = yes
+
+		# --- Contextual event triggers (random, once per trigger condition) ---
+
+		# Dragonfire crisis: activate council dragon response event
+		if = {
+			limit = {
+				is_in_faction_with = LOR
+				has_war_with = BRC
+				OR = {
+					has_idea = KUL_sw_dragonfire_crisis_idea
+					has_idea = KUL_sw_dragonfire_emergency_idea
+				}
+				NOT = { has_country_flag = KUL_council_dragon_event_fired }
+			}
+			set_country_flag = KUL_council_dragon_event_fired
+			country_event = { id = kul_council.8 hours = 24 }
+		}
+
+		# Sea of Blood at risk — trigger crisis event
+		if = {
+			limit = {
+				is_in_faction_with = LOR
+				has_war_with = BRC
+				NOT = { has_country_flag = KUL_council_sob_crisis_fired }
+			}
+			LOR = {
+				if = {
+					limit = { check_variable = { alliance_sea_control < 3 } }
+					KUL = { set_country_flag = KUL_council_sob_crisis_fired country_event = { id = kul_council.10 hours = 24 } }
+				}
+			}
+		}
+
+		# SoB success — strengthen Daelin
+		if = {
+			limit = {
+				is_in_faction_with = LOR
+				has_war_with = BRC
+				NOT = { has_country_flag = KUL_council_sob_success_fired }
+			}
+			LOR = {
+				if = {
+					limit = { check_variable = { alliance_sea_control > 4 } }
+					KUL = { set_country_flag = KUL_council_sob_success_fired country_event = { id = kul_council.4 hours = 24 } }
+				}
+			}
+		}
+
+		# Random events (25% chance each, only fire once)
+		random_list = {
+			25 = {
+				if = {
+					limit = {
+						is_in_faction_with = LOR
+						has_war_with = BRC
+						NOT = { has_country_flag = KUL_council_alliance_request_fired }
+					}
+					set_country_flag = KUL_council_alliance_request_fired
+					country_event = { id = kul_council.5 hours = 24 }
+				}
+			}
+			25 = {
+				if = {
+					limit = {
+						is_in_faction_with = LOR
+						has_war_with = BRC
+						check_variable = { kul_house_stormsong > 0 }
+						NOT = { has_country_flag = KUL_council_tidesage_warning_fired }
+					}
+					set_country_flag = KUL_council_tidesage_warning_fired
+					country_event = { id = kul_council.6 hours = 24 }
+				}
+			}
+			25 = {
+				if = {
+					limit = {
+						is_in_faction_with = LOR
+						has_war_with = BRC
+						check_variable = { kul_house_ashvane > 0 }
+						NOT = { has_country_flag = KUL_council_merchant_demand_fired }
+					}
+					set_country_flag = KUL_council_merchant_demand_fired
+					country_event = { id = kul_council.11 hours = 24 }
+				}
+			}
+			25 = {
+			}
+		}
+
+		# Reset event flags periodically (every ~2 years of war)
+		if = {
+			limit = {
+				is_in_faction_with = LOR
+				has_war_with = BRC
+				NOT = { has_country_flag = KUL_council_events_reset }
+			}
+			set_country_flag = KUL_council_events_reset
+			clr_country_flag = KUL_council_dragon_event_fired
+			clr_country_flag = KUL_council_sob_crisis_fired
+			clr_country_flag = KUL_council_sob_success_fired
+			clr_country_flag = KUL_council_alliance_request_fired
+			clr_country_flag = KUL_council_tidesage_warning_fired
+			clr_country_flag = KUL_council_merchant_demand_fired
+		}
+
+		clr_country_flag = KUL_council_events_reset
+	}
+
+	option = {
+		name = kul_council.1.option.a
+	}
+}
+
+# ============================================================
+# Event .2 — A House refuses an extraordinary levy
+# ============================================================
+country_event = {
+	id = kul_council.2
+	title = kul_council.2.t
+	desc = kul_council.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.2"
+	}
+
+	option = {
+		name = kul_council.2.option.a
+		add_stability = -0.05
+		add_political_power = -25
+		add_timed_idea = {
+			idea = kul_admiralty_emergency_idea
+			days = 90
+		}
+	}
+	option = {
+		name = kul_council.2.option.b
+		add_stability = -0.03
+		add_manpower = 1500
+		add_timed_idea = {
+			idea = kul_waycrest_mobilisation_idea
+			days = 180
+		}
+	}
+	option = {
+		name = kul_council.2.option.c
+		add_stability = -0.02
+		add_timed_idea = {
+			idea = kul_emergency_ashvane_contracts_idea
+			days = 180
+		}
+	}
+}
+
+# ============================================================
+# Event .3 — Ship losses trigger blame in the Council
+# ============================================================
+country_event = {
+	id = kul_council.3
+	title = kul_council.3.t
+	desc = kul_council.3.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.3"
+	}
+
+	option = {
+		name = kul_council.3.option.a
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_war_support = 0.05
+		add_political_power = 50
+		if = {
+			limit = { check_variable = { kul_house_ashvane > 1 } }
+			subtract_from_variable = { kul_house_ashvane = 1 }
+		}
+	}
+	option = {
+		name = kul_council.3.option.b
+		add_to_variable = { kul_house_ashvane = 1 }
+		add_timed_idea = {
+			idea = kul_emergency_ashvane_contracts_idea
+			days = 180
+		}
+		if = {
+			limit = { check_variable = { kul_house_proudmoore > 1 } }
+			subtract_from_variable = { kul_house_proudmoore = 1 }
+		}
+	}
+	option = {
+		name = kul_council.3.option.c
+		add_to_variable = { kul_house_stormsong = 1 }
+		add_timed_idea = {
+			idea = kul_tidesage_campaign_idea
+			days = 180
+		}
+		if = {
+			limit = { check_variable = { kul_house_stormsong > 2 } }
+			custom_effect_tooltip = kul_council_dominant_stormsong_tt_text
+		}
+	}
+}
+
+# ============================================================
+# Event .4 — Successful Sea of Blood campaign strengthens Daelin
+# ============================================================
+country_event = {
+	id = kul_council.4
+	title = kul_council.4.t
+	desc = kul_council.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.4"
+	}
+
+	option = {
+		name = kul_council.4.option.a
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_war_support = 0.10
+		add_political_power = 50
+		alliance_unity_raise = yes
+		if = {
+			limit = { check_variable = { kul_house_proudmoore > 2 } }
+			set_country_flag = KUL_council_proudmoore_warning
+		}
+	}
+	option = {
+		name = kul_council.4.option.b
+		add_to_variable = { kul_house_stormsong = 1 }
+		alliance_unity_raise = yes
+		add_war_support = 0.05
+		navy_experience = 25
+		if = {
+			limit = { check_variable = { kul_house_stormsong > 2 } }
+			set_country_flag = KUL_council_stormsong_warning
+		}
+	}
+}
+
+# ============================================================
+# Event .5 — Alliance asks for fleet deployment away from home
+# ============================================================
+country_event = {
+	id = kul_council.5
+	title = kul_council.5.t
+	desc = kul_council.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.5"
+	}
+
+	option = {
+		name = kul_council.5.option.a
+		add_to_variable = { kul_house_proudmoore = 1 }
+		alliance_unity_raise_medium = yes
+		add_timed_idea = {
+			idea = kul_admiralty_emergency_idea
+			days = 365
+		}
+		add_stability = -0.03
+		set_country_flag = KUL_fleet_deployed_abroad
+		if = {
+			limit = { check_variable = { kul_house_waycrest > 1 } }
+			subtract_from_variable = { kul_house_waycrest = 1 }
+		}
+	}
+	option = {
+		name = kul_council.5.option.b
+		add_to_variable = { kul_house_waycrest = 1 }
+		alliance_unity_lower = yes
+		add_stability = 0.03
+		add_timed_idea = {
+			idea = kul_waycrest_mobilisation_idea
+			days = 180
+		}
+	}
+	option = {
+		name = kul_council.5.option.c
+		alliance_unity_lower_medium = yes
+		add_war_support = -0.05
+		add_political_power = 75
+	}
+}
+
+# ============================================================
+# Event .6 — Tidesages warn against an operation
+# ============================================================
+country_event = {
+	id = kul_council.6
+	title = kul_council.6.t
+	desc = kul_council.6.d
+	picture = GFX_report_event_generic_naval_intel
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.6"
+	}
+
+	option = {
+		name = kul_council.6.option.a
+		add_to_variable = { kul_house_stormsong = 1 }
+		add_stability = 0.02
+		add_timed_idea = {
+			idea = kul_tidesage_campaign_idea
+			days = 90
+		}
+		if = {
+			limit = { check_variable = { kul_house_stormsong > 2 } }
+			set_country_flag = KUL_council_stormsong_warning
+		}
+	}
+	option = {
+		name = kul_council.6.option.b
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_war_support = 0.05
+		if = {
+			limit = { check_variable = { kul_house_proudmoore > 2 } }
+			set_country_flag = KUL_council_proudmoore_warning
+		}
+	}
+}
+
+# ============================================================
+# Event .7 — Major landing success changes Council politics
+# ============================================================
+country_event = {
+	id = kul_council.7
+	title = kul_council.7.t
+	desc = kul_council.7.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.7"
+	}
+
+	option = {
+		name = kul_council.7.option.a
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_war_support = 0.10
+		add_political_power = 75
+		alliance_unity_raise_medium = yes
+		if = {
+			limit = { check_variable = { kul_house_stormsong > 1 } }
+			subtract_from_variable = { kul_house_stormsong = 1 }
+		}
+	}
+	option = {
+		name = kul_council.7.option.b
+		add_to_variable = { kul_house_waycrest = 1 }
+		add_manpower = 3000
+		army_experience = 25
+		if = {
+			limit = { check_variable = { kul_house_proudmoore > 1 } }
+			subtract_from_variable = { kul_house_proudmoore = 1 }
+		}
+	}
+}
+
+# ============================================================
+# Event .8 — Dragonfire triggers differing house responses
+# ============================================================
+country_event = {
+	id = kul_council.8
+	title = kul_council.8.t
+	desc = kul_council.8.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.8"
+	}
+
+	option = {
+		name = kul_council.8.option.a
+		add_to_variable = { kul_house_proudmoore = 1 }
+		navy_experience = 20
+		if = {
+			limit = { has_idea = KUL_sw_dragonfire_crisis_idea }
+			remove_ideas = KUL_sw_dragonfire_crisis_idea
+		}
+		if = {
+			limit = { check_variable = { kul_house_proudmoore > 2 } }
+			set_country_flag = KUL_council_proudmoore_warning
+		}
+	}
+	option = {
+		name = kul_council.8.option.b
+		add_to_variable = { kul_house_stormsong = 1 }
+		navy_experience = 15
+		add_timed_idea = {
+			idea = kul_tidesage_campaign_idea
+			days = 180
+		}
+		if = {
+			limit = { check_variable = { kul_house_stormsong > 2 } }
+			set_country_flag = KUL_council_stormsong_warning
+		}
+	}
+	option = {
+		name = kul_council.8.option.c
+		add_to_variable = { kul_house_ashvane = 1 }
+		add_timed_idea = {
+			idea = kul_emergency_ashvane_contracts_idea
+			days = 180
+		}
+		if = {
+			limit = { check_variable = { kul_house_ashvane > 2 } }
+			set_country_flag = KUL_council_ashvane_warning
+		}
+	}
+	option = {
+		name = kul_council.8.option.d
+		add_to_variable = { kul_house_waycrest = 1 }
+		add_timed_idea = {
+			idea = kul_fortified_anchorages_idea
+			days = 365
+		}
+		if = {
+			limit = { check_variable = { kul_house_waycrest > 2 } }
+			set_country_flag = KUL_council_waycrest_warning
+		}
+	}
+}
+
+# ============================================================
+# Event .9 — Convoy crisis: merchants demand protection
+# ============================================================
+country_event = {
+	id = kul_council.9
+	title = kul_council.9.t
+	desc = kul_council.9.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.9"
+	}
+
+	option = {
+		name = kul_council.9.option.a
+		add_to_variable = { kul_house_stormsong = 1 }
+		add_timed_idea = {
+			idea = kul_allied_escort_idea
+			days = 180
+		}
+		add_political_power = 25
+	}
+	option = {
+		name = kul_council.9.option.b
+		add_to_variable = { kul_house_ashvane = 1 }
+		add_timed_idea = {
+			idea = kul_emergency_ashvane_contracts_idea
+			days = 180
+		}
+		add_political_power = -25
+	}
+	option = {
+		name = kul_council.9.option.c
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_timed_idea = {
+			idea = kul_admiralty_stance_protect_idea
+			days = 180
+		}
+		add_war_support = 0.05
+	}
+}
+
+# ============================================================
+# Event .10 — Sea of Blood crisis: island chain threatened
+# ============================================================
+country_event = {
+	id = kul_council.10
+	title = kul_council.10.t
+	desc = kul_council.10.d
+	picture = GFX_report_event_generic_coastal_defense
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.10"
+	}
+
+	option = {
+		name = kul_council.10.option.a
+		add_to_variable = { kul_house_waycrest = 1 }
+		add_manpower = 2000
+		add_timed_idea = {
+			idea = kul_waycrest_mobilisation_idea
+			days = 180
+		}
+		army_experience = 15
+	}
+	option = {
+		name = kul_council.10.option.b
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_timed_idea = {
+			idea = kul_admiralty_emergency_idea
+			days = 180
+		}
+		navy_experience = 25
+	}
+	option = {
+		name = kul_council.10.option.c
+		add_to_variable = { kul_house_ashvane = 1 }
+		add_timed_idea = {
+			idea = kul_emergency_ashvane_contracts_idea
+			days = 365
+		}
+		add_political_power = -25
+	}
+}
+
+# ============================================================
+# Event .11 — Merchant guilds demand fewer restrictions
+# ============================================================
+country_event = {
+	id = kul_council.11
+	title = kul_council.11.t
+	desc = kul_council.11.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event kul_council.11"
+	}
+
+	option = {
+		name = kul_council.11.option.a
+		add_to_variable = { kul_house_ashvane = 1 }
+		add_timed_idea = {
+			idea = kul_emergency_ashvane_contracts_idea
+			days = 365
+		}
+		add_political_power = 50
+	}
+	option = {
+		name = kul_council.11.option.b
+		add_to_variable = { kul_house_proudmoore = 1 }
+		add_war_support = 0.05
+		add_political_power = -25
+	}
+}

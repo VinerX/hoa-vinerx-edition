@@ -222,3 +222,140 @@ KUL_garrison_ports = {
 	}
 	abort_when_not_enabled = yes
 }
+
+# --- Council of the Great Houses AI ---
+
+# AI only uses council decisions when at war with BRC and in faction
+KUL_council_proudmoore_focus = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_council_expand_admiralty
+		value = 100
+	}
+}
+
+KUL_council_stormsong_focus = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+		has_idea = KUL_sw_dragonfire_crisis_idea
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_council_consult_tidesages
+		value = 100
+	}
+}
+
+KUL_council_ashvane_emergency = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+		has_idea = KUL_sw_dragonfire_emergency_idea
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_emergency_naval_contracts
+		value = 100
+	}
+}
+
+KUL_council_waycrest_defense = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+		num_of_controlled_states < 12
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_emergency_coastal_mobilisation
+		value = 100
+	}
+	ai_strategy = {
+		type = decision_weight
+		id = kul_council_call_waycrest_levies
+		value = 80
+	}
+}
+
+# AI stance selection based on context
+KUL_council_stance_ai = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+	}
+	abort_when_not_enabled = yes
+
+	# Default: Protect Sea Lanes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_stance_protect_sea_lanes
+		value = 60
+	}
+
+	# Seek battle at Sea of Blood advantage
+	ai_strategy = {
+		type = decision_weight
+		id = kul_stance_seek_battle
+		value = 30
+	}
+
+	# Amphibious only with advantage and foothold
+	ai_strategy = {
+		type = decision_weight
+		id = kul_stance_amphibious
+		value = 20
+	}
+}
+
+# AI dragon responses when crisis hits
+KUL_council_dragon_ai = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+		OR = {
+			has_idea = KUL_sw_dragonfire_crisis_idea
+			has_idea = KUL_sw_dragonfire_emergency_idea
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_disperse_fleet
+		value = 80
+	}
+	ai_strategy = {
+		type = decision_weight
+		id = kul_fortify_anchorages
+		value = 60
+	}
+}
+
+# AI alliance commitment
+KUL_council_alliance_ai = {
+	allowed = { original_tag = KUL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = decision_weight
+		id = kul_escort_allied_shipping
+		value = 70
+	}
+}
