@@ -48,6 +48,7 @@ import argparse
 import os
 import re
 import shlex
+import signal
 import subprocess
 import sys
 import time
@@ -106,7 +107,7 @@ RE_IDEA_REF = re.compile(
 # --- New check regexes (checks 10-15) -----------------------------------------
 
 RE_DOUBLE_EQUALS = re.compile(
-    r"^\s*([A-Za-z0-9_]+)\s*=\s*([A-Za-z0-9_]+)\s*=\s*(yes|no|true|false|always|never|high|medium|low)\b",
+    r"^[ \t]*([A-Za-z0-9_]+)[ \t]*=[ \t]*([A-Za-z0-9_]+)[ \t]*=[ \t]*(yes|no|true|false|always|never|high|medium|low)\b",
     re.MULTILINE,
 )
 RE_DECISION_COST_MISTAKE = re.compile(r"\bcost_(command_power|manpower|political_power|stability)\s*=")
@@ -366,7 +367,33 @@ VALID_UNIT_RATIO_IDS = {
 }
 
 
-# --- helpers ---------------------------------------------------------------
+# --- log/timing helpers (module-level for signal safety) ---
+
+_log_fh = None
+_phase_order = 0
+_quiet = False  # set by main()
+
+
+def _emit(sev: str, msg: str) -> None:
+    stream = sys.stderr if sev != "info" else sys.stdout
+    if not _quiet or sev == "info":
+        print(f"{sev.upper():<5} {msg}", file=stream)
+    if _log_fh is not None:
+        print(f"{sev.upper():<5} {msg}", file=_log_fh, flush=True)
+
+
+def _phase(label: str) -> None:
+    global _phase_order
+    _phase_order += 1
+    msg = f"[phase {_phase_order}] {label}..."
+    print(msg, file=sys.stderr, flush=True)
+
+
+def _phase_done(label: str, dt: float, errs: int = 0, warns: int = 0) -> None:
+    extra = ""
+    if errs or warns:
+        extra = f"  ({errs} errors, {warns} warnings so far)"
+    print(f"  [{dt:5.1f}s] {label} done{extra}", file=sys.stderr, flush=True)
 
 def strip_comments_and_strings(text: str) -> str:
     """Remove #comments and double quoted strings so brace counting is accurate."""
@@ -1591,15 +1618,57 @@ def main() -> int:
         nargs="*",
         default=None,
         choices=["loc", "focus-ref", "focus-icon", "collision", "encoding", "braces", "event-ref", "ideology", "scripted", "runtime-script", "data-vocab", "double-equals", "decision-cost", "on-actions", "yaml-key", "naked-var", "runtime-effect-trigger"],
-        help="only run specific check categories (default: all)",
+        help="only run specific check categories (default: all fast checks; use --all for heavy ones too)",
+    )
+    ap.add_argument(
+        "--timing",
+        action="store_true",
+        help="print elapsed time per check phase (always shown via --log-file or stderr progress)",
+    )
+    ap.add_argument(
+        "--log-file",
+        default=None,
+        metavar="PATH",
+        help="write all errors/warnings to a log file as they are found (survives Ctrl+C)",
+    )
+    ap.add_argument(
+        "--all",
+        action="store_true",
+        help="run ALL checks including heavier opt-in ones (naked-var, runtime-effect-trigger)",
     )
     args = ap.parse_args()
     root = args.path
 
-    _active_categories = set(args.category) if args.category else None
+    # By default run only the fast original checks. New heavy checks are opt-in
+    # via --all or explicit --category selection.
+    FAST_CATEGORIES = {
+        "loc", "focus-ref", "focus-icon", "collision", "encoding", "braces",
+        "event-ref", "ideology", "scripted", "runtime-script", "data-vocab",
+    }
+    # These are cheap enough to always run
+    ALWAYS_ON_NEW_CHECKS = {
+        "double-equals", "decision-cost", "on-actions", "yaml-key",
+    }
+    if args.all:
+        _active_categories = None  # all
+    elif args.category is not None:
+        _active_categories = set(args.category)
+    else:
+        _active_categories = FAST_CATEGORIES | ALWAYS_ON_NEW_CHECKS  # default: original + cheap new ones
 
     def _cat_active(name: str) -> bool:
         return _active_categories is None or name in _active_categories
+
+    # --- log file support ---
+    global _log_fh, _quiet
+    _quiet = args.quiet
+
+    if args.log_file:
+        _log_fh = open(args.log_file, "w", encoding="utf-8")
+        _emit("info", f"validator log opened at {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        _emit("info", f"root: {root}")
+        if _active_categories:
+            _emit("info", f"active categories: {', '.join(sorted(_active_categories))}")
 
     _focus_file_filter: str | None = args.focus_file
     if _focus_file_filter is not None:
@@ -1615,6 +1684,8 @@ def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
 
+    _phase("building vocabularies")
+
     focus_defs: dict[str, list[str]] = {}
     focus_tree_defs: dict[str, list[str]] = {}
     focus_refs: list[tuple[str, str, str]] = []
@@ -1626,12 +1697,18 @@ def main() -> int:
     focus_loc_expected: dict[str, set[str]] = {}
     tooltip_loc_expected: dict[str, set[str]] = {}
 
+    _phase("building vocabularies")
+    t0_vocab = time.time()
     known_effect_keys, known_trigger_keys = build_scripted_vocab(root)
     known_idea_modifier_keys, known_decision_categories, known_opinion_modifiers, known_ideas = build_data_vocab(root)
     known_gfx_sprites: set[str] = set()
     if _cat_active("focus-icon"):
         known_gfx_sprites = build_gfx_sprite_registry(root)
 
+    _phase_done("vocabularies", time.time() - t0_vocab)
+
+    _phase("main file scan")
+    t0_main = time.time()
     for path in iter_files(root, TEXT_EXT):
         r = rel(root, path)
         loaded = load_text(path)
@@ -1734,33 +1811,49 @@ def main() -> int:
                         f"(use HOA ideologies: {', '.join(sorted(VALID_IDEOLOGIES))}; leader ideologies may use *_type)"
                     )
 
+    _phase_done("main file scan", time.time() - t0_main, len(errors), len(warnings))
+
+    # --- standalone validation passes ---
     if _cat_active("scripted"):
+        _phase("scripted construct checks"); t0 = time.time()
         validate_scripted_constructs(root, errors, known_effect_keys, known_trigger_keys)
+        _phase_done("scripted constructs", time.time() - t0, len(errors), len(warnings))
     if _cat_active("runtime-script"):
+        _phase("runtime anti-patterns"); t0 = time.time()
         validate_runtime_antipatterns(root, errors)
+        _phase_done("runtime anti-patterns", time.time() - t0, len(errors), len(warnings))
     if _cat_active("data-vocab"):
-        validate_data_vocab(
-            root,
-            errors,
-            known_idea_modifier_keys,
-            known_decision_categories,
-            known_opinion_modifiers,
-            known_ideas,
-        )
+        _phase("data vocabulary checks"); t0 = time.time()
+        validate_data_vocab(root, errors, known_idea_modifier_keys, known_decision_categories, known_opinion_modifiers, known_ideas)
+        _phase_done("data vocabulary", time.time() - t0, len(errors), len(warnings))
     if _cat_active("double-equals"):
+        _phase("double-equals check"); t0 = time.time()
         validate_double_equals(root, errors)
+        _phase_done("double-equals", time.time() - t0, len(errors), len(warnings))
     if _cat_active("decision-cost"):
+        _phase("decision cost check"); t0 = time.time()
         validate_decision_costs(root, errors)
+        _phase_done("decision cost", time.time() - t0, len(errors), len(warnings))
     if _cat_active("on-actions"):
+        _phase("on-actions wrapper check"); t0 = time.time()
         validate_on_actions_wrapper(root, errors)
+        _phase_done("on-actions wrapper", time.time() - t0, len(errors), len(warnings))
     if _cat_active("yaml-key"):
+        _phase("yaml key colon check"); t0 = time.time()
         validate_yaml_key_colons(root, errors)
+        _phase_done("yaml key colon", time.time() - t0, len(errors), len(warnings))
     if _cat_active("naked-var"):
+        _phase("naked variable check"); t0 = time.time()
         validate_naked_variables(root, errors)
+        _phase_done("naked variable", time.time() - t0, len(errors), len(warnings))
     if _cat_active("runtime-effect-trigger"):
+        _phase("runtime effect/trigger check (heavy)"); t0 = time.time()
         validate_runtime_effects_triggers(root, errors, known_effect_keys, known_trigger_keys)
+        _phase_done("runtime effect/trigger", time.time() - t0, len(errors), len(warnings))
     if _cat_active("collision"):
+        _phase("focus collision check"); t0 = time.time()
         validate_focus_coordinate_collisions(root, errors, warnings, _focus_file_filter)
+        _phase_done("focus collision", time.time() - t0, len(errors), len(warnings))
     if args.hoi4_smoke:
         run_hoi4_smoke(
             hoi4_exe=args.hoi4_exe,
@@ -1873,8 +1966,24 @@ def main() -> int:
         f"events defined: {len(event_defs)} | loc keys: {len(loc_defs)}"
     )
     print(f"ERRORS: {len(errors)}   WARNINGS: {len(warnings)}")
+
+    # Flush results to log file
+    if _log_fh is not None:
+        _emit("info", "--- validator output start ---")
+        for w in warnings:
+            _emit("warn", w)
+        for e in errors:
+            _emit("error", e)
+        _emit("info", f"--- final: {len(errors)} errors, {len(warnings)} warnings ---")
+        _log_fh.close()
+
     return 1 if errors else 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    exit_code = 1
+    try:
+        exit_code = main()
+    except KeyboardInterrupt:
+        print("\n[interrupted] Ctrl+C — partial results above", file=sys.stderr)
+    sys.exit(exit_code)
