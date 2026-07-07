@@ -1,15 +1,119 @@
 # ============================================================
 # Sea of Blood — decision panel
 #
-# Shows status of all 7 island nodes, overall faction control,
+# Shows status of all 10 island nodes, overall faction control,
 # and provides missions for securing maritime dominance.
 # ============================================================
 
 sea_of_blood = {
 
 	# ------------------------------------------------------------
+	# STATISTICS — faction island count (decorative, top of panel)
+	# ------------------------------------------------------------
+
+	# Alliance stats
+	sob_stats_alliance_0_2 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			is_in_faction_with = LOR
+			sob_alliance_stats_0_2 = yes
+		}
+	}
+	sob_stats_alliance_3_4 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			is_in_faction_with = LOR
+			sob_alliance_stats_3_4 = yes
+		}
+	}
+	sob_stats_alliance_5_6 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			is_in_faction_with = LOR
+			sob_alliance_stats_5_6 = yes
+		}
+	}
+	sob_stats_alliance_7_8 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			is_in_faction_with = LOR
+			sob_alliance_stats_7_8 = yes
+		}
+	}
+	sob_stats_alliance_9_10 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			is_in_faction_with = LOR
+			sob_alliance_stats_9_10 = yes
+		}
+	}
+
+	# Horde stats
+	sob_stats_horde_0_2 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			OR = {
+				is_in_faction_with = BRC
+				is_in_faction_with = LOR
+			}
+			sob_horde_stats_0_2 = yes
+		}
+	}
+	sob_stats_horde_3_4 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			OR = {
+				is_in_faction_with = BRC
+				is_in_faction_with = LOR
+			}
+			sob_horde_stats_3_4 = yes
+		}
+	}
+	sob_stats_horde_5_6 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			OR = {
+				is_in_faction_with = BRC
+				is_in_faction_with = LOR
+			}
+			sob_horde_stats_5_6 = yes
+		}
+	}
+	sob_stats_horde_7_8 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			OR = {
+				is_in_faction_with = BRC
+				is_in_faction_with = LOR
+			}
+			sob_horde_stats_7_8 = yes
+		}
+	}
+	sob_stats_horde_9_10 = {
+		icon = generic_politics
+		available = { always = no }
+		visible = {
+			OR = {
+				is_in_faction_with = BRC
+				is_in_faction_with = LOR
+			}
+			sob_horde_stats_9_10 = yes
+		}
+	}
+
+	# ------------------------------------------------------------
 	# ISLAND STATUS DECISIONS (decorative — not clickable)
 	# Each island has 3 variants: Alliance / Horde / Contested
+	# Alliance = blue circle | Horde = red sword | Contested = yellow
 	# ------------------------------------------------------------
 
 	# --- Tol Barad (state 13) ---
@@ -19,12 +123,12 @@ sea_of_blood = {
 		visible = { 13 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_tol_barad_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 13 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_tol_barad_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 13 = { is_island_controlled_by_alliance = yes } }
@@ -39,12 +143,12 @@ sea_of_blood = {
 		visible = { 6 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_crestfall_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 6 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_crestfall_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 6 = { is_island_controlled_by_alliance = yes } }
@@ -59,12 +163,12 @@ sea_of_blood = {
 		visible = { 7 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_zuldare_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 7 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_zuldare_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 7 = { is_island_controlled_by_alliance = yes } }
@@ -79,12 +183,12 @@ sea_of_blood = {
 		visible = { 8 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_purgation_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 8 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_purgation_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 8 = { is_island_controlled_by_alliance = yes } }
@@ -99,12 +203,12 @@ sea_of_blood = {
 		visible = { 9 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_channel_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 9 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_channel_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 9 = { is_island_controlled_by_alliance = yes } }
@@ -119,12 +223,12 @@ sea_of_blood = {
 		visible = { 323 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_balor_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 323 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_balor_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 323 = { is_island_controlled_by_alliance = yes } }
@@ -139,12 +243,12 @@ sea_of_blood = {
 		visible = { 2093 = { is_island_controlled_by_alliance = yes } }
 	}
 	sob_bite_horde = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = { always = no }
 		visible = { 2093 = { is_island_controlled_by_horde = yes } }
 	}
 	sob_bite_contested = {
-		icon = generic_navy_doctrine
+		icon = generic_construction
 		available = { always = no }
 		visible = {
 			NOT = { 2093 = { is_island_controlled_by_alliance = yes } }
@@ -152,11 +256,71 @@ sea_of_blood = {
 		}
 	}
 
+	# --- Tol Dagor (state 617) ---
+	sob_tol_dagor_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 617 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_tol_dagor_horde = {
+		icon = generic_army
+		available = { always = no }
+		visible = { 617 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_tol_dagor_contested = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			NOT = { 617 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 617 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- Misty Isle (state 172) ---
+	sob_misty_isle_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 172 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_misty_isle_horde = {
+		icon = generic_army
+		available = { always = no }
+		visible = { 172 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_misty_isle_contested = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			NOT = { 172 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 172 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
+	# --- HighBank (state 171) ---
+	sob_highbank_alliance = {
+		icon = generic_navy_doctrine
+		available = { always = no }
+		visible = { 171 = { is_island_controlled_by_alliance = yes } }
+	}
+	sob_highbank_horde = {
+		icon = generic_army
+		available = { always = no }
+		visible = { 171 = { is_island_controlled_by_horde = yes } }
+	}
+	sob_highbank_contested = {
+		icon = generic_construction
+		available = { always = no }
+		visible = {
+			NOT = { 171 = { is_island_controlled_by_alliance = yes } }
+			NOT = { 171 = { is_island_controlled_by_horde = yes } }
+		}
+	}
+
 	# ------------------------------------------------------------
 	# ALLIANCE MISSIONS
 	# ------------------------------------------------------------
 
-	# Secure a Foothold — hold 3+ islands for 180 days
+	# Secure a Foothold — hold 4+ islands for 180 days
 	sob_alliance_secure_foothold = {
 		icon = generic_navy_doctrine
 		available = {
@@ -177,7 +341,7 @@ sea_of_blood = {
 		}
 	}
 
-	# Command of the Sea — hold 6+ islands for 90 days
+	# Command of the Sea — hold 8+ islands for 90 days
 	sob_alliance_command_sea = {
 		icon = generic_navy_doctrine
 		available = {
@@ -202,9 +366,9 @@ sea_of_blood = {
 	# HORDE MISSIONS
 	# ------------------------------------------------------------
 
-	# Break the Island Chain — hold 4+ islands for 180 days
+	# Break the Island Chain — hold 5+ islands for 180 days
 	sob_horde_break_chain = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = {
 			NOT = { has_country_flag = sob_horde_break_chain_complete }
 			is_in_faction_with = BRC
@@ -223,9 +387,9 @@ sea_of_blood = {
 		}
 	}
 
-	# Command of the Sea — hold 6+ islands for 90 days
+	# Command of the Sea — hold 8+ islands for 90 days
 	sob_horde_command_sea = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = {
 			NOT = { has_country_flag = sob_horde_command_complete }
 			is_in_faction_with = BRC
@@ -250,7 +414,7 @@ sea_of_blood = {
 
 	# Horde: Unleash the Red Dragons
 	sob_horde_dragon_strike = {
-		icon = generic_navy_doctrine
+		icon = generic_army
 		available = {
 			is_in_faction_with = BRC
 			sob_horde_has_advantage = yes

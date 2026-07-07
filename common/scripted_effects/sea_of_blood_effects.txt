@@ -1,11 +1,11 @@
 # ============================================================
-# Sea of Blood — maritime control mechanic (0–7 islands)
+# Sea of Blood — maritime control mechanic (0–10 islands)
 #
-# LOR holds alliance_sea_control (0–7)
-# BRC holds horde_sea_control (0–7)
+# LOR holds alliance_sea_control (0–10)
+# BRC holds horde_sea_control (0–10)
 #
-# Tiers: 0-1 Disputed | 2 Weak | 3 Contested
-#        4 Advantage | 5 Initiative | 6 Command | 7 Total Control
+# Tiers: 0-2 Disputed | 3 Weak | 4 Contested
+#        5 Advantage | 6-7 Initiative | 8-9 Command | 10 Total Control
 # ============================================================
 
 # ------------------------------------------------------------
@@ -34,6 +34,9 @@ update_sea_of_blood = {
 		if = { limit = { 9 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
 		if = { limit = { 323 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
 		if = { limit = { 2093 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 617 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 172 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
+		if = { limit = { 171 = { is_island_controlled_by_alliance = yes } }	add_to_variable = { alliance_sea_control = 1 } }
 	}
 	BRC = {
 		set_variable = { horde_sea_control = 0 }
@@ -44,6 +47,9 @@ update_sea_of_blood = {
 		if = { limit = { 9 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
 		if = { limit = { 323 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
 		if = { limit = { 2093 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 617 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 172 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
+		if = { limit = { 171 = { is_island_controlled_by_horde = yes } }	add_to_variable = { horde_sea_control = 1 } }
 	}
 	sob_alliance_sync_faction = yes
 	sob_horde_sync_faction = yes
@@ -67,27 +73,27 @@ sob_alliance_remove_all_ideas = {
 sob_alliance_apply_spirit = {
 	LOR = {
 		if = {
-			limit = { check_variable = { alliance_sea_control < 2 } }
+			limit = { check_variable = { alliance_sea_control < 3 } }
 			PREV = { add_ideas = soa_alliance_disputed }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_sea_control = 2 } }
+			limit = { check_variable = { alliance_sea_control = 3 } }
 			PREV = { add_ideas = soa_alliance_weak }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_sea_control = 3 } }
+			limit = { check_variable = { alliance_sea_control = 4 } }
 			PREV = { add_ideas = soa_alliance_contested }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_sea_control = 4 } }
+			limit = { check_variable = { alliance_sea_control = 5 } }
 			PREV = { add_ideas = soa_alliance_advantage }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_sea_control = 5 } }
+			limit = { check_variable = { alliance_sea_control < 8 } }
 			PREV = { add_ideas = soa_alliance_initiative }
 		}
 		else_if = {
-			limit = { check_variable = { alliance_sea_control = 6 } }
+			limit = { check_variable = { alliance_sea_control < 10 } }
 			PREV = { add_ideas = soa_alliance_command }
 		}
 		else = {
@@ -123,27 +129,27 @@ sob_horde_remove_all_ideas = {
 sob_horde_apply_spirit = {
 	BRC = {
 		if = {
-			limit = { check_variable = { horde_sea_control < 2 } }
+			limit = { check_variable = { horde_sea_control < 3 } }
 			PREV = { add_ideas = soa_horde_disputed }
 		}
 		else_if = {
-			limit = { check_variable = { horde_sea_control = 2 } }
+			limit = { check_variable = { horde_sea_control = 3 } }
 			PREV = { add_ideas = soa_horde_weak }
 		}
 		else_if = {
-			limit = { check_variable = { horde_sea_control = 3 } }
+			limit = { check_variable = { horde_sea_control = 4 } }
 			PREV = { add_ideas = soa_horde_contested }
 		}
 		else_if = {
-			limit = { check_variable = { horde_sea_control = 4 } }
+			limit = { check_variable = { horde_sea_control = 5 } }
 			PREV = { add_ideas = soa_horde_advantage }
 		}
 		else_if = {
-			limit = { check_variable = { horde_sea_control = 5 } }
+			limit = { check_variable = { horde_sea_control < 8 } }
 			PREV = { add_ideas = soa_horde_initiative }
 		}
 		else_if = {
-			limit = { check_variable = { horde_sea_control = 6 } }
+			limit = { check_variable = { horde_sea_control < 10 } }
 			PREV = { add_ideas = soa_horde_command }
 		}
 		else = {
@@ -226,6 +232,48 @@ update_sob_island_bonuses = {
 			}
 		}
 	}
+	# --- Tol Dagor (state 617) ---
+	617 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 617 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_tol_dagor
+			}
+			else_if = {
+				limit = { 617 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_tol_dagor
+			}
+		}
+	}
+	# --- Misty Isle (state 172) ---
+	172 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 172 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_misty_isle_alliance
+			}
+			else_if = {
+				limit = { 172 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_misty_isle_horde
+			}
+		}
+	}
+	# --- HighBank (state 171) ---
+	171 = {
+		controller = {
+			sob_remove_all_island_bonuses = yes
+			if = {
+				limit = { 171 = { is_island_controlled_by_alliance = yes } }
+				add_ideas = soa_island_highbank_alliance
+			}
+			else_if = {
+				limit = { 171 = { is_island_controlled_by_horde = yes } }
+				add_ideas = soa_island_highbank_horde
+			}
+		}
+	}
 }
 
 sob_remove_all_island_bonuses = {
@@ -234,6 +282,11 @@ sob_remove_all_island_bonuses = {
 	if = { limit = { has_idea = soa_island_zuldare_alliance }	remove_ideas = soa_island_zuldare_alliance }
 	if = { limit = { has_idea = soa_island_zuldare_horde }		remove_ideas = soa_island_zuldare_horde }
 	if = { limit = { has_idea = soa_island_balor }				remove_ideas = soa_island_balor }
+	if = { limit = { has_idea = soa_island_tol_dagor }			remove_ideas = soa_island_tol_dagor }
+	if = { limit = { has_idea = soa_island_misty_isle_alliance }	remove_ideas = soa_island_misty_isle_alliance }
+	if = { limit = { has_idea = soa_island_misty_isle_horde }	remove_ideas = soa_island_misty_isle_horde }
+	if = { limit = { has_idea = soa_island_highbank_alliance }	remove_ideas = soa_island_highbank_alliance }
+	if = { limit = { has_idea = soa_island_highbank_horde }		remove_ideas = soa_island_highbank_horde }
 }
 
 # ------------------------------------------------------------
