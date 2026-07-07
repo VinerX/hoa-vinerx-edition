@@ -622,6 +622,7 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
         if loaded is None:
             continue
         _raw, text = loaded
+        text = strip_comments_and_strings(text)
         r = rel(root, path)
 
         for m in re.finditer(r"\b(?:focus|shared_focus)\s*=\s*\{", text):
@@ -702,6 +703,7 @@ def validate_focus_coordinate_collisions(root: str, errors: list[str], warnings:
         if loaded is None:
             continue
         _raw, text = loaded
+        text = strip_comments_and_strings(text)
         r = rel(root, path)
 
         for tree_m in re.finditer(r"\bfocus_tree\s*=\s*\{", text):
