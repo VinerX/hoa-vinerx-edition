@@ -122,6 +122,32 @@ focus_tree = {
 		}
 	}
 
+	# ============================================================
+	# SUPREME COMMAND — Lothar and the Council of Seven Nations
+	# ============================================================
+
+	focus = {
+		id = LOR_the_council_of_seven_nations
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_the_council_of_lordaeron }
+		relative_position_id = LOR_the_council_of_lordaeron
+		x = 10
+		y = 1
+		cost = 10
+
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			# Persuade the reluctant kings — Greymane and Perenolde — to commit.
+			add_political_power = 50
+			alliance_unity_raise_medium = yes
+			every_country = {
+				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
+				add_opinion_modifier = { target = LOR modifier = small_increase }
+			}
+		}
+	}
+
 	focus = {
 		id = LOR_send_alliance_envoys
 		icon = GFX_focus_eng_imperial_federation
@@ -680,32 +706,6 @@ focus_tree = {
 				army_experience = 10
 			}
 			alliance_unity_raise_medium = yes
-		}
-	}
-
-	# ============================================================
-	# SUPREME COMMAND — Lothar and the Council of Seven Nations
-	# ============================================================
-
-	focus = {
-		id = LOR_the_council_of_seven_nations
-		icon = GFX_goal_generic_major_alliance
-		prerequisite = { focus = LOR_the_council_of_lordaeron }
-		relative_position_id = LOR_the_council_of_lordaeron
-		x = 10
-		y = 1
-		cost = 10
-
-		ai_will_do = { base = 9 }
-
-		completion_reward = {
-			# Persuade the reluctant kings — Greymane and Perenolde — to commit.
-			add_political_power = 50
-			alliance_unity_raise_medium = yes
-			every_country = {
-				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
-				add_opinion_modifier = { target = LOR modifier = small_increase }
-			}
 		}
 	}
 
