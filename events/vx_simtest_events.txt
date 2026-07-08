@@ -1,0 +1,49 @@
+add_namespace = vx_simtest
+
+country_event = {
+	id = vx_simtest.1
+	title = vx_simtest.1.t
+	desc = vx_simtest.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = {
+		log = "[SIMTEST] STARTUP date=[GetDateText]"
+	}
+
+	option = {
+		name = vx_simtest.1.option.1
+	}
+}
+
+country_event = {
+	id = vx_simtest.2
+	title = vx_simtest.2.t
+	desc = vx_simtest.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	hidden = yes
+
+	immediate = {
+		log = "[SIMTEST] CHECKPOINT date=[GetDateText]"
+		if = {
+			limit = { BRC = { has_war_with = LOR } }
+			log = "[SIMTEST] WAR BRC_vs_LOR=yes"
+		}
+		if = {
+			limit = { AMA = { has_war_with = QUE } }
+			log = "[SIMTEST] WAR AMA_vs_QUE=yes"
+		}
+		if = {
+			limit = { has_global_flag = second_war_has_begun }
+			log = "[SIMTEST] FLAG second_war_has_begun=yes"
+		}
+	}
+
+	option = {
+		name = vx_simtest.2.option.1
+	}
+}
