@@ -98,10 +98,11 @@ country_event = {
 				days = 120
 			}
 			add_war_support = 0.03
-			# Stromgarde is invited to formally join the Alliance.
+			# Stromgarde is invited to formally join the Alliance
+			# via the new interactive negotiation event.
 			if = {
 				limit = { NOT = { is_in_faction_with = STO } }
-				country_event = { id = grand_alliance.3 hours = 6 }
+				country_event = { id = stromgarde_sw.1 hours = 6 }
 			}
 		}
 
@@ -145,5 +146,57 @@ country_event = {
 				has_war_with = BRC
 			}
 		}
+	}
+}
+
+# ====================================================================
+# Lordaeron learns of Stromgarde's decision (fired from stromgarde_sw.1)
+# ====================================================================
+country_event = {
+	id = lordaeron_second_war_proto.4
+	title = lordaeron_second_war_proto.4.t
+	desc = lordaeron_second_war_proto.4.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event lordaeron_second_war_proto.4" }
+
+	# STR chose full commitment
+	option = {
+		name = lordaeron_second_war_proto.4.option.1
+		trigger = {
+			STR = { has_country_flag = STR_sw_joined_field_army }
+		}
+		add_political_power = 15
+		add_war_support = 0.03
+	}
+
+	# STR chose southern shield
+	option = {
+		name = lordaeron_second_war_proto.4.option.2
+		trigger = {
+			STR = { has_country_flag = STR_sw_joined_homeland }
+		}
+		add_political_power = 10
+	}
+
+	# STR chose mountain watch
+	option = {
+		name = lordaeron_second_war_proto.4.option.3
+		trigger = {
+			STR = { has_country_flag = STR_sw_joined_mountain }
+		}
+		add_political_power = 10
+	}
+
+	# STR refused
+	option = {
+		name = lordaeron_second_war_proto.4.option.4
+		trigger = {
+			STR = { has_country_flag = STR_sw_refused_alliance }
+		}
+		add_political_power = -15
+		add_stability = -0.02
 	}
 }

@@ -669,6 +669,531 @@ prestigious_projects = {
 	}
 }
 
+# ====================================================================
+# Second War — Divided Army decisions (available after Alliance joining)
+# ====================================================================
+
+STR_divided_army_decisions = {
+
+	STR_commit_to_field_army = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_country_flag = STR_sw_joined_homeland
+			NOT = { has_idea = STR_army_divided_field }
+			is_in_faction_with = LOR
+		}
+
+		visible = {
+			original_tag = STR
+			has_country_flag = STR_sw_joined_homeland
+		}
+
+		complete_effect = {
+			STR_sw_adopt_field_army = yes
+			set_country_flag = STR_sw_joined_field_army
+			clr_country_flag = STR_sw_joined_homeland
+			clr_country_flag = STR_sw_joined_mountain
+		}
+	}
+
+	STR_reinforce_homeland = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		allowed = { original_tag = STR }
+
+		available = {
+			NOT = { has_idea = STR_army_divided_homeland }
+			is_in_faction_with = LOR
+			OR = {
+				has_country_flag = STR_sw_joined_field_army
+				has_country_flag = STR_sw_joined_mountain
+			}
+		}
+
+		visible = {
+			original_tag = STR
+			NOT = { has_idea = STR_army_divided_homeland }
+		}
+
+		complete_effect = {
+			STR_sw_adopt_homeland = yes
+			set_country_flag = STR_sw_joined_homeland
+			clr_country_flag = STR_sw_joined_field_army
+			clr_country_flag = STR_sw_joined_mountain
+		}
+	}
+
+	STR_strengthen_mountain_watch = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		allowed = { original_tag = STR }
+
+		available = {
+			NOT = { has_idea = STR_army_divided_mountain }
+			is_in_faction_with = LOR
+			OR = {
+				has_country_flag = STR_sw_joined_field_army
+				has_country_flag = STR_sw_joined_homeland
+			}
+		}
+
+		visible = {
+			original_tag = STR
+			NOT = { has_idea = STR_army_divided_mountain }
+		}
+
+		complete_effect = {
+			STR_sw_adopt_mountain = yes
+			set_country_flag = STR_sw_joined_mountain
+			clr_country_flag = STR_sw_joined_field_army
+			clr_country_flag = STR_sw_joined_homeland
+		}
+	}
+
+	STR_recall_reserves = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 25
+
+		fire_only_once = no
+
+		days_re_enable = 365
+
+		allowed = { original_tag = STR }
+
+		available = {
+			is_in_faction_with = LOR
+			has_war = yes
+			check_variable = { STR_recall_reserves_count < 3 }
+		}
+
+		visible = {
+			original_tag = STR
+			is_in_faction_with = LOR
+		}
+
+		complete_effect = {
+			if = {
+				limit = { NOT = { has_variable = STR_recall_reserves_count } }
+				set_variable = { STR_recall_reserves_count = 0 }
+			}
+			add_to_variable = { STR_recall_reserves_count = 1 }
+			add_manpower = 2000
+			alliance_unity_lower = yes
+		}
+	}
+}
+
+# ====================================================================
+# Second War — Alterac Watch decisions
+# ====================================================================
+
+STR_alterac_watch_decisions = {
+
+	STR_patrol_western_border = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 25
+
+		fire_only_once = no
+
+		days_re_enable = 90
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_country_flag = STR_alterac_investigation_started
+			NOT = { has_country_flag = STR_alterac_investigation_level_3 }
+			is_in_faction_with = LOR
+		}
+
+		visible = {
+			original_tag = STR
+			has_country_flag = STR_alterac_investigation_started
+		}
+
+		complete_effect = {
+			random_list = {
+				40 = {
+					STR_sw_advance_investigation = yes
+					custom_effect_tooltip = STR_sw_investigation_advanced_tt
+				}
+				60 = {
+					custom_effect_tooltip = STR_sw_investigation_no_progress_tt
+				}
+			}
+		}
+	}
+
+	STR_question_alterac_merchants = {
+		icon = GFX_decision_category_generic_intel
+
+		cost = 25
+
+		fire_only_once = no
+
+		days_re_enable = 90
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_country_flag = STR_alterac_investigation_started
+			NOT = { has_country_flag = STR_alterac_investigation_level_3 }
+			is_in_faction_with = LOR
+		}
+
+		visible = {
+			original_tag = STR
+			has_country_flag = STR_alterac_investigation_started
+		}
+
+		complete_effect = {
+			random_list = {
+				35 = {
+					STR_sw_advance_investigation = yes
+					custom_effect_tooltip = STR_sw_investigation_advanced_tt
+				}
+				65 = {
+					custom_effect_tooltip = STR_sw_investigation_no_progress_tt
+				}
+			}
+		}
+	}
+
+	STR_send_scouts_into_passes = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 90
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_country_flag = STR_alterac_investigation_started
+			NOT = { has_country_flag = STR_alterac_investigation_level_3 }
+			is_in_faction_with = LOR
+		}
+
+		visible = {
+			original_tag = STR
+			has_country_flag = STR_alterac_investigation_started
+		}
+
+		complete_effect = {
+			add_manpower = -50
+			random_list = {
+				55 = {
+					STR_sw_advance_investigation = yes
+					custom_effect_tooltip = STR_sw_investigation_advanced_tt
+				}
+				45 = {
+					custom_effect_tooltip = STR_sw_investigation_no_progress_tt
+				}
+			}
+		}
+	}
+
+	STR_share_suspicions_with_terenas = {
+		icon = GFX_decision_category_generic_diplomacy
+
+		cost = 25
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_country_flag = STR_alterac_investigation_started
+			has_country_flag = STR_alterac_investigation_level_2
+			is_in_faction_with = LOR
+			LOR = { exists = yes }
+		}
+
+		visible = {
+			original_tag = STR
+			has_country_flag = STR_alterac_investigation_started
+		}
+
+		complete_effect = {
+			alliance_unity_raise = yes
+			LOR = {
+				add_opinion_modifier = {
+					target = STR
+					modifier = STR_friendly_relations
+				}
+				set_country_flag = LOR_str_alterac_warning
+			}
+		}
+	}
+}
+
+# ====================================================================
+# Second War — Thandol Span decisions
+# ====================================================================
+
+STR_thandol_span_decisions = {
+
+	STR_fortify_thandol_northern = {
+		icon = GFX_decision_category_generic_construction
+
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			NOT = { has_global_flag = news_thandol_span_falls }
+			130 = { is_controlled_by = STR }
+		}
+
+		visible = {
+			original_tag = STR
+			is_in_faction_with = LOR
+		}
+
+		complete_effect = {
+			130 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	STR_prepare_thandol_demolition = {
+		icon = GFX_decision_category_generic_construction
+
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			is_in_faction_with = LOR
+			has_war_with = BRC
+			130 = { is_controlled_by = STR }
+			any_enemy_country = {
+				any_controlled_state = {
+					is_on_continent = azeroth_south
+				}
+			}
+		}
+
+		visible = {
+			original_tag = STR
+			is_in_faction_with = LOR
+		}
+
+		complete_effect = {
+			set_country_flag = STR_thandol_demo_ready
+		}
+	}
+
+	STR_emergency_rally = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 25
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_global_flag = news_thandol_span_falls
+			has_war_with = BRC
+			is_in_faction_with = LOR
+		}
+
+		visible = {
+			original_tag = STR
+			has_global_flag = news_thandol_span_falls
+		}
+
+		complete_effect = {
+			add_manpower = 3000
+			add_war_support = 0.05
+		}
+	}
+
+	STR_secure_thandol_span = {
+		icon = GFX_decision_category_generic_construction
+
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_global_flag = news_thandol_span_recaptured
+			is_in_faction_with = LOR
+		}
+
+		visible = {
+			original_tag = STR
+			has_global_flag = news_thandol_span_recaptured
+		}
+
+		complete_effect = {
+			130 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+				add_infrastructure = 1
+			}
+		}
+	}
+
+	STR_escort_alliance_engineers = {
+		icon = GFX_decision_category_generic_construction
+
+		cost = 25
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_global_flag = news_thandol_span_recaptured
+			is_in_faction_with = LOR
+			has_war_with = BRC
+		}
+
+		visible = {
+			original_tag = STR
+			has_global_flag = news_thandol_span_recaptured
+		}
+
+		complete_effect = {
+			alliance_unity_raise = yes
+			add_manpower = -100
+		}
+	}
+}
+
+# ====================================================================
+# Second War — Danath's Campaign decisions
+# ====================================================================
+
+STR_danath_decisions = {
+
+	STR_relieve_ironforge = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_idea = STR_danath_march_south
+			IRO = {
+				exists = yes
+				is_in_faction_with = STR
+			}
+		}
+
+		visible = {
+			original_tag = STR
+			has_idea = STR_danath_march_south
+		}
+
+		complete_effect = {
+			alliance_unity_raise_major = yes
+			IRO = {
+				add_opinion_modifier = {
+					target = STR
+					modifier = alliance_loyalty
+				}
+				add_manpower = 1500
+			}
+		}
+	}
+
+	STR_clear_the_wetlands = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 50
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_idea = STR_danath_march_south
+		}
+
+		visible = {
+			original_tag = STR
+			has_idea = STR_danath_march_south
+		}
+
+		complete_effect = {
+			add_war_support = 0.03
+			add_manpower = -250
+		}
+	}
+
+	STR_advance_toward_blackrock = {
+		icon = GFX_decision_category_generic_army
+
+		cost = 75
+
+		fire_only_once = yes
+
+		allowed = { original_tag = STR }
+
+		available = {
+			has_idea = STR_danath_march_south
+			has_country_flag = STR_cleared_wetlands
+		}
+
+		visible = {
+			original_tag = STR
+			has_idea = STR_danath_march_south
+		}
+
+		complete_effect = {
+			alliance_unity_raise_major = yes
+			add_war_support = 0.05
+			add_manpower = -500
+		}
+	}
+}
+
 death_army = {
 
 	bodies_for_experimentation = {

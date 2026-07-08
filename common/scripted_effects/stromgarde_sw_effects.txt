@@ -1,0 +1,118 @@
+# ====================================================================
+# Stromgarde Second War — scripted effects
+# ====================================================================
+
+# ---------------------------------------------------------------
+# Divided Army spirit swaps
+# ---------------------------------------------------------------
+
+STR_sw_adopt_field_army = {
+	remove_ideas = STR_army_divided_homeland
+	remove_ideas = STR_army_divided_mountain
+	if = {
+		limit = { NOT = { has_idea = STR_army_divided_field } }
+		add_ideas = STR_army_divided_field
+	}
+	alliance_unity_raise = yes
+}
+
+STR_sw_adopt_homeland = {
+	remove_ideas = STR_army_divided_field
+	remove_ideas = STR_army_divided_mountain
+	if = {
+		limit = { NOT = { has_idea = STR_army_divided_homeland } }
+		add_ideas = STR_army_divided_homeland
+	}
+}
+
+STR_sw_adopt_mountain = {
+	remove_ideas = STR_army_divided_field
+	remove_ideas = STR_army_divided_homeland
+	if = {
+		limit = { NOT = { has_idea = STR_army_divided_mountain } }
+		add_ideas = STR_army_divided_mountain
+	}
+	if = {
+		limit = {
+			NOT = { has_country_flag = STR_alterac_investigation_started }
+		}
+		set_country_flag = STR_alterac_investigation_started
+		add_timed_idea = {
+			idea = STR_suspicious_neighbour
+			days = 365
+		}
+	}
+}
+
+# ---------------------------------------------------------------
+# Alterac investigation progress tracker
+# ---------------------------------------------------------------
+
+# Adds 1 level to investigation variable and handles threshold events.
+# ROOT must be STR.
+STR_sw_advance_investigation = {
+	if = {
+		limit = {
+			NOT = { has_variable = STR_alterac_investigation }
+		}
+		set_variable = { STR_alterac_investigation = 0 }
+	}
+	add_to_variable = { STR_alterac_investigation = 1 }
+	if = {
+		limit = {
+			check_variable = { STR_alterac_investigation = 2 }
+			NOT = { has_country_flag = STR_alterac_investigation_level_2 }
+		}
+		set_country_flag = STR_alterac_investigation_level_2
+		country_event = { id = stromgarde_sw.11 }
+	}
+	if = {
+		limit = {
+			check_variable = { STR_alterac_investigation = 3 }
+			NOT = { has_country_flag = STR_alterac_investigation_level_3 }
+		}
+		set_country_flag = STR_alterac_investigation_level_3
+		country_event = { id = stromgarde_sw.12 }
+	}
+}
+
+# ---------------------------------------------------------------
+# Thandol Span — demolish the bridge (emergency)
+# ---------------------------------------------------------------
+
+STR_sw_demolish_thandol = {
+	130 = {
+		add_building_construction = {
+			type = bunker
+			level = 1
+			instant_build = yes
+		}
+	}
+	12 = {
+		add_building_construction = {
+			type = bunker
+			level = 1
+			instant_build = yes
+		}
+	}
+	add_war_support = 0.05
+	add_timed_idea = {
+		idea = STR_thandol_broken
+		days = 365
+	}
+	remove_ideas = STR_thandol_garrisoned
+	set_country_flag = STR_thandol_demolished
+}
+
+# ---------------------------------------------------------------
+# Danath counteroffensive setup
+# ---------------------------------------------------------------
+
+STR_sw_start_danath_march = {
+	remove_ideas = STR_danath_expeditionary
+	remove_ideas = STR_danath_arathi_defender
+	remove_ideas = STR_danath_southern_prep
+	add_ideas = STR_danath_march_south
+	alliance_unity_raise_medium = yes
+	add_war_support = 0.05
+}
