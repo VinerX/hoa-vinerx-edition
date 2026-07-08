@@ -16,8 +16,30 @@ focus_tree = {
 	shared_focus = develop_the_country
 	shared_focus = arming_the_nation
 
+	# ========================================================================
+	# AMANI SECOND WAR FOCUS TREE — ZUL'JIN'S CRUSADE
+	#
+	# Column layout (x axes):
+	#   x=27-30   Loa, religion, spiritual warfare
+	#   x=31-34   Warbands, internal politics, Zul'jin's authority
+	#   x=34-37   Horde relationship, main narrative decisions
+	#   x=37-40   Northern War preparation, Quel'Thalas recon
+	#   x=40-43   Anti-magic, siege warfare, dragon support
+	#   x=43-46   Stromgarde / wider human war
+	#
+	# Y ranges:
+	#   y=0       Root
+	#   y=1-2     Act I — The Warlord of Zul'Aman
+	#   y=3-5     Act II — The Pact with Doomhammer + early prep
+	#   y=4-6     Act III — Preparing the Northern War
+	#   y=6-8     Act IV — The Conquest of Quel'Thalas
+	#   y=8-11    Post-Victory / Post-Defeat paths
+	#
+	# Total: 23 preserved + ~52 new = ~75 focuses
+	# ========================================================================
+
 	# ==========================================
-	# ROOT FOCUS — Zul'jin's Resolve (x=28, y=0)
+	# ACT I — ROOT FOCUS (y=0)
 	# ==========================================
 
 	focus = {
@@ -36,7 +58,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# ROW 1 — Branch split from root
+	# ACT I — ROW 1 (y=1): Branch split from root
 	# ==========================================
 
 	# --- Loa Blessings (spiritual, left) ---
@@ -105,8 +127,30 @@ focus_tree = {
 		}
 	}
 
+	# --- The Name of Zul'jin (personal authority, center-right) ---
+	focus = {
+		id = AMA_sw_name_of_zuljin
+		icon = GFX_focus_book_3
+		cost = 8
+		prerequisite = { focus = AMA_sw_zuljins_resolve }
+		x = 34
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = horde
+				popularity = 0.05
+			}
+			set_country_flag = ama_sw_zuljin_authority_strengthened
+		}
+	}
+
 	# ==========================================
-	# ROW 2 — Spiritual, Diplomatic, Military branches
+	# ROW 2 (y=2): Deepening branches
 	# ==========================================
 
 	# --- Spirit Guardians (left branch from loa) ---
@@ -196,13 +240,50 @@ focus_tree = {
 		}
 	}
 
+	# --- Old Feuds, One Enemy (tribal unity from tribal council) ---
+	focus = {
+		id = AMA_sw_old_feuds_one_enemy
+		icon = GFX_focus_scroll_4
+		cost = 8
+		prerequisite = { focus = AMA_sw_tribal_war_council }
+		x = 35
+		y = 2
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.08
+			add_war_support = 0.05
+			add_manpower = 2000
+			set_country_flag = ama_sw_feuds_suppressed
+		}
+	}
+
+	# --- The Council Beneath the Trees (institution from name_of_zuljin) ---
+	focus = {
+		id = AMA_sw_council_beneath_trees
+		icon = GFX_focus_scroll_1
+		cost = 10
+		prerequisite = { focus = AMA_sw_name_of_zuljin }
+		relative_position_id = AMA_sw_name_of_zuljin
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 80
+			add_stability = 0.05
+			set_country_flag = ama_sw_council_established
+			custom_effect_tooltip = ama_sw_unlocks_warbands_decisions_tt
+		}
+	}
+
 	# --- Southern Front (right from securing) ---
 	focus = {
 		id = AMA_sw_southern_front
 		icon = GFX_focus_STR_generic
 		cost = 10
 		prerequisite = { focus = AMA_sw_securing_zulaman }
-		x = 35
+		x = 37
 		y = 2
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -214,7 +295,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# ROW 3 — Deepening branches
+	# ROW 3 (y=3): Horde pact + Loa deepening + Stromgarde
 	# ==========================================
 
 	# --- Champions of the Loa ---
@@ -304,8 +385,6 @@ focus_tree = {
 					modifier = large_increase
 				}
 			}
-			# Backstop: if the Horde War Council event route didn't put the Amani in the Horde
-			# (e.g. AI/player reached the oath by a different path), formally join here.
 			if = {
 				limit = {
 					BRC = { exists = yes is_faction_leader = yes }
@@ -314,6 +393,76 @@ focus_tree = {
 				BRC = { add_to_faction = AMA }
 			}
 			news_event = { id = second_war_news.11 hours = 12 }
+		}
+	}
+
+	# --- Amani Guides Through the North (from horde_war_council / old_feuds) ---
+	focus = {
+		id = AMA_sw_amani_guides_north
+		icon = GFX_focus_gryphons
+		cost = 8
+		prerequisite = { focus = AMA_sw_horde_war_council }
+		x = 36
+		y = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_army_experience = 15
+			BRC = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = small_increase
+				}
+			}
+			if = {
+				limit = {
+					BRC = { exists = yes }
+				}
+				BRC = {
+					add_army_experience = 10
+				}
+			}
+		}
+	}
+
+	# --- Warbands Answer the Call (from old_feuds) ---
+	focus = {
+		id = AMA_sw_warbands_answer_call
+		icon = GFX_goal_generic_build_army
+		cost = 10
+		prerequisite = { focus = AMA_sw_old_feuds_one_enemy }
+		relative_position_id = AMA_sw_old_feuds_one_enemy
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			add_manpower = 5000
+			add_war_support = 0.10
+			add_ideas = AMA_sw_warbands_mobilized_idea
+		}
+	}
+
+	# --- Promise Them Elven Land (from council_beneath_trees) ---
+	focus = {
+		id = AMA_sw_promise_elven_land
+		icon = GFX_focus_book_2
+		cost = 8
+		prerequisite = { focus = AMA_sw_council_beneath_trees }
+		relative_position_id = AMA_sw_council_beneath_trees
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_manpower = 3000
+			QUE = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = elf_menace
+				}
+			}
 		}
 	}
 
@@ -357,8 +506,54 @@ focus_tree = {
 		}
 	}
 
+	# --- Invoke Akil'zon (Eagle Loa, from champions) ---
+	focus = {
+		id = AMA_sw_invoke_akilzon
+		icon = GFX_focus_gryphons
+		cost = 8
+		prerequisite = { focus = AMA_sw_champions_of_loa }
+		relative_position_id = AMA_sw_champions_of_loa
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = akilzon_recon_tech
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+			add_doctrine_cost_reduction = {
+				name = akilzon_doctrine_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	# --- Invoke Nalorakk (Bear Loa, from champions) ---
+	focus = {
+		id = AMA_sw_invoke_nalorakk
+		icon = GFX_focus_generic_golden_sword
+		cost = 8
+		prerequisite = { focus = AMA_sw_champions_of_loa }
+		x = 29
+		y = 3
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_war_support = 0.05
+			add_timed_idea = {
+				idea = AMA_nalorakk_blessing
+				days = 365
+			}
+		}
+	}
+
 	# ==========================================
-	# ROW 4 — War preparation
+	# ROW 4 (y=4): Mid-war preparation
 	# ==========================================
 
 	# --- Rangers' Nightmare ---
@@ -369,8 +564,8 @@ focus_tree = {
 		prerequisite = { focus = AMA_sw_champions_of_loa }
 		prerequisite = { focus = AMA_sw_hex_warfare }
 		relative_position_id = AMA_sw_forest_watchers
-		x = 2
-		y = 1
+		x = 1
+		y = 2
 		search_filters = { FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
@@ -415,6 +610,64 @@ focus_tree = {
 		}
 	}
 
+	# --- Our War, Their War (political debate, from blood_oath) ---
+	focus = {
+		id = AMA_sw_our_war_their_war
+		icon = GFX_focus_scroll_3
+		cost = 10
+		prerequisite = { focus = AMA_sw_blood_oath }
+		x = 34
+		y = 4
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			country_event = amani_second_war.10
+		}
+	}
+
+	# --- Demand the Northern Offensive (from amani_guides) ---
+	focus = {
+		id = AMA_sw_demand_northern_offensive
+		icon = GFX_focus_book_1
+		cost = 10
+		prerequisite = { focus = AMA_sw_amani_guides_north }
+		relative_position_id = AMA_sw_amani_guides_north
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			BRC = { exists = yes }
+			is_in_faction_with = BRC
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					BRC = { horde_authority_high = yes }
+				}
+				add_war_support = 0.10
+				BRC = { add_opinion_modifier = { target = AMA modifier = small_increase } }
+				set_country_flag = ama_sw_northern_offensive_promised
+			}
+			if = {
+				limit = {
+					BRC = { horde_authority_low = yes }
+				}
+				add_political_power = 50
+				BRC = { add_opinion_modifier = { target = AMA modifier = small_decrease } }
+				set_country_flag = ama_sw_demands_ignored
+			}
+			if = {
+				limit = {
+					BRC = { NOT = { horde_authority_low = yes } NOT = { horde_authority_high = yes } }
+				}
+				add_war_support = 0.05
+				add_political_power = 30
+			}
+		}
+	}
+
 	# --- Hillsbrad Pacified ---
 	focus = {
 		id = AMA_sw_hillsbrad_pacified
@@ -447,8 +700,99 @@ focus_tree = {
 		}
 	}
 
+	# --- Invoke Jan'alai (Dragonhawk Loa, from akil'zon) ---
+	focus = {
+		id = AMA_sw_invoke_janalai
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		cost = 8
+		prerequisite = { focus = AMA_sw_invoke_akilzon }
+		relative_position_id = AMA_sw_invoke_akilzon
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = janalai_mage_tech
+				bonus = 0.5
+				uses = 1
+				category = mage_technology
+			}
+			add_war_support = 0.05
+		}
+	}
+
+	# --- Invoke Halazzi (Lynx Loa, from nalorakk) ---
+	focus = {
+		id = AMA_sw_invoke_halazzi
+		icon = GFX_focus_alliance_prove_our_strength
+		cost = 8
+		prerequisite = { focus = AMA_sw_invoke_nalorakk }
+		x = 30
+		y = 4
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = halazzi_doctrine_bonus
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_army_experience = 15
+		}
+	}
+
+	# --- Trails Known Only to Us (reconnaissance, Northern War prep) ---
+	focus = {
+		id = AMA_sw_trails_known_to_us
+		icon = GFX_focus_gryphons
+		cost = 8
+		prerequisite = { focus = AMA_sw_axes_for_quelthalas }
+		x = 38
+		y = 4
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_army_experience = 20
+			add_tech_bonus = {
+				name = trails_encryption_tech
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+			add_tech_bonus = {
+				name = trails_decryption_tech
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	# --- Study the Runestones (anti-magic prep, from axes_for_que) ---
+	focus = {
+		id = AMA_sw_study_runestones
+		icon = GFX_focus_scroll_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_axes_for_quelthalas }
+		x = 40
+		y = 4
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = study_runestone_mage_tech
+				bonus = 0.5
+				uses = 1
+				category = mage_technology
+			}
+			add_political_power = 50
+		}
+	}
+
 	# ==========================================
-	# ROW 5 — Climax: attack and fate
+	# ROW 5 (y=5): Late preparation + attack begins
 	# ==========================================
 
 	# --- Blessed Axes ---
@@ -537,8 +881,153 @@ focus_tree = {
 		}
 	}
 
+	# --- No Orc Commands Zul'Aman (autonomy, from our_war) ---
+	focus = {
+		id = AMA_sw_no_orc_commands
+		icon = GFX_focus_generic_golden_sword
+		cost = 10
+		prerequisite = { focus = AMA_sw_our_war_their_war }
+		relative_position_id = AMA_sw_our_war_their_war
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 80
+			add_war_support = 0.05
+			add_stability = 0.05
+			if = {
+				limit = {
+					has_country_flag = ama_focus_amani_autonomy
+				}
+				set_country_flag = ama_sw_operational_autonomy
+				custom_effect_tooltip = ama_sw_autonomy_asserted_tt
+			}
+			if = {
+				limit = {
+					has_country_flag = ama_focus_horde_cooperation
+				}
+				BRC = {
+					add_opinion_modifier = {
+						target = AMA
+						modifier = large_increase
+					}
+				}
+				add_war_support = 0.05
+			}
+		}
+	}
+
+	# --- Silence the Messengers (Northern War, from trails) ---
+	focus = {
+		id = AMA_sw_silence_messengers
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 8
+		prerequisite = { focus = AMA_sw_trails_known_to_us }
+		relative_position_id = AMA_sw_trails_known_to_us
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = silence_decryption_tech
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+			add_army_experience = 15
+			if = {
+				limit = {
+					has_war_with = QUE
+				}
+				QUE = {
+					add_war_support = -0.03
+				}
+			}
+		}
+	}
+
+	# --- Break the Wards (anti-magic, from study_runestones) ---
+	focus = {
+		id = AMA_sw_break_the_wards
+		icon = GFX_focus_scroll_4
+		cost = 10
+		prerequisite = { focus = AMA_sw_study_runestones }
+		relative_position_id = AMA_sw_study_runestones
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.05
+			add_political_power = 50
+			if = {
+				limit = {
+					has_war_with = QUE
+				}
+				QUE = {
+					subtract_from_variable = { QUE_mana_reserve = 15 }
+				}
+			}
+		}
+	}
+
+	# --- Call for Dragonfire (from demand_northern or axes) ---
+	focus = {
+		id = AMA_sw_call_dragonfire
+		icon = GFX_goal_generic_major_war
+		cost = 10
+		prerequisite = { focus = AMA_sw_demand_northern_offensive }
+		x = 42
+		y = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			DMC = { exists = yes }
+			OR = {
+				is_in_faction_with = DMC
+				has_country_flag = ama_sw_horde_allied
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					DMC = { has_country_flag = DMC_enslaved_dragons }
+				}
+				country_event = amani_second_war.15
+			}
+			if = {
+				limit = {
+					DMC = { NOT = { has_country_flag = DMC_enslaved_dragons } }
+				}
+				add_political_power = 50
+				add_war_support = 0.05
+				custom_effect_tooltip = ama_sw_dragons_unavailable_tt
+			}
+		}
+	}
+
+	# --- Great Loa Offering (convergence from janalai + halazzi) ---
+	focus = {
+		id = AMA_sw_great_loa_offering
+		icon = GFX_focus_scroll_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_invoke_janalai }
+		prerequisite = { focus = AMA_sw_invoke_halazzi }
+		x = 29
+		y = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			country_event = amani_second_war.20
+		}
+	}
+
 	# ==========================================
-	# ROW 6 — War continues / aftermath
+	# ROW 6 (y=6): Climax — war continues
 	# ==========================================
 
 	# --- Flames of Vengeance ---
@@ -586,6 +1075,77 @@ focus_tree = {
 		}
 	}
 
+	# --- Break the Farstrider Screen (ranger warfare, from silence / no_orc) ---
+	focus = {
+		id = AMA_sw_break_farstrider_screen
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		cost = 10
+		prerequisite = { focus = AMA_sw_silence_messengers }
+		prerequisite = { focus = AMA_sw_no_orc_commands }
+		x = 35
+		y = 6
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_army_experience = 30
+			add_war_support = 0.08
+			if = {
+				limit = {
+					has_war_with = QUE
+				}
+				QUE = {
+					add_stability = -0.03
+				}
+			}
+		}
+	}
+
+	# --- Seize the Runestone Lands (from break_wards) ---
+	focus = {
+		id = AMA_sw_seize_runestone_lands
+		icon = GFX_focus_scroll_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_break_the_wards }
+		x = 41
+		y = 6
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_political_power = 60
+			if = {
+				limit = {
+					has_war_with = QUE
+				}
+				QUE = {
+					subtract_from_variable = { QUE_mana_reserve = 20 }
+				}
+			}
+		}
+	}
+
+	# --- Messengers to the Hinterlands (forest troll unification) ---
+	focus = {
+		id = AMA_sw_messengers_hinterlands
+		icon = GFX_focus_scroll_1
+		cost = 8
+		prerequisite = { focus = AMA_sw_old_feuds_one_enemy }
+		prerequisite = { focus = AMA_sw_blood_oath }
+		x = 43
+		y = 6
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 80
+			set_country_flag = ama_sw_messengers_sent
+			country_event = amani_second_war.30
+		}
+	}
+
+	# ==========================================
+	# ROW 7 (y=7): The crossroads
+	# ==========================================
+
 	# --- Victory or Defeat ---
 	focus = {
 		id = AMA_sw_victory_or_defeat
@@ -594,7 +1154,7 @@ focus_tree = {
 		prerequisite = { focus = AMA_sw_flames_of_vengeance }
 		prerequisite = { focus = AMA_sw_trollbane_broken }
 		x = 34
-		y = 6
+		y = 7
 		mutually_exclusive = {
 			focus = AMA_sw_empire_reborn
 			focus = AMA_sw_retreat_to_zulaman
@@ -606,11 +1166,95 @@ focus_tree = {
 		}
 	}
 
+	# --- Seize the Approach (Northern War convergence) ---
+	focus = {
+		id = AMA_sw_seize_northern_approach
+		icon = GFX_goal_generic_major_war
+		cost = 10
+		prerequisite = { focus = AMA_sw_break_farstrider_screen }
+		prerequisite = { focus = AMA_sw_seize_runestone_lands }
+		x = 40
+		y = 7
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_army_experience = 25
+			army_experience = 25
+		}
+	}
+
+	# --- Hunters of the Farstriders (from great_loa + break_farstrider) ---
+	focus = {
+		id = AMA_sw_hunters_farstriders
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		cost = 10
+		prerequisite = { focus = AMA_sw_great_loa_offering }
+		prerequisite = { focus = AMA_sw_break_farstrider_screen }
+		x = 37
+		y = 7
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_army_experience = 35
+			add_war_support = 0.08
+			if = {
+				limit = {
+					has_war_with = QUE
+				}
+				QUE = {
+					add_army_experience = -10
+				}
+			}
+		}
+	}
+
+	# --- Restore Forest Confederation (from messengers) ---
+	focus = {
+		id = AMA_sw_restore_forest_confederation
+		icon = GFX_focus_scroll_3
+		cost = 10
+		prerequisite = { focus = AMA_sw_messengers_hinterlands }
+		relative_position_id = AMA_sw_messengers_hinterlands
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 120
+			add_stability = 0.05
+			set_country_flag = ama_sw_confederation_restored
+			country_event = amani_second_war.31
+		}
+	}
+
+	# --- Road to Silvermoon (late campaign) ---
+	focus = {
+		id = AMA_sw_road_to_silvermoon
+		icon = GFX_goal_generic_major_war
+		cost = 10
+		prerequisite = { focus = AMA_sw_seize_northern_approach }
+		relative_position_id = AMA_sw_seize_northern_approach
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		available = {
+			has_war_with = QUE
+		}
+
+		completion_reward = {
+			add_war_support = 0.15
+			add_army_experience = 30
+			set_country_flag = ama_sw_pushing_silvermoon
+		}
+	}
+
 	# ==========================================
-	# ROW 7 — Fate after the war
+	# ROW 8 (y=8): Fate after the war — VICTORY PATHS
 	# ==========================================
 
-	# --- Empire Reborn (Victory path) ---
+	# --- Empire Reborn (Victory path — gateway) ---
 	focus = {
 		id = AMA_sw_empire_reborn
 		icon = GFX_focus_book_2
@@ -630,10 +1274,11 @@ focus_tree = {
 			add_political_power = 200
 			add_stability = 0.1
 			add_war_support = 0.1
+			news_event = { id = second_war_news.41 hours = 24 }
 		}
 	}
 
-	# --- Retreat to Zul'Aman (Defeat path) ---
+	# --- Retreat to Zul'Aman (Defeat path — gateway) ---
 	focus = {
 		id = AMA_sw_retreat_to_zulaman
 		icon = GFX_focus_generic_defence
@@ -666,7 +1311,678 @@ focus_tree = {
 		}
 	}
 
-	# --- Enduring Hatred ---
+	# --- One Banner Above the Forests (forest unification capstone) ---
+	focus = {
+		id = AMA_sw_one_banner_forests
+		icon = GFX_focus_book_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_restore_forest_confederation }
+		relative_position_id = AMA_sw_restore_forest_confederation
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_country_flag = ama_sw_confederation_restored
+		}
+
+		completion_reward = {
+			add_political_power = 150
+			add_manpower = 8000
+			add_war_support = 0.05
+			add_stability = 0.05
+		}
+	}
+
+	# --- Beneath the Elven Barrier (siege, from road_to_silvermoon) ---
+	focus = {
+		id = AMA_sw_beneath_elven_barrier
+		icon = GFX_focus_generic_defence
+		cost = 10
+		prerequisite = { focus = AMA_sw_road_to_silvermoon }
+		x = 41
+		y = 8
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		available = {
+			has_war_with = QUE
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_political_power = 100
+			if = {
+				limit = {
+					QUE = { has_country_flag = QUE_ban_dinoriel_active }
+				}
+				QUE = {
+					subtract_from_variable = { QUE_mana_reserve = 40 }
+				}
+			}
+		}
+	}
+
+	# ==========================================
+	# VICTORY PATH A — RESTORE THE OLD EMPIRE
+	# ==========================================
+
+	# --- Restore the Sacred Sites ---
+	focus = {
+		id = AMA_sw_restore_sacred_sites
+		icon = GFX_focus_scroll_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		relative_position_id = AMA_sw_empire_reborn
+		x = -2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 100
+			add_ideas = AMA_sw_sacred_sites_restored_idea
+		}
+	}
+
+	# --- Rebuild the Forest Roads ---
+	focus = {
+		id = AMA_sw_rebuild_forest_roads
+		icon = GFX_focus_generic_construction_green
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		relative_position_id = AMA_sw_empire_reborn
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_political_power = 60
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_core_of = AMA
+						state = 17
+						state = 34
+						state = 180
+						state = 181
+						state = 183
+						state = 184
+						state = 185
+						state = 189
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_core_of = AMA
+						state = 17
+						state = 34
+						state = 180
+						state = 181
+						state = 183
+						state = 184
+						state = 185
+						state = 189
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# --- The New Council of Zul'Aman (convergence) ---
+	focus = {
+		id = AMA_sw_new_council_zulaman
+		icon = GFX_focus_scroll_3
+		cost = 10
+		prerequisite = { focus = AMA_sw_restore_sacred_sites }
+		prerequisite = { focus = AMA_sw_rebuild_forest_roads }
+		x = 35
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 150
+			set_country_flag = ama_sw_empire_stabilizing
+		}
+	}
+
+	# --- Fortify the Eastern Marches ---
+	focus = {
+		id = AMA_sw_fortify_eastern_marches
+		icon = GFX_focus_generic_defence
+		cost = 10
+		prerequisite = { focus = AMA_sw_new_council_zulaman }
+		relative_position_id = AMA_sw_new_council_zulaman
+		x = 1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			17 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+				}
+			}
+			34 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# --- An Empire of More Than Warbands ---
+	focus = {
+		id = AMA_sw_empire_more_than_warbands
+		icon = GFX_focus_book_2
+		cost = 12
+		prerequisite = { focus = AMA_sw_new_council_zulaman }
+		x = 34
+		y = 10
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 150
+			set_rule = { can_create_factions = yes }
+			set_country_flag = ama_sw_empire_consolidated
+		}
+	}
+
+	# --- The Amani Empire Reborn (capstone) ---
+	focus = {
+		id = AMA_sw_amani_empire_capstone
+		icon = GFX_focus_generic_golden_sword
+		cost = 12
+		prerequisite = { focus = AMA_sw_empire_more_than_warbands }
+		prerequisite = { focus = AMA_sw_fortify_eastern_marches }
+		x = 35
+		y = 11
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.05
+			add_political_power = 200
+			set_cosmetic_tag = amani_empire_cosmetic_tag
+			news_event = { id = second_war_news.42 hours = 24 }
+			add_manpower = 10000
+		}
+	}
+
+	# ==========================================
+	# VICTORY PATH B — THE WAR OF VENGEANCE CONTINUES
+	# ==========================================
+
+	# --- Hunt the Elven Commanders ---
+	focus = {
+		id = AMA_sw_hunt_elven_commanders
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		x = 40
+		y = 9
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_army_experience = 40
+			set_country_flag = ama_sw_vengeance_path
+			if = {
+				limit = {
+					QUE = { exists = yes }
+				}
+				QUE = {
+					add_stability = -0.10
+				}
+			}
+		}
+	}
+
+	# --- No Refuge for the Farstriders ---
+	focus = {
+		id = AMA_sw_no_refuge_farstriders
+		icon = GFX_focus_quelthalas_alleria_windrunner
+		cost = 10
+		prerequisite = { focus = AMA_sw_hunt_elven_commanders }
+		relative_position_id = AMA_sw_hunt_elven_commanders
+		x = 1
+		y = 1
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_war_support = 0.08
+			add_army_experience = 25
+			if = {
+				limit = {
+					QUE = { exists = yes }
+				}
+				QUE = {
+					add_army_experience = -15
+				}
+			}
+		}
+	}
+
+	# --- Punish Those Who Aided Them ---
+	focus = {
+		id = AMA_sw_punish_allies
+		icon = GFX_goal_generic_major_war
+		cost = 10
+		prerequisite = { focus = AMA_sw_hunt_elven_commanders }
+		x = 43
+		y = 10
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		available = {
+			OR = {
+				DAL = { exists = yes }
+				GIL = { exists = yes }
+			}
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_army_experience = 20
+			DAL = {
+				owner = {
+					add_opinion_modifier = {
+						target = AMA
+						modifier = trade_disabled
+					}
+				}
+			}
+			GIL = {
+				owner = {
+					add_opinion_modifier = {
+						target = AMA
+						modifier = trade_disabled
+					}
+				}
+			}
+		}
+	}
+
+	# --- The Humans Remember the Troll Wars ---
+	focus = {
+		id = AMA_sw_humans_remember_troll_wars
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 10
+		prerequisite = { focus = AMA_sw_no_refuge_farstriders }
+		x = 40
+		y = 11
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		available = {
+			LOR = { exists = yes }
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			LOR = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = elf_menace
+				}
+			}
+			if = {
+				limit = {
+					is_in_faction_with = LOR
+				}
+				leave_faction = yes
+			}
+		}
+	}
+
+	# --- The Axe Does Not Rest (capstone) ---
+	focus = {
+		id = AMA_sw_axe_does_not_rest
+		icon = GFX_focus_generic_golden_sword
+		cost = 12
+		prerequisite = { focus = AMA_sw_humans_remember_troll_wars }
+		prerequisite = { focus = AMA_sw_punish_allies }
+		x = 42
+		y = 12
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			add_political_power = 150
+			add_ideas = AMA_sw_vengeance_eternal_idea
+		}
+	}
+
+	# ==========================================
+	# VICTORY PATH C — ZUL'AMAN FIRST
+	# ==========================================
+
+	# --- Our Debt Is Paid ---
+	focus = {
+		id = AMA_sw_debt_is_paid
+		icon = GFX_focus_book_1
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		x = 39
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			add_popularity = {
+				ideology = neutral
+				popularity = 0.20
+			}
+			set_country_flag = ama_sw_amani_first_path
+			if = {
+				limit = {
+					BRC = { exists = yes }
+				}
+				BRC = {
+					add_opinion_modifier = {
+						target = AMA
+						modifier = small_decrease
+					}
+				}
+			}
+		}
+	}
+
+	# --- Guard the Reclaimed Forest ---
+	focus = {
+		id = AMA_sw_guard_reclaimed_forest
+		icon = GFX_focus_generic_defence
+		cost = 10
+		prerequisite = { focus = AMA_sw_debt_is_paid }
+		relative_position_id = AMA_sw_debt_is_paid
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_manpower = 5000
+			18 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			197 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# --- Trade with the Horde, Bleed for No One ---
+	focus = {
+		id = AMA_sw_trade_with_horde
+		icon = GFX_focus_KUL_generic
+		cost = 10
+		prerequisite = { focus = AMA_sw_debt_is_paid }
+		x = 39
+		y = 10
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			BRC = { exists = yes }
+		}
+
+		completion_reward = {
+			add_political_power = 80
+			if = {
+				limit = {
+					BRC = { exists = yes }
+				}
+				BRC = {
+					add_opinion_modifier = {
+						target = AMA
+						modifier = small_increase
+					}
+				}
+			}
+		}
+	}
+
+	# --- An Equal Ally, Not a Vassal ---
+	focus = {
+		id = AMA_sw_equal_ally
+		icon = GFX_focus_book_3
+		cost = 12
+		prerequisite = { focus = AMA_sw_guard_reclaimed_forest }
+		prerequisite = { focus = AMA_sw_trade_with_horde }
+		x = 39
+		y = 11
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.10
+			set_rule = { can_create_factions = yes }
+			set_country_flag = ama_sw_equal_partner
+		}
+	}
+
+	# --- The Independent Amani Empire (capstone) ---
+	focus = {
+		id = AMA_sw_independent_amani_empire
+		icon = GFX_focus_generic_golden_sword
+		cost = 12
+		prerequisite = { focus = AMA_sw_equal_ally }
+		x = 39
+		y = 12
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.05
+			add_political_power = 200
+			set_cosmetic_tag = amani_empire_cosmetic_tag
+			if = {
+				limit = {
+					is_in_faction_with = BRC
+				}
+				if = {
+					limit = {
+						BRC = { horde_authority_high = yes }
+					}
+					add_stability = -0.05
+					set_country_flag = ama_sw_difficult_departure
+				}
+				if = {
+					limit = {
+						BRC = { horde_authority_low = yes }
+					}
+					add_stability = 0.05
+				}
+			}
+		}
+	}
+
+	# ==========================================
+	# VICTORY PATH D — THE NORTHERN HORDE
+	# ==========================================
+
+	# --- The Pact Vindicated ---
+	focus = {
+		id = AMA_sw_pact_vindicated
+		icon = GFX_focus_book_3
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		x = 41
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			BRC = { exists = yes }
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.10
+			set_country_flag = ama_sw_northern_horde_path
+			BRC = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = large_increase
+				}
+			}
+		}
+	}
+
+	# --- Trolls of the Northern Horde ---
+	focus = {
+		id = AMA_sw_trolls_northern_horde
+		icon = GFX_focus_alliance_prove_our_strength
+		cost = 10
+		prerequisite = { focus = AMA_sw_pact_vindicated }
+		relative_position_id = AMA_sw_pact_vindicated
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_manpower = 8000
+			add_army_experience = 25
+			if = {
+				limit = {
+					BRC = { exists = yes }
+				}
+				BRC = {
+					add_manpower = 2000
+				}
+			}
+		}
+	}
+
+	# --- Amani Scouts for Every Front ---
+	focus = {
+		id = AMA_sw_scouts_every_front
+		icon = GFX_focus_gryphons
+		cost = 10
+		prerequisite = { focus = AMA_sw_trolls_northern_horde }
+		x = 42
+		y = 10
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_army_experience = 30
+			add_tech_bonus = {
+				name = scouts_encryption_tech
+				bonus = 0.5
+				uses = 1
+				category = encryption_technology
+			}
+			add_tech_bonus = {
+				name = scouts_decryption_tech
+				bonus = 0.5
+				uses = 1
+				category = decryption_technology
+			}
+		}
+	}
+
+	# --- A Seat at the War Council ---
+	focus = {
+		id = AMA_sw_seat_at_war_council
+		icon = GFX_focus_scroll_3
+		cost = 12
+		prerequisite = { focus = AMA_sw_scouts_every_front }
+		x = 41
+		y = 11
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			BRC = { exists = yes }
+		}
+
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.05
+			if = {
+				limit = {
+					BRC = { exists = yes }
+				}
+				BRC = {
+					add_political_power = 50
+					add_opinion_modifier = {
+						target = AMA
+						modifier = large_increase
+					}
+				}
+			}
+		}
+	}
+
+	# --- An Empire Within the Horde (capstone) ---
+	focus = {
+		id = AMA_sw_empire_within_horde
+		icon = GFX_focus_generic_golden_sword
+		cost = 12
+		prerequisite = { focus = AMA_sw_seat_at_war_council }
+		x = 41
+		y = 12
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+			add_political_power = 200
+			set_cosmetic_tag = amani_empire_cosmetic_tag
+			if = {
+				limit = {
+					BRC = { exists = yes }
+				}
+				BRC = {
+					add_war_support = 0.05
+				}
+			}
+		}
+	}
+
+	# ==========================================
+	# DEFEAT PATH
+	# ==========================================
+
+	# --- Enduring Hatred (existing) ---
 	focus = {
 		id = AMA_sw_enduring_hatred
 		icon = GFX_focus_generic_provoke_border_clashes
@@ -694,4 +2010,565 @@ focus_tree = {
 			}
 		}
 	}
+
+	# --- Close the Forest Paths ---
+	focus = {
+		id = AMA_sw_close_forest_paths
+		icon = GFX_focus_generic_defence
+		cost = 10
+		prerequisite = { focus = AMA_sw_retreat_to_zulaman }
+		x = 29
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			18 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+				}
+			}
+			197 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+				}
+			}
+			add_stability = 0.05
+		}
+	}
+
+	# --- Hide the Warbands ---
+	focus = {
+		id = AMA_sw_hide_warbands
+		icon = GFX_focus_gryphons
+		cost = 8
+		prerequisite = { focus = AMA_sw_retreat_to_zulaman }
+		x = 30
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_manpower = 3000
+			add_army_experience = 20
+			add_stability = 0.05
+		}
+	}
+
+	# --- Preserve the Loa Shrines ---
+	focus = {
+		id = AMA_sw_preserve_loa_shrines
+		icon = GFX_focus_scroll_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_close_forest_paths }
+		x = 31
+		y = 10
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 80
+			add_ideas = AMA_sw_preserved_loa_idea
+		}
+	}
+
+	# --- Rebuild the Watch Posts ---
+	focus = {
+		id = AMA_sw_rebuild_watch_posts
+		icon = GFX_focus_generic_construction_green
+		cost = 10
+		prerequisite = { focus = AMA_sw_close_forest_paths }
+		prerequisite = { focus = AMA_sw_hide_warbands }
+		x = 33
+		y = 10
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			add_manpower = 2000
+			army_experience = 15
+			add_war_support = 0.05
+		}
+	}
+
+	# --- Heal the Wounded Nation ---
+	focus = {
+		id = AMA_sw_heal_wounded_nation
+		icon = GFX_focus_scroll_1
+		cost = 12
+		prerequisite = { focus = AMA_sw_preserve_loa_shrines }
+		prerequisite = { focus = AMA_sw_rebuild_watch_posts }
+		x = 32
+		y = 11
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.15
+			add_political_power = 120
+			add_manpower = 5000
+		}
+	}
+
+	# --- Zul'jin's Fate ---
+	focus = {
+		id = AMA_sw_zuljins_fate
+		icon = GFX_focus_generic_golden_sword
+		cost = 10
+		prerequisite = { focus = AMA_sw_heal_wounded_nation }
+		relative_position_id = AMA_sw_heal_wounded_nation
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			country_event = amani_second_war.40
+		}
+	}
+
+	# --- A Generation of Hatred ---
+	focus = {
+		id = AMA_sw_generation_of_hatred
+		icon = GFX_focus_generic_provoke_border_clashes
+		cost = 10
+		prerequisite = { focus = AMA_sw_zuljins_fate }
+		x = 33
+		y = 12
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			QUE = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = elf_menace
+				}
+			}
+			LOR = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = elf_menace
+				}
+			}
+		}
+	}
+
+	# --- Wait for the Next Weakness (defeat capstone) ---
+	focus = {
+		id = AMA_sw_wait_next_weakness
+		icon = GFX_focus_generic_defence
+		cost = 14
+		prerequisite = { focus = AMA_sw_generation_of_hatred }
+		relative_position_id = AMA_sw_generation_of_hatred
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.10
+			add_ideas = AMA_sw_survivors_will_idea
+		}
+	}
+
+	# ==========================================
+	# REACTIONS TO MAJOR EVENTS
+	# ==========================================
+
+	# --- Gul'dan's Betrayal Reaction ---
+	focus = {
+		id = AMA_sw_guldans_betrayal
+		icon = GFX_focus_scroll_3
+		cost = 7
+		prerequisite = { focus = AMA_sw_victory_or_defeat }
+		x = 36
+		y = 8
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_global_flag = the_horde_divided
+		}
+
+		completion_reward = {
+			country_event = amani_second_war.50
+		}
+	}
+
+	# --- Doomhammer Was Right ---
+	focus = {
+		id = AMA_sw_doomhammer_was_right
+		icon = GFX_focus_KUL_generic
+		cost = 8
+		prerequisite = { focus = AMA_sw_guldans_betrayal }
+		relative_position_id = AMA_sw_guldans_betrayal
+		x = 2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_country_flag = ama_sw_supports_warchief
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			BRC = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = large_increase
+				}
+			}
+		}
+	}
+
+	# --- Orc Problems Are Not Amani Problems ---
+	focus = {
+		id = AMA_sw_orc_problems_not_ours
+		icon = GFX_focus_book_1
+		cost = 8
+		prerequisite = { focus = AMA_sw_guldans_betrayal }
+		x = 36
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_country_flag = ama_sw_northern_focus
+		}
+
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			BRC = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+
+	# --- Horde Victory / Defeat conditional paths ---
+
+	# --- Horde Victory, AMA Survived ---
+	focus = {
+		id = AMA_sw_horde_victory_ama_survived
+		icon = GFX_focus_KUL_generic
+		cost = 10
+		prerequisite = { focus = AMA_sw_retreat_to_zulaman }
+		x = 28
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_country_flag = ama_sw_horde_defeated
+			BRC = { exists = yes NOT = { has_capitulated = yes } }
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			if = {
+				limit = {
+					is_in_faction_with = BRC
+				}
+				add_war_support = 0.08
+				add_manpower = 3000
+			}
+		}
+	}
+
+	# --- Harboring Horde Remnants ---
+	focus = {
+		id = AMA_sw_harbor_horde_remnants
+		icon = GFX_focus_generic_defence
+		cost = 10
+		prerequisite = { focus = AMA_sw_guldans_betrayal }
+		x = 37
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_global_flag = the_horde_divided
+			OR = {
+				has_country_flag = ama_sw_horde_defeated
+				LOR = { strategic_initiative_score > 1 }
+			}
+		}
+
+		completion_reward = {
+			add_manpower = 5000
+			add_stability = -0.05
+			add_war_support = 0.10
+			LOR = {
+				add_opinion_modifier = {
+					target = AMA
+					modifier = elf_menace
+				}
+			}
+		}
+	}
+
+	# ==========================================
+	# SUNWELL QUESTION (post-victory sub-branch)
+	# ==========================================
+
+	# --- The Sunwell Question (gateway) ---
+	focus = {
+		id = AMA_sw_sunwell_question
+		icon = GFX_focus_scroll_4
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		x = 43
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			OR = {
+				33 = { is_controlled_by = AMA }
+				33 = { is_owned_by = AMA }
+			}
+			QUE = { OR = { has_capitulated = yes surrender_progress > 0.9 NOT = { exists = yes } } }
+		}
+
+		completion_reward = {
+			country_event = amani_second_war.60
+		}
+	}
+
+	# --- Seal the Sunwell Area ---
+	focus = {
+		id = AMA_sw_seal_sunwell
+		icon = GFX_focus_generic_defence
+		cost = 10
+		prerequisite = { focus = AMA_sw_sunwell_question }
+		x = 44
+		y = 10
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_country_flag = ama_sw_sunwell_seal
+		}
+
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 100
+			set_country_flag = ama_sw_sunwell_sealed
+		}
+	}
+
+	# --- Destroy the Elven Source of Power ---
+	focus = {
+		id = AMA_sw_destroy_sunwell
+		icon = GFX_goal_generic_major_war
+		cost = 10
+		prerequisite = { focus = AMA_sw_sunwell_question }
+		x = 45
+		y = 10
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			has_country_flag = ama_sw_sunwell_destroy
+		}
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+			QUE = {
+				subtract_from_variable = { QUE_mana_reserve = 100 }
+			}
+			set_country_flag = ama_sw_sunwell_destroyed
+			news_event = { id = second_war_news.43 hours = 24 }
+		}
+	}
+
+	# --- Study the Ancient Magic ---
+	focus = {
+		id = AMA_sw_study_sunwell
+		icon = GFX_focus_scroll_2
+		cost = 12
+		prerequisite = { focus = AMA_sw_sunwell_question }
+		x = 46
+		y = 10
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		available = {
+			has_country_flag = ama_sw_sunwell_study
+		}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = sunwell_study_tech
+				bonus = 0.5
+				uses = 2
+				category = mage_technology
+			}
+			add_political_power = 100
+			add_stability = -0.05
+			set_country_flag = ama_sw_sunwell_studying
+		}
+	}
+
+	# ==========================================
+	# ECONOMIC AND INDUSTRIAL DEVELOPMENT
+	# ==========================================
+
+	# --- War Workshops of Zul'Aman ---
+	focus = {
+		id = AMA_sw_war_workshops
+		icon = GFX_focus_generic_construction_brown
+		cost = 10
+		prerequisite = { focus = AMA_sw_axes_for_quelthalas }
+		x = 36
+		y = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_political_power = 50
+		}
+	}
+
+	# --- Timber for the War ---
+	focus = {
+		id = AMA_sw_timber_for_war
+		icon = GFX_focus_generic_construction_green
+		cost = 10
+		prerequisite = { focus = AMA_sw_war_workshops }
+		x = 39
+		y = 6
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# --- Spoils of Quel'Thalas (post-conquest economic) ---
+	focus = {
+		id = AMA_sw_spoils_of_quelthalas
+		icon = GFX_focus_book_2
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		x = 42
+		y = 9
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		available = {
+			OR = {
+				QUE = { OR = { has_capitulated = yes NOT = { exists = yes } } }
+			}
+		}
+
+		completion_reward = {
+			add_political_power = 120
+			add_manpower = 3000
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_core_of = AMA
+						state = 17
+						state = 33
+						state = 175
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_core_of = AMA
+						state = 17
+						state = 33
+						state = 175
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	# ==========================================
+	# FOREST TROLL UNIFICATION — diplomatic follow-ups
+	# ==========================================
+
+	# --- Call the Scattered Tribes ---
+	focus = {
+		id = AMA_sw_call_scattered_tribes
+		icon = GFX_focus_scroll_1
+		cost = 10
+		prerequisite = { focus = AMA_sw_empire_reborn }
+		x = 45
+		y = 9
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			country_event = amani_second_war.70
+		}
+	}
+
 }

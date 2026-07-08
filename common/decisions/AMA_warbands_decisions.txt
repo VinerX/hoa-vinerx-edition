@@ -1,0 +1,256 @@
+# =============================================================================
+# AMANI WARBANDS — Persistent decision system
+# =============================================================================
+
+amani_warbands_category = {
+
+	# =============================================================================
+	# Warband Demands the Eastern Forests
+	# =============================================================================
+	AMA_warbands_demand_forests = {
+		icon = generic_army_bonus
+
+		allowed = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+			NOT = { has_country_flag = AMA_warbands_forests_resolved }
+			OR = {
+				has_war_with = QUE
+				AND = {
+					has_country_flag = ama_sw_horde_victory
+					QUE = { OR = { has_capitulated = yes NOT = { exists = yes } } }
+				}
+			}
+		}
+
+		available = {
+			political_power > 29
+		}
+
+		visible = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+		}
+
+		fire_only_once = yes
+
+		cost = 30
+
+		complete_effect = {
+			country_event = amani_second_war.80
+			set_country_flag = AMA_warbands_forests_resolved
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	# =============================================================================
+	# Priests Demand a Great Offering
+	# =============================================================================
+	AMA_priests_demand_offering = {
+		icon = generic_political
+
+		allowed = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+			has_war_with = QUE
+			date > 597.1.1
+		}
+
+		available = {
+			political_power > 24
+		}
+
+		visible = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+		}
+
+		cost = 25
+
+		complete_effect = {
+			country_event = amani_second_war.81
+		}
+
+		ai_will_do = {
+			factor = 0.5
+		}
+	}
+
+	# =============================================================================
+	# A Chief Refuses Horde Command
+	# =============================================================================
+	AMA_chief_refuses_horde = {
+		icon = generic_political
+
+		allowed = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+			is_in_faction_with = BRC
+			has_war_with = QUE
+		}
+
+		available = {
+			political_power > 19
+		}
+
+		visible = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+		}
+
+		cost = 20
+
+		complete_effect = {
+			country_event = amani_second_war.82
+		}
+
+		ai_will_do = {
+			factor = 0.4
+		}
+	}
+
+	# =============================================================================
+	# Divide the Spoils (post-conquest only)
+	# =============================================================================
+	AMA_divide_spoils = {
+		icon = generic_army_bonus
+
+		allowed = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+			has_country_flag = ama_sw_horde_victory
+			NOT = { has_country_flag = AMA_spoils_divided }
+		}
+
+		available = {
+			political_power > 39
+		}
+
+		visible = {
+			original_tag = AMA
+			has_country_flag = ama_sw_council_established
+			has_country_flag = ama_sw_horde_victory
+		}
+
+		fire_only_once = yes
+
+		cost = 40
+
+		complete_effect = {
+			country_event = amani_second_war.83
+			set_country_flag = AMA_spoils_divided
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	# =============================================================================
+	# Restore Amani Settlements (post-conquest)
+	# =============================================================================
+	AMA_restore_settlements = {
+		icon = generic_construction
+
+		allowed = {
+			original_tag = AMA
+			has_country_flag = ama_sw_horde_victory
+			has_country_flag = ama_sw_council_established
+		}
+
+		available = {
+			political_power > 49
+		}
+
+		visible = {
+			original_tag = AMA
+			has_country_flag = ama_sw_horde_victory
+			has_country_flag = ama_sw_council_established
+		}
+
+		cost = 50
+
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						state = 34
+						state = 181
+						state = 183
+						state = 184
+						state = 185
+						state = 189
+						state = 17
+						state = 175
+						state = 180
+					}
+					is_core_of = AMA
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.03
+			set_country_flag = AMA_settlements_restored
+		}
+
+		ai_will_do = {
+			factor = 0.7
+		}
+	}
+
+	# =============================================================================
+	# Establish Warband Garrisons (post-conquest)
+	# =============================================================================
+	AMA_establish_garrisons = {
+		icon = generic_defense
+
+		allowed = {
+			original_tag = AMA
+			has_country_flag = ama_sw_horde_victory
+			has_country_flag = ama_sw_council_established
+		}
+
+		available = {
+			political_power > 39
+		}
+
+		visible = {
+			original_tag = AMA
+			has_country_flag = ama_sw_horde_victory
+			has_country_flag = ama_sw_council_established
+		}
+
+		cost = 40
+
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						state = 17
+						state = 175
+						state = 180
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_war_support = 0.03
+		}
+
+		ai_will_do = {
+			factor = 0.6
+		}
+	}
+
+}
