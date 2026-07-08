@@ -1,0 +1,58 @@
+# ============================================================
+# Second War Phase Controller — scripted effects
+#
+# Phases are stored as a global variable "second_war_phase" on LOR.
+# Phase 0 = Gathering Storm (bookmark start)
+# Phase 1 = Horde Goes North
+# Phase 2 = Alliance War
+# Phase 3 = Northern Crisis & Betrayals
+# Phase 4 = Counteroffensive
+# Phase 5 = Endgame (Blackrock + Dark Portal)
+#
+# Advancement is checked monthly; date fallbacks ensure the
+# war never stalls permanently even if scripted milestones aren't hit.
+# ============================================================
+
+second_war_phase_init = {
+	LOR = {
+		if = {
+			limit = { NOT = { has_variable = second_war_phase } }
+			set_variable = { second_war_phase = 0 }
+		}
+	}
+}
+
+second_war_phase_advance_1 = {
+	LOR = {
+		set_variable = { second_war_phase = 1 }
+	}
+	log = "[GetDateText]: Second War phase advanced to 1 — Horde Goes North"
+}
+
+second_war_phase_advance_2 = {
+	LOR = {
+		set_variable = { second_war_phase = 2 }
+	}
+	log = "[GetDateText]: Second War phase advanced to 2 — Alliance War"
+}
+
+second_war_phase_advance_3 = {
+	LOR = {
+		set_variable = { second_war_phase = 3 }
+	}
+	log = "[GetDateText]: Second War phase advanced to 3 — Northern Crisis"
+}
+
+second_war_phase_advance_4 = {
+	LOR = {
+		set_variable = { second_war_phase = 4 }
+	}
+	log = "[GetDateText]: Second War phase advanced to 4 — Counteroffensive"
+}
+
+second_war_phase_advance_5 = {
+	LOR = {
+		set_variable = { second_war_phase = 5 }
+	}
+	log = "[GetDateText]: Second War phase advanced to 5 — Endgame"
+}
