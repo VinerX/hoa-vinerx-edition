@@ -23,6 +23,13 @@ join_grand_alliance = {
 		# Capture the joining country so it resolves correctly even when this
 		# effect is called from within a target/every_country scope.
 		save_event_target_as = grand_alliance_joiner
+		# Leave any existing faction before joining the Alliance.
+		# "leave_faction" covers both regular members and faction leaders,
+		# ensuring the Coaliton of Khaz Modan dissolves cleanly.
+		if = {
+			limit = { is_in_faction = yes }
+			leave_faction = yes
+		}
 		if = {
 			limit = { LOR = { exists = yes is_faction_leader = yes } }
 			LOR = { add_to_faction = event_target:grand_alliance_joiner }
@@ -89,6 +96,27 @@ merge_coalition_of_khaz_modan = {
 	if = {
 		limit = { IRO = { exists = yes } }
 		IRO = { join_grand_alliance = yes }
+	}
+}
+
+# Monthly fallback: if the Coalition merge partially failed
+# (e.g. members joined but IRO as faction leader got stuck),
+# try again for any remaining Coalition members.
+coalition_merge_fallback = {
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					IRO = { exists = yes NOT = { is_in_faction_with = STO } is_in_faction = yes }
+					any_country = { is_in_faction_with = IRO tag = GNO }
+				}
+				AND = {
+					IRO = { exists = yes NOT = { is_in_faction_with = STO } is_in_faction = yes }
+					any_country = { is_in_faction_with = IRO tag = NRT }
+				}
+			}
+		}
+		merge_coalition_of_khaz_modan = yes
 	}
 }
 
