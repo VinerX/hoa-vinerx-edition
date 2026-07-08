@@ -48,6 +48,107 @@ on_actions = {
 				}
 				second_war_phase_advance_5 = yes
 			}
+
+			# ----------------------------------------------------
+			# Stromgarde Second War integration — timed events
+			# ----------------------------------------------------
+
+			# Danath's Rangers → Expeditionary Force (fires ~180 days after rangers formed)
+			if = {
+				limit = {
+					has_global_flag = STR_danath_rangers_formed
+					NOT = { has_global_flag = STR_danath_expeditionary_decided }
+					STR = {
+						exists = yes
+						is_in_faction_with = LOR
+					}
+					# 180 days = ~6 months
+					STR = {
+						if = {
+							limit = { NOT = { has_variable = STR_danath_expedition_timer } }
+							set_variable = { STR_danath_expedition_timer = 0 }
+						}
+						else = {
+							add_to_variable = { STR_danath_expedition_timer = 1 }
+						}
+						check_variable = { STR_danath_expedition_timer > 5 }
+					}
+				}
+				set_global_flag = STR_danath_expeditionary_decided
+				STR = { country_event = { id = stromgarde_sw.41 hours = 6 } }
+			}
+
+			# Divided Army reminder (fires ~180 days after STR joins Alliance)
+			if = {
+				limit = {
+					STR = {
+						exists = yes
+						STR_has_sw_alliance_commitment = yes
+						NOT = { has_country_flag = STR_sw_divided_reminder_sent }
+					}
+					STR = {
+						if = {
+							limit = { NOT = { has_variable = STR_sw_reminder_timer } }
+							set_variable = { STR_sw_reminder_timer = 0 }
+						}
+						else = {
+							add_to_variable = { STR_sw_reminder_timer = 1 }
+						}
+						check_variable = { STR_sw_reminder_timer > 5 }
+					}
+				}
+				STR = {
+					set_country_flag = STR_sw_divided_reminder_sent
+					country_event = { id = stromgarde_sw.2 hours = 6 }
+				}
+			}
+
+			# The Perenolde Problem (fires ~30 days after STR joins Alliance if not mountain watch)
+			if = {
+				limit = {
+					STR = {
+						exists = yes
+						STR_has_sw_alliance_commitment = yes
+						NOT = { has_country_flag = STR_alterac_investigation_started }
+						NOT = { has_country_flag = STR_sw_refused_alliance }
+						is_in_faction_with = LOR
+					}
+					ALT = { exists = yes }
+					STR = {
+						if = {
+							limit = { NOT = { has_variable = STR_sw_perenolde_timer } }
+							set_variable = { STR_sw_perenolde_timer = 0 }
+						}
+						else = {
+							add_to_variable = { STR_sw_perenolde_timer = 1 }
+						}
+						check_variable = { STR_sw_perenolde_timer > 0 }
+					}
+				}
+				STR = { country_event = { id = stromgarde_sw.10 hours = 6 } }
+			}
+
+			# Horde approaches Thandol (STR alert when Horde threatens state 130)
+			if = {
+				limit = {
+					NOT = { has_global_flag = STR_thandol_approached }
+					NOT = { has_global_flag = news_thandol_span_falls }
+					STR = {
+						exists = yes
+						is_in_faction_with = LOR
+						has_war_with = BRC
+					}
+					BRC = {
+						any_controlled_state = {
+							OR = {
+								is_on_continent = azeroth_south
+							}
+						}
+					}
+				}
+				set_global_flag = STR_thandol_approached
+				STR = { country_event = { id = stromgarde_sw.30 hours = 6 } }
+			}
 		}
 	}
 

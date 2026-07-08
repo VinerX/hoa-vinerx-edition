@@ -1569,6 +1569,20 @@ on_actions = {
 				set_global_flag = second_war_has_begun
 				BRC = { country_event = { id = second_war.3 hours = 12 } }
 			}
+
+			# ----------------------------------------------------
+			# Stromgarde Second War integration
+			# Danath's Rangers form when STR first fights BRC
+			# ----------------------------------------------------
+			if = {
+				limit = {
+					NOT = { has_global_flag = STR_danath_rangers_formed }
+					STR = { exists = yes has_war_with = BRC }
+					BRC = { exists = yes has_war_with = STR }
+				}
+				set_global_flag = STR_danath_rangers_formed
+				STR = { country_event = { id = stromgarde_sw.40 hours = 6 } }
+			}
 		}
 	}
 }

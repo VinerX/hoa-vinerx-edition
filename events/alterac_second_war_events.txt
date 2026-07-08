@@ -131,6 +131,28 @@ country_event = {
 		}
 		set_country_flag = ALT_betrayal_discovered
 		news_event = { id = second_war_news.22 hours = 12 }
+
+		# ----------------------------------------------------
+		# Stromgarde Second War integration — Alterac Question
+		# ----------------------------------------------------
+		# STR was vigilant: investigation level >= 2
+		if = {
+			limit = {
+				STR = {
+					exists = yes
+					OR = {
+						has_country_flag = STR_alterac_investigation_level_2
+						has_country_flag = STR_alterac_investigation_level_3
+					}
+				}
+			}
+			STR = { country_event = { id = stromgarde_sw.20 hours = 6 } }
+		}
+		# STR was NOT vigilant or didn't investigate
+		else_if = {
+			limit = { STR = { exists = yes } }
+			STR = { country_event = { id = stromgarde_sw.21 hours = 6 } }
+		}
 	}
 }
 

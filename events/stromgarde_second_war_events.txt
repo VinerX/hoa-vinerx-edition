@@ -1,0 +1,513 @@
+# ====================================================================
+# Stromgarde Second War integration
+# namespace: stromgarde_sw
+# ====================================================================
+
+add_namespace = stromgarde_sw
+
+# ====================================================================
+# PHASE 0: Alliance Joining — The Call from Capital City
+# ====================================================================
+
+# STR receives the call to formally join the Alliance, replacing the
+# old grand_alliance.3 flow. The player chooses HOW Stromgarde commits.
+country_event = {
+	id = stromgarde_sw.1
+	title = stromgarde_sw.1.t
+	desc = stromgarde_sw.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.1" }
+
+	# Full commitment — send the bulk of the army to Lothar
+	option = {
+		name = stromgarde_sw.1.a
+		join_grand_alliance = yes
+		add_war_support = 0.05
+		alliance_unity_raise_major = yes
+		add_ideas = STR_army_divided_field
+		set_country_flag = STR_sw_joined_field_army
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { country_event = { id = lordaeron_second_war_proto.4 hours = 6 } }
+		}
+		ai_chance = {
+			base = 60
+			modifier = {
+				factor = 2
+				has_war = yes
+			}
+			modifier = {
+				factor = 1.5
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	# Southern shield — keep forces to defend Arathi
+	option = {
+		name = stromgarde_sw.1.b
+		join_grand_alliance = yes
+		add_war_support = 0.03
+		alliance_unity_raise = yes
+		add_ideas = STR_army_divided_homeland
+		set_country_flag = STR_sw_joined_homeland
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { country_event = { id = lordaeron_second_war_proto.4 hours = 6 } }
+		}
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 1.5
+				check_variable = { lordaeron_overextension > 2 }
+			}
+		}
+	}
+
+	# Mountain watch — prioritise intelligence on Alterac and passes
+	option = {
+		name = stromgarde_sw.1.c
+		join_grand_alliance = yes
+		add_war_support = 0.02
+		alliance_unity_raise = yes
+		add_ideas = STR_army_divided_mountain
+		set_country_flag = STR_sw_joined_mountain
+		set_country_flag = STR_alterac_investigation_started
+		add_timed_idea = {
+			idea = STR_suspicious_neighbour
+			days = 365
+		}
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { country_event = { id = lordaeron_second_war_proto.4 hours = 6 } }
+		}
+		ai_chance = {
+			base = 15
+		}
+	}
+
+	# Refuse to join (historical off only)
+	option = {
+		name = stromgarde_sw.1.d
+		add_political_power = 50
+		alliance_unity_lower_medium = yes
+		set_country_flag = STR_sw_refused_alliance
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { country_event = { id = lordaeron_second_war_proto.4 hours = 6 } }
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				factor = 1
+				NOT = { is_historical_focus_on = yes }
+				has_government = neutral
+			}
+		}
+	}
+}
+
+# ====================================================================
+# PHASE 1: Divided Army — periodic re-evaluation
+# Handled via decisions in stromgarde_decisions.txt.
+# This event fires ~180 days after joining to remind the player.
+# ====================================================================
+country_event = {
+	id = stromgarde_sw.2
+	title = stromgarde_sw.2.t
+	desc = stromgarde_sw.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.2" }
+
+	option = {
+		name = stromgarde_sw.2.a
+		add_political_power = 25
+	}
+}
+
+# ====================================================================
+# PHASE 2: The Alterac Question
+# ====================================================================
+
+# Investigation starts (fired 30 days after joining if mountain path NOT chosen,
+# or immediately from the mountain path option)
+country_event = {
+	id = stromgarde_sw.10
+	title = stromgarde_sw.10.t
+	desc = stromgarde_sw.10.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.10" }
+
+	option = {
+		name = stromgarde_sw.10.a
+		set_country_flag = STR_alterac_investigation_started
+		add_timed_idea = {
+			idea = STR_suspicious_neighbour
+			days = 365
+		}
+	}
+}
+
+# Investigation level increases to 2 — "Gathering Evidence"
+country_event = {
+	id = stromgarde_sw.11
+	title = stromgarde_sw.11.t
+	desc = stromgarde_sw.11.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.11" }
+
+	option = {
+		name = stromgarde_sw.11.a
+		add_political_power = 25
+	}
+}
+
+# Investigation reaches level 3 — "The Truth Uncovered"
+country_event = {
+	id = stromgarde_sw.12
+	title = stromgarde_sw.12.t
+	desc = stromgarde_sw.12.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.12" }
+
+	option = {
+		name = stromgarde_sw.12.a
+		add_political_power = 50
+		add_stability = 0.02
+		alliance_unity_raise_medium = yes
+	}
+}
+
+# ALT betrays — STR was vigilant (investigation level >= 2)
+country_event = {
+	id = stromgarde_sw.20
+	title = stromgarde_sw.20.t
+	desc = stromgarde_sw.20.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.20" }
+
+	option = {
+		name = stromgarde_sw.20.a
+		add_war_support = 0.05
+		add_stability = -0.02
+		set_country_flag = STR_alterac_betrayal_prepared
+		set_global_flag = STR_blocked_alterac_passes
+		alliance_unity_raise = yes
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = {
+				set_country_flag = LOR_alterac_pass_mitigated
+				add_opinion_modifier = {
+					target = STR
+					modifier = STR_friendly_relations
+				}
+			}
+		}
+		custom_effect_tooltip = stromgarde_sw_blocked_passes_tt
+	}
+}
+
+# ALT betrays — STR caught off guard (investigation level < 2 or no investigation)
+country_event = {
+	id = stromgarde_sw.21
+	title = stromgarde_sw.21.t
+	desc = stromgarde_sw.21.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.21" }
+
+	option = {
+		name = stromgarde_sw.21.a
+		add_war_support = -0.05
+		add_stability = -0.05
+		set_country_flag = STR_alterac_betrayal_unprepared
+		alliance_unity_lower = yes
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = {
+				set_country_flag = LOR_alterac_pass_open
+			}
+		}
+	}
+}
+
+# ====================================================================
+# PHASE 3: Thandol Span
+# ====================================================================
+
+# Horde approaches the Thandol Span
+# Fired from on_action when Horde controls a Khaz Modan border state
+country_event = {
+	id = stromgarde_sw.30
+	title = stromgarde_sw.30.t
+	desc = stromgarde_sw.30.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.30" }
+
+	option = {
+		name = stromgarde_sw.30.a
+		add_war_support = 0.03
+		add_timed_idea = {
+			idea = STR_thandol_garrisoned
+			days = 365
+		}
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { country_event = { id = stromgarde_sw.33 hours = 12 } }
+		}
+	}
+
+	option = {
+		name = stromgarde_sw.30.b
+		add_political_power = 50
+		add_war_support = -0.02
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = { country_event = { id = stromgarde_sw.33 hours = 12 } }
+		}
+	}
+}
+
+# The Gate to Arathi is Open — Horde crosses Thandol (fired when state 130 is Horde-controlled)
+country_event = {
+	id = stromgarde_sw.31
+	title = stromgarde_sw.31.t
+	desc = stromgarde_sw.31.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.31" }
+
+	option = {
+		name = stromgarde_sw.31.a
+		add_war_support = -0.05
+		add_stability = -0.03
+		alliance_unity_lower_medium = yes
+		add_timed_idea = {
+			idea = STR_thandol_broken
+			days = 365
+		}
+		remove_ideas = STR_thandol_garrisoned
+	}
+}
+
+# The Road South Reopens — Alliance retakes Thandol
+country_event = {
+	id = stromgarde_sw.32
+	title = stromgarde_sw.32.t
+	desc = stromgarde_sw.32.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.32" }
+
+	option = {
+		name = stromgarde_sw.32.a
+		add_war_support = 0.05
+		add_stability = 0.02
+		alliance_unity_raise_medium = yes
+		remove_ideas = STR_thandol_broken
+		remove_ideas = STR_thandol_garrisoned
+		add_timed_idea = {
+			idea = STR_thandol_secured
+			days = 365
+		}
+	}
+}
+
+# LOR notification: Stromgarde warns of Horde approach
+country_event = {
+	id = stromgarde_sw.33
+	title = stromgarde_sw.33.t
+	desc = stromgarde_sw.33.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.33 (LOR notification)" }
+
+	option = {
+		name = stromgarde_sw.33.a
+		add_political_power = 15
+	}
+}
+
+# ====================================================================
+# PHASE 4: Danath's March South
+# ====================================================================
+
+# Danath's Rangers form (early war — fired when STR first fights BRC)
+country_event = {
+	id = stromgarde_sw.40
+	title = stromgarde_sw.40.t
+	desc = stromgarde_sw.40.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.40" }
+
+	option = {
+		name = stromgarde_sw.40.a
+		add_timed_idea = {
+			idea = STR_danath_rangers
+			days = 365
+		}
+	}
+}
+
+# The Arathi Expeditionary Force — choose Danath's role
+country_event = {
+	id = stromgarde_sw.41
+	title = stromgarde_sw.41.t
+	desc = stromgarde_sw.41.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.41" }
+
+	# Send Danath to Lothar's army
+	option = {
+		name = stromgarde_sw.41.a
+		set_country_flag = STR_danath_with_lothar
+		alliance_unity_raise = yes
+		add_ideas = STR_danath_expeditionary
+		remove_ideas = STR_danath_rangers
+		add_war_support = 0.03
+		if = {
+			limit = { LOR = { exists = yes } }
+			LOR = {
+				add_timed_idea = {
+					idea = LOR_danath_reinforcement
+					days = 365
+				}
+				add_opinion_modifier = {
+					target = STR
+					modifier = STR_friendly_relations
+				}
+			}
+		}
+		ai_chance = {
+			base = 60
+			modifier = {
+				factor = 2
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	# Keep Danath in Stromgarde
+	option = {
+		name = stromgarde_sw.41.b
+		set_country_flag = STR_danath_kept_home
+		remove_ideas = STR_danath_rangers
+		add_ideas = STR_danath_arathi_defender
+		ai_chance = {
+			base = 25
+		}
+	}
+
+	# Prepare southern expedition early
+	option = {
+		name = stromgarde_sw.41.c
+		set_country_flag = STR_danath_southern_expedition
+		remove_ideas = STR_danath_rangers
+		add_ideas = STR_danath_southern_prep
+		ai_chance = {
+			base = 15
+		}
+	}
+}
+
+# Danath's March South begins (counteroffensive phase)
+country_event = {
+	id = stromgarde_sw.42
+	title = stromgarde_sw.42.t
+	desc = stromgarde_sw.42.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.42" }
+
+	option = {
+		name = stromgarde_sw.42.a
+		remove_ideas = STR_danath_expeditionary
+		remove_ideas = STR_danath_arathi_defender
+		remove_ideas = STR_danath_southern_prep
+		add_ideas = STR_danath_march_south
+		alliance_unity_raise_medium = yes
+		add_war_support = 0.05
+	}
+}
+
+# Veterans of the Second War (fired on Alliance victory)
+country_event = {
+	id = stromgarde_sw.50
+	title = stromgarde_sw.50.t
+	desc = stromgarde_sw.50.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event stromgarde_sw.50" }
+
+	option = {
+		name = stromgarde_sw.50.a
+		add_stability = 0.05
+		add_war_support = 0.10
+		remove_ideas = STR_army_divided_field
+		remove_ideas = STR_army_divided_homeland
+		remove_ideas = STR_army_divided_mountain
+		remove_ideas = STR_danath_rangers
+		remove_ideas = STR_danath_expeditionary
+		remove_ideas = STR_danath_arathi_defender
+		remove_ideas = STR_danath_southern_prep
+		remove_ideas = STR_danath_march_south
+		remove_ideas = STR_thandol_garrisoned
+		remove_ideas = STR_thandol_broken
+		remove_ideas = STR_thandol_secured
+		remove_ideas = STR_suspicious_neighbour
+		add_ideas = STR_veterans_second_war
+	}
+}

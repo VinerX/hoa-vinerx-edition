@@ -533,6 +533,11 @@ news_event = {
 
 	immediate = {
 		set_global_flag = news_thandol_span_falls
+		# Stromgarde receives the alert
+		if = {
+			limit = { STR = { exists = yes } }
+			STR = { country_event = { id = stromgarde_sw.31 hours = 6 } }
+		}
 	}
 
 	option = {
@@ -582,6 +587,11 @@ news_event = {
 
 	immediate = {
 		set_global_flag = news_thandol_span_recaptured
+		# Stromgarde receives the alert
+		if = {
+			limit = { STR = { exists = yes } }
+			STR = { country_event = { id = stromgarde_sw.32 hours = 6 } }
+		}
 	}
 
 	option = {
@@ -1566,6 +1576,126 @@ news_event = {
 			NOT = {
 				is_in_faction_with = LOR
 				original_tag = BRC
+			}
+		}
+	}
+}
+
+# =============================================================================
+# NEW — Amani Empire Reborn
+# =============================================================================
+news_event = {
+	id = second_war_news.41
+	major = yes
+
+	option = {
+		name = second_war_news.41.a
+		trigger = {
+			original_tag = AMA
+		}
+	}
+	option = {
+		name = second_war_news.41.b
+		trigger = {
+			is_in_faction_with = BRC
+			NOT = { original_tag = AMA }
+		}
+	}
+	option = {
+		name = second_war_news.41.c
+		trigger = {
+			is_in_faction_with = LOR
+		}
+	}
+	option = {
+		name = second_war_news.41.d
+		trigger = {
+			NOT = {
+				OR = {
+					original_tag = AMA
+					is_in_faction_with = BRC
+					is_in_faction_with = LOR
+				}
+			}
+		}
+	}
+}
+
+# =============================================================================
+# NEW — Amani Empire Capstone
+# =============================================================================
+news_event = {
+	id = second_war_news.42
+	major = yes
+
+	option = {
+		name = second_war_news.42.a
+		trigger = {
+			original_tag = AMA
+		}
+	}
+	option = {
+		name = second_war_news.42.b
+		trigger = {
+			is_in_faction_with = BRC
+			NOT = { original_tag = AMA }
+		}
+	}
+	option = {
+		name = second_war_news.42.c
+		trigger = {
+			is_in_faction_with = LOR
+		}
+	}
+	option = {
+		name = second_war_news.42.d
+		trigger = {
+			NOT = {
+				OR = {
+					original_tag = AMA
+					is_in_faction_with = BRC
+					is_in_faction_with = LOR
+				}
+			}
+		}
+	}
+}
+
+# =============================================================================
+# NEW — Sunwell Destroyed
+# =============================================================================
+news_event = {
+	id = second_war_news.43
+	major = yes
+
+	option = {
+		name = second_war_news.43.a
+		trigger = {
+			original_tag = AMA
+		}
+	}
+	option = {
+		name = second_war_news.43.b
+		trigger = {
+			is_in_faction_with = BRC
+			NOT = { original_tag = AMA }
+		}
+	}
+	option = {
+		name = second_war_news.43.c
+		trigger = {
+			is_in_faction_with = LOR
+		}
+	}
+	option = {
+		name = second_war_news.43.d
+		trigger = {
+			NOT = {
+				OR = {
+					original_tag = AMA
+					is_in_faction_with = BRC
+					is_in_faction_with = LOR
+				}
 			}
 		}
 	}
