@@ -1,0 +1,569 @@
+add_namespace = ama_forest_unity
+
+# =============================================================================
+# AMANI FOREST TROLL UNIFICATION — REAL POLITICAL EFFECTS
+# Replaces the opinion-only amani_second_war.30-.31 chain with actual
+# faction-joining, puppeting, and annexation mechanics.
+#
+# Stage 1: Messengers to the Hinterlands (focus AMA_sw_messengers_hinterlands)
+#   → ama_forest_unity.1 (AMA) → .2 (each forest troll tribe)
+# Stage 2: Restore Confederation (focus AMA_sw_restore_forest_confederation)
+#   → ama_forest_unity.5 (AMA) → .6 (tribes that joined)
+# Stage 3: One Banner (focus AMA_sw_one_banner_forests)
+#   → ama_forest_unity.10 (AMA) → .11 (remaining independent tribes)
+#                                → .12 (MFT/SPT puppet integration)
+# Stage 4: Call Scattered Tribes (focus AMA_sw_call_scattered_tribes)
+#   → ama_forest_unity.20 (AMA) → .21 (non-forest troll tribes)
+# =============================================================================
+
+# =============================================================================
+# STAGE 1 — AMA: Messengers Depart
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.1
+	title = ama_forest_unity.1.t
+	desc = ama_forest_unity.1.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.1" }
+
+	option = {
+		name = ama_forest_unity.1.a
+		add_political_power = 80
+		set_country_flag = ama_sw_messengers_sent
+		if = {
+			limit = { WBT = { exists = yes } }
+			WBT = { country_event = ama_forest_unity.2 }
+		}
+		if = {
+			limit = { VIL = { exists = yes } }
+			VIL = { country_event = ama_forest_unity.2 }
+		}
+		if = {
+			limit = { FTT = { exists = yes } }
+			FTT = { country_event = ama_forest_unity.2 }
+		}
+		if = {
+			limit = { SMR = { exists = yes } }
+			SMR = { country_event = ama_forest_unity.2 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 1 — Tribe Response: Join the Amani or Refuse
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.2
+	title = ama_forest_unity.2.t
+	desc = ama_forest_unity.2.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.2" }
+
+	option = {
+		name = ama_forest_unity.2.a
+		trigger = {
+			NOT = { is_puppet = yes }
+		}
+		leave_faction = yes
+		AMA = {
+			if = {
+				limit = {
+					is_faction_leader = yes
+				}
+				add_to_faction = ROOT
+			}
+			else = {
+				add_to_faction = ROOT
+			}
+		}
+		add_stability = 3
+		add_popularity = {
+			ideology = horde
+			popularity = 0.10
+		}
+		set_country_flag = ama_tribe_joined_confederation
+		AMA = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = large_increase
+			}
+		}
+		ai_chance = {
+			base = 70
+		}
+	}
+	option = {
+		name = ama_forest_unity.2.b
+		add_stability = -2
+		AMA = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = ROOT
+			}
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 2 — AMA: Restore Confederation
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.5
+	title = ama_forest_unity.5.t
+	desc = ama_forest_unity.5.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.5" }
+
+	option = {
+		name = ama_forest_unity.5.a
+		add_political_power = 120
+		add_stability = 0.05
+		set_country_flag = ama_sw_confederation_restored
+		# Send integration ultimatum to tribes that joined the confederation
+		if = {
+			limit = {
+				WBT = {
+					exists = yes
+					has_country_flag = ama_tribe_joined_confederation
+					is_in_faction_with = AMA
+				}
+			}
+			WBT = { country_event = ama_forest_unity.6 }
+		}
+		if = {
+			limit = {
+				VIL = {
+					exists = yes
+					has_country_flag = ama_tribe_joined_confederation
+					is_in_faction_with = AMA
+				}
+			}
+			VIL = { country_event = ama_forest_unity.6 }
+		}
+		if = {
+			limit = {
+				FTT = {
+					exists = yes
+					has_country_flag = ama_tribe_joined_confederation
+					is_in_faction_with = AMA
+				}
+			}
+			FTT = { country_event = ama_forest_unity.6 }
+		}
+		if = {
+			limit = {
+				SMR = {
+					exists = yes
+					has_country_flag = ama_tribe_joined_confederation
+					is_in_faction_with = AMA
+				}
+			}
+			SMR = { country_event = ama_forest_unity.6 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 2 — Tribe Response: Accept Integration or Break Free
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.6
+	title = ama_forest_unity.6.t
+	desc = ama_forest_unity.6.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.6" }
+
+	option = {
+		name = ama_forest_unity.6.a
+		AMA = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		ai_chance = {
+			base = 80
+		}
+	}
+	option = {
+		name = ama_forest_unity.6.b
+		leave_faction = yes
+		if = {
+			limit = {
+				is_puppet_of = AMA
+			}
+			end_puppet = AMA
+		}
+		set_truce = {
+			target = AMA
+			days = 1
+		}
+		AMA = {
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 3 — AMA: One Banner (final consolidation + puppet integration)
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.10
+	title = ama_forest_unity.10.t
+	desc = ama_forest_unity.10.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.10" }
+
+	option = {
+		name = ama_forest_unity.10.a
+		add_manpower = 8000
+		add_war_support = 0.05
+		# Send ultimatum to remaining independent forest trolls
+		if = {
+			limit = {
+				WBT = {
+					exists = yes
+					NOT = { is_puppet_of = AMA }
+					NOT = { has_country_flag = ama_tribe_joined_confederation }
+				}
+			}
+			WBT = { country_event = ama_forest_unity.11 }
+		}
+		if = {
+			limit = {
+				VIL = {
+					exists = yes
+					NOT = { is_puppet_of = AMA }
+					NOT = { has_country_flag = ama_tribe_joined_confederation }
+				}
+			}
+			VIL = { country_event = ama_forest_unity.11 }
+		}
+		if = {
+			limit = {
+				FTT = {
+					exists = yes
+					NOT = { is_puppet_of = AMA }
+					NOT = { has_country_flag = ama_tribe_joined_confederation }
+				}
+			}
+			FTT = { country_event = ama_forest_unity.11 }
+		}
+		if = {
+			limit = {
+				SMR = {
+					exists = yes
+					NOT = { is_puppet_of = AMA }
+					NOT = { has_country_flag = ama_tribe_joined_confederation }
+				}
+			}
+			SMR = { country_event = ama_forest_unity.11 }
+		}
+		# Integrate existing puppets MFT and SPT
+		if = {
+			limit = {
+				MFT = { exists = yes is_puppet_of = AMA }
+			}
+			MFT = { country_event = ama_forest_unity.12 }
+		}
+		if = {
+			limit = {
+				SPT = { exists = yes is_puppet_of = AMA }
+			}
+			SPT = { country_event = ama_forest_unity.12 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 3 — Remaining Independent Tribe: Puppet or Wargoal
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.11
+	title = ama_forest_unity.11.t
+	desc = ama_forest_unity.11.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.11" }
+
+	option = {
+		name = ama_forest_unity.11.a
+		AMA = { puppet = ROOT }
+		leave_faction = yes
+		ai_chance = {
+			base = 70
+		}
+	}
+	option = {
+		name = ama_forest_unity.11.b
+		AMA = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = ROOT
+			}
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = small_decrease
+			}
+		}
+		leave_faction = yes
+		set_truce = {
+			target = AMA
+			days = 1
+		}
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 3 — MFT/SPT Puppet Integration
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.12
+	title = ama_forest_unity.12.t
+	desc = ama_forest_unity.12.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.12" }
+
+	option = {
+		name = ama_forest_unity.12.a
+		AMA = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		ai_chance = {
+			base = 85
+		}
+	}
+	option = {
+		name = ama_forest_unity.12.b
+		end_puppet = AMA
+		set_truce = {
+			target = AMA
+			days = 1
+		}
+		AMA = {
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 15
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 4 — AMA: Call the Scattered Tribes (non-forest trolls)
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.20
+	title = ama_forest_unity.20.t
+	desc = ama_forest_unity.20.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.20" }
+
+	option = {
+		name = ama_forest_unity.20.a
+		add_manpower = 8000
+		add_stability = 0.05
+		add_political_power = 100
+		# Contact non-forest troll tribes across the world
+		if = {
+			limit = { FAR = { exists = yes } }
+			FAR = { country_event = ama_forest_unity.21 }
+		}
+		if = {
+			limit = { GUR = { exists = yes } }
+			GUR = { country_event = ama_forest_unity.21 }
+		}
+		if = {
+			limit = { BLO = { exists = yes } }
+			BLO = { country_event = ama_forest_unity.21 }
+		}
+		if = {
+			limit = { SKU = { exists = yes } }
+			SKU = { country_event = ama_forest_unity.21 }
+		}
+		if = {
+			limit = { DST = { exists = yes } }
+			DST = { country_event = ama_forest_unity.21 }
+		}
+		if = {
+			limit = { STS = { exists = yes } }
+			STS = { country_event = ama_forest_unity.21 }
+		}
+		if = {
+			limit = { RTT = { exists = yes } }
+			RTT = { country_event = ama_forest_unity.21 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+# =============================================================================
+# STAGE 4 — Non-Forest Tribe Response: Join, Become Vassal, or Refuse
+# =============================================================================
+country_event = {
+	id = ama_forest_unity.21
+	title = ama_forest_unity.21.t
+	desc = ama_forest_unity.21.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: event ama_forest_unity.21" }
+
+	option = {
+		name = ama_forest_unity.21.a
+		trigger = {
+			NOT = { is_puppet = yes }
+		}
+		leave_faction = yes
+		AMA = {
+			if = {
+				limit = { is_faction_leader = yes }
+				add_to_faction = ROOT
+			}
+			else = {
+				add_to_faction = ROOT
+			}
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = medium_increase
+			}
+		}
+		add_stability = 3
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = {
+		name = ama_forest_unity.21.b
+		trigger = {
+			NOT = { is_puppet = yes }
+		}
+		AMA = { puppet = ROOT }
+		leave_faction = yes
+		add_stability = 2
+		AMA = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = large_increase
+			}
+		}
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = {
+		name = ama_forest_unity.21.c
+		add_stability = -2
+		AMA = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 25
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}

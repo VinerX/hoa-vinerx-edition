@@ -126,12 +126,17 @@ country_event = {
 	option = {
 		name = amani_second_war.4.option.1
 		trigger = {
-			has_war_with = QUE
-			QUE = {
-				OR = {
-					has_capitulated = yes
+			OR = {
+				AND = {
+					has_war_with = QUE
+					QUE = {
+						OR = {
+							has_capitulated = yes
+							surrender_progress > 0.5
+						}
+					}
 				}
-				surrender_progress > 0.5
+				NOT = { country_exists = QUE }
 			}
 		}
 		set_country_flag = ama_sw_horde_victory
@@ -170,19 +175,22 @@ country_event = {
 		name = amani_second_war.4.option.3
 		trigger = {
 			has_war_with = QUE
+			QUE = { surrender_progress < 0.5 NOT = { has_capitulated = yes } }
 		}
-		set_country_flag = ama_sw_horde_victory
-		add_stability = 0.05
-		add_war_support = 0.05
+		add_stability = 0.03
+		add_war_support = 0.08
 		add_political_power = 50
 		ai_chance = {
-			base = 1
+			base = 5
 		}
 	}
 	option = {
 		name = amani_second_war.4.option.4
-		set_country_flag = ama_sw_horde_defeated
-		add_stability = 0.20
+		trigger = {
+			NOT = { has_war_with = QUE }
+		}
+		add_stability = 0.15
+		add_political_power = 50
 		add_popularity = {
 			ideology = neutral
 			popularity = 0.15
