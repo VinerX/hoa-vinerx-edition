@@ -407,7 +407,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_army_experience = 15
+			army_experience = 15
 			BRC = {
 				add_opinion_modifier = {
 					target = AMA
@@ -419,7 +419,7 @@ focus_tree = {
 					BRC = { exists = yes }
 				}
 				BRC = {
-					add_army_experience = 10
+					army_experience = 10
 				}
 			}
 		}
@@ -739,7 +739,7 @@ focus_tree = {
 				uses = 1
 				category = land_doctrine
 			}
-			add_army_experience = 15
+			army_experience = 15
 		}
 	}
 
@@ -754,7 +754,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
-			add_army_experience = 20
+			army_experience = 20
 			add_tech_bonus = {
 				name = trails_encryption_tech
 				bonus = 0.5
@@ -936,7 +936,7 @@ focus_tree = {
 				uses = 1
 				category = decryption_technology
 			}
-			add_army_experience = 15
+			army_experience = 15
 			if = {
 				limit = {
 					has_war_with = QUE
@@ -1087,7 +1087,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 
 		completion_reward = {
-			add_army_experience = 30
+			army_experience = 30
 			add_war_support = 0.08
 			if = {
 				limit = {
@@ -1179,7 +1179,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.10
-			add_army_experience = 25
+			army_experience = 25
 			army_experience = 25
 		}
 	}
@@ -1196,14 +1196,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 
 		completion_reward = {
-			add_army_experience = 35
+			army_experience = 35
 			add_war_support = 0.08
 			if = {
 				limit = {
 					has_war_with = QUE
 				}
 				QUE = {
-					add_army_experience = -10
+					army_experience = -10
 				}
 			}
 		}
@@ -1245,7 +1245,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.15
-			add_army_experience = 30
+			army_experience = 30
 			set_country_flag = ama_sw_pushing_silvermoon
 		}
 	}
@@ -1399,11 +1399,10 @@ focus_tree = {
 			add_political_power = 60
 			random_owned_controlled_state = {
 				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-						include_locked = yes
-					}
+			free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
 					OR = {
 						is_core_of = AMA
 						state = 17
@@ -1425,11 +1424,10 @@ focus_tree = {
 			}
 			random_owned_controlled_state = {
 				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-						include_locked = yes
-					}
+			free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
 					OR = {
 						is_core_of = AMA
 						state = 17
@@ -1556,7 +1554,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.10
-			add_army_experience = 40
+			army_experience = 40
 			set_country_flag = ama_sw_vengeance_path
 			if = {
 				limit = {
@@ -1582,13 +1580,13 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.08
-			add_army_experience = 25
+			army_experience = 25
 			if = {
 				limit = {
 					QUE = { exists = yes }
 				}
 				QUE = {
-					add_army_experience = -15
+					army_experience = -15
 				}
 			}
 		}
@@ -1613,7 +1611,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.10
-			add_army_experience = 20
+			army_experience = 20
 			DAL = {
 				owner = {
 					add_opinion_modifier = {
@@ -1881,7 +1879,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_manpower = 8000
-			add_army_experience = 25
+			army_experience = 25
 			if = {
 				limit = {
 					BRC = { exists = yes }
@@ -1904,7 +1902,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_army_experience = 30
+			army_experience = 30
 			add_tech_bonus = {
 				name = scouts_encryption_tech
 				bonus = 0.5
@@ -2054,7 +2052,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_manpower = 3000
-			add_army_experience = 20
+			army_experience = 20
 			add_stability = 0.05
 		}
 	}
@@ -2293,7 +2291,7 @@ focus_tree = {
 			has_global_flag = the_horde_divided
 			OR = {
 				has_country_flag = ama_sw_horde_defeated
-				LOR = { strategic_initiative_score > 1 }
+				LOR = { check_variable = { var = strategic_initiative_score value = 1 compare = greater_than } }
 			}
 		}
 
