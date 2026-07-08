@@ -312,6 +312,101 @@ ALLOWED_TRIGGER_META_KEYS = {
     "meta_trigger",
 }
 
+# Native HOI4 engine triggers/effects that never appear at depth 0
+# in scripted_effects/scripted_triggers files and are therefore invisible
+# to the depth-0 vocabulary scanner. Checked against HOI4 1.18.3.
+NATIVE_EFFECT_KEYS = {
+    "add_autonomy_score",
+    "add_building_construction",
+    "add_claim_by",
+    "add_compliance",
+    "add_core_of",
+    "add_nuclear_bombs",
+    "add_offsite_building",
+    "add_threat",
+    "add_units_to_division_template",
+    "annex_country",
+    "any_subject_country",
+    "complete_national_focus",
+    "country_lock_all_division_template",
+    "create_corps_commander",
+    "create_country_leader",
+    "create_faction",
+    "create_wargoal",
+    "declare_war_on",
+    "delete_unit",
+    "goto_state",
+    "inherit_technology",
+    "load_focus_tree",
+    "load_oob",
+    "play_song",
+    "puppet",
+    "remove_claim_by",
+    "remove_country_leader_trait",
+    "remove_mission",
+    "reverse_add_opinion_modifier",
+    "set_division_template_lock",
+    "set_nationality",
+    "set_province_name",
+    "set_state_name",
+    "set_truce",
+    "start_border_war",
+    "white_peace",
+}
+
+NATIVE_TRIGGER_KEYS = {
+    "alliance",
+    "amount_research_slots",
+    "any_subject_country",
+    "arcane_tower",
+    "command_power",
+    "compliance",
+    "death",
+    "eggs",
+    "farm",
+    "fel",
+    "gunpowder",
+    "has_army_experience",
+    "has_army_manpower",
+    "has_core_occupation_modifier",
+    "has_defensive_war",
+    "has_done_agency_upgrade",
+    "has_full_control_of_state",
+    "has_idea_with_trait",
+    "has_navy_experience",
+    "has_non_aggression_pact_with",
+    "has_resources_in_country",
+    "has_start_date",
+    "has_subject",
+    "has_war_support",
+    "has_war_with_major",
+    "highlight_state_targets",
+    "horde",
+    "iron_mine",
+    "is_character",
+    "is_puppet",
+    "is_puppet_of",
+    "lumber_mill",
+    "mana",
+    "mounts",
+    "nesting_grounds",
+    "neutral",
+    "num_faction_members",
+    "num_of_civilian_factories_available_for_projects",
+    "num_of_controlled_states",
+    "oil",
+    "old_gods",
+    "ores",
+    "stable",
+    "state_population",
+    "state_population_k",
+    "sulfur_mine",
+    "threat",
+    "titans",
+    "wheat",
+    "wood",
+}
+
 TRIGGER_BLOCK_NAMES = {
     "allowed",
     "available",
@@ -444,11 +539,23 @@ def is_dynamic_scope_key(key: str) -> bool:
 
 
 def is_scope_like_key(key: str) -> bool:
-    return key in ALLOWED_SCOPE_KEYS or is_numeric_scope_key(key) or is_dynamic_scope_key(key)
+    return key in ALLOWED_SCOPE_KEYS or is_numeric_scope_key(key) or is_dynamic_scope_key(key) or is_character_scope_key(key)
 
 
 def is_country_tag_like_key(key: str) -> bool:
     return 2 <= len(key) <= 4 and key.isupper() and key.isalpha()
+
+
+def is_character_scope_key(key: str) -> bool:
+    """Recognise saved character references like NET_archmage_thasranan."""
+    parts = key.split("_", 1)
+    return (
+        len(parts) == 2
+        and 2 <= len(parts[0]) <= 4
+        and parts[0].isupper()
+        and parts[0].isalpha()
+        and len(parts[1]) > 0
+    )
 
 
 def find_matching_brace(text: str, open_idx: int) -> int:
@@ -709,9 +816,13 @@ def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
     Trigger keys are sourced from vanilla scripted triggers and `limit` blocks
     inside vanilla scripted effects/triggers plus custom scripted trigger names
     from the mod itself.
+
+    Also includes a curated allowlist of native HOI4 engine triggers/effects
+    that never appear at depth 0 in scripted files and are invisible to the
+    depth-0 scanner.
     """
-    effect_keys: set[str] = set()
-    trigger_keys: set[str] = set()
+    effect_keys: set[str] = set(NATIVE_EFFECT_KEYS)
+    trigger_keys: set[str] = set(NATIVE_TRIGGER_KEYS)
 
     for ref_root in DEFAULT_REFERENCE_ROOTS:
         if not os.path.isdir(ref_root):
@@ -765,8 +876,11 @@ def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
                 continue
             _raw, text = loaded
             clean = strip_comments_and_strings(text)
-            for name, _body, _line in extract_top_level_definitions(clean):
+            for name, body, _line in extract_top_level_definitions(clean):
                 effect_keys.add(name)
+                _scan_all_depths_for_keys(body, effect_keys)
+                for limit_body, _limit_line in extract_named_blocks(body, "limit"):
+                    _scan_all_depths_for_keys(limit_body, trigger_keys)
 
     triggers_root = os.path.join(mod_root, SCRIPTED_TRIGGERS_DIR)
     if os.path.isdir(triggers_root):
@@ -776,10 +890,24 @@ def build_scripted_vocab(mod_root: str) -> tuple[set[str], set[str]]:
                 continue
             _raw, text = loaded
             clean = strip_comments_and_strings(text)
-            for name, _body, _line in extract_top_level_definitions(clean):
+            for name, body, _line in extract_top_level_definitions(clean):
                 trigger_keys.add(name)
+                _scan_all_depths_for_keys(body, trigger_keys)
+                for limit_body, _limit_line in extract_named_blocks(body, "limit"):
+                    _scan_all_depths_for_keys(limit_body, trigger_keys)
 
     return effect_keys, trigger_keys
+
+
+def _scan_all_depths_for_keys(block_text: str, out_set: set[str]) -> None:
+    """Extract keys at every depth from a block, for vocabulary building."""
+    depth = 0
+    for line in block_text.splitlines():
+        if depth >= 0:
+            m = re.match(r"^\s*([A-Za-z0-9_@.:\'-]+)\s*(?:=|>|<)", line)
+            if m:
+                out_set.add(m.group(1))
+        depth += line.count("{") - line.count("}")
 
 
 def build_data_vocab(mod_root: str) -> tuple[set[str], set[str], set[str], set[str]]:
