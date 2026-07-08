@@ -17,7 +17,7 @@ focus_tree = {
 	shared_focus = arming_the_nation
 
 	# ========================================================================
-	# AMANI SECOND WAR FOCUS TREE — ZUL'JIN'S CRUSADE
+	# AMANI SECOND WAR FOCUS TREE вЂ” ZUL'JIN'S CRUSADE
 	#
 	# Column layout (x axes):
 	#   x=27-30   Loa, religion, spiritual warfare
@@ -29,17 +29,17 @@ focus_tree = {
 	#
 	# Y ranges:
 	#   y=0       Root
-	#   y=1-2     Act I — The Warlord of Zul'Aman
-	#   y=3-5     Act II — The Pact with Doomhammer + early prep
-	#   y=4-6     Act III — Preparing the Northern War
-	#   y=6-8     Act IV — The Conquest of Quel'Thalas
+	#   y=1-2     Act I вЂ” The Warlord of Zul'Aman
+	#   y=3-5     Act II вЂ” The Pact with Doomhammer + early prep
+	#   y=4-6     Act III вЂ” Preparing the Northern War
+	#   y=6-8     Act IV вЂ” The Conquest of Quel'Thalas
 	#   y=8-11    Post-Victory / Post-Defeat paths
 	#
 	# Total: 23 preserved + ~52 new = ~75 focuses
 	# ========================================================================
 
 	# ==========================================
-	# ACT I — ROOT FOCUS (y=0)
+	# ACT I вЂ” ROOT FOCUS (y=0)
 	# ==========================================
 
 	focus = {
@@ -58,7 +58,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# ACT I — ROW 1 (y=1): Branch split from root
+	# ACT I вЂ” ROW 1 (y=1): Branch split from root
 	# ==========================================
 
 	# --- Loa Blessings (spiritual, left) ---
@@ -202,7 +202,7 @@ focus_tree = {
 	}
 
 	# --- Horde War Council (center from tribal) ---
-	focus = {
+		focus = {
 		id = AMA_sw_horde_war_council
 		icon = GFX_focus_KUL_generic
 		cost = 10
@@ -213,7 +213,7 @@ focus_tree = {
 
 		available = {
 			OR = {
-				BRC = { second_war_phase_at_least = { phase = 1 } }
+				BRC = { second_war_phase_at_least_1 = yes }
 				date > 597.3.1
 				BRC = { OR = { exists = no has_capitulated = yes } }
 			}
@@ -407,7 +407,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_army_experience = 15
+			army_experience = 15
 			BRC = {
 				add_opinion_modifier = {
 					target = AMA
@@ -419,7 +419,7 @@ focus_tree = {
 					BRC = { exists = yes }
 				}
 				BRC = {
-					add_army_experience = 10
+					army_experience = 10
 				}
 			}
 		}
@@ -481,7 +481,7 @@ focus_tree = {
 
 		available = {
 			OR = {
-				BRC = { second_war_phase_at_least = { phase = 1 } }
+				BRC = { second_war_phase_at_least_1 = yes }
 				date > 597.3.1
 				BRC = { OR = { exists = no has_capitulated = yes } }
 				AND = {
@@ -739,7 +739,7 @@ focus_tree = {
 				uses = 1
 				category = land_doctrine
 			}
-			add_army_experience = 15
+			army_experience = 15
 		}
 	}
 
@@ -754,7 +754,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH }
 
 		completion_reward = {
-			add_army_experience = 20
+			army_experience = 20
 			add_tech_bonus = {
 				name = trails_encryption_tech
 				bonus = 0.5
@@ -837,7 +837,7 @@ focus_tree = {
 
 		available = {
 			OR = {
-				BRC = { second_war_phase_at_least = { phase = 2 } }
+				BRC = { second_war_phase_at_least_2 = yes }
 				AND = {
 					date > 597.1.1
 					has_completed_focus = AMA_sw_blessed_axes
@@ -936,7 +936,7 @@ focus_tree = {
 				uses = 1
 				category = decryption_technology
 			}
-			add_army_experience = 15
+			army_experience = 15
 			if = {
 				limit = {
 					has_war_with = QUE
@@ -1027,7 +1027,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# ROW 6 (y=6): Climax — war continues
+	# ROW 6 (y=6): Climax вЂ” war continues
 	# ==========================================
 
 	# --- Flames of Vengeance ---
@@ -1087,7 +1087,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 
 		completion_reward = {
-			add_army_experience = 30
+			army_experience = 30
 			add_war_support = 0.08
 			if = {
 				limit = {
@@ -1179,7 +1179,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.10
-			add_army_experience = 25
+			army_experience = 25
 			army_experience = 25
 		}
 	}
@@ -1196,14 +1196,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 
 		completion_reward = {
-			add_army_experience = 35
+			army_experience = 35
 			add_war_support = 0.08
 			if = {
 				limit = {
 					has_war_with = QUE
 				}
 				QUE = {
-					add_army_experience = -10
+					army_experience = -10
 				}
 			}
 		}
@@ -1245,16 +1245,16 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.15
-			add_army_experience = 30
+			army_experience = 30
 			set_country_flag = ama_sw_pushing_silvermoon
 		}
 	}
 
 	# ==========================================
-	# ROW 8 (y=8): Fate after the war — VICTORY PATHS
+	# ROW 8 (y=8): Fate after the war вЂ” VICTORY PATHS
 	# ==========================================
 
-	# --- Empire Reborn (Victory path — gateway) ---
+	# --- Empire Reborn (Victory path вЂ” gateway) ---
 	focus = {
 		id = AMA_sw_empire_reborn
 		icon = GFX_focus_book_2
@@ -1278,7 +1278,7 @@ focus_tree = {
 		}
 	}
 
-	# --- Retreat to Zul'Aman (Defeat path — gateway) ---
+	# --- Retreat to Zul'Aman (Defeat path вЂ” gateway) ---
 	focus = {
 		id = AMA_sw_retreat_to_zulaman
 		icon = GFX_focus_generic_defence
@@ -1363,7 +1363,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# VICTORY PATH A — RESTORE THE OLD EMPIRE
+	# VICTORY PATH A вЂ” RESTORE THE OLD EMPIRE
 	# ==========================================
 
 	# --- Restore the Sacred Sites ---
@@ -1399,11 +1399,10 @@ focus_tree = {
 			add_political_power = 60
 			random_owned_controlled_state = {
 				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-						include_locked = yes
-					}
+			free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
 					OR = {
 						is_core_of = AMA
 						state = 17
@@ -1425,11 +1424,10 @@ focus_tree = {
 			}
 			random_owned_controlled_state = {
 				limit = {
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-						include_locked = yes
-					}
+			free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
 					OR = {
 						is_core_of = AMA
 						state = 17
@@ -1541,7 +1539,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# VICTORY PATH B — THE WAR OF VENGEANCE CONTINUES
+	# VICTORY PATH B вЂ” THE WAR OF VENGEANCE CONTINUES
 	# ==========================================
 
 	# --- Hunt the Elven Commanders ---
@@ -1556,7 +1554,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.10
-			add_army_experience = 40
+			army_experience = 40
 			set_country_flag = ama_sw_vengeance_path
 			if = {
 				limit = {
@@ -1582,13 +1580,13 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.08
-			add_army_experience = 25
+			army_experience = 25
 			if = {
 				limit = {
 					QUE = { exists = yes }
 				}
 				QUE = {
-					add_army_experience = -15
+					army_experience = -15
 				}
 			}
 		}
@@ -1613,7 +1611,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_war_support = 0.10
-			add_army_experience = 20
+			army_experience = 20
 			DAL = {
 				owner = {
 					add_opinion_modifier = {
@@ -1684,7 +1682,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# VICTORY PATH C — ZUL'AMAN FIRST
+	# VICTORY PATH C вЂ” ZUL'AMAN FIRST
 	# ==========================================
 
 	# --- Our Debt Is Paid ---
@@ -1838,7 +1836,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# VICTORY PATH D — THE NORTHERN HORDE
+	# VICTORY PATH D вЂ” THE NORTHERN HORDE
 	# ==========================================
 
 	# --- The Pact Vindicated ---
@@ -1881,7 +1879,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_manpower = 8000
-			add_army_experience = 25
+			army_experience = 25
 			if = {
 				limit = {
 					BRC = { exists = yes }
@@ -1904,7 +1902,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_army_experience = 30
+			army_experience = 30
 			add_tech_bonus = {
 				name = scouts_encryption_tech
 				bonus = 0.5
@@ -2054,7 +2052,7 @@ focus_tree = {
 
 		completion_reward = {
 			add_manpower = 3000
-			add_army_experience = 20
+			army_experience = 20
 			add_stability = 0.05
 		}
 	}
@@ -2293,7 +2291,7 @@ focus_tree = {
 			has_global_flag = the_horde_divided
 			OR = {
 				has_country_flag = ama_sw_horde_defeated
-				LOR = { strategic_initiative_score > 1 }
+				LOR = { check_variable = { var = strategic_initiative_score value = 1 compare = greater_than } }
 			}
 		}
 
@@ -2553,7 +2551,7 @@ focus_tree = {
 	}
 
 	# ==========================================
-	# FOREST TROLL UNIFICATION — diplomatic follow-ups
+	# FOREST TROLL UNIFICATION вЂ” diplomatic follow-ups
 	# ==========================================
 
 	# --- Call the Scattered Tribes ---

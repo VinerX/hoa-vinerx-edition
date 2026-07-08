@@ -1,21 +1,29 @@
-# ============================================================
-# Second War Phase Controller — scripted triggers
-# All read LOR's variable "second_war_phase".
-# ============================================================
-
-second_war_phase_is = {
-	LOR = { check_variable = { second_war_phase = $phase$ } }
+second_war_phase_is_0 = {
+	LOR = { check_variable = { second_war_phase = 0 } }
 }
 
-second_war_phase_at_least = {
-	LOR = { check_variable = { second_war_phase >= $phase$ } }
+second_war_phase_at_least_1 = {
+	LOR = { check_variable = { var = second_war_phase value = 1 compare = greater_than_or_equals } }
 }
 
-second_war_phase_between = {
-	LOR = {
-		check_variable = { second_war_phase >= $min$ }
-		check_variable = { second_war_phase <= $max$ }
-	}
+second_war_phase_is_1 = {
+	LOR = { check_variable = { second_war_phase = 1 } }
+}
+
+second_war_phase_at_least_2 = {
+	LOR = { check_variable = { var = second_war_phase value = 2 compare = greater_than_or_equals } }
+}
+
+second_war_phase_is_2 = {
+	LOR = { check_variable = { second_war_phase = 2 } }
+}
+
+second_war_phase_at_least_3 = {
+	LOR = { check_variable = { var = second_war_phase value = 3 compare = greater_than_or_equals } }
+}
+
+second_war_phase_is_3 = {
+	LOR = { check_variable = { second_war_phase = 3 } }
 }
 
 second_war_phase_ready_for_1 = {
@@ -32,7 +40,7 @@ second_war_phase_ready_for_1 = {
 second_war_phase_ready_for_2 = {
 	OR = {
 		AND = {
-			LOR = { check_variable = { strategic_initiative_score <= -2 } }
+			LOR = { check_variable = { var = strategic_initiative_score value = -1 compare = less_than } }
 		}
 		AND = {
 			BRC = {
@@ -67,7 +75,7 @@ second_war_phase_ready_for_4 = {
 	OR = {
 		has_global_flag = the_horde_divided
 		AND = {
-			LOR = { check_variable = { strategic_initiative_score >= 0 } }
+			LOR = { check_variable = { var = strategic_initiative_score value = 0 compare = greater_than_or_equals } }
 		}
 		date > 598.6.1
 	}
@@ -77,8 +85,16 @@ second_war_phase_ready_for_5 = {
 	OR = {
 		has_global_flag = si_turalyon_rally_milestone
 		AND = {
-			LOR = { check_variable = { strategic_initiative_score >= 2 } }
+			LOR = { check_variable = { var = strategic_initiative_score value = 2 compare = greater_than_or_equals } }
 		}
 		date > 599.1.1
 	}
+}
+
+second_war_phase_is_4 = {
+	LOR = { check_variable = { second_war_phase = 4 } }
+}
+
+second_war_phase_is_5 = {
+	LOR = { check_variable = { second_war_phase = 5 } }
 }

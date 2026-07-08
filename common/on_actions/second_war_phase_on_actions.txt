@@ -11,7 +11,7 @@ on_actions = {
 			if = {
 				limit = {
 					LOR = { exists = yes }
-					second_war_phase_is = { phase = 0 }
+					second_war_phase_is_0 = yes
 					second_war_phase_ready_for_1 = yes
 				}
 				second_war_phase_advance_1 = yes
@@ -19,7 +19,7 @@ on_actions = {
 			if = {
 				limit = {
 					LOR = { exists = yes }
-					second_war_phase_is = { phase = 1 }
+					second_war_phase_is_1 = yes
 					second_war_phase_ready_for_2 = yes
 				}
 				second_war_phase_advance_2 = yes
@@ -27,7 +27,7 @@ on_actions = {
 			if = {
 				limit = {
 					LOR = { exists = yes }
-					second_war_phase_is = { phase = 2 }
+					second_war_phase_is_2 = yes
 					second_war_phase_ready_for_3 = yes
 				}
 				second_war_phase_advance_3 = yes
@@ -35,7 +35,7 @@ on_actions = {
 			if = {
 				limit = {
 					LOR = { exists = yes }
-					second_war_phase_is = { phase = 3 }
+					second_war_phase_is_3 = yes
 					second_war_phase_ready_for_4 = yes
 				}
 				second_war_phase_advance_4 = yes
@@ -43,7 +43,7 @@ on_actions = {
 			if = {
 				limit = {
 					LOR = { exists = yes }
-					second_war_phase_is = { phase = 4 }
+					second_war_phase_is_4 = yes
 					second_war_phase_ready_for_5 = yes
 				}
 				second_war_phase_advance_5 = yes
@@ -54,6 +54,7 @@ on_actions = {
 			# ----------------------------------------------------
 
 			# Danath's Rangers → Expeditionary Force (fires ~180 days after rangers formed)
+			# Step 1: increment timer every month
 			if = {
 				limit = {
 					has_global_flag = STR_danath_rangers_formed
@@ -62,15 +63,24 @@ on_actions = {
 						exists = yes
 						is_in_faction_with = LOR
 					}
-					# 180 days = ~6 months
+				}
+				STR = {
+					if = {
+						limit = { NOT = { has_variable = STR_danath_expedition_timer } }
+						set_variable = { STR_danath_expedition_timer = 0 }
+					}
+					else = {
+						add_to_variable = { STR_danath_expedition_timer = 1 }
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_global_flag = STR_danath_rangers_formed
+					NOT = { has_global_flag = STR_danath_expeditionary_decided }
 					STR = {
-						if = {
-							limit = { NOT = { has_variable = STR_danath_expedition_timer } }
-							set_variable = { STR_danath_expedition_timer = 0 }
-						}
-						else = {
-							add_to_variable = { STR_danath_expedition_timer = 1 }
-						}
+						exists = yes
+						is_in_faction_with = LOR
 						check_variable = { STR_danath_expedition_timer > 5 }
 					}
 				}
@@ -78,7 +88,7 @@ on_actions = {
 				STR = { country_event = { id = stromgarde_sw.41 hours = 6 } }
 			}
 
-			# Divided Army reminder (fires ~180 days after STR joins Alliance)
+			# Divided Army reminder
 			if = {
 				limit = {
 					STR = {
@@ -86,14 +96,23 @@ on_actions = {
 						STR_has_sw_alliance_commitment = yes
 						NOT = { has_country_flag = STR_sw_divided_reminder_sent }
 					}
+				}
+				STR = {
+					if = {
+						limit = { NOT = { has_variable = STR_sw_reminder_timer } }
+						set_variable = { STR_sw_reminder_timer = 0 }
+					}
+					else = {
+						add_to_variable = { STR_sw_reminder_timer = 1 }
+					}
+				}
+			}
+			if = {
+				limit = {
 					STR = {
-						if = {
-							limit = { NOT = { has_variable = STR_sw_reminder_timer } }
-							set_variable = { STR_sw_reminder_timer = 0 }
-						}
-						else = {
-							add_to_variable = { STR_sw_reminder_timer = 1 }
-						}
+						exists = yes
+						STR_has_sw_alliance_commitment = yes
+						NOT = { has_country_flag = STR_sw_divided_reminder_sent }
 						check_variable = { STR_sw_reminder_timer > 5 }
 					}
 				}
@@ -103,7 +122,7 @@ on_actions = {
 				}
 			}
 
-			# The Perenolde Problem (fires ~30 days after STR joins Alliance if not mountain watch)
+			# The Perenolde Problem
 			if = {
 				limit = {
 					STR = {
@@ -114,16 +133,28 @@ on_actions = {
 						is_in_faction_with = LOR
 					}
 					ALT = { exists = yes }
+				}
+				STR = {
+					if = {
+						limit = { NOT = { has_variable = STR_sw_perenolde_timer } }
+						set_variable = { STR_sw_perenolde_timer = 0 }
+					}
+					else = {
+						add_to_variable = { STR_sw_perenolde_timer = 1 }
+					}
+				}
+			}
+			if = {
+				limit = {
 					STR = {
-						if = {
-							limit = { NOT = { has_variable = STR_sw_perenolde_timer } }
-							set_variable = { STR_sw_perenolde_timer = 0 }
-						}
-						else = {
-							add_to_variable = { STR_sw_perenolde_timer = 1 }
-						}
+						exists = yes
+						STR_has_sw_alliance_commitment = yes
+						NOT = { has_country_flag = STR_alterac_investigation_started }
+						NOT = { has_country_flag = STR_sw_refused_alliance }
+						is_in_faction_with = LOR
 						check_variable = { STR_sw_perenolde_timer > 0 }
 					}
+					ALT = { exists = yes }
 				}
 				STR = { country_event = { id = stromgarde_sw.10 hours = 6 } }
 			}
