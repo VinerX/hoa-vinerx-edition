@@ -12,3 +12,58 @@ BTG_resource_independence_mount = {
 		value = 1
 	}
 }
+
+# Second War — Invasion Clan needs convoys + screens for amphibious support
+BTG_naval_production = {
+	allowed = { original_tag = BTG }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+
+	# Focus on convoys — Black Tooth Grin needs to move troops by sea
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = infantry
+		value = 80
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = motorized
+		value = 10
+	}
+}
+
+# Second War — Black Tooth Grin supports Horde naval invasions
+BTG_naval_invasion_horde = {
+	allowed = { original_tag = BTG }
+	enable = {
+		is_in_faction_with = BRC
+		has_war_with = LOR
+	}
+	abort_when_not_enabled = yes
+
+	# Low invasion focus — BTG is primarily a land invasion clan
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 25
+	}
+
+	# Support BRC's naval operations against Lordaeron
+	ai_strategy = {
+		type = force_defend_ally_borders
+		id = "BRC"
+		value = 40
+	}
+}
