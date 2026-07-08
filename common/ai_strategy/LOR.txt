@@ -41,3 +41,79 @@ LOR_resource_independence_iron = {
 		value = 2
 	}
 }
+
+# Second War — Lordaeron Navy targets Horde coastal clans
+LOR_naval_invasion_horde = {
+	allowed = { original_tag = LOR }
+	enable = {
+		has_war_with = BRC
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+
+	# Naval production — Lordaeron builds a proper fleet
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 30
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 10
+	}
+
+	# Invasion focus
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 70
+	}
+
+	# Dockyard construction
+	ai_strategy = {
+		type = building_target
+		id = dockyard
+		value = 5
+	}
+
+	# Dragonmaw Port — closest Horde naval base, dragon threat
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 503
+		value = 80
+	}
+	ai_strategy = {
+		type = invade
+		id = "DMC"
+		value = 12
+	}
+
+	# Stormwind Harbor — SRC main naval base
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 318
+		value = 70
+	}
+	ai_strategy = {
+		type = invade
+		id = "SRC"
+		value = 10
+	}
+
+	# N. Tide's Beachland — defend Lordaeron shores
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 166
+		value = 60
+	}
+	ai_strategy = {
+		type = invade
+		id = "DMC"
+		value = 8
+	}
+}

@@ -1,0 +1,71 @@
+# STC naval production — goblin Steamwheedle Cartel built the Horde's entire fleet
+STC_naval_production = {
+	allowed = { original_tag = STC }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+
+	# Heavy naval production — goblins are the Horde's shipbuilders
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 50
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 30
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 15
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = submarine
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = infantry
+		value = 70
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = motorized
+		value = 10
+	}
+}
+
+# Dockyard construction — goblin shipyards
+STC_dockyard_construction = {
+	allowed = { original_tag = STC }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = building_target
+		id = dockyard
+		value = 8
+	}
+}
+
+# Goblins support Horde naval operations — supply ships, low combat ambition
+STC_naval_support_horde = {
+	allowed = { original_tag = STC }
+	enable = {
+		is_in_faction_with = BRC
+		has_war_with = LOR
+	}
+	abort_when_not_enabled = yes
+
+	# Low invasion focus — goblins prefer to supply, not to fight
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 25
+	}
+}

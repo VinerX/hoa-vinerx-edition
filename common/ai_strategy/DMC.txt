@@ -125,6 +125,65 @@ DMC_help_horde_with_stormwind = {
 	}
 }
 
+# Second War — Dragonmaw fleet targets Alliance coast (red dragons + ships)
+DMC_invade_alliance = {
+	allowed = { original_tag = DMC }
+	enable = {
+		is_in_faction_with = BRC
+		has_war_with = LOR
+	}
+	abort_when_not_enabled = yes
+
+	# Invasion focus — dragon riders strike from the sea
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 80
+	}
+
+	# Dockyard construction for dragon-carrier fleet
+	ai_strategy = {
+		type = building_target
+		id = dockyard
+		value = 4
+	}
+
+	# N. Tide's Beachland — Lordaeron coast, strong initial landing
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 166
+		value = 75
+	}
+	ai_strategy = {
+		type = invade
+		id = "LOR"
+		value = 10
+	}
+
+	# Boralus — KUL capital, harassment to tie down Kul Tiran fleet
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 5
+		value = 45
+	}
+	ai_strategy = {
+		type = invade
+		id = "KUL"
+		value = 6
+	}
+
+	# Keel Harbor — GIL main port, harassment
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 4
+		value = 40
+	}
+	ai_strategy = {
+		type = invade
+		id = "GIL"
+		value = 5
+	}
+}
+
 DMC_unit_production = {
 	enable = {
 		original_tag = DMC
