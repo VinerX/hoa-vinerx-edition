@@ -307,9 +307,9 @@ NDefines.NIndustrialOrganisation.LEGACY_COST_FACTOR_SCALE = 1.0					            
 -- 1.18.3 defines intact. Key intent: fewer ships needed to control a sea zone
 -- (DOMINANCE_CONTROLLED_THRESHOLD_RATIO 0.60 -> 0.51).
 --------------------------------------------------------------------------------
-NDefines.NNavy.DOMINANCE_CONTROLLED_THRESHOLD_RATIO = 0.51   -- was 0.60: need 51% of dominance to control a sea region
+NDefines.NNavy.DOMINANCE_CONTROLLED_THRESHOLD_RATIO = 0.40   -- was 0.60→0.51→0.40: need 40% of dominance to control a sea region
 NDefines.NNavy.SHIP_SUPPORT_NEED_FACTOR = 0.12               -- was 0.10
-NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.08         -- was 0.05
+NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.12         -- was 0.05→0.08→0.12
 NDefines.NNavy.COMBAT_MIN_HIT_CHANCE = 0.02                  -- was 0.005
 NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 35              -- was 60
 NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 5          -- was 4

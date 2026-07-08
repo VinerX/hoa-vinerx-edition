@@ -1,0 +1,134 @@
+# SRC naval production — Stormreaver Clan uses captured Stormwind ships
+SRC_naval_production = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+
+	# Screen ships and convoys for naval invasions from Stormwind Harbor
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 40
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = infantry
+		value = 80
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = motorized
+		value = 10
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = cavalry
+		value = 5
+	}
+}
+
+# Dockyard construction for naval buildup
+SRC_dockyard_construction = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_start_date > 595.1.1
+		has_war_with = IRO
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = building_target
+		id = dockyard
+		value = 5
+	}
+}
+
+# Naval invasions against Ironforge — open a northern front
+SRC_naval_invasion_ironforge = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_war_with = IRO
+	}
+	abort_when_not_enabled = yes
+
+	# High naval invasion priority — Gul'dan wants to strike from the sea
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 100
+	}
+
+	# Menethil Harbor — DUN's main port, high-value target
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 47
+		value = 100
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 15
+	}
+
+	# Saltspray Glen — Wetlands coast
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 488
+		value = 80
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 12
+	}
+
+	# Sundown Marsh — Wetlands coast, oil and wood
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 487
+		value = 75
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 10
+	}
+
+	# Black Channel Marsh — Wetlands coast
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 484
+		value = 70
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 10
+	}
+}
+
+# Support the Horde's war effort
+SRC_help_horde = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_war_with = IRO
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = force_defend_ally_borders
+		id = "BRC"
+		value = 30
+	}
+}
