@@ -305,9 +305,9 @@ NDefines.NIndustrialOrganisation.LEGACY_COST_FACTOR_SCALE = 1.0					            
 -- (set_as_reserve_fleet_command) hit EXCEPTION_INT_DIVIDE_BY_ZERO around 595.09.
 -- We instead apply ONLY its meaningful naval tweaks here, leaving all other
 -- 1.18.3 defines intact. Key intent: much fewer ships needed for naval supremacy
--- (MISSION_DOMINANCE_RATIOS 1.5x, THRESHOLD 0.40, AI margin 100).
+-- (MISSION_DOMINANCE_RATIOS 1.5x, STRIKE_FORCE_FRACTION +67%, AI margin 100).
 --------------------------------------------------------------------------------
-NDefines.NNavy.DOMINANCE_CONTROLLED_THRESHOLD_RATIO = 0.40   -- was 0.60→0.51→0.40: need 40% of dominance to control a sea region
+NDefines.NNavy.DOMINANCE_CONTROLLED_THRESHOLD_RATIO = 0.51   -- was 0.60: need 51% of dominance to control a sea region
 NDefines.NNavy.SHIP_SUPPORT_NEED_FACTOR = 0.12               -- was 0.10
 NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.12         -- was 0.05→0.08→0.12
 NDefines.NNavy.COMBAT_MIN_HIT_CHANCE = 0.02                  -- was 0.005
