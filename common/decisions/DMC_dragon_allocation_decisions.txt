@@ -1,0 +1,64 @@
+################################################################################
+# Dragonmaw Clan — Dragon Deployment
+#
+# DMC allocates enslaved Red Dragons to support the Horde war effort.
+# Uses the dragon_allocation event chain (namespace dragon_allocation).
+################################################################################
+
+DMC_dragon_allocation = {
+
+	DMC_allocate_northern_front = {
+		icon = generic_army_bonus
+		allowed = { original_tag = DMC }
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			is_in_faction_with = BRC
+			has_political_power > 24
+			NOT = { has_country_flag = DMC_northern_front_allocated }
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			set_country_flag = DMC_northern_front_allocated
+			country_event = dragon_allocation.1
+		}
+		ai_will_do = { factor = 60 }
+	}
+
+	DMC_allocate_fleet_raiding = {
+		icon = generic_navy_bonus
+		allowed = { original_tag = DMC }
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			is_in_faction_with = BRC
+			has_political_power > 49
+			NOT = { has_idea = DMC_dragons_raiding_seas }
+			NOT = { has_idea = DMC_dragons_hoarded }
+		}
+		cost = 50
+		complete_effect = {
+			country_event = dragon_allocation.5
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	DMC_allocate_siege_support = {
+		icon = generic_army
+		allowed = { original_tag = DMC }
+		available = {
+			has_country_flag = DMC_enslaved_dragons
+			is_in_faction_with = BRC
+			has_political_power > 49
+			NOT = { has_idea = DMC_dragons_sieging }
+			NOT = { has_idea = DMC_dragons_hoarded }
+			NOT = { has_country_flag = DMC_siege_support_deployed }
+		}
+		fire_only_once = yes
+		cost = 50
+		complete_effect = {
+			set_country_flag = DMC_siege_support_deployed
+			country_event = dragon_allocation.6
+		}
+		ai_will_do = { factor = 45 }
+	}
+}

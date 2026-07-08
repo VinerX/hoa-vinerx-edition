@@ -1,0 +1,103 @@
+################################################################################
+# Steamwheedle Cartel — Horde Fleet Deliveries
+#
+# STC can commission and deliver warships to the Horde (BRC).
+# Uses existing steamwheedle_fleet.1-.5 events and OOB spawns.
+################################################################################
+
+STC_fleet_delivery = {
+
+	STC_deliver_battleships = {
+		icon = generic_navy
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 49
+			NOT = { has_country_flag = STC_battleships_delivered }
+		}
+		fire_only_once = yes
+		cost = 50
+		complete_effect = {
+			set_country_flag = STC_battleships_delivered
+			country_event = steamwheedle_fleet.1
+		}
+		ai_will_do = { factor = 40 }
+	}
+
+	STC_deliver_amani_frigates = {
+		icon = generic_navy
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 49
+			NOT = { has_country_flag = STC_amani_frigates_delivered }
+			AMA = { is_in_faction_with = BRC }
+		}
+		fire_only_once = yes
+		cost = 50
+		complete_effect = {
+			set_country_flag = STC_amani_frigates_delivered
+			country_event = steamwheedle_fleet.2
+		}
+		ai_will_do = { factor = 35 }
+	}
+
+	STC_deliver_frostmane_destroyers = {
+		icon = generic_navy
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 49
+			NOT = { has_country_flag = STC_frostmane_destroyers_delivered }
+			FRT = { is_in_faction_with = BRC }
+		}
+		fire_only_once = yes
+		cost = 50
+		complete_effect = {
+			set_country_flag = STC_frostmane_destroyers_delivered
+			country_event = steamwheedle_fleet.3
+		}
+		ai_will_do = { factor = 35 }
+	}
+
+	STC_deliver_dreadmaul_battleships = {
+		icon = generic_navy
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 74
+			NOT = { has_country_flag = STC_dreadmaul_battleships_delivered }
+			OR = {
+				DRM = { is_in_faction_with = BRC }
+				BRC = { has_idea = BRC_dreadmaul_clan_1 }
+				BRC = { has_idea = BRC_dreadmaul_clan_2 }
+				BRC = { has_idea = BRC_dreadmaul_clan_3 }
+			}
+		}
+		fire_only_once = yes
+		cost = 75
+		complete_effect = {
+			set_country_flag = STC_dreadmaul_battleships_delivered
+			country_event = steamwheedle_fleet.4
+		}
+		ai_will_do = { factor = 30 }
+	}
+
+	STC_emergency_shipments = {
+		icon = generic_navy
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 49
+			NOT = { has_country_flag = STC_emergency_shipment_cooldown }
+			BRC = { has_war = yes }
+		}
+		days_re_enable = 180
+		cost = 50
+		complete_effect = {
+			set_country_flag = STC_emergency_shipment_cooldown
+			country_event = steamwheedle_fleet.5
+		}
+		ai_will_do = { factor = 30 }
+	}
+}

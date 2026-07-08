@@ -1,0 +1,91 @@
+################################################################################
+# Steamwheedle Cartel — War Contracts
+#
+# STC signs production contracts with the Horde, granting timed ideas
+# that boost industrial output and benefit the Warchief.
+# Contracts expire after 365 days; renewals re-apply all active deals.
+################################################################################
+
+STC_war_contracts = {
+
+	STC_naval_contract = {
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 74
+			NOT = { has_idea = STC_naval_boom }
+			NOT = { has_country_flag = STC_contracts_completed }
+		}
+		cost = 75
+		complete_effect = {
+			add_timed_idea = { idea = STC_naval_boom days = 365 }
+			BRC = { add_timed_idea = { idea = horde_goblin_ships days = 365 } }
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	STC_airship_contract = {
+		icon = generic_air_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 74
+			NOT = { has_idea = STC_airship_boom }
+			NOT = { has_country_flag = STC_contracts_completed }
+		}
+		cost = 75
+		complete_effect = {
+			add_timed_idea = { idea = STC_airship_boom days = 365 }
+			BRC = { add_timed_idea = { idea = horde_goblin_aircraft days = 365 } }
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	STC_sappers_contract = {
+		icon = generic_construction_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_political_power > 74
+			NOT = { has_idea = STC_sappers_contract }
+			NOT = { has_country_flag = STC_contracts_completed }
+		}
+		cost = 75
+		complete_effect = {
+			add_timed_idea = { idea = STC_sappers_contract days = 365 }
+			BRC = { add_timed_idea = { idea = horde_goblin_construction days = 365 } }
+		}
+		ai_will_do = { factor = 45 }
+	}
+
+	STC_renew_contracts = {
+		icon = generic_production
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			has_country_flag = STC_contracts_completed
+			has_political_power > 49
+		}
+		cost = 50
+		complete_effect = {
+			clr_country_flag = STC_contracts_completed
+			if = {
+				limit = { NOT = { has_idea = STC_naval_boom } }
+				add_timed_idea = { idea = STC_naval_boom days = 365 }
+				BRC = { add_timed_idea = { idea = horde_goblin_ships days = 365 } }
+			}
+			if = {
+				limit = { NOT = { has_idea = STC_airship_boom } }
+				add_timed_idea = { idea = STC_airship_boom days = 365 }
+				BRC = { add_timed_idea = { idea = horde_goblin_aircraft days = 365 } }
+			}
+			if = {
+				limit = { NOT = { has_idea = STC_sappers_contract } }
+				add_timed_idea = { idea = STC_sappers_contract days = 365 }
+				BRC = { add_timed_idea = { idea = horde_goblin_construction days = 365 } }
+			}
+		}
+		ai_will_do = { factor = 45 }
+	}
+}
