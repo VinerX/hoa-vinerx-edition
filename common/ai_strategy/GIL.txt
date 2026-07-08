@@ -1,0 +1,90 @@
+# Gilnean naval forces — coastal kingdom with nearby islands
+GIL_naval_production = {
+	allowed = { original_tag = GIL }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 15
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 8
+	}
+}
+
+# Dockyard construction
+GIL_dockyard_construction = {
+	allowed = { original_tag = GIL }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = building_target
+		id = dockyard
+		value = 5
+	}
+}
+
+# Second War — Gilnean navy targets nearest Horde positions (Greymane was reluctant)
+GIL_naval_invasion_horde = {
+	allowed = { original_tag = GIL }
+	enable = {
+		is_in_faction_with = LOR
+		has_war_with = BRC
+	}
+	abort_when_not_enabled = yes
+
+	# Modest naval invasion focus — Greymane was reluctant to commit
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 40
+	}
+
+	# Dragonmaw Port — closest Horde naval base to Gilneas
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 503
+		value = 70
+	}
+	ai_strategy = {
+		type = invade
+		id = "DMC"
+		value = 10
+	}
+
+	# Misty Isle — DMC-held island, close to Gilnean waters
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 172
+		value = 50
+	}
+	ai_strategy = {
+		type = invade
+		id = "DMC"
+		value = 7
+	}
+
+	# HighBank — DMC-held coastal fortress
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 171
+		value = 45
+	}
+	ai_strategy = {
+		type = invade
+		id = "DMC"
+		value = 6
+	}
+}

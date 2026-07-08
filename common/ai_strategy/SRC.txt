@@ -1,0 +1,250 @@
+# SRC naval production — Stormreaver Clan uses captured Stormwind ships
+SRC_naval_production = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_start_date > 595.1.1
+	}
+	abort_when_not_enabled = yes
+
+	# Screen ships and convoys for naval invasions from Stormwind Harbor
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 40
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = infantry
+		value = 80
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = motorized
+		value = 10
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = cavalry
+		value = 5
+	}
+}
+
+# Dockyard construction for naval buildup
+SRC_dockyard_construction = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_start_date > 595.1.1
+		has_war_with = IRO
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = building_target
+		id = dockyard
+		value = 5
+	}
+}
+
+# Naval invasions against Ironforge — open a northern front
+SRC_naval_invasion_ironforge = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_war_with = IRO
+	}
+	abort_when_not_enabled = yes
+
+	# High naval invasion priority — Gul'dan wants to strike from the sea
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 100
+	}
+
+	# Menethil Harbor — DUN's main port, high-value target
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 47
+		value = 100
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 15
+	}
+
+	# Saltspray Glen — Wetlands coast
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 488
+		value = 80
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 12
+	}
+
+	# Sundown Marsh — Wetlands coast, oil and wood
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 487
+		value = 75
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 10
+	}
+
+	# Black Channel Marsh — Wetlands coast
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 484
+		value = 70
+	}
+	ai_strategy = {
+		type = invade
+		id = "IRO"
+		value = 10
+	}
+}
+
+# Sea of Blood — seize Alliance-held islands to challenge Kul Tiran dominance
+SRC_seize_sob_islands = {
+	allowed = { original_tag = SRC }
+	enable = {
+		is_in_faction_with = BRC
+		has_war_with = LOR
+	}
+	abort_when_not_enabled = yes
+
+	# Crestfall — KUL-held forward naval base, high invasion value
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 6
+		value = 60
+	}
+	ai_strategy = {
+		type = invade
+		id = "KUL"
+		value = 8
+	}
+
+	# Zul'Dare — KUL-held naval anchorage
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 7
+		value = 50
+	}
+	ai_strategy = {
+		type = invade
+		id = "KUL"
+		value = 8
+	}
+
+	# Tol Dagor — KUL-held prison fortress
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 617
+		value = 50
+	}
+	ai_strategy = {
+		type = invade
+		id = "KUL"
+		value = 8
+	}
+
+	# Channel Island — KUL-held sea lane watchpost
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 9
+		value = 40
+	}
+	ai_strategy = {
+		type = invade
+		id = "KUL"
+		value = 6
+	}
+
+	# The Bite — GIL-held, northern approach
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 2093
+		value = 40
+	}
+	ai_strategy = {
+		type = invade
+		id = "GIL"
+		value = 6
+	}
+}
+
+# Invade Alliance homelands — strong push on Lordaeron coast, harassment of KUL/GIL
+SRC_invade_alliance_homelands = {
+	allowed = { original_tag = SRC }
+	enable = {
+		is_in_faction_with = BRC
+		has_war_with = LOR
+	}
+	abort_when_not_enabled = yes
+
+	# N. Tide's Beachland — Lordaeron coast, strong initial push toward Capital City
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 166
+		value = 80
+	}
+	ai_strategy = {
+		type = invade
+		id = "LOR"
+		value = 12
+	}
+
+	# Boralus — KUL capital, 3 dockyards, weak harassment to tie down Kul Tiran fleet
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 5
+		value = 40
+	}
+	ai_strategy = {
+		type = invade
+		id = "KUL"
+		value = 6
+	}
+
+	# Keel Harbor — GIL main port, weak harassment
+	ai_strategy = {
+		type = invasion_unit_request
+		state = 4
+		value = 35
+	}
+	ai_strategy = {
+		type = invade
+		id = "GIL"
+		value = 5
+	}
+}
+
+# Support the Horde's war effort
+SRC_help_horde = {
+	allowed = { original_tag = SRC }
+	enable = {
+		has_war_with = IRO
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = force_defend_ally_borders
+		id = "BRC"
+		value = 30
+	}
+}

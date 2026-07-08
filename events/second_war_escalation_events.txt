@@ -1,0 +1,46 @@
+add_namespace = second_war
+
+# The Second War begins — triggered from on_war_relation_added when BRC and LOR are at war
+country_event = {
+	id = second_war.3
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = { log = "[GetDateText]: [Root.GetName]: The Second War has begun!" }
+
+	option = {
+		set_war_name = { target = LOR name = BRC_the_second_war }
+		news_event = second_war.51
+	}
+}
+
+# The Second War — global announcement
+news_event = {
+	id = second_war.51
+	title = second_war.51.t
+	desc = second_war.51.d
+	picture = GFX_report_event_german_parade_paris
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = second_war.51.option.1
+		trigger = {
+			has_government = horde
+		}
+	}
+
+	option = {
+		name = second_war.51.option.2
+		trigger = {
+			has_government = alliance
+		}
+	}
+
+	option = {
+		name = second_war.51.option.3
+	}
+}
