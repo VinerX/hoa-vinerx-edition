@@ -4,7 +4,7 @@ NDefines.NGame.ENERGY_RESOURCE = "wood"
 --------------
 -- Focus --
 --------------
-NDefines.NFocus.FOCUS_POINT_DAYS = 1
+NDefines.NFocus.FOCUS_POINT_DAYS = 5
 
 --------------
 -- Graphics --
