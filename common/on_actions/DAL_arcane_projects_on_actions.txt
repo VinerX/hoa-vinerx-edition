@@ -13,7 +13,7 @@ on_weekly = {
 			limit = {
 				tag = DAL
 				has_country_flag = DAL_project_slot_cooldown
-				check_variable = { DAL_project_slot_cooldown_days >= 14 }
+				check_variable = { var = DAL_project_slot_cooldown_days value = 14 compare = greater_than_or_equals }
 			}
 			clr_country_flag = DAL_project_slot_cooldown
 			set_variable = { DAL_project_slot_cooldown_days = 0 }
@@ -28,7 +28,7 @@ on_monthly = {
 				tag = DAL
 				check_variable = { DAL_active_projects < 1 }
 				has_country_flag = DAL_strain_stable_ticks
-				check_variable = { DAL_strain_stable_ticks >= 2 }
+				check_variable = { var = DAL_strain_stable_ticks value = 2 compare = greater_than_or_equals }
 				NOT = { dap_strain_stable = yes }
 			}
 			dap_reduce_strain = yes
