@@ -1,0 +1,312 @@
+# ============================================================
+# Steamwheedle Cartel — Stormwind Gold Contract System
+#
+# STC holds variables:
+#   stormwind_gold     — 0–100, wartime contract funding from captured Stormwind wealth
+#   commercial_leverage — 0–100, political/economic leverage extracted from Horde
+#   active_contracts   — current count of active contracts (capacity 2–4)
+#   contract_capacity  — maximum concurrent contracts (base 2)
+#   horde_debt         — 0–100, unpaid Horde obligations to STC
+#
+# Gold stages (derived from stormwind_gold):
+#   70–100 : The Coffers Are Full
+#   40–69  : Heavy Contract Spending
+#   15–39  : Gold Reserves Declining
+#   1–14   : The Contract Is Running Dry
+#   0      : Payment Crisis
+# ============================================================
+
+# --- Initialization ---
+stc_gold_init = {
+	if = {
+		limit = { original_tag = STC }
+		set_variable = { stormwind_gold = 75 }
+		set_variable = { commercial_leverage = 10 }
+		set_variable = { active_contracts = 0 }
+		set_variable = { contract_capacity = 2 }
+		set_variable = { horde_debt = 0 }
+		stc_gold_sync_spirit = yes
+		stc_leverage_sync_spirit = yes
+	}
+}
+
+# --- Re-init for 596 bookmark (already in Horde ideology, gold is flowing) ---
+stc_gold_init_596 = {
+	if = {
+		limit = { original_tag = STC }
+		if = {
+			limit = { NOT = { has_variable = stormwind_gold } }
+			set_variable = { stormwind_gold = 75 }
+		}
+		if = {
+			limit = { NOT = { has_variable = commercial_leverage } }
+			set_variable = { commercial_leverage = 10 }
+		}
+		if = {
+			limit = { NOT = { has_variable = active_contracts } }
+			set_variable = { active_contracts = 0 }
+		}
+		if = {
+			limit = { NOT = { has_variable = contract_capacity } }
+			set_variable = { contract_capacity = 2 }
+		}
+		if = {
+			limit = { NOT = { has_variable = horde_debt } }
+			set_variable = { horde_debt = 0 }
+		}
+		stc_gold_sync_spirit = yes
+		stc_leverage_sync_spirit = yes
+	}
+}
+
+# --- Gold: receive payment from Horde (BRC focus/event fires this) ---
+stc_add_gold = {
+	add_to_variable = { stormwind_gold = 10 }
+	stc_clamp_gold = yes
+	stc_gold_sync_spirit = yes
+}
+
+stc_add_gold_large = {
+	add_to_variable = { stormwind_gold = 20 }
+	stc_clamp_gold = yes
+	stc_gold_sync_spirit = yes
+}
+
+# --- Gold: spend on contracts ---
+stc_spend_gold = {
+	subtract_from_variable = { stormwind_gold = 10 }
+	stc_clamp_gold = yes
+	stc_gold_sync_spirit = yes
+}
+
+stc_spend_gold_medium = {
+	subtract_from_variable = { stormwind_gold = 15 }
+	stc_clamp_gold = yes
+	stc_gold_sync_spirit = yes
+}
+
+stc_spend_gold_large = {
+	subtract_from_variable = { stormwind_gold = 25 }
+	stc_clamp_gold = yes
+	stc_gold_sync_spirit = yes
+}
+
+# --- Gold: monthly passive drain while actively contracting ---
+stc_gold_monthly_drain = {
+	if = {
+		limit = {
+			check_variable = { active_contracts > 0 }
+		}
+		subtract_from_variable = { stormwind_gold = 2 }
+		stc_clamp_gold = yes
+		stc_gold_sync_spirit = yes
+	}
+}
+
+# --- Gold: clamp 0–100 ---
+stc_clamp_gold = {
+	if = { limit = { check_variable = { stormwind_gold < 0 } } set_variable = { stormwind_gold = 0 } }
+	if = { limit = { check_variable = { stormwind_gold > 100 } } set_variable = { stormwind_gold = 100 } }
+}
+
+# --- Gold: sync national spirit to current gold tier ---
+stc_gold_sync_spirit = {
+	if = { limit = { check_variable = { stormwind_gold > 69 } }
+		if = { limit = { NOT = { has_idea = STC_gold_coffers_full } }
+			remove_ideas = { STC_gold_heavy_spending STC_gold_declining STC_gold_running_dry STC_gold_payment_crisis }
+			add_ideas = STC_gold_coffers_full
+		}
+	}
+	else_if = { limit = { check_variable = { stormwind_gold > 39 } }
+		if = { limit = { NOT = { has_idea = STC_gold_heavy_spending } }
+			remove_ideas = { STC_gold_coffers_full STC_gold_declining STC_gold_running_dry STC_gold_payment_crisis }
+			add_ideas = STC_gold_heavy_spending
+		}
+	}
+	else_if = { limit = { check_variable = { stormwind_gold > 14 } }
+		if = { limit = { NOT = { has_idea = STC_gold_declining } }
+			remove_ideas = { STC_gold_coffers_full STC_gold_heavy_spending STC_gold_running_dry STC_gold_payment_crisis }
+			add_ideas = STC_gold_declining
+		}
+	}
+	else_if = { limit = { check_variable = { stormwind_gold > 0 } }
+		if = { limit = { NOT = { has_idea = STC_gold_running_dry } }
+			remove_ideas = { STC_gold_coffers_full STC_gold_heavy_spending STC_gold_declining STC_gold_payment_crisis }
+			add_ideas = STC_gold_running_dry
+		}
+	}
+	else = {
+		if = { limit = { NOT = { has_idea = STC_gold_payment_crisis } }
+			remove_ideas = { STC_gold_coffers_full STC_gold_heavy_spending STC_gold_declining STC_gold_running_dry }
+			add_ideas = STC_gold_payment_crisis
+		}
+	}
+}
+
+# --- Leverage: add ---
+stc_add_leverage = {
+	add_to_variable = { commercial_leverage = 5 }
+	stc_clamp_leverage = yes
+	stc_leverage_sync_spirit = yes
+}
+
+stc_add_leverage_medium = {
+	add_to_variable = { commercial_leverage = 10 }
+	stc_clamp_leverage = yes
+	stc_leverage_sync_spirit = yes
+}
+
+stc_add_leverage_large = {
+	add_to_variable = { commercial_leverage = 15 }
+	stc_clamp_leverage = yes
+	stc_leverage_sync_spirit = yes
+}
+
+# --- Leverage: authority suppression (high authority slows leverage gain) ---
+stc_add_leverage_authority_checked = {
+	add_to_variable = { commercial_leverage = 10 }
+	BRC = {
+		if = { limit = { check_variable = { warchief_authority > 59 } }
+			STC = { subtract_from_variable = { commercial_leverage = 5 } }
+		}
+	}
+	stc_clamp_leverage = yes
+	stc_leverage_sync_spirit = yes
+}
+
+# --- Leverage: spend on concessions ---
+stc_spend_leverage = {
+	subtract_from_variable = { commercial_leverage = 10 }
+	stc_clamp_leverage = yes
+	stc_leverage_sync_spirit = yes
+}
+
+stc_spend_leverage_large = {
+	subtract_from_variable = { commercial_leverage = 20 }
+	stc_clamp_leverage = yes
+	stc_leverage_sync_spirit = yes
+}
+
+# --- Leverage: clamp 0–100 ---
+stc_clamp_leverage = {
+	if = { limit = { check_variable = { commercial_leverage < 0 } } set_variable = { commercial_leverage = 0 } }
+	if = { limit = { check_variable = { commercial_leverage > 100 } } set_variable = { commercial_leverage = 100 } }
+}
+
+# --- Leverage: sync national spirit ---
+stc_leverage_sync_spirit = {
+	if = { limit = { check_variable = { commercial_leverage > 74 } }
+		if = { limit = { NOT = { has_idea = STC_leverage_dominant } }
+			remove_ideas = { STC_leverage_growing STC_leverage_moderate STC_leverage_minimal }
+			add_ideas = STC_leverage_dominant
+		}
+	}
+	else_if = { limit = { check_variable = { commercial_leverage > 49 } }
+		if = { limit = { NOT = { has_idea = STC_leverage_growing } }
+			remove_ideas = { STC_leverage_dominant STC_leverage_moderate STC_leverage_minimal }
+			add_ideas = STC_leverage_growing
+		}
+	}
+	else_if = { limit = { check_variable = { commercial_leverage > 24 } }
+		if = { limit = { NOT = { has_idea = STC_leverage_moderate } }
+			remove_ideas = { STC_leverage_dominant STC_leverage_growing STC_leverage_minimal }
+			add_ideas = STC_leverage_moderate
+		}
+	}
+	else = {
+		if = { limit = { NOT = { has_idea = STC_leverage_minimal } }
+			remove_ideas = { STC_leverage_dominant STC_leverage_growing STC_leverage_moderate }
+			add_ideas = STC_leverage_minimal
+		}
+	}
+}
+
+# --- Debt: add (Horde borrows beyond gold) ---
+stc_add_debt = {
+	add_to_variable = { horde_debt = 10 }
+	if = { limit = { check_variable = { horde_debt > 100 } } set_variable = { horde_debt = 100 } }
+	STC = { add_political_power = 5 }
+}
+
+stc_add_debt_large = {
+	add_to_variable = { horde_debt = 25 }
+	if = { limit = { check_variable = { horde_debt > 100 } } set_variable = { horde_debt = 100 } }
+	STC = { add_political_power = 10 }
+	BRC = { add_stability = -5 }
+}
+
+# --- Contract: increment active count ---
+stc_activate_contract = {
+	add_to_variable = { active_contracts = 1 }
+	stc_add_leverage_medium = yes
+}
+
+# --- Contract: decrement active count ---
+stc_deactivate_contract = {
+	subtract_from_variable = { active_contracts = 1 }
+	if = { limit = { check_variable = { active_contracts < 0 } } set_variable = { active_contracts = 0 } }
+}
+
+# --- Contract: expand capacity (called by focuses) ---
+stc_expand_contract_capacity = {
+	add_to_variable = { contract_capacity = 1 }
+	if = { limit = { check_variable = { contract_capacity > 4 } } set_variable = { contract_capacity = 4 } }
+}
+
+# --- Sea of Blood: emergency gold injection when Horde loses islands ---
+stc_sob_emergency_gold = {
+	stc_add_gold_large = yes
+	add_timed_idea = { idea = STC_war_emergency_demand days = 180 }
+	BRC = { add_stability = -2 }
+}
+
+# --- Horde-wide buff: deliver fleet support to BRC (called by fleet decisions) ---
+stc_deliver_fleet_to_brc = {
+	BRC = {
+		add_timed_idea = { idea = horde_goblin_ships days = 365 }
+		navy_experience = 10
+	}
+	STC = {
+		stc_add_leverage_medium = yes
+		stc_spend_gold = yes
+		add_political_power = 20
+	}
+}
+
+# --- Horde-wide buff: deliver air support to BRC ---
+stc_deliver_airships_to_brc = {
+	BRC = {
+		add_timed_idea = { idea = horde_goblin_aircraft days = 365 }
+		air_experience = 10
+	}
+	STC = {
+		stc_add_leverage_medium = yes
+		stc_spend_gold = yes
+		add_political_power = 20
+	}
+}
+
+# --- Horde-wide buff: deliver sapper support ---
+stc_deliver_sappers_to_brc = {
+	BRC = {
+		add_timed_idea = { idea = horde_goblin_sappers days = 365 }
+		army_experience = 10
+	}
+	STC = {
+		stc_add_leverage_medium = yes
+		stc_spend_gold = yes
+		add_political_power = 15
+	}
+}
+
+# --- Horde-wide buff: deliver alchemical support ---
+stc_deliver_alchemy_to_brc = {
+	BRC = {
+		add_timed_idea = { idea = horde_goblin_alchemy days = 365 }
+	}
+	STC = {
+		stc_add_leverage_medium = yes
+		stc_spend_gold = yes
+		add_political_power = 15
+	}
+}

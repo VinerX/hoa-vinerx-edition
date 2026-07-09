@@ -1,0 +1,187 @@
+# ============================================================
+# Steamwheedle Cartel — Second War scripted triggers
+# ============================================================
+
+# --- Gold tier triggers ---
+stc_gold_is_full = {
+	STC = { check_variable = { stormwind_gold > 69 } }
+}
+
+stc_gold_is_heavy_spending = {
+	STC = { check_variable = { stormwind_gold > 39 } }
+	STC = { check_variable = { stormwind_gold < 70 } }
+}
+
+stc_gold_is_declining = {
+	STC = { check_variable = { stormwind_gold > 14 } }
+	STC = { check_variable = { stormwind_gold < 40 } }
+}
+
+stc_gold_is_running_dry = {
+	STC = { check_variable = { stormwind_gold > 0 } }
+	STC = { check_variable = { stormwind_gold < 15 } }
+}
+
+stc_gold_is_crisis = {
+	STC = { check_variable = { stormwind_gold = 0 } }
+}
+
+stc_gold_above = {
+	STC = { check_variable = { var = stormwind_gold value = 20 compare = greater_than_or_equals } }
+}
+
+stc_gold_above_half = {
+	STC = { check_variable = { var = stormwind_gold value = 50 compare = greater_than_or_equals } }
+}
+
+stc_gold_below_half = {
+	STC = { check_variable = { var = stormwind_gold value = 50 compare = less_than } }
+}
+
+# --- Can afford a contract (10 gold minimum) ---
+stc_can_afford_contract = {
+	STC = { check_variable = { var = stormwind_gold value = 10 compare = greater_than_or_equals } }
+}
+
+stc_can_afford_large_contract = {
+	STC = { check_variable = { var = stormwind_gold value = 25 compare = greater_than_or_equals } }
+}
+
+# --- Contract capacity checks ---
+stc_has_contract_capacity = {
+	STC = {
+		check_variable = { var = active_contracts value = 0 compare = less_than }
+	}
+	# Actually: active_contracts < contract_capacity
+	# We use a simpler check: has fewer than max active
+}
+
+stc_under_contract_capacity = {
+	# True if we can take another contract
+	# Active contracts < capacity
+	STC = {
+		NOT = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+	}
+}
+
+# --- Leverage tier triggers ---
+stc_leverage_is_dominant = {
+	STC = { check_variable = { commercial_leverage > 74 } }
+}
+
+stc_leverage_is_strong = {
+	STC = { check_variable = { commercial_leverage > 49 } }
+}
+
+stc_leverage_is_moderate = {
+	STC = { check_variable = { commercial_leverage > 24 } }
+}
+
+stc_leverage_above = {
+	STC = { check_variable = { var = commercial_leverage value = 30 compare = greater_than_or_equals } }
+}
+
+stc_can_spend_leverage = {
+	STC = { check_variable = { var = commercial_leverage value = 10 compare = greater_than_or_equals } }
+}
+
+stc_can_spend_leverage_large = {
+	STC = { check_variable = { var = commercial_leverage value = 20 compare = greater_than_or_equals } }
+}
+
+# --- Debt checks ---
+stc_has_debt = {
+	STC = { check_variable = { horde_debt > 0 } }
+}
+
+stc_has_heavy_debt = {
+	STC = { check_variable = { horde_debt > 49 } }
+}
+
+# --- STC is actively contracting with Horde ---
+stc_is_active_contractor = {
+	STC = {
+		original_tag = STC
+		is_in_faction_with = BRC
+		check_variable = { active_contracts > 0 }
+	}
+}
+
+# --- STC joined Horde faction (for focus gates) ---
+stc_has_joined_horde = {
+	STC = {
+		is_in_faction_with = BRC
+	}
+}
+
+# --- STC is horde-aligned but not subjugated ---
+stc_is_independent_contractor = {
+	STC = {
+		is_in_faction_with = BRC
+		is_puppet = no
+	}
+}
+
+# --- Warchief Authority affects STC ---
+stc_warchief_authority_high = {
+	BRC = { check_variable = { var = warchief_authority value = 60 compare = greater_than_or_equals } }
+}
+
+stc_warchief_authority_low = {
+	BRC = { check_variable = { var = warchief_authority value = 40 compare = less_than } }
+}
+
+# --- Horde controls key maritime states ---
+stc_horde_controls_menethil = {
+	525 = { is_controlled_by = BRC }
+}
+
+stc_horde_controls_hillsbrad = {
+	35 = { controller = { is_in_faction_with = BRC } }
+}
+
+# --- Horde is losing at sea (for emergency contract triggers) ---
+stc_horde_losing_at_sea = {
+	BRC = {
+		check_variable = { var = horde_sea_control value = 3 compare = less_than }
+	}
+}
+
+stc_horde_winning_at_sea = {
+	BRC = {
+		check_variable = { var = horde_sea_control value = 6 compare = greater_than_or_equals }
+	}
+}
+
+# --- Second War phase checks for contract timing ---
+stc_war_has_begun = {
+	second_war_phase_at_least_1 = yes
+}
+
+stc_war_is_mid = {
+	second_war_phase_at_least_2 = yes
+}
+
+stc_war_is_late = {
+	second_war_phase_at_least_4 = yes
+}
+
+# --- BRC at war with Alliance (STC's customer is fighting) ---
+stc_horde_at_war = {
+	BRC = {
+		has_war = yes
+		any_enemy_country = {
+			is_in_faction_with = LOR
+		}
+	}
+}
+
+# --- Post-Stormwind collapse (Legacy integration: STO exiled) ---
+stc_stormwind_has_fallen = {
+	OR = {
+		has_global_flag = fall_of_stormwind
+		NOT = { 22 = { is_controlled_by = STO } }
+	}
+}

@@ -1,8 +1,9 @@
 ################################################################################
-# Steamwheedle Cartel — Horde Fleet Deliveries
+# Steamwheedle Cartel — Horde Fleet & Equipment Deliveries
 #
-# STC can commission and deliver warships to the Horde (BRC).
-# Uses existing steamwheedle_fleet.1-.5 events and OOB spawns.
+# STC can deliver warships, zeppelins, sapper teams and supplies
+# to the Horde using Stormwind gold and gaining Commercial Leverage.
+# Uses existing steamwheedle_fleet.n events and OOB spawns.
 ################################################################################
 
 STC_fleet_delivery = {
@@ -12,16 +13,17 @@ STC_fleet_delivery = {
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 49
 			NOT = { has_country_flag = STC_battleships_delivered }
+			stc_can_afford_contract = yes
 		}
 		fire_only_once = yes
-		cost = 50
+		cost = 25
 		complete_effect = {
 			set_country_flag = STC_battleships_delivered
+			stc_deliver_fleet_to_brc = yes
 			country_event = steamwheedle_fleet.1
 		}
-		ai_will_do = { factor = 40 }
+		ai_will_do = { factor = 50 }
 	}
 
 	STC_deliver_amani_frigates = {
@@ -29,17 +31,18 @@ STC_fleet_delivery = {
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 49
 			NOT = { has_country_flag = STC_amani_frigates_delivered }
+			stc_can_afford_contract = yes
 			AMA = { is_in_faction_with = BRC }
 		}
 		fire_only_once = yes
-		cost = 50
+		cost = 25
 		complete_effect = {
 			set_country_flag = STC_amani_frigates_delivered
+			stc_deliver_fleet_to_brc = yes
 			country_event = steamwheedle_fleet.2
 		}
-		ai_will_do = { factor = 35 }
+		ai_will_do = { factor = 40 }
 	}
 
 	STC_deliver_frostmane_destroyers = {
@@ -47,17 +50,18 @@ STC_fleet_delivery = {
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 49
 			NOT = { has_country_flag = STC_frostmane_destroyers_delivered }
+			stc_can_afford_contract = yes
 			FRT = { is_in_faction_with = BRC }
 		}
 		fire_only_once = yes
-		cost = 50
+		cost = 25
 		complete_effect = {
 			set_country_flag = STC_frostmane_destroyers_delivered
+			stc_deliver_fleet_to_brc = yes
 			country_event = steamwheedle_fleet.3
 		}
-		ai_will_do = { factor = 35 }
+		ai_will_do = { factor = 40 }
 	}
 
 	STC_deliver_dreadmaul_battleships = {
@@ -65,8 +69,8 @@ STC_fleet_delivery = {
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 74
 			NOT = { has_country_flag = STC_dreadmaul_battleships_delivered }
+			stc_can_afford_large_contract = yes
 			OR = {
 				DRM = { is_in_faction_with = BRC }
 				BRC = { has_idea = BRC_dreadmaul_clan_1 }
@@ -75,12 +79,13 @@ STC_fleet_delivery = {
 			}
 		}
 		fire_only_once = yes
-		cost = 75
+		cost = 35
 		complete_effect = {
 			set_country_flag = STC_dreadmaul_battleships_delivered
+			stc_deliver_fleet_to_brc = yes
 			country_event = steamwheedle_fleet.4
 		}
-		ai_will_do = { factor = 30 }
+		ai_will_do = { factor = 35 }
 	}
 
 	STC_emergency_shipments = {
@@ -88,16 +93,65 @@ STC_fleet_delivery = {
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 49
 			NOT = { has_country_flag = STC_emergency_shipment_cooldown }
+			stc_can_afford_contract = yes
 			BRC = { has_war = yes }
 		}
 		days_re_enable = 180
-		cost = 50
+		cost = 25
 		complete_effect = {
 			set_country_flag = STC_emergency_shipment_cooldown
+			stc_deliver_fleet_to_brc = yes
 			country_event = steamwheedle_fleet.5
 		}
-		ai_will_do = { factor = 30 }
+		ai_will_do = { factor = 35 }
+	}
+
+	# --- Deliver zeppelin squadron ---
+	STC_deliver_zeppelins = {
+		icon = generic_air_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			stc_can_afford_contract = yes
+			NOT = { has_country_flag = STC_zeppelins_delivered }
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			set_country_flag = STC_zeppelins_delivered
+			stc_deliver_airships_to_brc = yes
+			stc_spend_gold = yes
+			BRC = {
+				add_equipment_to_stockpile = {
+					type = mechanical_bomber_equipment_1
+					amount = 200
+				}
+				add_equipment_to_stockpile = {
+					type = mechanical_scout_plane_equipment_1
+					amount = 150
+				}
+			}
+		}
+		ai_will_do = { factor = 40 }
+	}
+
+	# --- Deliver sapper teams ---
+	STC_deliver_sappers = {
+		icon = generic_army_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			stc_can_afford_contract = yes
+			NOT = { has_country_flag = STC_sapper_teams_delivered }
+		}
+		fire_only_once = yes
+		cost = 20
+		complete_effect = {
+			set_country_flag = STC_sapper_teams_delivered
+			stc_deliver_sappers_to_brc = yes
+			stc_spend_gold = yes
+		}
+		ai_will_do = { factor = 35 }
 	}
 }

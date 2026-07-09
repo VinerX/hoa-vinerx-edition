@@ -1,0 +1,1213 @@
+#!gfx:interface\hoa_focus.gfx
+focus_tree = {
+	id = STC_second_war_focus
+	country = { factor = 0 modifier = { add = 10 tag = STC } }
+	default = no
+	reset_on_civilwar = no
+
+	continuous_focus_position = { x = 1300 y = 0 }
+
+	# --- non-political backbone ---
+	shared_focus = develop_the_country
+	shared_focus = arming_the_nation
+
+	# ================================================================
+	# Columns (absolute x):
+	#   28–29: Cartel Competition
+	#   32–33: Horde Relationship / Leverage
+	#   36–37: Contract System / Gold (central spine)
+	#   40–42: Fleet Construction
+	#   44–46: Mechanical Aviation
+	#   48–50: Sappers & Explosives
+	#   52–54: Alchemy
+	#   End-of-war outcomes: x=36–40, y=11–16
+	# ================================================================
+
+	# ================================================================
+	# ACT I — THE DEAL (central spine, x=36)
+	# ================================================================
+
+	focus = {
+		id = STC_the_horde_contract
+		icon = GFX_goal_generic_diplomatic_treaty
+		cost = 10
+		x = 36  y = 0
+		available = { is_in_faction_with = BRC }
+		completion_reward = {
+			custom_effect_tooltip = STC_the_horde_contract_tt
+			stc_gold_init = yes
+			add_ideas = BRC_stormwinds_treasury_idea
+		}
+	}
+
+	focus = {
+		id = STC_inspect_stormwind_coffers
+		icon = GFX_goal_generic_construct_civilian
+		cost = 7
+		x = 36  y = 1
+		prerequisite = { focus = STC_the_horde_contract }
+		completion_reward = {
+			stc_add_gold_large = yes
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = STC_contract_written_in_gold
+		icon = GFX_focus_generic_industry_1
+		cost = 10
+		x = 36  y = 2
+		prerequisite = { focus = STC_inspect_stormwind_coffers }
+		available = { stc_gold_above = yes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_timed_idea = { idea = STC_golden_window days = 365 }
+			add_political_power = 15
+		}
+	}
+
+	focus = {
+		id = STC_advance_payment_required
+		icon = GFX_goal_generic_political_pressure
+		cost = 7
+		x = 40  y = 2
+		prerequisite = { focus = STC_the_horde_contract }
+		completion_reward = {
+			stc_add_leverage_medium = yes
+			stc_add_gold = yes
+			add_political_power = 10
+		}
+	}
+
+	focus = {
+		id = STC_no_refunds_after_delivery
+		icon = GFX_goal_generic_major_war
+		cost = 8
+		x = 36  y = 3
+		prerequisite = {
+			focus = STC_contract_written_in_gold
+			focus = STC_advance_payment_required
+		}
+		available = { stc_gold_above = yes }
+		completion_reward = {
+			stc_expand_contract_capacity = yes
+			add_political_power = 10
+		}
+	}
+
+	# ================================================================
+	# Contract System sub-branch (x=36, continuing down from no_refunds)
+	# ================================================================
+
+	focus = {
+		id = STC_largest_order_in_history
+		icon = GFX_focus_generic_industry_3
+		cost = 10
+		x = 36  y = 4
+		prerequisite = { focus = STC_no_refunds_after_delivery }
+		completion_reward = {
+			stc_add_gold_large = yes
+			add_timed_idea = { idea = STC_war_boom_shipyards days = 365 }
+		}
+	}
+
+	focus = {
+		id = STC_hire_every_engineer
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 10
+		x = 36  y = 5
+		prerequisite = { focus = STC_largest_order_in_history }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_war_boom_shipyards
+		}
+	}
+
+	focus = {
+		id = STC_open_emergency_credit
+		icon = GFX_goal_generic_alliance
+		cost = 7
+		x = 36  y = 6
+		prerequisite = { focus = STC_hire_every_engineer }
+		completion_reward = {
+			stc_expand_contract_capacity = yes
+			add_political_power = 10
+		}
+	}
+
+	focus = {
+		id = STC_import_materials_any_price
+		icon = GFX_goal_generic_build_tank
+		cost = 10
+		x = 36  y = 7
+		prerequisite = { focus = STC_open_emergency_credit }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_ideas = STC_triple_shift
+		}
+	}
+
+	# ================================================================
+	# The Golden Window sub-branch (x=40, parallel to largest_order)
+	# ================================================================
+
+	focus = {
+		id = STC_the_golden_window
+		icon = GFX_goal_generic_positive_good_idea
+		cost = 8
+		x = 40  y = 4
+		prerequisite = { focus = STC_no_refunds_after_delivery }
+		available = { stc_gold_above_half = yes }
+		completion_reward = {
+			add_timed_idea = { idea = STC_golden_window days = 540 }
+		}
+	}
+
+	focus = {
+		id = STC_reinvest_the_profits
+		icon = GFX_goal_generic_construct_civilian
+		cost = 10
+		x = 40  y = 5
+		prerequisite = { focus = STC_the_golden_window }
+		available = { stc_gold_above_half = yes }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_ideas = STC_reinvested_profits
+			add_building_construction = { type = dockyard level = 2 instant_build = no }
+		}
+	}
+
+	focus = {
+		id = STC_expand_overseas_warehouses
+		icon = GFX_goal_generic_fortify_city
+		cost = 10
+		x = 40  y = 6
+		prerequisite = { focus = STC_reinvest_the_profits }
+		completion_reward = {
+			stc_spend_gold = yes
+			stc_add_leverage_medium = yes
+			add_building_construction = { type = naval_base level = 2 instant_build = no }
+		}
+	}
+
+	focus = {
+		id = STC_buy_rival_workshops
+		icon = GFX_goal_generic_production
+		cost = 12
+		x = 40  y = 7
+		prerequisite = { focus = STC_expand_overseas_warehouses }
+		available = { stc_gold_above = yes }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			add_ideas = STC_cartel_recruitment_drive
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		}
+	}
+
+	focus = {
+		id = STC_pocket_the_difference
+		icon = GFX_goal_generic_territory_or_war
+		cost = 7
+		x = 40  y = 8
+		prerequisite = { focus = STC_the_golden_window }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_political_power = 100
+		}
+	}
+
+	# ================================================================
+	# CARTEL COMPETITION (x=28–29)
+	# ================================================================
+
+	focus = {
+		id = STC_other_princes_watching
+		icon = GFX_goal_generic_construct_civilian
+		cost = 8
+		x = 31  y = 4
+		prerequisite = { focus = STC_contract_written_in_gold }
+		completion_reward = { stc_add_leverage = yes }
+	}
+
+	focus = {
+		id = STC_prove_contract_profitable
+		icon = GFX_goal_generic_industry_1
+		cost = 10
+		x = 31  y = 5
+		prerequisite = { focus = STC_other_princes_watching }
+		available = { stc_gold_above = yes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_cartel_recruitment_drive
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = STC_recruit_independent_engineers
+		icon = GFX_goal_generic_production
+		cost = 8
+		x = 31  y = 6
+		prerequisite = { focus = STC_prove_contract_profitable }
+		completion_reward = {
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		}
+	}
+
+	focus = {
+		id = STC_buy_out_smaller_workshops
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 10
+		x = 31  y = 7
+		prerequisite = { focus = STC_recruit_independent_engineers }
+		available = { stc_gold_above = yes }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		}
+	}
+
+	focus = {
+		id = STC_poach_rival_specialists
+		icon = GFX_goal_generic_science_experiment
+		cost = 10
+		x = 31  y = 8
+		prerequisite = { focus = STC_buy_out_smaller_workshops }
+		completion_reward = {
+			stc_spend_gold = yes
+			stc_add_leverage_medium = yes
+			add_tech_bonus = {
+				name = general_production_technology
+				bonus = 0.5 uses = 2 category = general_production_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STC_steamwheedle_standard
+		icon = GFX_goal_generic_positive_good_idea
+		cost = 12
+		x = 31  y = 9
+		prerequisite = { focus = STC_poach_rival_specialists }
+		available = { stc_leverage_is_strong = yes }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			add_ideas = STC_dominant_cartel
+		}
+	}
+
+	focus = {
+		id = STC_corner_shipbuilding
+		icon = GFX_goal_generic_navy_battleship
+		cost = 12
+		x = 33  y = 5
+		prerequisite = { focus = STC_prove_contract_profitable }
+		available = { stc_gold_above_half = yes }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			add_building_construction = { type = dockyard level = 3 instant_build = yes }
+			add_ideas = STC_war_boom_shipyards
+		}
+	}
+
+	focus = {
+		id = STC_control_shipping_lanes
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 10
+		x = 33  y = 6
+		prerequisite = { focus = STC_corner_shipbuilding }
+		completion_reward = {
+			stc_add_leverage_large = yes
+			add_ideas = STC_logistics_contract
+		}
+	}
+
+	focus = {
+		id = STC_undercut_other_princes
+		icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 33  y = 7
+		prerequisite = { focus = STC_control_shipping_lanes }
+		available = { stc_leverage_is_strong = yes }
+		completion_reward = {
+			stc_spend_leverage = yes
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = STC_sell_success_story
+		icon = GFX_goal_generic_diplomatic_treaty
+		cost = 7
+		x = 29  y = 7
+		prerequisite = { focus = STC_recruit_independent_engineers }
+		completion_reward = { add_political_power = 50 }
+	}
+
+	# ================================================================
+	# HORDE RELATIONSHIP & LEVERAGE (x=32–33)
+	# ================================================================
+
+	focus = {
+		id = STC_puppet_on_paper
+		icon = GFX_goal_generic_diplomatic_treaty
+		cost = 8
+		x = 32  y = 4
+		prerequisite = { focus = STC_contract_written_in_gold }
+		completion_reward = {
+			stc_add_leverage = yes
+			add_political_power = 15
+		}
+	}
+
+	focus = {
+		id = STC_warchief_needs_us
+		icon = GFX_goal_generic_political_pressure
+		cost = 10
+		x = 32  y = 5
+		prerequisite = { focus = STC_puppet_on_paper }
+		available = { stc_is_active_contractor = yes }
+		completion_reward = {
+			stc_add_leverage_authority_checked = yes
+			add_political_power = 10
+		}
+	}
+
+	focus = {
+		id = STC_business_before_obedience
+		icon = GFX_goal_generic_democracy
+		cost = 10
+		x = 32  y = 6
+		prerequisite = { focus = STC_warchief_needs_us }
+		completion_reward = {
+			stc_add_leverage_medium = yes
+			if = { limit = { stc_warchief_authority_high = yes }
+				BRC = { add_stability = -3 } }
+		}
+	}
+
+	focus = {
+		id = STC_cartel_is_not_clan
+		icon = GFX_goal_generic_fascism
+		cost = 10
+		x = 32  y = 7
+		prerequisite = { focus = STC_business_before_obedience }
+		available = { stc_leverage_is_strong = yes }
+		completion_reward = {
+			stc_spend_leverage = yes
+			add_political_power = 50
+			add_tech_bonus = {
+				name = general_production_technology
+				bonus = 0.5 uses = 1 category = general_production_technology
+			}
+		}
+	}
+
+	focus = {
+		id = STC_demand_commercial_autonomy
+		icon = GFX_goal_generic_political_freedom
+		cost = 12
+		x = 32  y = 8
+		prerequisite = { focus = STC_cartel_is_not_clan }
+		available = { stc_leverage_is_strong = yes }
+		completion_reward = {
+			stc_spend_leverage_large = yes
+			add_political_power = 75
+		}
+	}
+
+	focus = {
+		id = STC_our_ships_our_prices
+		icon = GFX_goal_generic_navy_doctrine
+		cost = 14
+		x = 32  y = 9
+		prerequisite = { focus = STC_demand_commercial_autonomy }
+		available = { stc_leverage_is_dominant = yes }
+		completion_reward = {
+			stc_spend_leverage_large = yes
+			add_ideas = STC_dominant_cartel
+		}
+	}
+
+	focus = {
+		id = STC_the_debt_ledger
+		icon = GFX_goal_generic_support_war
+		cost = 8
+		x = 34  y = 7
+		prerequisite = { focus = STC_business_before_obedience }
+		available = { stc_has_debt = yes }
+		completion_reward = {
+			stc_add_leverage_medium = yes
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = STC_exclusive_shipping
+		icon = GFX_goal_generic_navy_anti_submarine
+		cost = 10
+		x = 34  y = 8
+		prerequisite = { focus = STC_the_debt_ledger }
+		available = { stc_has_heavy_debt = yes }
+		completion_reward = {
+			stc_add_leverage_large = yes
+			add_ideas = STC_dominant_cartel
+		}
+	}
+
+	focus = {
+		id = STC_renegotiate_contract
+		icon = GFX_goal_generic_diplomatic_treaty
+		cost = 7
+		x = 30  y = 6
+		prerequisite = { focus = STC_warchief_needs_us }
+		available = { stc_warchief_authority_low = yes }
+		completion_reward = {
+			stc_add_leverage_large = yes
+			stc_add_gold_large = yes
+		}
+	}
+
+	# ================================================================
+	# ACT II — FLEET CONSTRUCTION (x=42–44)
+	# ================================================================
+
+	focus = {
+		id = STC_build_horde_fleet
+		icon = GFX_goal_generic_build_navy
+		cost = 8
+		x = 42  y = 3
+		prerequisite = { focus = STC_advance_payment_required }
+		available = { stc_can_afford_contract = yes }
+		completion_reward = {
+			add_ideas = STC_war_boom_shipyards
+			stc_add_leverage = yes
+		}
+	}
+
+	focus = {
+		id = STC_build_faster_than_sink
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 10
+		x = 42  y = 4
+		prerequisite = { focus = STC_build_horde_fleet }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_timed_idea = { idea = STC_emergency_fleet_contract days = 365 }
+			add_ideas = horde_goblin_ships
+		}
+	}
+
+	focus = {
+		id = STC_warchief_wants_ships
+		icon = GFX_goal_generic_major_navy
+		cost = 10
+		x = 42  y = 5
+		prerequisite = { focus = STC_build_faster_than_sink }
+		available = { stc_can_afford_large_contract = yes }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			add_ideas = STC_triple_shift
+			add_political_power = 15
+		}
+	}
+
+	focus = {
+		id = STC_contract_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		cost = 10
+		x = 42  y = 6
+		prerequisite = { focus = STC_warchief_wants_ships }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_building_construction = { type = dockyard level = 3 instant_build = no }
+		}
+	}
+
+	focus = {
+		id = STC_horde_naval_logistics
+		icon = GFX_goal_generic_navy_anti_submarine
+		cost = 10
+		x = 42  y = 7
+		prerequisite = { focus = STC_contract_shipyards }
+		completion_reward = {
+			stc_add_leverage_medium = yes
+			add_ideas = STC_logistics_contract
+			BRC = { add_timed_idea = { idea = horde_goblin_ships days = 365 } }
+		}
+	}
+
+	focus = {
+		id = STC_great_fleet_order
+		icon = GFX_goal_generic_navy_battleship
+		cost = 14
+		x = 42  y = 8
+		prerequisite = { focus = STC_horde_naval_logistics }
+		available = { stc_can_afford_large_contract = yes }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			stc_add_leverage_medium = yes
+			add_equipment_to_stockpile = { type = battleship_equipment_1 amount = 3 }
+			add_equipment_to_stockpile = { type = destroyer_equipment_1 amount = 5 }
+			add_equipment_to_stockpile = { type = light_frigate_equipment_1 amount = 3 }
+			BRC = { navy_experience = 15 }
+		}
+	}
+
+	# Fleet: Repairs sub-branch (x=44)
+
+	focus = {
+		id = STC_floating_repairs
+		icon = GFX_goal_generic_navy_doctrine
+		cost = 7
+		x = 44  y = 4
+		prerequisite = { focus = STC_build_faster_than_sink }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_timed_idea = { idea = STC_repair_contract days = 365 }
+		}
+	}
+
+	focus = {
+		id = STC_emergency_escort_program
+		icon = GFX_goal_generic_navy_submarine
+		cost = 8
+		x = 44  y = 5
+		prerequisite = { focus = STC_floating_repairs }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_equipment_to_stockpile = { type = destroyer_equipment_1 amount = 8 }
+		}
+	}
+
+	focus = {
+		id = STC_merchant_hull_conversion
+		icon = GFX_goal_generic_navy_anti_submarine
+		cost = 7
+		x = 44  y = 6
+		prerequisite = { focus = STC_emergency_escort_program }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_logistics_contract
+			set_convoys = 50
+		}
+	}
+
+	focus = {
+		id = STC_salvage_the_wrecks
+		icon = GFX_goal_generic_navy_carrier
+		cost = 8
+		x = 46  y = 9
+		prerequisite = { focus = STC_emergency_escort_program }
+		available = { stc_horde_losing_at_sea = yes }
+		completion_reward = {
+			stc_sob_emergency_gold = yes
+			add_equipment_to_stockpile = { type = light_frigate_equipment_1 amount = 3 }
+		}
+	}
+
+	# Fleet: Standardized production sub-branch (x=40)
+
+	focus = {
+		id = STC_standardized_hulls
+		icon = GFX_goal_generic_navy_cruiser
+		cost = 8
+		x = 38  y = 5
+		prerequisite = { focus = STC_build_faster_than_sink }
+		completion_reward = {
+			add_tech_bonus = { name = destroyer_technology bonus = 0.5 uses = 1 category = destroyer_technology }
+			add_tech_bonus = { name = light_frigate_technology bonus = 0.5 uses = 1 category = light_frigate_technology }
+		}
+	}
+
+	focus = {
+		id = STC_triple_shift_shipyards
+		icon = GFX_goal_generic_production2
+		cost = 10
+		x = 38  y = 6
+		prerequisite = { focus = STC_standardized_hulls }
+		completion_reward = { add_timed_idea = { idea = STC_triple_shift days = 365 } }
+	}
+
+	focus = {
+		id = STC_cheap_hulls_big_guns
+		icon = GFX_goal_generic_navy_battleship
+		cost = 12
+		x = 38  y = 7
+		prerequisite = { focus = STC_triple_shift_shipyards }
+		available = { stc_can_afford_contract = yes }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_tech_bonus = { name = battleship_technology bonus = 0.5 uses = 1 category = battleship_technology }
+			add_equipment_to_stockpile = { type = battleship_equipment_1 amount = 2 }
+		}
+	}
+
+	focus = {
+		id = STC_sell_victory_fleet
+		icon = GFX_goal_generic_major_navy
+		cost = 14
+		x = 42  y = 9
+		prerequisite = { focus = STC_great_fleet_order focus = STC_cheap_hulls_big_guns }
+		available = { stc_gold_above = yes }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			stc_add_leverage_large = yes
+			add_equipment_to_stockpile = { type = battleship_equipment_1 amount = 4 }
+			add_equipment_to_stockpile = { type = destroyer_equipment_1 amount = 6 }
+			add_equipment_to_stockpile = { type = light_frigate_equipment_1 amount = 4 }
+			BRC = { navy_experience = 25 }
+		}
+	}
+
+	# ================================================================
+	# ACT III — MECHANICAL AVIATION (x=46)
+	# ================================================================
+
+	focus = {
+		id = STC_eyes_above_battlefield
+		icon = GFX_goal_generic_air_fighter
+		cost = 8
+		x = 46  y = 3
+		prerequisite = { focus = STC_advance_payment_required }
+		available = { stc_can_afford_contract = yes }
+		completion_reward = {
+			add_ideas = STC_war_boom_aviation
+			add_tech_bonus = { name = mechanical_air_technology bonus = 0.5 uses = 1 category = mechanical_air_technology }
+		}
+	}
+
+	focus = {
+		id = STC_zeppelin_workshops
+		icon = GFX_goal_generic_air_bomber
+		cost = 10
+		x = 46  y = 4
+		prerequisite = { focus = STC_eyes_above_battlefield }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_zeppelin_procurement
+		}
+	}
+
+	focus = {
+		id = STC_observation_gondolas
+		icon = GFX_goal_generic_air_fighter
+		cost = 8
+		x = 46  y = 5
+		prerequisite = { focus = STC_zeppelin_workshops }
+		completion_reward = {
+			add_equipment_to_stockpile = { type = mechanical_scout_plane_equipment_1 amount = 200 }
+			air_experience = 10
+		}
+	}
+
+	focus = {
+		id = STC_long_range_recon
+		icon = GFX_goal_generic_air_transport
+		cost = 10
+		x = 46  y = 6
+		prerequisite = { focus = STC_observation_gondolas }
+		completion_reward = {
+			stc_spend_gold = yes
+			stc_add_leverage = yes
+			add_equipment_to_stockpile = { type = mechanical_scout_plane_equipment_1 amount = 300 }
+			BRC = { air_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = STC_naval_spotting_flights
+		icon = GFX_goal_generic_air_naval_bomber
+		cost = 10
+		x = 46  y = 7
+		prerequisite = { focus = STC_long_range_recon }
+		available = { stc_horde_at_war = yes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_equipment_to_stockpile = { type = mechanical_naval_bomber_equipment_1 amount = 200 }
+			BRC = { add_timed_idea = { idea = horde_goblin_aircraft days = 365 } }
+		}
+	}
+
+	# Aviation: Mass production sub-branch (x=48)
+
+	focus = {
+		id = STC_mass_produced_airframes
+		icon = GFX_goal_generic_air_production
+		cost = 8
+		x = 48  y = 4
+		prerequisite = { focus = STC_zeppelin_workshops }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_timed_idea = { idea = STC_zeppelin_procurement days = 365 }
+		}
+	}
+
+	focus = {
+		id = STC_bomb_racks
+		icon = GFX_goal_generic_air_naval_bomber
+		cost = 10
+		x = 48  y = 5
+		prerequisite = { focus = STC_mass_produced_airframes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_equipment_to_stockpile = { type = mechanical_bomber_equipment_1 amount = 250 }
+			add_tech_bonus = { name = bomber_technology bonus = 0.5 uses = 1 category = bomber_technology }
+		}
+	}
+
+	focus = {
+		id = STC_armored_pilot_cabins
+		icon = GFX_goal_generic_army_tanks_special
+		cost = 12
+		x = 48  y = 6
+		prerequisite = { focus = STC_bomb_racks }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_tech_bonus = { name = mechanical_air_technology bonus = 1.0 uses = 1 category = mechanical_air_technology }
+		}
+	}
+
+	focus = {
+		id = STC_airborne_supply
+		icon = GFX_goal_generic_air_transport
+		cost = 7
+		x = 48  y = 7
+		prerequisite = { focus = STC_mass_produced_airframes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_equipment_to_stockpile = { type = mechanical_scout_plane_equipment_1 amount = 100 }
+			BRC = { add_equipment_to_stockpile = { type = supply_wagon_equipment_1 amount = 100 } }
+		}
+	}
+
+	focus = {
+		id = STC_mech_aviation_bureau
+		icon = GFX_goal_generic_air_ace
+		cost = 14
+		x = 46  y = 8
+		prerequisite = { focus = STC_naval_spotting_flights focus = STC_armored_pilot_cabins }
+		completion_reward = {
+			stc_add_leverage_medium = yes
+			add_ideas = STC_war_boom_aviation
+			add_equipment_to_stockpile = { type = mechanical_bomber_equipment_1 amount = 150 }
+			add_equipment_to_stockpile = { type = mechanical_naval_bomber_equipment_1 amount = 150 }
+			air_experience = 20
+		}
+	}
+
+	# ================================================================
+	# ACT IV — SAPPERS & EXPLOSIVES (x=50)
+	# ================================================================
+
+	focus = {
+		id = STC_explosives_department
+		icon = GFX_goal_generic_army_artillery
+		cost = 8
+		x = 50  y = 3
+		prerequisite = { focus = STC_advance_payment_required }
+		available = { stc_can_afford_contract = yes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_war_boom_explosives
+		}
+	}
+
+	focus = {
+		id = STC_contract_demolition_teams
+		icon = GFX_goal_generic_army_artillery2
+		cost = 10
+		x = 50  y = 4
+		prerequisite = { focus = STC_explosives_department }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_sapper_mobilization
+		}
+	}
+
+	focus = {
+		id = STC_sappers_for_horde
+		icon = GFX_goal_generic_army_motorization
+		cost = 10
+		x = 50  y = 5
+		prerequisite = { focus = STC_contract_demolition_teams }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			stc_add_leverage = yes
+			BRC = { add_timed_idea = { idea = horde_goblin_sappers days = 365 } }
+		}
+	}
+
+	focus = {
+		id = STC_breach_human_fortresses
+		icon = GFX_goal_generic_fortify_city
+		cost = 10
+		x = 50  y = 6
+		prerequisite = { focus = STC_sappers_for_horde }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_tech_bonus = { name = siege_technology bonus = 0.5 uses = 1 category = siege_technology }
+			army_experience = 10
+		}
+	}
+
+	focus = {
+		id = STC_mining_charges
+		icon = GFX_goal_generic_army_artillery
+		cost = 8
+		x = 50  y = 7
+		prerequisite = { focus = STC_breach_human_fortresses }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_tech_bonus = { name = siege_technology bonus = 0.5 uses = 1 category = siege_technology }
+		}
+	}
+
+	focus = {
+		id = STC_tunnel_demolition
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 10
+		x = 50  y = 8
+		prerequisite = { focus = STC_mining_charges }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			BRC = { army_experience = 15 }
+		}
+	}
+
+	focus = {
+		id = STC_siege_engineering_office
+		icon = GFX_goal_generic_army_tanks_special
+		cost = 14
+		x = 50  y = 9
+		prerequisite = { focus = STC_tunnel_demolition }
+		completion_reward = {
+			stc_spend_gold_large = yes
+			stc_add_leverage_medium = yes
+			add_ideas = STC_sapper_mobilization
+			BRC = { add_timed_idea = { idea = horde_goblin_sappers days = 540 } }
+		}
+	}
+
+	# Sappers: Bridge destruction sub-branch (x=52)
+	focus = {
+		id = STC_bridge_destruction
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 8
+		x = 52  y = 6
+		prerequisite = { focus = STC_sappers_for_horde }
+
+		completion_reward = {
+			stc_spend_gold = yes
+			add_timed_idea = { idea = STC_sapper_mobilization days = 365 }
+		}
+	}
+
+	focus = {
+		id = STC_replace_the_volunteers
+		icon = GFX_goal_generic_army_mot_art
+		cost = 7
+		x = 52  y = 7
+		prerequisite = { focus = STC_bridge_destruction }
+		completion_reward = {
+			stc_spend_gold = yes
+			army_experience = 20
+		}
+	}
+
+	# ================================================================
+	# ACT V — ALCHEMY (x=54)
+	# ================================================================
+
+	focus = {
+		id = STC_industrial_alchemy
+		icon = GFX_goal_generic_science_experiment
+		cost = 8
+		x = 54  y = 3
+		prerequisite = { focus = STC_advance_payment_required }
+		available = { stc_can_afford_contract = yes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_ideas = STC_alchemical_procurement
+		}
+	}
+
+	focus = {
+		id = STC_fuel_substitutes
+		icon = GFX_goal_generic_fuel_silo
+		cost = 10
+		x = 54  y = 4
+		prerequisite = { focus = STC_industrial_alchemy }
+		completion_reward = { add_timed_idea = { idea = STC_alchemical_procurement days = 365 } }
+	}
+
+	focus = {
+		id = STC_volatile_compounds
+		icon = GFX_goal_generic_army_artillery
+		cost = 8
+		x = 54  y = 5
+		prerequisite = { focus = STC_fuel_substitutes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_tech_bonus = { name = siege_technology bonus = 0.5 uses = 1 category = siege_technology }
+		}
+	}
+
+	focus = {
+		id = STC_emergency_medicine
+		icon = GFX_goal_generic_support_war
+		cost = 7
+		x = 54  y = 6
+		prerequisite = { focus = STC_volatile_compounds }
+		completion_reward = {
+			stc_spend_gold = yes
+			BRC = { add_timed_idea = { idea = horde_goblin_alchemy days = 365 } }
+		}
+	}
+
+	# Alchemy: smoke branch (x=56)
+
+	focus = {
+		id = STC_smoke_mixtures
+		icon = GFX_goal_generic_army_artillery2
+		cost = 8
+		x = 56  y = 4
+		prerequisite = { focus = STC_fuel_substitutes }
+		completion_reward = {
+			stc_spend_gold = yes
+			add_equipment_to_stockpile = { type = supply_wagon_equipment_1 amount = 150 }
+		}
+	}
+
+	focus = {
+		id = STC_fire_suppression
+		icon = GFX_goal_generic_production2
+		cost = 7
+		x = 56  y = 5
+		prerequisite = { focus = STC_smoke_mixtures }
+		completion_reward = {
+			stc_spend_gold = yes
+			BRC = { add_timed_idea = { idea = horde_goblin_alchemy days = 365 } }
+		}
+	}
+
+	focus = {
+		id = STC_experimental_propellants
+		icon = GFX_goal_generic_science_experiment
+		cost = 10
+		x = 52  y = 5
+		prerequisite = { focus = STC_smoke_mixtures }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			add_tech_bonus = { name = mechanical_air_technology bonus = 0.5 uses = 1 category = mechanical_air_technology }
+		}
+	}
+
+	focus = {
+		id = STC_chemical_workshops
+		icon = GFX_goal_generic_science_experiment
+		cost = 12
+		x = 54  y = 7
+		prerequisite = { focus = STC_emergency_medicine focus = STC_fire_suppression }
+		completion_reward = {
+			stc_spend_gold_medium = yes
+			stc_add_leverage_medium = yes
+			add_ideas = STC_alchemical_procurement
+			add_tech_bonus = { name = siege_technology bonus = 1.0 uses = 1 category = siege_technology }
+		}
+	}
+
+	# ================================================================
+	# END-OF-WAR OUTCOMES (y=11–16, convergence at x=36–40)
+	# ================================================================
+
+	focus = {
+		id = STC_coffers_are_empty
+		icon = GFX_goal_generic_major_war
+		cost = 14
+		x = 38  y = 11
+		prerequisite = {
+			focus = STC_import_materials_any_price
+			focus = STC_great_fleet_order
+			focus = STC_mech_aviation_bureau
+			focus = STC_siege_engineering_office
+			focus = STC_chemical_workshops
+			focus = STC_steamwheedle_standard
+			focus = STC_our_ships_our_prices
+		}
+		available = {
+			OR = {
+				stc_gold_is_crisis = yes
+				stc_gold_is_running_dry = yes
+			}
+		}
+		completion_reward = { add_political_power = 25 }
+	}
+
+	# Historical path: Return to neutrality (x=34)
+
+	focus = {
+		id = STC_reduce_production
+		icon = GFX_goal_generic_force_deployment
+		cost = 8
+		x = 34  y = 12
+		prerequisite = { focus = STC_coffers_are_empty }
+		completion_reward = {
+			remove_ideas = { STC_triple_shift STC_war_boom_shipyards }
+			add_ideas = STC_preparing_neutrality
+			add_political_power = 15
+		}
+	}
+
+	focus = {
+		id = STC_find_new_customers
+		icon = GFX_goal_generic_diplomatic_treaty
+		cost = 10
+		x = 34  y = 13
+		prerequisite = { focus = STC_reduce_production }
+		completion_reward = { add_political_power = 25 }
+	}
+
+	focus = {
+		id = STC_separate_business_politics
+		icon = GFX_goal_generic_democracy
+		cost = 10
+		x = 34  y = 14
+		prerequisite = { focus = STC_find_new_customers }
+		completion_reward = {
+			stc_add_leverage_medium = yes
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = STC_prepare_neutrality_declaration
+		icon = GFX_goal_generic_neutrality_focus
+		cost = 10
+		x = 34  y = 15
+		prerequisite = { focus = STC_separate_business_politics }
+		completion_reward = {
+			add_ideas = STC_declared_neutrality
+			set_politics = { ruling_party = neutral elections_allowed = no }
+			add_popularity = { ideology = neutral popularity = 1 }
+		}
+	}
+
+	focus = {
+		id = STC_business_with_everyone
+		icon = GFX_goal_generic_trade
+		cost = 14
+		x = 34  y = 16
+		prerequisite = { focus = STC_prepare_neutrality_declaration }
+		completion_reward = {
+			add_ideas = STC_declared_neutrality
+			add_political_power = 50
+		}
+	}
+
+	# Debt/Concession path (x=38)
+
+	focus = {
+		id = STC_extend_credit_horde
+		icon = GFX_goal_generic_support_war
+		cost = 10
+		x = 38  y = 12
+		prerequisite = { focus = STC_coffers_are_empty }
+		completion_reward = {
+			stc_add_debt_large = yes
+			stc_add_gold = yes
+			add_political_power = 10
+		}
+	}
+
+	focus = {
+		id = STC_demand_mines_payment
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 10
+		x = 38  y = 13
+		prerequisite = { focus = STC_extend_credit_horde }
+		available = { stc_has_heavy_debt = yes }
+		completion_reward = {
+			stc_add_leverage_large = yes
+			add_political_power = 25
+		}
+	}
+
+	focus = {
+		id = STC_debt_into_autonomy
+		icon = GFX_goal_generic_political_freedom
+		cost = 14
+		x = 38  y = 14
+		prerequisite = { focus = STC_demand_mines_payment }
+		available = { stc_leverage_is_dominant = yes }
+		completion_reward = {
+			stc_spend_leverage_large = yes
+			add_ideas = STC_dominant_cartel
+			add_political_power = 50
+		}
+	}
+
+	# Bet on Warchief path (x=42)
+
+	focus = {
+		id = STC_bet_on_warchief
+		icon = GFX_goal_generic_major_war
+		cost = 10
+		x = 42  y = 12
+		prerequisite = { focus = STC_coffers_are_empty }
+		completion_reward = {
+			stc_add_leverage = yes
+			stc_add_gold_large = yes
+		}
+	}
+
+	focus = {
+		id = STC_permanent_horde_contracts
+		icon = GFX_goal_generic_major_alliance
+		cost = 12
+		x = 42  y = 13
+		prerequisite = { focus = STC_bet_on_warchief }
+		completion_reward = {
+			add_ideas = STC_horde_industrial_partner
+			stc_add_leverage_large = yes
+		}
+	}
+
+	focus = {
+		id = STC_place_at_war_council
+		icon = GFX_goal_generic_army_specialist
+		cost = 14
+		x = 42  y = 14
+		prerequisite = { focus = STC_permanent_horde_contracts }
+		available = { stc_leverage_is_dominant = yes }
+		completion_reward = {
+			stc_spend_leverage_large = yes
+			add_ideas = STC_horde_industrial_partner
+			add_political_power = 50
+		}
+	}
+
+	# Alt-history: First Among Trade Princes (x=28)
+	# Shares prerequisite with steamwheedle_standard, bottom of cartel col
+
+	focus = {
+		id = STC_first_among_trade_princes
+		icon = GFX_goal_generic_positive_good_idea
+		cost = 14
+		x = 31  y = 10
+		prerequisite = { focus = STC_steamwheedle_standard }
+		available = {
+			stc_leverage_is_dominant = yes
+			stc_gold_above = yes
+		}
+		completion_reward = {
+			stc_spend_leverage_large = yes
+			stc_spend_gold_large = yes
+			add_ideas = STC_dominant_cartel
+			add_political_power = 75
+		}
+	}
+}
