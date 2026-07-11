@@ -173,8 +173,9 @@ NDefines.NAir.ACE_EARN_CHANCE_PLANES_MULT = 0.00015 -- +0.0005% chance per plane
 --------------
 
 NDefines.NPolitics.BASE_POLITICAL_POWER_INCREASE = 2.5    -- Weekly increase of PP. -- default 2
-NDefines.NPolitics.ARMY_LEADER_COST = 10   -- default 5
-NDefines.NPolitics.NAVY_LEADER_COST = 10   -- default 5
+NDefines.NPolitics.ARMY_LEADER_COST = 5    -- default 5
+NDefines.NPolitics.NAVY_LEADER_COST = 5    -- default 5
+NDefines.NPolitics.AIR_LEADER_COST = 5    -- default 10
 
 ------------
 -- Supply --
