@@ -123,7 +123,7 @@ focus_tree = {
 	}
 
 	# ============================================================
-	# SUPREME COMMAND — Lothar and the Council of Seven Nations
+	# HUMAN COUNCIL — build the human compact before the Grand Alliance
 	# ============================================================
 
 	focus = {
@@ -133,14 +133,17 @@ focus_tree = {
 		relative_position_id = LOR_the_council_of_lordaeron
 		x = 10
 		y = 1
-		cost = 18
+		cost = 10
 
 		ai_will_do = { base = 9 }
 
 		completion_reward = {
-			# Persuade the reluctant kings — Greymane and Perenolde — to commit.
+			# The first council is deliberately human-led. Dwarves and gnomes
+			# receive a later invitation once the war reaches Khaz Modan.
 			add_political_power = 50
 			alliance_unity_raise_medium = yes
+			set_country_flag = human_council_convened
+			country_event = { id = lordaeron_council.1 hours = 6 }
 			every_country = {
 				limit = { is_in_faction_with = ROOT NOT = { tag = LOR } }
 				add_opinion_modifier = { target = LOR modifier = small_increase }
@@ -149,44 +152,275 @@ focus_tree = {
 	}
 
 	focus = {
-		id = LOR_send_alliance_envoys
-		icon = GFX_focus_eng_imperial_federation
-		prerequisite = { focus = LOR_the_council_of_lordaeron }
+		id = LOR_the_stormwind_claim
+		icon = GFX_focus_LOR_sw_survivors_of_stormwind
 		prerequisite = { focus = LOR_the_council_of_seven_nations }
 		relative_position_id = LOR_the_council_of_seven_nations
-		x = -8
+		x = 0
 		y = 1
-		cost = 12
+		cost = 7
 
-		ai_will_do = {
-			base = 7
+		ai_will_do = { base = 9 }
+
+		completion_reward = {
+			add_political_power = 25
+			alliance_unity_raise = yes
+			set_country_flag = stormwind_claim_recognized
+			country_event = { id = lordaeron_council.2 hours = 6 }
 		}
+	}
+
+	focus = {
+		id = LOR_who_commands_the_alliance
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = LOR_the_stormwind_claim }
+		relative_position_id = LOR_the_stormwind_claim
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = { base = 10 }
+
+		completion_reward = {
+			add_political_power = 15
+			set_country_flag = alliance_command_debate_open
+			country_event = { id = lordaeron_council.3 hours = 6 }
+		}
+	}
+
+	focus = {
+		id = LOR_supreme_commander_lothar
+		icon = GFX_focus_RAJ_lions_of_the_great_war
+		prerequisite = { focus = LOR_who_commands_the_alliance }
+		relative_position_id = LOR_who_commands_the_alliance
+		x = -3
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = LOR_terenas_leads_the_coalition }
+		mutually_exclusive = { focus = LOR_council_command }
+		mutually_exclusive = { focus = LOR_the_kings_keep_their_armies }
+
+		ai_will_do = { base = 20 }
+
+		completion_reward = {
+			add_ideas = LOR_supreme_command
+			custom_effect_tooltip = LOR_supreme_commander_lothar_tt
+			set_country_flag = lothar_supreme_commander
+			add_command_power = 50
+			alliance_unity_raise_major = yes
+		}
+	}
+
+	focus = {
+		id = LOR_terenas_leads_the_coalition
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = LOR_who_commands_the_alliance }
+		relative_position_id = LOR_who_commands_the_alliance
+		x = -1
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = LOR_supreme_commander_lothar }
+		mutually_exclusive = { focus = LOR_council_command }
+		mutually_exclusive = { focus = LOR_the_kings_keep_their_armies }
+
+		ai_will_do = { base = 3 }
+
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			set_country_flag = terenas_leads_coalition
+			LOR_second_war_proto_lower_overextension = yes
+			alliance_unity_raise = yes
+		}
+	}
+
+	focus = {
+		id = LOR_council_command
+		icon = GFX_goal_generic_diplomacy
+		prerequisite = { focus = LOR_who_commands_the_alliance }
+		relative_position_id = LOR_who_commands_the_alliance
+		x = 1
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = LOR_supreme_commander_lothar }
+		mutually_exclusive = { focus = LOR_terenas_leads_the_coalition }
+		mutually_exclusive = { focus = LOR_the_kings_keep_their_armies }
+
+		ai_will_do = { base = 1 }
 
 		completion_reward = {
 			add_political_power = 40
-			alliance_unity_raise_medium = yes
-			add_opinion_modifier = {
-				target = GIL
-				modifier = small_increase
+			set_country_flag = council_command_alliance
+			alliance_unity_raise = yes
+			add_ideas = LOR_the_alliance_of_lordaeron
+		}
+	}
+
+	focus = {
+		id = LOR_the_kings_keep_their_armies
+		icon = GFX_goal_generic_major_war
+		prerequisite = { focus = LOR_who_commands_the_alliance }
+		relative_position_id = LOR_who_commands_the_alliance
+		x = 3
+		y = 1
+		cost = 7
+		mutually_exclusive = { focus = LOR_supreme_commander_lothar }
+		mutually_exclusive = { focus = LOR_terenas_leads_the_coalition }
+		mutually_exclusive = { focus = LOR_council_command }
+
+		ai_will_do = { base = 1 }
+
+		completion_reward = {
+			add_stability = 0.05
+			set_country_flag = decentralized_alliance
+			LOR_second_war_proto_lower_overextension = yes
+			alliance_unity_lower = yes
+		}
+	}
+
+	focus = {
+		id = LOR_marshal_the_kingdoms
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = {
+			focus = LOR_supreme_commander_lothar
+			focus = LOR_terenas_leads_the_coalition
+			focus = LOR_council_command
+			focus = LOR_the_kings_keep_their_armies
+		}
+		relative_position_id = LOR_who_commands_the_alliance
+		x = 0
+		y = 2
+		cost = 10
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 25
+			set_country_flag = human_compact_functional
+			every_country = {
+				limit = { is_in_faction_with = ROOT }
+				add_command_power = 30
 			}
-			add_opinion_modifier = {
-				target = DAL
-				modifier = small_increase
-			}
-			add_opinion_modifier = {
-				target = KUL
-				modifier = small_increase
-			}
-			# Envoys reach the dwarven realms: invite the Coalition of Khaz Modan
-			# (Ironforge + Gnomeregan + Northeron) to fold into the Alliance.
-			if = {
-				limit = {
-					IRO = { exists = yes NOT = { is_in_faction_with = STO } NOT = { has_war_with = STO } }
-				}
-				IRO = { country_event = { id = grand_alliance.5 hours = 6 } }
-			}
-			# Bring in the smaller alliance-aligned realms (Nethergarde, Stormpike, Aerie Peak).
+			country_event = { id = lordaeron_council.4 hours = 6 }
+		}
+	}
+
+	focus = {
+		id = LOR_send_alliance_envoys
+		icon = GFX_focus_eng_imperial_federation
+		prerequisite = { focus = LOR_marshal_the_kingdoms }
+		relative_position_id = LOR_marshal_the_kingdoms
+		x = 0
+		y = 1
+		cost = 7
+
+		ai_will_do = { base = 7 }
+
+		completion_reward = {
+			add_political_power = 25
+			add_opinion_modifier = { target = GIL modifier = small_increase }
+			add_opinion_modifier = { target = DAL modifier = small_increase }
+			add_opinion_modifier = { target = KUL modifier = small_increase }
+			# This focus handles human diplomacy only. Khaz Modan is invited
+			# through the later, phase-gated branch below.
 			consolidate_grand_alliance_minors = yes
+		}
+	}
+
+	focus = {
+		id = LOR_the_khaz_modan_question
+		icon = GFX_goal_generic_construct_infrastructure
+		prerequisite = { focus = LOR_send_alliance_envoys }
+		relative_position_id = LOR_send_alliance_envoys
+		x = 0
+		y = 1
+		cost = 7
+
+		available = {
+			OR = {
+				second_war_phase_at_least_1 = yes
+				IRO = { has_war_with = BRC }
+				date > 597.7.1
+			}
+		}
+		bypass = {
+			OR = {
+				IRO = { exists = no }
+				IRO = { is_in_faction_with = STO }
+			}
+		}
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			set_country_flag = khaz_modan_diplomacy_open
+			add_political_power = 25
+			alliance_unity_raise = yes
+			country_event = { id = lordaeron_council.5 hours = 6 }
+		}
+	}
+
+	focus = {
+		id = LOR_envoys_to_ironforge
+		icon = GFX_goal_generic_diplomacy
+		prerequisite = { focus = LOR_the_khaz_modan_question }
+		relative_position_id = LOR_the_khaz_modan_question
+		x = 0
+		y = 1
+		cost = 7
+
+		available = {
+			IRO = { exists = yes NOT = { is_in_faction_with = STO } }
+		}
+		bypass = {
+			OR = {
+				IRO = { exists = no }
+				IRO = { is_in_faction_with = STO }
+			}
+		}
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			set_country_flag = ironforge_envoys_sent
+			IRO = { country_event = { id = grand_alliance.5 hours = 6 } }
+			add_political_power = 20
+		}
+	}
+
+	focus = {
+		id = LOR_the_dwarven_pact
+		icon = GFX_goal_generic_major_alliance
+		prerequisite = { focus = LOR_envoys_to_ironforge }
+		relative_position_id = LOR_envoys_to_ironforge
+		x = 0
+		y = 1
+		cost = 7
+
+		available = {
+			OR = {
+				IRO = { is_in_faction_with = STO }
+				GNO = { is_in_faction_with = STO }
+			}
+		}
+
+		bypass = {
+			OR = {
+				IRO = { exists = no }
+				AND = {
+					IRO = { is_in_faction_with = STO }
+					GNO = { is_in_faction_with = STO }
+				}
+			}
+		}
+
+		ai_will_do = { base = 8 }
+
+		completion_reward = {
+			set_country_flag = dwarven_pact_signed
+			alliance_unity_raise_medium = yes
+			country_event = { id = lordaeron_council.6 hours = 6 }
 		}
 	}
 
@@ -194,8 +428,8 @@ focus_tree = {
 		id = LOR_allied_logistics
 		icon = GFX_goal_generic_construct_infrastructure
 		prerequisite = { focus = LOR_secure_stromgarde }
-		prerequisite = { focus = LOR_send_alliance_envoys }
-		relative_position_id = LOR_the_council_of_lordaeron
+		prerequisite = { focus = LOR_the_dwarven_pact }
+		relative_position_id = LOR_the_dwarven_pact
 		x = 0
 		y = 2
 		cost = 10
@@ -706,47 +940,6 @@ focus_tree = {
 				army_experience = 10
 			}
 			alliance_unity_raise_medium = yes
-		}
-	}
-
-	focus = {
-		id = LOR_supreme_commander_lothar
-		icon = GFX_focus_RAJ_lions_of_the_great_war
-		prerequisite = { focus = LOR_the_council_of_seven_nations }
-		relative_position_id = LOR_the_council_of_seven_nations
-		x = 0
-		y = 1
-		cost = 12
-
-		ai_will_do = { base = 9 }
-
-		completion_reward = {
-			# Anduin Lothar is named Supreme Commander of the Alliance host.
-			add_ideas = LOR_supreme_command
-			custom_effect_tooltip = LOR_supreme_commander_lothar_tt
-			set_country_flag = lothar_supreme_commander
-			add_command_power = 50
-		}
-	}
-
-	focus = {
-		id = LOR_marshal_the_kingdoms
-		icon = GFX_goal_generic_army_doctrines
-		prerequisite = { focus = LOR_supreme_commander_lothar }
-		relative_position_id = LOR_the_council_of_seven_nations
-		x = 0
-		y = 2
-		cost = 10
-
-		ai_will_do = { base = 8 }
-
-		completion_reward = {
-			add_war_support = 0.05
-			army_experience = 25
-			every_country = {
-				limit = { is_in_faction_with = ROOT }
-				add_command_power = 30
-			}
 		}
 	}
 
