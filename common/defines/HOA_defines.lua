@@ -323,7 +323,7 @@ NDefines.NNavy.MISSION_DOMINANCE_RATIOS = {                  -- 10.0x vanilla: e
 	2, -- MINES SWEEPING (was 0.3)
 	0.0, -- TRAIN
 	0.0, -- RESERVE_FLEET
-	45.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
+	65.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
 }
 NDefines.NNavy.NAVAL_DOMINANCE_STRIKE_FORCE_FRACTION = 0.01 -- was 0.0006: strike force generates 67% more dominance per ship
 
