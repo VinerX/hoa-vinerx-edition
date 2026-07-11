@@ -309,23 +309,23 @@ NDefines.NIndustrialOrganisation.LEGACY_COST_FACTOR_SCALE = 1.0					            
 --------------------------------------------------------------------------------
 NDefines.NNavy.DOMINANCE_CONTROLLED_THRESHOLD_RATIO = 0.35   -- was 0.60: need 35% of dominance to control a sea region
 NDefines.NNavy.SHIP_SUPPORT_NEED_FACTOR = 0.12               -- was 0.10
-NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.12         -- was 0.05→0.08→0.12
+NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.2        -- was 0.05→0.08→0.12
 NDefines.NNavy.COMBAT_MIN_HIT_CHANCE = 0.02                  -- was 0.005
 NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 35              -- was 60
 NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 5          -- was 4
 NDefines.NNavy.MISSION_DOMINANCE_RATIOS = {                  -- 10.0x vanilla: each ship counts 10x, drastically fewer ships needed for supremacy
-	0.0, -- HOLD
-	10.0, -- PATROL (was 1.0)
-	10.0, -- STRIKE FORCE (was 1.0)
-	3.0, -- CONVOY RAIDING (was 0.5)
-	3.0, -- CONVOY ESCORT (was 0.5)
-	1.8, -- MINES PLANTING (was 0.3)
-	1.8, -- MINES SWEEPING (was 0.3)
+	10.0, -- HOLD
+	60.0, -- PATROL (was 1.0)
+	50.0, -- STRIKE FORCE (was 1.0)
+	20.0, -- CONVOY RAIDING (was 0.5)
+	10.0, -- CONVOY ESCORT (was 0.5)
+	2, -- MINES PLANTING (was 0.3)
+	2, -- MINES SWEEPING (was 0.3)
 	0.0, -- TRAIN
 	0.0, -- RESERVE_FLEET
-	10.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
+	45.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
 }
-NDefines.NNavy.NAVAL_DOMINANCE_STRIKE_FORCE_FRACTION = 0.001 -- was 0.0006: strike force generates 67% more dominance per ship
+NDefines.NNavy.NAVAL_DOMINANCE_STRIKE_FORCE_FRACTION = 0.01 -- was 0.0006: strike force generates 67% more dominance per ship
 
 -- Invasion support allocation (1.18.3)
 -- Vanilla AI can create an invasion order without assigning enough navy to
