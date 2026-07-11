@@ -126,6 +126,9 @@ KUL_naval_invasion_horde = {
 	enable = {
 		is_in_faction_with = LOR
 		has_war_with = BRC
+		# Do not split the navy between continental targets before the island
+		# chain has created a usable forward network.
+		LOR = { check_variable = { alliance_sea_control > 4 } }
 	}
 	abort_when_not_enabled = yes
 
@@ -145,6 +148,12 @@ KUL_naval_invasion_horde = {
 	ai_strategy = {
 		type = naval_invasion_focus
 		value = 120
+	}
+	ai_strategy = {
+		# 1.18.3 naval AI: make invasion-support assignment outrank
+		# routine patrol/escort work while a landing is being prepared.
+		type = naval_invasion_support_priority
+		value = 160
 	}
 
 	# Dragonmaw Port — DMC's main naval base, closest Horde port to KUL
@@ -171,29 +180,6 @@ KUL_naval_invasion_horde = {
 		value = 20
 	}
 
-	# Stormwind Keep — SRC capital, 30 VP
-	ai_strategy = {
-		type = invasion_unit_request
-		state = 22
-		value = 90
-	}
-	ai_strategy = {
-		type = invade
-		id = "SRC"
-		value = 15
-	}
-
-	# Westfall Lighthouse — SRC coastal point, dockyard
-	ai_strategy = {
-		type = invasion_unit_request
-		state = 1593
-		value = 70
-	}
-	ai_strategy = {
-		type = invade
-		id = "SRC"
-		value = 10
-	}
 }
 
 # Sea of Blood — seize Horde-held islands to dominate the central sea lanes
@@ -202,6 +188,7 @@ KUL_seize_sob_islands = {
 	enable = {
 		is_in_faction_with = LOR
 		has_war_with = BRC
+		NOT = { LOR = { check_variable = { alliance_sea_control > 4 } } }
 	}
 	abort_when_not_enabled = yes
 
@@ -252,6 +239,10 @@ KUL_seize_sob_islands = {
 		id = "TOL"
 		value = 8
 	}
+	ai_strategy = {
+		type = naval_invasion_support_priority
+		value = 180
+	}
 }
 
 # Build ships — prioritize destroyer and frigate
@@ -261,6 +252,24 @@ KUL_build_ships = {
 		has_start_date > 595.1.1
 	}
 	abort_when_not_enabled = yes
+
+	# Keep a usable escort and invasion-support pool instead of letting the
+	# generic AI spend every dockyard on a few expensive capital ships.
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 60
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
 }
 
 # Protect LOR and Alliance coastlines
