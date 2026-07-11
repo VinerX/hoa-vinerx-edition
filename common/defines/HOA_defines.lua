@@ -326,4 +326,14 @@ NDefines.NNavy.MISSION_DOMINANCE_RATIOS = {                  -- 6.0x vanilla: ea
 	6.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
 }
 NDefines.NNavy.NAVAL_DOMINANCE_STRIKE_FORCE_FRACTION = 0.001 -- was 0.0006: strike force generates 67% more dominance per ship
-NDefines.NAI.AI_MIN_DOMINANCE_MARGIN = 100                    -- was 200: AI launches invasions with smaller overkill margin
+
+-- Invasion support allocation (1.18.3)
+-- Vanilla AI can create an invasion order without assigning enough navy to
+-- the route. Raise the request weight and allow a meaningful part of a
+-- faction's fleet to support the landing, while keeping the dominance
+-- threshold/ship multipliers above responsible for the actual supremacy math.
+NDefines.NAI.NAVAL_SUPREMACY_WEIGHT_PER_DIVISION_ON_INVASION_ORDER = 12 -- vanilla 6
+NDefines.NAI.MAX_SCREEN_FORCES_FOR_INVASION_SUPPORT = 0.50              -- vanilla 0.25
+NDefines.NAI.MAX_CAPITAL_FORCES_FOR_INVASION_SUPPORT = 0.40             -- vanilla 0.25
+NDefines.NAI.MAX_DISTANCE_NAVAL_INVASION = 300.0                        -- vanilla 200.0
+NDefines.NAI.AI_MIN_DOMINANCE_MARGIN = 60                               -- was 200: reduce AI overkill reluctance for landings
