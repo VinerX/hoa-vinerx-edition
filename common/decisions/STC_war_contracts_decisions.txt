@@ -1,9 +1,17 @@
 ################################################################################
-# Steamwheedle Cartel — War Contracts
+# Steamwheedle Cartel — Second War Contract Portfolio
 #
-# STC signs production contracts with the Horde, granting timed ideas
-# that boost industrial output and benefit the Warchief.
-# Contracts expire after 365 days; renewals re-apply all active deals.
+# STC signs production contracts with the Horde using Stormwind gold.
+# Each contract consumes gold + a contract slot and grants a powerful timed idea.
+# Contract capacity starts at 2, expandable to 4 via focuses.
+#
+# Contract types:
+#   Naval         — extreme dockyard output
+#   Zeppelin      — air production surge
+#   Sapper        — fort attack + breakthrough
+#   Alchemy       — supply + trickleback + speed
+#   Repair        — naval refit/repair speed
+#   Logistics     — supply + convoy efficiency
 ################################################################################
 
 STC_war_contracts = {
@@ -13,79 +21,199 @@ STC_war_contracts = {
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 74
-			NOT = { has_idea = STC_naval_boom }
-			NOT = { has_country_flag = STC_contracts_completed }
+			stc_can_afford_contract = yes
+			NOT = { has_idea = STC_emergency_fleet_contract }
 		}
-		cost = 75
+		visible = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+		cost = 25
 		complete_effect = {
-			add_timed_idea = { idea = STC_naval_boom days = 365 }
+			stc_spend_gold = yes
+			stc_activate_contract = yes
+			add_timed_idea = { idea = STC_emergency_fleet_contract days = 365 }
 			BRC = { add_timed_idea = { idea = horde_goblin_ships days = 365 } }
 		}
-		ai_will_do = { factor = 50 }
+		ai_will_do = { factor = 60 }
 	}
 
-	STC_airship_contract = {
+	STC_zeppelin_contract = {
 		icon = generic_air_bonus
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 74
-			NOT = { has_idea = STC_airship_boom }
-			NOT = { has_country_flag = STC_contracts_completed }
+			stc_can_afford_contract = yes
+			NOT = { has_idea = STC_zeppelin_procurement }
 		}
-		cost = 75
+		visible = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+		cost = 25
 		complete_effect = {
-			add_timed_idea = { idea = STC_airship_boom days = 365 }
+			stc_spend_gold = yes
+			stc_activate_contract = yes
+			add_timed_idea = { idea = STC_zeppelin_procurement days = 365 }
 			BRC = { add_timed_idea = { idea = horde_goblin_aircraft days = 365 } }
 		}
-		ai_will_do = { factor = 50 }
+		ai_will_do = { factor = 55 }
 	}
 
-	STC_sappers_contract = {
-		icon = generic_construction_bonus
+	STC_sapper_contract = {
+		icon = generic_army_bonus
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_political_power > 74
-			NOT = { has_idea = STC_sappers_contract }
-			NOT = { has_country_flag = STC_contracts_completed }
+			stc_can_afford_contract = yes
+			NOT = { has_idea = STC_sapper_mobilization }
 		}
-		cost = 75
+		visible = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+		cost = 25
 		complete_effect = {
-			add_timed_idea = { idea = STC_sappers_contract days = 365 }
-			BRC = { add_timed_idea = { idea = horde_goblin_construction days = 365 } }
+			stc_spend_gold = yes
+			stc_activate_contract = yes
+			add_timed_idea = { idea = STC_sapper_mobilization days = 365 }
+			BRC = { add_timed_idea = { idea = horde_goblin_sappers days = 365 } }
 		}
 		ai_will_do = { factor = 45 }
 	}
 
+	STC_alchemy_contract = {
+		icon = generic_production
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			stc_can_afford_contract = yes
+			NOT = { has_idea = STC_alchemical_procurement }
+		}
+		visible = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+		cost = 25
+		complete_effect = {
+			stc_spend_gold = yes
+			stc_activate_contract = yes
+			add_timed_idea = { idea = STC_alchemical_procurement days = 365 }
+			BRC = { add_timed_idea = { idea = horde_goblin_alchemy days = 365 } }
+		}
+		ai_will_do = { factor = 40 }
+	}
+
+	STC_repair_contract = {
+		icon = generic_navy_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			stc_can_afford_contract = yes
+			NOT = { has_idea = STC_repair_contract }
+		}
+		visible = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+		cost = 20
+		complete_effect = {
+			stc_spend_gold = yes
+			stc_activate_contract = yes
+			add_timed_idea = { idea = STC_repair_contract days = 180 }
+			BRC = { add_timed_idea = { idea = horde_goblin_ships days = 180 } }
+		}
+		ai_will_do = { factor = 50 }
+	}
+
+	STC_logistics_contract = {
+		icon = generic_construction_bonus
+		allowed = { original_tag = STC }
+		available = {
+			is_in_faction_with = BRC
+			stc_can_afford_contract = yes
+			NOT = { has_idea = STC_logistics_contract }
+		}
+		visible = {
+			check_variable = { var = active_contracts value = 0 compare = less_than }
+		}
+		cost = 20
+		complete_effect = {
+			stc_spend_gold = yes
+			stc_activate_contract = yes
+			add_timed_idea = { idea = STC_logistics_contract days = 180 }
+		}
+		ai_will_do = { factor = 35 }
+	}
+
+	# --- Renew expired contracts ---
 	STC_renew_contracts = {
 		icon = generic_production
 		allowed = { original_tag = STC }
 		available = {
 			is_in_faction_with = BRC
-			has_country_flag = STC_contracts_completed
-			has_political_power > 49
+			stc_can_afford_contract = yes
+			OR = {
+				has_country_flag = STC_fleet_contract_expired
+				has_country_flag = STC_zeppelin_contract_expired
+				has_country_flag = STC_sapper_contract_expired
+				has_country_flag = STC_alchemy_contract_expired
+				has_country_flag = STC_repair_contract_expired
+				has_country_flag = STC_logistics_contract_expired
+			}
 		}
-		cost = 50
+		cost = 30
 		complete_effect = {
-			clr_country_flag = STC_contracts_completed
-			if = {
-				limit = { NOT = { has_idea = STC_naval_boom } }
-				add_timed_idea = { idea = STC_naval_boom days = 365 }
+			stc_spend_gold = yes
+			if = { limit = {
+				has_country_flag = STC_fleet_contract_expired
+				NOT = { has_idea = STC_emergency_fleet_contract }
+			}
+				clr_country_flag = STC_fleet_contract_expired
+				stc_activate_contract = yes
+				add_timed_idea = { idea = STC_emergency_fleet_contract days = 365 }
 				BRC = { add_timed_idea = { idea = horde_goblin_ships days = 365 } }
 			}
-			if = {
-				limit = { NOT = { has_idea = STC_airship_boom } }
-				add_timed_idea = { idea = STC_airship_boom days = 365 }
+			if = { limit = {
+				has_country_flag = STC_zeppelin_contract_expired
+				NOT = { has_idea = STC_zeppelin_procurement }
+			}
+				clr_country_flag = STC_zeppelin_contract_expired
+				stc_activate_contract = yes
+				add_timed_idea = { idea = STC_zeppelin_procurement days = 365 }
 				BRC = { add_timed_idea = { idea = horde_goblin_aircraft days = 365 } }
 			}
-			if = {
-				limit = { NOT = { has_idea = STC_sappers_contract } }
-				add_timed_idea = { idea = STC_sappers_contract days = 365 }
-				BRC = { add_timed_idea = { idea = horde_goblin_construction days = 365 } }
+			if = { limit = {
+				has_country_flag = STC_sapper_contract_expired
+				NOT = { has_idea = STC_sapper_mobilization }
+			}
+				clr_country_flag = STC_sapper_contract_expired
+				stc_activate_contract = yes
+				add_timed_idea = { idea = STC_sapper_mobilization days = 365 }
+				BRC = { add_timed_idea = { idea = horde_goblin_sappers days = 365 } }
+			}
+			if = { limit = {
+				has_country_flag = STC_alchemy_contract_expired
+				NOT = { has_idea = STC_alchemical_procurement }
+			}
+				clr_country_flag = STC_alchemy_contract_expired
+				stc_activate_contract = yes
+				add_timed_idea = { idea = STC_alchemical_procurement days = 365 }
+				BRC = { add_timed_idea = { idea = horde_goblin_alchemy days = 365 } }
+			}
+			if = { limit = {
+				has_country_flag = STC_repair_contract_expired
+				NOT = { has_idea = STC_repair_contract }
+			}
+				clr_country_flag = STC_repair_contract_expired
+				stc_activate_contract = yes
+				add_timed_idea = { idea = STC_repair_contract days = 180 }
+				BRC = { add_timed_idea = { idea = horde_goblin_ships days = 180 } }
+			}
+			if = { limit = {
+				has_country_flag = STC_logistics_contract_expired
+				NOT = { has_idea = STC_logistics_contract }
+			}
+				clr_country_flag = STC_logistics_contract_expired
+				stc_activate_contract = yes
+				add_timed_idea = { idea = STC_logistics_contract days = 180 }
 			}
 		}
-		ai_will_do = { factor = 45 }
+		ai_will_do = { factor = 50 }
 	}
 }

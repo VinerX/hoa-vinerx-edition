@@ -5,43 +5,60 @@
 
 # ----------- Portal Status -----------
 
-# BRC controls province 2854 (the portal) AND state 377, no enemy controls either
+# BRC or a faction ally controls state 377 (Dark Portal), no enemy controls it
 portal_route_secure = {
-	BRC = {
-		controls_state = 377
-		NOT = {
-			any_enemy_country = {
-				controls_state = 377
-			}
+	any_country = {
+		OR = {
+			tag = BRC
+			is_in_faction_with = BRC
 		}
-	}
-	NOT = { has_global_flag = dark_portal_sealed }
-}
-
-# BRC controls 2854 but enemy controls any state bordering 377
-portal_route_threatened = {
-	BRC = {
 		controls_state = 377
+	}
+	NOT = {
 		any_enemy_country = {
-			any_controlled_state = {
+			controls_state = 377
+		}
+	}
+	NOT = { has_global_flag = dark_portal_sealed }
+}
+
+# BRC or a faction ally controls 377, but enemy controls a state bordering 377
+portal_route_threatened = {
+	any_country = {
+		OR = {
+			tag = BRC
+			is_in_faction_with = BRC
+		}
+		controls_state = 377
+	}
+	any_enemy_country = {
+		any_controlled_state = {
+			OR = {
 				is_owned_by = BRC
-				OR = {
-					state = 376
-					state = 378
-					state = 379
-					state = 380
-				}
+				owner = { is_in_faction_with = BRC }
+			}
+			OR = {
+				state = 376
+				state = 378
+				state = 379
+				state = 380
 			}
 		}
 	}
 	NOT = { has_global_flag = dark_portal_sealed }
 }
 
-# BRC does NOT control state 377, OR dark_portal_sealed flag is set
+# Neither BRC nor any faction ally controls state 377, OR dark_portal_sealed
 portal_route_cut_off = {
 	OR = {
-		BRC = {
-			NOT = { controls_state = 377 }
+		NOT = {
+			any_country = {
+				OR = {
+					tag = BRC
+					is_in_faction_with = BRC
+				}
+				controls_state = 377
+			}
 		}
 		has_global_flag = dark_portal_sealed
 	}

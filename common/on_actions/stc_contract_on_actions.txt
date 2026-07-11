@@ -1,0 +1,160 @@
+on_actions = {
+	# ================================================================
+	# Steamwheedle Cartel — Contract System monthly processing
+	# ================================================================
+
+	on_startup = {
+		effect = {
+			if = {
+				limit = {
+					STC = {
+						exists = yes
+						NOT = { has_variable = stormwind_gold }
+					}
+				}
+				STC = { stc_gold_init = yes }
+			}
+		}
+	}
+
+	on_monthly = {
+		effect = {
+			# --- STC: monthly gold drain while contracting ---
+			if = {
+				limit = {
+					STC = {
+						exists = yes
+						is_in_faction_with = BRC
+					}
+				}
+				STC = {
+					stc_gold_monthly_drain = yes
+
+					# Gold depletion warning at 30
+					if = {
+						limit = {
+							NOT = { has_country_flag = STC_gold_warning_sent }
+							check_variable = { stormwind_gold < 31 }
+							check_variable = { stormwind_gold > 14 }
+						}
+						set_country_flag = STC_gold_warning_sent
+						country_event = { id = stc_contract.1 hours = 12 }
+					}
+
+					# Gold depleted — crisis at 0
+					if = {
+						limit = {
+							NOT = { has_country_flag = STC_gold_crisis_sent }
+							check_variable = { stormwind_gold = 0 }
+						}
+						set_country_flag = STC_gold_crisis_sent
+						country_event = { id = stc_contract.2 hours = 12 }
+					}
+
+					# Clear warnings if gold recovers
+					if = {
+						limit = {
+							has_country_flag = STC_gold_warning_sent
+							check_variable = { stormwind_gold > 39 }
+						}
+						clr_country_flag = STC_gold_warning_sent
+					}
+					if = {
+						limit = {
+							has_country_flag = STC_gold_crisis_sent
+							check_variable = { stormwind_gold > 0 }
+						}
+						clr_country_flag = STC_gold_crisis_sent
+					}
+
+					# Sea of Blood: emergency demand when Horde is losing badly
+					if = {
+						limit = {
+							NOT = { has_country_flag = STC_sob_emergency_sent }
+							stc_horde_losing_at_sea = yes
+							stc_gold_above = yes
+						}
+						set_country_flag = STC_sob_emergency_sent
+						country_event = { id = stc_contract.4 hours = 12 }
+					}
+					if = {
+						limit = {
+							has_country_flag = STC_sob_emergency_sent
+							stc_horde_winning_at_sea = yes
+						}
+						clr_country_flag = STC_sob_emergency_sent
+					}
+
+					# Track contract deliveries and fire leverage milestones
+					if = {
+						limit = {
+							check_variable = { commercial_leverage > 49 }
+							NOT = { has_country_flag = STC_leverage_milestone_50 }
+						}
+						set_country_flag = STC_leverage_milestone_50
+						country_event = { id = stc_contract.8 hours = 12 }
+					}
+
+					# High authority — Warchief demands priority
+					if = {
+						limit = {
+							NOT = { has_country_flag = STC_authority_demand_sent }
+							stc_warchief_authority_high = yes
+							stc_gold_above = yes
+						}
+						set_country_flag = STC_authority_demand_sent
+						country_event = { id = stc_contract.6 hours = 24 }
+					}
+
+					# Low authority — contract renegotiation opportunity
+					if = {
+						limit = {
+							NOT = { has_country_flag = STC_low_authority_event_sent }
+							stc_warchief_authority_low = yes
+							check_variable = { commercial_leverage > 24 }
+						}
+						set_country_flag = STC_low_authority_event_sent
+						country_event = { id = stc_contract.7 hours = 24 }
+					}
+
+					# Clean up authority flags when conditions change
+					if = {
+						limit = {
+							has_country_flag = STC_authority_demand_sent
+							NOT = { stc_warchief_authority_high = yes }
+						}
+						clr_country_flag = STC_authority_demand_sent
+					}
+					if = {
+						limit = {
+							has_country_flag = STC_low_authority_event_sent
+							NOT = { stc_warchief_authority_low = yes }
+						}
+						clr_country_flag = STC_low_authority_event_sent
+					}
+				}
+			}
+		}
+	}
+
+	on_faction_left = {
+		effect = {
+			if = {
+				limit = {
+					original_tag = STC
+				}
+				remove_ideas = {
+					STC_gold_coffers_full
+					STC_gold_heavy_spending
+					STC_gold_declining
+					STC_gold_running_dry
+					STC_gold_payment_crisis
+					STC_leverage_dominant
+					STC_leverage_growing
+					STC_leverage_moderate
+					STC_leverage_minimal
+				}
+			}
+		}
+	}
+}
