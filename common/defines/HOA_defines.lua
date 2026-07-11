@@ -313,17 +313,17 @@ NDefines.NNavy.NAVAL_DOMINANCE_SPOTTING_BONUS = 0.12         -- was 0.05â†’0.08â
 NDefines.NNavy.COMBAT_MIN_HIT_CHANCE = 0.02                  -- was 0.005
 NDefines.NNavy.NAVAL_INVASION_PREPARE_DAYS = 35              -- was 60
 NDefines.NNavy.BASE_NAVAL_INVASION_DIVISION_CAP = 5          -- was 4
-NDefines.NNavy.MISSION_DOMINANCE_RATIOS = {                  -- 3.0x vanilla: each ship counts triple, much fewer needed for supremacy
+NDefines.NNavy.MISSION_DOMINANCE_RATIOS = {                  -- 6.0x vanilla: each ship counts 6x, drastically fewer ships needed for supremacy
 	0.0, -- HOLD
-	3.0, -- PATROL (was 1.0)
-	3.0, -- STRIKE FORCE (was 1.0)
-	1.5, -- CONVOY RAIDING (was 0.5)
-	1.5, -- CONVOY ESCORT (was 0.5)
-	0.9, -- MINES PLANTING (was 0.3)
-	0.9, -- MINES SWEEPING (was 0.3)
+	6.0, -- PATROL (was 1.0)
+	6.0, -- STRIKE FORCE (was 1.0)
+	3.0, -- CONVOY RAIDING (was 0.5)
+	3.0, -- CONVOY ESCORT (was 0.5)
+	1.8, -- MINES PLANTING (was 0.3)
+	1.8, -- MINES SWEEPING (was 0.3)
 	0.0, -- TRAIN
 	0.0, -- RESERVE_FLEET
-	3.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
+	6.0, -- NAVAL_INVASION_SUPPORT (was 1.0)
 }
 NDefines.NNavy.NAVAL_DOMINANCE_STRIKE_FORCE_FRACTION = 0.001 -- was 0.0006: strike force generates 67% more dominance per ship
 NDefines.NAI.AI_MIN_DOMINANCE_MARGIN = 100                    -- was 200: AI launches invasions with smaller overkill margin
