@@ -105,6 +105,16 @@ merge_coalition_of_khaz_modan = {
 coalition_merge_fallback = {
 	if = {
 		limit = {
+			# The human compact must be functional and the Alliance properly
+			# established before Khaz Modan can merge. Otherwise the Coalition
+			# stays independent until proper diplomacy (focus branch) resolves.
+			LOR = { has_country_flag = human_compact_functional }
+			OR = {
+				second_war_phase_at_least_2 = yes
+				IRO = { has_war_with = BRC }
+				GNO = { has_war_with = BRC }
+				date > 598.1.1
+			}
 			OR = {
 				AND = {
 					IRO = { exists = yes NOT = { is_in_faction_with = STO } is_in_faction = yes }
